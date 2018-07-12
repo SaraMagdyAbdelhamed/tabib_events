@@ -89,6 +89,7 @@
                     <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i></a>
                       @if(App::isLocale("en"))
                         <ul class="dropdowny-menu" role="menu">
+                        
                           @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
                           <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
                             <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
