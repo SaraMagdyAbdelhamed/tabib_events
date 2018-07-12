@@ -1,0 +1,16 @@
+{
+    "name": "Famous",
+    "alias": "famous",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Famous\\Providers\\FamousServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

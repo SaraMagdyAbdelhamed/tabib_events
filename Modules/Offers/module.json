@@ -1,0 +1,16 @@
+{
+    "name": "Offers",
+    "alias": "offers",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Offers\\Providers\\OffersServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
