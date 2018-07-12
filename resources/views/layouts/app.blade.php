@@ -90,23 +90,23 @@
                       @if(App::isLocale("en"))
                         <ul class="dropdowny-menu" role="menu">
                         
-                          @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
+                        {{-- @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
                           <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
                             <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                             <p>{{$notification->msg}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
                               {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
-                          @endforeach
+                        @endforeach --}}
                          </ul> 
                       @else
                       <ul class="dropdowny-menu" role="menu">
-                        @if( count(\Helper::ListNotifications()) > 0 )
+                        {{-- @if( count(\Helper::ListNotifications()) > 0 )
                           @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
                           <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
                             <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                             <p>{{$notification->msg_ar}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
                               {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
                           @endforeach
-                        @endif
+                        @endif --}}
                          </ul> 
                       @endif
                       <!-- <ul class="dropdowny-menu" role="menu">
