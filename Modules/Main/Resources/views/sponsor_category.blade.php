@@ -9,7 +9,7 @@
             <div class="text-xs-center">         
               <div class="text-wraper">
                 <h4 class="cover-inside-title">@lang('keywords.mainData')</h4><i class="fa fa-chevron-circle-right"></i>
-                <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.eventCategories')</h4>
+                <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.sponsorCategories')</h4>
               </div>
             </div>
           </div>
@@ -29,7 +29,7 @@
                 <tr class="bgcolor--gray_mm color--gray_d">
                   <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
                   <th><span class="cellcontent">@lang('keywords.serialNo') </span></th>
-                  <th><span class="cellcontent">@lang('keywords.eventCategories')</span></th>
+                  <th><span class="cellcontent">@lang('keywords.sponsorCategories')</span></th>
                   <th><span class="cellcontent">@lang('keywords.image')</span></th>
                   <th><span class="cellcontent">@lang('keywords.actions')</span></th>
                 </tr>
@@ -44,17 +44,17 @@
                             <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                             <td>
                               <span class="cellcontent">
-                                {{ \App::isLocale('en') ? $event->name : Helper::localization('categories', 'name', $event->id, 2)  }}
+                                {{ \App::isLocale('en') ? $event->name : Helper::localization('sponsor_categories', 'name', $event->id, 2)  }}
                               </span>
                             </td>
                             <td>
                               <span class="cellcontent">
-                                <img src="{{ asset($event->image) }}" alt="" class="img-in-table" />
+                                <img src="{{ asset($event->image) }}" alt="" class="img-in-table">
                               </span>
                             </td>
                             <td>
                                 <span class="cellcontent">
-                                    <a href="#Edit" data-id="{{ $event->id }}" data-en="{{ $event->name }}" data-arabic="{{ \Helper::localization('categories', 'name', $event->id, 2) }}" class= "action-btn bgcolor--fadegreen color--white editRow"><i class = "fa  fa-pencil"></i></a>
+                                    <a href="#Edit" data-id="{{ $event->id }}" data-en="{{ $event->name }}" data-arabic="{{ \Helper::localization('sponsor_categories', 'name', $event->id, 2) }}" class= "action-btn bgcolor--fadegreen color--white editRow"><i class = "fa  fa-pencil"></i></a>
                                     <a data-id="{{ $event->id }}" href="#"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord"><i class = "fa  fa-trash-o"></i></a>
                                 </span>
                             </td>
@@ -77,12 +77,12 @@
     <div>
       <div class="row">
         <div class="col-lg-12">
-          <h3>@lang('keywords.addNew') @lang('keywords.eventCategories')</h3>
+          <h3>@lang('keywords.addNew') @lang('keywords.sponsorCategories')</h3>
         </div>
 
         <form action="{{ route('category.add') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="hidden" name="op" value="1" />
+            <input type="hidden" name="op" value="2" />
 
             <div class="col-xs-12">
                 <div class="tabs--wrapper">
@@ -94,18 +94,18 @@
                 <ul class="tab__content">
                     <li class="tab__content_item active" id="arabic-content">
                     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
-                      <div class="master_field">
+                        <div class="master_field">
                         <label class="master_label" for="cat_id_ar">اضف الحدث باللغة العربية</label>
                         <input name="arabicContent" class="master_input" type="text" placeholder="new categories in arabic"  id="cat_id_ar" required oninvalid="this.setCustomValidity('من فضلك لا تترك هذا الحقل فارغاَ')">
-                      </div>
+                        </div>
                     </div>
                     </li>
                     <li class="tab__content_item" id="english-content">
                     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
-                      <div class="master_field">
+                        <div class="master_field">
                         <label class="master_label" for="cat_id_en">Add event name in English</label>
                         <input name="englishContent" class="master_input" type="text" placeholder="new categories in English" id="cat_id_en" required >
-                      </div>
+                        </div>
                     </div>
                     </li>
                     <input type="file" name="image" class="master_input" placeholder="please select an image..." />
@@ -127,12 +127,12 @@
     <div>
       <div class="row">
         <div class="col-lg-12">
-          <h3>@lang('keywords.edit') @lang('keywords.eventCategories')</h3>
+          <h3>@lang('keywords.edit') @lang('keywords.sponsorCategories')</h3>
         </div>
         <div class="col-xs-12">
           <form action="{{ route('category.edit') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="hidden" name="op" value="1" />
+            <input type="hidden" name="op" value="2" />
 
             <input type="hidden" name="id" id="hiddenID">
 
@@ -172,7 +172,7 @@
     $(document).ready(function() {
 
       $('#menu_1').addClass('openedmenu');
-      $('#sub_1_5').addClass('pure-active');
+      $('#sub_1_6').addClass('pure-active');
 
 
         // delete multi
@@ -212,7 +212,7 @@
                     type: 'POST',
                     dataType: "JSON",
                     data: {
-                        "op": 1,
+                        "op": 2,
                         "ids": ids,
                         "_method": 'POST',
                         "_token": token,
@@ -264,7 +264,7 @@
                     type: 'POST',
                     dataType: "JSON",
                     data: {
-                        "op": 1,
+                        "op": 2,
                         "id": id,
                         "_method": 'POST',
                         "_token": token,
@@ -291,7 +291,7 @@
             var id      = $(this).data("id");
             var english = $(this).data("en");
             var arabic  = $(this).data("arabic");
-
+console.log(english);
             $('#hiddenID').val(id);
             $('#edit_id_ar').val(arabic);
             $('#edit_id_en').val(english);

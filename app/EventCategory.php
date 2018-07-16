@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class EventCategory extends Model
 {
     protected $primaryKey = 'id';
-    protected $table = 'interests';
+    protected $table = 'categories';
 
-    protected $fillable = ['name', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'image', 'created_by', 'created_at', 'created_by', 'updated_by'];
     public $timestamps = true;
 
     // relations

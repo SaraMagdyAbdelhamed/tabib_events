@@ -174,7 +174,7 @@
             <!-- Sidebar-->
             <nav class="navbar navbar-fixed-top   bshadow--0 bradius--noborder " id="sidebar-wrapper" role="navigation">
               <ul class="sidebar-navigation">
-                <li class="brand   bshadow--0"><a href="{{ route('about') }}"> <img src="{{ asset('img/logo/logo__light.svg') }}" alt="ايفنتكوم"></a></li>
+                <li class="brand   bshadow--0"><a href="{{ route('about') }}"> <img src="{{ asset('img/logo/logo__light.svg') }}" alt="طبيب"></a></li>
               </ul>
               <div class="coverglobal text-center bshadow--2" style="background:undefined url( '{{ asset('img/covers/dummy.jpg') }}') no-repeat center center; background-size:cover;">
                 <button class="hamburger is-closed" type="button" data-toggle="offcanvas"><span class="hamb-top"></span><span class="hamb-middle"></span><span class="hamb-bottom"></span></button>
@@ -208,13 +208,14 @@
                       </li>
                       <li class="side__sublist"><a class="side__subitem" id="sub_1_5" href="{{ route('event.categories')  }}">@lang('keywords.eventCategories')</a>
                       </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_6" href="{{ route('famous.attraction') }}">@lang('keywords.famous')</a>
+
+                      <li class="side__sublist"><a class="side__subitem" id="sub_1_6" href="{{ route('sponsor.categories')  }}">@lang('keywords.sponsorCategories')</a>
                       </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_7" href="{{ route('sponsors') }}">@lang('keywords.sponsors')</a>
+
+                      <li class="side__sublist"><a class="side__subitem" id="sub_1_7" href="{{ route('offers.categories')  }}">@lang('keywords.offerCategories')</a>
                       </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_8" href="{{ route('trends') }}">@lang('keywords.trends')</a>
-                      </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_9" href="{{ route('notifications') }}">@lang('keywords.notifications')</a>
+
+                      <li class="side__sublist"><a class="side__subitem" id="sub_1_8" href="{{ route('speciality.categories')  }}">@lang('keywords.doctorSpecialists')</a>
                       </li>
                     </ul>
                   </li>
@@ -240,21 +241,8 @@
                       @endif
                     </ul>
                   </li>
-                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin' ,'Data Entry','Backend User']) )
-                  <li class="side__list" id="menu_5"> <a class="side__item" id="sub_5_1" href="{{ route('fa.list') }}">@lang('keywords.famousAtt')</a>
-                  </li>
-                  <li class="side__list" id="menu_6"> <a class="side__item" id="sub_6_1" href="{{ route('offers.list') }}">@lang('keywords.offers')</a>
-                  </li>
-                  <li class="side__list" id="menu_7"> <a class="side__item" id="sub_7_1" href="{{route('shops')}}">@lang('keywords.shopndine')</a>
-                  </li>
-                  @endif
                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
                   <li class="side__list" id="menu_8"> <a class="side__item" id="sub_8_1" href="{{route('notification')}}">@lang('keywords.notifications')</a>
-                  </li>
-                  @endif
-                  @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
-                  <li class="side__list" id="menu_9"> <a class="side__item" href="{{ route('statistics') }}">@lang('keywords.statistics')</a>
-
                   </li>
                   @endif
                 </ul>

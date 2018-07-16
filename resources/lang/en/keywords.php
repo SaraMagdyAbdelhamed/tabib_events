@@ -3,7 +3,7 @@
     // keywords array
     return [
         // general names
-        'website_name'      => 'Eventakom',
+        'website_name'      => 'Tabib',
         'login_page_name'   => 'Login',
         'login_username'    => 'username',
         'login_password'    => 'password',
@@ -297,8 +297,13 @@
         'branch_name'=>'Branch Name ',
         'branch_address'=>'Branch Address',
         'branch_start'=>'Start Time',
-        'branch_end'=>'End Time'
-		
+        'branch_end'=>'End Time',
+        
+        
+        // New Keywords
+        'sponsorCategories' => 'Sponsor Categories',
+        'offerCategories'   => 'Offer Categories',
+        'doctorSpecialists' => 'Doctor Specialists',
     ];
 
 ?>

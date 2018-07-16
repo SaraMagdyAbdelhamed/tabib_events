@@ -3,7 +3,7 @@
     // keywords array
     return [
         // general names
-        'website_name'      => 'ايڤينتكوم',
+        'website_name'      => 'طبيب',
         'login_page_name'   => 'صفحة الدخول',
         'login_username'    => 'اسم المستخدم',
         'login_password'    => 'كلمة السر',
@@ -41,11 +41,11 @@
         // fixed pages
         'registered'=> 'تسجيل الدخول',
         'mainData'  => 'البيانات الاساسية',
-        'aboutUs'   => ' عن الشركة',
+        'aboutUs'   => 'من نحن ',
         'terms'     => 'الشروط والاحكام',
         'privacy'   => 'الخصوصية وسياسة الشركة',
         'contactUs' => ' تواصل معنا',
-        'eventCategories'   => 'انواع الاحداث',
+        'eventCategories'   => 'تصنيفات الاحداث',
         'famous'    => 'تصنيفات  المزارات',
         'sponsors'  => 'الرعاه',
         'trends'    => 'التحكم في البحث المتداول',
@@ -58,7 +58,7 @@
         'shopndine'     => 'محلات و مطاعم',
 
         // Edit fixed pages
-        'EditAbout' => 'تعديل قسم عن الشركة',
+        'EditAbout' => 'تعديل قسم من نحن',
         'EditTerms' => 'تعديل الشروط والاحكام',
         'EditPrivacy'   => 'تعديل الخصوصية وسياسة الشركة',
         'EditContact'   => 'تعديل تواصل معنا',
@@ -298,8 +298,12 @@
         'branch_name'=>'اسم الفرع ',
         'branch_address'=>'عنوان الفرع ',
         'branch_start'=>'بدأ عمل الفرع ',
-        'branch_end'=>'معاد اغلاق الفرع '
+        'branch_end'=>'معاد اغلاق الفرع ',
 
+        // New Keywords
+        'sponsorCategories' => 'تصنيف الرعاه',
+        'offerCategories'   => 'تصنيف العروض',
+        'doctorSpecialists' => 'تخصصات الاطباء',
 
 	
 	];

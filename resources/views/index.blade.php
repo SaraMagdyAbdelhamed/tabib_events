@@ -18,7 +18,7 @@
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#281160">
     <!-- =============== APP TITLE ===============-->
-    <title>Eventakom | ايفنتاكوم</title>
+    <title>Tabib | طبيب</title>
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{{ asset('css/style__0__ltr.min.css') }}">
     <!-- =============== APP SCRIPT ===============-->
