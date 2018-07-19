@@ -13,5 +13,10 @@ class OfferCategory extends Model
     public $timestamps = true;
 
     // Table relations
+    
+    public function offers()
+    {
+    return $this->belongsToMany('App\Offer');
+    }
 
 }

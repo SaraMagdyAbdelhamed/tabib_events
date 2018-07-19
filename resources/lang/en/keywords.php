@@ -304,6 +304,7 @@
         'sponsorCategories' => 'Sponsor Categories',
         'offerCategories'   => 'Offer Categories',
         'doctorSpecialists' => 'Doctor Specialists',
+        'offers_and_deals' => 'Offers And Deals'
     ];
 
 ?>
