@@ -14,7 +14,7 @@ class OffersAndDealsController extends Controller
      */
     public function index()
     {
-        return view('offersanddeals::index');
+        return view('offersanddeals::offers_and_deals.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class OffersAndDealsController extends Controller
      */
     public function create()
     {
-        return view('offersanddeals::create');
+        return view('offersanddeals::offers_and_deals.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class OffersAndDealsController extends Controller
      */
     public function edit()
     {
-        return view('offersanddeals::edit');
+        return view('offersanddeals::offers_and_deals.edit');
     }
 
     /**
