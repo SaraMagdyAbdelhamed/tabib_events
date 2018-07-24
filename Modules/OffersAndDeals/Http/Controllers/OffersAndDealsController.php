@@ -114,6 +114,11 @@ class OffersAndDealsController extends Controller
     {
         $data['categories']=OfferCategory::all();
         $data['offer']=Offer::find($request->route('id'));
+        $data['sponsors']=Users::whereHas('rules',function($q){
+            $q->where('rule_id',4);
+        })->with('rules')->get();
+        $user=Users::find(\Auth::id());
+        $data['isSponsor']=$user->isSponsor();
         //  dd($data['offer']->categories);
         return view('offersanddeals::offers_and_deals.update',$data);
     }

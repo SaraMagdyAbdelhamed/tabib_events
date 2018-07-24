@@ -59,6 +59,28 @@
                             </select><span class="master_message inherit">message content</span>
                           </div>
                         </div>
+                           <div class="col-xs-6">
+                          <div class="master_field">
+                            <label class="master_label mandatory" for="offer_sponsor">@lang('keywords.offerSponsor')</label>
+                            @if($isSponsor)
+                            <select class="master_input select2" id="offer_sponsor"  style="width:100%;"  name="offer_sponsor" required disabled>
+                            @else
+                           <select class="master_input select2" id="offer_sponsor"  style="width:100%;"  name="offer_sponsor" required >
+
+                            @endif
+                              <option value="-1" selected disabled hidden>Select Sponsor</option>
+                              @foreach ($sponsors as $sponsor)
+                              @if($offer->sponsor_id == $sponsor_id)
+                                 <option value="{{$sponsor->id}}" selected>{{$sponsor->username}}</option> 
+                              @else
+                              <option value="{{$sponsor->id}}">{{$sponsor->username}}</option> 
+                              @endif
+                              @endforeach
+                              
+                             
+                            </select><span class="master_message inherit">message content</span>
+                          </div>
+                        </div>
                         <div class="col-xs-6">
                           <div class="master_field">
                             <label class="master_label" for="start_date"> @lang('keywords.startDate')</label>
