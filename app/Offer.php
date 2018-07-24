@@ -9,7 +9,7 @@ class Offer extends Model
 {
     protected $id = 'id';
     protected $table = 'offers';
-    protected $fillable = ['name', 'description', 'image', 'image_ar', 'is_active', 'created_by', 'updated_by','start_datetime','end_datetime'];
+    protected $fillable = ['name', 'description', 'image', 'image_ar', 'is_active', 'created_by', 'updated_by','start_datetime','end_datetime','sponsor_id'];
     public $timestamps = true;
 
     // public function getNameAttribute($value)

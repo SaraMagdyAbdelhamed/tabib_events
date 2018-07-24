@@ -119,7 +119,7 @@ class OffersAndDealsController extends Controller
         })->with('rules')->get();
         $user=Users::find(\Auth::id());
         $data['isSponsor']=$user->isSponsor();
-        //  dd($data['offer']->categories);
+        //   dd($data['offer']);
         return view('offersanddeals::offers_and_deals.update',$data);
     }
 
@@ -128,9 +128,70 @@ class OffersAndDealsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request ,$id)
     {
-        return view('offersanddeals::offers_and_deals.index');
+        // dd($request->all());
+        $offer=Offer::find($id);
+        if ($request->has('activation')) 
+        {
+            $is_active=1;
+        }
+        else{
+            $is_active=0;
+        }
+        $user=Users::find(\Auth::id());
+        if($user->isSponsor())
+        {
+            $sponsor_id=$user->id;
+        }
+        else
+        {
+            $sponsor_id=$request->offer_sponsor;
+        }
+        if ($request->hasFile('offer_image')) {
+            // dd($request->offer_image->getClientOriginalExtension());
+            // foreach ($request->offer_image as $key => $file) {
+                
+                $destinationPath = 'offer_images';
+                $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
+            // dd($fileNameToStore);
+                Input::file('offer_image')->move($destinationPath, $fileNameToStore);
+
+               $offer->update([
+                    
+                    'name' => $request->offer_title,
+                    'description' => $request->offer_description,
+                    'image' => $fileNameToStore,
+                    'is_active'=>$is_active,
+                    'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
+                    'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
+                    'sponsor_id'=>$sponsor_id
+                ]);
+
+               
+            // }
+        }
+        else
+        {
+            $offer->update([
+                    
+                'name' => $request->offer_title,
+                'description' => $request->offer_description,
+                'is_active'=>$is_active,
+                'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
+                'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
+                'sponsor_id'=>$sponsor_id
+            ]);
+        }
+        foreach($request->offer_category as $cat)
+        {
+            OfferOfferCategory::create([
+                'offer_id'=>$offer->id,
+                'offer_category_id'=>$cat
+            ]);
+        }
+        $data['offers']=Offer::all();
+        return view('offersanddeals::offers_and_deals.index',$data);
     }
 
     /**

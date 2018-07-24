@@ -21,7 +21,8 @@
                 </div>
                 <div class="col-xs-12">
                   <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
-                    <form id="offers_edit">
+                    <form id="offers_edit" action="{{ route('offers_and_deals.update',$offer->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                      {{ csrf_field() }}
                       <div class="row">
                         <div class="col-xs-6">
                           <div class="master_field">
@@ -32,13 +33,13 @@
                         <div class="col-xs-6">
                           <div class="master_field">
                             <label class="master_label" for="offer_description">@lang('keywords.offerDescription')</label>
-                            <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" value="{{$offer->description}}"></textarea><span class="master_message color--fadegreen">validation message will be here</span>
+                            <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" >{{$offer->description}}</textarea><span class="master_message color--fadegreen">validation message will be here</span>
                           </div>
                         </div>
                         <div class="col-xs-6">
                           <div class="master_field">
                             <label class="master_label mandatory" for="offer_category">@lang('keywords.offerCategory')</label>
-                            <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category">
+                            <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category[]">
                               @foreach ($categories as $category)
                               <?php $cat=0; ?>
                                 @foreach ($offer->categories as $off_cat)
@@ -70,7 +71,7 @@
                             @endif
                               <option value="-1" selected disabled hidden>Select Sponsor</option>
                               @foreach ($sponsors as $sponsor)
-                              @if($offer->sponsor_id == $sponsor_id)
+                              @if($offer->sponsor_id == $sponsor->id)
                                  <option value="{{$sponsor->id}}" selected>{{$sponsor->username}}</option> 
                               @else
                               <option value="{{$sponsor->id}}">{{$sponsor->username}}</option> 
@@ -111,7 +112,7 @@
                           <label class="master_label mandatory">@lang('keywords.offerImage')</label>
                           <div id="fileList"></div>
                           <div class="form-group" id="img_dr_btn" style="text-align:end;">
-                            <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1" onchange="updateList()">
+                            <input class="inputfile inputfile-1" id="file-1" type="file" name="offer_image" onchange="updateList()">
                             <label for="file-1"><span>اختر صورة   </span></label>
                           </div>
                           <ul class="js-uploader__file-list uploader__file-list" id="img_dr_list" style="text-align:end;padding-left:9%;">
@@ -119,13 +120,14 @@
                           </ul>
                         </div>
                       </div>
-                    </form>
+                    
                     <div class="div" style="text-align:end;">
                       <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                       </button>
                       <a class="master-btn   undefined bgcolor--fadebrown  bshadow--0" href="{{route('offers_and_deals')}}"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                       </a>
                     </div>
+                    </form>
                   </div>
                 </div><br>
               </div>
