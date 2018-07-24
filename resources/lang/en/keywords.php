@@ -228,6 +228,7 @@
         'active'=>'Active',
         'startDate'=>'Start Date ',
         'endDate'=>'End Date ',
+        'offerSponsor'=>'Offer Sponsor',
 		
         //Statistics
         'statistics'=>'Statistics',

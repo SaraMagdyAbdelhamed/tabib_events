@@ -39,9 +39,23 @@
                           <div class="master_field">
                             <label class="master_label mandatory" for="offer_category">@lang('keywords.offerCategory')</label>
                             <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category">
-                              <option>category1</option>
-                              <option>category2</option>
-                              <option>category3</option>
+                              @foreach ($categories as $category)
+                              <?php $cat=0; ?>
+                                @foreach ($offer->categories as $off_cat)
+                                
+                                @if($off_cat->id == $category->id)
+                                <?php $cat=1; ?>
+                                    <option value="{{$category->id}}" selected>{{$category->name}}</option> 
+                                    
+                                    @endif
+                                    
+                                    
+                                @endforeach
+                                @if($cat == 0)
+                                  <option value="{{$category->id}}">{{$category->name}}</option>
+                                  @endif
+                                
+                              @endforeach
                             </select><span class="master_message inherit">message content</span>
                           </div>
                         </div>

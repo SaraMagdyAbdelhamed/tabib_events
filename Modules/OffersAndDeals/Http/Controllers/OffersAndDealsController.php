@@ -11,6 +11,7 @@ use App\OfferCategory;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Helper;
+use App\Users;
 
 class OffersAndDealsController extends Controller
 {
@@ -38,6 +39,15 @@ class OffersAndDealsController extends Controller
         else{
             $is_active=0;
         }
+        $user=Users::find(\Auth::id());
+        if($user->isSponsor())
+        {
+            $sponsor_id=$user->id;
+        }
+        else
+        {
+            $sponsor_id=$request->offer_sponsor;
+        }
         if ($request->hasFile('offer_image')) {
             // dd($request->offer_image->getClientOriginalExtension());
             // foreach ($request->offer_image as $key => $file) {
@@ -54,14 +64,15 @@ class OffersAndDealsController extends Controller
                     'image' => $fileNameToStore,
                     'is_active'=>$is_active,
                     'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
-                    'end_datetime'=>date('Y-m-d',strtotime($request->end_date))
+                    'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
+                    'sponsor_id'=>$sponsor_id
                 ]);
 
                 foreach($request->offer_category as $cat)
                 {
                     OfferOfferCategory::create([
                         'offer_id'=>$offer->id,
-                        'category_id'=>$cat
+                        'offer_category_id'=>$cat
                     ]);
                 }
             // }
@@ -78,6 +89,11 @@ class OffersAndDealsController extends Controller
     public function store(Request $request)
     {
         $data['categories']=OfferCategory::all();
+        $data['sponsors']=Users::whereHas('rules',function($q){
+            $q->where('rule_id',4);
+        })->with('rules')->get();
+        $user=Users::find(\Auth::id());
+        $data['isSponsor']=$user->isSponsor();
         return view('offersanddeals::offers_and_deals.create',$data);
     }
 
@@ -98,7 +114,7 @@ class OffersAndDealsController extends Controller
     {
         $data['categories']=OfferCategory::all();
         $data['offer']=Offer::find($request->route('id'));
-        // dd($data['offer']);
+        //  dd($data['offer']->categories);
         return view('offersanddeals::offers_and_deals.update',$data);
     }
 

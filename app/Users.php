@@ -111,6 +111,18 @@ class Users extends Authenticatable
         return ($this->rules[0]->id == 1 && $this->rules[1]->id == 4) ? true : false;
     }
 
+    ///check if sponsor
+    public function isSponsor()
+    {
+        foreach ($this->rules as $rule) {
+            if ($rule->pivot->rule_id == 4) {
+                return true ;
+            }
+        }
+        return false;
+        
+    }
+
     //Attributes
     public function getAgeAttribute()
     {

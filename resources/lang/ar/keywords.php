@@ -232,6 +232,7 @@
         'offerDescription'=>'وصف العرض ',
         'offerCategory'=>'فئه العرض',
         'offerImage'=>'صوره العرض',
+        'offerSponsor'=>'ممول العرض ',
         
         'addNewOffer'=>'إضافه عروض واتفقايات جديده',
         'active'=>'تفعيل',
