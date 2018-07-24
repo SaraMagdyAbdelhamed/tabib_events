@@ -311,6 +311,20 @@
     <script type="text/javascript" src="{{ asset('js/scripts.min.js') }}"></script>
     
     <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+      <script type="text/javascript">
+      $(function () {
+        $('.datepicker-popup').pickadate();
+        $('.timepicker-popup').pickatime();
+      });
+      
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        $('.datepicker').datepicker({autoclose: true});
+        $(".timepicker").timepicker({showInputs: false});
+      });
+      
+    </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.4/tinymce.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {

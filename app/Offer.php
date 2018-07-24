@@ -3,23 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\Helper;
 
 class Offer extends Model
 {
     protected $id = 'id';
     protected $table = 'offers';
-    protected $fillable = ['name', 'description', 'image_en', 'image_ar', 'is_active', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'description', 'image', 'image_ar', 'is_active', 'created_by', 'updated_by','start_datetime','end_datetime'];
     public $timestamps = true;
 
-    public function getNameAttribute($value)
-    {
-        $result = (app('translator')->getLocale()=='en') ? Helpers::localization('offers','name',$this->id,1) : Helpers::localization('offers','name',$this->id,2);
-        return ($result=='Error')? $value : $result;
-    }
+    // public function getNameAttribute($value)
+    // {
+    //     $result = (app('translator')->getLocale()=='en') ? Helper::localization('offers','name',$this->id,1) : Helper::localization('offers','name',$this->id,2);
+    //     return ($result=='Error')? $value : $result;
+    // }
 
     public function getImageAttribute($value){
         
-            $base_url = 'http://eventakom.com/eventakom_dev/public/';
+            $base_url = url('\/');
             $photo =($value =='' || is_null($value)) ? '':$base_url.$value;
             return $photo;
     }

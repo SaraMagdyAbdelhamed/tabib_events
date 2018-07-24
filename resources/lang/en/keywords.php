@@ -214,6 +214,14 @@
         'openday'   => 'Opening Days',
         'otherInfo' => 'Other Info',
         'famousHint'=> 'Please check the day that you want to edit its time.',
+        'offerDescription'=>'offerDescription',
+        'offerCategory'=>'offerCategory',
+        'offerImage'=>'offerImage',
+        'status'=>'status',
+        'addNewOffer'=>'Add New Offers And Deals',
+        'active'=>'Active',
+        'startDate'=>'Start Date ',
+        'endDate'=>'End Date ',
 		
         //Statistics
         'statistics'=>'Statistics',

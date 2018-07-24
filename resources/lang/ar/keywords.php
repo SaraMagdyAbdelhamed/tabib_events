@@ -224,6 +224,14 @@
         'openday'   => 'الايام المتاحة',
         'otherInfo' => 'معلومات اضافية',
         'famousHint'=> 'من فضلك فعل اليوم لتتمكن من تعديل وقته  ',
+        'offerDescription'=>'وصف العرض ',
+        'offerCategory'=>'فئه العرض',
+        'offerImage'=>'صوره العرض',
+        
+        'addNewOffer'=>'إضافه عروض واتفقايات جديده',
+        'active'=>'تفعيل',
+        'startDate'=>'تاريخ البدايه ',
+        'endDate'=>'تاريخ النهايه ',
 
        // big events
          'orderSaved'    => ' <div class="alert text-center" id="form_message" style="background-color: #2ecc71; color: white; padding: 10px; margin-top: 40px;">
@@ -243,7 +251,7 @@
         'shop_photo'=>'صوره المحل',
         'shop_name'=>'اسم المحل ',
         'shop_phone'=>'تليفون ',
-        'shop_status'=>'الحاله',
+        
         'shop_actions'=>'اكشنز',
         'add_new_shop'=>'أضافه محل او مطعم جديد',
         'delete_selected_shops'=>'حذف المحلات المحدده',
