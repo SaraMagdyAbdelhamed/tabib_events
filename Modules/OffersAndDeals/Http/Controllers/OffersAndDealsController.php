@@ -34,6 +34,7 @@ class OffersAndDealsController extends Controller
      */
     public function store(Request $request)
     {
+        return view('offersanddeals::offers_and_deals.create');
     }
 
     /**
@@ -51,7 +52,7 @@ class OffersAndDealsController extends Controller
      */
     public function edit()
     {
-        return view('offersanddeals::offers_and_deals.edit');
+        return view('offersanddeals::offers_and_deals.update');
     }
 
     /**
@@ -61,6 +62,7 @@ class OffersAndDealsController extends Controller
      */
     public function update(Request $request)
     {
+        return view('offersanddeals::offers_and_deals.update');
     }
 
     /**
