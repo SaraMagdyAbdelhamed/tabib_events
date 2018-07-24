@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Offer;
+use App\OfferOfferCategory;
 
 class OffersAndDealsController extends Controller
 {
@@ -72,5 +73,11 @@ class OffersAndDealsController extends Controller
      */
     public function destroy()
     {
+    }
+
+    public function delete($id)
+    {
+        Offer::destroy($id);
+        OfferOfferCategory::where('offer_id',$id)->delete();
     }
 }

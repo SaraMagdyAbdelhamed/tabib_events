@@ -38,7 +38,7 @@
                           </thead>
                           <tbody>
                            @foreach($offers as $offer)
-                            <tr>
+                            <tr data-offer-id={{$offer->id}}>
                               <td><span class="cellcontent"></span></td>
                               <td><span class="cellcontent">{{$offer->id}}</span></td>
                               <td><span class="cellcontent"><img src = "{{$offer->image}}" , class = " img-in-table"></span></td>
@@ -50,7 +50,11 @@
                              <td><span class="cellcontent"><i class = "fa icon-in-table-false fa-times"></i></span></td>
 
                              @endif
-                              <td><span class="cellcontent"><a href= "{{route('offers_and_deals.edit',$offer->id)}}" ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a><a onclick="delete_btn_action()" href="#"  class= " action-btn bgcolor--fadebrown color--white "><i class = "fa  fa-trash-o"></i></a></span></td>
+                              <td>
+                              <span class="cellcontent">
+                              <a href= "{{route('offers_and_deals.edit',$offer->id)}}" ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a>
+                               <a   class= "btn-warning-cancel action-btn bgcolor--fadebrown color--white deleteRecord"><i class = "fa  fa-trash-o"></i></a>
+                               </span>
                             </tr>
                             @endforeach
                           </tbody>
@@ -218,4 +222,81 @@
                 </div><br>
               </div>
             
+@endsection
+
+@section('js')
+$('.deleteRecord').click(function(){
+      var offer_id = $(this).closest('tr').attr('data-offer-id');
+      var _token = '{{csrf_token()}}';
+      swal({
+        title: "هل أنت متأكد؟",
+        text: "لن تستطيع إسترجاع هذه المعلومة لاحقا",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'نعم متأكد!',
+        cancelButtonText: "إلغاء",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      },
+      function(isConfirm){
+        if (isConfirm){
+         $.ajax({
+           type:'GET',
+           url:'{{url('offers_and_deals.delete')}}'+'/'+offer_id,
+           data:{_token:_token},
+           success:function(data){
+            $('tr[data-offer-id='+offer_id+']').fadeOut();
+          }
+        });
+         swal("تم الحذف!", "تم الحذف بنجاح", "success");
+       } else {
+        swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+      }
+    });
+    });
+
+
+    $('.btn-warning-cancel-all').click(function(){
+      var selectedIds = $("input:checkbox:checked").map(function(){
+        return $(this).closest('tr').attr('data-case-id');
+      }).get();
+      if(selectedIds.length == 0 )
+      {
+        swal("خطأ", "من فضلك اختر استشاره :)", "error");
+      }
+      else
+      {
+        // alert(selectedIds);
+      var _token = '{{csrf_token()}}';
+      swal({
+        title: "هل أنت متأكد؟",
+        text: "لن تستطيع إسترجاع هذه المعلومة لاحقا",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'نعم متأكد!',
+        cancelButtonText: "إلغاء",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      },
+      function(isConfirm){
+        if (isConfirm){
+         $.ajax({
+           type:'POST',
+           url:'{{url('case_destroy_all')}}',
+           data:{ids:selectedIds,_token:_token},
+           success:function(data){
+            $.each( selectedIds, function( key, value ) {
+              $('tr[data-case-id='+value+']').fadeOut();
+            });
+          }
+        });
+         swal("تم الحذف!", "تم الحذف بنجاح", "success");
+       } else {
+        swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+      }
+    });
+    }
+    });
 @endsection
