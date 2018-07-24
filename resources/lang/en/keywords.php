@@ -68,8 +68,8 @@
 
         //Users
         'Users' => 'Users',
-        'MobileAppUsers' => 'Mobile Application Users',
-        'BackendUsers' => 'Backend Users',
+        'MobileAppUsers' => 'Mobile Application Doctors',
+        'BackendUsers' => 'Backend Doctors',
         'serialNo'=>'Serial No',
         'UserName'=>'UserName',
         'Password'  => 'Password',
@@ -83,8 +83,14 @@
         'City'=>'City',
         'Gender'=>'Gender',
         'Birthdate'=>'Birthdate',
-        'RegisterationDate'=>'RegisterationDate',
+        'RegisterationDate'=>'Registeration Date',
         'Status'=>'Status',
+        'region' => 'region',
+        'specialization' => 'Specialization',
+        'generalList'    => 'General List',
+        'myList'         => 'My List',
+        'Doctors'        => 'Doctors',
+        
         
         'UserType'  =>'UserType',
         'SelectGender'  =>'SelectGender',

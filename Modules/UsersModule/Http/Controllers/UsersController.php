@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use Session;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
@@ -19,7 +20,8 @@ use App\Countries;
 use App\Cities;
 use App\Users;
 use App\Rules;
-use App\Age_Ranges;
+use App\UserInfo;
+// use App\Age_Ranges;
 
 class UsersController extends Controller
 {
@@ -30,12 +32,40 @@ class UsersController extends Controller
      */
     public function index()
     {
+        /**  get doctors(users) registred through mobile app */
         $data['mobiles'] = Users::whereHas('rules', function ($q) {
+            // filter users through table `user_rules`
             $q->where('rule_id', 2);
+        })->whereHas('userInfo', function ($q) {
+            // filter users through table `user_info` 
+            $q->where('is_profile_completed', 0)
+                ->where('is_backend', 0);
         })->get();
+
+
+        /**  get doctors(users) registred through backend. **/
+        $data['general'] = Users::whereHas('rules', function ($q) {
+            // filter users through table `user_rules`
+            $q->where('rule_id', 2);
+        })->whereHas('userInfo', function ($q) {
+            // filter users through table `user_info` 
+            $q->where('is_profile_completed', 0)
+                ->where('is_backend', 1);
+        })->get();
+
+
+        //  get doctors(users) registred in my list
+        $data['myList'] = Users::whereHas('rules', function ($q) {
+            // filter users through table `user_rules`
+            $q->where('rule_id', 2);
+        })->whereHas('userInfo', function ($q) {
+            // filter users through table `user_info` 
+            $q->where('is_profile_completed', 1);
+        })->get();
+
         $data['countries'] = Countries::all();
         $data['cities'] = Cities::all();
-        $data['age_ranges'] = Age_Ranges::all();
+        // $data['age_ranges'] = Age_Ranges::all();
         return view('usersmodule::mobile_users', $data);
     }
 
@@ -88,14 +118,14 @@ class UsersController extends Controller
             if (isset($request->cities)) {
                 $q->whereIn('city_id', $request->cities);
             }
-            if (isset($request->age)) {
-                $range = Age_Ranges::find($request->age);
-                $to = date('Y') - $range->from;
-                $from = date('Y') - $range->to;
-                $to_date = date("$to-12-31 23:59:59");
-                $from_date = date("$from-01-01 00:00:00");
-                $q->whereBetween('birthdate', array($from_date, $to_date))->get();
-            }
+            // if (isset($request->age)) {
+            //     $range = Age_Ranges::find($request->age);
+            //     $to = date('Y') - $range->from;
+            //     $from = date('Y') - $range->to;
+            //     $to_date = date("$to-12-31 23:59:59");
+            //     $from_date = date("$from-01-01 00:00:00");
+            //     $q->whereBetween('birthdate', array($from_date, $to_date))->get();
+            // }
 
             if (isset($request->gender)) {
                 $q->whereIn('gender_id', $request->gender);
@@ -105,7 +135,7 @@ class UsersController extends Controller
 
         $data['countries'] = Countries::all();
         $data['cities'] = Cities::all();
-        $data['age_ranges'] = Age_Ranges::all();
+        // $data['age_ranges'] = Age_Ranges::all();
 
         return view('usersmodule::mobile_users', $data);
         // return redirect()->back()
@@ -125,6 +155,12 @@ class UsersController extends Controller
         return view('usersmodule::create');
     }
 
+    /** Show insert form */
+    public function backend_create()
+    {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      * @param  Request $request
@@ -135,13 +171,13 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'firstName' => 'required|min:3|max:100',
             // 'lastName'  => 'required|min:3|max:100',
-            'username'  => 'required|min:3|max:100|unique:users,deleted_at',
-            'rule'      => 'required',
+            'username' => 'required|min:3|max:100|unique:users,deleted_at',
+            'rule' => 'required',
             // 'password'  => 'required|min:6|confirmed',
             // 'password_confirmation' => 'required|min:6',
-            'email'     => 'required|email|max:40',
-            'phone'     => 'required|digits_between:1,14',
-            'image'     => 'required|image|mimes:jpg,jpeg,png|max:5120',
+            'email' => 'required|email|max:40',
+            'phone' => 'required|digits_between:1,14',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:5120',
         ]);
 
         if ($validator->fails()) {
@@ -160,13 +196,13 @@ class UsersController extends Controller
             $user->photo = $fileNameToStore;
         }
 
-        $user->first_name   = $request->firstName;
-        $user->last_name    = $request->lastName; 
-        $user->username     = $request->username;
-        $user->email        = $request->email;
-        $user->password     = bcrypt($request->password);
-        $user->mobile       = $request->phone;
-        $user->is_active    = $request->status;
+        $user->first_name = $request->firstName;
+        $user->last_name = $request->lastName;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->mobile = $request->phone;
+        $user->is_active = $request->status;
         $user->save();
         $user->rules()->attach([$request->rule, 1]);
 
@@ -191,7 +227,7 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'firstName' => 'required|min:3|max:100',
             // 'lastName'  => 'required|min:3|max:100',
-            'username'  => 'required|min:3|max:100|unique:users,deleted_at',
+            'username' => 'required|min:3|max:100|unique:users,deleted_at',
             'rule' => 'required',
             // 'password'  => 'required|min:6|confirmed',
             // 'password_confirmation' => 'required|min:6',
@@ -214,18 +250,18 @@ class UsersController extends Controller
             $user->photo = $fileNameToStore;
         }
 
-        $user->first_name   = $request->firstName;
-        $user->last_name    = $request->lastName; 
-        $user->username     = $request->username;
-        $user->email        = $request->email;
+        $user->first_name = $request->firstName;
+        $user->last_name = $request->lastName;
+        $user->username = $request->username;
+        $user->email = $request->email;
         // $user->password     = bcrypt($request->password);
-        $user->mobile       = $request->phone;
-        $user->is_active    = $request->status;
+        $user->mobile = $request->phone;
+        $user->is_active = $request->status;
         $user->save();
         $user->rules()->detach();
         $user->rules()->attach([$request->rule, 1]);
 
-        if($user->id == Auth::id()) {
+        if ($user->id == Auth::id()) {
             Auth::logout();
             return redirect('/login');
         }
@@ -257,5 +293,34 @@ class UsersController extends Controller
         foreach ($ids as $id) {
             Users::find($id)->delete();
         }
+    }
+
+    /**
+     * @param   $id     route model binding => user's id
+     * @return  view    if not found: redirect to /users_mobile list, if found show him/her.
+     */
+    public function mobile_show($id) {
+        // find this user
+        $user = Users::find($id);  
+
+        // check if user exists
+        if ( $user == NULL ) {
+            // not found
+            Session::flash('warning', 'Not found! غير موجود');
+            return redirect('/users_mobile');
+        } else {
+            // user found
+            $data['user'] = $user->whereHas('rules', function ($q) {
+                // filter users through table `user_rules`
+                $q->where('rule_id', 2);
+            })->whereHas('userInfo', function ($q) {
+                // filter users through table `user_info` 
+                $q->where('is_profile_completed', 0)
+                    ->where('is_backend', 0);
+            })->first();
+    
+            return view('usersmodule::mobileUsersShow', $data);
+        }
+
     }
 }

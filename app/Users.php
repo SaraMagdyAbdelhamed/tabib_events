@@ -123,4 +123,8 @@ class Users extends Authenticatable
         return $query->whereNotNull("device_token");
     }
 
+    // User Info
+    public function userInfo() {
+        return $this->hasOne('App\UserInfo', 'user_id');
+    }
 }
