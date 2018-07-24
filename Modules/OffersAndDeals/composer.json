@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/offersanddeals",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\OffersAndDeals\\Providers\\OffersAndDealsServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\OffersAndDeals\\": ""
+        }
+    }
+}

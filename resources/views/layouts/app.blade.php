@@ -217,6 +217,7 @@
 
                       <li class="side__sublist"><a class="side__subitem" id="sub_1_8" href="{{ route('speciality.categories')  }}">@lang('keywords.doctorSpecialists')</a>
                       </li>
+
                     </ul>
                   </li>
                   @endif
@@ -244,6 +245,7 @@
                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
                   <li class="side__list" id="menu_8"> <a class="side__item" id="sub_8_1" href="{{route('notification')}}">@lang('keywords.notifications')</a>
                   </li>
+                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_2" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a>
                   @endif
                 </ul>
               </div>

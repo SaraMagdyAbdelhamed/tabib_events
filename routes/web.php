@@ -92,6 +92,17 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     Route::post('/notifications/delete/single', '\Modules\Main\Http\Controllers\MainController@notifications_delete')->name('notifications.delete');
     Route::post('/notifications/delete/selected', '\Modules\Main\Http\Controllers\MainController@notifications_deleteSelected')->name('notifications.deleteSelected');
     }); //notification rule
+
+     // offers and deals
+     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+        Route::get('/offers_and_deals', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@index')->name('offers_and_deals');
+        Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
+        Route::post('/offers_and_deals/create', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@create')->name('offers_and_deals.create');
+
+        Route::get('/offers_and_deals/edit/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@edit')->name('offers_and_deals.edit');
+        Route::post('/offers_and_deals/delete/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
+        Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
+        }); //notification rule
     });  //main rule
   Route::middleware(['auth', 'Rule:Super Admin'])->group( function($lang = null) {
     //users.mobile

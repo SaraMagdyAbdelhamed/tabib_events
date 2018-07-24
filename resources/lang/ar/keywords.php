@@ -309,6 +309,7 @@
         'sponsorCategories' => 'تصنيف الرعاه',
         'offerCategories'   => 'تصنيف العروض',
         'doctorSpecialists' => 'تخصصات الاطباء',
+        'offers_and_deals' => 'العروض والاتفقيات'
 
 	
 	];
