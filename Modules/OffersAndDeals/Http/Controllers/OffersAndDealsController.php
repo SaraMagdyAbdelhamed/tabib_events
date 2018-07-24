@@ -15,7 +15,8 @@ class OffersAndDealsController extends Controller
      */
     public function index()
     {
-        return view('offersanddeals::offers_and_deals.index');
+        $data['offers']=Offer::all();
+        return view('offersanddeals::offers_and_deals.index',$data);
     }
 
     /**
@@ -24,7 +25,7 @@ class OffersAndDealsController extends Controller
      */
     public function create()
     {
-        return view('offersanddeals::offers_and_deals.create');
+        return view('offersanddeals::offers_and_deals.index');
     }
 
     /**
@@ -62,7 +63,7 @@ class OffersAndDealsController extends Controller
      */
     public function update(Request $request)
     {
-        return view('offersanddeals::offers_and_deals.update');
+        return view('offersanddeals::offers_and_deals.index');
     }
 
     /**

@@ -30,24 +30,29 @@
                               <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
                               <th><span class="cellcontent">رقم المسلسل</span></th>
                               <th><span class="cellcontent">الصور</span></th>
-                              <th><span class="cellcontent">العنوان</span></th>
+                              <!-- <th><span class="cellcontent">العنوان</span></th> -->
                               <th><span class="cellcontent">الوصف</span></th>
                               <th><span class="cellcontent">الحالة</span></th>
                               <th><span class="cellcontent">الاجراءات</span></th>
                             </tr>
                           </thead>
                           <tbody>
-                           
+                           @foreach($offers as $offer)
                             <tr>
                               <td><span class="cellcontent"></span></td>
-                              <td><span class="cellcontent">5</span></td>
-                              <td><span class="cellcontent"><img src = "https://source.unsplash.com/random" , class = " img-in-table"></span></td>
-                              <td><span class="cellcontent">El batraa jordan</span></td>
-                              <td><span class="cellcontent">jordan</span></td>
-                              <td><span class="cellcontent"><i class = "fa icon-in-table-true fa-check"></i><i class = "fa icon-in-table-false fa-times"></i></span></td>
-                              <td><span class="cellcontent"><a href= "{{route('offers_and_deals.edit')}}" ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a><a onclick="delete_btn_action()" href="#"  class= " action-btn bgcolor--fadebrown color--white "><i class = "fa  fa-trash-o"></i></a></span></td>
+                              <td><span class="cellcontent">{{$offer->id}}</span></td>
+                              <td><span class="cellcontent"><img src = "{{$offer->image}}" , class = " img-in-table"></span></td>
+                              <!-- <td><span class="cellcontent">El batraa jordan</span></td> -->
+                              <td><span class="cellcontent">{{$offer->description}}</span></td>
+                              @if($offer->is_active)
+                              <td><span class="cellcontent"><i class = "fa icon-in-table-true fa-check"></i></span></td>
+                             @else
+                             <td><span class="cellcontent"><i class = "fa icon-in-table-false fa-times"></i></span></td>
+
+                             @endif
+                              <td><span class="cellcontent"><a href= "{{route('offers_and_deals.edit',$offer->id)}}" ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a><a onclick="delete_btn_action()" href="#"  class= " action-btn bgcolor--fadebrown color--white "><i class = "fa  fa-trash-o"></i></a></span></td>
                             </tr>
-         
+                            @endforeach
                           </tbody>
                         </table>
                       </form>
