@@ -205,6 +205,27 @@
         'endDateTo'     => 'End date to',
         'free'  => 'Free',
 
+        //events
+        'eventDescription'=>'Event Description',
+        'eventPlace'=>'Event Place',
+        'special'=>'Specialites',
+        'eventCat'=>'Categories',
+        'eventDoctor'=>'Doctor ',
+        'eventDateStart'=>'Start Date',
+        'eventDateEnd'=>'End Date',
+        'eventTimeStart'=>'Start Time',
+        'eventTimeEnd'=>'End Time',
+        'uploadEventImage'=>'Upload Event Images max 5 images',
+        'chooseImage'=>'Choose image ',
+        'aboutEvent'=>'About Event',
+        'tickets'=>'Tickets',
+        'ticketPayment'=>'Free or Paid ? ',
+        'free'=>'Free',
+        'paid'=>'Paid',
+        'eventCall'=>'Call Information',
+        'eventEmail'=>'Email ',
+        'code'=>' Country Code ',
+
         
         // Offers & Deals AND Famous Attractions
         'offers'    => 'Offers and Deals',
