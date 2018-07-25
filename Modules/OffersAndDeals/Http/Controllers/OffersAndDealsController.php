@@ -183,6 +183,7 @@ class OffersAndDealsController extends Controller
                 'sponsor_id'=>$sponsor_id
             ]);
         }
+        OfferOfferCategory::where('offer_id',$offer->id)->delete();
         foreach($request->offer_category as $cat)
         {
             OfferOfferCategory::create([
