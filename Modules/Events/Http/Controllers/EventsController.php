@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Currency;
 use App\Category;
 use App\Users;
+use App\Specialization;
 
 class EventsController extends Controller
 {
@@ -17,7 +18,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('events::index');
+        return view('events::events.index');
     }
 
     /**
@@ -26,7 +27,13 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('events::events.create');
+        $data['doctors']=Users::wherehas('rules',function($q){
+            $q->where('rule_id',2);
+        })->get();
+        $data['categories']=Category::all();
+        $data['specializations']=Specialization::all();
+        // dd($data);
+        return view('events::events.create',$data);
     }
 
     /**

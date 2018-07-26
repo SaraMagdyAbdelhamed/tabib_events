@@ -54,13 +54,13 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="Event_name">@lang('keywords.eventName') </label>
-                              <input class="master_input" type="text" maxlength="100" minlength="5" id="Event_name" name="Event_name"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="text" maxlength="100" minlength="5" id="Event_name" name="Event_name" Required><span class="master_message color--fadegreen">validation message will be here</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="description"> @lang('keywords.eventDescription')</label>
-                              <textarea class="master_input" name="event_description" maxlength="10" minlength="5" id="description"></textarea><span class="master_message inherit">message content</span>
+                              <textarea class="master_input" name="event_description" maxlength="10" minlength="5" id="description" Required></textarea><span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-12" style="text-align:end;">
@@ -76,9 +76,9 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
                               <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="Specialties">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                @foreach($specializations as $specialization)
+                                <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                                @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -86,9 +86,9 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="Category">@lang('keywords.eventCat')</label>
                               <select class="master_input select2" id="Category" multiple="multiple" style="width:100%;" , name="Category">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -96,9 +96,9 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="admin_doctor">@lang('keywords.eventDoctor') </label>
                               <select class="master_input select2" id="admin_doctor" multiple="multiple" style="width:100%;" , name="admin_doctor">
-                                <option>doctor1</option>
-                                <option>doctor2</option>
-                                <option>doctor3</option>
+                                 @foreach($doctors as $doctor)
+                                <option value="{{$doctor->id}}">{{$doctor->username}}</option>
+                                @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -250,9 +250,9 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="Specialties">التخصصات</label>
                               <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;" , name="Specialties">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                @foreach($specializations as $specialization)
+                                <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                                @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -260,9 +260,9 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="admin_workshop_doctor">الطبيب المسئول عن ورشة العمل</label>
                               <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" style="width:100%;" , name="admin_workshop_doctor">
-                                <option>doctor1</option>
-                                <option>doctor2</option>
-                                <option>doctor3</option>
+                                @foreach($doctors as $doctor)
+                                <option value="{{$doctor->id}}">{{$doctor->username}}</option>
+                                @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -745,9 +745,9 @@
                               <div class="master_field">
                                 <label class="master_label mandatory" for="Specialties">التخصصات</label>
                                 <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;" , name="Specialties">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
+                                   @foreach($specializations as $specialization)
+                                <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                                @endforeach
                                 </select><span class="master_message inherit">message content</span>
                               </div>
                             </div>
@@ -755,9 +755,9 @@
                               <div class="master_field">
                                 <label class="master_label mandatory" for="admin_workshop_doctor">الطبيب المسئول عن ورشة العمل</label>
                                 <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" , name="admin_workshop_doctor">
-                                  <option>doctor1</option>
-                                  <option>doctor2</option>
-                                  <option>doctor3</option>
+                                  @foreach($doctors as $doctor)
+                                <option value="{{$doctor->id}}">{{$doctor->username}}</option>
+                                @endforeach
                                 </select><span class="master_message inherit">message content</span>
                               </div>
                             </div>

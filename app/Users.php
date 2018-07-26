@@ -115,7 +115,7 @@ class Users extends Authenticatable
     public function isSponsor()
     {
         foreach ($this->rules as $rule) {
-            if ($rule->pivot->rule_id == 4) {
+            if ($rule->pivot->rule_id == 6) {
                 return true ;
             }
         }
