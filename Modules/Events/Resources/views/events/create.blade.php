@@ -804,7 +804,7 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question" style="background-color: beige;">السؤال</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" ><span class="master_message inherit">message content</span>
                                </div>
                              </div>
                              <div class="col-xs-6">
