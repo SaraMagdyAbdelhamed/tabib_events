@@ -107,7 +107,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
          // events
      Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
         Route::get('/events', '\Modules\Events\Http\Controllers\EventsController@index')->name('events');
-        Route::get('/events/add', '\Modules\Events\Http\Controllers\EventsController@store')->name('events.add');
+        Route::post('/events/add', '\Modules\Events\Http\Controllers\EventsController@store')->name('events.add');
         Route::get('/events/create', '\Modules\Events\Http\Controllers\EventsController@create')->name('events.create');
 
         Route::get('/events/edit/{id}', '\Modules\Events\Http\Controllers\EventsController@edit')->name('events.edit');

@@ -5,6 +5,9 @@ namespace Modules\Events\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use App\Currency;
+use App\Category;
+use App\Users;
 
 class EventsController extends Controller
 {
@@ -14,7 +17,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('events::events.index');
+        return view('events::index');
     }
 
     /**
@@ -33,6 +36,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
     }
 
     /**
