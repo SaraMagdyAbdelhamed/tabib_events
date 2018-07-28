@@ -10,7 +10,8 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^3.2",
-        "psy/psysh": "^0.9.4"
+        "psy/psysh": "^0.9.4",
+        "kreait/firebase-php": "^4.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
