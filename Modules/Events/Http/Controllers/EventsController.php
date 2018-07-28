@@ -10,6 +10,7 @@ use App\Category;
 use App\Users;
 use App\Specialization;
 
+
 class EventsController extends Controller
 {
     /**
@@ -32,6 +33,7 @@ class EventsController extends Controller
         })->get();
         $data['categories']=Category::all();
         $data['specializations']=Specialization::all();
+        $data['currencies']=Currency::all();
         // dd($data);
         return view('events::events.create',$data);
     }
@@ -44,6 +46,7 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
+
     }
 
     /**
