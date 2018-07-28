@@ -41,4 +41,8 @@ class Event extends Model
     public function tickets() {
         return $this->hasMany('App\EventTicket', 'event_id');
     }
+
+    public function surveys() {
+        return $this->hasMany('App\Survey', 'event_id');
+    }
 }

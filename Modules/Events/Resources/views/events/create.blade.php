@@ -107,7 +107,7 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label mandatory" for="admin_doctor">@lang('keywords.eventDoctor') </label>
-                              <select class="master_input select2" id="admin_doctor" multiple="multiple" style="width:100%;"  name="event[doctor]">
+                              <select class="master_input select2" id="admin_doctor" multiple="multiple" style="width:100%;"  name="event[doctor][]">
                                  @foreach($doctors as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                                 @endforeach
@@ -262,7 +262,7 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label mandatory" for="Specialties">التخصصات</label>
-                              <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="workshop[1][special]">
+                              <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="workshop[1][special][]">
                                 @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                 @endforeach
@@ -272,7 +272,7 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label mandatory" for="admin_workshop_doctor">الطبيب المسئول عن ورشة العمل</label>
-                              <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" style="width:100%;" name="workshop[1][doctor]">
+                              <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" style="width:100%;" name="workshop[1][doctor][]">
                                 @foreach($doctors as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                                 @endforeach
@@ -757,7 +757,7 @@
                             <div class="col-xs-6">
                               <div class="master_field">
                                 <label class="master_label mandatory" for="Specialties">التخصصات</label>
-                                <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special]">
+                                <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]">
                                    @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                 @endforeach
@@ -767,7 +767,7 @@
                             <div class="col-xs-6">
                               <div class="master_field">
                                 <label class="master_label mandatory" for="admin_workshop_doctor">الطبيب المسئول عن ورشة العمل</label>
-                                <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" name="workshop[${next_count}][doctor]">
+                                <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" name="workshop[${next_count}][doctor][]">
                                   @foreach($doctors as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                                 @endforeach
