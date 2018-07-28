@@ -338,7 +338,7 @@
                           <div class="col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="survey_question">السؤال</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[1][question][1]" Required><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[1][question][1][name]" Required><span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
@@ -822,7 +822,7 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question" style="background-color: beige;">السؤال ${question}</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]"><span class="master_message inherit">message content</span>
                                </div>
                              </div>
                              <div class="col-xs-6">
@@ -866,7 +866,7 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question" style="background-color: beige;">السؤال ${next_count_question}</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[1][question][${next_count_question}]" required><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[1][question][${next_count_question}][name]" required><span class="master_message inherit">message content</span>
                                </div>
                              </div>
                              <div class="col-xs-6">
@@ -924,7 +924,7 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question">1 السؤال</label>
-                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][1]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][1][name]"><span class="master_message inherit">message content</span>
                                </div>
                              </div>
                              <div class="col-xs-6">
