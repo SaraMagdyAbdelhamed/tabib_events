@@ -26,6 +26,11 @@ class EventBackend extends Model
         return $this->belongsTo('App\Users', 'created_by');
     }
 
+    public function user_going()
+    {
+        return $this->belongsToMany('App\Users', 'user_going','event_id', 'user_id')->withPivot('is_accepted')->wherePivot('is_accepted', 1);
+    }
+
     // Many to Many relation between Events & Hashtags
     public function hashtags()
     {

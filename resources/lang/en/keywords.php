@@ -37,6 +37,7 @@
         'wednesday' => 'Wedensday',
         'thursday'  => 'Thursday',
         'friday'    => 'Friday',
+        'export excel'=>'Export excel',
 
         // fixed pages
         'registered'=> 'Registered',
@@ -261,6 +262,33 @@
         'Number of users 15-18 years'=>'Number of users 15-18 years',
         'Number of users 18-25 years'=>'Number of users 18-25 years',
         'Number of users more than 25 years'=>'Number of users more than 25 years',
+        'number of all doctors in the system'=>'Number of all doctors in the system',
+        'number of doctors that added by organizers'=>'Number of doctors that added by organizers',
+        'number of doctors that registered by mobile'=>'Number of doctors that registered by mobile',
+        'number of all events'=>'Number of all events',
+        'number of all events that added by organizers'=>'Number of all events that added by organizers',
+        'number of all events that added by superAdmins'=>'Number of all events that added by superAdmins',
+        'sponsor report'=>'Sponsor report',
+        'event report'=>'Event report',
+
+        //sponosr report
+        'sponsor name'=>'Sponsor name',
+        'offer category'=>'Offer category',
+        'added from'=>'Added from',
+        'added to'=>'Added to',
+        'offer title'=>'Offer title',
+        'number of views'=>'Number of views',
+        'number of call'=>'Number of call',
+        'serial number'=>'Serial number',
+        'result'=>'Result',
+
+        //event report
+        'organizer name'=>'Organizer name',
+        'event category'=>'Event category',
+        'event name'=>'Event name',
+        'is paid'=>'Paid / Free',
+        'number of attendees'=>'Number of attendees',
+
         // big events
         'orderSaved'    => ' <div class="alert text-center" id="form_message" style="background-color: #2ecc71; color: white; padding: 10px; margin-top: 40px;">
                     <b>Big events order saved successfully</b>

@@ -48,6 +48,11 @@ class Users extends Authenticatable
         return $this->hasMany('App\EventCategory', 'created_by');
     }
 
+    public function events()
+    {
+        return $this->belongsToMany('App\EventBackend', 'user_going','user_id', 'event_id')->withPivot('is_accepted')->wherePivot('is_accepted', 1);
+    }
+
     public function eventBackend()
     {
         return $this->hasMany('App\EventBackend', 'created_by');

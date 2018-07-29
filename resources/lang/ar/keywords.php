@@ -37,6 +37,7 @@
         'wednesday' => 'الاربعاء',
         'thursday'  => 'الخميس',
         'friday'    => 'الجمعة',
+        'export excel'=>'استخراج ملف اكسيل',
 
         // fixed pages
         'registered'=> 'تسجيل الدخول',
@@ -236,7 +237,33 @@
 		'Number of users less than 15 years'=>'عدد المستخدمين للأعمار أقل من 15 عام',
 		'Number of users 15-18 years'=>'عدد المستخدمين للأعمار ما بين 15 و 18 عام',
 		'Number of users 18-25 years'=>'عدد المستخدمين للأعمار ما بين 18 و 25 عام',
-		'Number of users more than 25 years'=>'عدد المستخدمين للأعمار أكثر من 25 عام',
+        'Number of users more than 25 years'=>'عدد المستخدمين للأعمار أكثر من 25 عام',
+        'number of all doctors in the system'=>'العدد الكلي للأطباء بالنظام',
+        'number of doctors that added by organizers'=>'عدد الأطباء الذين تم إضافتهم من قبل المنظمين',
+        'number of doctors that registered by mobile'=>'العدد الكلى للاطباء الذين تم تسجيلهم من تطبيق الموبيل',
+        'number of all events'=>'العدد الكلى للايفنت المضافة',
+        'number of all events that added by organizers'=>'عدد الايفنتات المضافة من قبل المنظمين',
+        'number of all events that added by superAdmins'=>'العدد الكلى للايفنتات المضافة من قبل المسئولين',
+        'sponsor report'=>'تقرير الراعي',
+        'event report'=>'تقرير الايفينت',
+        
+        //sponsor report
+        'sponsor name'=>'اسم الراعي',
+        'offer category'=>'فئه العرض',
+        'added from'=>'تاريخ الإضافه من',
+        'added to'=>'تاريخ الإضافه إلى',
+        'offer title'=>'عنوان العرض',
+        'number of views'=>'عدد المشاهدات',
+        'number of call'=>'عدد المكالمات',
+        'serial number'=>'رقم المسلسل',
+        'result'=>'النتيجه',
+
+        //event report
+        'organizer name'=>'اسم المنظم',
+        'event category'=>'فئه الايفينت',
+        'event name'=>'اسم الايفينت',
+        'is paid'=>'مدفوع / مجانى',
+        'number of attendees'=>'عدد الحاضرين',
 
 
         // Offers & Deals AND Famous Attractions

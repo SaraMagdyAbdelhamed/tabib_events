@@ -9,7 +9,7 @@
                       <div class="col-xs-12">
                         <div class="text-xs-center">         
                           <div class="text-wraper">
-                            <h3 class="cover-inside-title  ">التقارير والاحصائيات</h3>
+                            <h3 class="cover-inside-title  ">@lang('keywords.ReportsِِِِِِAndStatistics')</h3>
                           </div>
                         </div>
                       </div>
@@ -25,7 +25,7 @@
                       <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label mandatory" for="sponsor_name">اسم الراعى</label>
+                            <label class="master_label mandatory" for="sponsor_name">@lang('keywords.sponsor name')</label>
                             <select class="master_input" id="sponsor_name" name="sponsor_name">
                             	<option value="choose" selected disabled>------------</option>
                             	@foreach($sponsors as $sponsor)
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="offer_title">فئة العرض</label>
+                            <label class="master_label" for="offer_title">@lang('keywords.offer category')</label>
           					<select name="offers[]" multiple="multiple" class="master_input select2" id="city2" style="width:100%;" ,>
                       @foreach($categories as $category)
                       <option value="{{$category['id']}}">{{$category['name']}}</option>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="start_date">تاريخ الاضافة من </label>
+                            <label class="master_label" for="start_date">@lang('keywords.added from') </label>
                             <div class="bootstrap-timepicker">
                               <input class="datepicker master_input" type="text"  id="start_date" name="start_date">
                             </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="end_date">تاريخ الاضافة الى</label>
+                            <label class="master_label" for="end_date">@lang('keywords.added to')</label>
                             <div class="bootstrap-timepicker">
                               <input class="datepicker master_input" type="text"  id="end_date" name="end_date">
                             </div>
@@ -65,24 +65,24 @@
                           </div>
                         </div>
                       </div>
-                <button class="btn-block master-btn" id="result_btn" type="submit"><span class="color--gray">النتيجة</span></button>
+                <button class="btn-block master-btn" id="result_btn" type="submit"><span class="color--gray">@lang('keywords.result')</span></button>
                     </form>
                   </div>
                   {{-- <button class="btn-block master-btn" id="result_btn"><span class="color--gray">النتيجة</span></button> --}}
                   <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="result">
                     <div class="full-table">
-                      <div class="bottomActions__btns"><a class="master-btn excel-btn " href="#">استخراج ملف اكسيل</a>
+                      <div class="bottomActions__btns"><a class="master-btn excel-btn " href="#">@lang('keywords.export excel')</a>
                       </div>
                       <form id="datatable1_form">
                         <table class="data-table-trigger table-master" id="datatable1">
                           <thead>
                             <tr class="bgcolor--gray_mm color--gray_d">
-                              <th><span class="cellcontent">رقم المسلسل</span></th>
-                              <th><span class="cellcontent">اسم الراعى</span></th>
-                              <th><span class="cellcontent">عنوان العرض</span></th>
-                              <th><span class="cellcontent">Number of view</span></th>
+                              <th><span class="cellcontent">@lang('keywords.serial number')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.sponsor name')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.offer title')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.number of views')</span></th>
                               <th><span class="cellcontent">Number of hits</span></th>
-                              <th><span class="cellcontent">Number of call</span></th>
+                              <th><span class="cellcontent">@lang('keywords.number of call')</span></th>
                             </tr>
                           </thead>
                           <tbody>
