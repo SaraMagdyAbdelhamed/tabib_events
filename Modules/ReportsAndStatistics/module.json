@@ -1,0 +1,16 @@
+{
+    "name": "ReportsAndStatistics",
+    "alias": "reportsandstatistics",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\ReportsAndStatistics\\Providers\\ReportsAndStatisticsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

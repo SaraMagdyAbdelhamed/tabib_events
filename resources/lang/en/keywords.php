@@ -37,6 +37,7 @@
         'wednesday' => 'Wedensday',
         'thursday'  => 'Thursday',
         'friday'    => 'Friday',
+        'export excel'=>'Export excel',
 
         // fixed pages
         'registered'=> 'Registered',
@@ -56,6 +57,7 @@
         'sponsorLogo'   => 'Sponsor Logo',
         'sponsorName'   => 'Sponosr Name',
         'shopndine'     => 'Shop and dine',
+        'ReportsِِِِِِAndStatistics'     => 'Reportsِِِِِِ And Statistics',
 
 
         'EditAbout' => 'Edit About Us',
@@ -207,6 +209,27 @@
         'endDateTo'     => 'End date to',
         'free'  => 'Free',
 
+        //events
+        'eventDescription'=>'Event Description',
+        'eventPlace'=>'Event Place',
+        'special'=>'Specialites',
+        'eventCat'=>'Categories',
+        'eventDoctor'=>'Doctor ',
+        'eventDateStart'=>'Start Date',
+        'eventDateEnd'=>'End Date',
+        'eventTimeStart'=>'Start Time',
+        'eventTimeEnd'=>'End Time',
+        'uploadEventImage'=>'Upload Event Images max 5 images',
+        'chooseImage'=>'Choose image ',
+        'aboutEvent'=>'About Event',
+        'tickets'=>'Tickets',
+        'ticketPayment'=>'Free or Paid ? ',
+        'free'=>'Free',
+        'paid'=>'Paid',
+        'eventCall'=>'Call Information',
+        'eventEmail'=>'Email ',
+        'code'=>' Country Code ',
+
         
         // Offers & Deals AND Famous Attractions
         'offers'    => 'Offers and Deals',
@@ -222,6 +245,15 @@
         'openday'   => 'Opening Days',
         'otherInfo' => 'Other Info',
         'famousHint'=> 'Please check the day that you want to edit its time.',
+        'offerDescription'=>'offerDescription',
+        'offerCategory'=>'offerCategory',
+        'offerImage'=>'offerImage',
+        'status'=>'status',
+        'addNewOffer'=>'Add New Offers And Deals',
+        'active'=>'Active',
+        'startDate'=>'Start Date ',
+        'endDate'=>'End Date ',
+        'offerSponsor'=>'Offer Sponsor',
 		
         //Statistics
         'statistics'=>'Statistics',
@@ -232,6 +264,33 @@
         'Number of users 15-18 years'=>'Number of users 15-18 years',
         'Number of users 18-25 years'=>'Number of users 18-25 years',
         'Number of users more than 25 years'=>'Number of users more than 25 years',
+        'number of all doctors in the system'=>'Number of all doctors in the system',
+        'number of doctors that added by organizers'=>'Number of doctors that added by organizers',
+        'number of doctors that registered by mobile'=>'Number of doctors that registered by mobile',
+        'number of all events'=>'Number of all events',
+        'number of all events that added by organizers'=>'Number of all events that added by organizers',
+        'number of all events that added by superAdmins'=>'Number of all events that added by superAdmins',
+        'sponsor report'=>'Sponsor report',
+        'event report'=>'Event report',
+
+        //sponosr report
+        'sponsor name'=>'Sponsor name',
+        'offer category'=>'Offer category',
+        'added from'=>'Added from',
+        'added to'=>'Added to',
+        'offer title'=>'Offer title',
+        'number of views'=>'Number of views',
+        'number of call'=>'Number of call',
+        'serial number'=>'Serial number',
+        'result'=>'Result',
+
+        //event report
+        'organizer name'=>'Organizer name',
+        'event category'=>'Event category',
+        'event name'=>'Event name',
+        'is paid'=>'Paid / Free',
+        'number of attendees'=>'Number of attendees',
+
         // big events
         'orderSaved'    => ' <div class="alert text-center" id="form_message" style="background-color: #2ecc71; color: white; padding: 10px; margin-top: 40px;">
                     <b>Big events order saved successfully</b>

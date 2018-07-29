@@ -12,10 +12,8 @@ class EventMedia extends Model
     public $timestamps = false;
 
     public function event() {
-        return $this->belongsTo('App\EventBackend', 'event_id');
+        return $this->belongsTo('App\Event', 'event_id');
     }
 
-     public function eventMobile() {
-        return $this->belongsTo('App\EventMobile', 'event_id');
-    }
+     
 }

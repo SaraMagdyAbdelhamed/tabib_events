@@ -8,16 +8,16 @@ class EventTicket extends Model
 {
     protected $id = 'id';
     protected $table = 'event_tickets';
-    protected $dates = ['created_at', 'updated_at'];
+    protected $fillable = ['event_id', 'name', 'price','available_tickets','current_available_tickets','currency_id'];
+    
     public $timestamps = false;
 
 
     // relations
 
-    // reverse relation for EventMobile by default and for EventBackend
-    public function event($model = 'App\EventMobile')
-    {
-        return $this->belongsTo($model, 'event_id');
+    
+    public function event() {
+        return $this->belongsTo('App\Event', 'event_id');
     }
 
     //quiries

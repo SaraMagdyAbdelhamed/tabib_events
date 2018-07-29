@@ -229,23 +229,13 @@
                     </ul>
                   </li>
                   @endif
-                  <li class="side__list" id="menu_3"> <a class="side__item side__item--sub">@lang('keywords.events')</a>
-                    <ul class="side__submenu">
-                      @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin' ,'Data Entry','Backend User']) )
-                      <li class="side__sublist"><a class="side__subitem" id="sub_3_1" href="{{ route('event_backend') }}">@lang('keywords.addfrombackend')</a></li>
-                      @endif
-                       @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin' ,'Data Entry','Backend User','Mobile User']) )
-                      <li class="side__sublist"><a class="side__subitem" id="sub_3_2" href="{{ route('event_mobile') }}">@lang('keywords.addfromMobile')</a></li>
-                      @endif
-                       @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
-                      <li class="side__sublist"><a class="side__subitem" id="sub_3_3" href="{{ route('big_events') }}">@lang('keywords.bigevents')</a></li>
-                      @endif
-                    </ul>
-                  </li>
+
                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
                   <li class="side__list" id="menu_8"> <a class="side__item" id="sub_8_1" href="{{route('notification')}}">@lang('keywords.notifications')</a>
                   </li>
-                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_2" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a>
+                  <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
+                      </li>
+                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a>
                   @endif
                 </ul>
               </div>
@@ -311,6 +301,20 @@
     <script type="text/javascript" src="{{ asset('js/scripts.min.js') }}"></script>
     
     <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+      <script type="text/javascript">
+      $(function () {
+        $('.datepicker-popup').pickadate();
+        $('.timepicker-popup').pickatime();
+      });
+      
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        $('.datepicker').datepicker({autoclose: true});
+        $(".timepicker").timepicker({showInputs: false});
+      });
+      
+    </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.4/tinymce.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
@@ -660,8 +664,7 @@
     
 
   {{-- Google maps API key --}}
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknR0jhKTIB33f2CLFhBzgp0mj2Tn2q5k&libraries=places&callback=initMap" type="text/javascript"></script>
-  
+{{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknR0jhKTIB33f2CLFhBzgp0mj2Tn2q5k&libraries=places&callback=initMap" type="text/javascript"></script>   --}}
   {{-- Map script --}}
 <!--   <script>
 

@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventCategory extends Model
 {
-    protected $primaryKey = 'id';
+    protected $id = 'id';
     protected $table = 'categories';
+    protected $fillable = ['event_id', 'category_id'];
+    public $timestamps = false;
 
-    protected $fillable = ['name', 'image', 'created_by', 'created_at', 'created_by', 'updated_by'];
-    public $timestamps = true;
-
+    
     // relations
     public function user() {
         return $this->belongsTo('App\Users', 'created_by');
     }
 
     public function eventsbackend() {
-        return $this->belongsToMany('App\EventBackend', 'event_categories', 'event_id', 'interest_id');
+        return $this->belongsToMany('App\EventBackend', 'event_categories', 'event_id', 'category_id');
     }
 
     public function eventsmobile() {

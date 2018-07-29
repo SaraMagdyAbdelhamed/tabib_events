@@ -45,11 +45,27 @@ Route::group(['middleware' => ['auth', 'locale']], function ($lang = null) {
 // Route::get('/main/mark_read/{$id}','\Modules\Main\Http\Controllers\MainController@mark_read');
 
 
+<<<<<<< HEAD
     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group(function ($lang = null) {
     // about us
 
 
         Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
+=======
+Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+
+    //reports_and_statistics
+    Route::get('/reports_and_statistics', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@index')->name('reports_and_statistics');
+    Route::get('/sponsor_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@sponsor')->name('sponsor_report');
+    Route::post('/sponsor_filter', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@sponsor_filter')->name('sponsor_filter');
+    Route::get('/sponsor_excel', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@sponsor_excel')->name('sponsor_excel');
+    // Route::get('/sponsor_get_offer', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@getOffer')->name('sponsor_get_offer');
+    Route::get('/event_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event')->name('event_report');
+    Route::post('/event_filter_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_filter')->name('event_filter_report');
+    Route::get('/event_excel', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_excel')->name('event_excel');
+    
+    Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
+>>>>>>> 4ff796fdbb072235715034634382771057e84b99
 
     // terms & conditions
         Route::get('/terms', '\Modules\Main\Http\Controllers\MainController@terms')->name('terms');
@@ -94,6 +110,7 @@ Route::group(['middleware' => ['auth', 'locale']], function ($lang = null) {
         }); //notification rule
 
      // offers and deals
+<<<<<<< HEAD
         Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group(function ($lang = null) {
             Route::get('/offers_and_deals', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@index')->name('offers_and_deals');
             Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
@@ -102,7 +119,29 @@ Route::group(['middleware' => ['auth', 'locale']], function ($lang = null) {
             Route::get('/offers_and_deals/edit/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@edit')->name('offers_and_deals.edit');
             Route::post('/offers_and_deals/delete/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
             Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
+=======
+     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+        Route::get('/offers_and_deals', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@index')->name('offers_and_deals');
+        Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
+        Route::post('/offers_and_deals/create', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@create')->name('offers_and_deals.create');
+
+        Route::get('/offers_and_deals/edit/{id}', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@edit')->name('offers_and_deals.edit');
+        Route::post('/offers_and_deals/update/{id}', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@update')->name('offers_and_deals.update');
+        Route::post('/offers_and_deals/delete', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
+        Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
+>>>>>>> 4ff796fdbb072235715034634382771057e84b99
         }); //notification rule
+         // events
+     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+        Route::get('/events', '\Modules\Events\Http\Controllers\EventsController@index')->name('events');
+        Route::post('/events/add', '\Modules\Events\Http\Controllers\EventsController@store')->name('events.add');
+        Route::get('/events/create', '\Modules\Events\Http\Controllers\EventsController@create')->name('events.create');
+
+        Route::get('/events/edit/{id}', '\Modules\Events\Http\Controllers\EventsController@edit')->name('events.edit');
+        Route::post('/events/update/{id}', '\Modules\Events\Http\Controllers\EventsController@update')->name('events.update');
+        Route::post('/events/delete', '\Modules\Events\Http\Controllers\EventsController@delete')->name('events.delete');
+        Route::post('/events/delete/selected', '\Modules\Events\Http\Controllers\EventsController@deleteSelected')->name('events.deleteSelected');
+        });
     });  //main rule
     Route::middleware(['auth', 'Rule:Super Admin'])->group(function ($lang = null) {
         /** Mobile Doctors **/
@@ -197,5 +236,14 @@ Route::group(['middleware' => ['auth', 'locale']], function ($lang = null) {
 });
 
 //AHmed ALaa Test Routes 
+<<<<<<< HEAD
 Route::get("/test_not", "HomeController@test_not");
 Route::get("/mark_read/{id}", "HomeController@mark_read");
+=======
+Route::get("/test_not","HomeController@test_not");
+Route::get("/mark_read/{id}","HomeController@mark_read");
+
+
+
+
+>>>>>>> 4ff796fdbb072235715034634382771057e84b99
