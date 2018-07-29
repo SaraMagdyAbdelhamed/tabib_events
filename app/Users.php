@@ -127,4 +127,14 @@ class Users extends Authenticatable
     public function userInfo() {
         return $this->hasOne('App\UserInfo', 'user_id');
     }
+    //offers categories
+        public function offer_cat()
+    {
+        return $this->hasMany('App\OfferCategory','created_by');
+    }
+
+        public function offers()
+    {
+        return $this->hasMany('App\Offer','sponsor_id');
+    }
 }

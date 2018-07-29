@@ -56,6 +56,7 @@
         'sponsorLogo'   => 'Sponsor Logo',
         'sponsorName'   => 'Sponosr Name',
         'shopndine'     => 'Shop and dine',
+        'ReportsِِِِِِAndStatistics'     => 'Reportsِِِِِِ And Statistics',
 
 
         'EditAbout' => 'Edit About Us',

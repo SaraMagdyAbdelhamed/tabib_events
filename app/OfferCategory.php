@@ -19,4 +19,9 @@ class OfferCategory extends Model
     return $this->belongsToMany('App\Offer');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\Users','created_by');
+    }
+
 }

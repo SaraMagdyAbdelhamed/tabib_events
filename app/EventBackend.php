@@ -35,7 +35,7 @@ class EventBackend extends Model
     // Many to Many relation between Events & Categories
     public function categories()
     {
-        return $this->belongsToMany('App\EventCategory', 'event_categories', 'event_id', 'interest_id');
+        return $this->belongsToMany('App\EventCategory', 'event_categories', 'event_id', 'category_id');
     }
 
     //Many to Many realtions with events and users in user_favourites

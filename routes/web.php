@@ -46,8 +46,16 @@ Route::get('/about', '\Modules\Main\Http\Controllers\MainController@about')->nam
 
 
 Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
-    // about us
 
+    //reports_and_statistics
+    Route::get('/reports_and_statistics', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@index')->name('reports_and_statistics');
+    Route::get('/sponsor_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@sponsor')->name('sponsor_report');
+    Route::post('/sponsor_filter', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@sponsor_filter')->name('sponsor_filter');
+    Route::get('/sponsor_excel', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@sponsor_excel')->name('sponsor_excel');
+    // Route::get('/sponsor_get_offer', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@getOffer')->name('sponsor_get_offer');
+    Route::get('/event_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event')->name('event_report');
+    Route::post('/event_filter_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_filter')->name('event_filter_report');
+    Route::get('/event_excel', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_excel')->name('event_excel');
     
     Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
 
@@ -177,3 +185,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 //AHmed ALaa Test Routes 
 Route::get("/test_not","HomeController@test_not");
 Route::get("/mark_read/{id}","HomeController@mark_read");
+
+
+
+

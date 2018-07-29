@@ -245,7 +245,9 @@
                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
                   <li class="side__list" id="menu_8"> <a class="side__item" id="sub_8_1" href="{{route('notification')}}">@lang('keywords.notifications')</a>
                   </li>
-                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_2" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a>
+                  <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
+                      </li>
+                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a>
                   @endif
                 </ul>
               </div>

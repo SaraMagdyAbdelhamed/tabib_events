@@ -11,11 +11,11 @@ class Offer extends Model
     protected $fillable = ['name', 'description', 'image_en', 'image_ar', 'is_active', 'created_by', 'updated_by'];
     public $timestamps = true;
 
-    public function getNameAttribute($value)
-    {
-        $result = (app('translator')->getLocale()=='en') ? Helpers::localization('offers','name',$this->id,1) : Helpers::localization('offers','name',$this->id,2);
-        return ($result=='Error')? $value : $result;
-    }
+    // public function getNameAttribute($value)
+    // {
+    //     $result = (app('translator')->getLocale()=='en') ? Helpers::localization('offers','name',$this->id,1) : Helpers::localization('offers','name',$this->id,2);
+    //     return ($result=='Error')? $value : $result;
+    // }
 
     public function getImageAttribute($value){
         
@@ -35,4 +35,10 @@ class Offer extends Model
     {
     return $this->hasMany('App\OfferRequest','offer_id');
     }
+
+    public function user()
+    {
+    return $this->belongsTo('App\Users', 'sponsor_id');
+    }
+
 }
