@@ -204,7 +204,8 @@ class EventsController extends Controller
                                 "survey_id"=>$survey->id,
                                 "question_id"=>$question->id,
                                 "name"=>$answer,
-                                "number_of_selections"=>0
+                                "number_of_selections"=>0,
+                                "firebase_id"=>$key
                             ]);
                             $questions[$key1]['answers'][$key]['name']=$answer;
                             $questions[$key1]['answers'][$key]['number_of_selections']=0;
