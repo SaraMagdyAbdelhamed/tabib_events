@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventCategory extends Model
 {
-    protected $primaryKey = 'id';
-    protected $table = 'categories';
+    protected $id = 'id';
+    protected $table = 'event_categories';
+    protected $fillable = ['event_id', 'category_id'];
+    public $timestamps = false;
 
-    protected $fillable = ['name', 'image', 'created_by', 'created_at', 'created_by', 'updated_by'];
-    public $timestamps = true;
-
+    
     // relations
     public function user() {
         return $this->belongsTo('App\Users', 'created_by');

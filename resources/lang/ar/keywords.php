@@ -139,7 +139,29 @@
         'noTickets' => ' عذرا ، لا يوجد تذاكر متاحة',
         'endDateFrom'   => 'وقت الانتهاء من',
         'endDateTo'     => 'وقت الانتهاء الي',
-		'free'  => 'مجانا',
+        'free'  => 'مجانا',
+        
+        //events
+        'eventDescription'=>'وصف الحدث ',
+        'eventPlace'=>'مكان الحدث ',
+        'special'=>'التخصصات',
+        'eventCat'=>'الفئات',
+        'eventDoctor'=>'الطبيب المسئول',
+        'eventDateStart'=>'تاريخ بدايه الحدث',
+        'eventDateEnd'=>'تاريخ نهايه الحدث',
+        'eventTimeStart'=>'وقت بدايه الحدث',
+        'eventTimeEnd'=>'وقت نهايه الحدث',
+        'uploadEventImage'=>'رفع صوره الايفينت اقصي عدد 5 صور ',
+        'chooseImage'=>'اختر صوره ',
+        'aboutEvent'=>'عن الحدث ',
+        'tickets'=>'التذاكر',
+        'ticketPayment'=>'هل التذاكر مدفوعه او مجانيه ',
+        'free'=>'مجانيه',
+        'paid'=>'مدفوعه',
+        'eventCall'=>'معلومات الاتصال',
+        'eventEmail'=>'البريد الالكتروني ',
+        'code'=>'كود الدوله ',
+        
         // Events Mobile
         'addfromMobile' => 'المضاف من التطبيق',
 		'Current' => 'الحالية',
@@ -230,6 +252,15 @@
         'openday'   => 'الايام المتاحة',
         'otherInfo' => 'معلومات اضافية',
         'famousHint'=> 'من فضلك فعل اليوم لتتمكن من تعديل وقته  ',
+        'offerDescription'=>'وصف العرض ',
+        'offerCategory'=>'فئه العرض',
+        'offerImage'=>'صوره العرض',
+        'offerSponsor'=>'ممول العرض ',
+        
+        'addNewOffer'=>'إضافه عروض واتفقايات جديده',
+        'active'=>'تفعيل',
+        'startDate'=>'تاريخ البدايه ',
+        'endDate'=>'تاريخ النهايه ',
 
        // big events
          'orderSaved'    => ' <div class="alert text-center" id="form_message" style="background-color: #2ecc71; color: white; padding: 10px; margin-top: 40px;">
@@ -249,7 +280,7 @@
         'shop_photo'=>'صوره المحل',
         'shop_name'=>'اسم المحل ',
         'shop_phone'=>'تليفون ',
-        'shop_status'=>'الحاله',
+        
         'shop_actions'=>'اكشنز',
         'add_new_shop'=>'أضافه محل او مطعم جديد',
         'delete_selected_shops'=>'حذف المحلات المحدده',

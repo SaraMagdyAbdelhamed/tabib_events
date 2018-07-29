@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Module Events</title>
 
-       <!-- Laravel Mix - CSS File -->
-       <!-- <link rel="stylesheet" href="{{ mix('css/events.css') }}"> -->
+       {{-- Laravel Mix - CSS File --}}
+       {{-- <link rel="stylesheet" href="{{ mix('css/events.css') }}"> --}}
 
     </head>
     <body>
         @yield('content')
 
-        <!-- Laravel Mix - JS File -->
-        <!-- <script src="{{ mix('js/events.js') }}"></script> -->
+        {{-- Laravel Mix - JS File --}}
+        {{-- <script src="{{ mix('js/events.js') }}"></script> --}}
     </body>
 </html>

@@ -107,10 +107,22 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
         Route::post('/offers_and_deals/create', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@create')->name('offers_and_deals.create');
 
-        Route::get('/offers_and_deals/edit/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@edit')->name('offers_and_deals.edit');
-        Route::post('/offers_and_deals/delete/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
+        Route::get('/offers_and_deals/edit/{id}', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@edit')->name('offers_and_deals.edit');
+        Route::post('/offers_and_deals/update/{id}', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@update')->name('offers_and_deals.update');
+        Route::post('/offers_and_deals/delete', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
         Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
         }); //notification rule
+         // events
+     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+        Route::get('/events', '\Modules\Events\Http\Controllers\EventsController@index')->name('events');
+        Route::post('/events/add', '\Modules\Events\Http\Controllers\EventsController@store')->name('events.add');
+        Route::get('/events/create', '\Modules\Events\Http\Controllers\EventsController@create')->name('events.create');
+
+        Route::get('/events/edit/{id}', '\Modules\Events\Http\Controllers\EventsController@edit')->name('events.edit');
+        Route::post('/events/update/{id}', '\Modules\Events\Http\Controllers\EventsController@update')->name('events.update');
+        Route::post('/events/delete', '\Modules\Events\Http\Controllers\EventsController@delete')->name('events.delete');
+        Route::post('/events/delete/selected', '\Modules\Events\Http\Controllers\EventsController@deleteSelected')->name('events.deleteSelected');
+        });
     });  //main rule
   Route::middleware(['auth', 'Rule:Super Admin'])->group( function($lang = null) {
     //users.mobile
