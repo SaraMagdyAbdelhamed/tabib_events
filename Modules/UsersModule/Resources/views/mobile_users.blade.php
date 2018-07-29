@@ -36,9 +36,11 @@
                       <i class="fa fa-filter"></i>@lang('keywords.filter')</a>
               </div>
               <div class="bottomActions__btns">
-                <a class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn" href="#">@lang('keywords.deleteSelected')</a>
+                <a data-id="#dataTableTriggerId_001" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected" href="#">@lang('keywords.deleteSelected')</a>
               </div>
               <div class="remodal" data-remodal-id="filter-users" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+
+                {{-- Filter #1 --}}
                 <form role="form" action="{{ route('mobile_filter') }}" method="GET" accept-charset="utf-8">
                   {{ csrf_field() }}
                   <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
@@ -107,6 +109,8 @@
                 </form>
               </div>
               <form id="dataTableTriggerId_001_form">
+
+                {{-- Mobile users table --}}
                 <table class="data-table-trigger table-master" id="dataTableTriggerId_001">
                   <thead>
                     <tr class="bgcolor--gray_mm color--gray_d">
@@ -157,9 +161,9 @@
                   </thead>
                   <tbody>
                     @foreach($mobiles as $doctor)
-                    <tr data-mobile-id={{$doctor->id}}>
+                    <tr data-id={{$doctor->id}}>
                       <td>
-                        <span class="cellcontent"></span>
+                        <span class="cellcontent" data-id={{$doctor->id}}></span>
                       </td>
 
                       {{-- serial number --}}
@@ -254,7 +258,7 @@
                           </a>
 
                           {{-- Delete button --}}
-                          <a href="#" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white ">
+                          <a href="#" data-class="dataTableTriggerId_001" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white deleteRecord">
                             <i class="fa  fa-trash-o"></i>
                           </a>
 
@@ -286,6 +290,7 @@
                     @endforeach
                   </tbody>
                 </table>
+
               </form>
             </div>
           </div><br>
@@ -293,10 +298,20 @@
         <li class="tab__content_item" id="general_list-content">
           <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="full-table">
-              <div class="filter__btns"><a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>filters</a></div>
-              <div class="bottomActions__btns"><a class="master-btn #" href="#">حذف المحدد</a><a class="master-btn users_add_new_dr.html" href="users_add_new_dr.html">اضافة طبيب جديد</a>
+              {{-- Filter Button --}}
+              <div class="filter__btns">
+                <a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>@lang('keywords.filter')</a>
+              </div>
+              <div class="bottomActions__btns">
+                {{-- Delete Selected Button --}}
+                <a data-id="#dataTableTriggerId_002" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected" href="#">@lang('keywords.deleteSelected')</a>
+
+                {{-- Add new Doctor Button --}}
+                <a class="master-btn users_add_new_dr.html" href="{{ route('doctor.create') }}">@lang('keywords.addNew')</a>
               </div>
               <form id="dataTableTriggerId_002_form">
+
+                {{-- General List --}}
                 <table class="data-table-trigger table-master" id="dataTableTriggerId_002">
                   <thead>
                     <tr class="bgcolor--gray_mm color--gray_d">
@@ -344,9 +359,9 @@
                   </thead>
                   <tbody>
                     @foreach($general as $doctor)
-                      <tr data-mobile-id={{ $doctor }}->id}}>
+                      <tr data-id={{ $doctor->id }}>
                         <td>
-                          <span class="cellcontent"></span>
+                          <span class="cellcontent" data-id="{{ $doctor->id }}"></span>
                         </td>
   
                         {{-- serial number --}}
@@ -356,23 +371,23 @@
   
                         {{-- user name --}}
                         <td>
-                          <span class="cellcontent">{{ $doctor }}->username ? : __('keywords.not') }}</span>
+                          <span class="cellcontent">{{ $doctor->username ? : __('keywords.not') }}</span>
                         </td>
   
                         {{-- Mobile phone --}}
                         <td>
-                          <span class="cellcontent">{{ $doctor }}->mobile ? : __('keywords.not')}}</span>
+                          <span class="cellcontent">{{ $doctor->mobile ? : __('keywords.not')}}</span>
                         </td>
   
                         {{-- Email --}}
                         <td>
-                          <span class="cellcontent" style="text-transform: lowercase;">{{ $doctor }}->email ? : __('keywords.not')}}</span>
+                          <span class="cellcontent" style="text-transform: lowercase;">{{ $doctor->email ? : __('keywords.not')}}</span>
                         </td>
                         
                         {{-- Country --}}
                         <td>
                           <span class="cellcontent">
-                            {{\App::isLocale('en') ? $doctor->country->name : \Helper::localization('geo_countries','name',$doctor->country_id,'2',
+                            {{\App::isLocale('en') ? $doctor->country->name : \Helper::localization('geo_countries','name',$doctor->country->id,'2',
                                 $doctor->country->name)}}
                           </span>
                         </td>
@@ -380,7 +395,7 @@
                         {{-- City --}}
                         <td>
                           <span class="cellcontent">
-                            {{\App::isLocale('en') ? $doctor->city->name : \Helper::localization('geo_cities','name',$doctor->city_id,'2',
+                            {{\App::isLocale('en') ? $doctor->city->name : \Helper::localization('geo_cities','name',$doctor->city->id,'2',
                                 $doctor->city->name)}}
                           </span>
                         </td>
@@ -388,7 +403,7 @@
                         {{-- Region --}}
                         <td>
                           <span class="cellcontent">
-                            {{\App::isLocale('en') ? $doctor->userInfo->region->name : \Helper::localization('geo_regions','name',$doctor->userInfo->region->city_id,'2',
+                            {{\App::isLocale('en') ? $doctor->userInfo->region->name : \Helper::localization('geo_regions','name',$doctor->userInfo->region_id,'2',
                                 $doctor->city->name)}}
                           </span>
                         </td>
@@ -411,8 +426,8 @@
                         {{-- Specialization --}}
                         <td>
                           <span class="cellcontent">
-                              {{\App::isLocale('en') ? (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) : \Helper::localization('specializations','name',$doctor->gender_id,'2',
-                              ($doctor->gender ? $doctor->gender->name : __('keywords.not') ) ) }}  
+                              {{\App::isLocale('en') ? (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) : \Helper::localization('specializations','name',$doctor->userInfo->specialization_id,'2',
+                               (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) ) }}  
                           </span>
                         </td>
   
@@ -436,43 +451,23 @@
                           <span class="cellcontent">
   
                             {{-- Edit button --}}
-                            <a href="#popupModal_{{$doctor->id}}" class="action-btn bgcolor--fadegreen color--white ">
+                            <a href="{{ route('doctor.edit', $doctor->id) }}" class="action-btn bgcolor--fadegreen color--white ">
                               <i class="fa  fa-pencil"></i>
                             </a>
   
                             {{-- Delete button --}}
-                            <a href="#" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white ">
+                            <a href="#" data-id="{{ $doctor->id }}" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white deleteRecord">
                               <i class="fa  fa-trash-o"></i>
                             </a>
   
                           </span>
                         </td>
                       </tr>
-  
-                      <div class="remodal" data-remodal-id="popupModal_{{$doctor->id}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-                        <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
-                        <form action="{{route('mobile_status',$doctor->id)}}" method="POST">
-                          {{csrf_field()}}
-                          <div class="row">
-                            <h3>@lang('keywords.EditUser')</h3>
-                            <div class="col-xs-12 text-center">
-                              <div class="master_field text-center">
-                                <label class="master_label">@lang('keywords.pleaseSetTheUserStatus')</label>
-                                <input class="icon" type="radio" name="is_active" id="radbtn_2{{$doctor->id}}" value="1">
-                                <label for="radbtn_2{{$doctor->id}}">@lang('keywords.Active')</label>
-                                <input class="icon" type="radio" name="is_active" id="radbtn_3{{$doctor->id}}" value="0">
-                                <label for="radbtn_3{{$doctor->id}}">@lang('keywords.Inactive')</label>
-                              </div>
-                            </div>
-                          </div>
-                          <br>
-                          <button class="remodal-cancel" data-remodal-action="cancel">@lang('keywords.cancel')</button>
-                          <button class="remodal-confirm" type="submit">@lang('keywords.save')</button>
-                        </form>
-                      </div>
+
                     @endforeach
                   </tbody>
                 </table>
+                
               </form>
               <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
                 <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
@@ -637,10 +632,18 @@
         <li class="tab__content_item" id="my_list-content">
           <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="full-table">
-              <div class="filter__btns"><a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>filters</a></div>
-              <div class="bottomActions__btns"><a class="master-btn #" href="#">حذف المحدد</a>
+              {{-- Filter Button --}}
+              <div class="filter__btns">
+                <a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>@lang('keywords.filter')</a>
               </div>
+
+              {{-- Delete Selected Button --}}
+              <div class="bottomActions__btns">
+                  <a data-id="#dataTableTriggerId_003" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected" href="#">@lang('keywords.deleteSelected')</a>
+                </div>
               <form id="dataTableTriggerId_003_form">
+
+                {{-- My List --}}
                 <table class="data-table-trigger table-master" id="dataTableTriggerId_003">
                   <thead>
                     <tr class="bgcolor--gray_mm color--gray_d">
@@ -689,9 +692,9 @@
 
                   <tbody>
                     @foreach($myList as $doctor)
-                    <tr data-mobile-id={{$doctor->id}}>
+                    <tr data-id={{$doctor->id}}>
                       <td>
-                        <span class="cellcontent"></span>
+                        <span class="cellcontent" data-id="{{ $doctor->id }}"></span>
                       </td>
 
                       {{-- serial number --}}
@@ -780,8 +783,8 @@
                       <td>
                         <span class="cellcontent">
 
-                          {{-- Edit button --}}
-                          <a href="" class="action-btn bgcolor--main color--white ">
+                          {{-- View button --}}
+                          <a href="{{ route('myList.show', $doctor->id) }}" class="action-btn bgcolor--main color--white ">
                             <i class="fa  fa-eye"></i>
                           </a>
 
@@ -819,6 +822,7 @@
                   </tbody>
 
                 </table>
+
               </form>
               <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
                 <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
@@ -992,119 +996,115 @@
 </div>
 
 @section('js')
-<script type="text/javascript">
-  $(document).ready(function () {
-    // "use strict";
-    $('.btn-warning-confirm').click(function () {
-      var mobile_id = $(this).closest('tr').attr('data-mobile-id');
-      var _token = '{{csrf_token()}}';
-      swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#281160',
-        confirmButtonText: 'Yes, delete it!',
-        closeOnConfirm: false
-      },
-        function () {
-          $.ajax({
-            type: 'POST',
-            url: '{{url('mobile_destroy')}}' + '/' + mobile_id,
-            data: { _token: _token },
-            success: function (data) {
-              $('tr[data-mobile-id=' + mobile_id + ']').fadeOut();
-            }
-          });
-          swal("Deleted!", "Your imaginary file has been deleted!", "success");
-        });
+<script>
+  // delete multi
+  $('.deleteSelected').click(function(){
+    var allVals = [];                   // selected IDs
+    var token = '{{ csrf_token() }}';
+    var input = $(this).data("id") + ' input:checked';
+    // push cities IDs selected by user
+    $(input).each(function() {
+        allVals.push( $(this).data("id") );
     });
 
-    $('.btn-warning-confirm-ar').click(function () {
-      var mobile_id = $(this).closest('tr').attr('data-mobile-id');
-      var _token = '{{csrf_token()}}';
-      swal({
-        title: "هل أنت متأكد ؟",
-        text: "لن تكون قادرًا على استرداد هذا الملف !",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#281160',
-        confirmButtonText: 'نعم , احذف هذا',
-        closeOnConfirm: false
-      },
-        function () {
-          $.ajax({
-            type: 'POST',
-            url: '{{url('mobile_destroy')}}' + '/' + mobile_id,
-            data: { _token: _token },
-            success: function (data) {
-              $('tr[data-mobile-id=' + mobile_id + ']').fadeOut();
-            }
-          });
-          swal("تم الحذف!", "لقد تم حذف ملفلك!", "success");
-        });
-    });
+    // check if user selected nothing
+    if(allVals.length <= 0) {
+    confirm('إختر طبيب علي الاقل لتستطيع حذفه');
+    } else {
+    var ids = allVals;    
+    var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
+    var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
 
-    $('.btn-warning-confirm-all').click(function () {
-      var selectedIds = $("input:checkbox:checked").map(function () {
-        return $(this).closest('tr').attr('data-mobile-id');
-      }).get();
-      var _token = '{{csrf_token()}}';
-      swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#281160',
-        confirmButtonText: 'Yes, delete it!',
-        closeOnConfirm: false
-      },
-        function () {
-          $.ajax({
+    swal({
+    title: title,
+    text: text,
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: '#281160',
+    confirmButtonText: "{{ \App::isLocale('en') ? 'Yes, delete it!' : 'نعم احذفه' }}",
+    cancelButtonText: "{{ \App::isLocale('en') ? 'Cancel' : 'إالغاء' }}",
+    closeOnConfirm: false
+    },
+    function(isConfirm){
+        if (isConfirm){
+            
+        $.ajax(
+        {
+            url: "{{ route('doctor.user.destroy.all') }}",
             type: 'POST',
-            url: '{{url('mobile_destroy_all')}}',
-            data: { ids: selectedIds, _token: _token },
-            success: function (data) {
-              $.each(selectedIds, function (key, value) {
-                $('tr[data-mobile-id=' + value + ']').fadeOut();
-              });
-            }
-          });
-          swal("Deleted!", "Your imaginary file has been deleted!", "success");
-        });
-    });
+            dataType: "JSON",
+            data: {
+                "ids": ids,
+                "_method": 'POST',
+                "_token": token,
+            },
+            success: function ()
+            {
+                swal("تم الحذف!", "تم الحذف بنجاح", "success");
 
-    $('.btn-warning-confirm-all-ar').click(function () {
-      var selectedIds = $("input:checkbox:checked").map(function () {
-        return $(this).closest('tr').attr('data-mobile-id');
-      }).get();
-      var _token = '{{csrf_token()}}';
-      swal({
-        title: "هل أنت متأكد ?",
-        text: "لن تكون قادرًا على استرداد هذا الملف !",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#281160',
-        confirmButtonText: 'نعم , احذف هذا!',
-        closeOnConfirm: false
-      },
-        function () {
-          $.ajax({
-            type: 'POST',
-            url: '{{url('mobile_destroy_all')}}',
-            data: { ids: selectedIds, _token: _token },
-            success: function (data) {
-              $.each(selectedIds, function (key, value) {
-                $('tr[data-mobile-id=' + value + ']').fadeOut();
-              });
+                // fade out selected checkboxes after deletion
+                $.each(allVals, function( index, value ) {
+                    $('tr[data-id='+value+']').fadeOut();
+                });
+            },
+            error: function(response) {
+                console.log(response);
             }
-          });
-          swal("تم الحذف!", "لقد تم حذف ملفلك!", "success");
         });
+        } else {
+        swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+        }
     });
-
+    }
   });
 
+  // delete a row
+  $('.deleteRecord').click(function(){
+      
+      var id = $(this).data("id");
+      var token = '{{ csrf_token() }}';
+      var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
+      var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
+
+      swal({
+      title: title,
+      text: text,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#281160',
+      confirmButtonText: "{{ \App::isLocale('en') ? 'Yes, delete it!' : 'نعم احذفه' }}",
+      cancelButtonText: "{{ \App::isLocale('en') ? 'Cancel' : 'إالغاء' }}",
+      closeOnConfirm: false
+      },
+      function(isConfirm){
+          if (isConfirm){
+                  
+          $.ajax(
+          {
+              url: "{{ route('doctor.user.destroy') }}",
+              type: 'POST',
+              dataType: "JSON",
+              data: {
+                  "op": 2,
+                  "id": id,
+                  "_method": 'POST',
+                  "_token": token,
+              },
+              success: function ()
+              {
+                  swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                  $('tr[data-id='+id+']').fadeOut();
+              },
+                  error: function(response) {
+                  console.log(response);
+              }
+          });
+              
+          } else {
+              swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+          }
+      });
+  });
 </script>
 
 {{-- add active class to sidebar menu --}}

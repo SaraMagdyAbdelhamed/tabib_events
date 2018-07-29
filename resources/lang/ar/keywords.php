@@ -73,14 +73,15 @@
 
         //Users
         'Users' => 'المستخدمين',
-        'MobileAppUsers' => 'اطباء تطبيقات الجوال',
-        'BackendUsers' => 'اطباء النظام',
+        'MobileAppUsers' => 'مستخدمي تطبيقات الجوال',
+        'BackendUsers' => 'مستخدمي النظام',
         'serialNo'=>'الرقم التسلسلي',
         'UserName'=>'اسم المستخدم',
         'FirstName' => 'الاسم الاول',
         'LastName'  => 'اسم العائلة',
         'FullName'  => 'الاسم بالكامل',
         'Password'  => 'كلمة السر',
+        'newPassword' => 'كلمة السر الجديدة',
         'confirmPassword' => 'تأكيد كلمة السر',
         'Name'=>'الاسم',
         'Image'=>'الصورة',
@@ -108,6 +109,7 @@
         'UserEmail'=>'البريد الالكتروني للمستخدم',
         'UserPhone'=>'هاتف المستخدم',
         'UserImage'=>'صورة المستخدم',
+        'Activate' => 'تفعيل',
         'Active'=>'مفعل',
         'Inactive'=>'غير مفعل',
        
@@ -195,7 +197,8 @@
 		'Contact Info'=>'بيانات الاتصال',
 		'Website'=>'الموقع الالكتروني',
 		'Code number'=>'رقم الكود',
-		'mobile number'=>'رقم الموبايل',
+        'mobile number'=>'رقم الموبايل',
+        'phone number' => 'رقم الهاتف',
 		'Media'=>'الوسائط',
 		'YouTube-ar-1'=>'رابط فيديو اليوتيوب العربي (1)',
 		'YouTube-en-1'=>'رابط فيديو اليوتيوب الانجليزي (1)',
@@ -306,12 +309,26 @@
         'branch_end'=>'معاد اغلاق الفرع ',
 
         // New Keywords
+        'Doctor'        => 'طبيب',
+        'doctorName'    => 'اسم الطبيب',
+        'doctorEmail'   => 'البريد الالكتروني للطبيب',
         'sponsorCategories' => 'تصنيف الرعاه',
         'offerCategories'   => 'تصنيف العروض',
         'doctorSpecialists' => 'تخصصات الاطباء',
-        'offers_and_deals' => 'العروض والاتفقيات'
-
-	
+        'offers_and_deals'  => 'العروض والاتفقيات',
+        'countryCode'   => 'كود الدولة',
+        'mobile1'       => 'رقم الهاتف الاول',
+        'mobile2'       => 'رقم الهاتف الثاني',
+        'mobile3'       => 'رقم الهاتف الثالث',
+        'fromExcel'     => 'من ملف اكسيل',
+        'fromForm'      => 'من استمارة الاضافة',
+        'selectCountry' => 'من فضلك اختر دولة',
+        'selectCity'    => 'من فضلك اختر مدينة',
+        'selectRegion'  => 'من فضلك اختر منطقة',
+        'selectSpec'    => 'من فضلك اختر تخصص الطبيب',
+        'selectTeleCode'=> 'من فضلك اختر كود الهاتف',
+        'selectUserType'=> 'من فضلك اختر صلاحية المستخدم',
+        'selectSponsorCategory' => 'من فضلك اختر تصنيف الراعي',
 	];
 
 

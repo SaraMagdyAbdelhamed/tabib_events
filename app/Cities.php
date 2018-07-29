@@ -19,4 +19,9 @@ class Cities extends Model
     {
         return $this->hasMany('App\Users', 'city_id');
     }
+    
+    public function regions() 
+    {
+        return $this->hasMany('App\GeoRegion', 'city_id');
+    }
 }

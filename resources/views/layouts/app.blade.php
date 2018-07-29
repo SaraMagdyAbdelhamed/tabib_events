@@ -222,7 +222,7 @@
                   </li>
                   @endif
                   @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
-                  <li class="side__list" id="menu_2"> <a class="side__item side__item--sub">@lang('keywords.Doctors')</a>
+                  <li class="side__list" id="menu_2"> <a class="side__item side__item--sub">@lang('keywords.Users')</a>
                     <ul class="side__submenu">
                       <li class="side__sublist"><a class="side__subitem" id="sub_2_1" href="{{ route('users_mobile')  }}">@lang('keywords.MobileAppUsers')</a></li>
                       <li class="side__sublist"><a class="side__subitem" id="sub_2_2" href="{{ route('users_backend')  }}">@lang('keywords.BackendUsers')</a></li>

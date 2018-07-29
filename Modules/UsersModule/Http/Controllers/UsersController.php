@@ -21,70 +21,40 @@ use App\Cities;
 use App\Users;
 use App\Rules;
 use App\UserInfo;
+use App\DoctorSpecialization;
+use App\SponsorCategory;
+use App\GeoRegion;
 // use App\Age_Ranges;
 
 class UsersController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        /**  get doctors(users) registred through mobile app */
-        $data['mobiles'] = Users::whereHas('rules', function ($q) {
-            // filter users through table `user_rules`
-            $q->where('rule_id', 2);
-        })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
-            $q->where('is_profile_completed', 0)
-                ->where('is_backend', 0);
-        })->get();
-
-
-        /**  get doctors(users) registred through backend. **/
-        $data['general'] = Users::whereHas('rules', function ($q) {
-            // filter users through table `user_rules`
-            $q->where('rule_id', 2);
-        })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
-            $q->where('is_profile_completed', 0)
-                ->where('is_backend', 1);
-        })->get();
-
-
-        //  get doctors(users) registred in my list
-        $data['myList'] = Users::whereHas('rules', function ($q) {
-            // filter users through table `user_rules`
-            $q->where('rule_id', 2);
-        })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
-            $q->where('is_profile_completed', 1);
-        })->get();
-
-        $data['countries'] = Countries::all();
-        $data['cities'] = Cities::all();
-        // $data['age_ranges'] = Age_Ranges::all();
-        return view('usersmodule::mobile_users', $data);
+       
     }
 
     public function index_backend()
     {
         // check current usere rule that based on it, filter backend-users will work as follows: 
         if (Auth::user()->isSuperAdmin()) {
-            $rule_names = ['Super Admin', 'Admin', 'Data Entry'];   // Current user is Super Admin, it will list Super Admins, Admins and data entry
+            $rule_names = ['Backend User', 'Data Entry', 'Organizer', 'Sponsor', 'Admin Doctor'];   // Current user is Super Admin, it will list Super Admins, Admins and data entry
         } else if (Auth::user()->isAdmin()) {                     // Current user is Admin it will list Admins & Data entry only
-            $rule_names = ['Admin', 'Data Entry'];
+            $rule_names = ['Backend User', 'Data Entry', 'Organizer', 'Sponsor', 'Admin Doctor'];
         } else {
-            $rule_names = ['Data Entry'];                           // else it will list data entry only
+            $rule_names = ['Organizer', 'Sponsor', 'Data Entry'];                           // else it will list data entry only
         }
 
         $data['users'] = Users::whereHas('rules', function ($q) use ($rule_names) {
             $q->whereIn('rules.name', $rule_names);
         })->get();
 
-        $rules = Auth::user()->rules->last()->id == 3 ? [3, 4, 5] : [4, 5];
+        $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
         $data['rules'] = Rules::whereIn('id', $rules)->get();
         return view('usersmodule::backend_users', $data);
     }
@@ -158,7 +128,13 @@ class UsersController extends Controller
     /** Show insert form */
     public function backend_create()
     {
+        $data['userTypes'] = Rules::all();
+        $data['sponsorCategories'] = SponsorCategory::all();
+        $data['cities'] = Cities::all();
+        $data['regions']= GeoRegion::all();
+        $data['specs'] = DoctorSpecialization::all();
 
+        return view('usersmodule::addBackEndUser', $data);
     }
 
     /**
@@ -168,45 +144,58 @@ class UsersController extends Controller
      */
     public function backend_store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'firstName' => 'required|min:3|max:100',
-            // 'lastName'  => 'required|min:3|max:100',
-            'username' => 'required|min:3|max:100|unique:users,deleted_at',
-            'rule' => 'required',
-            // 'password'  => 'required|min:6|confirmed',
-            // 'password_confirmation' => 'required|min:6',
-            'email' => 'required|email|max:40',
-            'phone' => 'required|digits_between:1,14',
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+        // dd($request->all());
+
+        $this->validate($request, [
+            'user_type' => 'required',
+            'fullname'  => 'required',
+            'username'  => 'required|unique:users',
+            'email'     => 'required|email',
+            'address'   => 'required',
+            'password'  => 'required',
+            'mobile'    => 'required',
+            'categories'=> '',
+            'cities'    => '',
+            'regions'   => '',
+            'user_photo'=> 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'activation'=> '',
+            'notification' => '',
         ]);
 
-        if ($validator->fails()) {
-            return redirect('/users_backend#popupModal_1')
-                ->withErrors($validator)
-                ->withInput();
+        try {
+            $user = new Users;
+
+            $user->first_name = $request->fullname;
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->mobile = $request->phone;
+            $user->is_active = $request->status;
+            
+            if ($request->hasFile('user_photo')) {
+                $destinationPath = 'backend_users';
+                $fileNameToStore = $destinationPath . '/' . $request->name . time() . rand(111, 999) . '.' . Input::file('user_photo')->getClientOriginalExtension();
+                Input::file('user_photo')->move($destinationPath, $fileNameToStore);
+                $user->photo = $fileNameToStore;
+            }
+
+            $user->save();
+            $user->rules()->attach([$request->user_type, 1]);
+
+            $userInfo = new UserInfo;
+            $userInfo->user_id = $user->id;
+            $userInfo->address = $request->address;
+            // $userInfo->city_id = $request->
+            $userInfo->save();
+
+            // TODO: NOTIFICATIONS
+
+        } catch(Exception $ex) {
+            Session::flash('warning', 'Can not add backend user لا يمكن اضافة المستخدم');
+            return redirect()->back();
         }
 
-        $user = new Users;
-
-        if ($request->hasFile('image')) {
-            $destinationPath = 'backend_users';
-            $fileNameToStore = $destinationPath . '/' . $request->name . time() . rand(111, 999) . '.' . Input::file('image')->getClientOriginalExtension();
-            // dd($fileNameToStore);
-            Input::file('image')->move($destinationPath, $fileNameToStore);
-            $user->photo = $fileNameToStore;
-        }
-
-        $user->first_name = $request->firstName;
-        $user->last_name = $request->lastName;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->mobile = $request->phone;
-        $user->is_active = $request->status;
-        $user->save();
-        $user->rules()->attach([$request->rule, 1]);
-
-        return redirect()->back();
+        return redirect("/users_backend");
     }
 
     /**
@@ -281,46 +270,24 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $user = Users::find($id);
+        $user = Users::find($request->id);
+        $user->userInfo()->delete();
         $user->delete();
+
+        return response()->json(['success', 'User deleted!']);
     }
 
-    public function destroy_all()
+    public function destroy_all(Request $request)
     {
-        $ids = $_POST['ids'];
-        foreach ($ids as $id) {
-            Users::find($id)->delete();
-        }
-    }
-
-    /**
-     * @param   $id     route model binding => user's id
-     * @return  view    if not found: redirect to /users_mobile list, if found show him/her.
-     */
-    public function mobile_show($id) {
-        // find this user
-        $user = Users::find($id);  
-
-        // check if user exists
-        if ( $user == NULL ) {
-            // not found
-            Session::flash('warning', 'Not found! غير موجود');
-            return redirect('/users_mobile');
-        } else {
-            // user found
-            $data['user'] = $user->whereHas('rules', function ($q) {
-                // filter users through table `user_rules`
-                $q->where('rule_id', 2);
-            })->whereHas('userInfo', function ($q) {
-                // filter users through table `user_info` 
-                $q->where('is_profile_completed', 0)
-                    ->where('is_backend', 0);
-            })->first();
-    
-            return view('usersmodule::mobileUsersShow', $data);
+        foreach ($request->ids as $id) {
+            $user = Users::find($id);
+            $user->userInfo()->delete();
+            $user->save();
         }
 
+        return response()->json(['success', 'Users deleted!']);
     }
+
 }
