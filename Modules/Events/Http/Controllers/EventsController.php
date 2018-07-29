@@ -114,13 +114,17 @@ class EventsController extends Controller
                 "category_id"=>$category
             ]);
         }
-        foreach($request['event']['special'] as $special)
+        if(isset($request['event']['special']))
         {
-            EventSpecialization::create([
-                "event_id"=>$event->id,
-                "specialization_id"=>$special
-            ]);
+           foreach($request['event']['special'] as $special)
+                {
+                    EventSpecialization::create([
+                        "event_id"=>$event->id,
+                        "specialization_id"=>$special
+                    ]);
+                }  
         }
+       
         foreach($request['event']['doctor'] as $doctor)
         {
             EventOwner::create([
@@ -147,13 +151,17 @@ class EventsController extends Controller
                             "user_id"=>$doctor 
                         ]);
                     }
-                    foreach($value['special'] as $special)
+                    if(isset($value['special']))
                     {
-                        WorkshopSpecialization::create([
-                            "workshop_id"=>$workshop->id,
-                            "specialization_id"=>$special 
-                        ]);
+                        foreach($value['special'] as $special)
+                        {
+                            WorkshopSpecialization::create([
+                                "workshop_id"=>$workshop->id,
+                                "specialization_id"=>$special 
+                            ]);
+                        } 
                     }
+                   
                     EventWorkshop::create([
                         "event_id"=>$event->id,
                         "work_shop_id"=>$workshop->id
@@ -185,8 +193,12 @@ class EventsController extends Controller
                             ->push([
                             'parent_id' => $event->id ,
                             'name' => $value['name'],
-                            'questions'=>''
+                            'questions'=>'',
+                            'id'=>''
                             ]);
+                            $updates=['surveys/'.$newPost->getKey().'/id'=>$newPost->getKey()];
+                            $database->getReference()
+                            ->update($updates);
                             $survey->update(["firebase_id"=>$newPost->getKey()]);
                         }
                         // $questions=[];
@@ -198,6 +210,7 @@ class EventsController extends Controller
                             "firebase_id"=>$key1
                         ]);
                         $questions[$key1]['name']=$value_question['name'];
+                        $questions[$key1]['id']=$key1;
                         foreach($value_question['answer'] as $key=>$answer)
                         {
                             SurveyQuestionAnswer::create([
@@ -209,6 +222,7 @@ class EventsController extends Controller
                             ]);
                             $questions[$key1]['answers'][$key]['name']=$answer;
                             $questions[$key1]['answers'][$key]['number_of_selections']=0;
+                            $questions[$key1]['answers'][$key]['id']=$key;
                         }
                     }
                     // dd($questions);
