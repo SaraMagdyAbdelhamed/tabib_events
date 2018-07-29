@@ -14,7 +14,7 @@ class Offer extends Model
 
     // public function getNameAttribute($value)
     // {
-    //     $result = (app('translator')->getLocale()=='en') ? Helper::localization('offers','name',$this->id,1) : Helper::localization('offers','name',$this->id,2);
+    //     $result = (app('translator')->getLocale()=='en') ? Helpers::localization('offers','name',$this->id,1) : Helpers::localization('offers','name',$this->id,2);
     //     return ($result=='Error')? $value : $result;
     // }
 
@@ -36,4 +36,10 @@ class Offer extends Model
     {
     return $this->hasMany('App\OfferRequest','offer_id');
     }
+
+    public function user()
+    {
+    return $this->belongsTo('App\Users', 'sponsor_id');
+    }
+
 }

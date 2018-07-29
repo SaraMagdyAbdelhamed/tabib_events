@@ -37,6 +37,7 @@
         'wednesday' => 'Wedensday',
         'thursday'  => 'Thursday',
         'friday'    => 'Friday',
+        'export excel'=>'Export excel',
 
         // fixed pages
         'registered'=> 'Registered',
@@ -56,6 +57,7 @@
         'sponsorLogo'   => 'Sponsor Logo',
         'sponsorName'   => 'Sponosr Name',
         'shopndine'     => 'Shop and dine',
+        'ReportsِِِِِِAndStatistics'     => 'Reportsِِِِِِ And Statistics',
 
 
         'EditAbout' => 'Edit About Us',
@@ -68,11 +70,12 @@
 
         //Users
         'Users' => 'Users',
-        'MobileAppUsers' => 'Mobile Application Doctors',
-        'BackendUsers' => 'Backend Doctors',
+        'MobileAppUsers' => 'Mobile Application Users',
+        'BackendUsers' => 'Backend Users',
         'serialNo'=>'Serial No',
         'UserName'=>'UserName',
         'Password'  => 'Password',
+        'newPassword' => 'New Password',
         'confirmPassword' => 'Confirm Password',
         'Name'=>'Name',
         'Image'=>'Image',
@@ -92,7 +95,7 @@
         'Doctors'        => 'Doctors',
         
         
-        'UserType'  =>'UserType',
+        'UserType'  =>'User Type',
         'SelectGender'  =>'SelectGender',
         'Male'      =>'Male',
         'Female'    =>'Female',
@@ -192,6 +195,7 @@
         'Website'=>'Website',
         'Code number'=>'Code number',
         'mobile number'=>'mobile number',
+        'phone number' => 'phone number',
         'Media'=>'Media',
         'YouTube-ar-1'=>'Add YouTube video (1) Link in Arabic',
         'YouTube-en-1'=>'Add YouTube video (1) Link in English',
@@ -260,6 +264,33 @@
         'Number of users 15-18 years'=>'Number of users 15-18 years',
         'Number of users 18-25 years'=>'Number of users 18-25 years',
         'Number of users more than 25 years'=>'Number of users more than 25 years',
+        'number of all doctors in the system'=>'Number of all doctors in the system',
+        'number of doctors that added by organizers'=>'Number of doctors that added by organizers',
+        'number of doctors that registered by mobile'=>'Number of doctors that registered by mobile',
+        'number of all events'=>'Number of all events',
+        'number of all events that added by organizers'=>'Number of all events that added by organizers',
+        'number of all events that added by superAdmins'=>'Number of all events that added by superAdmins',
+        'sponsor report'=>'Sponsor report',
+        'event report'=>'Event report',
+
+        //sponosr report
+        'sponsor name'=>'Sponsor name',
+        'offer category'=>'Offer category',
+        'added from'=>'Added from',
+        'added to'=>'Added to',
+        'offer title'=>'Offer title',
+        'number of views'=>'Number of views',
+        'number of call'=>'Number of call',
+        'serial number'=>'Serial number',
+        'result'=>'Result',
+
+        //event report
+        'organizer name'=>'Organizer name',
+        'event category'=>'Event category',
+        'event name'=>'Event name',
+        'is paid'=>'Paid / Free',
+        'number of attendees'=>'Number of attendees',
+
         // big events
         'orderSaved'    => ' <div class="alert text-center" id="form_message" style="background-color: #2ecc71; color: white; padding: 10px; margin-top: 40px;">
                     <b>Big events order saved successfully</b>
@@ -337,10 +368,26 @@
         
         
         // New Keywords
+        'Doctor'        => 'Doctor',
+        'doctorName'    => 'Doctor Name',
+        'doctorEmail'   => 'Doctor Email',
         'sponsorCategories' => 'Sponsor Categories',
         'offerCategories'   => 'Offer Categories',
         'doctorSpecialists' => 'Doctor Specialists',
-        'offers_and_deals' => 'Offers And Deals'
+        'offers_and_deals'  => 'Offers And Deals',
+        'countryCode'   => 'Country Code',
+        'mobile1'       => 'Mobile Number #1',
+        'mobile2'       => 'Mobile Number #2',
+        'mobile3'       => 'Mobile Number #3',
+        'fromExcel'     => 'From Excel Sheet',
+        'fromForm'      => 'From Form',
+        'selectCountry' => 'Select a Country',
+        'selectCity'    => 'Select a City',
+        'selectRegion'  => 'Select a Region',
+        'selectSpec'    => 'Select a Specialization',
+        'selectTeleCode'=> 'Select a Telephone Code',
+        'selectUserType'=> 'Select a User Type',
+        'selectSponsorCategory' => 'Select a Sponsor Category',
     ];
 
 ?>

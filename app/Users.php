@@ -48,6 +48,11 @@ class Users extends Authenticatable
         return $this->hasMany('App\EventCategory', 'created_by');
     }
 
+    public function events()
+    {
+        return $this->belongsToMany('App\EventBackend', 'user_going','user_id', 'event_id')->withPivot('is_accepted')->wherePivot('is_accepted', 1);
+    }
+
     public function eventBackend()
     {
         return $this->hasMany('App\EventBackend', 'created_by');
@@ -87,13 +92,7 @@ class Users extends Authenticatable
 
     public function CurrentRule()
     {
-        foreach ($this->rules as $rule) {
-            if ($rule->pivot->rule_id != 1) {
-                $result = \App::isLocale('en') ? $rule->name : \Helper::localization('rules', 'name', $rule->id, 2);
-                $rule = ($result == 'Error') ? $this->rules[0]->name : $result;
-                return $rule;
-            }
-        }
+        return \App::isLocale('en') ? $this->rules[0]->name : \Helper::localization('rules', 'name', $this->rules[0]->id, 2); 
     }
 
     public function IsBackEndUser()
@@ -108,7 +107,7 @@ class Users extends Authenticatable
 
     public function isAdmin()
     {
-        return ($this->rules[0]->id == 1 && $this->rules[1]->id == 4) ? true : false;
+        return ($this->rules[0]->id == 1 && $this->rules[1]->id == 7) ? true : false;
     }
 
     ///check if sponsor
@@ -138,5 +137,15 @@ class Users extends Authenticatable
     // User Info
     public function userInfo() {
         return $this->hasOne('App\UserInfo', 'user_id');
+    }
+    //offers categories
+        public function offer_cat()
+    {
+        return $this->hasMany('App\OfferCategory','created_by');
+    }
+
+        public function offers()
+    {
+        return $this->hasMany('App\Offer','sponsor_id');
     }
 }

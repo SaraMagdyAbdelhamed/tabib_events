@@ -37,6 +37,7 @@
         'wednesday' => 'الاربعاء',
         'thursday'  => 'الخميس',
         'friday'    => 'الجمعة',
+        'export excel'=>'استخراج ملف اكسيل',
 
         // fixed pages
         'registered'=> 'تسجيل الدخول',
@@ -56,6 +57,7 @@
         'sponsorLogo'   => 'الشعار الراعي',
         'sponsorName'   => 'اسم الراعي',
         'shopndine'     => 'محلات و مطاعم',
+        'ReportsِِِِِِAndStatistics'     => 'التقارير و  الإحصائيات',
 
         // Edit fixed pages
         'EditAbout' => 'تعديل قسم من نحن',
@@ -73,14 +75,15 @@
 
         //Users
         'Users' => 'المستخدمين',
-        'MobileAppUsers' => 'اطباء تطبيقات الجوال',
-        'BackendUsers' => 'اطباء النظام',
+        'MobileAppUsers' => 'مستخدمي تطبيقات الجوال',
+        'BackendUsers' => 'مستخدمي النظام',
         'serialNo'=>'الرقم التسلسلي',
         'UserName'=>'اسم المستخدم',
         'FirstName' => 'الاسم الاول',
         'LastName'  => 'اسم العائلة',
         'FullName'  => 'الاسم بالكامل',
         'Password'  => 'كلمة السر',
+        'newPassword' => 'كلمة السر الجديدة',
         'confirmPassword' => 'تأكيد كلمة السر',
         'Name'=>'الاسم',
         'Image'=>'الصورة',
@@ -108,6 +111,7 @@
         'UserEmail'=>'البريد الالكتروني للمستخدم',
         'UserPhone'=>'هاتف المستخدم',
         'UserImage'=>'صورة المستخدم',
+        'Activate' => 'تفعيل',
         'Active'=>'مفعل',
         'Inactive'=>'غير مفعل',
        
@@ -217,7 +221,8 @@
 		'Contact Info'=>'بيانات الاتصال',
 		'Website'=>'الموقع الالكتروني',
 		'Code number'=>'رقم الكود',
-		'mobile number'=>'رقم الموبايل',
+        'mobile number'=>'رقم الموبايل',
+        'phone number' => 'رقم الهاتف',
 		'Media'=>'الوسائط',
 		'YouTube-ar-1'=>'رابط فيديو اليوتيوب العربي (1)',
 		'YouTube-en-1'=>'رابط فيديو اليوتيوب الانجليزي (1)',
@@ -235,7 +240,33 @@
 		'Number of users less than 15 years'=>'عدد المستخدمين للأعمار أقل من 15 عام',
 		'Number of users 15-18 years'=>'عدد المستخدمين للأعمار ما بين 15 و 18 عام',
 		'Number of users 18-25 years'=>'عدد المستخدمين للأعمار ما بين 18 و 25 عام',
-		'Number of users more than 25 years'=>'عدد المستخدمين للأعمار أكثر من 25 عام',
+        'Number of users more than 25 years'=>'عدد المستخدمين للأعمار أكثر من 25 عام',
+        'number of all doctors in the system'=>'العدد الكلي للأطباء بالنظام',
+        'number of doctors that added by organizers'=>'عدد الأطباء الذين تم إضافتهم من قبل المنظمين',
+        'number of doctors that registered by mobile'=>'العدد الكلى للاطباء الذين تم تسجيلهم من تطبيق الموبيل',
+        'number of all events'=>'العدد الكلى للايفنت المضافة',
+        'number of all events that added by organizers'=>'عدد الايفنتات المضافة من قبل المنظمين',
+        'number of all events that added by superAdmins'=>'العدد الكلى للايفنتات المضافة من قبل المسئولين',
+        'sponsor report'=>'تقرير الراعي',
+        'event report'=>'تقرير الايفينت',
+        
+        //sponsor report
+        'sponsor name'=>'اسم الراعي',
+        'offer category'=>'فئه العرض',
+        'added from'=>'تاريخ الإضافه من',
+        'added to'=>'تاريخ الإضافه إلى',
+        'offer title'=>'عنوان العرض',
+        'number of views'=>'عدد المشاهدات',
+        'number of call'=>'عدد المكالمات',
+        'serial number'=>'رقم المسلسل',
+        'result'=>'النتيجه',
+
+        //event report
+        'organizer name'=>'اسم المنظم',
+        'event category'=>'فئه الايفينت',
+        'event name'=>'اسم الايفينت',
+        'is paid'=>'مدفوع / مجانى',
+        'number of attendees'=>'عدد الحاضرين',
 
 
         // Offers & Deals AND Famous Attractions
@@ -337,12 +368,26 @@
         'branch_end'=>'معاد اغلاق الفرع ',
 
         // New Keywords
+        'Doctor'        => 'طبيب',
+        'doctorName'    => 'اسم الطبيب',
+        'doctorEmail'   => 'البريد الالكتروني للطبيب',
         'sponsorCategories' => 'تصنيف الرعاه',
         'offerCategories'   => 'تصنيف العروض',
         'doctorSpecialists' => 'تخصصات الاطباء',
-        'offers_and_deals' => 'العروض والاتفقيات'
-
-	
+        'offers_and_deals'  => 'العروض والاتفقيات',
+        'countryCode'   => 'كود الدولة',
+        'mobile1'       => 'رقم الهاتف الاول',
+        'mobile2'       => 'رقم الهاتف الثاني',
+        'mobile3'       => 'رقم الهاتف الثالث',
+        'fromExcel'     => 'من ملف اكسيل',
+        'fromForm'      => 'من استمارة الاضافة',
+        'selectCountry' => 'من فضلك اختر دولة',
+        'selectCity'    => 'من فضلك اختر مدينة',
+        'selectRegion'  => 'من فضلك اختر منطقة',
+        'selectSpec'    => 'من فضلك اختر تخصص الطبيب',
+        'selectTeleCode'=> 'من فضلك اختر كود الهاتف',
+        'selectUserType'=> 'من فضلك اختر صلاحية المستخدم',
+        'selectSponsorCategory' => 'من فضلك اختر تصنيف الراعي',
 	];
 
 

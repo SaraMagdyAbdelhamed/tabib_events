@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/reportsandstatistics",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\ReportsAndStatistics\\Providers\\ReportsAndStatisticsServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ReportsAndStatistics\\": ""
+        }
+    }
+}

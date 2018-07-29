@@ -25,7 +25,7 @@
           <div class="full-table">
             <table class="verticaltable table-master">
               <tr>
-                <th><span class="cellcontent">كود الدولة</span></th>
+                <th><span class="cellcontent">@lang('keywords.countryCode')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->tele_code ? : __('keywords.not') }}
@@ -33,7 +33,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">رقم الهاتف المحمول 1</span></th>
+                <th><span class="cellcontent">@lang('keywords.mobile1')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->mobile ? : __('keywords.not') }}
@@ -41,7 +41,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">رقم الهاتف المحمول 2</span></th>
+                <th><span class="cellcontent">@lang('keywords.mobile2')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->userInfo ? ($user->userInfo->mobile2 ? :  __('keywords.not')) : __('keywords.not') }}
@@ -49,7 +49,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">رقم الهاتف المحمول 3</span></th>
+                <th><span class="cellcontent">@lang('keywords.mobile3')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->userInfo != NULL ? ($user->userInfo->mobile3 ? :  __('keywords.not')) : __('keywords.not') }}
@@ -57,7 +57,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">البريد الالكترونى</span></th>
+                <th><span class="cellcontent">@lang('keywords.email')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->email ? :  __('keywords.not') }}
@@ -65,7 +65,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">الدولة</span></th>
+                <th><span class="cellcontent">@lang('keywords.Country')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->country ? ($user->country->name ? :  __('keywords.not')) :  __('keywords.not') }}
@@ -73,7 +73,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">المدينة</span></th>
+                <th><span class="cellcontent">@lang('keywords.City')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->city ? ($user->city->name ? :  __('keywords.not')) :  __('keywords.not') }}
@@ -81,7 +81,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">المنطقة</span></th>
+                <th><span class="cellcontent">@lang('keywords.region')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->userInfo ? $user->userInfo->getRegion(__('keywords.not')) : __('keywords.not') }}
@@ -89,7 +89,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">العنوان</span></th>
+                <th><span class="cellcontent">@lang('keywords.address')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->userInfo ? ($user->userInfo->address ? : __('keywords.not')) : __('keywords.not') }}
@@ -97,7 +97,7 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">التخصص</span></th>
+                <th><span class="cellcontent">@lang('keywords.specialization')</span></th>
                 <td>
                     <span class="cellcontent">
                         {{ $user->userInfo ? $user->userInfo->getSpecialization(__('keywords.not')) : __('keywords.not') }}
@@ -105,8 +105,12 @@
                 </td>
               </tr>
               <tr>
-                <th><span class="cellcontent">النوع</span></th>
-                <td><span class="cellcontent">male</span></td>
+                <th><span class="cellcontent">@lang('keywords.gender')</span></th>
+                <td>
+                    <span class="cellcontent">
+                        {{ $user->gender ? $user->gender->name : __('keywords.not') }}
+                    </span>
+                </td>
               </tr>
             </table>
             <div class="remodal log-custom" data-remodal-id="log_linkX" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
@@ -268,18 +272,27 @@
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
-            <div class="checkboxrobo">
-              <input type="checkbox" id="activation" name="activation" checked="true">
-              <label for="activation">تفعيل</label>
-            </div>
-            <div class="row">
-              <div class="div" style="text-align:center;">
-                <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
-                </button>
-                <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
-                </button>
-              </div>
-            </div>
+
+            <form action="{{ route('users_mobile.status.update') }}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="id" value="{{ $user->id }}">
+
+                <div class="checkboxrobo">
+                <input type="checkbox" id="activation" value="1" name="activation" {{ $user->is_active ? 'checked' : '' }}>
+                <label for="activation">@lang('keywords.Activate')</label>
+                </div>
+                <div class="row">
+                <div class="div" style="text-align:center;">
+                    <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit">
+                        <i class="fa fa-save"></i><span>@lang('keywords.save')</span>
+                    </button>
+                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit">
+                        <i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+                    </button>
+                </div>
+                </div>
+            </form>
+
           </div>
           <div class="clearfix"></div>
         </div>
