@@ -1,6 +1,25 @@
 @extends('layouts.app')
 @section('content')
+<style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 100% !important;
+  }
+  /* Optional: Makes the sample page fill the window.
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
+  #submit {
+    color: white;
+    background-color: #281160;
+    border: 0px;
+    padding: 12px 36px;
+  } */
+</style>
               <!-- =============== Custom Content ===========-==========-->
               <div class="remodal" data-remodal-id="mapModal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
                 <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
@@ -63,8 +82,15 @@
                               <textarea class="master_input" name="event[description]" maxlength="10" minlength="5" id="description" Required></textarea><span class="master_message inherit">message content</span>
                             </div>
                           </div>
-                          <div class="col-xs-12" style="text-align:end;">
-                            <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="#mapModal">ايجاد المكان من على الخريطة</a></div><br>
+                          {{-- Google Maps API --}}
+                          <div class="col-xs-12">
+                            <div class="mapouter">
+
+                              {{-- Map Latitude & Longtuide --}}
+                              <div id="map" style="width: 100%; height: 100%; position: absolute;"></div>
+                                <input type="hidden" name="lat" id="lat" >
+                                <input type="hidden" name="lng" id="lng" >
+                            </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
