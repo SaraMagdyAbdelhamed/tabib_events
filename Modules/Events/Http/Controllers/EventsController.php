@@ -62,11 +62,12 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+         dd($request->all());
         $destinationPath = 'event_images';
         $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
     // dd($fileNameToStore);
         Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        
         $event=Event::create([
             "name"=>$request['event']['name'],
             "description"=>$request['event']['description'],
@@ -84,7 +85,19 @@ class EventsController extends Controller
             "code"=>$request['event']['code'],
             "is_active"=>($request['event']['active'] == 'on')? 1 : 0,
             "created_by"=>\Auth::id(),
+            "use_ticketing_system"=>(isset($request['event']['price'])) ? 1 : 0
         ]);
+        if($event->use_ticketing_system == 1)
+        {
+            EventTicket::create([
+                "event_id"=> $event->id,
+                "price"=>$request['event']['price'],
+                "available_tickets"=>$request['event']['available_tickets'],
+                "current_available_tickets"=>$request['event']['available_tickets'],
+                "currency_id"=>$request['event']['currency']
+            ]);
+        }
+        
         if(isset($request['event']['youtube']))
         {
             foreach($request['event']['youtube'] as $youtube)

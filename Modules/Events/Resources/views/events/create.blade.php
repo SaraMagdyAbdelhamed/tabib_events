@@ -214,13 +214,13 @@
                           <div class="col-xs-8">
                             <div class="master_field">
                               <label class="master_label" for="Price">السعر</label>
-                              <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]" required><span class="master_message color--fadegreen">validation message will be here</span>
                             </div>
                           </div>
                           <div class="col-xs-4">
                             <div class="master_field">
                               <label class="master_label mandatory" for="Currency">العملة</label>
-                              <select class="master_input" id="Currency" name="event[currency]">
+                              <select class="master_input" id="Currency" name="event[currency]" required>
                               @foreach($currencies as $currency)
                                 <option value="{{$currency->id}}">{{$currency->symbol}}</option>
                               @endforeach
@@ -230,7 +230,7 @@
                           <div class="col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="Available_tickets">عدد التذاكر المتاحة</label>
-                              <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]" required><span class="master_message color--fadegreen">validation message will be here</span>
                             </div>
                           </div>
                         </div>
