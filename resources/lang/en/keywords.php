@@ -51,7 +51,7 @@
         'sponsors'  => 'sponsors',
         'trends'    => 'Trending searches control',
         'trendWords'    => 'Trending Search Words',
-        'notifications' => 'Notification distance',
+        'notifications' => 'Notifications',
         'famousAtt'     => 'Famous Attractions',
         'famousCat'     => 'Famous attractions category',
         'sponsorLogo'   => 'Sponsor Logo',
@@ -229,6 +229,7 @@
         'eventCall'=>'Call Information',
         'eventEmail'=>'Email ',
         'code'=>' Country Code ',
+        'EventImage'=>'Upload Event Images max 1 images',
 
         
         // Offers & Deals AND Famous Attractions
@@ -347,6 +348,7 @@
         'noti_ar'=>'Notification Content In Arabic',
         'age'=>'Age ',
         'gender'=>'Gender ',
+        'notification text'=>'Notification text',
         
         'male'=>'Male ',
         'female'=>'Female',

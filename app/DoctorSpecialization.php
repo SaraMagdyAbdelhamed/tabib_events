@@ -16,4 +16,9 @@ class DoctorSpecialization extends Model
     public function userInfo() {
         return $this->hasOne('App\UserInfo', 'specialization_id');
     }
+
+    	public function events()
+    {
+        return $this->belongsToMany('App\EventBackend','event_specializations','specialization_id','event_id');
+    }
 }

@@ -1,6 +1,25 @@
 @extends('layouts.app')
 @section('content')
+<style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 100% !important;
+  }
+  /* Optional: Makes the sample page fill the window.
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
+  #submit {
+    color: white;
+    background-color: #281160;
+    border: 0px;
+    padding: 12px 36px;
+  } */
+</style>
               <!-- =============== Custom Content ===========-==========-->
               <div class="remodal" data-remodal-id="mapModal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
                 <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
@@ -63,8 +82,15 @@
                               <textarea class="master_input" name="event[description]" maxlength="10" minlength="5" id="description" Required></textarea><span class="master_message inherit">message content</span>
                             </div>
                           </div>
-                          <div class="col-xs-12" style="text-align:end;">
-                            <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="#mapModal">ايجاد المكان من على الخريطة</a></div><br>
+                          {{-- Google Maps API --}}
+                          <div class="col-xs-12">
+                            <div class="mapouter">
+
+                              {{-- Map Latitude & Longtuide --}}
+                              <div id="map" style="width: 100%; height: 100%; position: absolute;"></div>
+                                <input type="hidden" name="lat" id="lat" >
+                                <input type="hidden" name="lng" id="lng" >
+                            </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
@@ -150,12 +176,12 @@
                             <hr>
                           </div>
                           <div class="col-sm-12 col-xs-12 text-center">
-                            <h4 class="text-center">@lang('keywords.uploadEventImage')</h4>
+                            <h4 class="text-center">@lang('keywords.EventImage')</h4>
                             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                               <div class="main-section">
                                 <div id="fileList2"></div>
                                 <div class="form-group">
-                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[images][]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList2()">
+                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]"   onchange="updateList2()" required>
                                   <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                               </div>
@@ -400,14 +426,15 @@
                             <h4 class="text-center">@lang('keywords.uploadEventImage')</h4>
                             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                               <div class="main-section">
-                                <div id="fileList"></div>
+                                <div id="fileList2"></div>
                                 <div class="form-group">
-                                  <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1[]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList()">
-                                  <label for="file-1"><span>اختر الصور    </span></label>
+                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[images][]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList2()">
+                                  <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        </div>
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">

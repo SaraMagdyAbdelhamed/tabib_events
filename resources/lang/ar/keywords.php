@@ -164,6 +164,7 @@
         'eventCall'=>'معلومات الاتصال',
         'eventEmail'=>'البريد الالكتروني ',
         'code'=>'كود الدوله ',
+        'EventImage'=>'رفع صوره الحدث اقصي عدد 1 صور ',
         
         // Events Mobile
         'addfromMobile' => 'المضاف من التطبيق',
@@ -268,7 +269,6 @@
         'is paid'=>'مدفوع / مجانى',
         'number of attendees'=>'عدد الحاضرين',
 
-
         // Offers & Deals AND Famous Attractions
         'offers'    => 'العروض والصفقات',
         'placeName' => 'اسم المكان',
@@ -348,6 +348,7 @@
         'noti_ar'=>'محتوي التنبيه بالعربيه ',
         'age'=>'السن ',
         'gender'=>'النوع ',
+        'notification text'=>'نص الإشعار',
         
         'male'=>'ذكر ',
         'female'=>'انثي',

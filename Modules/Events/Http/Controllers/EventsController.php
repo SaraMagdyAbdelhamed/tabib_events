@@ -63,10 +63,14 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-       
+        $destinationPath = 'event_images';
+        $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
+    // dd($fileNameToStore);
+        Input::file('event')['image']->move($destinationPath, $fileNameToStore);
         $event=Event::create([
             "name"=>$request['event']['name'],
             "description"=>$request['event']['description'],
+            "image"=>$fileNameToStore,
             "venue"=>$request['event']['place'],
             "latitude"=>$request['event']['lat'],
             "longtuide"=>$request['event']['long'],
@@ -232,7 +236,7 @@ class EventsController extends Controller
                 }
             }
         
-        dd($request->all());
+        return redirect()->back();
 
     }
 
