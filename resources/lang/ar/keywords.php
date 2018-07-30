@@ -164,6 +164,7 @@
         'eventCall'=>'معلومات الاتصال',
         'eventEmail'=>'البريد الالكتروني ',
         'code'=>'كود الدوله ',
+        'EventImage'=>'رفع صوره الحدث اقصي عدد 1 صور ',
         
         // Events Mobile
         'addfromMobile' => 'المضاف من التطبيق',

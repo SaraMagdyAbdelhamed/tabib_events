@@ -176,12 +176,12 @@
                             <hr>
                           </div>
                           <div class="col-sm-12 col-xs-12 text-center">
-                            <h4 class="text-center">@lang('keywords.uploadEventImage')</h4>
+                            <h4 class="text-center">@lang('keywords.EventImage')</h4>
                             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                               <div class="main-section">
                                 <div id="fileList2"></div>
                                 <div class="form-group">
-                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[images][]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList2()">
+                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]"   onchange="updateList2()" required>
                                   <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                               </div>
@@ -426,14 +426,15 @@
                             <h4 class="text-center">@lang('keywords.uploadEventImage')</h4>
                             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                               <div class="main-section">
-                                <div id="fileList"></div>
+                                <div id="fileList2"></div>
                                 <div class="form-group">
-                                  <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1[]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList()">
-                                  <label for="file-1"><span>اختر الصور    </span></label>
+                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[images][]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList2()">
+                                  <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        </div>
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">

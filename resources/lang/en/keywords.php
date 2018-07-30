@@ -229,6 +229,7 @@
         'eventCall'=>'Call Information',
         'eventEmail'=>'Email ',
         'code'=>' Country Code ',
+        'EventImage'=>'Upload Event Images max 1 images',
 
         
         // Offers & Deals AND Famous Attractions
