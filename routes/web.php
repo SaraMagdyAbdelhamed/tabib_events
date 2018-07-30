@@ -142,6 +142,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         // Create, Store, get cities & countries of new general list doctor
         Route::get('/doctors/add/new', '\Modules\UsersModule\Http\Controllers\DoctorsController@create')->name('doctor.create');
         Route::post('/doctors/store/new', '\Modules\UsersModule\Http\Controllers\DoctorsController@store')->name('doctor.store');
+        Route::post('/doctors/store/from_excel', '\Modules\UsersModule\Http\Controllers\DoctorsController@storeExcel')->name('doctors.storeExcel');
         Route::get('/doctors/add/get/cities', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getCities')->name('doctor.get.cities');
         Route::get('/doctors/add/get/regions', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getRegions')->name('doctor.get.regions');
         

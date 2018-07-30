@@ -387,8 +387,6 @@
                         {{-- Country --}}
                         <td>
                           <span class="cellcontent">
-                            {{\App::isLocale('en') ? $doctor->country->name : \Helper::localization('geo_countries','name',$doctor->country->id,'2',
-                                $doctor->country->name)}}
                           </span>
                         </td>
   

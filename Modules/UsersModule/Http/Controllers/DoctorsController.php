@@ -25,6 +25,10 @@ use App\DoctorSpecialization;
 use App\GeoRegion;
 // use App\Age_Ranges;
 
+// Excel package
+use Rap2hpoutre\FastExcel\FastExcel;
+
+
 class DoctorsController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -424,5 +428,69 @@ class DoctorsController extends Controller
             Session::flash('warning', 'can not update this doctor! لا يمكن تعديل معلومات الطبيب');
             return redirect()->back();
         }
+    }
+
+    /** Import excel file to DB */
+    public function storeExcel(Request $request) 
+    {
+        if ( $request->hasfile('excel_file') ) {
+            $users = (new FastExcel)->import($request->excel_file);
+
+            foreach($users as $user) {
+                // Insert new doctor into users
+                try {
+                    // Creating new user
+                    $doctor = new Users;
+                    $doctor->username = $user[""];
+                    $doctor->email = $request->doctorEmail;
+                    $doctor->tele_code = $request->doctorTeleCode;
+                    $doctor->mobile = $request->mobile1;
+                    $doctor->country_id = $request->doctorCountry;
+                    $doctor->city_id = $request->doctorCity;
+                    $doctor->password = bcrypt($request->password);
+                    $doctor->gender_id = $request->gender;
+                    $doctor->is_active = $request->activation ? : 0;
+                    
+                    // Insert doctor's image if exists
+                    if ($request->hasfile('doctorImage')) {
+                        $image = $request->doctorImage;
+                        $newName = time() . '_' . $image->getClientOriginalName();
+                        $image->move('doctors', $newName);
+                        $path = 'doctors/' . $newName;
+                        $doctor->photo = $path;
+                    }
+                    $doctor->save();    // save new user
+
+                    // Insert into `user_info`
+                    $userInfo = new UserInfo;
+                    $userInfo->user_id = $doctor->id;
+                    $userInfo->mobile2 = $request->mobile2 ? : null;   // it could be null
+                    $userInfo->mobile3 = $request->mobile3 ? : null;   // it could be null
+                    $userInfo->region_id = $request->doctorRegion;
+                    $userInfo->address = $request->doctorAddress;
+                    $userInfo->specialization_id = $request->doctorSpecialization ? : null; // it could be null
+                    $userInfo->is_profile_completed = $request->activation ? 1 : 0;
+                    $userInfo->is_backend = 1;
+                    $userInfo->save();  // save new user's info
+
+                    // Insert into `users_rules`
+                    $doctor->rules()->attach(2);
+
+                } catch (Exception $exp) {
+                    dd($exp);
+                    Session::flash('warning', 'can not add new doctor! خطأ ، لا يمكن إضافة طبيب جديد');
+                    return redirect()->back();
+                }
+            }
+            
+
+        } else {
+            Session::flash('warning', 'Error uploading excel file! خطأ في تحميل ملف الاكسيل');
+            return redirect()->back();
+        }
+
+        // Flash success and redirect to its home page
+        Session::flash('success', 'Doctor added successfully! تم إضافة الطبيب بنجاح');
+        return redirect('/users_mobile');
     }
 }
