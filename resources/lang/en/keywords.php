@@ -51,7 +51,7 @@
         'sponsors'  => 'sponsors',
         'trends'    => 'Trending searches control',
         'trendWords'    => 'Trending Search Words',
-        'notifications' => 'Notification distance',
+        'notifications' => 'Notifications',
         'famousAtt'     => 'Famous Attractions',
         'famousCat'     => 'Famous attractions category',
         'sponsorLogo'   => 'Sponsor Logo',
@@ -345,6 +345,7 @@
         'noti_ar'=>'Notification Content In Arabic',
         'age'=>'Age ',
         'gender'=>'Gender ',
+        'notification text'=>'Notification text',
         
         'male'=>'Male ',
         'female'=>'Female',

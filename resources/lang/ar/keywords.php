@@ -265,7 +265,6 @@
         'is paid'=>'مدفوع / مجانى',
         'number of attendees'=>'عدد الحاضرين',
 
-
         // Offers & Deals AND Famous Attractions
         'offers'    => 'العروض والصفقات',
         'placeName' => 'اسم المكان',
@@ -345,6 +344,7 @@
         'noti_ar'=>'محتوي التنبيه بالعربيه ',
         'age'=>'السن ',
         'gender'=>'النوع ',
+        'notification text'=>'نص الإشعار',
         
         'male'=>'ذكر ',
         'female'=>'انثي',

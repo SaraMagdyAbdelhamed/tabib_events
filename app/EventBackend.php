@@ -97,5 +97,10 @@ class EventBackend extends Model
         return $this->hasMany('App\EventBooking', 'event_id');
     }
 
+        public function specialization()
+    {
+        return $this->belongsToMany('App\DoctorSpecialization','event_specializations','event_id','specialization_id');
+    }
+
 
 }

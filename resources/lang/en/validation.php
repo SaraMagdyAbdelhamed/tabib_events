@@ -116,6 +116,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'notifiaction_text'=> 'notifiaction'
+    ],
 
 ];

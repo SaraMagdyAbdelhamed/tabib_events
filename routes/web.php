@@ -56,6 +56,10 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     Route::get('/event_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event')->name('event_report');
     Route::post('/event_filter_report', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_filter')->name('event_filter_report');
     Route::get('/event_excel', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_excel')->name('event_excel');
+
+    //Notifications
+    Route::get('/notifications', '\Modules\Notifications\Http\Controllers\NotificationsController@index')->name('notifications');
+    Route::post('/send_notification', '\Modules\Notifications\Http\Controllers\NotificationsController@store')->name('send_notification');
     
     Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
 
@@ -92,13 +96,13 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     Route::post('/category/delete/single', '\Modules\Main\Http\Controllers\MainController@category_delete')->name('category.delete');
     Route::post('/category/delete/selected', '\Modules\Main\Http\Controllers\MainController@category_deleteSelected')->name('category.deleteSelected');
 
-    // Notifications
+    //Notifications
     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
-    Route::get('/notifications', '\Modules\Main\Http\Controllers\MainController@notifications')->name('notifications');
-    Route::post('/notifications/add', '\Modules\Main\Http\Controllers\MainController@notifications_store')->name('notifications.add');
-    Route::post('/notifications/edit', '\Modules\Main\Http\Controllers\MainController@notifications_update')->name('notifications.edit');
-    Route::post('/notifications/delete/single', '\Modules\Main\Http\Controllers\MainController@notifications_delete')->name('notifications.delete');
-    Route::post('/notifications/delete/selected', '\Modules\Main\Http\Controllers\MainController@notifications_deleteSelected')->name('notifications.deleteSelected');
+    // Route::get('/notifications', '\Modules\Main\Http\Controllers\MainController@notifications')->name('notifications');
+    // Route::post('/notifications/add', '\Modules\Main\Http\Controllers\MainController@notifications_store')->name('notifications.add');
+    // Route::post('/notifications/edit', '\Modules\Main\Http\Controllers\MainController@notifications_update')->name('notifications.edit');
+    // Route::post('/notifications/delete/single', '\Modules\Main\Http\Controllers\MainController@notifications_delete')->name('notifications.delete');
+    // Route::post('/notifications/delete/selected', '\Modules\Main\Http\Controllers\MainController@notifications_deleteSelected')->name('notifications.deleteSelected');
     }); //notification rule
 
      // offers and deals
