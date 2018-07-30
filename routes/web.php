@@ -45,13 +45,6 @@ Route::group(['middleware' => ['auth', 'locale']], function ($lang = null) {
 // Route::get('/main/mark_read/{$id}','\Modules\Main\Http\Controllers\MainController@mark_read');
 
 
-<<<<<<< HEAD
-    Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group(function ($lang = null) {
-    // about us
-
-
-        Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
-=======
 Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
 
     //reports_and_statistics
@@ -65,7 +58,6 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     Route::get('/event_excel', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@event_excel')->name('event_excel');
     
     Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
->>>>>>> 4ff796fdbb072235715034634382771057e84b99
 
     // terms & conditions
         Route::get('/terms', '\Modules\Main\Http\Controllers\MainController@terms')->name('terms');
@@ -110,16 +102,6 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         }); //notification rule
 
      // offers and deals
-<<<<<<< HEAD
-        Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group(function ($lang = null) {
-            Route::get('/offers_and_deals', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@index')->name('offers_and_deals');
-            Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
-            Route::post('/offers_and_deals/create', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@create')->name('offers_and_deals.create');
-
-            Route::get('/offers_and_deals/edit/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@edit')->name('offers_and_deals.edit');
-            Route::post('/offers_and_deals/delete/id', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
-            Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
-=======
      Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
         Route::get('/offers_and_deals', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@index')->name('offers_and_deals');
         Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
@@ -129,7 +111,6 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::post('/offers_and_deals/update/{id}', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@update')->name('offers_and_deals.update');
         Route::post('/offers_and_deals/delete', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
         Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
->>>>>>> 4ff796fdbb072235715034634382771057e84b99
         }); //notification rule
          // events
      Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
@@ -236,14 +217,9 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 });
 
 //AHmed ALaa Test Routes 
-<<<<<<< HEAD
-Route::get("/test_not", "HomeController@test_not");
-Route::get("/mark_read/{id}", "HomeController@mark_read");
-=======
 Route::get("/test_not","HomeController@test_not");
 Route::get("/mark_read/{id}","HomeController@mark_read");
 
 
 
 
->>>>>>> 4ff796fdbb072235715034634382771057e84b99
