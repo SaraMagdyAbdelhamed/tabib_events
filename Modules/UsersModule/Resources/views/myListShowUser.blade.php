@@ -273,7 +273,7 @@
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
 
-            <form action="{{ route('users_mobile.status.update') }}" method="POST">
+            <form action="{{ route('myList.status.update') }}" method="POST">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $user->id }}">
 

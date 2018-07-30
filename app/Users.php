@@ -92,13 +92,7 @@ class Users extends Authenticatable
 
     public function CurrentRule()
     {
-        foreach ($this->rules as $rule) {
-            if ($rule->pivot->rule_id != 1) {
-                $result = \App::isLocale('en') ? $rule->name : \Helper::localization('rules', 'name', $rule->id, 2);
-                $rule = ($result == 'Error') ? $this->rules[0]->name : $result;
-                return $rule;
-            }
-        }
+        return \App::isLocale('en') ? $this->rules[0]->name : \Helper::localization('rules', 'name', $this->rules[0]->id, 2); 
     }
 
     public function IsBackEndUser()
@@ -113,7 +107,7 @@ class Users extends Authenticatable
 
     public function isAdmin()
     {
-        return ($this->rules[0]->id == 1 && $this->rules[1]->id == 4) ? true : false;
+        return ($this->rules[0]->id == 1 && $this->rules[1]->id == 7) ? true : false;
     }
 
     ///check if sponsor

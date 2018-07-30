@@ -13,7 +13,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="events_backend_add.html">اضافة ايفينت جديد</a>
+                      <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="{{route('events.create')}}">اضافة ايفينت جديد</a>
                       </div>
                     </div>
                   </div>

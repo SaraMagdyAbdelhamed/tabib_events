@@ -14,6 +14,7 @@ class UserInfo extends Model
         'address', 'is_backend', 'is_profile_completed', 'specialization_id'
     ];
 
+    public $timestamps = false;
     
     /** Relations **/
 

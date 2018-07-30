@@ -15,4 +15,7 @@ class Rules extends Model
         return $this->belongsToMany('App\Users','user_rules','user_id','rule_id');
     }
 
+    public function trans() {
+        return \Helper::localization('rules','name',$this->id,2, $this->name);
+    }
 }

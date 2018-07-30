@@ -70,11 +70,12 @@
 
         //Users
         'Users' => 'Users',
-        'MobileAppUsers' => 'Mobile Application Doctors',
-        'BackendUsers' => 'Backend Doctors',
+        'MobileAppUsers' => 'Mobile Application Users',
+        'BackendUsers' => 'Backend Users',
         'serialNo'=>'Serial No',
         'UserName'=>'UserName',
         'Password'  => 'Password',
+        'newPassword' => 'New Password',
         'confirmPassword' => 'Confirm Password',
         'Name'=>'Name',
         'Image'=>'Image',
@@ -94,7 +95,7 @@
         'Doctors'        => 'Doctors',
         
         
-        'UserType'  =>'UserType',
+        'UserType'  =>'User Type',
         'SelectGender'  =>'SelectGender',
         'Male'      =>'Male',
         'Female'    =>'Female',
@@ -194,6 +195,7 @@
         'Website'=>'Website',
         'Code number'=>'Code number',
         'mobile number'=>'mobile number',
+        'phone number' => 'phone number',
         'Media'=>'Media',
         'YouTube-ar-1'=>'Add YouTube video (1) Link in Arabic',
         'YouTube-en-1'=>'Add YouTube video (1) Link in English',
@@ -367,10 +369,26 @@
         
         
         // New Keywords
+        'Doctor'        => 'Doctor',
+        'doctorName'    => 'Doctor Name',
+        'doctorEmail'   => 'Doctor Email',
         'sponsorCategories' => 'Sponsor Categories',
         'offerCategories'   => 'Offer Categories',
         'doctorSpecialists' => 'Doctor Specialists',
-        'offers_and_deals' => 'Offers And Deals'
+        'offers_and_deals'  => 'Offers And Deals',
+        'countryCode'   => 'Country Code',
+        'mobile1'       => 'Mobile Number #1',
+        'mobile2'       => 'Mobile Number #2',
+        'mobile3'       => 'Mobile Number #3',
+        'fromExcel'     => 'From Excel Sheet',
+        'fromForm'      => 'From Form',
+        'selectCountry' => 'Select a Country',
+        'selectCity'    => 'Select a City',
+        'selectRegion'  => 'Select a Region',
+        'selectSpec'    => 'Select a Specialization',
+        'selectTeleCode'=> 'Select a Telephone Code',
+        'selectUserType'=> 'Select a User Type',
+        'selectSponsorCategory' => 'Select a Sponsor Category',
     ];
 
 ?>

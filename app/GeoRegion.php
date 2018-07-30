@@ -15,4 +15,12 @@ class GeoRegion extends Model
     public function userInfo() {
         return $this->hasOne('App\UserInfo', 'region_id');
     }
+
+    public function city() {
+        return $this->belongsTo('App\Cities', 'city_id');
+    }
+
+    public function currentRegion($id) {
+        return $this->id == $id ? true : false;
+    }
 }
