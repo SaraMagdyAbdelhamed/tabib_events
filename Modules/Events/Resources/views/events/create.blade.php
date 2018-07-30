@@ -179,10 +179,10 @@
                             <h4 class="text-center">@lang('keywords.EventImage')</h4>
                             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                               <div class="main-section">
-                                <div id="fileList2"></div>
+                                <div id="fileList"></div>
                                 <div class="form-group">
-                                  <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]"   onchange="updateList2()" required>
-                                  <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
+                                  <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   data-multiple-caption="{count} files selected" onchange="updateList()" required>
+                                  <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                               </div>
                             </div>
@@ -498,13 +498,13 @@
               }
       
               else {
-                  if (files1.length > 5) {
-                      alert("max no. 5 images");
+                  if (files1.length > 1) {
+                      alert("max no. 1 images");
                       return;
                   }
       
                   if (window.File && window.FileList && window.FileReader) {
-                         if (files1.length == 5) {
+                         if (files1.length == 1) {
                       $("#file-1").prop('disabled', true);
                   }
                       for (var i = 0; i < files1.length; i++) {
@@ -538,7 +538,7 @@
                       }
                   }
       
-                  if (listAr.length == 4) {
+                  if (listAr.length == 1) {
                       $("#file-1").prop('disabled', true);
                   }
               }
