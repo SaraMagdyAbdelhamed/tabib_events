@@ -363,7 +363,7 @@
                           </div>
                           <div class="col-xs-12">
                             <div class="master_field">
-                              <label class="master_label" for="survey_question">@lang('keywords.question')</label>
+                              <label class="master_label" for="survey_question">@lang('keywords.Squestion')</label>
                               <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][0][name]" Required><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -849,7 +849,7 @@
                           
                              <div class="col-xs-12">
                                <div class="master_field">
-                                 <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.question') ${question}</label>
+                                 <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.Squestion') ${question}</label>
                                  <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]"><span class="master_message inherit">message content</span>
                                </div>
                              </div>
@@ -953,7 +953,7 @@
                              </div>
                              <div class="col-xs-12">
                                <div class="master_field">
-                                 <label class="master_label" for="survey_question">1  @lang('keywords.question')</label>
+                                 <label class="master_label" for="survey_question">1  @lang('keywords.Squestion')</label>
                                  <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]"><span class="master_message inherit">message content</span>
                                </div>
                              </div>

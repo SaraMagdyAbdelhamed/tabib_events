@@ -243,7 +243,7 @@
         'workshopEndTime'=>'WorkShop End Time',
         'survey'=>'Survey ',
         'surveyFor'=>'For',
-        'question'=>'Question',
+        'Squestion'=>'Question',
         'answer'=>'Answer Number',
         'addYoutube'=>'Add Youtube Links For Event',
         'link'=>'Youtube Link ',
