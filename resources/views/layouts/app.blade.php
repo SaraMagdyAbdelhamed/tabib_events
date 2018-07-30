@@ -239,6 +239,8 @@
                   </li>
                   <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('events')}}">@lang('keywords.events')</a>
                     </li>
+                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
+
                   @endif
                 </ul>
               </div>

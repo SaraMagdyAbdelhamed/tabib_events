@@ -119,6 +119,7 @@ return [
     'attributes' => [
         'username'  => 'اسم المستخدم',
         'password'  => 'كلمة السر',
+        'notifiaction_text'=>'التنبيه',
     ],
 
 ];
