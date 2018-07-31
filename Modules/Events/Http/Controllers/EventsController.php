@@ -63,10 +63,15 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         //  dd($request->all());
-        $destinationPath = 'event_images';
-        $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
-    // dd($fileNameToStore);
-        Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        if($request['event']['image'])
+        {
+            $destinationPath = 'event_images';
+            $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
+        // dd($fileNameToStore);
+            Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        }
+        $fileNameToStore=NULL;
+       
         
         $event=Event::create([
             "name"=>$request['event']['name'],
