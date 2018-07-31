@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\File;
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
-
+use Session;
 class EventsController extends Controller
 {
     /**
@@ -64,13 +64,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        // dd($request->all());
-        $destinationPath = 'event_images';
-        $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
-        // dd($fileNameToStore);
-        Input::file('event')['image']->move($destinationPath, $fileNameToStore);
-=======
+
         //  dd($request->all());
         if(isset($request['event']['image']))
         {
@@ -82,7 +76,6 @@ class EventsController extends Controller
         $fileNameToStore=NULL;
        
         
->>>>>>> 585470f91aff4ba1d1a6344197aa9539cc662b4f
         $event=Event::create([
             "name"=>$request['event']['name'],
             "description"=>$request['event']['description'],
@@ -264,12 +257,10 @@ class EventsController extends Controller
                 }
             }
         
-<<<<<<< HEAD
+
         Session::flash('success', 'Event added successfully! تم إضافة الحدث بنجاح');
         return redirect('/events/index');
-=======
-        return redirect()->back(); 
->>>>>>> 585470f91aff4ba1d1a6344197aa9539cc662b4f
+
 
     }
 
