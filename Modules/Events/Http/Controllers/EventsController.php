@@ -249,7 +249,7 @@ class EventsController extends Controller
                 }
             }
         
-        return redirect()->back();
+        return redirect()->back(); 
 
     }
 
@@ -257,8 +257,9 @@ class EventsController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show(Request $request)
     {
+        dd($request);
         return view('events::events.show');
     }
 
