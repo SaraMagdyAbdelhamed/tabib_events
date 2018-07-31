@@ -62,7 +62,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-         dd($request->all());
+        //  dd($request->all());
         $destinationPath = 'event_images';
         $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
     // dd($fileNameToStore);
@@ -257,9 +257,9 @@ class EventsController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show(Request $request)
+    public function show()
     {
-        dd($request);
+        // dd($request);
         return view('events::events.show');
     }
 
