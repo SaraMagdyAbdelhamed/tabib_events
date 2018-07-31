@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\File;
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
-
+use Session;
 class EventsController extends Controller
 {
     /**
@@ -256,8 +256,10 @@ class EventsController extends Controller
                 }
             }
         
+
         Session::flash('success', 'Event added successfully! تم إضافة الحدث بنجاح');
         return redirect('/events/index');
+
 
     }
 
