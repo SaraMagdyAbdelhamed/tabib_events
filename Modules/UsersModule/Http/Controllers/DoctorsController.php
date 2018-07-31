@@ -23,7 +23,7 @@ use App\Rules;
 use App\UserInfo;
 use App\DoctorSpecialization;
 use App\GeoRegion;
-// use App\Age_Ranges;
+use App\Genders;
 
 // Excel package
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -441,36 +441,36 @@ class DoctorsController extends Controller
                 try {
                     // Creating new user
                     $doctor = new Users;
-                    $doctor->username = $user[""];
-                    $doctor->email = $request->doctorEmail;
-                    $doctor->tele_code = $request->doctorTeleCode;
-                    $doctor->mobile = $request->mobile1;
-                    $doctor->country_id = $request->doctorCountry;
-                    $doctor->city_id = $request->doctorCity;
-                    $doctor->password = bcrypt($request->password);
-                    $doctor->gender_id = $request->gender;
-                    $doctor->is_active = $request->activation ? : 0;
+                    $doctor->username   = $user["name"];
+                    $doctor->email      = $user["email"];
+                    $doctor->tele_code  = $user["tele_code"];
+                    $doctor->mobile     = $user["mobile1"];
+                    $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
+                    $doctor->city_id    = Helper::getIdOrInsert(Cities::class, $user['city']);
+                    $doctor->password   = bcrypt($request->password);
+                    $doctor->gender_id  = Helper::getIdOrInsert(Genders::class, $user['gender']);
+                    $doctor->is_active  = strtolower($user['is_active']) == 'yes' ? 1 : 0;
                     
                     // Insert doctor's image if exists
-                    if ($request->hasfile('doctorImage')) {
-                        $image = $request->doctorImage;
-                        $newName = time() . '_' . $image->getClientOriginalName();
-                        $image->move('doctors', $newName);
-                        $path = 'doctors/' . $newName;
-                        $doctor->photo = $path;
-                    }
+                    // if ($request->hasfile('doctorImage')) {
+                    //     $image = $request->doctorImage;
+                    //     $newName = time() . '_' . $image->getClientOriginalName();
+                    //     $image->move('doctors', $newName);
+                    //     $path = 'doctors/' . $newName;
+                    //     $doctor->photo = $path;
+                    // }
                     $doctor->save();    // save new user
 
                     // Insert into `user_info`
                     $userInfo = new UserInfo;
-                    $userInfo->user_id = $doctor->id;
-                    $userInfo->mobile2 = $request->mobile2 ? : null;   // it could be null
-                    $userInfo->mobile3 = $request->mobile3 ? : null;   // it could be null
-                    $userInfo->region_id = $request->doctorRegion;
-                    $userInfo->address = $request->doctorAddress;
-                    $userInfo->specialization_id = $request->doctorSpecialization ? : null; // it could be null
-                    $userInfo->is_profile_completed = $request->activation ? 1 : 0;
-                    $userInfo->is_backend = 1;
+                    $userInfo->user_id      = $doctor->id;
+                    $userInfo->mobile2      = $user['mobile2']  ? : null;   // it could be null
+                    $userInfo->mobile3      = $user['mobile3']  ? : null;   // it could be null
+                    $userInfo->region_id    = $user['region'] ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['region']) : '';
+                    $userInfo->address      = $user['address'];
+                    $userInfo->specialization_id    = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : '';  // it could be null
+                    $userInfo->is_profile_completed = 0;
+                    $userInfo->is_backend   = 1;
                     $userInfo->save();  // save new user's info
 
                     // Insert into `users_rules`

@@ -57,9 +57,9 @@
                     </div><span class="master_message inherit">message content</span>
                 </div>
                 <div class="div" style="text-align:end;">
-                    <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.Save')</span>
+                    <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                     </button>
-                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.Cancel')</span>
+                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                     </button>
                 </div>
             </form>

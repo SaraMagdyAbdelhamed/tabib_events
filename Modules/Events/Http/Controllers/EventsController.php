@@ -36,7 +36,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('events::events.index');
+        $data['events'] = Event::all();
+
+        return view('events::events.index', $data);
     }
 
     /**
@@ -65,15 +67,15 @@ class EventsController extends Controller
         // dd($request->all());
         $destinationPath = 'event_images';
         $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
-    // dd($fileNameToStore);
+        // dd($fileNameToStore);
         Input::file('event')['image']->move($destinationPath, $fileNameToStore);
         $event=Event::create([
             "name"=>$request['event']['name'],
             "description"=>$request['event']['description'],
             "image"=>$fileNameToStore,
             "venue"=>$request['event']['place'],
-            "latitude"=>$request['event']['lat'],
-            "longtuide"=>$request['event']['long'],
+            "latitude"=>$request->lat,
+            "longtuide"=>$request->lng,
             "address"=>$request['event']['place'],
             "start_datetime"=>date('Y-m-d h:i:s',strtotime($request['event']['start_date'].$request['event']['start_time'])),
             "end_datetime"=>date('Y-m-d h:i:s',strtotime($request['event']['end_date'].$request['event']['end_time'])),
@@ -236,7 +238,8 @@ class EventsController extends Controller
                 }
             }
         
-        return redirect()->back();
+        Session::flash('success', 'Event added successfully! تم إضافة الحدث بنجاح');
+        return redirect('/events/index');
 
     }
 
