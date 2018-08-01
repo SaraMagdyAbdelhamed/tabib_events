@@ -18,6 +18,10 @@ class Event extends Model
 
 
     //Relations
+    public function createdBy() {
+        return $this->belongsTo('App\Users', 'created_by');
+    }
+
     public function media() {
         return $this->hasMany('App\EventMedia', 'event_id');
     }

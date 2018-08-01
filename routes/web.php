@@ -124,6 +124,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::get('/events/index/{id}', '\Modules\Events\Http\Controllers\EventsController@show')->name('events.show');
         Route::post('/events/add', '\Modules\Events\Http\Controllers\EventsController@store')->name('events.add');
         Route::get('/events/create', '\Modules\Events\Http\Controllers\EventsController@create')->name('events.create');
+
         Route::post('/events_filter', '\Modules\Events\Http\Controllers\EventsController@filter')->name('events_filter');
         Route::post('/events_destroy/{id}', '\Modules\Events\Http\Controllers\EventsController@destroy')->name('events.destroy');
         Route::post('/events_destroy_all', '\Modules\Events\Http\Controllers\EventsController@destroy_all')->name('events.destroy.all');
@@ -152,6 +153,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         // Create, Store, get cities & countries of new general list doctor
         Route::get('/doctors/add/new', '\Modules\UsersModule\Http\Controllers\DoctorsController@create')->name('doctor.create');
         Route::post('/doctors/store/new', '\Modules\UsersModule\Http\Controllers\DoctorsController@store')->name('doctor.store');
+        Route::post('/doctors/store/from_excel', '\Modules\UsersModule\Http\Controllers\DoctorsController@storeExcel')->name('doctors.storeExcel');
         Route::get('/doctors/add/get/cities', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getCities')->name('doctor.get.cities');
         Route::get('/doctors/add/get/regions', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getRegions')->name('doctor.get.regions');
         

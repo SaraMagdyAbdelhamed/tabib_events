@@ -230,6 +230,7 @@
                   </li>
                   @endif
 
+
                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
                   <li class="side__list" id="menu_8"> <a class="side__item" id="sub_8_1" href="{{route('notification')}}">@lang('keywords.notifications')</a>
                   </li>
@@ -239,6 +240,10 @@
                   <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
                   <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('events')}}">@lang('keywords.events')</a></li>
 
+                  {{-- Notifications --}}
+                  <li class="side__list openedmenu">
+                    <a class="side__item " id="sub_8_4" href="{{route('notifications')}}">@lang('keywords.notifications')</a>
+                  </li>
                   @endif
                 </ul>
               </div>
@@ -665,72 +670,10 @@
     </script>
 
     
-
-  {{-- Google maps API key --}}
-{{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknR0jhKTIB33f2CLFhBzgp0mj2Tn2q5k&libraries=places&callback=initMap" type="text/javascript"></script>   --}}
-  {{-- Map script --}}
-<!--   <script>
-
-      var map;
-      function initMap() {
-
-        @if( isset($event->latitude) && isset($event->longtuide) ) 
-          var myLatlng = {lat: {{ $event->latitude }}, lng: {{ $event->longtuide }} };
-        @elseif( isset($famous->latitude) && isset($famous->longtuide) )
-          var myLatlng = {lat: {{ $famous->latitude }}, lng: {{ $famous->longtuide }} };
-        @else 
-          var myLatlng = {lat: 30.042701, lng: 31.432662};
-        @endif
-        
-        var geocoder = new google.maps.Geocoder;
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(myLatlng),
-          zoom: 14,
-          mapTypeId: 'roadmap'
-        });
-
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-             draggable: true,
-            title: 'Click to zoom'
-          });
-
-          google.maps.event.addListener(map, 'click', function(event) {
-              placeMarker(event.latLng);
-              
-              document.getElementById("lat").value = event.latLng.lat();
-              document.getElementById("lng").value = event.latLng.lng();
-
-              geocoder.geocode({'latLng': event.latLng}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                  
-                  if (results[0]) {
-                    document.getElementById("address").value = results[0].formatted_address;
-                    
-                  }
-                }
-              });
-          });
-
-          function placeMarker(location) {
-            if (marker == undefined){
-                marker = new google.maps.Marker({
-                    position: location,
-                    map: map, 
-                    animation: google.maps.Animation.DROP,
-                });
-            }
-            else{
-                marker.setPosition(location);
-            }
-            map.setCenter(location);
-          }
-
-      }
-  </script> -->
+{{-- Google maps API key --}}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknR0jhKTIB33f2CLFhBzgp0mj2Tn2q5k&libraries=places&callback=initMap" type="text/javascript"></script>  
   
+{{-- Map script --}}
 <script>
 /* script */
 function initMap() {
@@ -786,21 +729,28 @@ function initMap() {
     });
     // this function will work on marker move event into map 
     google.maps.event.addListener(marker, 'dragend', function() {
-        geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (results[0]) {        
-              bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
-              infowindow.setContent(results[0].formatted_address);
-              infowindow.open(map, marker);
+      geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {        
+            bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
+            infowindow.setContent(results[0].formatted_address);
+            infowindow.open(map, marker);
           }
         }
-        });
+      });
     });
+    
 }
+
 function bindDataToForm(address,lat,lng){
-   document.getElementById('searchInput').value = address;
-   document.getElementById('lat').value = lat;
-   document.getElementById('lng').value = lng;
+
+  // If user searched in searchbox && marker moved then don't replace marker's address with user's address.
+  if ( document.getElementById('searchInput').value == '' ) {
+    document.getElementById('searchInput').value = address;
+  }
+
+  document.getElementById('lat').value = lat;
+  document.getElementById('lng').value = lng;
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>

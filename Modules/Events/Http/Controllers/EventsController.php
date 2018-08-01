@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\File;
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
-
+use Session;
 class EventsController extends Controller
 {
     /**
@@ -66,14 +66,25 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+
+        //  dd($request->all());
+        if(isset($request['event']['image']))
+        {
+            $destinationPath = 'event_images';
+            $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
+        // dd($fileNameToStore);
+            Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        }
+        $fileNameToStore=NULL;
        
+        
         $event=Event::create([
             "name"=>$request['event']['name'],
             "description"=>$request['event']['description'],
+            "image"=>$fileNameToStore,
             "venue"=>$request['event']['place'],
-            "latitude"=>$request['event']['lat'],
-            "longtuide"=>$request['event']['long'],
+            "latitude"=>$request->lat,
+            "longtuide"=>$request->lng,
             "address"=>$request['event']['place'],
             "start_datetime"=>date('Y-m-d h:i:s',strtotime($request['event']['start_date'].$request['event']['start_time'])),
             "end_datetime"=>date('Y-m-d h:i:s',strtotime($request['event']['end_date'].$request['event']['end_time'])),
@@ -84,7 +95,19 @@ class EventsController extends Controller
             "code"=>$request['event']['code'],
             "is_active"=>($request['event']['active'] == 'on')? 1 : 0,
             "created_by"=>\Auth::id(),
+            "use_ticketing_system"=>(isset($request['event']['price'])) ? 1 : 0
         ]);
+        if($event->use_ticketing_system == 1)
+        {
+            EventTicket::create([
+                "event_id"=> $event->id,
+                "price"=>$request['event']['price'],
+                "available_tickets"=>$request['event']['available_tickets'],
+                "current_available_tickets"=>$request['event']['available_tickets'],
+                "currency_id"=>$request['event']['currency']
+            ]);
+        }
+        
         if(isset($request['event']['youtube']))
         {
             foreach($request['event']['youtube'] as $youtube)
@@ -236,7 +259,10 @@ class EventsController extends Controller
                 }
             }
         
-        dd($request->all());
+
+        Session::flash('success', 'Event added successfully! تم إضافة الحدث بنجاح');
+        return redirect('/events/index');
+
 
     }
 
@@ -244,6 +270,7 @@ class EventsController extends Controller
      * Show the specified resource.
      * @return Response
      */
+
     public function show($id)
     { 
         $data['event'] = EventBackend::find($id);
@@ -258,9 +285,16 @@ class EventsController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('events::events.edit');
+        $data['event']=Event::find($id);
+        $data['doctors']=Users::wherehas('rules',function($q){
+            $q->where('rule_id',2);
+        })->get();
+        $data['categories']=Category::all();
+        $data['specializations']=Specialization::all();
+        $data['currencies']=Currency::all();
+        return view('events::events.edit',$data);
     }
 
         public function destroy($id)

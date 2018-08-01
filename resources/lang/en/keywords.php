@@ -229,6 +229,25 @@
         'eventCall'=>'Call Information',
         'eventEmail'=>'Email ',
         'code'=>' Country Code ',
+        'EventImage'=>'Upload Event Images max 1 images',
+        'currency'=>'Currency',
+        'price'=>'Price',
+        'avaliableTickets'=>'Available Tickets ',
+        'workshop'=>'WorkShop',
+        'workshopName'=>'WorkShop Name ',
+        'workshopDesc'=>'WorkShop Description',
+        'workshopPlace'=>'WorkShop Place ',
+        'workshopStartDate'=>'WorkShop Start Date',
+        'workshopEndDate'=>'WorkShop End Date',
+        'workshopStartTime'=>'WorkShop Start Time',
+        'workshopEndTime'=>'WorkShop End Time',
+        'survey'=>'Survey ',
+        'surveyFor'=>'For',
+        'Squestion'=>'Question',
+        'answer'=>'Answer Number',
+        'addYoutube'=>'Add Youtube Links For Event',
+        'link'=>'Youtube Link ',
+        'surveyN'=>'Survey Number',
 
         
         // Offers & Deals AND Famous Attractions
@@ -389,6 +408,7 @@
         'selectTeleCode'=> 'Select a Telephone Code',
         'selectUserType'=> 'Select a User Type',
         'selectSponsorCategory' => 'Select a Sponsor Category',
+        
     ];
 
 ?>

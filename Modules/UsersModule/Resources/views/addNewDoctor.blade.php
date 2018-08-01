@@ -44,201 +44,204 @@
             <div class="clearfix"></div>
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="fileExcel_">
-            <form id="excel_file">
-            <div class="master_field">
-                <label class="master_label" for="excel_file_">اختر ملف الاكسيل</label>
-                <div class="file-upload">
-                <div class="file-select">
-                    <div class="file-select-name" id="noFile">اضغط لإدخال ملف اكسيل</div>
-                    <input class="chooseFile" type="file" name="excel_file_" id="excel_file_">
+            <form action="{{ route('doctors.storeExcel') }}" method="POST" enctype="multipart/form-data" id="excel_file">
+                {{ csrf_field() }}
+
+                <div class="master_field">
+                    <label class="master_label" for="excel_file_">اختر ملف الاكسيل</label>
+                    <div class="file-upload">
+                    <div class="file-select">
+                        <div class="file-select-name" id="noFile">اضغط لإدخال ملف اكسيل</div>
+                        <input class="chooseFile" type="file" name="excel_file" id="excel_file_">
+                    </div>
+                    </div><span class="master_message inherit">message content</span>
                 </div>
-                </div><span class="master_message inherit">message content</span>
-            </div>
+                <div class="div" style="text-align:end;">
+                    <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
+                    </button>
+                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+                    </button>
+                </div>
             </form>
-            <div class="div" style="text-align:end;">
-            <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
-            </button>
-            <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
-            </button>
-            </div>
+            
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="form_">
             <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
                 {{ csrf_field() }}
 
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label" for="doctor_name">
-                        @lang('keywords.doctorName')
-                    </label>
-                    <input class="master_input" type="text" maxlength="100" id="doctor_name" name="doctorName">
-                    @if ( $errors->has('doctorName') )
-                        <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>    
-                    @endif                   
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label" for="doctor_email">
-                        @lang('keywords.doctorEmail')
-                    </label>
-                    <input class="master_input" type="email" maxlength="35" id="doctor_email" name="doctorEmail">
-                    <span class="valid-label"></span>
-                    @if ( $errors->has('doctorEmail') )
-                        <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>    
-                    @endif 
-                </div>
-                </div>
                 <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-md-2 col-sm-2 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label mandatory" for="doctor_country_code">
-                            @lang('keywords.countryCode')
+                        <label class="master_label" for="doctor_name">
+                            @lang('keywords.doctorName')
                         </label>
-                        <select name="doctorTeleCode" class="master_input select2" style="width:100%;">
-                            <option disabled selected>-- @lang('keywords.selectTeleCode') --</option>
+                        <input class="master_input" type="text" maxlength="100" id="doctor_name" name="doctorName">
+                        @if ( $errors->has('doctorName') )
+                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>    
+                        @endif                   
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label" for="doctor_email">
+                            @lang('keywords.doctorEmail')
+                        </label>
+                        <input class="master_input" type="email" maxlength="35" id="doctor_email" name="doctorEmail">
+                        <span class="valid-label"></span>
+                        @if ( $errors->has('doctorEmail') )
+                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>    
+                        @endif 
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label mandatory" for="doctor_country_code">
+                                @lang('keywords.countryCode')
+                            </label>
+                            <select name="doctorTeleCode" class="master_input select2" style="width:100%;">
+                                <option disabled selected>-- @lang('keywords.selectTeleCode') --</option>
+                                @if (isset($countries) && !empty($countries))
+                                    @foreach ($countries as $country)   
+                                        @if ($country->tele_code)
+                                            <option value="{{ $country->id }}" class="country">{{ '('. $country->tele_code .') ' . $country->name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label" for="doctor_mobile">@lang('keywords.mobile1')</label>
+                            <input class="master_input" type="number" id="doctor_mobile" name="mobile1">
+                            @if ( $errors->has('mobile1') )
+                            <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>    
+                        @endif 
+                        </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
+                            <input class="master_input" type="number" id="doctor_mobile2" name="mobile2">
+                            @if ( $errors->has('mobile2') )
+                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>    
+                            @endif 
+                        </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
+                            <input class="master_input" type="number" id="doctor_mobile3" name="mobile3">
+                            @if ( $errors->has('mobile3') )
+                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>    
+                            @endif 
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label mandatory" for="doctor_country">@lang('keywords.Country')</label>
+                        <select name="doctorCountry" class="master_input select2" id="doctor_country" style="width:100%;">
+                            <option disabled selected>-- @lang('keywords.selectCountry') --</option>
                             @if (isset($countries) && !empty($countries))
-                                @foreach ($countries as $country)   
-                                    @if ($country->tele_code)
-                                        <option value="{{ $country->id }}" class="country">{{ '('. $country->tele_code .') ' . $country->name }}</option>
-                                    @endif
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             @endif
                         </select>
                     </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label" for="doctor_mobile">@lang('keywords.mobile1')</label>
-                        <input class="master_input" type="number" id="doctor_mobile" name="mobile1">
-                        @if ( $errors->has('mobile1') )
-                        <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>    
-                    @endif 
+                        <label class="master_label mandatory" for="doctor_city">@lang('keywords.City')</label>
+                        <select name="doctorCity" class="master_input select2" id="doctor_city" style="width:100%;" disabled="true">
+                            <option selected disabled>-- @lang('keywords.selectCity') --</option>
+                            {{-- options generated using ajax call --}}
+
+                        </select>
                     </div>
                     </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
-                        <input class="master_input" type="number" id="doctor_mobile2" name="mobile2">
-                        @if ( $errors->has('mobile2') )
-                            <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>    
+                        <label class="master_label mandatory" for="doctor_Region">@lang('keywords.region')</label>
+                        <select name="doctorRegion" class="master_input select2" id="doctor_Region" style="width:100%;" disabled="true">
+                            <option selected disabled>-- @lang('keywords.selectRegion') --</option>
+                            {{-- options generated using ajax call --}}
+
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label" for="doctor_address">@lang('keywords.address')</label>
+                        <input class="master_input" type="text" id="doctor_address" name="doctorAddress">
+                        @if ( $errors->has('doctorAddress') )
+                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>    
                         @endif 
                     </div>
                     </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
-                        <input class="master_input" type="number" id="doctor_mobile3" name="mobile3">
-                        @if ( $errors->has('mobile3') )
-                            <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>    
+                        <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
+                        <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;">
+                            <option selected disabled>-- @lang('keywords.selectSpec') --</option>
+
+                            @if (isset($specs) && !empty($specs))
+                                @foreach ($specs as $spec)
+                                    <option value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label" for="doctor_password">@lang('keywords.Password')</label>
+                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
+                        <div class="hide-show show-me">Show</div>
+                        @if ( $errors->has('password') )
+                            <span class="master_message inherit">{{ $errors->first('password') }}</span>    
                         @endif 
                     </div>
                     </div>
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label mandatory" for="doctor_country">@lang('keywords.Country')</label>
-                    <select name="doctorCountry" class="master_input select2" id="doctor_country" style="width:100%;">
-                        <option disabled selected>-- @lang('keywords.selectCountry') --</option>
-                        @if (isset($countries) && !empty($countries))
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label mandatory" for="doctor_city">@lang('keywords.City')</label>
-                    <select name="doctorCity" class="master_input select2" id="doctor_city" style="width:100%;" disabled="true">
-                        <option selected disabled>-- @lang('keywords.selectCity') --</option>
-                        {{-- options generated using ajax call --}}
-
-                    </select>
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label mandatory" for="doctor_Region">@lang('keywords.region')</label>
-                    <select name="doctorRegion" class="master_input select2" id="doctor_Region" style="width:100%;" disabled="true">
-                        <option selected disabled>-- @lang('keywords.selectRegion') --</option>
-                        {{-- options generated using ajax call --}}
-
-                    </select>
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label" for="doctor_address">@lang('keywords.address')</label>
-                    <input class="master_input" type="text" id="doctor_address" name="doctorAddress">
-                    @if ( $errors->has('doctorAddress') )
-                        <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>    
-                    @endif 
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
-                    <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;">
-                        <option selected disabled>-- @lang('keywords.selectSpec') --</option>
-
-                        @if (isset($specs) && !empty($specs))
-                            @foreach ($specs as $spec)
-                                <option value="{{ $spec->id }}">{{ $spec->name }}</option>
-                            @endforeach
-                        @endif
-
-                    </select>
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label" for="doctor_password">@lang('keywords.Password')</label>
-                    <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
-                    <div class="hide-show show-me">Show</div>
-                    @if ( $errors->has('password') )
-                        <span class="master_message inherit">{{ $errors->first('password') }}</span>    
-                    @endif 
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="master_field">
-                    <label class="master_label">@lang('keywords.SelectGender')</label>
-                    <div class="funkyradio">
-                    <input type="checkbox" id="checkboxbtn_2" name="gender" value="1" checked>
-                    <label for="checkboxbtn_2">@lang('keywords.male')</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label">@lang('keywords.SelectGender')</label>
+                        <div class="funkyradio">
+                        <input type="checkbox" id="checkboxbtn_2" name="gender" value="1" checked>
+                        <label for="checkboxbtn_2">@lang('keywords.male')</label>
+                        </div>
+                        <div class="funkyradio">
+                        <input type="checkbox" id="checkboxbtn_3" name="gender" value="2">
+                        <label for="checkboxbtn_3">@lang('keywords.female')</label>
+                        </div>
                     </div>
-                    <div class="funkyradio">
-                    <input type="checkbox" id="checkboxbtn_3" name="gender" value="2">
-                    <label for="checkboxbtn_3">@lang('keywords.female')</label>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label class="master_label" for="doctor_image">صورة الطبيب</label>
+                    <div id="fileList"></div>
+                    <div class="form-group" id="img_dr_">
+                        <input class="inputfile inputfile-1" id="file-1" type="file" name="doctorImage">
+                        <label for="file-1"><span>Choose a file</span></label>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="checkboxrobo">
+                        <input type="checkbox" id="activation" checked="true" name="activation" value="1">
+                        <label for="activation">@lang('keywords.Activate')</label>
+                    </div>
                     </div>
                 </div>
+                <div class="div" style="text-align:end;">
+                    <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
+                    </button>
+                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
+                    </button>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <label class="master_label" for="doctor_image">صورة الطبيب</label>
-                <div id="fileList"></div>
-                <div class="form-group" id="img_dr_">
-                    <input class="inputfile inputfile-1" id="file-1" type="file" name="doctorImage">
-                    <label for="file-1"><span>Choose a file</span></label>
-                </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="checkboxrobo">
-                    <input type="checkbox" id="activation" checked="true" name="activation" value="1">
-                    <label for="activation">@lang('keywords.Activate')</label>
-                </div>
-                </div>
-            </div>
-            <div class="div" style="text-align:end;">
-                <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
-                </button>
-                <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
-                </button>
-            </div>
             </form>
             
         </div>

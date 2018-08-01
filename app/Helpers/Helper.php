@@ -16,6 +16,9 @@ use App\Notification;
 use App\NotificationPush;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Constraint\Exception;
+use App\Cities;
+use App\Countries;
+use App\Genders;
 
 class Helper
 {
@@ -279,5 +282,21 @@ class Helper
             $notifications = 0;
         }
         return $notifications;
+    }
+
+    // search for a country by name and return its id, else just create a new 
+    // country and return its new id.
+    public static function getIdOrInsert($model, $name) {
+        $object = $model::where('name', 'like', '%'.$name.'%')->first();
+
+        if ( $object != null ) {
+            return $object->id;
+        } else {
+            $newObject = new $model;
+            $newObject->name = $name;
+            $newObject->save();
+
+            return $newObject->id;
+        }
     }
 }
