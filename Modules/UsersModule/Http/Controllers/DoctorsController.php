@@ -69,7 +69,7 @@ class DoctorsController extends Controller
         $data['countries'] = Countries::all();
         $data['cities'] = Cities::all();
         // $data['age_ranges'] = Age_Ranges::all();
-        return view('usersmodule::mobile_users', $data);
+        return view('usersmodule::mobile.mobile_users', $data);
     }
 
     public function create()
@@ -77,7 +77,7 @@ class DoctorsController extends Controller
         $data['countries'] = Countries::all();
         $data['specs'] = DoctorSpecialization::all();
 
-        return view('usersmodule::addNewDoctor', $data);
+        return view('usersmodule::doctors.addNewDoctor', $data);
     }
 
     public function store(Request $request)
@@ -212,7 +212,7 @@ class DoctorsController extends Controller
                     ->where('is_backend', 0);
             })->first();
 
-            return view('usersmodule::mobileUsersShow', $data);
+            return view('usersmodule::mobile.mobileUsersShow', $data);
         }
 
     }
@@ -272,7 +272,7 @@ class DoctorsController extends Controller
                 $q->where('is_profile_completed', 1);
             })->first();
 
-            return view('usersmodule::myListShowUser', $data);
+            return view('usersmodule::mobile.myListShowUser', $data);
         }
 
     }
@@ -338,7 +338,7 @@ class DoctorsController extends Controller
             $data['regions'] = GeoRegion::where('city_id', $data['doctor']->city->id)->get();
             $data['specs'] = DoctorSpecialization::all();
 
-            return view('usersmodule::editDoctor', $data);
+            return view('usersmodule::doctors.editDoctor', $data);
         } else {
             Session::flash('warning', 'Doctor not found! لم نتمكن من العثور علي هذا الطبيب');
             return redirect()->back();
@@ -407,7 +407,7 @@ class DoctorsController extends Controller
                 $userInfo->region_id = $request->doctorRegion;
                 $userInfo->address = $request->doctorAddress;
                 $userInfo->specialization_id = $request->doctorSpecialization ? : null; // it could be null
-                $userInfo->is_profile_completed = 0;
+                $userInfo->is_profile_completed = $request->activation ? 1 : 0;
                 $userInfo->is_backend = 1;
                 $userInfo->save();  // save new user's info
 

@@ -56,7 +56,7 @@ class UsersController extends Controller
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
         $data['rules'] = Rules::whereIn('id', $rules)->get();
-        return view('usersmodule::backend_users', $data);
+        return view('usersmodule::backend.backend_users', $data);
     }
 
     public function test()
@@ -107,7 +107,7 @@ class UsersController extends Controller
         $data['cities'] = Cities::all();
         // $data['age_ranges'] = Age_Ranges::all();
 
-        return view('usersmodule::mobile_users', $data);
+        return view('usersmodule::mobile.mobile_users', $data);
         // return redirect()->back()
         //             ->with('mobiles', $data['mobiles'])
         //             ->with('countries', $data['countries'])
@@ -134,7 +134,7 @@ class UsersController extends Controller
         $data['regions']= GeoRegion::all();
         $data['specs'] = DoctorSpecialization::all();
 
-        return view('usersmodule::addBackEndUser', $data);
+        return view('usersmodule::backend.addBackEndUser', $data);
     }
 
     /**

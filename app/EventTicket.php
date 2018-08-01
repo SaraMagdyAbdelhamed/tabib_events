@@ -14,8 +14,6 @@ class EventTicket extends Model
 
 
     // relations
-
-    
     public function event() {
         return $this->belongsTo('App\Event', 'event_id');
     }
