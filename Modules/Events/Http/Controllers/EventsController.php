@@ -347,8 +347,11 @@ class EventsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
+        // dd($request->all());
+        Session::flash('success', 'Event updated successfully! تم تعديل الحدث بنجاح');
+        return redirect('/events/index');
     }
 
     /**
