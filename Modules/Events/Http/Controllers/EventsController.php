@@ -10,11 +10,13 @@ use App\Category;
 use App\Users;
 use App\Specialization;
 use App\Event;
+use App\EventBackend;
 use App\EventCategory;
 use App\EventMedia;
 use App\EventOwner;
 use App\EventSpecialization;
 use App\EventTicket;
+use App\EventBookingTicket;
 use App\EventWorkshop;
 use App\Survey;
 use App\SurveyQuestions;
@@ -37,9 +39,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $data['events'] = Event::all();
-
-        return view('events::events.index', $data);
+        $data['events'] = EventBackend::all();
+        $data['categories'] = EventCategory::all();
+        return view('events::index', $data);
     }
 
     /**
@@ -65,6 +67,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
+
         //  dd($request->all());
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
@@ -248,15 +251,20 @@ class EventsController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show($id)
-    {
-        $data['event'] = Event::find($id);
 
-        if( $data['event'] == NULL ) {
+    public function show($id)
+    { 
+        $data['event'] = EventBackend::find($id);
+
+        if( $data['event'] != NULL ) {
+            $data['questions'] = SurveyQuestions::whereHas('survey', function ($query)use($id) {
+                    $query->where('event_id',$id);
+                })->get();
+            $data['tickets'] = $data['event']->bookedTicket;
+            return view('events::show',$data);
+        } else {
             Session::flash('warning', 'Event not found! لم يتم العثور علي الحدث');
             return redirect()->back();
-        } else {
-            return view('events::events.show', $data);
         }
     }
 
@@ -264,9 +272,74 @@ class EventsController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('events::events.edit');
+        $data['event'] = Event::find($id);
+        $data['doctors'] = Users::wherehas('rules', function ($q) {
+            $q->where('rule_id', 2);
+        })->get();
+        $data['categories'] = Category::all();
+        $data['specializations'] = Specialization::all();
+        $data['currencies'] = Currency::all();
+        return view('events::events.edit', $data);
+    }
+
+    public function destroy($id)
+    {
+        $event = EventBackend::find($id);
+        $event->delete();
+    }
+
+    public function destroy_all()
+    {
+        $ids = $_POST['ids'];
+        foreach ($ids as $id) {
+            EventBackend::find($id)->delete();
+        }
+    }
+
+    public function filter(Request $request)
+    {
+        $data['events'] = EventBackend::where(function ($q) use ($request) {
+
+            $start_from = date('Y-m-d H:i:s', strtotime($request->start_from));
+            $start_to = date('Y-m-d 23:59:59', strtotime($request->start_to));
+            $end_from = date('Y-m-d H:i:s', strtotime($request->end_from));
+            $end_to = date('Y-m-d 23:59:59', strtotime($request->end_to));
+
+            if ($request->filled('start_from') && $request->filled('start_to')) {
+                $q->whereBetween('start_datetime', array($start_from, $start_to));
+            } elseif ($request->filled('date_from')) {
+                $q->where('start_datetime', '>=', $start_from);
+            } elseif ($request->filled('date_to')) {
+                $q->where('start_datetime', '<=', $start_to);
+            }
+
+            if ($request->filled('end_from') && $request->filled('end_to')) {
+                $q->whereBetween('end_datetime', array($end_from, $end_to));
+            } elseif ($request->filled('end_from')) {
+                $q->where('end_datetime', '>=', $end_from);
+            } elseif ($request->filled('end_to')) {
+                $q->where('end_datetime', '<=', $end_to);
+            }
+
+            if ($request->has('categories')) {
+
+                $q->whereHas('categories', function ($q) use ($request) {
+                    $q->whereIn('category_id', $request->categories);
+                });
+            }
+
+            if ($request->has('activation')) {
+
+                $q->where('is_active', $request->activation);
+
+            }
+
+
+        })->get();
+        $data['categories'] = EventCategory::all();
+        return view('events::index', $data);
     }
 
     /**
@@ -282,7 +355,4 @@ class EventsController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
-    {
-    }
 }

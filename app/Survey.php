@@ -17,6 +17,10 @@ class Survey extends Model
         return $this->belongsTo('App\Event', 'event_id');
     }
 
+    public function eventb() {
+        return $this->belongsTo('App\EventBackend', 'event_id');
+    }
+
     public function questions()
     {
         return $this->hasMany('App\SurveyQuestions','survey_id');
