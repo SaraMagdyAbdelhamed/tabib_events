@@ -143,6 +143,9 @@
         'endDateFrom'   => 'وقت الانتهاء من',
         'endDateTo'     => 'وقت الانتهاء الي',
         'free'  => 'مجانا',
+        'events categories'=>'فئات الايفينت',
+        'added by'=>'تم إضافته من قبل',
+        'event information'=>'معلومات الايفينت',
         
         //events
         'eventDescription'=>'وصف الحدث ',
@@ -177,12 +180,14 @@
         'workshopStartTime'=>'وقت بدايه الورشه',
         'workshopEndTime'=>'وقت نهايه الورشه',
         'survey'=>'الدراسه الاستقصائيه',
+        'survey name'=>'اسم الإحصائيه',
         'surveyFor'=>'يعرض لمن ',
         'Squestion'=>'السؤال',
         'answer'=>'الاجابه رقم',
         'addYoutube'=>'أضافه روابط الفيديو الخاصه بالحدث',
         'link'=>'رابط الفيديو',
         'surveyN'=>'دراسه رقم',
+        'add new event'=>'إضافه ايفينت جديد ',
         
         // Events Mobile
         'addfromMobile' => 'المضاف من التطبيق',
@@ -307,6 +312,7 @@
         
         'addNewOffer'=>'إضافه عروض واتفقايات جديده',
         'active'=>'تفعيل',
+        'not active'=>'عدم تفعيل',
         'startDate'=>'تاريخ البدايه ',
         'endDate'=>'تاريخ النهايه ',
 

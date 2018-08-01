@@ -139,6 +139,12 @@
         'media'     => 'Media',
         'foundTickets'  => 'Current available tickets: ',
         'noTickets' => 'No tickets available',
+        'add new event'=>'Add new event',
+        'events categories'=>'Events categories',
+        'added by'=>'Added by',
+        'event information'=>'Event information',
+
+        
 		
         // Events Mobile
         'addfromMobile' => 'Added from mobile application',
@@ -242,6 +248,7 @@
         'workshopStartTime'=>'WorkShop Start Time',
         'workshopEndTime'=>'WorkShop End Time',
         'survey'=>'Survey ',
+        'survey name'=>'Survey name',
         'surveyFor'=>'For',
         'Squestion'=>'Question',
         'answer'=>'Answer Number',
@@ -270,6 +277,7 @@
         'status'=>'status',
         'addNewOffer'=>'Add New Offers And Deals',
         'active'=>'Active',
+        'not active'=>'Not active',
         'startDate'=>'Start Date ',
         'endDate'=>'End Date ',
         'offerSponsor'=>'Offer Sponsor',

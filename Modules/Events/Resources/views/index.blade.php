@@ -9,11 +9,11 @@
                       <div class="col-xs-12">
                         <div class="text-xs-center">         
                           <div class="text-wraper">
-                            <h3 class="cover-inside-title  ">Events</h3>
+                            <h3 class="cover-inside-title  ">@lang('keywords.events')</h3>
                           </div>
                         </div>
                       </div>
-                      <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="events_backend_add.html">اضافة ايفينت جديد</a>
+                      <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="events_backend_add.html">@lang('keywords.add new event')</a>
                       </div>
                     </div>
                   </div>
@@ -22,7 +22,7 @@
                   <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                     <div class="full-table">
                       <div class="filter__btns"><a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>filters</a></div>
-                      <div class="bottomActions__btns"><a class="master-btn btn-warning-cancel-all" href="#">مسح المحدد</a>
+                      <div class="bottomActions__btns"><a class="master-btn btn-warning-cancel-all" href="#">@lang('keywords.deleteSelected')</a>
                       </div>
                       <div class="remodal" data-remodal-id="filter-users" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
         <form role="form"  method="post" action="{{route('events_filter')}}" accept-charset="utf-8">
@@ -32,7 +32,7 @@
                           <div class="row">
                             <div class="col-sm-6 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="filter_cat">فئات الايفينت</label>
+                                <label class="master_label" for="filter_cat">@lang('keywords.events categories')</label>
                                 <select name="categories[]" class="master_input select2" id="filter_cat" multiple="multiple" style="width:100%;" ,>
                                   <option disabled>Select Category</option>
                                   @foreach($categories as $category)
@@ -43,20 +43,20 @@
                             </div>
                             <div class="col-sm-6 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label">حالة الايفينت</label>
+                                <label class="master_label">@lang('keywords.EventStatus')</label>
                                 <div class="radiorobo">
                                   <input type="radio" value="1" id="event_status_2" name="activation">
-                                  <label for="event_status_2">تفعيل</label>
+                                  <label for="event_status_2">@lang('keywords.active')</label>
                                 </div>
                                 <div class="radiorobo">
                                   <input type="radio" value="0" id="event_status_3" name="activation">
-                                  <label for="event_status_3">عدم تفعيل</label>
+                                  <label for="event_status_3">@lang('keywords.Not active')</label>
                                 </div>
                               </div>
                             </div>
                             <div class="col-sm-6 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="bootstrap_date_start_from">تاريخ البداية من</label>
+                                <label class="master_label" for="bootstrap_date_start_from">@lang('keywords.startDateFrom')</label>
                                 <div class="bootstrap-timepicker">
                                   <input name="start_from" class="datepicker master_input" type="text" id="bootstrap_date_start_from">
                                 </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-sm-6 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="bootstrap_date_start_to">تاريخ البداية الى</label>
+                                <label class="master_label" for="bootstrap_date_start_to">@lang('keywords.startDateTo')</label>
                                 <div class="bootstrap-timepicker">
                                   <input name="start_to" class="datepicker master_input" type="text" id="bootstrap_date_start_to">
                                 </div>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="col-sm-6 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="bootstrap_date_End_from">تاريخ الانتهاء من</label>
+                                <label class="master_label" for="bootstrap_date_End_from">@lang('keywords.endDateFrom')</label>
                                 <div class="bootstrap-timepicker">
                                   <input name="end_from" class="datepicker master_input" type="text" id="bootstrap_date_End_from">
                                 </div>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-sm-6 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="bootstrap_date_End_to">تاريخ الانتهاء الى</label>
+                                <label class="master_label" for="bootstrap_date_End_to">@lang('keywords.endDateTo')</label>
                                 <div class="bootstrap-timepicker">
                                   <input name="end_to" class="datepicker master_input" type="text" id="bootstrap_date_End_to">
                                 </div>
@@ -88,8 +88,8 @@
                             </div>
                           </div>
                         </div><br>
-                        <button class="remodal-cancel" data-remodal-action="cancel">الغاء</button>
-                        <button class="remodal-confirm" type="submit">تطبيق الفلتر</button>
+                        <button class="remodal-cancel" data-remodal-action="cancel">@lang('keywords.cancel')</button>
+                        <button class="remodal-confirm" type="submit">@lang('keywords.ApplyFilter')</button>
                       </div>
                     </form>
                       <form id="dataTableTriggerId_001_form">
@@ -97,16 +97,16 @@
                           <thead>
                             <tr class="bgcolor--gray_mm color--gray_d">
                               <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
-                              <th><span class="cellcontent">رقم المسلسل</span></th>
-                              <th><span class="cellcontent">اسم الايفينت</span></th>
-                              <th><span class="cellcontent">المكان</span></th>
-                              <th><span class="cellcontent">فئات الايفينت</span></th>
-                              <th><span class="cellcontent">وقت بداية الايفينت</span></th>
-                              <th><span class="cellcontent">وقت نهاية الايفينت</span></th>
-                              <th><span class="cellcontent">تاريخ اضافة الايفينت</span></th>
-                              <th><span class="cellcontent">تم اضافته من قبل</span></th>
-                              <th><span class="cellcontent">حالة الايفينت</span></th>
-                              <th><span class="cellcontent">الاجراءات</span></th>
+                              <th><span class="cellcontent">@lang('keywords.serial number')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.event name')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.venue')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.events categories')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.eventTimeStart')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.eventTimeEnd')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.Addeddate')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.added by')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.EventStatus')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.Actions')</span></th>
                             </tr>
                           </thead>
                           <tbody>
