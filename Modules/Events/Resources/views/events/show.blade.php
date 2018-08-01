@@ -223,33 +223,44 @@
             </div>
           </li>
           <li class="tab__content_item" id="survey-content">
-            <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
-              <p class="text-center">there is no surveys for this event</p>
-            </div>
+              @if($questions->count()==0)
+                <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
+                  <p class="text-center">there is no surveys for this event</p>
+                </div>
+              @endif
             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
               <div class="full-table">
                 <div class="bottomActions__btns">
                 </div>
                 <form id="dataTableTriggerId_003_form">
                   <table class="data-table-trigger table-master" id="dataTableTriggerId_003">
-                    <thead>
-                      <tr class="bgcolor--gray_mm color--gray_d">
-                        <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
-                        <th><span class="cellcontent">رقم المسلسل</span></th>
-                        <th><span class="cellcontent">سؤال السيرفاى </span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><span class="cellcontent"></span></td>
-                        <td><span class="cellcontent">10</span></td>
-                        <td><span class="cellcontent">Q1</span></td>
-                        <td><span class="cellcontent">Answer 1</span></td>
-                        <td><span class="cellcontent">Answer 2</span></td>
-                        <td><span class="cellcontent">Answer 3</span></td>
-                        <td><span class="cellcontent">Answer 4</span></td>
-                      </tr>
-                    </tbody>
+                      <thead>
+                          <tr class="bgcolor--gray_mm color--gray_d">
+                            <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
+                            <th><span class="cellcontent">@lang('keywords.serial number')</span></th>
+                            <th><span class="cellcontent">@lang('keywords.survey name')</span></th>
+                            <th><span class="cellcontent">@lang('keywords.Squestion')</span></th>
+                            <th><span class="cellcontent">@lang('keywords.answer') 1</span></th>
+                            <th><span class="cellcontent">@lang('keywords.answer') 2</span></th>
+                            <th><span class="cellcontent">@lang('keywords.answer') 3</span></th>
+                            <th><span class="cellcontent">@lang('keywords.answer') 4</span></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($questions as $question)
+                            <tr>
+                              <td><span class="cellcontent"></span></td>
+                              <td><span class="cellcontent">{{$question->id}}</span></td>
+                              <td><span class="cellcontent">{{$question->survey->name}}</span></td>
+                              <td><span class="cellcontent">{{$question->name}}</span></td>
+                              @foreach($question->answers->take(4) as $answer)
+                                <td>
+                                  <span class="cellcontent">{{$answer->name}}</span>
+                                </td>
+                              @endforeach
+                            </tr>
+                          @endforeach
+                        </tbody>
                   </table>
                 </form>
                 <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">

@@ -30,6 +30,7 @@ use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
@@ -41,7 +42,7 @@ class EventsController extends Controller
     {
         $data['events'] = Event::all();
         $data['categories'] = Category::all();
-        return view('events::index',$data);
+        return view('events::index', $data);
     }
 
     /**
@@ -253,15 +254,15 @@ class EventsController extends Controller
      */
 
     public function show($id)
-    { 
-        $data['event'] = EventBackend::find($id);
+    {
+        $data['event'] = Event::find($id);
 
-        if( $data['event'] != NULL ) {
-            $data['questions'] = SurveyQuestions::whereHas('survey', function ($query)use($id) {
-                    $query->where('event_id',$id);
-                })->get();
-            $data['tickets'] = $data['event']->bookedTicket;
-            return view('events::show',$data);
+        if ($data['event'] != null) {
+            $data['questions'] = SurveyQuestions::whereHas('survey', function ($query) use ($id) {
+                $query->where('event_id', $id);
+            })->get();
+            $data['tickets'] = $data['event']->tickets;
+            return view('events::events.show', $data);
         } else {
             Session::flash('warning', 'Event not found! لم يتم العثور علي الحدث');
             return redirect()->back();
@@ -286,15 +287,51 @@ class EventsController extends Controller
 
     public function destroy($id)
     {
-        $event = EventBackend::find($id);
-        $event->delete();
+        $event = Event::find($id);
+
+        // Transactions used to rollback if one of the relations faild to be deleted, then it will rollback.
+        if( $event != NULL ) {
+            DB::beginTransaction();
+            try {
+                $event->tickets()->delete();
+                $event->media()->delete();
+                $event->categories()->detach($event->id);
+                $event->specializations()->detach($event->id);
+                $event->owners()->detach($event->id);
+                $event->workshops()->detach($event->id);
+                $event->surveys()->delete();
+                $event->delete();
+                DB::commit();
+            } catch(Exception $exp) {
+                DB::rollback();
+            }
+        }
+        
     }
 
     public function destroy_all()
     {
         $ids = $_POST['ids'];
         foreach ($ids as $id) {
-            EventBackend::find($id)->delete();
+            $event = Event::find($id);
+
+            // Transactions used to rollback if one of the relations faild to be deleted, then it will rollback.
+            if( $event != NULL ) {
+                DB::beginTransaction();
+                try {
+                    $event->tickets()->delete();
+                    $event->media()->delete();
+                    $event->categories()->detach($event->id);
+                    $event->specializations()->detach($event->id);
+                    $event->owners()->detach($event->id);
+                    $event->workshops()->detach($event->id);
+                    $event->surveys()->delete();
+                    $event->delete();
+                    DB::commit();
+                } catch(Exception $exp) {
+                    DB::rollback();
+                }
+            }
         }
     }
 
@@ -347,15 +384,10 @@ class EventsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
         // dd($request->all());
         Session::flash('success', 'Event updated successfully! تم تعديل الحدث بنجاح');
         return redirect('/events/index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
 }

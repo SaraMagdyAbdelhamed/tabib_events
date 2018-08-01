@@ -113,7 +113,7 @@
                           <tbody>
                             @if ( isset($events) && !empty($events) )
                                 @foreach ($events as $event)
-                                <tr>
+                                <tr data-id="{{ $event->id }}">
                                   <td><span class="cellcontent"></span></td>
                                   <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                                   <td><span class="cellcontent">{{ $event->name    ? : __('keywords.not') }}</span></td>
@@ -321,10 +321,11 @@
                   </div>
                 </div><br>
               </div>
-                @section('js')
-                <script type="text/javascript">
-                        $('.btn-warning-cancel').click(function(){
-          var event_id = $(this).closest('tr').attr('data-event-id');
+
+@section('js')
+    <script type="text/javascript">
+      $('.deleteRecord').click(function(){
+          var event_id = $(this).closest('tr').attr('data-id');
           var _token = '{{csrf_token()}}';
           swal({
             title: "هل أنت متأكد؟",
@@ -344,7 +345,7 @@
                url:'{{url('events_destroy')}}'+'/'+event_id,
                data:{_token:_token},
                success:function(data){
-                $('tr[data-event-id='+event_id+']').fadeOut();
+                $('tr[data-id='+event_id+']').fadeOut();
                }
             });
               swal("تم الحذف!", "تم الحذف بنجاح", "success");
@@ -356,7 +357,7 @@
 
         $('.btn-warning-cancel-all').click(function(){
           var selectedIds = $("input:checkbox:checked").map(function(){
-            return $(this).closest('tr').attr('data-event-id');
+            return $(this).closest('tr').attr('data-id');
           }).get();
           var _token = '{{csrf_token()}}';
           swal({
@@ -378,7 +379,7 @@
                data:{ids:selectedIds,_token:_token},
                success:function(data){
                 $.each( selectedIds, function( key, value ) {
-                  $('tr[data-event-id='+value+']').fadeOut();
+                  $('tr[data-id='+value+']').fadeOut();
                 });
                }
             });
