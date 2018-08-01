@@ -230,13 +230,14 @@
                   </li>
                   @endif
 
-                  @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
+                  @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
                   <li class="side__list" id="menu_8"> <a class="side__item" id="sub_8_1" href="{{route('notification')}}">@lang('keywords.notifications')</a>
                   </li>
                   <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
                       </li>
                   <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a></li>
                   <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
+                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('events')}}">@lang('keywords.events')</a></li>
 
                   @endif
                 </ul>
