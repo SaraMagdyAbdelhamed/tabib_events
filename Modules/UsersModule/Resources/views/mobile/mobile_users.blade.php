@@ -734,7 +734,7 @@
                       {{-- Region --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->userInfo->region->name : \Helper::localization('geo_regions','name',$doctor->userInfo->region->city_id,'2',
+                          {{\App::isLocale('en') ? isset($doctor->userInfo->region->name) : \Helper::localization('geo_regions','name', isset($doctor->userInfo->region->city_id) ? $doctor->userInfo->region->city_id : '','2',
                               $doctor->city->name)}}
                         </span>
                       </td>

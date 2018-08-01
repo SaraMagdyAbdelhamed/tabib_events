@@ -121,7 +121,7 @@
                     <td>
                       <span class="cellcontent">
                         @foreach ($event->categories as $cat)
-                            {{ $cat->name }} {{ count($event->categories) != $loop->index+1 ? ', ' : '.' }}
+                            {{ $cat->name }} {{ count($event->categories) != $loop->index+1 ? ' - ' : '.' }}
                         @endforeach
                       </span>
                     </td>

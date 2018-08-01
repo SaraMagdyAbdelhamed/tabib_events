@@ -13,7 +13,8 @@
                           </div>
                         </div>
                       </div>
-                      <div class="cover--actions"><a class="bradius--no border-btn master-btn" type="button" href="events_backend_add.html">@lang('keywords.add new event')</a>
+                      <div class="cover--actions">
+                        <a class="bradius--no border-btn master-btn" type="button" href="{{ route('events.create') }}">@lang('keywords.addNewBackend')</a>
                       </div>
                     </div>
                   </div>
@@ -97,43 +98,65 @@
                           <thead>
                             <tr class="bgcolor--gray_mm color--gray_d">
                               <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
-                              <th><span class="cellcontent">@lang('keywords.serial number')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.event name')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.venue')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.events categories')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.eventTimeStart')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.eventTimeEnd')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.Addeddate')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.added by')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.EventStatus')</span></th>
-                              <th><span class="cellcontent">@lang('keywords.Actions')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.serialNo')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.eventName')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.address')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.eventCat')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.eventDateStart')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.eventDateEnd')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.RegisterationDate')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.addby')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.status')</span></th>
+                              <th><span class="cellcontent">@lang('keywords.actions')</span></th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($events as $event)
-                            <tr data-event-id="{{$event->id}}">
-                              <td><span class="cellcontent"></span></td>
-                              <td><span class="cellcontent">{{$event->id}}</span></td>
-                              <td><span class="cellcontent">{{$event->name}}</span></td>
-                              <td><span class="cellcontent">{{$event->venue}}</span></td>
-                              <td><span class="cellcontent">
-                                @foreach($event->categories as $category)
-                                {{$category->name}}<br>
+                            @if ( isset($events) && !empty($events) )
+                                @foreach ($events as $event)
+                                <tr>
+                                  <td><span class="cellcontent"></span></td>
+                                  <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
+                                  <td><span class="cellcontent">{{ $event->name    ? : __('keywords.not') }}</span></td>
+                                  <td><span class="cellcontent">{{ $event->address ? : __('keywords.not') }}</span></td>
+                                  <td>
+                                    <span class="cellcontent">
+                                      @foreach ($event->categories as $cat)
+                                          {{ $cat->name }} {{ count($event->categories) != $loop->index+1 ? ' - ' : '.' }}
+                                      @endforeach
+                                    </span>
+                                  </td>
+                                  <td><span class="cellcontent">{{ $event->start_datetime ? $event->start_datetime->format('Y/m/d H:i A') : __('keywords.not') }}</span></td>
+                                  <td><span class="cellcontent">{{ $event->end_datetime   ? $event->end_datetime->format('Y/m/d H:i A')   : __('keywords.not') }}</span></td>
+                                  <td><span class="cellcontent">{{ $event->created_at     ? $event->created_at->format('Y/m/d H:i A')     : __('keywords.not') }}</span></td>
+                                  <td><span class="cellcontent">{{ $event->created_by     ? $event->createdBy->first_name ." ". $event->createdBy->last_name : __('keywords.not') }}</span></td>
+                                  <td>
+                                    <span class="cellcontent">
+                                      <i class="fa {{ $event->is_active ? 'icon-in-table-true fa-check' : 'icon-in-table-false fa-times' }}"></i>
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <span class="cellcontent">
+              
+                                      {{-- View Event --}}
+                                      <a href="{{ route('events.show', $event->id) }}" class= "action-btn bgcolor--main color--white ">
+                                        <i class = "fa  fa-eye"></i>
+                                      </a>
+                                      
+                                      {{-- Edit Event --}}
+                                      <a href="{{ route('events.edit', $event->id) }}"  class= "action-btn bgcolor--fadegreen color--white ">
+                                        <i class = "fa  fa-pencil"></i>
+                                      </a>
+                                      
+                                      {{-- Delete Event --}}
+                                      <a href="#"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
+                                        <i class = "fa  fa-trash-o"></i>
+                                      </a>
+              
+                                    </span>
+                                  </td>
+                                </tr>
                                 @endforeach
-                              </span></td>
-                              <td><span class="cellcontent">{{$event->start_datetime}}</span></td>
-                              <td><span class="cellcontent">{{$event->end_datetime}}</span></td>
-                              <td><span class="cellcontent">{{$event->created_at}}</span></td>
-                              <td><span class="cellcontent">{{$event->user->username}}</span></td>
-                              <td><span class="cellcontent">
-                                {!! $event->is_active ? '<i class = "fa icon-in-table-true fa-check"></i>' : '<i class = "fa icon-in-table-false fa-times"></i>' !!}
-                                
-                                }
-
-                              </span></td>
-                              <td><span class="cellcontent"><a href= "{{route('events.show',$event->id)}}" ,  class= "action-btn bgcolor--main color--white "><i class = "fa  fa-eye"></i></a><a href= events_backend_edit.html ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a><a href="#"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white "><i class = "fa  fa-trash-o btn-warning-cancel"></i></a></span></td>
-                            </tr>
-                            @endforeach
+                            @endif
                           </tbody>
                         </table>
                       </form>

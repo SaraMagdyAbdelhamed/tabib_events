@@ -416,7 +416,7 @@
         'selectTeleCode'=> 'Select a Telephone Code',
         'selectUserType'=> 'Select a User Type',
         'selectSponsorCategory' => 'Select a Sponsor Category',
-        
+        'surveys'       => 'Surveys',
     ];
 
 ?>
