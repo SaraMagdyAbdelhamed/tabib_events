@@ -751,10 +751,10 @@ function initMap() {
 function bindDataToForm(address,lat,lng){
 
   // If user searched in searchbox && marker moved then don't replace marker's address with user's address.
-  if ( document.getElementById('searchInput').value == '' ) {
+ /* if ( document.getElementById('searchInput').value == '' ) {
     document.getElementById('searchInput').value = address;
-  }
-
+  }*/
+document.getElementById('searchInput').value = address;
   document.getElementById('lat').value = lat;
   document.getElementById('lng').value = lng;
 }

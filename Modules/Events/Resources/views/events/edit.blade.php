@@ -29,14 +29,17 @@
                       <li id="surveys">@lang('keywords.survey') </li>
                       <li id="media">@lang('keywords.media')</li>
                     </ul>
+                     <form action="{{ route('events.update',$event->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                    {{csrf_field()}}
                     <ul class="tab__content">
+                   
                       <li class="tab__content_item active" id="info-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                           <div class="row">
                             <div class="col-xs-6">
                               <div class="master_field">
                                 <label class="master_label" for="Event_name">@lang('keywords.eventName') </label>
-                                <input class="master_input" type="text" maxlength="100" minlength="5" id="Event_name" name="event[name]" Required>
+                                <input class="master_input" type="text" maxlength="100" minlength="5" id="Event_name" name="event[name]" Required value="{{$event->name}}">
                                 @if ( $errors->has('event[name]') )
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[name]') }}</span>
                                 @endif
@@ -45,7 +48,7 @@
                             <div class="col-xs-6">
                               <div class="master_field">
                                 <label class="master_label" for="description"> @lang('keywords.eventDescription')</label>
-                                 <textarea class="master_input" name="event[description]" minlength="5" id="description" Required></textarea>
+                                 <textarea class="master_input" name="event[description]" minlength="5" id="description" Required>{{$event->description}}</textarea>
                                 @if ( $errors->has('event[description]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[description]') }}</span>                 
                                 @endif                            
@@ -65,7 +68,7 @@
                             <div class="col-xs-6">
                               <div class="master_field">
                                 <label class="master_label" for="venue">@lang('keywords.eventPlace')</label>
-                                <input class="master_input" type="text" id="searchInput" name="event[place]" >
+                                <input class="master_input" type="text" id="searchInput" name="event[place]" value="{{$event->address}}">
                                     @if ( $errors->has('test') )
                                     <span class="master_message color--fadegreen">{{ $errors->first('test') }}</span>
                                     @endif                            
@@ -74,7 +77,7 @@
                             <div class="col-xs-6" hidden>
                             <div class="master_field">
                                 <label class="master_label" for="shop_long">Longtiuide</label>
-                                <input class="master_input" name="event[long]" id="event_long" placeholder="event_long" type="text">
+                                <input class="master_input" name="event[long]" id="event_long" placeholder="event_long" type="text" value="{{$event->longtuide}}">
                                 @if ( $errors->has('event[long]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[long]') }}</span>                 
                                 @endif
@@ -83,7 +86,7 @@
                             <div class="col-xs-6" hidden>
                             <div class="master_field">
                                 <label class="master_label" for="shop_lat">Lat</label>
-                                <input class="master_input" name="event[lat]" id="event_lat" placeholder="event_lat" type="text">
+                                <input class="master_input" name="event[lat]" id="event_lat" placeholder="event_lat" type="text" value="{{$event->latitude}}">
                                 @if ( $errors->has('event[lat]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[lat]') }}</span>                 
                                 @endif
@@ -94,7 +97,16 @@
                                  <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
                                     <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="event[special][]">
                                     @foreach($specializations as $specialization)
+                                    <?php $i=0; ?>
+                                    @foreach ($event->specializations as $spec )
+                                    @if($spec->id == $specialization->id)
+                                    <?php $i=1; ?>
+                                  <option value="{{$specialization->id}}" selected>{{$specialization->name}}</option>
+                                    @endif
+                                    @endforeach
+                                    @if($i == 0)
                                     <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                                    @endif
                                     @endforeach
                                     </select>
                                     @if ( $errors->has('event[special][]') )                   
@@ -107,7 +119,17 @@
                                 <label class="master_label mandatory" for="Category">@lang('keywords.eventCat')</label>
                                 <select class="master_input select2" id="Category" multiple="multiple" style="width:100%;"  name="event[category][]">
                                 @foreach($categories as $category)
+                                <?php $i=0; ?>
+                                 @foreach ($event->categories as $cat)
+                                 @if($cat->id == $category->id)
+                                 <?php $i=1; ?>
+                                 <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                                
+                                @endif
+                                 @endforeach
+                                 @if($i == 0)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endif
                                 @endforeach
                                 </select>
                                 @if ( $errors->has('event[category][]') )                   
@@ -119,8 +141,17 @@
                               <div class="master_field">
                                  <label class="master_label mandatory" for="admin_doctor">@lang('keywords.eventDoctor') </label>
                                 <select class="master_input select2" id="admin_doctor" multiple="multiple" style="width:100%;"  name="event[doctor][]">
-                                    @foreach($doctors as $doctor)
+                                @foreach($doctors as $doctor)
+                                <?php $i=0; ?>
+                                @foreach($event->owners as $owner)
+                                @if($owner->id == $doctor->id)
+                                <?php $i=1; ?>
+                                <option value="{{$doctor->id}}" selected>{{$doctor->username}}</option>
+                                @endif
+                                @endforeach
+                                @if($i == 0)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
+                                @endif
                                 @endforeach
                                 </select>
                                 @if ( $errors->has('event[doctor][]') )                   
@@ -132,7 +163,7 @@
                             <div class="master_field">
                                 <label class="master_label" for="start_date">@lang('keywords.eventDateStart')</label>
                                 <div class="bootstrap-timepicker">
-                                <input class="datepicker master_input" type="text" Required id="start_date" name="event[start_date]">
+                                <input class="datepicker master_input" type="text" Required id="start_date" name="event[start_date]" value="{{$event->start_datetime->format('Y-m-d')}}">
                                 </div>
                                 @if ( $errors->has('event[start_date]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[start_date]') }}</span>                 
@@ -143,7 +174,7 @@
                             <div class="master_field">
                                 <label class="master_label" for="start_time"> @lang('keywords.eventTimeStart')</label>
                                 <div class="bootstrap-timepicker">
-                                <input class="timepicker master_input" type="text" Required id="start_time" name="event[start_time]">
+                                <input class="timepicker master_input" type="text" Required id="start_time" name="event[start_time]" value="{{$event->start_datetime->format('h:i:s')}}">
                                 </div>
                                 @if ( $errors->has('event[start_time]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[start_time]') }}</span>                 
@@ -154,7 +185,7 @@
                             <div class="master_field">
                                 <label class="master_label" for="end_date">@lang('keywords.eventDateEnd')</label>
                                 <div class="bootstrap-timepicker">
-                                <input class="datepicker master_input" type="text" Required id="end_date" name="event[end_date]">
+                                <input class="datepicker master_input" type="text" Required id="end_date" name="event[end_date]" value="{{$event->end_datetime->format('Y-m-d')}}">
                                 </div>
                                 @if ( $errors->has('event[end_date]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[end_date]') }}</span>                 
@@ -165,7 +196,7 @@
                             <div class="master_field">
                                 <label class="master_label" for="end_time">@lang('keywords.eventTimeEnd')</label>
                                 <div class="bootstrap-timepicker">
-                                <input class="timepicker master_input" type="text" Required id="end_time" name="event[end_time]">
+                                <input class="timepicker master_input" type="text" Required id="end_time" name="event[end_time]" value="{{$event->end_datetime->format('h:i:s')}}">
                                 </div>
                                 @if ( $errors->has('event[end_time]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[end_time]') }}</span>                 
@@ -196,9 +227,12 @@
                             <div class="col-xs-12">
                               <label class="master_label mandatory">@lang('keywords.ticketPayment')</label>
                               <div class="col-md-12 col-sm-12 col-xs-12"></div>
+                              @if($event->is_paid == 0)
                               <div class="col-md-12 col-sm-12 col-xs-12">
+                              
                                 <div class="radiorobo">
-                                  <input type="radio" id="free_ticket" name="event[ticket]" value="0" >
+                                
+                                  <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked>
                                     <label for="free_ticket">@lang('keywords.free')</label>
                                 </div>
                               </div>
@@ -208,6 +242,22 @@
                                     <label for="paid_ticket">@lang('keywords.paid')</label>
                                 </div>
                               </div>
+                              @else
+                              <div class="col-md-12 col-sm-12 col-xs-12">
+                              
+                                <div class="radiorobo">
+                                
+                                  <input type="radio" id="free_ticket" name="event[ticket]" value="0" >
+                                    <label for="free_ticket">@lang('keywords.free')</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12 col-sm-12 col-xs-12"> 
+                                <div class="radiorobo">
+                                  <input type="radio" id="paid_ticket" name="event[ticket]" value="1" checked>
+                                    <label for="paid_ticket">@lang('keywords.paid')</label>
+                                </div>
+                              </div>
+                              @endif
                             </div>
                             <div class="clearfix"></div>
                           </div>
@@ -217,7 +267,7 @@
                             <div class="col-xs-8">
                             <div class="master_field">
                                 <label class="master_label" for="Price">@lang('keywords.price')</label>
-                                <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]">
+                                <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]" value="(isset($event->tickets->price))?  $event->tickets->price : ''">
                                 @if ( $errors->has('event[price]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>                 
                                 @endif
@@ -226,9 +276,20 @@
                             <div class="col-xs-4">
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Currency">@lang('keywords.currency')</label>
-                                <select class="master_input" id="Currency" name="event[currency]">
+                                <select class="master_input" id="Currency" name="event[currency]" >
                                 @foreach($currencies as $currency)
+                                <?php $i=0; ?>
+                                @if(isset($event->tickets->currency_id))
+                                @if($event->tickets->currency_id == $currency->id)
+                                <?php $i=1; ?>
+                                <option value="{{$currency->id}}" selected>{{$currency->symbol}}</option>
+                                 @endif
+                                @endif
+                                @if($i == 0 )
                                 <option value="{{$currency->id}}">{{$currency->symbol}}</option>
+                                @endif
+                                
+                                
                                 @endforeach
                                 </select>
                                 @if ( $errors->has('event[currency]') )                   
@@ -238,8 +299,8 @@
                             </div>
                             <div class="col-xs-12">
                             <div class="master_field">
-                                <label class="master_label" for="Available_tickets">@lang('keywords.availableTickets')</label>
-                                <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]">
+                                <label class="master_label" for="Available_tickets">@lang('keywords.avaliableTickets')</label>
+                                <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]" value="(isset($event->tickets->available_tickets))?  $event->tickets->available_tickets : ''">
                                 @if ( $errors->has('event[available_tickets]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>                 
                                 @endif
@@ -254,7 +315,7 @@
                             <div class="col-xs-6">
                             <div class="master_field">
                                 <label class="master_label" for="Website">@lang('keywords.website')</label>
-                                <input class="master_input" type="url" placeholder="ex:www.domain.com" id="Website" name="event[website]">
+                                <input class="master_input" type="url" placeholder="ex:www.domain.com" id="Website" name="event[website]" value="{{ $event->website }}">
                                 @if ( $errors->has('event[website]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[website]') }}</span>                 
                                 @endif
@@ -263,7 +324,7 @@
                             <div class="col-xs-6">
                             <div class="master_field">
                                 <label class="master_label" for="e_email"> @lang('keywords.email')</label>
-                                <input class="master_input" type="email" placeholder="ss@test.com" id="e_email" name="event[email]">
+                                <input class="master_input" type="email" placeholder="ss@test.com" id="e_email" name="event[email]" value="{{ $event->email }}">
                                 <span class="valid-label"></span>
                                 @if ( $errors->has('event[email]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[email]') }}</span>                 
@@ -474,12 +535,14 @@
                         </div>
                       </li>
                       <div class="div" style="text-align:end;">
-                        <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
+                        <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                         </button>
-                        <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
+                        <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                         </button>
                       </div>
+                      
                     </ul>
+                    </form>
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -489,7 +552,11 @@
 @section('js')
 <script type="text/javascript">
   $( document ).ready(function() {
+      @if($event->use_ticketing_system == 1)
+      $("#paid_section").show();
+      @else
     $("#paid_section").hide();
+    @endif
     $("#paid_ticket").on('change',function(){
         swal({
         title: "Paid ticket", 
