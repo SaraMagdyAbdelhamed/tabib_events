@@ -9,6 +9,7 @@ class Workshop extends Model
     protected $id = 'id';
     protected $table = 'workshops';
     protected $fillable = ['name', 'description','venue','start_datetime','end_datetime'];
+    protected $dates = ['start_datetime','end_datetime'];
     public $timestamps = false;
 
     public function events() {
