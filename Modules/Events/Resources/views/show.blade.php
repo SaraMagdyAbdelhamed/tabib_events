@@ -8,7 +8,7 @@
                       <div class="col-xs-12">
                         <div class="text-xs-center">         
                           <div class="text-wraper">
-                            <h3 class="cover-inside-title  ">Events</h3>
+                            <h3 class="cover-inside-title  ">@lang('keywords.events')</h3>
                           </div>
                         </div>
                       </div>
@@ -21,9 +21,9 @@
                   <div class="tabs--wrapper">
                     <div class="clearfix"></div>
                     <ul class="tabs">
-                      <li id="info">معلومات الايفينت</li>
-                      <li id="survey">الدراسة الاستقصائية</li>
-                      <li id="tickets">التذاكر</li>
+                      <li id="info">@lang('keywords.event information')</li>
+                      <li id="survey">@lang('keywords.survey')</li>
+                      <li id="tickets">@lang('keywords.tickets')</li>
                     </ul>
                     <ul class="tab__content">
                       <li class="tab__content_item active" id="info-content">
@@ -31,27 +31,27 @@
                           <div class="full-table">
                             <table class="verticaltable table-master">
                               <tr>
-                                <th><span class="cellcontent"> اسم الايفينت</span></th>
+                                <th><span class="cellcontent">@lang('keywords.event name')</span></th>
                                 <td><span class="cellcontent">{{$event->name}}</span></td>
                               </tr>
                               <tr>
-                                <th><span class="cellcontent">المكان</span></th>
+                                <th><span class="cellcontent">@lang('keywords.venue')</span></th>
                                 <td><span class="cellcontent">{{$event->venue}}</span></td>
                               </tr>
                               <tr>
-                                <th><span class="cellcontent">تاريخ بداية الايفينت</span></th>
+                                <th><span class="cellcontent">@lang('keywords.eventTimeStart')</span></th>
                                 <td><span class="cellcontent">{{$event->start_datetime}}</span></td>
                               </tr>
                               <tr>
-                                <th><span class="cellcontent">تاريخ نهاية الايفينت</span></th>
+                                <th><span class="cellcontent">@lang('keywords.eventTimeEnd')</span></th>
                                 <td><span class="cellcontent">{{$event->end_datetime}}</span></td>
                               </tr>
                               <tr>
-                                <th><span class="cellcontent">تم اضافته من قبل</span></th>
+                                <th><span class="cellcontent">@lang('keywords.added by')</span></th>
                                 <td><span class="cellcontent">{{$event->user->username}}</span></td>
                               </tr>
                               <tr>
-                                <th><span class="cellcontent">الفئات</span></th>
+                                <th><span class="cellcontent">@lang('keywords.eventCat')</span></th>
                                 <td><span class="cellcontent">@foreach($event->categories as $category)
                                 {{$category->name}},
                                 @endforeach</span></td>
@@ -233,13 +233,13 @@
                                 <thead>
                                   <tr class="bgcolor--gray_mm color--gray_d">
                                     <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
-                                    <th><span class="cellcontent">رقم المسلسل</span></th>
-                                    <th><span class="cellcontent">اسم الإحصائيه</span></th>
-                                    <th><span class="cellcontent">سؤال السيرفاى </span></th>
-                                    <th><span class="cellcontent">الاجابة رقم 1</span></th>
-                                    <th><span class="cellcontent">الاجابة رقم 2</span></th>
-                                    <th><span class="cellcontent">الاجابة رقم 3</span></th>
-                                    <th><span class="cellcontent">الاجابة رقم 4</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.serial number')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.survey name')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.Squestion')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.answer') 1</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.answer') 2</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.answer') 3</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.answer') 4</span></th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -604,12 +604,12 @@
                                 <thead>
                                   <tr class="bgcolor--gray_mm color--gray_d">
                                     <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
-                                    <th><span class="cellcontent"> المسلسل</span></th>
-                                    <th><span class="cellcontent">باركود التذكرة</span></th>
-                                    <th><span class="cellcontent">السيريال الخاص ب التذكرة</span></th>
-                                    <th><span class="cellcontent">حالة التذكرة</span></th>
-                                    <th><span class="cellcontent">اسم المستخدم</span></th>
-                                    <th><span class="cellcontent">تاريخ الحجز</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.serial number')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.Ticket Barcode')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.Ticket serial')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.Ticket Status')</span></th>
+                                    <th><span class="cellcontent">@lang('keywords.login_username')/span></th>
+                                    <th><span class="cellcontent">@lang('keywords.Booking date')</span></th>
                                   </tr>
                                 </thead>
                                 <tbody>
