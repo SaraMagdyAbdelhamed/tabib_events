@@ -41,7 +41,7 @@ class EventsController extends Controller
     {
         $data['events'] = Event::all();
         $data['categories'] = Category::all();
-        return view('events::index', $data);
+        return view('events::index',$data);
     }
 
     /**
