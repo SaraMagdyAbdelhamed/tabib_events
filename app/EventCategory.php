@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EventCategory extends Model
 {
     protected $id = 'id';
-    protected $table = 'event_categories';
+    protected $table = 'categories';
     protected $fillable = ['event_id', 'category_id'];
     public $timestamps = false;
 

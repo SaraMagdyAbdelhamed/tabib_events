@@ -102,5 +102,10 @@ class EventBackend extends Model
         return $this->belongsToMany('App\DoctorSpecialization','event_specializations','event_id','specialization_id');
     }
 
+        public function surveys() {
+            
+        return $this->hasMany('App\Survey', 'event_id');
+    }
+
 
 }

@@ -16,6 +16,10 @@ class EventBookingTicket extends Model
         return $this->belongsTo($model, 'event_id');
     }
 
+    public function event_back() {
+        return $this->belongsTo('App\EventBackend', 'event_id');
+    }
+
     public function booking() {
         return $this->belongsTo('App\EventBooking', 'booking_id');
     }
