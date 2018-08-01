@@ -39,8 +39,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $data['events'] = EventBackend::all();
-        $data['categories'] = EventCategory::all();
+        $data['events'] = Event::all();
+        $data['categories'] = Category::all();
         return view('events::index', $data);
     }
 
