@@ -38,7 +38,7 @@
                           </thead>
                           <tbody>
                            @foreach($offers as $offer)
-                            <tr data-id={{$offer->id}}>
+                            <tr data-id="{{$offer->id}}">
                               <td><span class="cellcontent" data-id="{{ $offer->id }}"></span></td>
                               <td><span class="cellcontent">{{$offer->id}}</span></td>
                               <td><span class="cellcontent"><img src = "{{$offer->image}}" , class = " img-in-table"></span></td>
@@ -272,19 +272,22 @@
                         "_method": 'POST',
                         "_token": token,
                     },
-                    success: function ()
+                    success: function (data)
                     {
-                        swal("تم الحذف!", "تم الحذف بنجاح", "success");
-
-                        // fade out selected checkboxes after deletion
+                     // alert(allVals);
+                      // fade out selected checkboxes after deletion
                         $.each(allVals, function( index, value ) {
                             $('tr[data-id='+value+']').fadeOut();
                         });
+                       
+
+                        
                     },
                     error: function(response) {
                         console.log(response);
                     }
                 });
+                 swal("تم الحذف!", "تم الحذف بنجاح", "success");
                 } else {
                 swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
                 }
@@ -323,15 +326,16 @@
                         "_method": 'POST',
                         "_token": token,
                     },
-                    success: function ()
+                    success: function(data)
                     {
-                        swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                       
                         $('tr[data-id='+id+']').fadeOut();
                     },
                         error: function(response) {
                         console.log(response);
                     }
                 });
+                 swal("تم الحذف!", "تم الحذف بنجاح", "success");
                     
                 } else {
                     swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
