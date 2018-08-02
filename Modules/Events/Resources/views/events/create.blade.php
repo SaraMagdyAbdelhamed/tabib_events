@@ -508,12 +508,7 @@
               </div>
             </div>
           </div>
-            <div class="col-xs-12" style="text-align:end;">
-              <div class="checkboxrobo">
-                <input type="checkbox" id="activation" name="event[active]" checked="true">
-                <label for="activation">@lang('keywords.Active')</label>
-              </div>
-            </div>
+            
           </div>
         </fieldset>
       </form>
