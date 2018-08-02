@@ -375,7 +375,7 @@ class EventsController extends Controller
 
 
         })->get();
-        $data['categories'] = EventCategory::all();
+        $data['categories'] = Category::all();
         return view('events::index', $data);
     }
 

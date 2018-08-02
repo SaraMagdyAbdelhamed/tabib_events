@@ -212,7 +212,7 @@
                                 <div class="main-section">
                                 <div id="fileList"></div>
                                 <div class="form-group">
-                                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   onchange="updateList()" required>
+                                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   onchange="updateList()" >
                                     <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                                 </div>
@@ -585,8 +585,8 @@
                       <div class="div" style="text-align:end;">
                         <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                         </button>
-                        <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
-                        </button>
+                       <a href="{{ route('events') }}"> <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+                        </button></a>
                       </div>
                       
                     </ul>
@@ -598,35 +598,7 @@
 </div>
 @endsection
 @section('js')
-<script type="text/javascript">
-  $( document ).ready(function() {
-      @if($event->use_ticketing_system == 1)
-      $("#paid_section").show();
-      @else
-    $("#paid_section").hide();
-    @endif
-    $("#paid_ticket").on('change',function(){
-        swal({
-        title: "Paid ticket", 
-        text: "Will you use our ticketing system?", 
-        showCancelButton: true,
-        closeOnConfirm: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        confirmButtonColor: "#004272"
-      },function(){
-        $("#paid_section").show();
-      })
-      
-    });
-  
-    $("#free_ticket").on('change',function(){
-      $("#paid_section").hide();
-    })
-    
-      
-      });
-    </script>
+
 
     <script type="text/javascript">
       var listAr = [];
@@ -871,7 +843,7 @@
                             </div>
                             <div class="col-xs-6">
                               <div class="master_field">
-                                <label class="master_label mandatory" for="Specialties">@lang('keywords.specail')</label>
+                                <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
                                 <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]">
                                    @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
@@ -1120,4 +1092,33 @@ var event_long;
         });
 
 </script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+      @if($event->use_ticketing_system == 1)
+      $("#paid_section").show();
+      @else
+    $("#paid_section").hide();
+    @endif
+    $("#paid_ticket").on('change',function(){
+        swal({
+        title: "Paid ticket", 
+        text: "Will you use our ticketing system?", 
+        showCancelButton: true,
+        closeOnConfirm: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        confirmButtonColor: "#004272"
+      },function(){
+        $("#paid_section").show();
+      })
+      
+    });
+  
+    $("#free_ticket").on('change',function(){
+      $("#paid_section").hide();
+    })
+    
+      
+      });
+    </script>
 @endsection

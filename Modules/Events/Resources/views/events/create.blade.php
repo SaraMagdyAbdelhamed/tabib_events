@@ -956,7 +956,7 @@
                            <div class="row">
                              <div class="col-xs-12">
                                <div class="master_field">
-                                 <label class="master_label" for="survey_question" style="background-color: beige;"> @lang('keywords.question') ${next_count_question}</label>
+                                 <label class="master_label" for="survey_question" style="background-color: beige;"> @lang('keywords.Squestion') ${next_count_question}</label>
                                  <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][${next_count_question}][name]" required><span class="master_message inherit">message content</span>
                                </div>
                              </div>
