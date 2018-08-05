@@ -45,7 +45,7 @@ class Users extends Authenticatable
 
     public function eventCategories()
     {
-        return $this->hasMany('App\EventCategory', 'created_by');
+        return $this->hasMany('App\Category', 'created_by');
     }
 
     public function events()
@@ -71,7 +71,7 @@ class Users extends Authenticatable
     }
     public function categories()
     {
-        return $this->belongsToMany('App\EventCategory', 'user_interests', 'user_id', 'interest_id');
+        return $this->belongsToMany('App\Category', 'user_interests', 'user_id', 'interest_id');
     }
     public function favoureite_events()
     {

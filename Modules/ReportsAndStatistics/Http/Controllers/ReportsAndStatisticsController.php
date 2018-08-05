@@ -21,7 +21,7 @@ use App\UserInfo;
 use App\EventBackend;
 use App\OfferCategory;
 use App\Offer;
-use App\EventCategory;
+use App\Category;
 
 class ReportsAndStatisticsController extends Controller
 {

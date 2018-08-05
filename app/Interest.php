@@ -13,7 +13,7 @@ class Interest extends Model
 
     // relations
     public function eventCategory() {
-        return $this->hasMany('App\EventCategory', 'interest_id');
+        return $this->hasMany('App\Category', 'interest_id');
     }
     public function interest()
     {
