@@ -77,7 +77,14 @@ class EventsController extends Controller
             Input::file('event')['image']->move($destinationPath, $fileNameToStore);
         }
         $fileNameToStore = null;
-
+        if(isset($request['event']['active']))
+        {
+            $active=1;
+        }
+        else
+        {
+            $active=0;
+        }
 
         $event = Event::create([
             "name" => $request['event']['name'],
@@ -94,7 +101,7 @@ class EventsController extends Controller
             "email" => $request['event']['email'],
             "website" => $request['event']['website'],
             "code" => $request['event']['code'],
-            "is_active" => ($request['event']['active'] == 'on') ? 1 : 0,
+            "is_active" => $active,
             "created_by" => \Auth::id(),
             "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
         ]);
@@ -395,7 +402,15 @@ class EventsController extends Controller
             Input::file('event')['image']->move($destinationPath, $fileNameToStore);
         }
         $fileNameToStore = $event->image;
-
+        
+        if(isset($request['event']['active']))
+        {
+            $active=1;
+        }
+        else
+        {
+            $active=0;
+        }
 
         $event->update([
             "name" => $request['event']['name'],
@@ -412,7 +427,7 @@ class EventsController extends Controller
             "email" => $request['event']['email'],
             "website" => $request['event']['website'],
             "code" => $request['event']['code'],
-            "is_active" => ($request['event']['active'] == 'on') ? 1 : 0,
+            "is_active" => $active,
             "created_by" => \Auth::id(),
             "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
         ]);
