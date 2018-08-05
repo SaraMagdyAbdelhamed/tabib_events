@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-      <div class="cover-inside-container margin--small-top-bottom bradius--no bshadow--0" style="background-image:  url('{{ asset( '/img/covers/dummy2.jpg ' ) }}')  ; background-position: center center; background-repeat: no-repeat; background-size:cover;">
+      <div class="cover-inside-container margin--small-top-bottom bradius--no bshadow--0" style="background-image:  {{ asset( '/img/covers/dummy2.jpg ' ) }}  ; background-position: center center; background-repeat: no-repeat; background-size:cover;">
         <div class="row">
           <div class="col-xs-12">
             <div class="text-xs-center">         
