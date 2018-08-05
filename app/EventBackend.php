@@ -107,5 +107,9 @@ class EventBackend extends Model
         return $this->hasMany('App\Survey', 'event_id');
     }
 
+        public function createdBy() {
+        return $this->belongsTo('App\Users', 'created_by');
+    }
+
 
 }
