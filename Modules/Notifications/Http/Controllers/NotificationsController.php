@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 use App\Category;
 use App\Users;
 use App\UserInfo;
-use App\EventBackend;
+use App\Event;
 use App\Notification;
 use App\NotificationPush;
 use App\DoctorSpecialization;
@@ -23,7 +23,7 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        $data['categories'] = EventCategory::all();
+        $data['categories'] = Category::all();
         return view('notifications::index',$data);
     }
 
@@ -43,7 +43,7 @@ class NotificationsController extends Controller
      */
     public function store(Request $request)
     {
-        $events_id = EventBackend::whereHas('categories', function ($q) use($request) {
+        $events_id = Event::whereHas('categories', function ($q) use($request) {
             $q->whereIn('category_id',$request->categories);
         })->pluck('id')->toArray();
         $spec_id = DoctorSpecialization::whereHas('events', function ($q) use($request,$events_id) {
@@ -69,7 +69,7 @@ class NotificationsController extends Controller
             if($request->has('categories') )
             {
 
-        $events_id = EventBackend::whereHas('categories', function ($q) use($request) {
+        $events_id = Event::whereHas('categories', function ($q) use($request) {
             $q->whereIn('category_id',$request->categories);
         })->pluck('id')->toArray();
 

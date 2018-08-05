@@ -77,7 +77,14 @@ class EventsController extends Controller
             Input::file('event')['image']->move($destinationPath, $fileNameToStore);
         }
         $fileNameToStore = null;
-
+        if(isset($request['event']['active']))
+        {
+            $active=1;
+        }
+        else
+        {
+            $active=0;
+        }
 
         $event = Event::create([
             "name" => $request['event']['name'],
@@ -94,7 +101,7 @@ class EventsController extends Controller
             "email" => $request['event']['email'],
             "website" => $request['event']['website'],
             "code" => $request['event']['code'],
-            "is_active" => ($request['event']['active'] == 'on') ? 1 : 0,
+            "is_active" => $active,
             "created_by" => \Auth::id(),
             "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
         ]);
@@ -375,7 +382,7 @@ class EventsController extends Controller
 
 
         })->get();
-        $data['categories'] = EventCategory::all();
+        $data['categories'] = Category::all();
         return view('events::index', $data);
     }
 
@@ -387,7 +394,222 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+        $event=Event::find($id);
+        if (isset($request['event']['image'])) {
+            $destinationPath = 'event_images';
+            $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
+        // dd($fileNameToStore);
+            Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        }
+        $fileNameToStore = $event->image;
+        
+        if(isset($request['event']['active']))
+        {
+            $active=1;
+        }
+        else
+        {
+            $active=0;
+        }
+
+        $event->update([
+            "name" => $request['event']['name'],
+            "description" => $request['event']['description'],
+            "image" => $fileNameToStore,
+            "venue" => $request['event']['place'],
+            "latitude" => $request->lat,
+            "longtuide" => $request->lng,
+            "address" => $request['event']['place'],
+            "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
+            "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
+            "is_paid" => $request['event']['ticket'],
+            "mobile" => $request['event']['mobile'],
+            "email" => $request['event']['email'],
+            "website" => $request['event']['website'],
+            "code" => $request['event']['code'],
+            "is_active" => $active,
+            "created_by" => \Auth::id(),
+            "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
+        ]);
+        if ($event->use_ticketing_system == 1) {
+            EventTicket::where('event_id',$event->id)->delete();
+            EventTicket::create([
+                "event_id" => $event->id,
+                "price" => $request['event']['price'],
+                "available_tickets" => $request['event']['available_tickets'],
+                "current_available_tickets" => $request['event']['available_tickets'],
+                "currency_id" => $request['event']['currency']
+            ]);
+        }
+
+        if (isset($request['event']['youtube'])) {
+            EventMedia::where('event_id',$event->id)->where('type',2)->delete();
+            foreach ($request['event']['youtube'] as $youtube) {
+                EventMedia::create([
+                    "event_id" => $event->id,
+                    "link" => $youtube,
+                    "type" => 2
+                ]);
+            }
+        }
+        if (isset($request['event']['images'])) {
+            EventMedia::where('event_id',$event->id)->where('type',1)->delete();
+            foreach ($request['event']['images'] as $key => $file) {
+                $destinationPath = 'event_images';
+                $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $file->getClientOriginalExtension();
+            // dd($fileNameToStore);
+                Input::file('event')['images'][$key]->move($destinationPath, $fileNameToStore);
+                EventMedia::create([
+                    "event_id" => $event->id,
+                    "link" => $fileNameToStore,
+                    "type" => 1
+                ]);
+            }
+        }
+        foreach ($request['event']['category'] as $category) {
+            EventCategory::where('event_id',$event->id)->delete();
+            EventCategory::create([
+                "event_id" => $event->id,
+                "category_id" => $category
+            ]);
+        }
+        if (isset($request['event']['special'])) {
+            EventSpecialization::where('event_id',$event->id)->delete();
+            foreach ($request['event']['special'] as $special) {
+                EventSpecialization::create([
+                    "event_id" => $event->id,
+                    "specialization_id" => $special
+                ]);
+            }
+        }
+
+        foreach ($request['event']['doctor'] as $doctor) {
+            EventOwner::where('event_id',$event->id)->delete();
+            EventOwner::create([
+                "event_id" => $event->id,
+                "user_id" => $doctor
+            ]);
+        }
+
+        if (isset($request['workshop'])) {
+            $workshops=EventWorkshop::where('event_id',$event->id)->get();
+            foreach($workshops as $work)
+            {
+                Workshop::destroy($work->work_shop_id);
+                WorkshopOwner::where('workshop_id',$work->work_shop_id)->delete();
+                WorkshopSpecialization::where('workshop_id',$work->work_shop_id)->delete();
+                EventWorkshop::destroy($work->id);
+            }
+            foreach ($request['workshop'] as $value) {
+                $workshop = Workshop::create([
+                    "name" => $value['name'],
+                    "description" => $value['description'],
+                    "venue" => $value['place'],
+                    "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
+                    "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
+                ]);
+                foreach ($value['doctor'] as $doctor) {
+                    WorkshopOwner::create([
+                        "workshop_id" => $workshop->id,
+                        "user_id" => $doctor
+                    ]);
+                }
+                if (isset($value['special'])) {
+                    foreach ($value['special'] as $special) {
+                        WorkshopSpecialization::create([
+                            "workshop_id" => $workshop->id,
+                            "specialization_id" => $special
+                        ]);
+                    }
+                }
+
+                EventWorkshop::create([
+                    "event_id" => $event->id,
+                    "work_shop_id" => $workshop->id
+                ]);
+            }
+        }
+
+        if (isset($request['survey'])) {
+            $surveys=Survey::where('event_id',$event->id)->get();
+            foreach($surveys as $sur)
+            {
+                $database = self::firebase();
+                    
+                    $database  ->getReference('surveys/'.$sur->firebase_id)
+                                ->remove();
+                SurveyQuestions::where('survey_id',$sur->id)->delete();
+                SurveyQuestionAnswer::where('survey_id',$sur->id)->delete();
+                Survey::destroy($sur->id);
+            }
+            foreach ($request['survey'] as $value) {
+                $survey = Survey::create([
+                    "event_id" => $event->id,
+                    "name" => $value['name'],
+                    "is_realtime" => 1
+                ]);
+                if ($survey->is_realtime == 1) {
+                   
+                    $database = self::firebase();
+                    $newPost = $database
+                        ->getReference('surveys')
+                        ->push([
+                            'parent_id' => $event->id,
+                            'name' => $value['name'],
+                            'questions' => '',
+                            'id' => ''
+                        ]);
+                    $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
+                    $database->getReference()
+                        ->update($updates);
+                    $survey->update(["firebase_id" => $newPost->getKey()]);
+                }
+                        // $questions=[];
+                foreach ($value['question'] as $key1 => $value_question) {
+                    $question = SurveyQuestions::create([
+                        "survey_id" => $survey->id,
+                        "name" => $value_question['name'],
+                        "firebase_id" => $key1
+                    ]);
+                    $questions[$key1]['name'] = $value_question['name'];
+                    $questions[$key1]['id'] = $key1;
+                    foreach ($value_question['answer'] as $key => $answer) {
+                        SurveyQuestionAnswer::create([
+                            "survey_id" => $survey->id,
+                            "question_id" => $question->id,
+                            "name" => $answer,
+                            "number_of_selections" => 0,
+                            "firebase_id" => $key
+                        ]);
+                        $questions[$key1]['answers'][$key]['name'] = $answer;
+                        $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
+                        $questions[$key1]['answers'][$key]['id'] = $key;
+                    }
+                }
+                    // dd($questions);
+                $updates = ['surveys/' . $newPost->getKey() . '/questions' => $questions];
+                $database->getReference()
+                    ->update($updates);
+            }
+        }
+
         Session::flash('success', 'Event updated successfully! تم تعديل الحدث بنجاح');
         return redirect('/events/index');
     }
+public function firebase()
+{
+    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+    $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->withDatabaseUri('https://tabibevent.firebaseio.com/')
+        ->create();
+
+    $database = $firebase->getDatabase();
+
+    return $database;
+}
+    /**
+     * Remove the specified resource from storage.
+     * @return Response
+     */
 }

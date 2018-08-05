@@ -212,7 +212,7 @@
                                 <div class="main-section">
                                 <div id="fileList"></div>
                                 <div class="form-group">
-                                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   onchange="updateList()" required>
+                                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   onchange="updateList()" >
                                     <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                                 </div>
@@ -334,7 +334,7 @@
                             <div class="col-xs-6">
                             <div class="master_field">
                                 <label class="master_label" for="Code_numbe">@lang('keywords.code') </label>
-                                <input class="master_input" type="number" placeholder="ex: 2012545" id="Code_numbe" name="event[code]">
+                                <input class="master_input" type="number" placeholder="ex: 2012545" id="Code_numbe" name="event[code]" value="{{ $event->code }}">
                                 @if ( $errors->has('event[code]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[code]') }}</span>                 
                                 @endif
@@ -343,7 +343,7 @@
                             <div class="col-xs-6">
                             <div class="master_field">
                                 <label class="master_label" for="Mobile_number"> @lang('keywords.Phone')</label>
-                                <input class="master_input" type="number" placeholder="0123456789" id="Mobile_number" name="event[mobile]">
+                                <input class="master_input" type="number" placeholder="0123456789" id="Mobile_number" name="event[mobile]" value="{{ $event->mobile }}">
                                 @if ( $errors->has('event[mobile]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>                 
                                 @endif
@@ -354,23 +354,27 @@
                       </li>
                       <li class="tab__content_item" id="workshops-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
+                          @foreach($event->workshops as $workshop)
                           <div class="row">
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]" value="{{ $workshop->name }}">
+                              <span class="master_message color--fadegreen">validation message will be here</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc')</label>
-                              <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]"></textarea><span class="master_message inherit">message content</span>
+                              <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]">{{ $workshop->description }}</textarea>
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace') </label>
-                              <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]" value="{{ $workshop->venue }}">
+                              <span class="master_message color--fadegreen">validation message will be here</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
@@ -378,7 +382,16 @@
                               <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
                               <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="workshop[0][special][]">
                                 @foreach($specializations as $specialization)
+                                <?php $i=0; ?>
+                                @foreach($workshop->specializations as $spec)
+                                @if($spec->id == $specialization->id )
+                                <?php $i=1; ?>
+                                <option value="{{$specialization->id}}" selected>{{$specialization->name}}</option>
+                                @endif
+                                @endforeach
+                                @if($i == 0)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                                @endif
                                 @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
@@ -388,7 +401,16 @@
                               <label class="master_label mandatory" for="admin_workshop_doctor"> @lang('keywords.eventDoctor') </label>
                               <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" style="width:100%;" name="workshop[0][doctor][]">
                                 @foreach($doctors as $doctor)
+                                <?php $i=0; ?>
+                                @foreach($workshop->owners as $owner)
+                                @if($owner->id == $doctor->id )
+                                <?php $i=1; ?>
+                                <option value="{{$doctor->id}}" selected>{{$doctor->username}}</option>
+                                @endif
+                                @endforeach
+                                @if($i == 0)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
+                                @endif
                                 @endforeach
                               </select><span class="master_message inherit">message content</span>
                             </div>
@@ -397,7 +419,7 @@
                             <div class="master_field">
                               <label class="master_label" for="start_date">@lang('keywords.workshopStartDate')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="datepicker master_input" type="text" Required id="start_date" name="workshop[0][start_date]">
+                                <input class="datepicker master_input" type="text" Required id="start_date" name="workshop[0][start_date]" value="{{ $workshop->start_datetime->format('Y-m-d') }}">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -405,7 +427,7 @@
                             <div class="master_field">
                               <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="timepicker master_input" type="text" Required id="start_time" name="workshop[0][start_time]">
+                                <input class="timepicker master_input" type="text" Required id="start_time" name="workshop[0][start_time]" value="{{ $workshop->start_datetime->format('h:i:s') }}">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -413,7 +435,7 @@
                             <div class="master_field">
                               <label class="master_label" for="end_date">@lang('keywords.workshopEndDate')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="datepicker master_input" type="text" Required id="end_date" name="workshop[0][end_date]">
+                                <input class="datepicker master_input" type="text" Required id="end_date" name="workshop[0][end_date]" value="{{ $workshop->end_datetime->format('Y-m-d') }}">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -421,70 +443,95 @@
                             <div class="master_field">
                               <label class="master_label" for="end_time">@lang('keywords.workshopEndTime')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="timepicker master_input" type="text" Required id="end_time" name="workshop[0][end_time]">
+                                <input class="timepicker master_input" type="text" Required id="end_time" name="workshop[0][end_time]" value="{{ $workshop->end_datetime->format('h:i:s') }}">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
                         </div>
+                        @endforeach
                         <div id="more_workshop"></div>
                         <div class="col-sm-12 col-xs-12">
-                          <button class="btn-block master-btn bgcolor--gray_mm" id="add_more_btn" type="button"><i class="fa fa-plus color--main"></i><span class="color--main">Add more</span></button>
+                          <button class="btn-block master-btn bgcolor--gray_mm" id="add_more_btn" type="button"><i class="fa fa-plus color--main"></i>
+                          <span class="color--main">Add more</span></button>
                         </div>
                         </div><br>
                       </li>
                       <li class="tab__content_item" id="surveys-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
+                          <?php $survey_number=1; ?>
+                          @foreach($event->surveys as $survey)
+                          <?php $question_number=1;?>
+                          <p style="text-align: center;background-color: #004272;color: azure;"> 
+                          @lang('keywords.surveyN') {{ $survey_number++ }}</p>
                           <div class="row">
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_name">@lang('keywords.Name')</label>
-                              <input class="master_input" type="text" id="survey_name" name="survey[0][name]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" id="survey_name" name="survey[{{ $survey_number-1 }}][name]" value="{{ $survey->name }}">
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label mandatory" for="appears_for">@lang('keywords.surveyFor')</label>
-                              <select class="master_input select2" id="appears_for" multiple="multiple" style="width:100%;"  name="survey[0][appears_for]">
+                              <select class="master_input select2" id="appears_for" multiple="multiple" style="width:100%;"  name="survey[{{ $survey_number-1 }}][appears_for]">
                                 <option value="1">All attend</option>
                                
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
+                          @foreach($survey->questions as $question)
                           <div class="col-xs-12">
                             <div class="master_field">
-                              <label class="master_label" for="survey_question">@lang('keywords.Squestion')</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][0][name]" Required><span class="master_message inherit">message content</span>
+                              <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.Squestion'){{ $question_number++ }}</label>
+                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[{{ $survey_number-1 }}][question][{{ $question_number-1 }}][name]" Required value="{{ $question->name }}">
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer1">@lang('keywords.answer')1</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[0][question][0][answer][0]" Required><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[{{ $survey_number-1 }}][question][{{ $question_number-1 }}][answer][0]" Required value="{{ $question->answers[0]->name }}">
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer2">@lang('keywords.answer')2</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer2" name="survey[0][question][0][answer][1]" Required><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer2" name="survey[{{ $survey_number-1 }}][question][{{ $question_number-1 }}][answer][1]" Required value="{{ $question->answers[1]->name }}">
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer3">@lang('keywords.answer')3</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer3" name="survey[0][question][0][answer][2]"><span class="master_message inherit ">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer3" name="survey[{{ $survey_number-1 }}][question][{{ $question_number-1 }}][answer][2]" value="{{(isset($question->answers[2]))? $question->answers[2]->name:''  }} ">
+                              <span class="master_message inherit ">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer4">@lang('keywords.answer')4</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[0][question][0][answer][3]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[{{ $survey_number-1 }}][question][{{ $question_number-1 }}][answer][3]" value="{{(isset($question->answers[3]))? $question->answers[3]->name:''  }} ">
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
+                          
+                          @endforeach
                         </div>
-                        <div id="more_Question"></div>
-                        <div style="text-align:end;">
-                          <button class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
+                        <div>
+                        
+                          </div>
+
+                        
+                        
+                        <div id="more_question_{{ $survey_number -1}}"></div>
+                           <div style="text-align:end">
+                            <button onclick="add_question({{ $survey_number-1 }},{{ $question_number }})" class="btn btn-default" id="add_more_question" type="button">
+                          <i class="fa fa-plus color--main"></i>
+                          <span style="color:#004272;">اضافة سؤال</span></button>
                         </div><br>
+                        @endforeach
                         <div id="more_Survey"></div>
                         <div class="col-md-12 col-sm-12 col-xs-12 no_padding">
                           <button class="btn-block master-btn" style="background-color:#004272;" id="add_more_survey" type="button"><i class="fa fa-plus color--main"></i><span style="color:white;">اضافة دراسة </span></button>
@@ -500,7 +547,8 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_1">@lang('keywords.link') 1 </label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]" >
+                              <span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
@@ -537,8 +585,8 @@
                       <div class="div" style="text-align:end;">
                         <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                         </button>
-                        <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
-                        </button>
+                       <a href="{{ route('events') }}"> <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+                        </button></a>
                       </div>
                       
                     </ul>
@@ -550,35 +598,7 @@
 </div>
 @endsection
 @section('js')
-<script type="text/javascript">
-  $( document ).ready(function() {
-      @if($event->use_ticketing_system == 1)
-      $("#paid_section").show();
-      @else
-    $("#paid_section").hide();
-    @endif
-    $("#paid_ticket").on('change',function(){
-        swal({
-        title: "Paid ticket", 
-        text: "Will you use our ticketing system?", 
-        showCancelButton: true,
-        closeOnConfirm: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        confirmButtonColor: "#004272"
-      },function(){
-        $("#paid_section").show();
-      })
-      
-    });
-  
-    $("#free_ticket").on('change',function(){
-      $("#paid_section").hide();
-    })
-    
-      
-      });
-    </script>
+
 
     <script type="text/javascript">
       var listAr = [];
@@ -823,7 +843,7 @@
                             </div>
                             <div class="col-xs-6">
                               <div class="master_field">
-                                <label class="master_label mandatory" for="Specialties">@lang('keywords.specail')</label>
+                                <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
                                 <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]">
                                    @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
@@ -881,7 +901,7 @@
     
       function add_question(value,question){
         var question_id="more_question_"+value;
-        var question = $("#"+question_id+" > div").length+1;
+        var question = $("#"+question_id+" > div").length+question;
        
           $(`#more_question_${value}`).append(`
                            <div class="row">
@@ -922,11 +942,11 @@
       $(document).ready(function(){
        var current_count_question = 0;
        var next_count_question = 0;
-       var current_count_survey = 0;
+       var current_count_survey = {{ $survey_number }};
        var next_count_survey = 0;
        $("#add_more_question").on('click',function(){
          
-         next_count_question = current_count_question+1;
+         next_count_question = current_count_question;
          current_count_question+=1;
          $("#more_Question").append(
                           `
@@ -967,8 +987,8 @@
        });
        $("#add_more_survey").on('click',function(){
           
-         next_count_survey =current_count_survey +1;
-       next_count_question = 0;
+         next_count_survey = current_count_survey;
+       next_count_question = 1;
        current_count_survey +=1;
        
             $("#more_Survey").append(` 
@@ -1023,7 +1043,8 @@
                            </div>
                             <div id="more_question_${next_count_survey}"></div>
                            <div style="text-align:end">
-                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
+                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button">
+                            <i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
                            </div>
                            <br>
                            `
@@ -1071,4 +1092,33 @@ var event_long;
         });
 
 </script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+      @if($event->use_ticketing_system == 1)
+      $("#paid_section").show();
+      @else
+    $("#paid_section").hide();
+    @endif
+    $("#paid_ticket").on('change',function(){
+        swal({
+        title: "Paid ticket", 
+        text: "Will you use our ticketing system?", 
+        showCancelButton: true,
+        closeOnConfirm: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        confirmButtonColor: "#004272"
+      },function(){
+        $("#paid_section").show();
+      })
+      
+    });
+  
+    $("#free_ticket").on('change',function(){
+      $("#paid_section").hide();
+    })
+    
+      
+      });
+    </script>
 @endsection

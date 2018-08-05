@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Helper;
 use App\Users;
+use Session;
 
 class OffersAndDealsController extends Controller
 {
@@ -78,7 +79,8 @@ class OffersAndDealsController extends Controller
             // }
         }
         $data['offers']=Offer::all();
-        return view('offersanddeals::offers_and_deals.index',$data);
+        Session::flash('success', 'Offer Added successfully! تم أضافه العرض بنجاح');
+        return redirect('/offers_and_deals');
     }
 
     /**
@@ -191,8 +193,8 @@ class OffersAndDealsController extends Controller
                 'offer_category_id'=>$cat
             ]);
         }
-        $data['offers']=Offer::all();
-        return view('offersanddeals::offers_and_deals.index',$data);
+        Session::flash('success', 'Offer Updated successfully! تم تعديل العرض بنجاح');
+        return redirect('/offers_and_deals');
     }
 
     /**
@@ -208,6 +210,7 @@ class OffersAndDealsController extends Controller
         $id = $request->id;
         Offer::destroy($id);
         OfferOfferCategory::where('offer_id',$id)->delete();
+        return redirect()->back();
     }
 
     public function deleteSelected(Request $request)
@@ -218,5 +221,6 @@ class OffersAndDealsController extends Controller
             Offer::destroy($id);
             OfferOfferCategory::where('offer_id',$id)->delete(); 
         }
+        return redirect()->back();
     }
 }

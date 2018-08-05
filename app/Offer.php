@@ -39,7 +39,7 @@ class Offer extends Model
 
     public function user()
     {
-    return $this->belongsTo('App\Users', 'sponsor_id');
+    return $this->belongsTo('App\Users', 'sponsor_id')->withDefault();
     }
 
 }
