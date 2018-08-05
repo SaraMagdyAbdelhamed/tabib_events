@@ -22,6 +22,7 @@ use App\EventBackend;
 use App\OfferCategory;
 use App\Offer;
 use App\Category;
+use App\EventCategory;
 
 class ReportsAndStatisticsController extends Controller
 {
@@ -163,7 +164,7 @@ class ReportsAndStatisticsController extends Controller
     $data['organizers'] = Users::whereHas('rules' , function($q){
         $q->where('rule_id',5);
     })->get();
-    $data['categories'] = EventCategory::all();
+    $data['categories'] = Category::all();
     $data['events'] = EventBackend::all() ;
     return view('reportsandstatistics::event_report',$data);
     }
@@ -205,7 +206,7 @@ class ReportsAndStatisticsController extends Controller
         $data['organizers'] = Users::whereHas('rules' , function($q){
             $q->where('rule_id',5);
         })->get();
-        $data['categories'] = EventCategory::all();
+        $data['categories'] = Category::all();
 
         foreach($data['events'] as $event)
         {
