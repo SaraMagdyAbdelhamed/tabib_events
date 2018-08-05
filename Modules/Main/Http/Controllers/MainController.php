@@ -23,7 +23,7 @@ use App\Fixed;
 use App\Entity;
 use App\EntityLocalization;
 use App\SystemSetting;
-use App\EventCategory;
+use App\Category;
 use App\FamousCategory;
 use App\Sponsor;
 use App\Trend;
@@ -156,7 +156,7 @@ class MainController extends Controller
     public function event_category()
     {
         return view('main::event_category')
-            ->with('events', EventCategory::all());
+            ->with('events', Category::all());
     }
 
     // Add new event category
@@ -167,7 +167,7 @@ class MainController extends Controller
         switch($id) {
             /** Event Categories */
             case 1:
-                $event = new EventCategory;
+                $event = new Category();
                 $entity_id = 1;
                 $image_folder_path = 'event_category';
                 break;
@@ -255,7 +255,7 @@ class MainController extends Controller
         switch($id) {
             /** Event Categories */
             case 1:
-                $event = EventCategory::find($request->id);
+                $event = Category::find($request->id);
                 $entity_table = 'categories';
                 $image_folder_path = 'event_category';
                 break;
@@ -344,7 +344,7 @@ class MainController extends Controller
         switch($op) {
             /** Event Categories */
             case 1:
-                $model = new EventCategory;
+                $model = new Category;
                 $entity_id = 1;
                 break;
 
@@ -400,7 +400,7 @@ class MainController extends Controller
         switch($op) {
             /** Event Categories */
             case 1:
-                $model = new EventCategory;
+                $model = new Category;
                 $entity_id = 1;
                 break;
 

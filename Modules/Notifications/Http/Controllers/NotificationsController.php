@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-use App\EventCategory;
+use App\Category;
 use App\Users;
 use App\UserInfo;
 use App\EventBackend;
