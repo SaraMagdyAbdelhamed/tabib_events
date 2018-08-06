@@ -11,6 +11,8 @@ use App\Users;
 use App\Specialization;
 use App\Event;
 use App\EventBackend;
+use App\EventCategory; 
+
 use App\EventMedia;
 use App\EventOwner;
 use App\EventSpecialization;

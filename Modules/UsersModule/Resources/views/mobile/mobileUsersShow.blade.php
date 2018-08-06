@@ -5,7 +5,7 @@
     <!-- =============== Custom Content ====================-->
     <div class="row">
       <div class="col-lg-12">
-        <div class="coverglobal text-center bshadow--2" style="background:  url( '../img/covers/dummy2.jpg') ; background-position:center center ; background-repeat:no-repeat ;background-size:cover;"><span></span>
+        <div class="coverglobal text-center bshadow--2" style="background:  {{ asset( '/img/covers/dummy2.jpg') }} ; background-position:center center ; background-repeat:no-repeat ;background-size:cover;"><span></span>
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
