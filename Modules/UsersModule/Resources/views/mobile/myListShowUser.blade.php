@@ -9,7 +9,7 @@
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
-                <div class="text-xs-center cont-avatar"><a href="user_profile.html"><img class="coverglobal__avatar bradius--circle" src="../img/avaters/male.jpg">
+                <div class="text-xs-center cont-avatar"><a href="user_profile.html"><img class="coverglobal__avatar bradius--circle" src="{{ $user->photo ? asset($user->photo) : '' }}">
                     <h3 class="coverglobal__title  ">
                         {{ $user->username ? : __('keywords.not') }}    
                     </h3><small class="coverglobal__slogan  "></small></a></div>

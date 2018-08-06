@@ -164,9 +164,10 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         // Delete single & multi
         Route::post('/doctors/destroy/one', '\Modules\UsersModule\Http\Controllers\DoctorsController@destroy')->name('doctor.user.destroy');
         Route::post('/doctors/destroy/all', '\Modules\UsersModule\Http\Controllers\DoctorsController@destroy_all')->name('doctor.user.destroy.all');
+        Route::get('/doctors/filter', '\Modules\UsersModule\Http\Controllers\DoctorsController@filter')->name('doctor.filter');
 
         Route::get('/users_backend', '\Modules\UsersModule\Http\Controllers\UsersController@index_backend')->name('users_backend');
-        Route::get('/mobile_filter', '\Modules\UsersModule\Http\Controllers\UsersController@mobile_filter')->name('mobile_filter');
+        // Route::get('/mobile_filter', '\Modules\UsersModule\Http\Controllers\UsersController@mobile_filter')->name('mobile_filter');
         
 
         Route::get('/test', '\Modules\UsersModule\Http\Controllers\UsersController@test');

@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class GeoRegion extends Model
 {
     // Table attributes
-    protected $id = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'geo_regions';
+    protected $appends = ['name'];
     protected $fillable = ['name', 'city_id', 'application_id'];
 
     /** Relations **/
@@ -22,5 +23,10 @@ class GeoRegion extends Model
 
     public function currentRegion($id) {
         return $this->id == $id ? true : false;
+    }
+
+    // Attributes
+    public function getNameAttribute(){
+        return \App::isLocale('en') ? $this->attributes['name'] : \Helper::localization('geo_regions', 'name', $this->id, 2, $this->attributes['name']);
     }
 }

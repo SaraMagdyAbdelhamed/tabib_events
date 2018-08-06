@@ -77,7 +77,6 @@ class Helper
             $q->where('field', $field_name)->where('item_id', $item_id)->where('lang_id', $lang_id);
         }])->first();
 
-
         $result = isset($localization->localizations[0]) ? $localization->localizations[0]->value : $default;
         return $result;
     }

@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use DB;
 use Session;
 use Validator;
 use Illuminate\Support\Facades\Input;
@@ -56,7 +57,7 @@ class DoctorsController extends Controller
                 ->where('is_backend', 1);
         })->get();
 
-
+        
         //  get doctors(users) registred in my list
         $data['myList'] = Users::whereHas('rules', function ($q) {
             // filter users through table `user_rules`
@@ -68,8 +69,148 @@ class DoctorsController extends Controller
 
         $data['countries'] = Countries::all();
         $data['cities'] = Cities::all();
-        // $data['age_ranges'] = Age_Ranges::all();
+        $data['specs'] = DoctorSpecialization::all();
+
         return view('usersmodule::mobile.mobile_users', $data);
+    }
+
+    public function filter(Request $request)
+    {
+        // dd($request->all());
+        $flag = $request->flag;         // 1 => mobile users, 2 => general list doctors, 3 => my list doctors
+        $country_id = $request->country;
+        $city_id = $request->city;
+        $spec_id = $request->specialization;
+        $gender_id = isset($request->gender) ? $request->gender : null;
+
+        // Filter User by country, city and gender first, then filter by specialization 
+        if (!is_null($country_id) || !is_null($city_id) || !is_null($spec_id) || !is_null($gender_id)) {
+            $users = new Users;  // create new object of users.
+            
+            // Filter by country
+            if (isset($country_id) && !empty($country_id)) {
+                $users = $users->where('country_id', $country_id);
+            }
+
+            // Filter by city
+            if (isset($city_id) && !empty($city_id)) {
+                $users = $users->where('city_id', $city_id);
+            }
+
+            // Filter by gender
+            if (isset($gender_id) && !empty($gender_id) && $gender_id != null) {
+                $users = $users->where('gender_id', $gender_id);
+            }
+
+            // Filter by specialization
+            if (isset($spec_id) && !empty($spec_id)) {
+                $users = $users->whereHas('userInfo', function ($q) use ($spec_id) {
+                    $q->where('specialization_id', $spec_id);
+                });
+            }
+
+        } else {
+            return redirect()->back();
+        }
+
+        // filter is applied on each user type
+        switch ($request->flag) {
+            case 1:
+                $data = $this->_userTypes($users, 1);
+                break;
+
+            case 2:
+                $data = $this->_userTypes($users, 2);
+                break;
+
+            case 3:
+                $data = $this->_userTypes($users, 3);
+                break;
+
+            default:
+                Session::flash('warning', 'Filter Error! حدث خطأ في الفلتر');
+                return redirect('/users_mobile');
+                break;
+        }
+
+        $data['countries'] = Countries::all();
+        $data['cities'] = Cities::all();
+        $data['specs'] = DoctorSpecialization::all();
+
+        return view('usersmodule::mobile.mobile_users', $data);
+    }
+
+    /**
+     *  Pass a collection of filtered users by [country, city, gender or specialization] 
+     *  to be filtered by user type
+     * 
+     *  @param  $users  Collection  filtered users collection   default: NULL
+     *  @param  $flag   Int         1 => mobile_users, 2 => general_list, 3 => my_list
+     */
+    private function _userTypes($users = null, $flag)
+    {
+        if ($users != null) {
+            switch ($flag) {
+                // In case of mobile users is being filtered
+                case 1:
+                    $users1 = $users;
+                    $users2 = $users3 = new Users;
+                    break;
+    
+                // In case of general list doctors is being filtered
+                case 2:
+                    $users2 = $users;
+                    $users1 = $users3 = new Users;
+                    break;
+    
+                // In case of my list doctors is being filtered
+                case 3:
+                    $users3 = $users;
+                    $users1 = $users2 = new Users;
+                    break;
+
+                default:
+                    $users1 = $users2 = $users3 = new Users;
+                    break;
+            }
+        } else {
+            $users1 = $users2 = $users3 = new Users;
+        }
+
+
+        /**  get doctors(users) registred through mobile app */
+        $data['mobiles'] = $users1->whereHas('rules', function ($q) {
+            // filter users through table `user_rules`
+            $q->where('rule_id', 2);
+        })->whereHas('userInfo', function ($q) {
+            // filter users through table `user_info` 
+            $q->where('is_profile_completed', 0)
+                ->where('is_backend', 0);
+        })->get();
+
+
+        /**  get doctors(users) registred through backend. **/
+        $data['general'] = $users2->whereHas('rules', function ($q) {
+            // filter users through table `user_rules`
+            $q->where('rule_id', 2);
+        })->whereHas('userInfo', function ($q) {
+            // filter users through table `user_info` 
+            $q->where('is_profile_completed', 0)
+                ->where('is_backend', 1);
+        })->get();
+
+
+        //  get doctors(users) registred in my list
+        $data['myList'] = $users3->whereHas('rules', function ($q) {
+            // filter users through table `user_rules`
+            $q->where('rule_id', 2);
+        })->whereHas('userInfo', function ($q) {
+            // filter users through table `user_info` 
+            $q->where('is_profile_completed', 1);
+        })->get();
+
+        // return mobile_users, general_list_doctors and my_list_doctors
+        return $data;
     }
 
     public function create()
@@ -159,13 +300,22 @@ class DoctorsController extends Controller
     public function destroy(Request $request)
     {
         $user = Users::find($request->id);
-        $user->userInfo()->delete();
-        
-        if ( $user->rules ) {
-            $user->rules()->detach($user->id);
-        }
 
-        $user->delete();
+        DB::beginTransaction();
+        try {
+            if (isset($user->userInfo)) {
+                $user->userInfo()->delete();
+            }
+
+            if (isset($user->rules)) {
+                $user->rules()->detach($user->id);
+            }
+
+            $user->delete();
+            DB::commit();
+        } catch (Exception $ex) {
+            DB::rollback();
+        }
 
         return response()->json(['success', 'User deleted!']);
     }
@@ -173,14 +323,28 @@ class DoctorsController extends Controller
     public function destroy_all(Request $request)
     {
         foreach ($request->ids as $id) {
-            $user = Users::find($id);
-            $user->userInfo()->delete();
-        
-            if ( $user->rules ) {
-                $user->rules()->detach($user->id);
+
+            // skip current itteration if id = ''
+            if ( empty($id) ) {
+                continue;
             }
-        
-            $user->save();
+
+            $user = Users::find($id);
+            DB::beginTransaction();
+            try {
+                if (isset($user->userInfo)) {
+                    $user->userInfo()->delete();
+                }
+
+                if (isset($user->rules)) {
+                    $user->rules()->detach($user->id);
+                }
+
+                $user->delete();
+                DB::commit();
+            } catch (Exception $ex) {
+                DB::rollback();
+            }
         }
 
         return response()->json(['success', 'Users deleted!']);
@@ -247,7 +411,6 @@ class DoctorsController extends Controller
         }
     }
 
-
     /**
      * @param   $id     route model binding => user's id
      * @return  view    if not found: redirect to /users_mobile list, if found show him/her.
@@ -264,7 +427,7 @@ class DoctorsController extends Controller
             return redirect('/users_mobile');
         } else {
             // user found
-            $data['user'] = Users::whereHas('rules', function ($q) {
+            $data['user'] = Users::where('id', $id)->whereHas('rules', function ($q) {
                 // filter users through table `user_rules`
                 $q->where('rule_id', 2);
             })->whereHas('userInfo', function ($q) {
@@ -314,7 +477,7 @@ class DoctorsController extends Controller
         $regions = Cities::find($request->id)->regions;
         return response()->json(['regions' => $regions]);
     }
-    
+
 
     /** Edit form for a general list doctor */
     public function generalDoctorEdit($id)
@@ -379,11 +542,11 @@ class DoctorsController extends Controller
                 $doctor->mobile = $request->mobile1;
                 $doctor->country_id = $request->doctorCountry;
                 $doctor->city_id = $request->doctorCity;
-                
-                if ( $request->password ) {
+
+                if ($request->password) {
                     $doctor->password = bcrypt($request->password);
                 }
-                
+
                 $doctor->gender_id = $request->gender;
                 $doctor->is_active = $request->activation ? : 0;
             
@@ -431,25 +594,25 @@ class DoctorsController extends Controller
     }
 
     /** Import excel file to DB */
-    public function storeExcel(Request $request) 
+    public function storeExcel(Request $request)
     {
-        if ( $request->hasfile('excel_file') ) {
+        if ($request->hasfile('excel_file')) {
             $users = (new FastExcel)->import($request->excel_file);
 
-            foreach($users as $user) {
+            foreach ($users as $user) {
                 // Insert new doctor into users
                 try {
                     // Creating new user
                     $doctor = new Users;
-                    $doctor->username   = $user["name"];
-                    $doctor->email      = $user["email"];
-                    $doctor->tele_code  = $user["tele_code"];
-                    $doctor->mobile     = $user["mobile1"];
+                    $doctor->username = $user["name"];
+                    $doctor->email = $user["email"];
+                    $doctor->tele_code = $user["tele_code"];
+                    $doctor->mobile = $user["mobile1"];
                     $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
-                    $doctor->city_id    = Helper::getIdOrInsert(Cities::class, $user['city']);
-                    $doctor->password   = bcrypt($request->password);
-                    $doctor->gender_id  = Helper::getIdOrInsert(Genders::class, $user['gender']);
-                    $doctor->is_active  = strtolower($user['is_active']) == 'yes' ? 1 : 0;
+                    $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city']);
+                    $doctor->password = bcrypt($request->password);
+                    $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
+                    $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
                     
                     // Insert doctor's image if exists
                     // if ($request->hasfile('doctorImage')) {
@@ -463,14 +626,14 @@ class DoctorsController extends Controller
 
                     // Insert into `user_info`
                     $userInfo = new UserInfo;
-                    $userInfo->user_id      = $doctor->id;
-                    $userInfo->mobile2      = $user['mobile2']  ? : null;   // it could be null
-                    $userInfo->mobile3      = $user['mobile3']  ? : null;   // it could be null
-                    $userInfo->region_id    = $user['region'] ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['region']) : '';
-                    $userInfo->address      = $user['address'];
-                    $userInfo->specialization_id    = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : '';  // it could be null
+                    $userInfo->user_id = $doctor->id;
+                    $userInfo->mobile2 = $user['mobile2'] ? : null;   // it could be null
+                    $userInfo->mobile3 = $user['mobile3'] ? : null;   // it could be null
+                    $userInfo->region_id = $user['region'] ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['region']) : '';
+                    $userInfo->address = $user['address'];
+                    $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : '';  // it could be null
                     $userInfo->is_profile_completed = 0;
-                    $userInfo->is_backend   = 1;
+                    $userInfo->is_backend = 1;
                     $userInfo->save();  // save new user's info
 
                     // Insert into `users_rules`
@@ -482,7 +645,7 @@ class DoctorsController extends Controller
                     return redirect()->back();
                 }
             }
-            
+
 
         } else {
             Session::flash('warning', 'Error uploading excel file! خطأ في تحميل ملف الاكسيل');
