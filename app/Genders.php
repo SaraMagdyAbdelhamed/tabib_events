@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Helper;
+
 class Genders extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'genders';
+    protected $appends = ['name'];
     public $timestamps = false;
 
     public function users()
@@ -17,7 +19,6 @@ class Genders extends Model
    //localization
     public function getNameAttribute($value)
     {
-        $result = (\App::isLocale('en')) ? Helper::localization('genders','name',$this->id,1) : Helper::localization('genders','name',$this->id,2);
-        return ($result==null)? $value : $result;
+        return \App::isLocale('en') ? $this->attributes['name'] : Helper::localization('genders', 'name', $this->id, 2, $this->attributes['name']);
     }
 }

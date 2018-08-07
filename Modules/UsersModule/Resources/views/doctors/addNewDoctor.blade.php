@@ -115,7 +115,7 @@
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="master_field">
                             <label class="master_label" for="doctor_mobile">@lang('keywords.mobile1')</label>
-                            <input class="master_input" type="number" id="doctor_mobile" name="mobile1">
+                            <input class="master_input" type="number" id="doctor_mobile" min="0" name="mobile1">
                             @if ( $errors->has('mobile1') )
                             <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>    
                         @endif 
@@ -124,7 +124,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                         <div class="master_field">
                             <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
-                            <input class="master_input" type="number" id="doctor_mobile2" name="mobile2">
+                            <input class="master_input" type="number" id="doctor_mobile2" min="0" name="mobile2">
                             @if ( $errors->has('mobile2') )
                                 <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>    
                             @endif 
@@ -133,7 +133,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                         <div class="master_field">
                             <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
-                            <input class="master_input" type="number" id="doctor_mobile3" name="mobile3">
+                            <input class="master_input" type="number" id="doctor_mobile3" min="0" name="mobile3">
                             @if ( $errors->has('mobile3') )
                                 <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>    
                             @endif 
@@ -168,7 +168,6 @@
                     <div class="master_field">
                         <label class="master_label mandatory" for="doctor_Region">@lang('keywords.region')</label>
                         <select name="doctorRegion" class="master_input select2" id="doctor_Region" style="width:100%;" disabled="true">
-                            <option selected disabled>-- @lang('keywords.selectRegion') --</option>
                             {{-- options generated using ajax call --}}
 
                         </select>
@@ -327,6 +326,9 @@
 
         // clicking on any country option will trigger an AJAX call to get all cities related to its country.
         $("#doctor_country").change(function(){
+
+            $("#doctor_city option").remove();
+
             var id = $(this, ':selected').val();
             // console.log(id);
 
@@ -341,6 +343,8 @@
                         '_token': '{{ csrf_token() }}',
                     },
                     success: function(response) {
+                        var message = "{{ __('keywords.selectCountry') }}";
+                        $('#doctor_city').append("<option disabled selected>-- "+ message +" --</option>");
 
                         // foreach response values, append options
                         $.each( response, function(key, value){
@@ -357,6 +361,8 @@
 
         // clicking on any city option will trigger an AJAX call to get all regions related to its city.
         $("#doctor_city").change(function(){
+
+            $("#doctor_Region option").remove();
             var id = $(this, ':selected').val();
             // console.log(id);
 
@@ -371,9 +377,12 @@
                         '_token': '{{ csrf_token() }}',
                     },
                     success: function(response) {
+                        var message = "{{ __('keywords.selectRegion') }}";
+                        $("#doctor_Region").append("<option disabled selected>-- "+ message +" --</option>");
                         // foreach response values, append options
                         $.each( response, function(key, value){
                             for(var key in value) {
+                                
                                 $("#doctor_Region").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
                             

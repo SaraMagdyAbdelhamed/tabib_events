@@ -8,8 +8,10 @@ class Cities extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'geo_cities';
+    protected $appends = ['name'];
     public $timestamps = false;
 
+    // Relations
     public function country()
     {
         return $this->belongsTo('App\Countries', 'country_id');
@@ -19,9 +21,14 @@ class Cities extends Model
     {
         return $this->hasMany('App\Users', 'city_id');
     }
-    
-    public function regions() 
+
+    public function regions()
     {
         return $this->hasMany('App\GeoRegion', 'city_id');
+    }
+
+    // Attributes
+    public function getNameAttribute() {
+        return \App::isLocale('en') ? $this->attributes['name'] : \Helper::localization('geo_cities', 'name', $this->id, 2, $this->attributes['name']);
     }
 }
