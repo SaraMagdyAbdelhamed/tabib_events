@@ -90,7 +90,7 @@ class NotificationsService
         ////////////////////////////////////////////////////////////////////////////////
 
         $ctx = stream_context_create();
-        stream_context_set_option($ctx, 'ssl', 'local_cert',  public_path() . "EventokomPushCert.pem");
+        stream_context_set_option($ctx, 'ssl', 'local_cert',  public_path() . "TabibEventPush.pem");
         //stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
 
         // Open a connection to the APNS server
