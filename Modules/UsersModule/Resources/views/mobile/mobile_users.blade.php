@@ -785,7 +785,7 @@
                           </a>
 
                           {{-- Delete button --}}
-                          <a href="#" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white ">
+                          <a href="#" data-id="{{ $doctor->id }}" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} deleteRecord action-btn bgcolor--fadebrown color--white ">
                             <i class="fa  fa-trash-o"></i>
                           </a>
 
