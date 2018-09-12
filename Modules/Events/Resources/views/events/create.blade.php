@@ -217,7 +217,7 @@
                 <div class="main-section">
                   <div id="fileList"></div>
                   <div class="form-group">
-                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   >
+                    <input class="uploader__file-input" id="file-1" type="file" name="event[image]"   >
                     <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
                   </div>
                 </div>
