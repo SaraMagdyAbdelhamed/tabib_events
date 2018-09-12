@@ -256,7 +256,7 @@
                           </a>
 
                           {{-- Delete button --}}
-                          <a href="#" data-class="dataTableTriggerId_001" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white deleteRecord">
+                          <a href="#" data-class="dataTableTriggerId_001" data-id="{{ $doctor->id }}" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white deleteRecord">
                             <i class="fa  fa-trash-o"></i>
                           </a>
 
