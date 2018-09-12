@@ -117,7 +117,18 @@ class EventsController extends Controller
         }
 
         if (isset($request['event']['youtube'])) {
+
+
             foreach ($request['event']['youtube'] as $youtube) {
+                if (strpos($youtube, 'youtube') == false) 
+                {
+                    return redirect()->back();
+                }
+                elseif(strpos($youtube, 'watch') == false)
+                {
+                    return redirect()->back();
+                }
+                preg_replace("watch","embed",$youtube);
                 EventMedia::create([
                     "event_id" => $event->id,
                     "link" => $youtube,
