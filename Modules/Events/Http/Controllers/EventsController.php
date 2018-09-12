@@ -70,7 +70,7 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
-        //  dd($request->all());
+          dd($request->all());
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();

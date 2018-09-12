@@ -217,7 +217,7 @@
                 <div class="main-section">
                   <div id="fileList"></div>
                   <div class="form-group">
-                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   onchange="updateList()" required>
+                    <input class="inputfile inputfile-1" id="file-1" type="file" name="event[image]"   onchange="updateList()" multiple="">
                     <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
                   </div>
                 </div>
