@@ -113,7 +113,7 @@
             <tbody>
               @if ( isset($events) && !empty($events) )
                   @foreach ($events as $event)
-                  <tr>
+                  <tr data-id="{{$event->id}}">
                     <td><span class="cellcontent"></span></td>
                     <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                     <td><span class="cellcontent">{{ $event->name    ? : __('keywords.not') }}</span></td>
@@ -148,7 +148,7 @@
                         </a>
                         
                         {{-- Delete Event --}}
-                        <a href="#"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
+                        <a   class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
                           <i class = "fa  fa-trash-o"></i>
                         </a>
 
@@ -322,4 +322,122 @@
   </div><br>
 </div>
             
+@endsection
+
+@section('js')
+<script>
+$(document).ready(function(){
+ $('#deleteSelected').click(function(){
+            var allVals = [];                   // selected IDs
+            var token = '{{ csrf_token() }}';
+
+            // push cities IDs selected by user
+            $('input.input-in-table:checked').each(function() {
+                allVals.push( $(this).data("id") );
+            });
+
+            // check if user selected nothing
+            if(allVals.length <= 0) {
+            confirm('إختر حدث علي الاقل لتستطيع حذفه');
+            } else {
+            var ids = allVals;    // join array of IDs into a single variable to explode in controller
+            var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
+            var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
+
+            swal({
+            title: title,
+            text: text,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#281160',
+            confirmButtonText: "{{ \App::isLocale('en') ? 'Yes, delete it!' : 'نعم احذفه' }}",
+            cancelButtonText: "{{ \App::isLocale('en') ? 'Cancel' : 'إالغاء' }}",
+            closeOnConfirm: false
+            },
+            function(isConfirm){
+                if (isConfirm){
+                    
+                $.ajax(
+                {
+                    url: "{{ route('event_backend.deleteSelected') }}",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        "ids": ids,
+                        "_method": 'POST',
+                        "_token": token,
+                    },
+                    success: function (data)
+                    {
+                     // alert(allVals);
+                      // fade out selected checkboxes after deletion
+                        $.each(allVals, function( index, value ) {
+                            $('tr[data-id='+value+']').fadeOut();
+                        });
+                       
+
+                        
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
+                 swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                } else {
+                swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                }
+            });
+            }
+        });
+
+        // delete a row
+        $('.deleteRecord').click(function(){
+            
+            var id = $(this).data("id");
+            var token = '{{ csrf_token() }}';
+            var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
+            var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
+
+            swal({
+            title: title,
+            text: text,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#281160',
+            confirmButtonText: "{{ \App::isLocale('en') ? 'Yes, delete it!' : 'نعم احذفه' }}",
+            cancelButtonText: "{{ \App::isLocale('en') ? 'Cancel' : 'إالغاء' }}",
+            closeOnConfirm: false
+            },
+            function(isConfirm){
+                if (isConfirm){
+                        
+                $.ajax(
+                {
+                    url: "{{ route('event_backend.destroy') }}",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        "_method": 'POST',
+                        "_token": token,
+                    },
+                    success: function(data)
+                    {
+                       
+                        $('tr[data-id='+id+']').fadeOut();
+                    },
+                        error: function(response) {
+                        console.log(response);
+                    }
+                });
+                 swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                    
+                } else {
+                    swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                }
+            });
+        });
+
+      });
+</script>
 @endsection
