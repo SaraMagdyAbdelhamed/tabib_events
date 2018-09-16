@@ -148,7 +148,7 @@
                         </a>
                         
                         {{-- Delete Event --}}
-                        <a   class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
+                        <a    href="#" data-id="{{ $event->id }}" class= "{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
                           <i class = "fa  fa-trash-o"></i>
                         </a>
 
@@ -371,6 +371,7 @@ $(document).ready(function(){
                     {
                      // alert(allVals);
                       // fade out selected checkboxes after deletion
+                      swal("تم الحذف!", "تم الحذف بنجاح", "success");
                         $.each(allVals, function( index, value ) {
                             $('tr[data-id='+value+']').fadeOut();
                         });
@@ -382,7 +383,7 @@ $(document).ready(function(){
                         console.log(response);
                     }
                 });
-                 swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                
                 } else {
                 swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
                 }
@@ -423,14 +424,14 @@ $(document).ready(function(){
                     },
                     success: function(data)
                     {
-                       
+                      swal("تم الحذف!", "تم الحذف بنجاح", "success");
                         $('tr[data-id='+id+']').fadeOut();
                     },
                         error: function(response) {
                         console.log(response);
                     }
                 });
-                 swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                
                     
                 } else {
                     swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
