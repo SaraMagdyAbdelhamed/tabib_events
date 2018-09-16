@@ -392,7 +392,7 @@ $(document).ready(function(){
 
         // delete a row
         $('.deleteRecord').click(function(){
-            
+            // alert('hi');
             var id = $(this).data("id");
             var token = '{{ csrf_token() }}';
             var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
