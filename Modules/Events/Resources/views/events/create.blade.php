@@ -128,7 +128,7 @@
             <div class="col-xs-6">
               <div class="master_field">
                 <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
-                <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="event[special][]">
+                <select class="master_input select2" id="Specialties" multiple="multiple" style="width:100%;"  name="event[special][]" >
                   @foreach($specializations as $specialization)
                   <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                   @endforeach
@@ -141,7 +141,7 @@
             <div class="col-xs-6">
               <div class="master_field">
                 <label class="master_label mandatory" for="Category">@lang('keywords.eventCat')</label>
-                <select class="master_input select2" id="Category" multiple="multiple" style="width:100%;"  name="event[category][]">
+                <select class="master_input select2" id="Category" multiple="multiple" style="width:100%;"  name="event[category][]" required>
                   @foreach($categories as $category)
                   <option value="{{$category->id}}">{{$category->name}}</option>
                   @endforeach
@@ -369,7 +369,7 @@
                             <div class="master_field">
                               <label class="master_label" for="start_date">@lang('keywords.workshopStartDate')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="datepicker master_input" type="text" Required id="start_date" name="workshop[0][start_date]">
+                                <input class="datepicker master_input" type="text"  id="start_date" name="workshop[0][start_date]">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -377,7 +377,7 @@
                             <div class="master_field">
                               <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="timepicker master_input" type="text" Required id="start_time" name="workshop[0][start_time]">
+                                <input class="timepicker master_input" type="text"  id="start_time" name="workshop[0][start_time]">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -385,7 +385,7 @@
                             <div class="master_field">
                               <label class="master_label" for="end_date">@lang('keywords.workshopEndDate')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="datepicker master_input" type="text" Required id="end_date" name="workshop[0][end_date]">
+                                <input class="datepicker master_input" type="text"  id="end_date" name="workshop[0][end_date]">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -393,7 +393,7 @@
                             <div class="master_field">
                               <label class="master_label" for="end_time">@lang('keywords.workshopEndTime')</label>
                               <div class="bootstrap-timepicker">
-                                <input class="timepicker master_input" type="text" Required id="end_time" name="workshop[0][end_time]">
+                                <input class="timepicker master_input" type="text"  id="end_time" name="workshop[0][end_time]">
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -424,19 +424,19 @@
                           <div class="col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="survey_question">@lang('keywords.Squestion')</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][0][name]" Required><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][0][name]" ><span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer1">@lang('keywords.answer')1</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[0][question][0][answer][0]" Required><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[0][question][0][answer][0]" ><span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer2">@lang('keywords.answer')2</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer2" name="survey[0][question][0][answer][1]" Required><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer2" name="survey[0][question][0][answer][1]" ><span class="master_message inherit">message content</span>
                             </div>
                           </div>
                           <div class="col-xs-6">
@@ -873,7 +873,7 @@
                               <div class="master_field">
                                 <label class="master_label" for="start_date">@lang('keywords.workshopStartDate')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="datepicker master_input" type="text" placeholder="start date" Required id="start_date" name="workshop[${next_count}][start_date]">
+                                  <input class="datepicker master_input" type="text" placeholder="start date"  id="start_date" name="workshop[${next_count}][start_date]">
                                 </div><span class="master_message inherit">message content</span>
                               </div>
                             </div>
@@ -881,7 +881,7 @@
                               <div class="master_field">
                                 <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="timepicker master_input" type="text" placeholder="start time" Required id="start_time" name="workshop[${next_count}][start_time]">
+                                  <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]">
                                 </div><span class="master_message inherit">message content</span>
                               </div>
                             </div>
@@ -889,7 +889,7 @@
                               <div class="master_field">
                                 <label class="master_label" for="end_date">@lang('keywords.workshopEndDate')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="datepicker master_input" type="text" placeholder="end date" Required id="end_date" name="workshop[${next_count}][end_date]">
+                                  <input class="datepicker master_input" type="text" placeholder="end date"  id="end_date" name="workshop[${next_count}][end_date]">
                                 </div><span class="master_message inherit">message content</span>
                               </div>
                             </div>

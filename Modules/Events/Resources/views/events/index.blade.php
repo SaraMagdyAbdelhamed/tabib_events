@@ -23,7 +23,7 @@
         <div class="filter__btns"><a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>@lang('keywords.filter')</a></div>
         <div class="bottomActions__btns">
           {{-- Delete Selected --}}
-          <a class="master-btn #" href="#" id="deleteSelected">@lang('deleteSelected')</a>
+          <a class="master-btn "  id="deleteSelected">@lang('deleteSelected')</a>
         </div>
         <div class="remodal" data-remodal-id="filter-users" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
           <form action="{{ route('events.filter') }}" method="POST">

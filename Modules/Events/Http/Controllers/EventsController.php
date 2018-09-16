@@ -25,6 +25,7 @@ use App\SurveyQuestionAnswer;
 use App\Workshop;
 use App\WorkshopOwner;
 use App\WorkshopSpecialization;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Kreait\Firebase;
@@ -70,7 +71,23 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
-           dd($request->all());
+            // dd($request->all());
+        $validation = Validator::make( $request->all(), [
+            'event.name' => 'required|min:2|max:100',
+            'event.description' => 'required|min:2|max:250',
+            'event.place' => 'required',
+            // 'event.long' => 'required',
+            // 'event.lat' => 'required',
+            'event.image' => 'required',
+            'event.start_date' => 'required',
+            'event.end_date' => 'required',
+            'event.start_time' => 'required',
+            'event.end_time' => 'required'
+        ]);
+        if ( $validation->fails() ) {
+            // change below as required
+            return \Redirect::back()->withInput()->withErrors( $validation->messages() );
+        }
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
@@ -406,6 +423,22 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+        $validation = Validator::make( $request->all(), [
+            'event.name' => 'required|min:2|max:100',
+            'event.description' => 'required|min:2|max:250',
+            'event.place' => 'required',
+            // 'event.long' => 'required',
+            // 'event.lat' => 'required',
+            // 'event.image' => 'required',
+            'event.start_date' => 'required',
+            'event.end_date' => 'required',
+            'event.start_time' => 'required',
+            'event.end_time' => 'required'
+        ]);
+        if ( $validation->fails() ) {
+            // change below as required
+            return \Redirect::back()->withInput()->withErrors( $validation->messages() );
+        }
         $event=Event::find($id);
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
