@@ -24,19 +24,19 @@
                     <form id="offers_edit" action="{{ route('offers_and_deals.update',$offer->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
                       {{ csrf_field() }}
                       <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
                             <label class="master_label" for="offer_title"> @lang('keywords.title')</label>
                             <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" value="{{$offer->name}}"><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
                             <label class="master_label" for="offer_description">@lang('keywords.offerDescription')</label>
                             <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" >{{$offer->description}}</textarea><span class="master_message color--fadegreen">validation message will be here</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
                             <label class="master_label mandatory" for="offer_category">@lang('keywords.offerCategory')</label>
                             <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category[]">
@@ -60,7 +60,7 @@
                             </select><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                           <div class="col-xs-6">
+                           <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
                             <label class="master_label mandatory" for="offer_sponsor">@lang('keywords.offerSponsor')</label>
                             @if($isSponsor)
@@ -82,19 +82,19 @@
                             </select><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="start_date"> @lang('keywords.startDate')</label>
-                            <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text" Required id="start_date" name="start_date" value="{{$offer->start_datetime}}">
+                            <label class="master_label" for="start_date_"> @lang('keywords.startDate')</label>
+                            <div class="">
+                              <input class=" master_input" type="text" Required id="start_date_" name="start_date_" value="{{$offer->start_datetime}}">
                             </div><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="end_date"> @lang('keywords.endDate')</label>
-                            <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text" Required id="end_date" name="end_date" value="{{$offer->end_datetime}}">
+                            <label class="master_label" for="end_date_"> @lang('keywords.endDate')</label>
+                            <div class="">
+                              <input class="datepicker master_input" type="text" Required id="end_date_" name="end_date_" value="{{$offer->end_datetime}}">
                             </div><span class="master_message inherit">message content</span>
                           </div>
                         </div>
@@ -131,5 +131,10 @@
                   </div>
                 </div><br>
               </div>
-            
+      <script type="text/javascript">
+      $(function(){
+        dateRange_2('start_date_','end_date_')
+
+      })
+      </script>
 @endsection

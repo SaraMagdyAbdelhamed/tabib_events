@@ -23,7 +23,7 @@
                 <form role="form" action="{{route('event_filter_report')}}"  method="post" accept-charset="utf-8">
                       {{csrf_field()}}
                       <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
                             <label class="master_label mandatory" for="organizer_name">@lang('keywords.organizer name')</label>
                             <select class="master_input" id="organizer_name" name="organizer_name">
@@ -35,7 +35,7 @@
                             {{-- <span class="master_message inherit">message content</span> --}}
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
                             <label class="master_label" for="event_category">@lang('keywords.event category')</label>
                     <select name="categories[]" multiple="multiple" class="master_input select2" id="city2" style="width:100%;" ,>
@@ -47,20 +47,20 @@
                             {{-- <span class="master_message inherit">message content</span> --}}
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="start_date">@lang('keywords.added from')</label>
-                            <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text" id="start_date" name="start_date">
+                            <label class="master_label" for="start_date_">@lang('keywords.added from')</label>
+                            <div class="">
+                              <input class=" master_input" type="text" id="start_date_" name="start_date_">
                             </div>
                             {{-- <span class="master_message inherit">message content</span> --}}
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="end_date">@lang('keywords.added to')</label>
-                            <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text" id="end_date" name="end_date">
+                            <label class="master_label" for="end_date_">@lang('keywords.added to')</label>
+                            <div class="">
+                              <input class=" master_input" type="text" id="end_date_" name="end_date_">
                             </div>
                             {{-- <span class="master_message inherit">message content</span> --}}
                           </div>
@@ -272,7 +272,8 @@
                <!-- =============== PAGE VENDOR SCRIPTS ===============-->
                <script type="text/javascript">
                  $(function () {
-                 $('.datepicker').datepicker({autoclose: true});
+                  dateRange('start_date_','end_date_','2018','7','30','2018','8','30','22/11/2018')
+
                  });
                </script>
                <script type="text/javascript">

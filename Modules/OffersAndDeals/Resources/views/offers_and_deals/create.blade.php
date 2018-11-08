@@ -24,32 +24,32 @@
                     <form id="offers_add" action="{{ route('offers_and_deals.create') }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
                       {{ csrf_field() }}
                       <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
                             <label class="master_label" for="offer_image"> @lang('keywords.offerImage') </label>
                             <div class="file-upload">
                               <div class="file-select">
                                 <div class="file-select-name" id="noFile">اضغط لأضافة الصورة</div>
-                                <input class="chooseFile" type="file" name="offer_image" id="offer_image" required>
+                                <input class="chooseFile" type="file" name="offer_image" id="offer_image" required accept=".jpg,.png,.jpeg">
                               </div>
                             </div><span id="error1" class="master_message color--fadegreen">max 1MB</span>
                             
                           </div>
            
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
                             <label class="master_label" for="offer_title"> @lang('keywords.title')</label>
                             <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" required><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
                             <label class="master_label" for="offer_description">@lang('keywords.offerDescription')</label>
                             <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" required></textarea><span class="master_message color--fadegreen">validation message will be here</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="master_field">
                             <label class="master_label mandatory" for="offer_category">@lang('keywords.offerCategory')</label>
                             <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category[]" required>
@@ -61,7 +61,7 @@
                             </select><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                         <div class="col-xs-6">
+                         <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
                             <label class="master_label mandatory" for="offer_sponsor">@lang('keywords.offerSponsor')</label>
                             @if($isSponsor)
@@ -79,19 +79,19 @@
                             </select><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="start_date">@lang('keywords.startDate')</label>
+                            <label class="master_label" for="start_date_">@lang('keywords.startDate')</label>
                             <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text"  id="start_date" name="start_date" required>
+                              <input class="datepicker master_input" type="text"  id="start_date_" name="start_date_" required>
                             </div><span class="master_message inherit">message content</span>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
                           <div class="master_field">
-                            <label class="master_label" for="end_date"> @lang('keywords.endDate')</label>
+                            <label class="master_label" for="end_date_"> @lang('keywords.endDate')</label>
                             <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text" required id="end_date" name="end_date">
+                              <input class="datepicker master_input" type="text" required id="end_date_" name="end_date_">
                             </div><span class="master_message inherit">message content</span>
                           </div>
                         </div>
@@ -139,5 +139,11 @@ if ($.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
 		}
 }
 });
+ </script>
+ <script type="text/javascript">
+ $(function(){
+  dateRange('start_date_','end_date_','2018','7','30','2018','8','30','22/11/2018')
+
+ })
  </script>
 @endsection

@@ -151,7 +151,6 @@
                         <a    href="#" data-id="{{ $event->id }}" class= "{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
                           <i class = "fa  fa-trash-o"></i>
                         </a>
-
                       </span>
                     </td>
                   </tr>

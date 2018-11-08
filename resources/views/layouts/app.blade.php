@@ -305,14 +305,14 @@
     <!-- =============== PAGE VENDOR SCRIPTS ===============-->
       <script type="text/javascript">
       $(function () {
-        $('.datepicker-popup').pickadate();
+        // $('.datepicker-popup').pickadate();
         $('.timepicker-popup').pickatime();
       });
       
     </script>
     <script type="text/javascript">
       $(function () {
-        $('.datepicker').datepicker({autoclose: true});
+        // $('.datepicker').datepicker({autoclose: true});
         $(".timepicker").timepicker({showInputs: false});
       });
       

@@ -30,7 +30,7 @@
             <div class="row"> 
 
               {{-- User Type --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label mandatory" for="user_type">@lang('keywords.UserType')</label>
                   <select class="master_input" id="user_type" name="user_type">
@@ -57,7 +57,7 @@
               </div>
 
               {{-- User Name --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-2 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="username">@lang('keywords.FullName')</label>
                   <input class="master_input" type="text" maxlength="40" id="username" name="fullname">
@@ -70,7 +70,7 @@
               </div>
 
               {{-- Username --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="login_username">@lang('keywords.UserName')</label>
                   <input class="master_input" type="text" maxlength="20" id="login_username" name="username">
@@ -82,7 +82,7 @@
               </div>
 
               {{-- Email --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="user_email">@lang('keywords.email')</label>
                   <input class="master_input" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email">
@@ -94,7 +94,7 @@
               </div>
 
               {{-- Address --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="user_address">@lang('keywords.address')</label>
                   <input class="master_input" type="text" maxlength="100" id="user_address" name="address">
@@ -105,7 +105,7 @@
               </div>
 
               {{-- Password --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="user_password">@lang('keywords.Password')</label>
                   <input class="master_input" type="password" name="password" maxlength="8" minlength="3" id="user_password">
@@ -120,7 +120,7 @@
               </div>
 
               {{-- Telephone --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="user_Phone">@lang('keywords.phone number')</label>
                   <input class="master_input" type="number" maxlength="11" minlength="11" id="user_Phone" name="mobile">
@@ -134,7 +134,7 @@
               {{-- Optional fields --}}
               {{-- Sponsor Category --}}
               <div id="sponsor_section">     
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
                     <select class="master_input select2" id="sponsor_category" 
@@ -158,7 +158,7 @@
                 </div>
 
                 {{-- Cities --}}
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="sponsor_cities"> @lang('keywords.City') </label>
                     <select class="master_input select2" id="sponsor_cities" multiple="multiple" style="width:100%;" , name="cities[]">
@@ -181,7 +181,7 @@
                 </div>
 
                 {{-- Regions --}}
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="sponsor_regions">@lang('keywords.region') </label>
                     <select class="master_input select2" id="sponsor_regions" multiple="multiple" style="width:100%;" , name="regions[]">
@@ -204,7 +204,7 @@
                 </div>
 
                 {{-- Doctors Specialities --}}
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="specialization_target">@lang('keywords.doctorSpecialists')</label>
                     <select class="master_input select2" id="specialization_target" 
@@ -229,7 +229,7 @@
               {{-- End of optional fields --}}
 
               {{-- User Image --}}
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label" for="user_photo">صورة المستخدم</label>
                   <div class="file-upload">
@@ -242,7 +242,7 @@
               </div>
 
               {{-- Activation --}}
-              <div class="col-md-6 col-sm-6 col-xs-12" style="text-align:end;">
+              <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
                 <div class="checkboxrobo">
                   <input type="checkbox" id="activation" name="activation" value="1">
                   <label for="activation">@lang('keywords.Active')</label>
@@ -250,7 +250,7 @@
               </div>
 
               {{-- Send Notifications --}}
-              <div class="col-md-6 col-sm-12 col-xs-12" style="text-align:end;">
+              <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
                 <div class="checkboxrobo">
                   <input type="checkbox" id="notification" name="notification" value="1">
                   <label for="notification">السماح ب ارسال اشعارات</label>
