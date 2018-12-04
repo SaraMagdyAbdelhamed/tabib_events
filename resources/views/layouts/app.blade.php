@@ -885,6 +885,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
     $(this).text(next.replace('Next', 'التالي')); 
 @endif
 </script>
+
 @yield('js')
+
   </body>
 </html>

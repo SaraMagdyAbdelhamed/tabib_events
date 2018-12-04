@@ -216,7 +216,7 @@ class UsersController extends Controller
     {
         $data['user']=$user;
         $data['rule_id'] = $user->rules()->where('rule_id','!=',1)->first()->id;
-        $data['address'] = ($user->info) ? $user->info->adderss : "";
+        $data['address'] = ($user->userInfo) ? $user->userInfo->adderss : "";
         $data['userTypes'] = Rules::all();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
@@ -308,7 +308,7 @@ class UsersController extends Controller
 
             if($user->info)
             {
-                $user->info->address = $request->address;
+                $user->userInfo->address = $request->address;
                 // $userInfo->city_id = $request->
                 $user->info->save();
     

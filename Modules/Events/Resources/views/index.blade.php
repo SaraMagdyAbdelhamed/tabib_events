@@ -323,7 +323,7 @@
 </div>
 @section('js')
 <script type="text/javascript">
-  $('.btn-warning-cancel').click(function(){
+  $('.deleteRecord').click(function(){
     var event_id = $(this).closest('tr').attr('data-event-id');
     var _token = '{{csrf_token()}}';
     swal({

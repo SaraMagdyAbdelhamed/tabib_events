@@ -27,10 +27,10 @@ class Users extends Authenticatable
     {
         return $this->belongsTo('App\Genders', 'gender_id');
     }
-    public function info()
-    {
-        return $this->HasOne('App\UserInfo', 'user_id');
-    }
+    // public function info()
+    // {
+    //     return $this->HasOne('App\UserInfo', 'user_id');
+    // }
     public function country()
     {
         return $this->belongsTo('App\Countries', 'country_id');
