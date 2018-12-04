@@ -176,7 +176,8 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::get('/backend/create', '\Modules\UsersModule\Http\Controllers\UsersController@backend_create')->name('backend_create');
         Route::post('/backend/store', '\Modules\UsersModule\Http\Controllers\UsersController@backend_store')->name('backend_store');
 
-        Route::post('/backend_edit/{id}', '\Modules\UsersModule\Http\Controllers\UsersController@backend_edit')->name('backend_edit');
+        Route::get('/backend_edit/{user}', '\Modules\UsersModule\Http\Controllers\UsersController@backend_edit')->name('backend_edit');
+        Route::post('/backend_update/{user}', '\Modules\UsersModule\Http\Controllers\UsersController@backend_update')->name('backend_update');
     }); //users rules
     Route::middleware(['auth', 'Rule:Super Admin,Admin,Data Entry,Backend User'])->group(function ($lang = null) {
     // Events: Back-end
