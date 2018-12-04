@@ -96,7 +96,7 @@
                     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                         <div class="master_field">
                         <label class="master_label" for="cat_id_ar">اضف تصنيف راعي باللغة العربية</label>
-                        <input name="arabicContent" class="master_input" type="text" placeholder="new categories in arabic"  id="cat_id_ar" required oninvalid="this.setCustomValidity('من فضلك لا تترك هذا الحقل فارغاَ')">
+                        <input name="arabicContent" class="master_input" type="text" placeholder="new categories in arabic"  id="cat_id_ar" required>
                         </div>
                     </div>
                     </li>
