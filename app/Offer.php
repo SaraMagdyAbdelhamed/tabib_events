@@ -11,6 +11,7 @@ class Offer extends Model
     protected $table = 'offers';
     protected $fillable = ['name', 'description', 'image', 'image_ar', 'is_active', 'created_by', 'updated_by','start_datetime','end_datetime','sponsor_id'];
     public $timestamps = true;
+    protected $dates = ['start_datetime', 'end_datetime'];
 
     // public function getNameAttribute($value)
     // {
@@ -19,7 +20,7 @@ class Offer extends Model
     // }
 
     public function getImageAttribute($value){
-        
+
             $base_url = url('\/');
             $photo =($value =='' || is_null($value)) ? '':$base_url.$value;
             return $photo;

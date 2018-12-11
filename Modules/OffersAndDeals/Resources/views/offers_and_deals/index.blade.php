@@ -7,7 +7,7 @@
                   <div class="cover-inside-container margin--small-top-bottom bradius--no bshadow--0" style="background-image: url({{ asset('/img/covers/dummy2.jpg ')  }}  )   ; background-position: center center; background-repeat: no-repeat; background-size:cover;">
                     <div class="row">
                       <div class="col-xs-12">
-                        <div class="text-xs-center">         
+                        <div class="text-xs-center">
                           <div class="text-wraper">
                             <h3 class="cover-inside-title  ">@lang('keywords.offers_and_deals')</h3>
                           </div>
@@ -41,7 +41,7 @@
                             <tr data-id="{{$offer->id}}">
                               <td><span class="cellcontent" data-id="{{ $offer->id }}"></span></td>
                               <td><span class="cellcontent">{{$offer->id}}</span></td>
-                              <td><span class="cellcontent"><img src = "{{$offer->image}}" , class = " img-in-table"></span></td>
+                              <td><span class="cellcontent"><img src = "{{ asset( str_replace('\\', '', $offer->image) ) }}" , class = " img-in-table"></span></td>
                                <td><span class="cellcontent">{{$offer->name}}</span></td>
                               <td><span class="cellcontent">{{$offer->description}}</span></td>
                               @if($offer->is_active)
@@ -221,7 +221,7 @@
                   </div>
                 </div><br>
               </div>
-            
+
 
 
 <script>
@@ -261,7 +261,7 @@
             },
             function(isConfirm){
                 if (isConfirm){
-                    
+
                 $.ajax(
                 {
                     url: "{{ route('offers_and_deals.deleteSelected') }}",
@@ -279,9 +279,9 @@
                         $.each(allVals, function( index, value ) {
                             $('tr[data-id='+value+']').fadeOut();
                         });
-                       
 
-                        
+
+
                     },
                     error: function(response) {
                         console.log(response);
@@ -297,7 +297,7 @@
 
         // delete a row
         $('.deleteRecord').click(function(){
-            
+
             var id = $(this).data("id");
             var token = '{{ csrf_token() }}';
             var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
@@ -315,7 +315,7 @@
             },
             function(isConfirm){
                 if (isConfirm){
-                        
+
                 $.ajax(
                 {
                     url: "{{ route('offers_and_deals.delete') }}",
@@ -328,7 +328,7 @@
                     },
                     success: function(data)
                     {
-                       
+
                         $('tr[data-id='+id+']').fadeOut();
                     },
                         error: function(response) {
@@ -336,7 +336,7 @@
                     }
                 });
                  swal("تم الحذف!", "تم الحذف بنجاح", "success");
-                    
+
                 } else {
                     swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
                 }
@@ -344,7 +344,7 @@
         });
 
 
-       
+
 
 
     });

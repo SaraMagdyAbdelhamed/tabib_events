@@ -100,7 +100,8 @@
                           <div class="master_field">
                             <label class="master_label" for="start_date_">@lang('keywords.startDate')</label>
                             <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text"  id="start_date_" name="start_date_" required value="{{ \Carbon\Carbon::today()->format('d-m-Y') }}">
+                              <input class="datepicker master_input" type="text"  id="start_date_" name="start_date_" required
+                                value="{{ \Carbon\Carbon::today()->format('d-m-Y') }}" autocomplete="off">
                             </div>
                             {{-- Validation message --}}
                              @if ( $errors->has('start_date_') )
@@ -112,7 +113,8 @@
                           <div class="master_field">
                             <label class="master_label" for="end_date_"> @lang('keywords.endDate')</label>
                             <div class="bootstrap-timepicker">
-                              <input class="datepicker master_input" type="text" required id="end_date_" name="end_date_" value="{{ \Carbon\Carbon::tomorrow()->format('d-m-Y') }}">
+                              <input class="datepicker master_input" type="text" required id="end_date_" name="end_date_"
+                                value="{{ \Carbon\Carbon::tomorrow()->format('d-m-Y') }}" autocomplete="off">
                             </div>
                             {{-- Validation message --}}
                             @if ( $errors->has('end_date_') )
@@ -167,10 +169,10 @@ if ($.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
  </script>
  <script type="text/javascript">
  $(function(){
-   $('.datepicker').datepicker({
-        autoclose: true,
-        format:'dd-mm-yyyy',
-      });
+  //  $('.datepicker').datepicker({
+  //       autoclose: true,
+  //       format:'dd-mm-yyyy',
+  //     });
 
   dateRange('start_date_','end_date_',
     "{{ \Carbon\Carbon::now()->format('Y') }}",
@@ -179,7 +181,7 @@ if ($.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
     "{{ \Carbon\Carbon::now()->addYears(1)->format('Y') }}",
     "{{ \Carbon\Carbon::now()->addYears(1)->format('m') }}",
     "{{ \Carbon\Carbon::now()->addYears(1)->format('d') }}",
-    '{{ \Carbon\Carbon::now()->addYears(1)->format("d/m/Y") }}'  // end date
+    '{{ \Carbon\Carbon::now()->addYears(1)->format("d-m-Y") }}'  // end date
     )
 
  })

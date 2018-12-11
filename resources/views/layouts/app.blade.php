@@ -19,7 +19,7 @@
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#281160">
 
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -82,21 +82,21 @@
                       <input type="hidden" name="locale" value="{{ \Helper::getUserLocale() }}">
                         <button type="submit" class="nav-link English" style="background-color: inherit; border: 0px; color: white; ">{{ App::isLocale('ar') ? 'English' : 'العربية' }}</button>
                     </form>
-                    
+
                   </li>
                   </ul>
                   <ul class="actionsbar desktop-view hidden-xs">
                     <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i></a>
                       @if(App::isLocale("en"))
                         <ul class="dropdowny-menu" role="menu">
-                        
+
                         {{-- @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
                           <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
                             <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                             <p>{{$notification->msg}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
                               {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
                         @endforeach --}}
-                         </ul> 
+                         </ul>
                       @else
                       <ul class="dropdowny-menu" role="menu">
                         {{-- @if( count(\Helper::ListNotifications()) > 0 )
@@ -107,7 +107,7 @@
                               {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
                           @endforeach
                         @endif --}}
-                         </ul> 
+                         </ul>
                       @endif
                       <!-- <ul class="dropdowny-menu" role="menu">
                         <li><a href="#">
@@ -186,7 +186,7 @@
                         {{ Helper::getUserLocalTimezone(Helper::getUserLastLogin()) }}
                       </div>
                     </small>
-                  
+
                     <div style="margin-top: 5%;">
                       <a href="{{ route('logout') }}" class="master-btn bradius--small">{{ __('keywords.logout') }}</a>
                     </div>
@@ -196,7 +196,7 @@
                 <ul class="side-menu">
                   @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
                   <li class="side__list" id="menu_1"><a class="side__item side__item--sub">@lang('keywords.mainData')</a>
-                  
+
                     <ul class="side__submenu">
                       <li class="side__sublist"><a class="side__subitem" id="sub_1_1" href="{{ route('about') }}">@lang('keywords.aboutUs')</a>
                       </li>
@@ -246,37 +246,12 @@
             <div class="container-fluid">
 
               {{-- Start alert messages --}}
-              <div class="col-lg-12 text-center">
-                @if (Session::has('success'))
-                  <div class="alert text-center" style="background-color: #2ecc71; color: white; padding: 10px; margin-top: 20px;">
-                    <b>{{ Session::get('success') }}</b>
-                  </div>
-                @endif
-
-                @if (Session::has('warning'))
-                  <div class="alert text-center" style="background-color: #f39c12; color: white; padding: 10px; margin-top: 20px;">
-                    <b>{{ Session::get('warning') }}</b>
-                  </div>
-                @endif
-
-                @if (Session::has('error'))
-                  <div class="alert text-center" style="background-color: #c0392b; color: white; padding: 10px; margin-top: 20px;">
-                    <b>{{ Session::get('error') }}</b>
-                  </div>
-                @endif
-
-                @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger text-center" style="background-color: #c0392b; color: white; padding: 10px; margin-top: 20px;">
-                      <b>{{ $error }}</b>
-                    </div>
-                @endforeach
-
-              </div>
+              @include('layouts.alerts')
               {{-- End alert --}}
 
               {{-- yield data --}}
               @yield('content')
-                
+
             </div>
           </div>
           <!-- Page footer-->
@@ -299,23 +274,23 @@
       </div>
     </div>
     <!-- =============== APP MAIN SCRIPTS ===============-->
-    
+
     <script type="text/javascript" src="{{ asset('js/scripts.min.js') }}"></script>
-    
+
     <!-- =============== PAGE VENDOR SCRIPTS ===============-->
       <script type="text/javascript">
       $(function () {
         // $('.datepicker-popup').pickadate();
         $('.timepicker-popup').pickatime();
       });
-      
+
     </script>
     <script type="text/javascript">
       $(function () {
         // $('.datepicker').datepicker({autoclose: true});
         $(".timepicker").timepicker({showInputs: false});
       });
-      
+
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.4/tinymce.min.js"></script>
     <script type="text/javascript">
@@ -327,13 +302,13 @@
           toolbar: "image | undo | redo | styleselect | bold | italic | fontsizeselect | alignleft | aligncenter | alignright | alignjustify | preview ",
           schema: "html5",
         });
-        
+
       });
 
       // hide alert message after 4 seconds => 4000 ms
       window.setTimeout(function() {
               $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                  $(this).remove(); 
+                  $(this).remove();
               });
           }, 4000);
     </script>
@@ -378,42 +353,42 @@
               }
             }
           });
-          
-          //-trigger check one by one 
+
+          //-trigger check one by one
           $(document).on('click','#dataTableTriggerId_001 tbody tr input.input-in-table',function(){
             var RowParent = $(this).parents('tr') ;
-            
+
             if ( $(this).parents('tr').hasClass('selected') ) {
               $(this).parents('tr').removeClass('selected');
             }
             else {
               $(this).parents('tr').addClass('selected');
-            }  
+            }
           });
-      
+
           //-trigger check All
           $('#dataTableTriggerId_001 #select-all').on('click',function(){
             if($(this).attr('data-click-state') == 0) {
               $(this).attr('data-click-state',1)
               var rows = datatable_one.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-              
+
             } else {
               var rows = datatable_one.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
               $(this).attr('data-click-state', 0);
             }
           });
-      
+
           //-Delete buttons
           $('#delete-test').on('click', function() {
             var selectedRows = datatable_one.rows( $('#dataTableTriggerId_001 tr.selected') ).data().to$();
             datatable_one.rows( '.selected' ).remove().draw(false);
           });
-          
-          
+
+
         } else {
-      
+
           var datatable_one = $("#dataTableTriggerId_001").DataTable({
             'columnDefs': [{
             'targets': 0,
@@ -433,42 +408,42 @@
               searchPlaceholder: "Search table ...."
             }
           });
-      
-          //-trigger check one by one 
+
+          //-trigger check one by one
           $(document).on('click','#dataTableTriggerId_001 tbody tr input.input-in-table',function(){
             var RowParent = $(this).parents('tr') ;
-            
+
             if ( $(this).parents('tr').hasClass('selected') ) {
               $(this).parents('tr').removeClass('selected');
             }
             else {
               $(this).parents('tr').addClass('selected');
-            }  
+            }
           });
-      
+
           //-trigger check All
           $('#dataTableTriggerId_001 #select-all').on('click',function(){
             if($(this).attr('data-click-state') == 0) {
               $(this).attr('data-click-state',1)
               var rows = datatable_one.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-              
+
             } else {
               var rows = datatable_one.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
               $(this).attr('data-click-state', 0);
             }
           });
-      
+
           //-Delete buttons
           $('#delete-test').on('click', function() {
             var selectedRows = datatable_one.rows( $('#dataTableTriggerId_001 tr.selected') ).data().to$();
             datatable_one.rows( '.selected' ).remove().draw(false);
           });
-      
+
         }
       });
-     
+
      //--Data table trigger --2
       $(document).ready(function(){
         if ( $('html').attr('lang') == 'ar' ) {
@@ -508,44 +483,44 @@
               }
             }
           });
-      
-          //-trigger check one by one 
+
+          //-trigger check one by one
           $(document).on('click','#dataTableTriggerId_002 tbody tr input.input-in-table',function(){
             var RowParent = $(this).parents('tr') ;
-      
+
             if ( $(this).parents('tr').hasClass('selected') ) {
               $(this).parents('tr').removeClass('selected');
             }
             else {
               $(this).parents('tr').addClass('selected');
-            }  
+            }
           });
-      
+
           //-trigger check All
           $('#dataTableTriggerId_002 #select-all').on('click',function(){
             if($(this).attr('data-click-state') == 0) {
               $(this).attr('data-click-state',1)
               var rows = datatable_two.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-      
+
             } else {
               var rows = datatable_two.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
               $(this).attr('data-click-state', 0);
             }
           });
-      
+
           //-Delete all selected Function
           function deleteIt() {
            var selectedRows = datatable_two.rows( $('#dataTableTriggerId_002 tr.selected') ).data().to$();
            datatable_two.rows( '.selected' ).remove().draw(false);
           };
-      
+
           //-Delete buttons
           $('#delete-test-2').on('click', function() {
            deleteIt();
           });
-          
+
           //-Accept btn-single
           $('button.accepted-btn').on('click' , function(){
            var acceptedRow = $(this).parents('tr');
@@ -554,10 +529,10 @@
            datatable_two.rows( '.selectAccepted' ).remove().draw(false);
            console.log("clicked");
           });
-      
-      
+
+
         } else {
-      
+
           var datatable_two = $("#dataTableTriggerId_002").DataTable({
             'columnDefs': [{
             'targets': 0,
@@ -577,45 +552,45 @@
               searchPlaceholder: "Search table ...."
             }
           });
-      
-      
-          
+
+
+
           $(document).on('click','#dataTableTriggerId_002 tbody tr input.input-in-table',function(){
            var RowParent = $(this).parents('tr') ;
-      
+
            if ( $(this).parents('tr').hasClass('selected') ) {
              $(this).parents('tr').removeClass('selected');
            }
            else {
              $(this).parents('tr').addClass('selected');
-           }  
+           }
           });
-      
+
           //-trigger check All
           $('#dataTableTriggerId_002 #select-all').on('click',function(){
             if($(this).attr('data-click-state') == 0) {
               $(this).attr('data-click-state',1)
               var rows = datatable_two.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-      
+
             } else {
               var rows = datatable_two.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
               $(this).attr('data-click-state', 0);
             }
           });
-          
+
           //-Delete all selected Function
           function deleteIt() {
            var selectedRows = datatable_two.rows( $('#dataTableTriggerId_002 tr.selected') ).data().to$();
            datatable_two.rows( '.selected' ).remove().draw(false);
           };
-      
+
           //-Delete buttons
           $('#delete-test-2').on('click', function() {
            deleteIt();
           });
-          
+
           //-Accept btn-single
           $('button.accepted-btn').on('click' , function(){
            var acceptedRow = $(this).parents('tr');
@@ -624,14 +599,14 @@
            datatable_two.rows( '.selectAccepted' ).remove().draw(false);
            console.log("clicked");
           });
-          
-          
+
+
         }
       });
-      
 
-      
-      
+
+
+
       $(document).ready(function(){
         $(".full-table").each(function() {
           $(this).find(".filter__btns").appendTo($(this).find(".filter__btns_cont"));
@@ -641,7 +616,7 @@
           $(this).find(".view_options").appendTo($(this).find(".view_options_cont"));
         });
       });
-      
+
         //--Data table trigger --3
         $(document).ready(function(){
         if ( $('html').attr('lang') == 'ar' ) {
@@ -681,42 +656,42 @@
               }
             }
           });
-      
-          //-trigger check one by one 
+
+          //-trigger check one by one
           $(document).on('click','#dataTableTriggerId_001 tbody tr input.input-in-table',function(){
             var RowParent = $(this).parents('tr') ;
-      
+
             if ( $(this).parents('tr').hasClass('selected') ) {
               $(this).parents('tr').removeClass('selected');
             }
             else {
               $(this).parents('tr').addClass('selected');
-            }  
+            }
           });
-      
+
           //-trigger check All
           $('#dataTableTriggerId_003 #select-all').on('click',function(){
             if($(this).attr('data-click-state') == 0) {
               $(this).attr('data-click-state',1)
               var rows = datatable_one.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-      
+
             } else {
               var rows = datatable_one.rows().nodes();
               $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
               $(this).attr('data-click-state', 0);
             }
           });
-      
+
           //-Delete buttons
           $('#delete-test').on('click', function() {
             var selectedRows = datatable_one.rows( $('#dataTableTriggerId_003 tr.selected') ).data().to$();
             datatable_one.rows( '.selected' ).remove().draw(false);
           });
-      
-      
+
+
         } else {
-      
+
           var datatable_one = $("#dataTableTriggerId_003").DataTable({
             'columnDefs': [{
             'targets': 0,
@@ -736,42 +711,42 @@
               searchPlaceholder: "Search table ...."
             }
           });
-      
-          //-trigger check one by one 
+
+          //-trigger check one by one
           $(document).on('click','#dataTableTriggerId_003 tbody tr input.input-in-table',function(){
             var RowParent = $(this).parents('tr') ;
-      
+
             if ( $(this).parents('tr').hasClass('selected') ) {
              $(this).parents('tr').removeClass('selected');
             }
             else {
              $(this).parents('tr').addClass('selected');
-            }  
+            }
           });
-      
+
           //-trigger check All
           $('#dataTableTriggerId_001 #select-all').on('click',function(){
             if($(this).attr('data-click-state') == 0) {
              $(this).attr('data-click-state',1)
              var rows = datatable_one.rows().nodes();
              $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-      
+
             } else {
              var rows = datatable_one.rows().nodes();
              $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
              $(this).attr('data-click-state', 0);
             }
           });
-      
+
           //-Delete buttons
           $('#delete-test').on('click', function() {
             var selectedRows = datatable_one.rows( $('#dataTableTriggerId_003 tr.selected') ).data().to$();
             datatable_one.rows( '.selected' ).remove().draw(false);
           });
-      
+
         }
       });
-      
+
 
       //-============================================================
       //-===============================comp__#009__select
@@ -789,26 +764,26 @@
       $(function () {
         $(".select2").select2();
       });
-      
-      
+
+
     </script>
 
-    
+
 {{-- Google maps API key --}}
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknR0jhKTIB33f2CLFhBzgp0mj2Tn2q5k&libraries=places&callback=initMap" type="text/javascript"></script>  
-  
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknR0jhKTIB33f2CLFhBzgp0mj2Tn2q5k&libraries=places&callback=initMap" type="text/javascript"></script>
+
 {{-- Map script --}}
 <script>
 /* script */
 function initMap() {
-      @if( isset($event->latitude) && isset($event->longtuide) ) 
+      @if( isset($event->latitude) && isset($event->longtuide) )
         var latlng = {lat: {{ $event->latitude }}, lng: {{ $event->longtuide }} };
       @elseif( isset($famous->latitude) && isset($famous->longtuide) )
         var latlng = {lat: {{ $famous->latitude }}, lng: {{ $famous->longtuide }} };
-      @else 
+      @else
         var latlng = {lat: 30.042701, lng: 31.432662};
       @endif
-      
+
    // var latlng = new google.maps.LatLng(28.5355161,77.39102649999995);
     var map = new google.maps.Map(document.getElementById('map'), {
       center: latlng,
@@ -825,7 +800,7 @@ function initMap() {
     var geocoder = new google.maps.Geocoder();
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
-    var infowindow = new google.maps.InfoWindow();   
+    var infowindow = new google.maps.InfoWindow();
     autocomplete.addListener('place_changed', function() {
         infowindow.close();
         marker.setVisible(false);
@@ -842,20 +817,20 @@ function initMap() {
             map.setCenter(place.geometry.location);
             map.setZoom(17);
         }
-       
+
         marker.setPosition(place.geometry.location);
-        marker.setVisible(true);          
-    
+        marker.setVisible(true);
+
         bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng());
         infowindow.setContent(place.formatted_address);
         infowindow.open(map, marker);
-       
+
     });
-    // this function will work on marker move event into map 
+    // this function will work on marker move event into map
     google.maps.event.addListener(marker, 'dragend', function() {
       geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {        
+        if (results[0]) {
             bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
             infowindow.setContent(results[0].formatted_address);
             infowindow.open(map, marker);
@@ -863,7 +838,7 @@ function initMap() {
         }
       });
     });
-    
+
 }
 
 function bindDataToForm(address,lat,lng){
@@ -882,7 +857,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <script type="text/javascript">
   @if(\App::isLocale('ar'))
  var next = $('#next1').text();
-    $(this).text(next.replace('Next', 'التالي')); 
+    $(this).text(next.replace('Next', 'التالي'));
 @endif
 </script>
 

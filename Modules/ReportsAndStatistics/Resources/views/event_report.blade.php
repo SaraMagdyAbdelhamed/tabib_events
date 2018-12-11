@@ -7,7 +7,7 @@
                   <div class="cover-inside-container margin--small-top-bottom bradius--no bshadow--0" style="background-image: url({{ asset('/img/covers/dummy2.jpg ')  }}  )   ; background-position: center center; background-repeat: no-repeat; background-size:cover;">
                     <div class="row">
                       <div class="col-xs-12">
-                        <div class="text-xs-center">         
+                        <div class="text-xs-center">
                           <div class="text-wraper">
                             <h3 class="cover-inside-title  ">@lang('keywords.ReportsِِِِِِAndStatistics')</h3>
                           </div>
@@ -51,7 +51,7 @@
                           <div class="master_field">
                             <label class="master_label" for="start_date_">@lang('keywords.added from')</label>
                             <div class="">
-                              <input class=" master_input" type="text" id="start_date_" name="start_date_">
+                              <input class=" master_input" type="text" id="start_date_" name="start_date_" value="{{ \Carbon\Carbon::today()->format('d/m/Y') }}">
                             </div>
                             {{-- <span class="master_message inherit">message content</span> --}}
                           </div>
@@ -60,7 +60,7 @@
                           <div class="master_field">
                             <label class="master_label" for="end_date_">@lang('keywords.added to')</label>
                             <div class="">
-                              <input class=" master_input" type="text" id="end_date_" name="end_date_">
+                              <input class=" master_input" type="text" id="end_date_" name="end_date_"  value="{{ \Carbon\Carbon::tomorrow()->format('d/m/Y') }}">
                             </div>
                             {{-- <span class="master_message inherit">message content</span> --}}
                           </div>
@@ -86,14 +86,14 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($events as $event)   
+                            @foreach($events as $event)
                             <tr>
                               <td><span class="cellcontent">{{$event['id']}}</span></td>
                               <td><span class="cellcontent">{{$event->user->username}}</span></td>
                               <td><span class="cellcontent">{{$event['name']}}</span></td>
                               <td><span class="cellcontent"></span>
                                 @foreach ($event->categories as $category)
-                                {{$category['name']}}<br> 
+                                {{$category['name']}}<br>
                                 @endforeach
                               </td>
                               <td><span class="cellcontent">{{ $event['is_paid'] ? 'مجانى' : 'مدفوع' }}</span></td>
@@ -105,163 +105,7 @@
                           </tbody>
                         </table>
                       </form>
-                      <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-                        <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
-                        <div>
-                          <h2 class="title">title of the changing log in</h2>
-                          <div class="log-content">
-                            <div class="log-container">
-                              <table class="log-table">
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <th>log title</th>
-                                  <th>user</th>
-                                  <th>time</th>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>January</td>
-                                  <td>$100</td>
-                                  <td>$100</td>
-                                </tr>
-                                <tr class="log-row" data-link="https://www.google.com.eg/">
-                                  <td>February</td>
-                                  <td>$80</td>
-                                  <td>$80</td>
-                                </tr>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -272,7 +116,15 @@
                <!-- =============== PAGE VENDOR SCRIPTS ===============-->
                <script type="text/javascript">
                  $(function () {
-                  dateRange('start_date_','end_date_','2018','7','30','2018','8','30','22/11/2018')
+                  dateRange('start_date_','end_date_',
+                  "{{ \Carbon\Carbon::now()->subYears(5)->format('Y') }}",
+                  "{{ \Carbon\Carbon::now()->subYears(5)->format('m') }}",
+                  "{{ \Carbon\Carbon::now()->subYears(5)->format('d') }}",
+                  "{{ \Carbon\Carbon::now()->addYears(5)->format('Y') }}",
+                  "{{ \Carbon\Carbon::now()->addYears(5)->format('m') }}",
+                  "{{ \Carbon\Carbon::now()->addYears(5)->format('d') }}",
+                  '{{ \Carbon\Carbon::now()->addYears(5)->format("d-m-Y") }}'  // end date
+                  )
 
                  });
                </script>
@@ -294,7 +146,7 @@
                        'searchable':false,
                        'orderable':false,
                        'className': 'this-include-check',
-                       
+
                      }],
                      'order': [1, 'asc'],
                        dom: '   <"row"    <" filterbar" flr + <"sortingr__btns_cont"  >> <"filter__btns_cont"  >    >  <"row"   <"data-table-trigger-cont"  t>    >  <"row"<"tableActions__btns_cont"> <"viewing-pagination"pi>  > ' ,
@@ -322,42 +174,42 @@
                          }
                        }
                      });
-                     
-                     //-trigger check one by one 
+
+                     //-trigger check one by one
                      $(document).on('click','#boshy tbody tr input.input-in-table',function(){
                        var RowParent = $(this).parents('tr') ;
-                       
+
                        if ( $(this).parents('tr').hasClass('selected') ) {
                          $(this).parents('tr').removeClass('selected');
                        }
                        else {
                          $(this).parents('tr').addClass('selected');
-                       }  
+                       }
                      });
-                 
+
                      //-trigger check All
                      $('#boshy #select-all').on('click',function(){
                        if($(this).attr('data-click-state') == 0) {
                          $(this).attr('data-click-state',1)
                          var rows = datatable_one.rows().nodes();
                          $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-                         
+
                        } else {
                          var rows = datatable_one.rows().nodes();
                          $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
                          $(this).attr('data-click-state', 0);
                        }
                      });
-                 
+
                      //-Delete buttons
                      $('#delete-test').on('click', function() {
                        var selectedRows = datatable_one.rows( $('#boshy tr.selected') ).data().to$();
                        datatable_one.rows( '.selected' ).remove().draw(false);
                      });
-                     
-                     
+
+
                    } else {
-                 
+
                      var datatable_one = $("#boshy").DataTable({
                        'columnDefs': [{
                        'targets': 0,
@@ -377,33 +229,33 @@
                          searchPlaceholder: "Search table ...."
                        }
                      });
-                 
-                     //-trigger check one by one 
+
+                     //-trigger check one by one
                      $(document).on('click','#boshy tbody tr input.input-in-table',function(){
                        var RowParent = $(this).parents('tr') ;
-                       
+
                        if ( $(this).parents('tr').hasClass('selected') ) {
                          $(this).parents('tr').removeClass('selected');
                        }
                        else {
                          $(this).parents('tr').addClass('selected');
-                       }  
+                       }
                      });
-                 
+
                      //-trigger check All
                      $('#boshy #select-all').on('click',function(){
                        if($(this).attr('data-click-state') == 0) {
                          $(this).attr('data-click-state',1)
                          var rows = datatable_one.rows().nodes();
                          $('input.input-in-table' , rows).prop('checked',this.checked).parents('tr').addClass('selected');
-                         
+
                        } else {
                          var rows = datatable_one.rows().nodes();
                          $('input.input-in-table' , rows).prop('checked',false).parents('tr').removeClass('selected');
                          $(this).attr('data-click-state', 0);
                        }
                      });
-                 
+
                      //-Delete buttons
                      $('#delete-test').on('click', function() {
                        var selectedRows = datatable_one.rows( $('#boshy tr.selected') ).data().to$();
@@ -411,7 +263,7 @@
                      });
                    }
                  });
-                 
+
                  $(document).ready(function(){
                    $(".full-table").each(function() {
                      $(this).find(".filter__btns").appendTo($(this).find(".filter__btns_cont"));
@@ -433,9 +285,9 @@
        url:'{{route('event_excel')}}',
        data:{ids:selectedIds,filters:filter},
        success:function(response){
-        swal("ﻞﻴﺴﻛا ﻒﻠﻣ ﺔﺌﻴﻫ ﻲﻠﻋ ﻝﻭﺪﺠﻟا ﺝاﺮﺨﺘﺳا ﻢﺗ" ,"!ﺡﺎﺠﻨﺑ ﺔﻴﻠﻤﻌﻟا ﺖﻤﺗ", "success");
+        swal("ﺗﻢ اﺳﺘﺨﺮاﺝ اﻟﺠﺪﻭﻝ ﻋﻠﻲ ﻫﻴﺌﺔ ﻣﻠﻒ اﻛﺴﻴﻞ" ,"ﺗﻤﺖ اﻟﻌﻤﻠﻴﺔ ﺑﻨﺠﺎﺡ!", "success");
         // var a = document.createElement("a");
-        // a.href = response.file; 
+        // a.href = response.file;
         // a.download = response.name+'.xlsx';
         // document.body.appendChild(a);
         // a.click();
