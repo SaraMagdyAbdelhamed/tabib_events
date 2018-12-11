@@ -33,7 +33,11 @@ class OffersAndDealsController extends Controller
     public function create(Request $request )
     {
         // dd($request->all());
-        if ($request->has('activation')) 
+
+        $start_date = str_replace('/', '-', $request->start_date_);
+        $end_date   = str_replace('/', '-', $request->end_date_);
+
+        if ($request->has('activation'))
         {
             $is_active=1;
         }
@@ -52,20 +56,20 @@ class OffersAndDealsController extends Controller
         if ($request->hasFile('offer_image')) {
             // dd($request->offer_image->getClientOriginalExtension());
             // foreach ($request->offer_image as $key => $file) {
-                
+
                 $destinationPath = 'offer_images';
                 $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
             // dd($fileNameToStore);
                 Input::file('offer_image')->move($destinationPath, $fileNameToStore);
 
                $offer= Offer::Create([
-                    
+
                     'name' => $request->offer_title,
                     'description' => $request->offer_description,
                     'image' => $fileNameToStore,
                     'is_active'=>$is_active,
-                    'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
-                    'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
+                    'start_datetime'=>date('Y-m-d',strtotime($start_date)),
+                    'end_datetime'=>date('Y-m-d',strtotime($end_date)),
                     'sponsor_id'=>$sponsor_id
                 ]);
 
@@ -134,7 +138,7 @@ class OffersAndDealsController extends Controller
     {
         // dd($request->all());
         $offer=Offer::find($id);
-        if ($request->has('activation')) 
+        if ($request->has('activation'))
         {
             $is_active=1;
         }
@@ -153,14 +157,14 @@ class OffersAndDealsController extends Controller
         if ($request->hasFile('offer_image')) {
             // dd($request->offer_image->getClientOriginalExtension());
             // foreach ($request->offer_image as $key => $file) {
-                
+
                 $destinationPath = 'offer_images';
                 $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
             // dd($fileNameToStore);
                 Input::file('offer_image')->move($destinationPath, $fileNameToStore);
 
                $offer->update([
-                    
+
                     'name' => $request->offer_title,
                     'description' => $request->offer_description,
                     'image' => $fileNameToStore,
@@ -170,13 +174,13 @@ class OffersAndDealsController extends Controller
                     'sponsor_id'=>$sponsor_id
                 ]);
 
-               
+
             // }
         }
         else
         {
             $offer->update([
-                    
+
                 'name' => $request->offer_title,
                 'description' => $request->offer_description,
                 'is_active'=>$is_active,
@@ -219,7 +223,7 @@ class OffersAndDealsController extends Controller
         foreach($ids as $id)
         {
             Offer::destroy($id);
-            OfferOfferCategory::where('offer_id',$id)->delete(); 
+            OfferOfferCategory::where('offer_id',$id)->delete();
         }
         return redirect()->back();
     }

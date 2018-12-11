@@ -41,7 +41,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 0);
         })->get();
@@ -52,18 +52,18 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->get();
 
-        
+
         //  get doctors(users) registred in my list
         $data['myList'] = Users::whereHas('rules', function ($q) {
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 1);
         })->get();
 
@@ -83,10 +83,10 @@ class DoctorsController extends Controller
         $spec_id = $request->specialization;
         $gender_id = isset($request->gender) ? $request->gender : null;
 
-        // Filter User by country, city and gender first, then filter by specialization 
+        // Filter User by country, city and gender first, then filter by specialization
         if (!is_null($country_id) || !is_null($city_id) || !is_null($spec_id) || !is_null($gender_id)) {
             $users = new Users;  // create new object of users.
-            
+
             // Filter by country
             if (isset($country_id) && !empty($country_id)) {
                 $users = $users->where('country_id', $country_id);
@@ -141,9 +141,9 @@ class DoctorsController extends Controller
     }
 
     /**
-     *  Pass a collection of filtered users by [country, city, gender or specialization] 
+     *  Pass a collection of filtered users by [country, city, gender or specialization]
      *  to be filtered by user type
-     * 
+     *
      *  @param  $users  Collection  filtered users collection   default: NULL
      *  @param  $flag   Int         1 => mobile_users, 2 => general_list, 3 => my_list
      */
@@ -156,13 +156,13 @@ class DoctorsController extends Controller
                     $users1 = $users;
                     $users2 = $users3 = new Users;
                     break;
-    
+
                 // In case of general list doctors is being filtered
                 case 2:
                     $users2 = $users;
                     $users1 = $users3 = new Users;
                     break;
-    
+
                 // In case of my list doctors is being filtered
                 case 3:
                     $users3 = $users;
@@ -183,7 +183,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 0);
         })->get();
@@ -194,7 +194,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->get();
@@ -205,7 +205,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 1);
         })->get();
 
@@ -255,7 +255,7 @@ class DoctorsController extends Controller
             $doctor->password = bcrypt($request->password);
             $doctor->gender_id = $request->gender;
             $doctor->is_active = $request->activation ? : 0;
-            
+
             // Insert doctor's image if exists
             if ($request->hasfile('doctorImage')) {
                 $image = $request->doctorImage;
@@ -358,7 +358,7 @@ class DoctorsController extends Controller
     public function mobile_show($id)
     {
         // find this user
-        $user = Users::find($id);  
+        $user = Users::find($id);
 
         // check if user exists
         if ($user == null) {
@@ -371,7 +371,7 @@ class DoctorsController extends Controller
                 // filter users through table `user_rules`
                 $q->where('rule_id', 2);
             })->whereHas('userInfo', function ($q) {
-                // filter users through table `user_info` 
+                // filter users through table `user_info`
                 $q->where('is_profile_completed', 0)
                     ->where('is_backend', 0);
             })->first();
@@ -418,7 +418,7 @@ class DoctorsController extends Controller
     public function myList_show($id)
     {
         // find this user
-        $user = Users::find($id);  
+        $user = Users::find($id);
 
         // check if user exists
         if ($user == null) {
@@ -431,7 +431,7 @@ class DoctorsController extends Controller
                 // filter users through table `user_rules`
                 $q->where('rule_id', 2);
             })->whereHas('userInfo', function ($q) {
-                // filter users through table `user_info` 
+                // filter users through table `user_info`
                 $q->where('is_profile_completed', 1);
             })->first();
 
@@ -488,7 +488,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->first();
@@ -549,7 +549,7 @@ class DoctorsController extends Controller
 
                 $doctor->gender_id = $request->gender;
                 $doctor->is_active = $request->activation ? : 0;
-            
+
             // Insert doctor's image if exists
                 if ($request->hasfile('doctorImage')) {
                     File::delete($doctor->photo);   // delete old
@@ -613,7 +613,7 @@ class DoctorsController extends Controller
                     $doctor->password = bcrypt($request->password);
                     $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
                     $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
-                    
+
                     // Insert doctor's image if exists
                     // if ($request->hasfile('doctorImage')) {
                     //     $image = $request->doctorImage;

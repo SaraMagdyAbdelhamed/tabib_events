@@ -60,7 +60,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     //Notifications
     Route::get('/notifications', '\Modules\Notifications\Http\Controllers\NotificationsController@index')->name('notifications');
     Route::post('/send_notification', '\Modules\Notifications\Http\Controllers\NotificationsController@store')->name('send_notification');
-    
+
     Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
 
     // terms & conditions
@@ -147,7 +147,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         // Show & update a doctor in my list
         Route::get('/myList/show/{id}', '\Modules\UsersModule\Http\Controllers\DoctorsController@myList_show')->name('myList.show');
         Route::post('/myList/status/update', '\Modules\UsersModule\Http\Controllers\DoctorsController@myList_status_update')->name('myList.status.update');
-        
+
 
         /** General List Doctors **/
         // Create, Store, get cities & countries of new general list doctor
@@ -156,7 +156,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::post('/doctors/store/from_excel', '\Modules\UsersModule\Http\Controllers\DoctorsController@storeExcel')->name('doctors.storeExcel');
         Route::get('/doctors/add/get/cities', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getCities')->name('doctor.get.cities');
         Route::get('/doctors/add/get/regions', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getRegions')->name('doctor.get.regions');
-        
+
         // Edit & Update a general list doctor
         Route::get('/doctors/edit/{id}', '\Modules\UsersModule\Http\Controllers\DoctorsController@generalDoctorEdit')->name('doctor.edit');
         Route::post('/doctors/update', '\Modules\UsersModule\Http\Controllers\DoctorsController@generalDoctorUpdate')->name('doctor.update');
@@ -168,7 +168,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 
         Route::get('/users_backend', '\Modules\UsersModule\Http\Controllers\UsersController@index_backend')->name('users_backend');
         // Route::get('/mobile_filter', '\Modules\UsersModule\Http\Controllers\UsersController@mobile_filter')->name('mobile_filter');
-        
+
 
         Route::get('/test', '\Modules\UsersModule\Http\Controllers\UsersController@test');
 
@@ -218,7 +218,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::get('/events/big_events', '\Modules\Events\Http\Controllers\EventsController@big_events')->name('big_events');
         Route::post('/bigevents_post', '\Modules\Events\Http\Controllers\EventsController@bigevents_post')->name('bigevents_post');
         Route::post('/bigevents_select/{value}', '\Modules\Events\Http\Controllers\EventsController@bigevents_select')->name('bigevents_select');
-    }); //big events 
+    }); //big events
 
     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group(function ($lang = null) {
     // Notifications_view
@@ -230,10 +230,6 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 
 });
 
-//AHmed ALaa Test Routes 
+//AHmed ALaa Test Routes
 Route::get("/test_not","HomeController@test_not");
 Route::get("/mark_read/{id}","HomeController@mark_read");
-
-
-
-
