@@ -52,7 +52,7 @@
       <div class="add-mode">Adding mode</div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="text-xs-center">         
+          <div class="text-xs-center">
             <div class="text-wraper">
               <h3 class="cover-inside-title  ">@lang('keywords.events')</h3>
             </div>
@@ -83,8 +83,8 @@
               <div class="master_field">
                 <label class="master_label" for="description"> @lang('keywords.eventDescription')</label>
                 <textarea class="master_input" name="event[description]" minlength="5" id="description" Required></textarea>
-                @if ( $errors->has('event[description]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[description]') }}</span>                 
+                @if ( $errors->has('event[description]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[description]') }}</span>
                 @endif
               </div>
             </div>
@@ -111,8 +111,8 @@
               <div class="master_field">
                 <label class="master_label" for="shop_long">Longtiuide</label>
                 <input class="master_input" name="event[long]" id="event_long" placeholder="event_long" type="text">
-                @if ( $errors->has('event[long]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[long]') }}</span>                 
+                @if ( $errors->has('event[long]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[long]') }}</span>
                 @endif
               </div>
             </div>
@@ -120,8 +120,8 @@
               <div class="master_field">
                 <label class="master_label" for="shop_lat">Lat</label>
                 <input class="master_input" name="event[lat]" id="event_lat" placeholder="event_lat" type="text">
-                @if ( $errors->has('event[lat]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[lat]') }}</span>                 
+                @if ( $errors->has('event[lat]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[lat]') }}</span>
                 @endif
               </div>
             </div>
@@ -133,8 +133,8 @@
                   <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                   @endforeach
                 </select>
-                @if ( $errors->has('event[special][]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[special][]') }}</span>                 
+                @if ( $errors->has('event[special][]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[special][]') }}</span>
                 @endif
               </div>
             </div>
@@ -146,8 +146,8 @@
                   <option value="{{$category->id}}">{{$category->name}}</option>
                   @endforeach
                 </select>
-                @if ( $errors->has('event[category][]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[category][]') }}</span>                 
+                @if ( $errors->has('event[category][]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[category][]') }}</span>
                 @endif
               </div>
             </div>
@@ -159,8 +159,8 @@
                   <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                   @endforeach
                 </select>
-                @if ( $errors->has('event[doctor][]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[doctor][]') }}</span>                 
+                @if ( $errors->has('event[doctor][]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[doctor][]') }}</span>
                 @endif
               </div>
             </div>
@@ -170,8 +170,8 @@
                 <div class="">
                   <input class=" master_input" type="text" Required id="start_date_" name="event[start_date]">
                 </div>
-                @if ( $errors->has('event[start_date]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[start_date]') }}</span>                 
+                @if ( $errors->has('event[start_date]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[start_date]') }}</span>
                 @endif
               </div>
             </div>
@@ -182,8 +182,8 @@
                 <div class="">
                   <input class=" master_input" type="text" Required id="end_date_" name="event[end_date]">
                 </div>
-                @if ( $errors->has('event[end_date]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[end_date]') }}</span>                 
+                @if ( $errors->has('event[end_date]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[end_date]') }}</span>
                 @endif
               </div>
             </div>
@@ -194,20 +194,20 @@
                 <div class="bootstrap-timepicker">
                   <input class="timepicker master_input" type="text" Required id="start_time" name="event[start_time]">
                 </div>
-                @if ( $errors->has('event[start_time]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[start_time]') }}</span>                 
+                @if ( $errors->has('event[start_time]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[start_time]') }}</span>
                 @endif
               </div>
             </div>
-           
+
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div class="master_field">
                 <label class="master_label" for="end_time">@lang('keywords.eventTimeEnd')</label>
                 <div class="bootstrap-timepicker">
                   <input class="timepicker master_input" type="text" Required id="end_time" name="event[end_time]">
                 </div>
-                @if ( $errors->has('event[end_time]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[end_time]') }}</span>                 
+                @if ( $errors->has('event[end_time]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[end_time]') }}</span>
                 @endif
               </div>
             </div>
@@ -237,11 +237,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12"></div>
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="radiorobo">
-                  <input type="radio" id="free_ticket" name="event[ticket]" value="0">
+                  <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked="checked">
                   <label for="free_ticket">@lang('keywords.free')</label>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12"> 
+              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="radiorobo">
                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1">
                   <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -255,8 +255,8 @@
               <div class="master_field">
                 <label class="master_label" for="Price">@lang('keywords.price')</label>
                 <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]">
-                @if ( $errors->has('event[price]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>                 
+                @if ( $errors->has('event[price]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>
                 @endif
               </div>
             </div>
@@ -268,8 +268,8 @@
                   <option value="{{$currency->id}}">{{$currency->symbol}}</option>
                 @endforeach
                 </select>
-                @if ( $errors->has('event[currency]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>                 
+                @if ( $errors->has('event[currency]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>
                 @endif
               </div>
             </div>
@@ -277,8 +277,8 @@
               <div class="master_field">
                 <label class="master_label" for="Available_tickets">@lang('keywords.availableTickets')</label>
                 <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]">
-                @if ( $errors->has('event[available_tickets]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>                 
+                @if ( $errors->has('event[available_tickets]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>
                 @endif
               </div>
             </div>
@@ -291,8 +291,8 @@
               <div class="master_field">
                 <label class="master_label" for="Website">@lang('keywords.website')</label>
                 <input class="master_input" type="url" placeholder="ex:www.domain.com" id="Website" name="event[website]">
-                @if ( $errors->has('event[website]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[website]') }}</span>                 
+                @if ( $errors->has('event[website]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[website]') }}</span>
                 @endif
               </div>
             </div>
@@ -301,26 +301,30 @@
                 <label class="master_label" for="e_email"> @lang('keywords.email')</label>
                 <input class="master_input" type="email" placeholder="ss@test.com" id="e_email" name="event[email]">
                 <span class="valid-label"></span>
-                @if ( $errors->has('event[email]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[email]') }}</span>                 
+                @if ( $errors->has('event[email]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[email]') }}</span>
                 @endif
               </div>
             </div>
             <div class="col-xs-6">
 
                 <div class="master_field">
-                              <label class="master_label mandatory" for="code">@lang('keywords.code')</label>
-                              <select class="master_input" id="code" name="code" required>
-                                <option>02</option>
-                                <option>00965</option>
-                                <option>00966</option>
-                              </select><span class="master_message inherit">message content</span>
-                            </div>
+                  <label class="master_label mandatory" for="code">@lang('keywords.code')</label>
+                  <select class="master_input" id="code" name="event[code]" required>
+
+                    @foreach ($codes as $code)
+                        @if ( $code->tele_code != '' && $code->tele_code != null )
+                            <option value="{{ $code->id }}">{{ '(' . $code->tele_code . ') ' . $code->name }}</option>
+                        @endif
+                    @endforeach
+
+                  </select>
+                </div>
               <!-- <div class="master_field">
                 <label class="master_label" for="Code_numbe">@lang('keywords.code') </label>
                 <input class="master_input" type="number" placeholder="ex: 2012545" id="Code_numbe" name="event[code]">
-                @if ( $errors->has('event[code]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[code]') }}</span>                 
+                @if ( $errors->has('event[code]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[code]') }}</span>
                 @endif
               </div> -->
             </div>
@@ -328,14 +332,14 @@
               <div class="master_field">
                 <label class="master_label mandatory" for="Mobile_number"> @lang('keywords.Phone')</label>
                 <input class="master_input" type="number" placeholder="0123456789" id="Mobile_number" name="event[mobile]" required>
-                @if ( $errors->has('event[mobile]') )                   
-                  <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>                 
+                @if ( $errors->has('event[mobile]') )
+                  <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>
                 @endif
               </div>
             </div>
           </div>
         </fieldset>
-    
+
                       <h3>@lang('keywords.workshop')</h3>
                       <fieldset>
                         <div class="row">
@@ -389,7 +393,7 @@
                               </div><span class="master_message inherit">message content</span>
                             </div>
                           </div>
-                          
+
                           <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="master_field">
                               <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
@@ -410,12 +414,12 @@
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
-                       
-                          
-                         
-                          
 
-                          
+
+
+
+
+
                         </div>
                         <div id="more_workshop"></div>
                         <div class="col-sm-12 col-xs-12">
@@ -436,7 +440,7 @@
                               <label class="master_label mandatory" for="appears_for">@lang('keywords.surveyFor')</label>
                               <select class="master_input select2" id="appears_for" multiple="multiple" style="width:100%;"  name="survey[0][appears_for]">
                                 <option value="1">All attend</option>
-                               
+
                               </select><span class="master_message inherit">message content</span>
                             </div>
                           </div>
@@ -477,7 +481,7 @@
                             <div class="checkboxrobo pull-right">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
                               <label for="activation">@lang('keywords.Active')</label>
-                            </div>                        
+                            </div>
                         </div><br>
                         <div id="more_Survey"></div>
                         <div class="col-md-12 col-sm-12 col-xs-12 no_padding">
@@ -533,7 +537,7 @@
               </div>
             </div>
           </div>
-            
+
           </div>
         </fieldset>
       </form>
@@ -544,7 +548,7 @@
 
 <script type="text/javascript" src="../js/scripts.min.js"></script>
 <script type="text/javascript">
- 
+
 </script>
 
 <script type="text/javascript">
@@ -570,7 +574,7 @@
           $("#file-2").prop('disabled', false);
           updateList2();
         }
-          
+
         }
         //===media
         function updateList3(){
@@ -598,7 +602,7 @@
                       alert("max no. 5 images");
                       return;
                   }
-      
+
                   if (window.File && window.FileList && window.FileReader) {
                          if (files3.length == 5) {
                       $("#file-3").prop('disabled', true);
@@ -626,14 +630,14 @@
                                       </button></span></li>`;
                               }
                               output.innerHTML += '</ul>';
-      
+
                           });
-      
+
                           //Read the image
                           imgReadermedia.readAsDataURL(file);
                       }
                   }
-      
+
                   if (listmedia.length == 4) {
                       $("#file-3").prop('disabled', true);
                   }
@@ -660,13 +664,13 @@
                   output.innerHTML += '</ul>';
                   check = false;
               }
-      
+
               else {
                   if (files2.length > 5) {
                       alert("max no. 5 images");
                       return;
                   }
-      
+
                   if (window.File && window.FileList && window.FileReader) {
                          if (files2.length == 5) {
                       $("#file-2").prop('disabled', true);
@@ -694,23 +698,23 @@
                                       </button></span></li>`;
                               }
                               output.innerHTML += '</ul>';
-      
+
                           });
-      
+
                           //Read the image
                           imgReaderinfo.readAsDataURL(file);
                       }
                   }
-      
+
                   if (listinfo.length == 4) {
                       $("#file-2").prop('disabled', true);
                   }
               }
-      
-      
+
+
           }
-      
-       
+
+
     </script>
 
 <script type="text/javascript">
@@ -726,7 +730,7 @@
                   {
                       return true;
                   }
-                  
+
                   // Needed in some cases if the user went back (clean up)
                   if (currentIndex < newIndex)
                   {
@@ -752,14 +756,14 @@
               },
                   onFinishing: function (event, currentIndex)
                   {
-                 
-                    
+
+
                       var form = $(this);
 
                       form.submit();
                   },
                   onFinished: function (event, currentIndex) {
-                      
+
                       }
                   }).validate({
               errorPlacement: function errorPlacement(error, element) { element.before(error); }
@@ -773,10 +777,10 @@
     $('input, select').on('change', function(event) {
       var $element = $(event.target),
         $container = $element.closest('.example');
-  
+
       if (!$element.data('tagsinput'))
         return;
-  
+
       var val = $element.val();
       if (val === null)
         val = "null";
@@ -784,24 +788,24 @@
       $('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
     }).trigger('change');
   });
-  
-  
+
+
 </script>
-    
+
 <script type="text/javascript">
   (function(){
     var options = {};
     $('.js-uploader__box').uploader(options);
   }());
-  
+
 </script>
 
 <script type="text/javascript">
   $(function () {
     $().bootstrapSwitch && $(".make-switch").bootstrapSwitch();
   });
-  
-  
+
+
 </script>
 
 <script type="text/javascript">
@@ -815,7 +819,7 @@
         loading:"Loading....."
       }
     }
-  
+
 </script>
 
 <script type="text/javascript">
@@ -823,8 +827,8 @@
     $("#paid_section").hide();
     $("#paid_ticket").on('change',function(){
         swal({
-        title: "Paid ticket", 
-        text: "Will you use our ticketing system?", 
+        title: "Paid ticket",
+        text: "Will you use our ticketing system?",
         showCancelButton: true,
         closeOnConfirm: true,
         confirmButtonText: "Yes",
@@ -833,14 +837,14 @@
       },function(){
         $("#paid_section").show();
       })
-      
+
     });
-  
+
     $("#free_ticket").on('change',function(){
       $("#paid_section").hide();
     })
-    
-      
+
+
       });
     </script>
     <script type="text/javascript">
@@ -848,7 +852,7 @@
         var current_count =0;
         var next_count=0;
         $("#add_more_btn").on('click',function(){
-           
+
           next_count= current_count+1;
           current_count +=1;
           $("#more_workshop").append(`<div><p style="text-align: center;background-color: #1ca6c0;color: azure;"> @lang('keywords.workshop') ${next_count}</p></div>
@@ -924,7 +928,7 @@
                                 </select><span class="master_message inherit">message content</span>
                               </div>
                             </div>
-                           
+
                             `
           )
           $(".timepicker").timepicker({showInputs: false});
@@ -936,14 +940,14 @@
       })
     </script>
     <script type="text/javascript">
-    
+
       function add_question(value,question){
         var question_id="more_question_"+value;
         var question = $("#"+question_id+" > div").length+1;
-       
+
           $(`#more_question_${value}`).append(`
                            <div class="row">
-                          
+
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.Squestion') ${question}</label>
@@ -983,7 +987,7 @@
        var current_count_survey = 0;
        var next_count_survey = 0;
        $("#add_more_question").on('click',function(){
-         
+
          next_count_question = current_count_question+1;
          current_count_question+=1;
          $("#more_Question").append(
@@ -1024,13 +1028,13 @@
          );
        });
        $("#add_more_survey").on('click',function(){
-          
+
          next_count_survey =current_count_survey +1;
        next_count_question = 0;
        current_count_survey +=1;
-       
-            $("#more_Survey").append(` 
-                         
+
+            $("#more_Survey").append(`
+
                          <div><p style="text-align: center;background-color: #004272;color: azure;">  @lang('keywords.surveyN') ${next_count_survey}</p></div>
                            <div class="row">
                              <div class="col-xs-6">
@@ -1044,7 +1048,7 @@
                                  <label class="master_label mandatory" for="appears_for_${next_count_survey}"> @lang('keywords.surveyFor')</label>
                                  <select class="master_input select2" id="appears_for_${next_count_survey}" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
                                    <option value="1">All attend</option>
-                                  
+
                                  </select><span class="master_message inherit">message content</span>
                                </div>
                              </div>
@@ -1089,12 +1093,12 @@
                             </div>
                            <br>
                            `
-      
+
             );
             $(".select2").select2();
 
        })
-      
+
       })
     </script>
        <script>
@@ -1104,13 +1108,13 @@
 var event_lat;
 var event_long;
       function initMap() {
-        
+
         var input = document.getElementById('event_address');
-       
+
         var autocomplete = new google.maps.places.Autocomplete(input);
 
         autocomplete.addListener('place_changed', function() {
- 
+
           var place = autocomplete.getPlace();
           if (!place.geometry) {
             // User entered the name of a Place that was not suggested and
@@ -1136,5 +1140,5 @@ var event_long;
 
 </script>
 
-            
+
 @endsection

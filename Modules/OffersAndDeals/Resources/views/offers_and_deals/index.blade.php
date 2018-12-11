@@ -53,7 +53,7 @@
                               <td>
                               <span class="cellcontent">
                               <a href= "{{route('offers_and_deals.edit',$offer->id)}}" ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a>
-                               <a    data-id="{{ $offer->id }}"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord"><i class = "fa  fa-trash-o"></i></a>
+                              <a data-id="{{ $offer->id }}"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord"><i class = "fa  fa-trash-o"></i></a>
                                </span>
                             </tr>
                             @endforeach
@@ -238,7 +238,7 @@
 
             // push cities IDs selected by user
             $('input.input-in-table:checked').each(function() {
-                allVals.push( $(this).data("id") );
+                allVals.push( $(this).closest('tr').data("id") );
             });
 
             // check if user selected nothing

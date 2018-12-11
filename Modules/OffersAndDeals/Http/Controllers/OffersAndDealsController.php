@@ -202,18 +202,28 @@ class OffersAndDealsController extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        Offer::destroy($id);
-        OfferOfferCategory::where('offer_id', $id)->delete();
-        return redirect()->back();
+
+        try {
+            Offer::destroy($id);
+            OfferOfferCategory::where('offer_id', $id)->delete();
+        } catch (\Exception $e) {
+            return response()->json('error', 'Something went wrong, code: '.$e->getMessage());
+        }
+
+        return response()->json(['success' => 'success']);
     }
 
     public function deleteSelected(Request $request)
     {
         $ids = $request->ids;
         foreach ($ids as $id) {
-            Offer::destroy($id);
-            OfferOfferCategory::where('offer_id', $id)->delete();
+            try {
+                Offer::destroy($id);
+                OfferOfferCategory::where('offer_id', $id)->delete();
+            } catch (\Exception $e) {
+                return response()->json('error', 'Something went wrong, code: ' . $e->getMessage());
+            }
         }
-        return redirect()->back();
+        return response()->json(['success' => 'success']);
     }
 }
