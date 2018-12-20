@@ -157,4 +157,29 @@ class Users extends Authenticatable
     {
         return $this->hasMany('App\Event', 'created_by');
     }
+
+    // get country name
+    public function getCountry()
+    {
+        return isset($this->country->name) ? $this->country->name : __('keywords.not');
+    }
+
+    // get city name
+    public function getCity()
+    {
+        return isset($this->city->name) ? $this->city->name : __('keywords.not');
+    }
+
+    // get region name
+    public function getRegionName()
+    {
+        return isset($this->userInfo->region->name) ? $this->country->name : __('keywords.not');
+    }
+
+    // get region id
+    public function getRegionCityId()
+    {
+        return isset($this->userInfo->region->city_id) ? $this->userInfo->region->city_id : __('keywords.not');
+    }
+
 }

@@ -90,7 +90,7 @@ class OffersAndDealsController extends Controller
     {
         $data['categories'] = OfferCategory::all();
         $data['sponsors'] = Users::whereHas('rules', function ($q) {
-            $q->where('rule_id', 4);
+            $q->where('rules.name', 'like', '%Sponsor%');
         })->with('rules')->get();
         $user = Users::find(\Auth::id());
         $data['isSponsor'] = $user->isSponsor();

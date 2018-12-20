@@ -187,24 +187,24 @@
                       {{-- Country --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->country->name : \Helper::localization('geo_countries','name',$doctor->country_id,'2',
-                              $doctor->country->name)}}
+                          {{\App::isLocale('en') ? $doctor->getCountry() : \Helper::localization('geo_countries','name',$doctor->country_id,'2',
+                              $doctor->getCountry())}}
                         </span>
                       </td>
 
                       {{-- City --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->city->name : \Helper::localization('geo_cities','name',$doctor->city_id,'2',
-                              $doctor->city->name)}}
+                          {{\App::isLocale('en') ? $doctor->getCity() : \Helper::localization('geo_cities','name',$doctor->city_id,'2',
+                              $doctor->getCity() )}}
                         </span>
                       </td>
 
                       {{-- Region --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->userInfo->region->name : \Helper::localization('geo_regions','name',$doctor->userInfo->region->city_id,'2',
-                              $doctor->city->name)}}
+                          {{\App::isLocale('en') ? $doctor->getRegionName() : \Helper::localization('geo_regions','name', $doctor->getRegionCityId(),'2',
+                              $doctor->getCity() )}}
                         </span>
                       </td>
 
