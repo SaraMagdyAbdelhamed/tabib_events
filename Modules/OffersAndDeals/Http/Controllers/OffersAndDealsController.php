@@ -32,7 +32,7 @@ class OffersAndDealsController extends Controller
      */
     public function create(Request $request)
     {
-        // dd($request->all());
+         dd($request->all());
 
         $start_date = str_replace('/', '-', $request->start_date_);
         $end_date = str_replace('/', '-', $request->end_date_);
@@ -131,9 +131,11 @@ class OffersAndDealsController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+      // dd($request->start_date_);
 
         $start_date = str_replace('/', '-', $request->start_date_);
         $end_date = str_replace('/', '-', $request->end_date_);
+       // dd( date('Y-m-d', strtotime($start_date))) ;
 
         $offer = Offer::find($id);
         if ($request->has('activation')) {
@@ -155,7 +157,7 @@ class OffersAndDealsController extends Controller
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
             // dd($fileNameToStore);
             Input::file('offer_image')->move($destinationPath, $fileNameToStore);
-
+           
             $offer->update([
 
                 'name' => $request->offer_title,
@@ -175,8 +177,8 @@ class OffersAndDealsController extends Controller
                 'name' => $request->offer_title,
                 'description' => $request->offer_description,
                 'is_active' => $is_active,
-                'start_datetime' => date('Y-m-d', strtotime($request->start_date)),
-                'end_datetime' => date('Y-m-d', strtotime($request->end_date)),
+                'start_datetime' => date('Y-m-d', strtotime($start_date)),
+                'end_datetime' => date('Y-m-d', strtotime($end_date)),
                 'sponsor_id' => $sponsor_id
             ]);
         }
