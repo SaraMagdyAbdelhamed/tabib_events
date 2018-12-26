@@ -160,6 +160,7 @@ class UsersController extends Controller
             'user_photo'=> 'required|image|mimes:jpeg,png,jpg|max:2048',
             'activation'=> '',
             'notification' => '',
+            'specializations' => '',
         ]);
 
         try {
@@ -169,7 +170,7 @@ class UsersController extends Controller
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->mobile = $request->phone;
+            $user->mobile = $request->mobile;
             $user->is_active = $request->status;
             
             if ($request->hasFile('user_photo')) {
@@ -184,10 +185,19 @@ class UsersController extends Controller
             if(isset($request->categories)){
             $user->sponsorCategories()->attach($request->categories);
              };
+              if(isset($request->cities)){
+            $user->sponsorCities()->attach($request->cities);
+             };
+              if(isset($request->regions)){
+            $user->sponsorRegions()->attach($request->regions);
+             };
+              if(isset($request->specializations)){
+            $user->sponsorSpecializations()->attach($request->specializations);
+             };
             $userInfo = new UserInfo;
             $userInfo->user_id = $user->id;
             $userInfo->address = $request->address;
-            // $userInfo->city_id = $request->
+          
             $userInfo->save();
 
             // TODO: NOTIFICATIONS
@@ -217,8 +227,12 @@ class UsersController extends Controller
     public function backend_edit(Users $user)
     {
         $data['user']=$user;
+       // dd($user->city_id);
+        $data['categories']= $user->sponsorCategories()->get();
+        $data['cities']= $user->sponsorCategories()->get();
+       // dd($user->sponsorCities);
         $data['rule_id'] = $user->rules()->where('rule_id','!=',1)->first()->id;
-        $data['address'] = ($user->userInfo) ? $user->userInfo->adderss : "";
+        $data['address'] = ($user->userInfo)?$user->userInfo->address:"";
         $data['userTypes'] = Rules::all();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
@@ -275,11 +289,12 @@ class UsersController extends Controller
         //     Auth::logout();
         //     return redirect('/login');
         // }
+
         $this->validate($request, [
             'user_type' => 'required',
             'fullname'  => 'required',
             'address'   => 'required',
-            'password'  => 'required',
+            'password'  => ($request->password)?'min:3':'',
             'mobile'    => 'required',
             'categories'=> '',
             'cities'    => '',
@@ -311,6 +326,16 @@ class UsersController extends Controller
             if(isset($request->categories)){
             $user->sponsorCategories()->sync($request->categories);
              }
+
+               if(isset($request->cities)){
+            $user->sponsorCities()->sync($request->cities);
+             };
+              if(isset($request->regions)){
+            $user->sponsorRegions()->sync($request->regions);
+             };
+              if(isset($request->specializations)){
+            $user->sponsorSpecializations()->sync($request->specializations);
+             };
 
             if($user->info)
             {

@@ -188,4 +188,20 @@ class Users extends Authenticatable
     {
     return $this->belongsToMany('App\SponsorCategory', 'user_sponsor_categories', 'user_id', 'sponsor_category_id');
     }
+
+
+     public function sponsorCities()
+    {
+    return $this->belongsToMany('App\Cities', 'user_target_cities', 'user_id', 'city_id');
+    }
+
+
+     public function sponsorRegions()
+    {
+    return $this->belongsToMany('App\GeoRegion', 'user_target_regions', 'user_id', 'region_id');
+    }
+     public function sponsorSpecializations()
+    {
+    return $this->belongsToMany('App\Specialization', 'user_target_specializations', 'user_id', 'specialization_id');
+    }
 }

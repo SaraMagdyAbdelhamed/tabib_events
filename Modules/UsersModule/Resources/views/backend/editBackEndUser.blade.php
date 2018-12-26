@@ -142,10 +142,16 @@
 
                       {{-- List all options --}}
                       @if ( isset($sponsorCategories) && !empty($sponsorCategories) )
-                          @foreach ($sponsorCategories as $cat)
-                              <option value="{{ $cat->id }}">
-                                {{ $cat->name ? : __('keywords.not') }}
+                           @foreach ($sponsorCategories as $cat)
+                          
+                              <option value="{{ $cat->id }}" 
+                                @foreach($categories as $cat_select)
+                                 {{ ($cat->id == $cat_select->id) ? 'selected' : '' }}
+                                @endforeach
+                                >
+                                  {{ $cat->name ? : __('keywords.not') }}
                               </option>
+                         
                           @endforeach
                       @endif
                     </select>
@@ -166,7 +172,11 @@
                       {{-- List all options --}}
                       @if ( isset($cities) && !empty($cities) )
                           @foreach ($cities as $city)
-                              <option value="{{ $city->id }}">
+                              <option value="{{ $city->id }}" 
+                              @foreach($user->sponsorCities as $targetcity ) 
+                                {{ ($city->id == $targetcity->id) ? 'selected' : '' }}
+                                @endforeach
+                                >
                                 {{ $city->name ? : __('keywords.not') }}
                               </option>
                           @endforeach
@@ -189,7 +199,11 @@
                       {{-- List all options --}}
                       @if ( isset($regions) && !empty($regions) )
                           @foreach ($regions as $region)
-                              <option value="{{ $region->id }}">
+                              <option value="{{ $region->id }}"  
+
+                                 @foreach ($user->sponsorRegions as $targetregion)
+                                {{ ($region->id == $targetregion->id) ? 'selected' : '' }}
+                                @endforeach>
                                 {{ $region->name ? : __('keywords.not') }}
                               </option>
                           @endforeach
@@ -212,7 +226,13 @@
                       {{-- List all options --}}
                       @if ( isset($specs) && !empty($specs) )
                           @foreach ($specs as $spec)
-                              <option value="{{ $spec->id }}">
+                              <option value="{{ $spec->id }}"
+
+                               @foreach($user->sponsorSpecializations as $targetsec)
+
+
+                               {{ ($spec->id == $targetsec->id) ? 'selected' : '' }}
+                               @endforeach>
                                 {{ $spec->name ? : __('keywords.not') }}
                               </option>
                           @endforeach
@@ -276,6 +296,10 @@
   <script type="text/javascript">
     $(document).ready(function(){
         $("#sponsor_section").hide();
+         let user_type = $("#user_type").val();
+           if(user_type == '6'){
+             $("#sponsor_section").show();
+           }
         $("#user_type").on('change',function(){
            let user_type = $("#user_type").val();
            if(user_type == '6'){
