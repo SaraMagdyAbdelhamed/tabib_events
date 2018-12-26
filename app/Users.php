@@ -182,4 +182,10 @@ class Users extends Authenticatable
         return isset($this->userInfo->region->city_id) ? $this->userInfo->region->city_id : __('keywords.not');
     }
 
+
+  
+ public function sponsorCategories()
+    {
+    return $this->belongsToMany('App\SponsorCategory', 'user_sponsor_categories', 'user_id', 'sponsor_category_id');
+    }
 }

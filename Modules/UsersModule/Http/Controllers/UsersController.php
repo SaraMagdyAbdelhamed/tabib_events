@@ -181,7 +181,9 @@ class UsersController extends Controller
 
             $user->save();
             $user->rules()->attach([$request->user_type, 1]);
-
+            if(isset($request->categories)){
+            $user->sponsorCategories()->attach($request->categories);
+             };
             $userInfo = new UserInfo;
             $userInfo->user_id = $user->id;
             $userInfo->address = $request->address;
@@ -305,6 +307,10 @@ class UsersController extends Controller
             $user->save();
             $user->rules()->detach();
             $user->rules()->attach([$request->user_type, 1]);
+
+            if(isset($request->categories)){
+            $user->sponsorCategories()->sync($request->categories);
+             }
 
             if($user->info)
             {
