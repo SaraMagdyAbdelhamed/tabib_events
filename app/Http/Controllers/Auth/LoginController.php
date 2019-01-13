@@ -44,12 +44,13 @@ class LoginController extends Controller
         // try to authenticate user
         if ( Auth::attempt(['username' => $username, 'password' => $request->password]) ) {
 
-            // add last login timestamp
-            $user = Users::find(Auth::user()->id);
+        // add last login timestamp
+            $user = Auth::user();
             $userLocale = Helper::getUserLocale();
-            $user->last_login = Carbon::now()->toDateTimeString();
+            $user->last_login = Carbon::now()->setTimezone($request->timezone);
             $user->timezone = $request->timezone;
             $user->save();
+
             return redirect('/about');
 
         } else {
