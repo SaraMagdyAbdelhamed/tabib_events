@@ -275,8 +275,7 @@ class EventsController extends Controller
             }
         }
 
-
-        Session::flash('success', 'Event added successfully! تم إضافة الحدث بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event added successfully!', ' تم إضافة الحدث بنجاح');
         return redirect('/events/index');
 
 
@@ -298,7 +297,7 @@ class EventsController extends Controller
             $data['tickets'] = $data['event']->tickets;
             return view('events::events.show', $data);
         } else {
-            Session::flash('warning', 'Event not found! لم يتم العثور علي الحدث');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Event not found!', 'لم يتم العثور علي الحدث');
             return redirect()->back();
         }
     }
@@ -633,7 +632,7 @@ class EventsController extends Controller
             }
         }
 
-        Session::flash('success', 'Event updated successfully! تم تعديل الحدث بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event updated successfully!', 'تم تعديل الحدث بنجاح');
         return redirect('/events/index');
     }
     public function firebase()

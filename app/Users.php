@@ -15,7 +15,7 @@ class Users extends Authenticatable
 
     protected $primaryKey = 'id';           // primary key
     protected $table = 'users';             // actual table name
-    protected $dates = ['deleted_at', 'birthdate'];      // use soft deletes
+    protected $dates = ['deleted_at', 'birthdate', 'last_login'];      // use soft deletes
     public $timestamps = true;              // to formate timestamps as dates
 
     public function getId()

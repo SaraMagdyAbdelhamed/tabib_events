@@ -77,7 +77,7 @@ class OffersAndDealsController extends Controller
             // }
         }
         $data['offers'] = Offer::all();
-        Session::flash('success', 'Offer Added successfully! تم أضافه العرض بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Offer Added successfully!', ' تم أضافه العرض بنجاح');
         return redirect('/offers_and_deals');
     }
 
@@ -189,7 +189,8 @@ class OffersAndDealsController extends Controller
                 'offer_category_id' => $cat
             ]);
         }
-        Session::flash('success', 'Offer Updated successfully! تم تعديل العرض بنجاح');
+
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Offer Updated successfully!', ' تم تعديل العرض بنجاح');
         return redirect('/offers_and_deals');
     }
 
