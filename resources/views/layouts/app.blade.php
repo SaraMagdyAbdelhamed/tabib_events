@@ -174,7 +174,7 @@
             <!-- Sidebar-->
             <nav class="navbar navbar-fixed-top   bshadow--0 bradius--noborder " id="sidebar-wrapper" role="navigation">
               <ul class="sidebar-navigation">
-                <li class="brand   bshadow--0"><a href="{{ route('about') }}"> <img src="{{ asset('img/logo/logo__light.svg') }}" alt="طبيب"></a></li>
+                <li class="brand   bshadow--0"><a href="{{ route('about') }}"> <img src="{{ asset('img/logo__light.png') }}" alt="طبيب"></a></li>
               </ul>
               <div class="coverglobal text-center bshadow--2" style="background:undefined url( '{{ asset('img/covers/dummy.jpg') }}') no-repeat center center; background-size:cover;">
                 <button class="hamburger is-closed" type="button" data-toggle="offcanvas"><span class="hamb-top"></span><span class="hamb-middle"></span><span class="hamb-bottom"></span></button>
