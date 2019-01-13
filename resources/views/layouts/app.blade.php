@@ -237,7 +237,7 @@
                     <h3 class="coverglobal__title">{{ Auth::user()->first_name .' '. Auth::user()->last_name }}</h3>
                     <small class="coverglobal__slogan">
                       <div class="row text-center">
-                        {{ Helper::getUserLocalTimezone(Helper::getUserLastLogin()) }}
+                        {{ Auth::user()->last_login->format('h:i A - M d, Y')  }}
                       </div>
                     </small>
 

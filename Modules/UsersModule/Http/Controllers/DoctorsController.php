@@ -128,7 +128,7 @@ class DoctorsController extends Controller
                 break;
 
             default:
-                Session::flash('warning', 'Filter Error! حدث خطأ في الفلتر');
+                Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Error while filtering data!', 'حدث خطأ ما');
                 return redirect('/users_mobile');
                 break;
         }
@@ -282,14 +282,13 @@ class DoctorsController extends Controller
             $doctor->rules()->attach(2);
 
         } catch (Exception $exp) {
-            dd($exp);
-            Session::flash('warning', 'can not add new doctor! خطأ ، لا يمكن إضافة طبيب جديد');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
             return redirect()->back();
         }
 
 
         // Flash success and redirect to its home page
-        Session::flash('success', 'Doctor added successfully! تم إضافة الطبيب بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', 'تم إضافة الطبيب بنجاح');
         return redirect('/users_mobile');
     }
 
@@ -363,7 +362,7 @@ class DoctorsController extends Controller
         // check if user exists
         if ($user == null) {
             // not found
-            Session::flash('warning', 'Not found! غير موجود');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Not found!', 'غير موجود');
             return redirect('/users_mobile');
         } else {
             // user found
@@ -396,17 +395,17 @@ class DoctorsController extends Controller
 
             /** TODO: SEND NOTIFICATIONS */
 
-            Session::flash('success', 'Doctor activated! تم تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor activated successfully!', 'تم تفعيل الطبيب');
             return redirect('/users_mobile');
         } else if ($request->id && !isset($request->activation)) {
             $user = Users::find($request->id);
             $user->is_active = 0;
             $user->save();
 
-            Session::flash('success', 'Doctor deactivated! تم الغاء تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor deactivated!', ' تم الغاء تفعيل الطبيب');
             return redirect('/users_mobile');
         } else {
-            Session::flash('warning', 'Doctor not found! لم يتم العثور علي هذا الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor not found!', ' لم يتم العثور علي هذا الطبيب');
             return redirect('/users_mobile');
         }
     }
@@ -423,7 +422,7 @@ class DoctorsController extends Controller
         // check if user exists
         if ($user == null) {
             // not found
-            Session::flash('warning', 'Not found! غير موجود');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Not found', 'غير موجود');
             return redirect('/users_mobile');
         } else {
             // user found
@@ -451,17 +450,17 @@ class DoctorsController extends Controller
 
             /** TODO: SEND NOTIFICATIONS */
 
-            Session::flash('success', 'Doctor activated! تم تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor activated!', ' تم تفعيل الطبيب');
             return redirect('/users_mobile');
         } else if ($request->id && !isset($request->activation)) {
             $user = Users::find($request->id);
             $user->is_active = 0;
             $user->save();
 
-            Session::flash('success', 'Doctor deactivated! تم الغاء تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor deactivated!', 'تم الغاء تفعيل الطبيب');
             return redirect('/users_mobile');
         } else {
-            Session::flash('warning', 'Doctor not found! لم يتم العثور علي هذا الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', ' لم يتم العثور علي هذا الطبيب');
             return redirect('/users_mobile');
         }
     }
@@ -503,7 +502,7 @@ class DoctorsController extends Controller
 
             return view('usersmodule::doctors.editDoctor', $data);
         } else {
-            Session::flash('warning', 'Doctor not found! لم نتمكن من العثور علي هذا الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', ' لم نتمكن من العثور علي هذا الطبيب');
             return redirect()->back();
         }
     }
@@ -579,16 +578,16 @@ class DoctorsController extends Controller
 
             } catch (Exception $exp) {
                 dd($exp);
-                Session::flash('warning', 'can not update new doctor! خطأ ، لا يمكن تعديل طبيب جديد');
+                Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not update new doctor!', ' خطأ ، لا يمكن تعديل طبيب جديد');
                 return redirect()->back();
             }
 
 
         // Flash success and redirect to its home page
-            Session::flash('success', 'Doctor updated successfully! تم تعديل الطبيب بنجاح');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor updated successfully!', ' تم تعديل الطبيب بنجاح');
             return redirect('/users_mobile');
         } else {
-            Session::flash('warning', 'can not update this doctor! لا يمكن تعديل معلومات الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not update this doctor!', ' لا يمكن تعديل معلومات الطبيب');
             return redirect()->back();
         }
     }
@@ -641,19 +640,19 @@ class DoctorsController extends Controller
 
                 } catch (Exception $exp) {
                     dd($exp);
-                    Session::flash('warning', 'can not add new doctor! خطأ ، لا يمكن إضافة طبيب جديد');
+                    Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!',' خطأ ، لا يمكن إضافة طبيب جديد');
                     return redirect()->back();
                 }
             }
 
 
         } else {
-            Session::flash('warning', 'Error uploading excel file! خطأ في تحميل ملف الاكسيل');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Error uploading excel file! خطأ في تحميل ملف الاكسيل');
             return redirect()->back();
         }
 
         // Flash success and redirect to its home page
-        Session::flash('success', 'Doctor added successfully! تم إضافة الطبيب بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
         return redirect('/users_mobile');
     }
 }

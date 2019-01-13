@@ -115,7 +115,7 @@ class MainController extends Controller
             $fixed->save();
         }
 
-        Session::flash('success', 'Success تم الاضافة بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Success', 'تم التعديل بنجاح');
         return redirect()->back();
     }
 
@@ -147,7 +147,7 @@ class MainController extends Controller
             $newEmail->save();
         }
 
-        Session::flash('success', 'Email updated successfully تم تحديث البريد الالكتروني بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Email updated successfully!', 'تم تحديث البريد الالكتروني بنجاح');
         return redirect()->back();
     }
 
@@ -228,8 +228,7 @@ class MainController extends Controller
             $event->created_by = Auth::id();
             $event->save();
         } catch (\Exception $ex) {
-            dd($ex);
-            Session::flash('warning', 'Error occured during adding event!');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Error!', 'خطأ');
             return redirect()->back();
         }
 
@@ -238,11 +237,11 @@ class MainController extends Controller
             Helper::add_localization($entity_id, 'name', $event->id, $request->arabicContent, 2);
         } catch (\Exception $ex) {
             $event->delete();
-            Session::flash('warning', 'حدث خطا ما عند ادخال الحدث');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Error while registering new event!', 'حدث خطا ما عند تسجيل الحدث');
             return redirect()->back();
         }
 
-        Session::flash('success', 'Event Added successfully تم إضافة الحدث بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event Added successfully', 'تم إضافة الحدث بنجاح');
         return redirect()->back();
     }
 
@@ -317,8 +316,7 @@ class MainController extends Controller
             $event->created_by = Auth::id();
             $event->save();
         } catch (\Exception $ex) {
-            dd($ex);
-            Session::flash('warning', 'Error occured during adding event!');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Error occured during adding event!', 'خطأ عند تسجيل الحدث');
             return redirect()->back();
         }
 
@@ -326,11 +324,11 @@ class MainController extends Controller
         try {
             Helper::edit_entity_localization($entity_table, 'name', $request->id, 2, $request->arabicContent);
         } catch (\Exception $ex) {
-            Session::flash('warning', 'حدث خطا ما عند ادخال الحدث');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Error occured during adding event!', 'خطأ عند تسجيل الحدث');
             return redirect()->back();
         }
 
-        Session::flash('success', 'Event Added successfully تم إضافة الحدث بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event stored successfully', 'تم تسجيل الحدث بنجاح');
         return redirect()->back();
     }
 
@@ -505,12 +503,12 @@ class MainController extends Controller
             $notification->value = $request->notification . ',' . $request->measurement;
             $notification->save();
         } catch (\Exception $ex) {
-            dd($ex);
-            Session::flash('warning', 'can not add new notification');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new notification!', 'خطأ لا يمكن إضافة التنبيه');
             return redirect()->back();
         }
 
-        Session::flash('success', 'Success - تم الاضافة بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Success!', 'تم الاضافة بنجاح');
+
         return redirect()->back();
     }
 

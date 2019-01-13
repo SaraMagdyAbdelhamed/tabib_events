@@ -5,7 +5,7 @@
     {{-- Sweet alert: success --}}
     <script>
         $(document).ready(function(){
-            swal("Success", '{{ Session::get('success') }}', 'success');
+            swal("{{ Session::get('locale') == 'en' ? 'Success' : 'تم بنجاح' }}", '{{ Session::get('success') }}', 'success');
         });
     </script>
 
@@ -15,7 +15,7 @@
         {{-- Sweet alert: warning --}}
         <script>
             $(document).ready(function(){
-                swal("Warning", '{{ Session::get('warning') }}', 'warning');
+                swal("{{ Session::get('locale') == 'en' ? 'Warning' : 'تحذير' }}", '{{ Session::get('warning') }}', 'warning');
             });
         </script>
     @endif
@@ -24,7 +24,7 @@
         {{-- Sweet alert: error --}}
         <script>
             $(document).ready(function(){
-                swal("Error", '{{ Session::get('error') }}', 'error');
+                swal("{{ Session::get('locale') == 'en' ? 'Error' : 'خطأ' }}", '{{ Session::get('error') }}', 'error');
             });
         </script>
     @endif

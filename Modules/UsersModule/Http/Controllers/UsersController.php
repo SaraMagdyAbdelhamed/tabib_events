@@ -203,7 +203,7 @@ class UsersController extends Controller
             // TODO: NOTIFICATIONS
 
         } catch(Exception $ex) {
-            Session::flash('warning', 'Can not add backend user لا يمكن اضافة المستخدم');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user', ' لا يمكن اضافة المستخدم');
             return redirect()->back();
         }
 
@@ -354,7 +354,7 @@ class UsersController extends Controller
             // TODO: NOTIFICATIONS
 
         } catch(Exception $ex) {
-            Session::flash('warning', 'Can not add backend user لا يمكن اضافة المستخدم');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user لا يمكن اضافة المستخدم');
             return redirect()->back();
         }
         return redirect("/users_backend");

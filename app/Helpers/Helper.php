@@ -298,4 +298,12 @@ class Helper
             return $newObject->id;
         }
     }
+
+    public static function flashLocaleMsg($lang_locale, $msg_type, $msg_en, $msg_ar) {
+        if ($lang_locale == 'en') {
+            Session::flash($msg_type, $msg_en);            
+        } else {
+            Session::flash($msg_type, $msg_ar);
+        }
+    }
 }
