@@ -497,20 +497,20 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_1">@lang('keywords.link') 1 </label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][]">
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]">
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_2">@lang('keywords.link') 2</label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][]">
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]">
                             </div>
                           </div>
                           <div class="col-xs-12">
                             <hr>
                           </div>
                           <!--media**********************-->
-                          <div class="col-sm-12 col-xs-12 text-center">
+                          <!-- <div class="col-sm-12 col-xs-12 text-center">
                             <h4 class="text-center">@lang('keywords.uploadEventImage')</h4>
                             <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                               <div class="main-section">
@@ -522,7 +522,19 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
+                        <div class="col-sm-12 col-xs-12 text-center">
+                            <h4 class="text-center">@lang('keywords.uploadEventImage')</h4>
+                            <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
+                              <div class="main-section">
+                                <div id="fileList"></div>
+                                <div class="form-group">
+                                  <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1[]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList()" accept=".jpg,.png,.jpeg">
+                                  <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
@@ -552,179 +564,173 @@
 </script>
 
 <script type="text/javascript">
-      var listmedia = [];
-      var listinfo= [];
-      var check = false;
-      function closebtn(index,value){
-        if(value==1){
-          listmedia.splice(index,1);
-          $.each(listmedia,function(id,value){
-            value.index = id;
-          });
-          check = true;
-          $("#file-3").prop('disabled', false);
-          updateList3();
-        }
-        if(value==2){
-          listinfo.splice(index,1);
-          $.each(listinfo,function(id,value){
-            value.index = id;
-          });
-          check = true;
-          $("#file-2").prop('disabled', false);
-          updateList2();
-        }
-
-        }
-        //===media
-        function updateList3(){
-              let input = document.getElementById('file-3');
-              let output = document.getElementById('fileList3');
-              let files3 = input.files;
+  
+    var listAr = [];
+    var listEn = [];
+    var check = false;
+    function closebtn(index,value){
+      if(value==1){
+        listAr.splice(index,1);
+        $.each(listAr,function(id,value){
+          value.index = id;
+        });
+        check = true;
+        $("#file-1").prop('disabled', false);
+        updateList();
+      }
+      if(value==2){
+        listEn.splice(index,1);
+        $.each(listEn,function(id,value){
+          value.index = id;
+        });
+        check = true;
+        $("#file-2").prop('disabled', false);
+        updateList2();
+      }
+        
+      }
+      updateList = function () {
+              let input = document.getElementById('file-1');
+              let output = document.getElementById('fileList');
+              let files1 = input.files;
               if (check == true) {
                   output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                  for (var i = 0; i < listmedia.length; i++) {
+                  for (var i = 0; i < listAr.length; i++) {
                       output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
                                       <span class="uploader__file-list__thumbnail">
-                                      <img class="thumbnail" id="img_" src="${listmedia[i].image}">
-                                      </span><span class="uploader__file-list__text hidden-xs">${listmedia[i].name}</span>
-                                      <span class="uploader__file-list__size hidden-xs">${(listmedia[i].size) / 1000} KB</span>
+                                      <img class="thumbnail" id="img_" src="${listAr[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${listAr[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs">${(listAr[i].size) / 1000} KB</span>
                                       <span class="uploader__file-list__button"></span>
-                                      <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listmedia[i].index},1)" class="uploader__icon-button fa fa-times" >
+                                      <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listAr[i].index},1)" class="uploader__icon-button fa fa-times" >
                                       </button></span></li>`;
                   }
                   output.innerHTML += '</ul>';
                   check = false;
               }
-
-                else {
-                  if (files3.length > 5) {
+      
+              else {
+                  if (files1.length > 5) {
                       alert("max no. 5 images");
                       return;
-                  }
-
-                  if (window.File && window.FileList && window.FileReader) {
-                         if (files3.length == 5) {
-                      $("#file-3").prop('disabled', true);
-                  }
-                      for (var i = 0; i < files3.length; i++) {
-                          var file = files3[i];
-                          var imgReadermedia = new FileReader();
-                          imgReadermedia.addEventListener("load", function (event) {
-                              var imgFilemedia = event.target;
-                              listmedia.push({
-                                  'name': file.name,
-                                  'size': file.size,
-                                  'index': listmedia.length,
-                                  'image': imgFilemedia.result
-                              });
-                              output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                              for (var i = 0; i < listmedia.length; i++) {
-                                  output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
-                                      <span class="uploader__file-list__thumbnail">
-                                      <img class="thumbnail" id="img_" src="${listmedia[i].image}">
-                                      </span><span class="uploader__file-list__text hidden-xs">${listmedia[i].name}</span>
-                                      <span class="uploader__file-list__size hidden-xs">${(listmedia[i].size) / 1000} KB</span>
-                                      <span class="uploader__file-list__button"></span>
-                                      <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listmedia[i].index},1)" class="uploader__icon-button fa fa-times" >
-                                      </button></span></li>`;
-                              }
-                              output.innerHTML += '</ul>';
-
-                          });
-
-                          //Read the image
-<<<<<<< HEAD
-                          imgReaderEn.readAsDataURL(file);
-                      }
                   }
       
-                  if (listEn.length == 1) {
-                      $("#file-1").prop('disabled', true);
-=======
-                          imgReadermedia.readAsDataURL(file);
-                      }
-                  }
-
-                  if (listmedia.length == 4) {
-                      $("#file-3").prop('disabled', true);
->>>>>>> 2fb0fd4f7eae9c1ad413932830d8064f3859c2f4
-                  }
-              }
-
-
-  }
-        updateList2 = function(){
-              let input = document.getElementById('file-2');
-              let output = document.getElementById('fileList2');
-              let files2 = input.files;
-              if (check == true) {
-                  output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                  for (var i = 0; i < listinfo.length; i++) {
-                      output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
-                                      <span class="uploader__file-list__thumbnail">
-                                      <img class="thumbnail" id="img_" src="${listinfo[i].image}">
-                                      </span><span class="uploader__file-list__text hidden-xs">${listinfo[i].name}</span>
-                                      <span class="uploader__file-list__size hidden-xs">${(listinfo[i].size) / 1000} KB</span>
-                                      <span class="uploader__file-list__button"></span>
-                                      <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listinfo[i].index},2)" class="uploader__icon-button fa fa-times" >
-                                      </button></span></li>`;
-                  }
-                  output.innerHTML += '</ul>';
-                  check = false;
-              }
-
-              else {
-                  if (files2.length > 5) {
-                      alert("max no. 5 images");
-                      return;
-                  }
-
                   if (window.File && window.FileList && window.FileReader) {
-                         if (files2.length == 5) {
-                      $("#file-2").prop('disabled', true);
+                         if (files1.length == 5) {
+                      $("#file-1").prop('disabled', true);
                   }
-                      for (var i = 0; i < files2.length; i++) {
-                          var file = files2[i];
-                          var imgReaderinfo = new FileReader();
-                          imgReaderinfo.addEventListener("load", function (event) {
-                              var imgFileinfo = event.target;
-                              listinfo.push({
+                      for (var i = 0; i < files1.length; i++) {
+                          var file = files1[i];
+                          var imgReaderAr = new FileReader();
+                          imgReaderAr.addEventListener("load", function (event) {
+                              var imgFileAr = event.target;
+                              listAr.push({
                                   'name': file.name,
                                   'size': file.size,
-                                  'index': listinfo.length,
-                                  'image': imgFileinfo.result
+                                  'index': listAr.length,
+                                  'image': imgFileAr.result
                               });
                               output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                              for (var i = 0; i < listinfo.length; i++) {
+                              for (var i = 0; i < listAr.length; i++) {
                                   output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
                                       <span class="uploader__file-list__thumbnail">
-                                      <img class="thumbnail" id="img_" src="${listinfo[i].image}">
-                                      </span><span class="uploader__file-list__text hidden-xs">${listinfo[i].name}</span>
-                                      <span class="uploader__file-list__size hidden-xs">${(listinfo[i].size) / 1000} KB</span>
+                                      <img class="thumbnail" id="img_" src="${listAr[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${listAr[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs">${(listAr[i].size) / 1000} KB</span>
                                       <span class="uploader__file-list__button"></span>
-                                      <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listinfo[i].index},2)" class="uploader__icon-button fa fa-times" >
+                                      <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listAr[i].index},1)" class="uploader__icon-button fa fa-times" >
                                       </button></span></li>`;
                               }
                               output.innerHTML += '</ul>';
-
+      
                           });
-
+      
                           //Read the image
-                          imgReaderinfo.readAsDataURL(file);
+                          imgReaderAr.readAsDataURL(file);
                       }
+                      $("#file-1").val('')
                   }
-
-                  if (listinfo.length == 4) {
-                      $("#file-2").prop('disabled', true);
+      
+                  if (listAr.length == 4) {
+                      $("#file-1").prop('disabled', true);
                   }
               }
-
-
+      
+      
           }
+      updateList2 = function(){
+            let input = document.getElementById('file-2');
+            let output = document.getElementById('fileList2');
+            let files2 = input.files;
+            if (check == true) {
+                output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                for (var i = 0; i < listEn.length; i++) {
+                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail" id="img_" src="${listEn[i].image}">
+                                    </span><span class="uploader__file-list__text hidden-xs">${listEn[i].name}</span>
+                                    <span class="uploader__file-list__size hidden-xs">${(listEn[i].size) / 1000} KB</span>
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listEn[i].index},2)" class="uploader__icon-button fa fa-times" >
+                                    </button></span></li>`;
+                }
+                output.innerHTML += '</ul>';
+                check = false;
+            }
+
+            else {
+              
+
+                if (window.File && window.FileList && window.FileReader) {
+                       if (files2.length == 1) {
+                    $("#file-2").prop('disabled', true);
+                }
+                    for (var i = 0; i < files2.length; i++) {
+                        var file = files2[i];
+                        var imgReaderEn = new FileReader();
+                        imgReaderEn.addEventListener("load", function (event) {
+                            var imgFileEn = event.target;
+                            listEn.push({
+                                'name': file.name,
+                                'size': file.size,
+                                'index': listEn.length,
+                                'image': imgFileEn.result
+                            });
+                            output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                            for (var i = 0; i < listEn.length; i++) {
+                                output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail" id="img_" src="${listEn[i].image}">
+                                    </span><span class="uploader__file-list__text hidden-xs">${listEn[i].name}</span>
+                                    <span class="uploader__file-list__size hidden-xs">${(listEn[i].size) / 1000} KB</span>
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__button" id="delete" ><button id="close" onclick="closebtn(${listEn[i].index},2)" class="uploader__icon-button fa fa-times" >
+                                    </button></span></li>`;
+                            }
+                            output.innerHTML += '</ul>';
+
+                        });
+
+                        //Read the image
+                        imgReaderEn.readAsDataURL(file);
+                    }
+                    $("#file-2").val('');
+                }
+
+                if (listEn.length == 1) {
+                    $("#file-2").prop('disabled', true);
+                }
+            }
 
 
-    </script>
+        }
+    
+     
+
+
+
+</script>
+
 
 <script type="text/javascript">
   var form = $("#horizontal-pill-steps").show();
