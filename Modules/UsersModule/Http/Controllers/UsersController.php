@@ -51,7 +51,7 @@ class UsersController extends Controller
         }
 
         $data['users'] = Users::whereHas('rules', function ($q) use ($rule_names) {
-            $q->where('rule_id', '!=', 3)->whereIn('rules.name', $rule_names);
+            $q->where('rule_id', '!=', '%Super Admin%')->whereIn('rules.name', $rule_names);
         })->get();
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
@@ -171,7 +171,8 @@ class UsersController extends Controller
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->mobile = $request->mobile;
-            $user->is_active = $request->status;
+            $user->is_active = $request->activation;
+            
 
             if ($request->hasFile('user_photo')) {
                 $destinationPath = 'backend_users';
@@ -180,7 +181,9 @@ class UsersController extends Controller
                 $user->photo = $fileNameToStore;
             }
 
+
             $user->save();
+
             $user->rules()->attach([$request->user_type, 1]);
             if (isset($request->categories)) {
                 $user->sponsorCategories()->attach($request->categories);
@@ -231,7 +234,7 @@ class UsersController extends Controller
         $data['categories'] = $user->sponsorCategories()->get();
         $data['cities'] = $user->sponsorCategories()->get();
        // dd($user->sponsorCities);
-        $data['rule_id'] = $user->rules()->where('rule_id', '!=', 1)->first()->id;
+        $data['rule_id'] = $user->rules()->where('rule_id', '!=', 3)->first()->id;
         $data['address'] = ($user->userInfo) ? $user->userInfo->address : "";
         $data['userTypes'] = Rules::all();
         $data['sponsorCategories'] = SponsorCategory::all();

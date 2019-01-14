@@ -102,43 +102,50 @@
               </tr>
             </thead>
             <tbody>
+          
+          {{-- List all users --}}
+          @if(count($users) > 0)
             @foreach($users as $user)
-              <tr data-id="{{$user->id}}">
-                <td><span data-id="{{ $user->id }}" class="cellcontent"></span></td>
-                <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
-                <td><span class="cellcontent">{{$user->username}}</span></td>
-                <td><span class="cellcontent">{{$user->email}}</span></td>
-                <td><span class="cellcontent">{{$user->mobile}}</span></td>
-                <td>
-                  <span class="cellcontent">
-                    {{$user->CurrentRule()}}
-                  </span>
-                </td>
-                <td>
-                  <span class="cellcontent">
-                    @if($user->is_active==1)
-                      <i class = "fa icon-in-table-true fa-check"></i>
-                      @else
-                      <i class = "fa icon-in-table-false fa-times"></i>
-                    @endif
-                  </span>
-                </td>
-                <td><span class="cellcontent">{{$user->created_at}}</span></td>
-                <td>
-                  <span class="cellcontent">
-                    <a href= "{{ route('backend_edit', $user) }}" ,  class= "action-btn bgcolor--fadegreen color--white ">
-                      <i class = "fa  fa-pencil"></i>
-                    </a>
-                    <a href="#" data-id="{{ $user->id }}" id="" class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
-                      <i class = "fa  fa-trash-o"></i>
-                    </a>
-                  </span>
-                </td>
-              </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </form>
+              @if (!$user->isSuperAdmin())
+                <tr data-id="{{$user->id}}">
+                  <td><span data-id="{{ $user->id }}" class="cellcontent"></span></td>
+                  <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
+                  <td><span class="cellcontent">{{$user->username}}</span></td>
+                  <td><span class="cellcontent">{{$user->email}}</span></td>
+                  <td><span class="cellcontent">{{$user->mobile}}</span></td>
+                  <td>
+                    <span class="cellcontent">
+                      {{$user->CurrentRule()}}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="cellcontent">
+                      @if($user->is_active==1)
+                        <i class = "fa icon-in-table-true fa-check"></i>
+                        @else
+                        <i class = "fa icon-in-table-false fa-times"></i>
+                      @endif
+                    </span>
+                  </td>
+                  <td><span class="cellcontent">{{$user->created_at}}</span></td>
+                  <td>
+                    <span class="cellcontent">
+                      <a href= "{{ route('backend_edit', $user) }}" ,  class= "action-btn bgcolor--fadegreen color--white ">
+                        <i class = "fa  fa-pencil"></i>
+                      </a>
+                      <a href="#" data-id="{{ $user->id }}" id="" class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
+                        <i class = "fa  fa-trash-o"></i>
+                      </a>
+                    </span>
+                  </td>
+                </tr>
+              @endif
+            @endforeach
+          @endif
+
+          </tbody>
+        </table>
+      </form>
   <!-- <button id="delete-test">Delete Tests</button> -->
 </div>
 </div>
