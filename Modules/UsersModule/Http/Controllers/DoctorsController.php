@@ -275,7 +275,7 @@ class DoctorsController extends Controller
             $userInfo->address = $request->doctorAddress;
             $userInfo->specialization_id = $request->doctorSpecialization ? : null; // it could be null
             $userInfo->is_profile_completed = 0;
-            $userInfo->is_backend = 0;
+            $userInfo->is_backend = 1;
             $userInfo->save();  // save new user's info
 
             // Insert into `users_rules`
