@@ -75,9 +75,6 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
-<<<<<<< HEAD
-          dd($request->all());
-=======
             // dd($request->all());
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
@@ -92,10 +89,10 @@ class EventsController extends Controller
             'event.end_time' => 'required'
         ]);
         if ($validation->fails()) {
+            
             // change below as required
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
->>>>>>> 2fb0fd4f7eae9c1ad413932830d8064f3859c2f4
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
@@ -229,7 +226,7 @@ class EventsController extends Controller
                     "is_realtime" => 1
                 ]);
                 if ($survey->is_realtime == 1) {
-                    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+                    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
                     $firebase = (new Factory)
                         ->withServiceAccount($serviceAccount)
                         ->withDatabaseUri('https://tabibevent.firebaseio.com/')
@@ -578,19 +575,11 @@ class EventsController extends Controller
             $surveys = Survey::where('event_id', $event->id)->get();
             foreach ($surveys as $sur) {
                 $database = self::firebase();
-<<<<<<< HEAD
-                   
-                    $database  ->getReference('surveys/'.$sur->firebase_id)
-                                ->remove();
-                SurveyQuestions::where('survey_id',$sur->id)->delete();
-                SurveyQuestionAnswer::where('survey_id',$sur->id)->delete();
-=======
 
                 $database->getReference('surveys/' . $sur->firebase_id)
                     ->remove();
                 SurveyQuestions::where('survey_id', $sur->id)->delete();
                 SurveyQuestionAnswer::where('survey_id', $sur->id)->delete();
->>>>>>> 2fb0fd4f7eae9c1ad413932830d8064f3859c2f4
                 Survey::destroy($sur->id);
             }
             foreach ($request['survey'] as $value) {
@@ -649,7 +638,7 @@ class EventsController extends Controller
     }
     public function firebase()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->withDatabaseUri('https://tabibevent.firebaseio.com/')
