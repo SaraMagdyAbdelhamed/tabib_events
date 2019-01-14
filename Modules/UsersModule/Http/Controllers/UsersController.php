@@ -41,17 +41,18 @@ class UsersController extends Controller
 
     public function index_backend()
     {
+        // dd(Auth::user());
         // check current usere rule that based on it, filter backend-users will work as follows: 
         if (Auth::user()->isSuperAdmin()) {
-            $rule_names = ['Backend User', 'Data Entry', 'Organizer', 'Sponsor', 'Admin Doctor'];   // Current user is Super Admin, it will list Super Admins, Admins and data entry
-        } else if (Auth::user()->isAdmin()) {                     // Current user is Admin it will list Admins & Data entry only
-            $rule_names = ['Backend User', 'Data Entry', 'Organizer', 'Sponsor', 'Admin Doctor'];
+            $rule_names = [1, 4, 5, 6, 7];   // Current user is Super Admin, it will list Super Admins, Admins and data entry
+        } else if (Auth::user()->isAdmin()) {   
+            $rule_names = [1, 4, 5, 6, 7];                   // Current user is Admin it will list Admins & Data entry only
         } else {
-            $rule_names = ['Organizer', 'Sponsor', 'Data Entry'];                           // else it will list data entry only
+            $rule_names = [5, 6, 4];                           // else it will list data entry only
         }
 
         $data['users'] = Users::whereHas('rules', function ($q) use ($rule_names) {
-            $q->where('rule_id', '!=', '%Super Admin%')->whereIn('rules.name', $rule_names);
+            $q->whereIn('rules.id', $rule_names);
         })->get();
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
