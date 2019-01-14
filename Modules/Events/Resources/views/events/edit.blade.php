@@ -163,10 +163,10 @@
                             <div class="master_field">
                                 <label class="master_label" for="start_date_">@lang('keywords.eventDateStart')</label>
                                 <div class="">
-                                <input class=" master_input" type="text" Required id="start_date_" name="event[start_date_]" value="{{$event->start_datetime->format('Y-m-d')}}">
+                                <input class=" master_input" type="text" Required id="start_date_" name="event[start_date]" value="{{$event->start_datetime->format('Y-m-d')}}">
                                 </div>
                                 @if ( $errors->has('event[start_date_]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[start_date_]') }}</span>                 
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[start_date]') }}</span>                 
                                 @endif
                             </div>
                             </div>
@@ -185,10 +185,10 @@
                             <div class="master_field">
                                 <label class="master_label" for="end_date_">@lang('keywords.eventDateEnd')</label>
                                 <div class="">
-                                <input class=" master_input" type="text" Required id="end_date_" name="event[end_date_]" value="{{$event->end_datetime->format('Y-m-d')}}">
+                                <input class=" master_input" type="text" Required id="end_date_" name="event[end_date]" value="{{$event->end_datetime->format('Y-m-d')}}">
                                 </div>
                                 @if ( $errors->has('event[end_date_]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[end_date_]') }}</span>                 
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[end_date]') }}</span>                 
                                 @endif
                             </div>
                             </div>
