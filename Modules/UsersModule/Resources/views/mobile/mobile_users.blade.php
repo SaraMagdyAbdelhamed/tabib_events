@@ -996,14 +996,19 @@
 <script>
   // delete multi
   $('.deleteSelected').click(function(){
+    
     var allVals = [];                   // selected IDs
     var token = '{{ csrf_token() }}';
-    var input = $(this).data("id") + ' input:checked';
+    /*var input = $(this).data("id") + ' input:checked';
+    
     // push cities IDs selected by user
     $(input).each(function() {
       allVals.push( $(this).data("id") );
-    });
-
+    });*/
+    allVals=$("input:checkbox:checked").map(function(){
+        return $(this).closest('tr').attr('data-id');
+      }).get();
+//alert(allVals);
     // check if user selected nothing
     if(allVals.length <= 0) {
     confirm('إختر طبيب علي الاقل لتستطيع حذفه');
