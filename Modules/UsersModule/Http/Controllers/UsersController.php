@@ -51,7 +51,7 @@ class UsersController extends Controller
         }
 
         $data['users'] = Users::whereHas('rules', function ($q) use ($rule_names) {
-            $q->where('rules.name', 'NOT LIKE', 'Super Admin')->whereIn('rules.name', $rule_names);
+            $q->where('rule_id', '!=', 3)->whereIn('rules.name', $rule_names);
         })->get();
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
