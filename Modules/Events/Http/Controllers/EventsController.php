@@ -76,6 +76,7 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
         // if(array_key_exists('category',$request['event']))
         // {
         //     dd($request->all());

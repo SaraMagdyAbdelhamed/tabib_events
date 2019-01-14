@@ -638,8 +638,8 @@ class DoctorsController extends Controller
                     // Insert into `users_rules`
                     $doctor->rules()->attach(2);
 
-                } catch (Exception $exp) {
-                    dd($exp);
+                } catch (\Exception $exp) {
+                    // dd($exp);
                     Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!',' خطأ ، لا يمكن إضافة طبيب جديد');
                     return redirect()->back();
                 }
