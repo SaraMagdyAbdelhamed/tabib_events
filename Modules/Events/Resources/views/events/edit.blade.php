@@ -336,10 +336,10 @@
                                 <label class="master_label" for="Code_numbe">@lang('keywords.code') </label>
                               
                                 <select class="master_input" id="code" name="event[code]" required>
-    
+
                                   @foreach ($codes as $code)
                                       @if ( $code->tele_code != '' && $code->tele_code != null )
-                                       @if($event->code == $code->tele_code)
+                                       @if($event->code == $code->id)
                                           <option value="{{ $code->id }}" selected>{{ '(' . $code->tele_code . ') ' . $code->name }}</option>
                                       @else
                                        <option value="{{ $code->id }}">{{ '(' . $code->tele_code . ') ' . $code->name }}</option>

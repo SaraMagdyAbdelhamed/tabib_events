@@ -336,7 +336,7 @@ class EventsController extends Controller
     public function edit($id)
     {
         $data['event'] = Event::find($id);
-        dd($data['event']);
+        // dd($data['event']);
         $data['doctors'] = Users::wherehas('rules', function ($q) {
             $q->where('rule_id', 2);
         })->get();
