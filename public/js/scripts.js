@@ -37205,7 +37205,7 @@ function dateRange(startId,endId,year_s,month_s,day_s,year_e,month_e,day_e,max_s
             pickTime: false, 
             format: "DD/MM/YYYY", 
             defaultDate: test2, 
-            maxDate:test2,
+            // maxDate:test2,
             minDate: test, 
             });
 
@@ -37214,3 +37214,48 @@ function dateRange(startId,endId,year_s,month_s,day_s,year_e,month_e,day_e,max_s
         });
 
 }
+
+if($('html').attr('lang')=='ar'){
+  console.log("ar")
+  $.extend( $.validator.messages, {
+       required: "هذا الحقل إلزامي",
+       remote: "يرجى تصحيح هذا الحقل للمتابعة",
+       email: "رجاء إدخال عنوان بريد إلكتروني صحيح",
+       url: "رجاء إدخال عنوان موقع إلكتروني صحيح",
+       date: "رجاء إدخال تاريخ صحيح",
+       dateISO: "رجاء إدخال تاريخ صحيح (ISO)",
+       number: "رجاء إدخال عدد بطريقة صحيحة",
+       digits: "رجاء إدخال أرقام فقط",
+       creditcard: "رجاء إدخال رقم بطاقة ائتمان صحيح",
+       equalTo: "رجاء إدخال نفس القيمة",
+       extension: "رجاء إدخال ملف بامتداد موافق عليه",
+       maxlength: $.validator.format( "الحد الأقصى لعدد الحروف هو {0}" ),
+       minlength: $.validator.format( "الحد الأدنى لعدد الحروف هو {0}" ),
+       rangelength: $.validator.format( "عدد الحروف يجب أن يكون بين {0} و {1}" ),
+       range: $.validator.format( "رجاء إدخال عدد قيمته بين {0} و {1}" ),
+       max: $.validator.format( "رجاء إدخال عدد أقل من أو يساوي {0}" ),
+       min: $.validator.format( "رجاء إدخال عدد أكبر من أو يساوي {0}" )
+} );
+}
+else{
+  console.log("en")
+  $.extend( $.validator.messages, {
+       required: "This field is required.",
+       remote: "Please fix this field.",
+       email: "Please enter a valid email address.",
+       url: "Please enter a valid URL.",
+       date: "Please enter a valid date.",
+       dateISO: "Please enter a valid date (ISO).",
+       number: "Please enter a valid number.",
+       digits: "Please enter only digits.",
+       equalTo: "Please enter the same value again.",
+       maxlength: $.validator.format( "Please enter no more than {0} characters." ),
+       minlength: $.validator.format( "Please enter at least {0} characters." ),
+       rangelength: $.validator.format( "Please enter a value between {0} and {1} characters long." ),
+       range: $.validator.format( "Please enter a value between {0} and {1}." ),
+       max: $.validator.format( "Please enter a value less than or equal to {0}." ),
+       min: $.validator.format( "Please enter a value greater than or equal to {0}." ),
+       step: $.validator.format( "Please enter a multiple of {0}." )
+   } );
+}
+
