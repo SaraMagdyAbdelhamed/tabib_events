@@ -89,6 +89,7 @@ class EventsController extends Controller
             'event.end_time' => 'required'
         ]);
         if ($validation->fails()) {
+            
             // change below as required
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
@@ -225,7 +226,7 @@ class EventsController extends Controller
                     "is_realtime" => 1
                 ]);
                 if ($survey->is_realtime == 1) {
-                    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+                    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
                     $firebase = (new Factory)
                         ->withServiceAccount($serviceAccount)
                         ->withDatabaseUri('https://tabibevent.firebaseio.com/')
@@ -637,7 +638,7 @@ class EventsController extends Controller
     }
     public function firebase()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->withDatabaseUri('https://tabibevent.firebaseio.com/')
