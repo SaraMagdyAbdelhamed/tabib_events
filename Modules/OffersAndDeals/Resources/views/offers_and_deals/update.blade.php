@@ -51,7 +51,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
               <label class="master_label mandatory" for="offer_category">@lang('keywords.offerCategory')</label>
-              <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category[]">
+              <select class="master_input select2" id="offer_category" multiple="multiple" style="width:100%;" , name="offer_category[]" required>
                 @foreach ($categories as $category)
                 <?php $cat=0; ?>
                   @foreach ($offer->categories as $off_cat)

@@ -6,8 +6,8 @@
     <!-- =====================================================-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="ايفنتكوم">
-    <meta name="keywords" content="ايفنتكوم">
+    <meta name="description" content="طبيب ايفينت">
+    <meta name="keywords" content="طبيب ايفينت">
     <!-- =============== APP FAVICON ===============-->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon/favicon-32x32.png') }}">
@@ -67,10 +67,10 @@
             <div class="footer--1 text-center     bradius--noborder bshadow--3">
               @if (\App::isLocale('en'))
               <p>
-                all rights reserved to ©<span class="cp bradius--noborder bshadow--0">Eventakom</span>2018</p>
+                all rights reserved to ©<span class="cp bradius--noborder bshadow--0">Tabib Event</span>2018</p>
               @else
               <p>
-                  جميع الحقوق محفوظة  ©<span class="cp     bradius--noborder bshadow--0">ايفنتكوم</span>2018</p>
+                  جميع الحقوق محفوظة  ©<span class="cp     bradius--noborder bshadow--0">طبيب ايفينت</span>2018</p>
               @endif
             </div>
           </footer>

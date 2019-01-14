@@ -105,15 +105,15 @@ class Users extends Authenticatable
 
     public function isSuperAdmin()
     {
-        return ($this->rules[0]->id == 1 && $this->rules[1]->id == 3) ? true : false;
+        return ($this->rules[0]->id == 3 && $this->rules[1]->id == 1) ? true : false;
     }
 
     public function isAdmin()
     {
-        return ($this->rules[0]->id == 1 && $this->rules[1]->id == 7) ? true : false;
+        return ($this->rules[0]->id == 7 && $this->rules[1]->id == 1) ? true : false;
     }
 
-    ///check if sponsor
+    // check if sponsor
     public function isSponsor()
     {
         foreach ($this->rules as $rule) {

@@ -334,7 +334,20 @@
                             <div class="col-xs-6">
                             <div class="master_field">
                                 <label class="master_label" for="Code_numbe">@lang('keywords.code') </label>
-                                <input class="master_input" type="number" placeholder="ex: 2012545" id="Code_numbe" name="event[code]" value="{{ $event->code }}">
+                              
+                                <select class="master_input" id="code" name="event[code]" required>
+
+                                  @foreach ($codes as $code)
+                                      @if ( $code->tele_code != '' && $code->tele_code != null )
+                                       @if($event->code == $code->id)
+                                          <option value="{{ $code->id }}" selected>{{ '(' . $code->tele_code . ') ' . $code->name }}</option>
+                                      @else
+                                       <option value="{{ $code->id }}">{{ '(' . $code->tele_code . ') ' . $code->name }}</option>
+                                      @endif
+                                      @endif
+                                  @endforeach
+
+                                </select>
                                 @if ( $errors->has('event[code]') )                   
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[code]') }}</span>                 
                                 @endif

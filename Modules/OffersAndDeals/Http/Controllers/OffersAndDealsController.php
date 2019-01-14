@@ -47,8 +47,6 @@ class OffersAndDealsController extends Controller
             $sponsor_id = $request->offer_sponsor;
         }
         if ($request->hasFile('offer_image')) {
-            // dd($request->offer_image->getClientOriginalExtension());
-            // foreach ($request->offer_image as $key => $file) {
 
             $destinationPath = 'offer_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();

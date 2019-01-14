@@ -4,6 +4,7 @@
     return [
         // general names
         'website_name'      => 'Tabib',
+        'welcome'           => 'Welcome',
         'login_page_name'   => 'Login',
         'login_username'    => 'username',
         'login_password'    => 'password',

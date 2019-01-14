@@ -170,7 +170,7 @@
 $(document).ready(function(){
     $('.deleteRecord').click(function(){
             alert('hi');
-            var id = $(this).data("id");
+            var id = $(this).closest('tr').data("id");
             var token = '{{ csrf_token() }}';
             var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
             var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
@@ -220,7 +220,7 @@ $(document).ready(function(){
 
             // push cities IDs selected by user
             $('input.input-in-table:checked').each(function() {
-                allVals.push( $(this).data("id") );
+                allVals.push( $(this).closest('tr').data("id") );
             });
 
             // check if user selected nothing
