@@ -346,19 +346,19 @@
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]">
                             </div>
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc')</label>
-                              <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]"></textarea><span class="master_message inherit">message content</span>
+                              <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]"></textarea>
                             </div>
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace') </label>
-                              <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]"><span class="master_message color--fadegreen">validation message will be here</span>
+                              <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]">
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
@@ -366,7 +366,7 @@
                               <label class="master_label" for="workshop_start_date">@lang('keywords.workshopStartDate')</label>
                               <div class="">
                                 <input class=" master_input" type="text"  id="workshop_start_date" name="workshop[0][start_date]">
-                              </div><span class="master_message inherit">message content</span>
+                              </div>
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
@@ -374,7 +374,7 @@
                               <label class="master_label" for="workshop_end_date">@lang('keywords.workshopEndDate')</label>
                               <div class="">
                                 <input class=" master_input" type="text"  id="workshop_end_date" name="workshop[0][end_date]">
-                              </div><span class="master_message inherit">message content</span>
+                              </div>
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
@@ -382,7 +382,7 @@
                               <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
                               <div class="bootstrap-timepicker">
                                 <input class="timepicker master_input" type="text"  id="start_time" name="workshop[0][start_time]">
-                              </div><span class="master_message inherit">message content</span>
+                              </div>
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
@@ -390,7 +390,7 @@
                               <label class="master_label" for="end_time">@lang('keywords.workshopEndTime')</label>
                               <div class="bootstrap-timepicker">
                                 <input class="timepicker master_input" type="text"  id="end_time" name="workshop[0][end_time]">
-                              </div><span class="master_message inherit">message content</span>
+                              </div>
                             </div>
                           </div>
 
@@ -401,7 +401,7 @@
                                 @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                 @endforeach
-                              </select><span class="master_message inherit">message content</span>
+                              </select>
                             </div>
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
@@ -411,7 +411,7 @@
                                 @foreach($doctors as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                                 @endforeach
-                              </select><span class="master_message inherit">message content</span>
+                              </select>
                             </div>
                           </div>
 
@@ -432,7 +432,7 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_name">@lang('keywords.Name')</label>
-                              <input class="master_input" type="text" id="survey_name" name="survey[0][name]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" id="survey_name" name="survey[0][name]">
                             </div>
                           </div>
                           <div class="col-xs-6">
@@ -441,37 +441,37 @@
                               <select class="master_input select2" id="appears_for" multiple="multiple" style="width:100%;"  name="survey[0][appears_for]">
                                 <option value="1">All attend</option>
 
-                              </select><span class="master_message inherit">message content</span>
+                              </select>
                             </div>
                           </div>
                           <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="survey_question">@lang('keywords.Squestion')</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][0][name]" ><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][0][name]" >
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
-                              <label class="master_label " for="survey_answer1">@lang('keywords.answer')1</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[0][question][0][answer][0]" require ><span class="master_message inherit">message content</span>
+                              <label class="master_label " for="survey_answer1">@lang('keywords.Squestion')</label>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[0][question][0][answer][0]" require >
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
                               <label class="master_label " for="survey_answer2">@lang('keywords.answer')2</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer2" name="survey[0][question][0][answer][1]" require><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer2" name="survey[0][question][0][answer][1]" require>
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer3">@lang('keywords.answer')3</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer3" name="survey[0][question][0][answer][2]"><span class="master_message inherit ">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer3" name="survey[0][question][0][answer][2]">
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="survey_answer4">@lang('keywords.answer')4</label>
-                              <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[0][question][0][answer][3]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[0][question][0][answer][3]">
                             </div>
                           </div>
                         </div>
@@ -497,13 +497,13 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_1">@lang('keywords.link') 1 </label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]">
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_2">@lang('keywords.link') 2</label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]"><span class="master_message inherit">message content</span>
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]">
                             </div>
                           </div>
                           <div class="col-xs-12">
@@ -860,19 +860,19 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
-                                <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]"><span class="master_message color--fadegreen">validation message will be here</span>
+                                <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]">
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc') </label>
-                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]"></textarea><span class="master_message inherit">message content</span>
+                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]"></textarea>
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace')</label>
-                                <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]"><span class="master_message color--fadegreen">validation message will be here</span>
+                                <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]">
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
@@ -880,7 +880,7 @@
                                 <label class="master_label" for="workshop${next_count}_start_date">@lang('keywords.workshopStartDate')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="datepicker master_input" type="text" placeholder="start date"  id="workshop${next_count}_start_date" name="workshop[${next_count}][start_date]">
-                                </div><span class="master_message inherit">message content</span>
+                                </div>
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
@@ -888,7 +888,7 @@
                                 <label class="master_label" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]">
-                                </div><span class="master_message inherit">message content</span>
+                                </div>
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
@@ -896,7 +896,7 @@
                                 <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]">
-                                </div><span class="master_message inherit">message content</span>
+                                </div>
                               </div>
                             </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
@@ -904,7 +904,7 @@
                                 <label class="master_label" for="end_time">@lang('keywords.workshopEndTime')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="timepicker master_input" type="text" placeholder="end time" Required id="end_time" name="workshop[${next_count}][end_time]">
-                                </div><span class="master_message inherit">message content</span>
+                                </div>
                               </div>
                               </div>
 
@@ -915,7 +915,7 @@
                                    @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                 @endforeach
-                                </select><span class="master_message inherit">message content</span>
+                                </select>
                               </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -925,7 +925,7 @@
                                   @foreach($doctors as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                                 @endforeach
-                                </select><span class="master_message inherit">message content</span>
+                                </select>
                               </div>
                             </div>
 
@@ -951,31 +951,31 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.Squestion') ${question}</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]">
                                </div>
                              </div>
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="survey_answer1"> @lang('keywords.answer') 1</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[${value}][question][${question}][answer][0]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[${value}][question][${question}][answer][0]">
                                </div>
                              </div>
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required name="survey[${value}][question][${question}][answer][1]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required name="survey[${value}][question][${question}][answer][1]">
                                </div>
                              </div>
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[${value}][question][${question}][answer][2]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[${value}][question][${question}][answer][2]">
                                </div>
                              </div>
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[${value}][question][${question}][answer][3]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[${value}][question][${question}][answer][3]">
                                </div>
                              </div>
                              </div>
@@ -996,31 +996,31 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question" style="background-color: beige;"> @lang('keywords.Squestion') ${next_count_question}</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][${next_count_question}][name]" required><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][${next_count_question}][name]" required>
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="survey_answer1">  @lang('keywords.answer') 1</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[0][question][${next_count_question}][answer][0]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[0][question][${next_count_question}][answer][0]">
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required  name="survey[0][question][${next_count_question}][answer][1]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required  name="survey[0][question][${next_count_question}][answer][1]">
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[0][question][${next_count_question}][answer][2]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[0][question][${next_count_question}][answer][2]">
                                </div>
                              </div>
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[0][question][${next_count_question}][answer][3]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[0][question][${next_count_question}][answer][3]">
                                </div>
                              </div>
                              </div>
@@ -1040,7 +1040,7 @@
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label" for="survey_name"> @lang('keywords.Name')</label>
-                                 <input class="master_input" type="text"  id="survey_name" name="survey[${next_count_survey}][name]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text"  id="survey_name" name="survey[${next_count_survey}][name]">
                                </div>
                              </div>
                              <div class="col-xs-6">
@@ -1049,43 +1049,43 @@
                                  <select class="master_input select2" id="appears_for_${next_count_survey}" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
                                    <option value="1">All attend</option>
 
-                                 </select><span class="master_message inherit">message content</span>
+                                 </select>
                                </div>
                              </div>
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question">1  @lang('keywords.Squestion')</label>
-                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]">
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer1">  @lang('keywords.answer') 1 </label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer1" name="survey[${next_count_survey}][question][0][answer][0]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer1" name="survey[${next_count_survey}][question][0][answer][0]">
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer2" name="survey[${next_count_survey}][question][0][answer][1]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer2" name="survey[${next_count_survey}][question][0][answer][1]">
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer3" name="survey[${next_count_survey}][question][0][answer][2]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer3" name="survey[${next_count_survey}][question][0][answer][2]">
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
-                                 <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[${next_count_survey}][question][0][answer][3]"><span class="master_message inherit">message content</span>
+                                 <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[${next_count_survey}][question][0][answer][3]">
                                </div>
                              </div>
                            </div>
                             <div id="more_question_${next_count_survey}"></div>
                            <div style="text-align:end">
-                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
+                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i></button>
                             <div class="checkboxrobo pull-right">
                               <input type="checkbox" id="activation_${next_count_survey}" name="activation_${next_count_survey}" checked="true">
                               <label for="activation_${next_count_survey}">@lang('keywords.Active')</label>
