@@ -10,7 +10,6 @@
 /public/logo
 /public/offer_images
 /public/shops_images
-/public/img
 /storage/*.key
 /vendor
 /.idea

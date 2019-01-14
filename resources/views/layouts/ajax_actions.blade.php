@@ -19,12 +19,12 @@
             var ids = allVals;    // join array of IDs into a single variable to explode in controller
 
             swal({
-                title: "{{ __('keywords.ars') }}",
-                text: "{{ __('keywords.yrr') }}",
+                title: "Are you sure you want to delete this record?!",
+                text: "You won'\t be able to retrieve this record.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#281160',
-                confirmButtonText: '{{ __("keywords.yesD") }}',
+                confirmButtonText: 'Yes, delete it!',
                 closeOnConfirm: false
                 },
             function(isConfirm){
@@ -40,7 +40,7 @@
                         },
                         success: function ()
                         {
-                            swal("Deleted!", "{{ __('keywords.ds') }}", "success");
+                            swal("{{ Session::get('locale') == 'en' ? 'Success' : 'تم بنجاح' }}", '{{ Session::get('success') }}', 'success');
                             table.rows('.selected').remove().draw( false );
                         },
                         error: function(response) {
