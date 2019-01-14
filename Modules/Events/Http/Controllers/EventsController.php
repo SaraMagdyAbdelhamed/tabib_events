@@ -188,6 +188,7 @@ class EventsController extends Controller
         }
 
         if (isset($request['workshop'])) {
+           
             foreach ($request['workshop'] as $value) {
                 $workshop = Workshop::create([
                     "name" => $value['name'],
@@ -422,7 +423,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
             'event.description' => 'required|min:2|max:250',
@@ -437,8 +438,10 @@ class EventsController extends Controller
         ]);
         if ($validation->fails()) {
             // change below as required
+            dd($validation->messages());
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
+        // dd($request->all());
         $event = Event::find($id);
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
@@ -453,26 +456,35 @@ class EventsController extends Controller
         } else {
             $active = 0;
         }
+try{
+    $event->update([
+        "name" => $request['event']['name'],
+        "description" => $request['event']['description'],
+        "image" => $fileNameToStore,
+        "venue" => $request['event']['place'],
+        "latitude" => $request->lat,
+        "longtuide" => $request->lng,
+        "address" => $request['event']['place'],
+        "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
+        "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
+        "is_paid" => $request['event']['ticket'],
+        "mobile" => $request['event']['mobile'],
+        "email" => $request['event']['email'],
+        "website" => $request['event']['website'],
+        "code" => $request['event']['code'],
+        "is_active" => $active,
+        "created_by" => \Auth::id(),
+        "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
+    ]);
+}
+catch (Exception $ex)
+{
+    Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Event not updated !', ' تعديل الحدث  حدث خطأ ');
 
-        $event->update([
-            "name" => $request['event']['name'],
-            "description" => $request['event']['description'],
-            "image" => $fileNameToStore,
-            "venue" => $request['event']['place'],
-            "latitude" => $request->lat,
-            "longtuide" => $request->lng,
-            "address" => $request['event']['place'],
-            "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
-            "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
-            "is_paid" => $request['event']['ticket'],
-            "mobile" => $request['event']['mobile'],
-            "email" => $request['event']['email'],
-            "website" => $request['event']['website'],
-            "code" => $request['event']['code'],
-            "is_active" => $active,
-            "created_by" => \Auth::id(),
-            "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
-        ]);
+ return redirect()->back();
+}
+        
+        
         if ($event->use_ticketing_system == 1) {
             EventTicket::where('event_id', $event->id)->delete();
             EventTicket::create([
@@ -494,6 +506,7 @@ class EventsController extends Controller
                 ]);
             }
         }
+       
         if (isset($request['event']['images'])) {
             EventMedia::where('event_id', $event->id)->where('type', 1)->delete();
             foreach ($request['event']['images'] as $key => $file) {
@@ -534,6 +547,7 @@ class EventsController extends Controller
         }
 
         if (isset($request['workshop'])) {
+            
             $workshops = EventWorkshop::where('event_id', $event->id)->get();
             foreach ($workshops as $work) {
                 Workshop::destroy($work->work_shop_id);
