@@ -63,7 +63,6 @@
       </div>
     </div>
   </div>
-  
   <div class="col-xs-12">
     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
       <form id="horizontal-pill-steps" action="{{ route('events.add') }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
@@ -498,13 +497,13 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_1">@lang('keywords.link') 1 </label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]">
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][]">
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_2">@lang('keywords.link') 2</label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]">
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][]">
                             </div>
                           </div>
                           <div class="col-xs-12">
@@ -635,12 +634,21 @@
                           });
 
                           //Read the image
+<<<<<<< HEAD
+                          imgReaderEn.readAsDataURL(file);
+                      }
+                  }
+      
+                  if (listEn.length == 1) {
+                      $("#file-1").prop('disabled', true);
+=======
                           imgReadermedia.readAsDataURL(file);
                       }
                   }
 
                   if (listmedia.length == 4) {
                       $("#file-3").prop('disabled', true);
+>>>>>>> 2fb0fd4f7eae9c1ad413932830d8064f3859c2f4
                   }
               }
 

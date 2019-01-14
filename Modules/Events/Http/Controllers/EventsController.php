@@ -76,7 +76,11 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
-            // dd($request->all());
+        // if(array_key_exists('category',$request['event']))
+        // {
+        //     dd($request->all());
+        // }
+           
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
             'event.description' => 'required|min:2|max:250',
@@ -94,7 +98,7 @@ class EventsController extends Controller
             // change below as required
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
-        if (isset($request['event']['image'])) {
+        if (array_key_exists('image',$request['event'])) {
             $destinationPath = 'event_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
         // dd($fileNameToStore);
@@ -106,7 +110,7 @@ class EventsController extends Controller
         } else {
             $active = 0;
         }
-
+    try{
         $event = Event::create([
             "name" => $request['event']['name'],
             "description" => $request['event']['description'],
@@ -126,6 +130,7 @@ class EventsController extends Controller
             "created_by" => \Auth::id(),
             "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
         ]);
+        
         if ($event->use_ticketing_system == 1) {
             EventTicket::create([
                 "event_id" => $event->id,
@@ -136,24 +141,30 @@ class EventsController extends Controller
             ]);
         }
 
-        if (isset($request['event']['youtube'])) {
+        if (array_key_exists('youtube',$request['event'])) {
 
 
             foreach ($request['event']['youtube'] as $youtube) {
-                if (strpos($youtube, 'youtube') == false) {
-                    return redirect()->back();
-                } elseif (strpos($youtube, 'watch') == false) {
-                    return redirect()->back();
+                if($youtube != null)
+                {
+                    if (strpos($youtube, 'youtube') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    } elseif (strpos($youtube, 'watch') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    }
+                    str_replace("watch", "embed", $youtube);
+                    EventMedia::create([
+                        "event_id" => $event->id,
+                        "link" => $youtube,
+                        "type" => 2
+                    ]);
                 }
-                str_replace("watch", "embed", $youtube);
-                EventMedia::create([
-                    "event_id" => $event->id,
-                    "link" => $youtube,
-                    "type" => 2
-                ]);
+               
             }
         }
-        if (isset($request['event']['images'])) {
+        if (array_key_exists('images',$request['event'])) {
             foreach ($request['event']['images'] as $key => $file) {
                 $destinationPath = 'event_images';
                 $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $file->getClientOriginalExtension();
@@ -166,13 +177,17 @@ class EventsController extends Controller
                 ]);
             }
         }
-        foreach ($request['event']['category'] as $category) {
-            EventCategory::create([
-                "event_id" => $event->id,
-                "category_id" => $category
-            ]);
+        if (array_key_exists('category',$request['event'])) {
+            foreach ($request['event']['category'] as $category) {
+                EventCategory::create([
+                    "event_id" => $event->id,
+                    "category_id" => $category
+                ]);
+            }
         }
-        if (isset($request['event']['special'])) {
+        
+        if (array_key_exists('special',$request['event'])) {
+            // dd($request['event']['special']);
             foreach ($request['event']['special'] as $special) {
                 EventSpecialization::create([
                     "event_id" => $event->id,
@@ -180,6 +195,7 @@ class EventsController extends Controller
                 ]);
             }
         }
+        
 
         foreach ($request['event']['doctor'] as $doctor) {
             EventOwner::create([
@@ -188,7 +204,7 @@ class EventsController extends Controller
             ]);
         }
 
-        if (isset($request['workshop'])) {
+        if ($request->has('workshop')) {
            
             foreach ($request['workshop'] as $value) {
                 $workshop = Workshop::create([
@@ -276,7 +292,15 @@ class EventsController extends Controller
                 $database->getReference()
                     ->update($updates);
             }
-        }
+       }
+    }  
+    catch(Exception $ex)
+    {
+        Event::destroy($event->id);
+        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Error while adding Event!', 'حدث خطأ اثناء اضافه الحدث');
+        return redirect()->back();
+    }  
+      
 
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event added successfully!', ' تم إضافة الحدث بنجاح');
         return redirect('/events/index');
@@ -312,6 +336,7 @@ class EventsController extends Controller
     public function edit($id)
     {
         $data['event'] = Event::find($id);
+        // dd($data['event']);
         $data['doctors'] = Users::wherehas('rules', function ($q) {
             $q->where('rule_id', 2);
         })->get();
@@ -505,11 +530,22 @@ catch (Exception $ex)
         if (isset($request['event']['youtube'])) {
             EventMedia::where('event_id', $event->id)->where('type', 2)->delete();
             foreach ($request['event']['youtube'] as $youtube) {
-                EventMedia::create([
-                    "event_id" => $event->id,
-                    "link" => $youtube,
-                    "type" => 2
-                ]);
+                if($youtube != null)
+                {
+                    if (strpos($youtube, 'youtube') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    } elseif (strpos($youtube, 'watch') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    }
+                    str_replace("watch", "embed", $youtube);
+                    EventMedia::create([
+                        "event_id" => $event->id,
+                        "link" => $youtube,
+                        "type" => 2
+                    ]);
+                }
             }
         }
        
