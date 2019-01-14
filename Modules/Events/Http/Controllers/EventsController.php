@@ -34,6 +34,7 @@ use Kreait\Firebase\ServiceAccount;
 use Session;
 use Illuminate\Support\Facades\DB;
 use App\Countries;
+use Helper;
 
 class EventsController extends Controller
 {

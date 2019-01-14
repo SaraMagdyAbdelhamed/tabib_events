@@ -63,6 +63,7 @@
       </div>
     </div>
   </div>
+  
   <div class="col-xs-12">
     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
       <form id="horizontal-pill-steps" action="{{ route('events.add') }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
