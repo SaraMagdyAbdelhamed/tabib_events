@@ -237,7 +237,13 @@
                       <div class="file-select-name" id="noFile"></div>
                       <input class="chooseFile" type="file" name="user_photo" id="user_photo">
                     </div>
-                  </div><span class="master_message inherit">message content</span>
+                  </div>
+                  
+                  {{-- Validation Message --}}
+                  @if ( $errors->has('user_photo') )
+                    <span class="master_message inherit">{{ $errors->first('user_photo') }}</span>
+                  @endif
+
                 </div>
               </div>
 
