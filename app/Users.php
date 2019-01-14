@@ -15,7 +15,7 @@ class Users extends Authenticatable
 
     protected $primaryKey = 'id';           // primary key
     protected $table = 'users';             // actual table name
-    protected $dates = ['deleted_at', 'birthdate'];      // use soft deletes
+    protected $dates = ['deleted_at', 'birthdate', 'last_login'];      // use soft deletes
     public $timestamps = true;              // to formate timestamps as dates
 
     public function getId()
@@ -27,7 +27,10 @@ class Users extends Authenticatable
     {
         return $this->belongsTo('App\Genders', 'gender_id');
     }
-
+    // public function info()
+    // {
+    //     return $this->HasOne('App\UserInfo', 'user_id');
+    // }
     public function country()
     {
         return $this->belongsTo('App\Countries', 'country_id');
@@ -153,5 +156,52 @@ class Users extends Authenticatable
     public function hisEvents()
     {
         return $this->hasMany('App\Event', 'created_by');
+    }
+
+    // get country name
+    public function getCountry()
+    {
+        return isset($this->country->name) ? $this->country->name : __('keywords.not');
+    }
+
+    // get city name
+    public function getCity()
+    {
+        return isset($this->city->name) ? $this->city->name : __('keywords.not');
+    }
+
+    // get region name
+    public function getRegionName()
+    {
+        return isset($this->userInfo->region->name) ? $this->country->name : __('keywords.not');
+    }
+
+    // get region id
+    public function getRegionCityId()
+    {
+        return isset($this->userInfo->region->city_id) ? $this->userInfo->region->city_id : __('keywords.not');
+    }
+
+
+  
+ public function sponsorCategories()
+    {
+    return $this->belongsToMany('App\SponsorCategory', 'user_sponsor_categories', 'user_id', 'sponsor_category_id');
+    }
+
+
+     public function sponsorCities()
+    {
+    return $this->belongsToMany('App\Cities', 'user_target_cities', 'user_id', 'city_id');
+    }
+
+
+     public function sponsorRegions()
+    {
+    return $this->belongsToMany('App\GeoRegion', 'user_target_regions', 'user_id', 'region_id');
+    }
+     public function sponsorSpecializations()
+    {
+    return $this->belongsToMany('App\Specialization', 'user_target_specializations', 'user_id', 'specialization_id');
     }
 }

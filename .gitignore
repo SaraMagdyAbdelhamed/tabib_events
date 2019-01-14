@@ -2,7 +2,14 @@
 /public/hot
 /public/storage
 /public/mobile_users
-/public/img
+/public/doctors
+/public/event_category
+/public/event_images
+/public/events
+/public/famous_images
+/public/logo
+/public/offer_images
+/public/shops_images
 /storage/*.key
 /vendor
 /.idea

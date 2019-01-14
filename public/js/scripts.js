@@ -12837,7 +12837,12812 @@ else if (typeof define === 'function' && define.amd) {
 
 //# sourceMappingURL=maps/swiper.js.map
 
+// ┌───────────────────────────────────────────────────────────────────────────────────────────────────────┐ \\
+// │ Raphaël 2.2.0 - JavaScript Vector Library                                                             │ \\
+// ├───────────────────────────────────────────────────────────────────────────────────────────────────────┤ \\
+// │ Copyright © 2008-2016 Dmitry Baranovskiy (http://raphaeljs.com)                                       │ \\
+// │ Copyright © 2008-2016 Sencha Labs (http://sencha.com)                                                 │ \\
+// ├───────────────────────────────────────────────────────────────────────────────────────────────────────┤ \\
+// │ Licensed under the MIT (https://github.com/DmitryBaranovskiy/raphael/blob/master/license.txt) license.│ \\
+// └───────────────────────────────────────────────────────────────────────────────────────────────────────┘ \\
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Raphael"] = factory();
+	else
+		root["Raphael"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(R) {
+
+	    return R;
+
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_RESULT__ = function(eve) {
+
+	    /*\
+	     * Raphael
+	     [ method ]
+	     **
+	     * Creates a canvas object on which to draw.
+	     * You must do this first, as all future calls to drawing methods
+	     * from this instance will be bound to this canvas.
+	     > Parameters
+	     **
+	     - container (HTMLElement|string) DOM element or its ID which is going to be a parent for drawing surface
+	     - width (number)
+	     - height (number)
+	     - callback (function) #optional callback function which is going to be executed in the context of newly created paper
+	     * or
+	     - x (number)
+	     - y (number)
+	     - width (number)
+	     - height (number)
+	     - callback (function) #optional callback function which is going to be executed in the context of newly created paper
+	     * or
+	     - all (array) (first 3 or 4 elements in the array are equal to [containerID, width, height] or [x, y, width, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
+	     - callback (function) #optional callback function which is going to be executed in the context of newly created paper
+	     * or
+	     - onReadyCallback (function) function that is going to be called on DOM ready event. You can also subscribe to this event via Eve’s “DOMLoad” event. In this case method returns `undefined`.
+	     = (object) @Paper
+	     > Usage
+	     | // Each of the following examples create a canvas
+	     | // that is 320px wide by 200px high.
+	     | // Canvas is created at the viewport’s 10,50 coordinate.
+	     | var paper = Raphael(10, 50, 320, 200);
+	     | // Canvas is created at the top left corner of the #notepad element
+	     | // (or its top right corner in dir="rtl" elements)
+	     | var paper = Raphael(document.getElementById("notepad"), 320, 200);
+	     | // Same as above
+	     | var paper = Raphael("notepad", 320, 200);
+	     | // Image dump
+	     | var set = Raphael(["notepad", 320, 200, {
+	     |     type: "rect",
+	     |     x: 10,
+	     |     y: 10,
+	     |     width: 25,
+	     |     height: 25,
+	     |     stroke: "#f00"
+	     | }, {
+	     |     type: "text",
+	     |     x: 30,
+	     |     y: 40,
+	     |     text: "Dump"
+	     | }]);
+	    \*/
+	    function R(first) {
+	        if (R.is(first, "function")) {
+	            return loaded ? first() : eve.on("raphael.DOMload", first);
+	        } else if (R.is(first, array)) {
+	            return R._engine.create[apply](R, first.splice(0, 3 + R.is(first[0], nu))).add(first);
+	        } else {
+	            var args = Array.prototype.slice.call(arguments, 0);
+	            if (R.is(args[args.length - 1], "function")) {
+	                var f = args.pop();
+	                return loaded ? f.call(R._engine.create[apply](R, args)) : eve.on("raphael.DOMload", function () {
+	                    f.call(R._engine.create[apply](R, args));
+	                });
+	            } else {
+	                return R._engine.create[apply](R, arguments);
+	            }
+	        }
+	    }
+	    R.version = "2.2.0";
+	    R.eve = eve;
+	    var loaded,
+	        separator = /[, ]+/,
+	        elements = {circle: 1, rect: 1, path: 1, ellipse: 1, text: 1, image: 1},
+	        formatrg = /\{(\d+)\}/g,
+	        proto = "prototype",
+	        has = "hasOwnProperty",
+	        g = {
+	            doc: document,
+	            win: window
+	        },
+	        oldRaphael = {
+	            was: Object.prototype[has].call(g.win, "Raphael"),
+	            is: g.win.Raphael
+	        },
+	        Paper = function () {
+	            /*\
+	             * Paper.ca
+	             [ property (object) ]
+	             **
+	             * Shortcut for @Paper.customAttributes
+	            \*/
+	            /*\
+	             * Paper.customAttributes
+	             [ property (object) ]
+	             **
+	             * If you have a set of attributes that you would like to represent
+	             * as a function of some number you can do it easily with custom attributes:
+	             > Usage
+	             | paper.customAttributes.hue = function (num) {
+	             |     num = num % 1;
+	             |     return {fill: "hsb(" + num + ", 0.75, 1)"};
+	             | };
+	             | // Custom attribute “hue” will change fill
+	             | // to be given hue with fixed saturation and brightness.
+	             | // Now you can use it like this:
+	             | var c = paper.circle(10, 10, 10).attr({hue: .45});
+	             | // or even like this:
+	             | c.animate({hue: 1}, 1e3);
+	             |
+	             | // You could also create custom attribute
+	             | // with multiple parameters:
+	             | paper.customAttributes.hsb = function (h, s, b) {
+	             |     return {fill: "hsb(" + [h, s, b].join(",") + ")"};
+	             | };
+	             | c.attr({hsb: "0.5 .8 1"});
+	             | c.animate({hsb: [1, 0, 0.5]}, 1e3);
+	            \*/
+	            this.ca = this.customAttributes = {};
+	        },
+	        paperproto,
+	        appendChild = "appendChild",
+	        apply = "apply",
+	        concat = "concat",
+	        supportsTouch = ('ontouchstart' in g.win) || g.win.DocumentTouch && g.doc instanceof DocumentTouch, //taken from Modernizr touch test
+	        E = "",
+	        S = " ",
+	        Str = String,
+	        split = "split",
+	        events = "click dblclick mousedown mousemove mouseout mouseover mouseup touchstart touchmove touchend touchcancel"[split](S),
+	        touchMap = {
+	            mousedown: "touchstart",
+	            mousemove: "touchmove",
+	            mouseup: "touchend"
+	        },
+	        lowerCase = Str.prototype.toLowerCase,
+	        math = Math,
+	        mmax = math.max,
+	        mmin = math.min,
+	        abs = math.abs,
+	        pow = math.pow,
+	        PI = math.PI,
+	        nu = "number",
+	        string = "string",
+	        array = "array",
+	        toString = "toString",
+	        fillString = "fill",
+	        objectToString = Object.prototype.toString,
+	        paper = {},
+	        push = "push",
+	        ISURL = R._ISURL = /^url\(['"]?(.+?)['"]?\)$/i,
+	        colourRegExp = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+%?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+%?(?:\s*,\s*[\d\.]+%?)?)\s*\)|hsba?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\)|hsla?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\))\s*$/i,
+	        isnan = {"NaN": 1, "Infinity": 1, "-Infinity": 1},
+	        bezierrg = /^(?:cubic-)?bezier\(([^,]+),([^,]+),([^,]+),([^\)]+)\)/,
+	        round = math.round,
+	        setAttribute = "setAttribute",
+	        toFloat = parseFloat,
+	        toInt = parseInt,
+	        upperCase = Str.prototype.toUpperCase,
+	        availableAttrs = R._availableAttrs = {
+	            "arrow-end": "none",
+	            "arrow-start": "none",
+	            blur: 0,
+	            "clip-rect": "0 0 1e9 1e9",
+	            cursor: "default",
+	            cx: 0,
+	            cy: 0,
+	            fill: "#fff",
+	            "fill-opacity": 1,
+	            font: '10px "Arial"',
+	            "font-family": '"Arial"',
+	            "font-size": "10",
+	            "font-style": "normal",
+	            "font-weight": 400,
+	            gradient: 0,
+	            height: 0,
+	            href: "http://raphaeljs.com/",
+	            "letter-spacing": 0,
+	            opacity: 1,
+	            path: "M0,0",
+	            r: 0,
+	            rx: 0,
+	            ry: 0,
+	            src: "",
+	            stroke: "#000",
+	            "stroke-dasharray": "",
+	            "stroke-linecap": "butt",
+	            "stroke-linejoin": "butt",
+	            "stroke-miterlimit": 0,
+	            "stroke-opacity": 1,
+	            "stroke-width": 1,
+	            target: "_blank",
+	            "text-anchor": "middle",
+	            title: "Raphael",
+	            transform: "",
+	            width: 0,
+	            x: 0,
+	            y: 0,
+	            "class": ""
+	        },
+	        availableAnimAttrs = R._availableAnimAttrs = {
+	            blur: nu,
+	            "clip-rect": "csv",
+	            cx: nu,
+	            cy: nu,
+	            fill: "colour",
+	            "fill-opacity": nu,
+	            "font-size": nu,
+	            height: nu,
+	            opacity: nu,
+	            path: "path",
+	            r: nu,
+	            rx: nu,
+	            ry: nu,
+	            stroke: "colour",
+	            "stroke-opacity": nu,
+	            "stroke-width": nu,
+	            transform: "transform",
+	            width: nu,
+	            x: nu,
+	            y: nu
+	        },
+	        whitespace = /[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]/g,
+	        commaSpaces = /[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*/,
+	        hsrg = {hs: 1, rg: 1},
+	        p2s = /,?([achlmqrstvxz]),?/gi,
+	        pathCommand = /([achlmrqstvz])[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029,]*((-?\d*\.?\d*(?:e[\-+]?\d+)?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*)+)/ig,
+	        tCommand = /([rstm])[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029,]*((-?\d*\.?\d*(?:e[\-+]?\d+)?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*)+)/ig,
+	        pathValues = /(-?\d*\.?\d*(?:e[\-+]?\d+)?)[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*/ig,
+	        radial_gradient = R._radial_gradient = /^r(?:\(([^,]+?)[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*([^\)]+?)\))?/,
+	        eldata = {},
+	        sortByKey = function (a, b) {
+	            return a.key - b.key;
+	        },
+	        sortByNumber = function (a, b) {
+	            return toFloat(a) - toFloat(b);
+	        },
+	        fun = function () {},
+	        pipe = function (x) {
+	            return x;
+	        },
+	        rectPath = R._rectPath = function (x, y, w, h, r) {
+	            if (r) {
+	                return [["M", x + r, y], ["l", w - r * 2, 0], ["a", r, r, 0, 0, 1, r, r], ["l", 0, h - r * 2], ["a", r, r, 0, 0, 1, -r, r], ["l", r * 2 - w, 0], ["a", r, r, 0, 0, 1, -r, -r], ["l", 0, r * 2 - h], ["a", r, r, 0, 0, 1, r, -r], ["z"]];
+	            }
+	            return [["M", x, y], ["l", w, 0], ["l", 0, h], ["l", -w, 0], ["z"]];
+	        },
+	        ellipsePath = function (x, y, rx, ry) {
+	            if (ry == null) {
+	                ry = rx;
+	            }
+	            return [["M", x, y], ["m", 0, -ry], ["a", rx, ry, 0, 1, 1, 0, 2 * ry], ["a", rx, ry, 0, 1, 1, 0, -2 * ry], ["z"]];
+	        },
+	        getPath = R._getPath = {
+	            path: function (el) {
+	                return el.attr("path");
+	            },
+	            circle: function (el) {
+	                var a = el.attrs;
+	                return ellipsePath(a.cx, a.cy, a.r);
+	            },
+	            ellipse: function (el) {
+	                var a = el.attrs;
+	                return ellipsePath(a.cx, a.cy, a.rx, a.ry);
+	            },
+	            rect: function (el) {
+	                var a = el.attrs;
+	                return rectPath(a.x, a.y, a.width, a.height, a.r);
+	            },
+	            image: function (el) {
+	                var a = el.attrs;
+	                return rectPath(a.x, a.y, a.width, a.height);
+	            },
+	            text: function (el) {
+	                var bbox = el._getBBox();
+	                return rectPath(bbox.x, bbox.y, bbox.width, bbox.height);
+	            },
+	            set : function(el) {
+	                var bbox = el._getBBox();
+	                return rectPath(bbox.x, bbox.y, bbox.width, bbox.height);
+	            }
+	        },
+	        /*\
+	         * Raphael.mapPath
+	         [ method ]
+	         **
+	         * Transform the path string with given matrix.
+	         > Parameters
+	         - path (string) path string
+	         - matrix (object) see @Matrix
+	         = (string) transformed path string
+	        \*/
+	        mapPath = R.mapPath = function (path, matrix) {
+	            if (!matrix) {
+	                return path;
+	            }
+	            var x, y, i, j, ii, jj, pathi;
+	            path = path2curve(path);
+	            for (i = 0, ii = path.length; i < ii; i++) {
+	                pathi = path[i];
+	                for (j = 1, jj = pathi.length; j < jj; j += 2) {
+	                    x = matrix.x(pathi[j], pathi[j + 1]);
+	                    y = matrix.y(pathi[j], pathi[j + 1]);
+	                    pathi[j] = x;
+	                    pathi[j + 1] = y;
+	                }
+	            }
+	            return path;
+	        };
+
+	    R._g = g;
+	    /*\
+	     * Raphael.type
+	     [ property (string) ]
+	     **
+	     * Can be “SVG”, “VML” or empty, depending on browser support.
+	    \*/
+	    R.type = (g.win.SVGAngle || g.doc.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML");
+	    if (R.type == "VML") {
+	        var d = g.doc.createElement("div"),
+	            b;
+	        d.innerHTML = '<v:shape adj="1"/>';
+	        b = d.firstChild;
+	        b.style.behavior = "url(#default#VML)";
+	        if (!(b && typeof b.adj == "object")) {
+	            return (R.type = E);
+	        }
+	        d = null;
+	    }
+	    /*\
+	     * Raphael.svg
+	     [ property (boolean) ]
+	     **
+	     * `true` if browser supports SVG.
+	    \*/
+	    /*\
+	     * Raphael.vml
+	     [ property (boolean) ]
+	     **
+	     * `true` if browser supports VML.
+	    \*/
+	    R.svg = !(R.vml = R.type == "VML");
+	    R._Paper = Paper;
+	    /*\
+	     * Raphael.fn
+	     [ property (object) ]
+	     **
+	     * You can add your own method to the canvas. For example if you want to draw a pie chart,
+	     * you can create your own pie chart function and ship it as a Raphaël plugin. To do this
+	     * you need to extend the `Raphael.fn` object. You should modify the `fn` object before a
+	     * Raphaël instance is created, otherwise it will take no effect. Please note that the
+	     * ability for namespaced plugins was removed in Raphael 2.0. It is up to the plugin to
+	     * ensure any namespacing ensures proper context.
+	     > Usage
+	     | Raphael.fn.arrow = function (x1, y1, x2, y2, size) {
+	     |     return this.path( ... );
+	     | };
+	     | // or create namespace
+	     | Raphael.fn.mystuff = {
+	     |     arrow: function () {…},
+	     |     star: function () {…},
+	     |     // etc…
+	     | };
+	     | var paper = Raphael(10, 10, 630, 480);
+	     | // then use it
+	     | paper.arrow(10, 10, 30, 30, 5).attr({fill: "#f00"});
+	     | paper.mystuff.arrow();
+	     | paper.mystuff.star();
+	    \*/
+	    R.fn = paperproto = Paper.prototype = R.prototype;
+	    R._id = 0;
+	    /*\
+	     * Raphael.is
+	     [ method ]
+	     **
+	     * Handful of replacements for `typeof` operator.
+	     > Parameters
+	     - o (…) any object or primitive
+	     - type (string) name of the type, i.e. “string”, “function”, “number”, etc.
+	     = (boolean) is given value is of given type
+	    \*/
+	    R.is = function (o, type) {
+	        type = lowerCase.call(type);
+	        if (type == "finite") {
+	            return !isnan[has](+o);
+	        }
+	        if (type == "array") {
+	            return o instanceof Array;
+	        }
+	        return  (type == "null" && o === null) ||
+	                (type == typeof o && o !== null) ||
+	                (type == "object" && o === Object(o)) ||
+	                (type == "array" && Array.isArray && Array.isArray(o)) ||
+	                objectToString.call(o).slice(8, -1).toLowerCase() == type;
+	    };
+
+	    function clone(obj) {
+	        if (typeof obj == "function" || Object(obj) !== obj) {
+	            return obj;
+	        }
+	        var res = new obj.constructor;
+	        for (var key in obj) if (obj[has](key)) {
+	            res[key] = clone(obj[key]);
+	        }
+	        return res;
+	    }
+
+	    /*\
+	     * Raphael.angle
+	     [ method ]
+	     **
+	     * Returns angle between two or three points
+	     > Parameters
+	     - x1 (number) x coord of first point
+	     - y1 (number) y coord of first point
+	     - x2 (number) x coord of second point
+	     - y2 (number) y coord of second point
+	     - x3 (number) #optional x coord of third point
+	     - y3 (number) #optional y coord of third point
+	     = (number) angle in degrees.
+	    \*/
+	    R.angle = function (x1, y1, x2, y2, x3, y3) {
+	        if (x3 == null) {
+	            var x = x1 - x2,
+	                y = y1 - y2;
+	            if (!x && !y) {
+	                return 0;
+	            }
+	            return (180 + math.atan2(-y, -x) * 180 / PI + 360) % 360;
+	        } else {
+	            return R.angle(x1, y1, x3, y3) - R.angle(x2, y2, x3, y3);
+	        }
+	    };
+	    /*\
+	     * Raphael.rad
+	     [ method ]
+	     **
+	     * Transform angle to radians
+	     > Parameters
+	     - deg (number) angle in degrees
+	     = (number) angle in radians.
+	    \*/
+	    R.rad = function (deg) {
+	        return deg % 360 * PI / 180;
+	    };
+	    /*\
+	     * Raphael.deg
+	     [ method ]
+	     **
+	     * Transform angle to degrees
+	     > Parameters
+	     - rad (number) angle in radians
+	     = (number) angle in degrees.
+	    \*/
+	    R.deg = function (rad) {
+	        return Math.round ((rad * 180 / PI% 360)* 1000) / 1000;
+	    };
+	    /*\
+	     * Raphael.snapTo
+	     [ method ]
+	     **
+	     * Snaps given value to given grid.
+	     > Parameters
+	     - values (array|number) given array of values or step of the grid
+	     - value (number) value to adjust
+	     - tolerance (number) #optional tolerance for snapping. Default is `10`.
+	     = (number) adjusted value.
+	    \*/
+	    R.snapTo = function (values, value, tolerance) {
+	        tolerance = R.is(tolerance, "finite") ? tolerance : 10;
+	        if (R.is(values, array)) {
+	            var i = values.length;
+	            while (i--) if (abs(values[i] - value) <= tolerance) {
+	                return values[i];
+	            }
+	        } else {
+	            values = +values;
+	            var rem = value % values;
+	            if (rem < tolerance) {
+	                return value - rem;
+	            }
+	            if (rem > values - tolerance) {
+	                return value - rem + values;
+	            }
+	        }
+	        return value;
+	    };
+
+	    /*\
+	     * Raphael.createUUID
+	     [ method ]
+	     **
+	     * Returns RFC4122, version 4 ID
+	    \*/
+	    var createUUID = R.createUUID = (function (uuidRegEx, uuidReplacer) {
+	        return function () {
+	            return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
+	        };
+	    })(/[xy]/g, function (c) {
+	        var r = math.random() * 16 | 0,
+	            v = c == "x" ? r : (r & 3 | 8);
+	        return v.toString(16);
+	    });
+
+	    /*\
+	     * Raphael.setWindow
+	     [ method ]
+	     **
+	     * Used when you need to draw in `&lt;iframe>`. Switched window to the iframe one.
+	     > Parameters
+	     - newwin (window) new window object
+	    \*/
+	    R.setWindow = function (newwin) {
+	        eve("raphael.setWindow", R, g.win, newwin);
+	        g.win = newwin;
+	        g.doc = g.win.document;
+	        if (R._engine.initWin) {
+	            R._engine.initWin(g.win);
+	        }
+	    };
+	    var toHex = function (color) {
+	        if (R.vml) {
+	            // http://dean.edwards.name/weblog/2009/10/convert-any-colour-value-to-hex-in-msie/
+	            var trim = /^\s+|\s+$/g;
+	            var bod;
+	            try {
+	                var docum = new ActiveXObject("htmlfile");
+	                docum.write("<body>");
+	                docum.close();
+	                bod = docum.body;
+	            } catch(e) {
+	                bod = createPopup().document.body;
+	            }
+	            var range = bod.createTextRange();
+	            toHex = cacher(function (color) {
+	                try {
+	                    bod.style.color = Str(color).replace(trim, E);
+	                    var value = range.queryCommandValue("ForeColor");
+	                    value = ((value & 255) << 16) | (value & 65280) | ((value & 16711680) >>> 16);
+	                    return "#" + ("000000" + value.toString(16)).slice(-6);
+	                } catch(e) {
+	                    return "none";
+	                }
+	            });
+	        } else {
+	            var i = g.doc.createElement("i");
+	            i.title = "Rapha\xebl Colour Picker";
+	            i.style.display = "none";
+	            g.doc.body.appendChild(i);
+	            toHex = cacher(function (color) {
+	                i.style.color = color;
+	                return g.doc.defaultView.getComputedStyle(i, E).getPropertyValue("color");
+	            });
+	        }
+	        return toHex(color);
+	    },
+	    hsbtoString = function () {
+	        return "hsb(" + [this.h, this.s, this.b] + ")";
+	    },
+	    hsltoString = function () {
+	        return "hsl(" + [this.h, this.s, this.l] + ")";
+	    },
+	    rgbtoString = function () {
+	        return this.hex;
+	    },
+	    prepareRGB = function (r, g, b) {
+	        if (g == null && R.is(r, "object") && "r" in r && "g" in r && "b" in r) {
+	            b = r.b;
+	            g = r.g;
+	            r = r.r;
+	        }
+	        if (g == null && R.is(r, string)) {
+	            var clr = R.getRGB(r);
+	            r = clr.r;
+	            g = clr.g;
+	            b = clr.b;
+	        }
+	        if (r > 1 || g > 1 || b > 1) {
+	            r /= 255;
+	            g /= 255;
+	            b /= 255;
+	        }
+
+	        return [r, g, b];
+	    },
+	    packageRGB = function (r, g, b, o) {
+	        r *= 255;
+	        g *= 255;
+	        b *= 255;
+	        var rgb = {
+	            r: r,
+	            g: g,
+	            b: b,
+	            hex: R.rgb(r, g, b),
+	            toString: rgbtoString
+	        };
+	        R.is(o, "finite") && (rgb.opacity = o);
+	        return rgb;
+	    };
+
+	    /*\
+	     * Raphael.color
+	     [ method ]
+	     **
+	     * Parses the color string and returns object with all values for the given color.
+	     > Parameters
+	     - clr (string) color string in one of the supported formats (see @Raphael.getRGB)
+	     = (object) Combined RGB & HSB object in format:
+	     o {
+	     o     r (number) red,
+	     o     g (number) green,
+	     o     b (number) blue,
+	     o     hex (string) color in HTML/CSS format: #••••••,
+	     o     error (boolean) `true` if string can’t be parsed,
+	     o     h (number) hue,
+	     o     s (number) saturation,
+	     o     v (number) value (brightness),
+	     o     l (number) lightness
+	     o }
+	    \*/
+	    R.color = function (clr) {
+	        var rgb;
+	        if (R.is(clr, "object") && "h" in clr && "s" in clr && "b" in clr) {
+	            rgb = R.hsb2rgb(clr);
+	            clr.r = rgb.r;
+	            clr.g = rgb.g;
+	            clr.b = rgb.b;
+	            clr.hex = rgb.hex;
+	        } else if (R.is(clr, "object") && "h" in clr && "s" in clr && "l" in clr) {
+	            rgb = R.hsl2rgb(clr);
+	            clr.r = rgb.r;
+	            clr.g = rgb.g;
+	            clr.b = rgb.b;
+	            clr.hex = rgb.hex;
+	        } else {
+	            if (R.is(clr, "string")) {
+	                clr = R.getRGB(clr);
+	            }
+	            if (R.is(clr, "object") && "r" in clr && "g" in clr && "b" in clr) {
+	                rgb = R.rgb2hsl(clr);
+	                clr.h = rgb.h;
+	                clr.s = rgb.s;
+	                clr.l = rgb.l;
+	                rgb = R.rgb2hsb(clr);
+	                clr.v = rgb.b;
+	            } else {
+	                clr = {hex: "none"};
+	                clr.r = clr.g = clr.b = clr.h = clr.s = clr.v = clr.l = -1;
+	            }
+	        }
+	        clr.toString = rgbtoString;
+	        return clr;
+	    };
+	    /*\
+	     * Raphael.hsb2rgb
+	     [ method ]
+	     **
+	     * Converts HSB values to RGB object.
+	     > Parameters
+	     - h (number) hue
+	     - s (number) saturation
+	     - v (number) value or brightness
+	     = (object) RGB object in format:
+	     o {
+	     o     r (number) red,
+	     o     g (number) green,
+	     o     b (number) blue,
+	     o     hex (string) color in HTML/CSS format: #••••••
+	     o }
+	    \*/
+	    R.hsb2rgb = function (h, s, v, o) {
+	        if (this.is(h, "object") && "h" in h && "s" in h && "b" in h) {
+	            v = h.b;
+	            s = h.s;
+	            o = h.o;
+	            h = h.h;
+	        }
+	        h *= 360;
+	        var R, G, B, X, C;
+	        h = (h % 360) / 60;
+	        C = v * s;
+	        X = C * (1 - abs(h % 2 - 1));
+	        R = G = B = v - C;
+
+	        h = ~~h;
+	        R += [C, X, 0, 0, X, C][h];
+	        G += [X, C, C, X, 0, 0][h];
+	        B += [0, 0, X, C, C, X][h];
+	        return packageRGB(R, G, B, o);
+	    };
+	    /*\
+	     * Raphael.hsl2rgb
+	     [ method ]
+	     **
+	     * Converts HSL values to RGB object.
+	     > Parameters
+	     - h (number) hue
+	     - s (number) saturation
+	     - l (number) luminosity
+	     = (object) RGB object in format:
+	     o {
+	     o     r (number) red,
+	     o     g (number) green,
+	     o     b (number) blue,
+	     o     hex (string) color in HTML/CSS format: #••••••
+	     o }
+	    \*/
+	    R.hsl2rgb = function (h, s, l, o) {
+	        if (this.is(h, "object") && "h" in h && "s" in h && "l" in h) {
+	            l = h.l;
+	            s = h.s;
+	            h = h.h;
+	        }
+	        if (h > 1 || s > 1 || l > 1) {
+	            h /= 360;
+	            s /= 100;
+	            l /= 100;
+	        }
+	        h *= 360;
+	        var R, G, B, X, C;
+	        h = (h % 360) / 60;
+	        C = 2 * s * (l < .5 ? l : 1 - l);
+	        X = C * (1 - abs(h % 2 - 1));
+	        R = G = B = l - C / 2;
+
+	        h = ~~h;
+	        R += [C, X, 0, 0, X, C][h];
+	        G += [X, C, C, X, 0, 0][h];
+	        B += [0, 0, X, C, C, X][h];
+	        return packageRGB(R, G, B, o);
+	    };
+	    /*\
+	     * Raphael.rgb2hsb
+	     [ method ]
+	     **
+	     * Converts RGB values to HSB object.
+	     > Parameters
+	     - r (number) red
+	     - g (number) green
+	     - b (number) blue
+	     = (object) HSB object in format:
+	     o {
+	     o     h (number) hue
+	     o     s (number) saturation
+	     o     b (number) brightness
+	     o }
+	    \*/
+	    R.rgb2hsb = function (r, g, b) {
+	        b = prepareRGB(r, g, b);
+	        r = b[0];
+	        g = b[1];
+	        b = b[2];
+
+	        var H, S, V, C;
+	        V = mmax(r, g, b);
+	        C = V - mmin(r, g, b);
+	        H = (C == 0 ? null :
+	             V == r ? (g - b) / C :
+	             V == g ? (b - r) / C + 2 :
+	                      (r - g) / C + 4
+	            );
+	        H = ((H + 360) % 6) * 60 / 360;
+	        S = C == 0 ? 0 : C / V;
+	        return {h: H, s: S, b: V, toString: hsbtoString};
+	    };
+	    /*\
+	     * Raphael.rgb2hsl
+	     [ method ]
+	     **
+	     * Converts RGB values to HSL object.
+	     > Parameters
+	     - r (number) red
+	     - g (number) green
+	     - b (number) blue
+	     = (object) HSL object in format:
+	     o {
+	     o     h (number) hue
+	     o     s (number) saturation
+	     o     l (number) luminosity
+	     o }
+	    \*/
+	    R.rgb2hsl = function (r, g, b) {
+	        b = prepareRGB(r, g, b);
+	        r = b[0];
+	        g = b[1];
+	        b = b[2];
+
+	        var H, S, L, M, m, C;
+	        M = mmax(r, g, b);
+	        m = mmin(r, g, b);
+	        C = M - m;
+	        H = (C == 0 ? null :
+	             M == r ? (g - b) / C :
+	             M == g ? (b - r) / C + 2 :
+	                      (r - g) / C + 4);
+	        H = ((H + 360) % 6) * 60 / 360;
+	        L = (M + m) / 2;
+	        S = (C == 0 ? 0 :
+	             L < .5 ? C / (2 * L) :
+	                      C / (2 - 2 * L));
+	        return {h: H, s: S, l: L, toString: hsltoString};
+	    };
+	    R._path2string = function () {
+	        return this.join(",").replace(p2s, "$1");
+	    };
+	    function repush(array, item) {
+	        for (var i = 0, ii = array.length; i < ii; i++) if (array[i] === item) {
+	            return array.push(array.splice(i, 1)[0]);
+	        }
+	    }
+	    function cacher(f, scope, postprocessor) {
+	        function newf() {
+	            var arg = Array.prototype.slice.call(arguments, 0),
+	                args = arg.join("\u2400"),
+	                cache = newf.cache = newf.cache || {},
+	                count = newf.count = newf.count || [];
+	            if (cache[has](args)) {
+	                repush(count, args);
+	                return postprocessor ? postprocessor(cache[args]) : cache[args];
+	            }
+	            count.length >= 1e3 && delete cache[count.shift()];
+	            count.push(args);
+	            cache[args] = f[apply](scope, arg);
+	            return postprocessor ? postprocessor(cache[args]) : cache[args];
+	        }
+	        return newf;
+	    }
+
+	    var preload = R._preload = function (src, f) {
+	        var img = g.doc.createElement("img");
+	        img.style.cssText = "position:absolute;left:-9999em;top:-9999em";
+	        img.onload = function () {
+	            f.call(this);
+	            this.onload = null;
+	            g.doc.body.removeChild(this);
+	        };
+	        img.onerror = function () {
+	            g.doc.body.removeChild(this);
+	        };
+	        g.doc.body.appendChild(img);
+	        img.src = src;
+	    };
+
+	    function clrToString() {
+	        return this.hex;
+	    }
+
+	    /*\
+	     * Raphael.getRGB
+	     [ method ]
+	     **
+	     * Parses colour string as RGB object
+	     > Parameters
+	     - colour (string) colour string in one of formats:
+	     # <ul>
+	     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
+	     #     <li>#••• — shortened HTML colour: (“<code>#000</code>”, “<code>#fc0</code>”, etc)</li>
+	     #     <li>#•••••• — full length HTML colour: (“<code>#000000</code>”, “<code>#bd2300</code>”)</li>
+	     #     <li>rgb(•••, •••, •••) — red, green and blue channels’ values: (“<code>rgb(200,&nbsp;100,&nbsp;0)</code>”)</li>
+	     #     <li>rgb(•••%, •••%, •••%) — same as above, but in %: (“<code>rgb(100%,&nbsp;175%,&nbsp;0%)</code>”)</li>
+	     #     <li>hsb(•••, •••, •••) — hue, saturation and brightness values: (“<code>hsb(0.5,&nbsp;0.25,&nbsp;1)</code>”)</li>
+	     #     <li>hsb(•••%, •••%, •••%) — same as above, but in %</li>
+	     #     <li>hsl(•••, •••, •••) — same as hsb</li>
+	     #     <li>hsl(•••%, •••%, •••%) — same as hsb</li>
+	     # </ul>
+	     = (object) RGB object in format:
+	     o {
+	     o     r (number) red,
+	     o     g (number) green,
+	     o     b (number) blue
+	     o     hex (string) color in HTML/CSS format: #••••••,
+	     o     error (boolean) true if string can’t be parsed
+	     o }
+	    \*/
+	    R.getRGB = cacher(function (colour) {
+	        if (!colour || !!((colour = Str(colour)).indexOf("-") + 1)) {
+	            return {r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString};
+	        }
+	        if (colour == "none") {
+	            return {r: -1, g: -1, b: -1, hex: "none", toString: clrToString};
+	        }
+	        !(hsrg[has](colour.toLowerCase().substring(0, 2)) || colour.charAt() == "#") && (colour = toHex(colour));
+	        var res,
+	            red,
+	            green,
+	            blue,
+	            opacity,
+	            t,
+	            values,
+	            rgb = colour.match(colourRegExp);
+	        if (rgb) {
+	            if (rgb[2]) {
+	                blue = toInt(rgb[2].substring(5), 16);
+	                green = toInt(rgb[2].substring(3, 5), 16);
+	                red = toInt(rgb[2].substring(1, 3), 16);
+	            }
+	            if (rgb[3]) {
+	                blue = toInt((t = rgb[3].charAt(3)) + t, 16);
+	                green = toInt((t = rgb[3].charAt(2)) + t, 16);
+	                red = toInt((t = rgb[3].charAt(1)) + t, 16);
+	            }
+	            if (rgb[4]) {
+	                values = rgb[4][split](commaSpaces);
+	                red = toFloat(values[0]);
+	                values[0].slice(-1) == "%" && (red *= 2.55);
+	                green = toFloat(values[1]);
+	                values[1].slice(-1) == "%" && (green *= 2.55);
+	                blue = toFloat(values[2]);
+	                values[2].slice(-1) == "%" && (blue *= 2.55);
+	                rgb[1].toLowerCase().slice(0, 4) == "rgba" && (opacity = toFloat(values[3]));
+	                values[3] && values[3].slice(-1) == "%" && (opacity /= 100);
+	            }
+	            if (rgb[5]) {
+	                values = rgb[5][split](commaSpaces);
+	                red = toFloat(values[0]);
+	                values[0].slice(-1) == "%" && (red *= 2.55);
+	                green = toFloat(values[1]);
+	                values[1].slice(-1) == "%" && (green *= 2.55);
+	                blue = toFloat(values[2]);
+	                values[2].slice(-1) == "%" && (blue *= 2.55);
+	                (values[0].slice(-3) == "deg" || values[0].slice(-1) == "\xb0") && (red /= 360);
+	                rgb[1].toLowerCase().slice(0, 4) == "hsba" && (opacity = toFloat(values[3]));
+	                values[3] && values[3].slice(-1) == "%" && (opacity /= 100);
+	                return R.hsb2rgb(red, green, blue, opacity);
+	            }
+	            if (rgb[6]) {
+	                values = rgb[6][split](commaSpaces);
+	                red = toFloat(values[0]);
+	                values[0].slice(-1) == "%" && (red *= 2.55);
+	                green = toFloat(values[1]);
+	                values[1].slice(-1) == "%" && (green *= 2.55);
+	                blue = toFloat(values[2]);
+	                values[2].slice(-1) == "%" && (blue *= 2.55);
+	                (values[0].slice(-3) == "deg" || values[0].slice(-1) == "\xb0") && (red /= 360);
+	                rgb[1].toLowerCase().slice(0, 4) == "hsla" && (opacity = toFloat(values[3]));
+	                values[3] && values[3].slice(-1) == "%" && (opacity /= 100);
+	                return R.hsl2rgb(red, green, blue, opacity);
+	            }
+	            rgb = {r: red, g: green, b: blue, toString: clrToString};
+	            rgb.hex = "#" + (16777216 | blue | (green << 8) | (red << 16)).toString(16).slice(1);
+	            R.is(opacity, "finite") && (rgb.opacity = opacity);
+	            return rgb;
+	        }
+	        return {r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString};
+	    }, R);
+	    /*\
+	     * Raphael.hsb
+	     [ method ]
+	     **
+	     * Converts HSB values to hex representation of the colour.
+	     > Parameters
+	     - h (number) hue
+	     - s (number) saturation
+	     - b (number) value or brightness
+	     = (string) hex representation of the colour.
+	    \*/
+	    R.hsb = cacher(function (h, s, b) {
+	        return R.hsb2rgb(h, s, b).hex;
+	    });
+	    /*\
+	     * Raphael.hsl
+	     [ method ]
+	     **
+	     * Converts HSL values to hex representation of the colour.
+	     > Parameters
+	     - h (number) hue
+	     - s (number) saturation
+	     - l (number) luminosity
+	     = (string) hex representation of the colour.
+	    \*/
+	    R.hsl = cacher(function (h, s, l) {
+	        return R.hsl2rgb(h, s, l).hex;
+	    });
+	    /*\
+	     * Raphael.rgb
+	     [ method ]
+	     **
+	     * Converts RGB values to hex representation of the colour.
+	     > Parameters
+	     - r (number) red
+	     - g (number) green
+	     - b (number) blue
+	     = (string) hex representation of the colour.
+	    \*/
+	    R.rgb = cacher(function (r, g, b) {
+	        function round(x) { return (x + 0.5) | 0; }
+	        return "#" + (16777216 | round(b) | (round(g) << 8) | (round(r) << 16)).toString(16).slice(1);
+	    });
+	    /*\
+	     * Raphael.getColor
+	     [ method ]
+	     **
+	     * On each call returns next colour in the spectrum. To reset it back to red call @Raphael.getColor.reset
+	     > Parameters
+	     - value (number) #optional brightness, default is `0.75`
+	     = (string) hex representation of the colour.
+	    \*/
+	    R.getColor = function (value) {
+	        var start = this.getColor.start = this.getColor.start || {h: 0, s: 1, b: value || .75},
+	            rgb = this.hsb2rgb(start.h, start.s, start.b);
+	        start.h += .075;
+	        if (start.h > 1) {
+	            start.h = 0;
+	            start.s -= .2;
+	            start.s <= 0 && (this.getColor.start = {h: 0, s: 1, b: start.b});
+	        }
+	        return rgb.hex;
+	    };
+	    /*\
+	     * Raphael.getColor.reset
+	     [ method ]
+	     **
+	     * Resets spectrum position for @Raphael.getColor back to red.
+	    \*/
+	    R.getColor.reset = function () {
+	        delete this.start;
+	    };
+
+	    // http://schepers.cc/getting-to-the-point
+	    function catmullRom2bezier(crp, z) {
+	        var d = [];
+	        for (var i = 0, iLen = crp.length; iLen - 2 * !z > i; i += 2) {
+	            var p = [
+	                        {x: +crp[i - 2], y: +crp[i - 1]},
+	                        {x: +crp[i],     y: +crp[i + 1]},
+	                        {x: +crp[i + 2], y: +crp[i + 3]},
+	                        {x: +crp[i + 4], y: +crp[i + 5]}
+	                    ];
+	            if (z) {
+	                if (!i) {
+	                    p[0] = {x: +crp[iLen - 2], y: +crp[iLen - 1]};
+	                } else if (iLen - 4 == i) {
+	                    p[3] = {x: +crp[0], y: +crp[1]};
+	                } else if (iLen - 2 == i) {
+	                    p[2] = {x: +crp[0], y: +crp[1]};
+	                    p[3] = {x: +crp[2], y: +crp[3]};
+	                }
+	            } else {
+	                if (iLen - 4 == i) {
+	                    p[3] = p[2];
+	                } else if (!i) {
+	                    p[0] = {x: +crp[i], y: +crp[i + 1]};
+	                }
+	            }
+	            d.push(["C",
+	                  (-p[0].x + 6 * p[1].x + p[2].x) / 6,
+	                  (-p[0].y + 6 * p[1].y + p[2].y) / 6,
+	                  (p[1].x + 6 * p[2].x - p[3].x) / 6,
+	                  (p[1].y + 6*p[2].y - p[3].y) / 6,
+	                  p[2].x,
+	                  p[2].y
+	            ]);
+	        }
+
+	        return d;
+	    }
+	    /*\
+	     * Raphael.parsePathString
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Parses given path string into an array of arrays of path segments.
+	     > Parameters
+	     - pathString (string|array) path string or array of segments (in the last case it will be returned straight away)
+	     = (array) array of segments.
+	    \*/
+	    R.parsePathString = function (pathString) {
+	        if (!pathString) {
+	            return null;
+	        }
+	        var pth = paths(pathString);
+	        if (pth.arr) {
+	            return pathClone(pth.arr);
+	        }
+
+	        var paramCounts = {a: 7, c: 6, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, z: 0},
+	            data = [];
+	        if (R.is(pathString, array) && R.is(pathString[0], array)) { // rough assumption
+	            data = pathClone(pathString);
+	        }
+	        if (!data.length) {
+	            Str(pathString).replace(pathCommand, function (a, b, c) {
+	                var params = [],
+	                    name = b.toLowerCase();
+	                c.replace(pathValues, function (a, b) {
+	                    b && params.push(+b);
+	                });
+	                if (name == "m" && params.length > 2) {
+	                    data.push([b][concat](params.splice(0, 2)));
+	                    name = "l";
+	                    b = b == "m" ? "l" : "L";
+	                }
+	                if (name == "r") {
+	                    data.push([b][concat](params));
+	                } else while (params.length >= paramCounts[name]) {
+	                    data.push([b][concat](params.splice(0, paramCounts[name])));
+	                    if (!paramCounts[name]) {
+	                        break;
+	                    }
+	                }
+	            });
+	        }
+	        data.toString = R._path2string;
+	        pth.arr = pathClone(data);
+	        return data;
+	    };
+	    /*\
+	     * Raphael.parseTransformString
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Parses given path string into an array of transformations.
+	     > Parameters
+	     - TString (string|array) transform string or array of transformations (in the last case it will be returned straight away)
+	     = (array) array of transformations.
+	    \*/
+	    R.parseTransformString = cacher(function (TString) {
+	        if (!TString) {
+	            return null;
+	        }
+	        var paramCounts = {r: 3, s: 4, t: 2, m: 6},
+	            data = [];
+	        if (R.is(TString, array) && R.is(TString[0], array)) { // rough assumption
+	            data = pathClone(TString);
+	        }
+	        if (!data.length) {
+	            Str(TString).replace(tCommand, function (a, b, c) {
+	                var params = [],
+	                    name = lowerCase.call(b);
+	                c.replace(pathValues, function (a, b) {
+	                    b && params.push(+b);
+	                });
+	                data.push([b][concat](params));
+	            });
+	        }
+	        data.toString = R._path2string;
+	        return data;
+	    });
+	    // PATHS
+	    var paths = function (ps) {
+	        var p = paths.ps = paths.ps || {};
+	        if (p[ps]) {
+	            p[ps].sleep = 100;
+	        } else {
+	            p[ps] = {
+	                sleep: 100
+	            };
+	        }
+	        setTimeout(function () {
+	            for (var key in p) if (p[has](key) && key != ps) {
+	                p[key].sleep--;
+	                !p[key].sleep && delete p[key];
+	            }
+	        });
+	        return p[ps];
+	    };
+	    /*\
+	     * Raphael.findDotsAtSegment
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Find dot coordinates on the given cubic bezier curve at the given t.
+	     > Parameters
+	     - p1x (number) x of the first point of the curve
+	     - p1y (number) y of the first point of the curve
+	     - c1x (number) x of the first anchor of the curve
+	     - c1y (number) y of the first anchor of the curve
+	     - c2x (number) x of the second anchor of the curve
+	     - c2y (number) y of the second anchor of the curve
+	     - p2x (number) x of the second point of the curve
+	     - p2y (number) y of the second point of the curve
+	     - t (number) position on the curve (0..1)
+	     = (object) point information in format:
+	     o {
+	     o     x: (number) x coordinate of the point
+	     o     y: (number) y coordinate of the point
+	     o     m: {
+	     o         x: (number) x coordinate of the left anchor
+	     o         y: (number) y coordinate of the left anchor
+	     o     }
+	     o     n: {
+	     o         x: (number) x coordinate of the right anchor
+	     o         y: (number) y coordinate of the right anchor
+	     o     }
+	     o     start: {
+	     o         x: (number) x coordinate of the start of the curve
+	     o         y: (number) y coordinate of the start of the curve
+	     o     }
+	     o     end: {
+	     o         x: (number) x coordinate of the end of the curve
+	     o         y: (number) y coordinate of the end of the curve
+	     o     }
+	     o     alpha: (number) angle of the curve derivative at the point
+	     o }
+	    \*/
+	    R.findDotsAtSegment = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
+	        var t1 = 1 - t,
+	            t13 = pow(t1, 3),
+	            t12 = pow(t1, 2),
+	            t2 = t * t,
+	            t3 = t2 * t,
+	            x = t13 * p1x + t12 * 3 * t * c1x + t1 * 3 * t * t * c2x + t3 * p2x,
+	            y = t13 * p1y + t12 * 3 * t * c1y + t1 * 3 * t * t * c2y + t3 * p2y,
+	            mx = p1x + 2 * t * (c1x - p1x) + t2 * (c2x - 2 * c1x + p1x),
+	            my = p1y + 2 * t * (c1y - p1y) + t2 * (c2y - 2 * c1y + p1y),
+	            nx = c1x + 2 * t * (c2x - c1x) + t2 * (p2x - 2 * c2x + c1x),
+	            ny = c1y + 2 * t * (c2y - c1y) + t2 * (p2y - 2 * c2y + c1y),
+	            ax = t1 * p1x + t * c1x,
+	            ay = t1 * p1y + t * c1y,
+	            cx = t1 * c2x + t * p2x,
+	            cy = t1 * c2y + t * p2y,
+	            alpha = (90 - math.atan2(mx - nx, my - ny) * 180 / PI);
+	        (mx > nx || my < ny) && (alpha += 180);
+	        return {
+	            x: x,
+	            y: y,
+	            m: {x: mx, y: my},
+	            n: {x: nx, y: ny},
+	            start: {x: ax, y: ay},
+	            end: {x: cx, y: cy},
+	            alpha: alpha
+	        };
+	    };
+	    /*\
+	     * Raphael.bezierBBox
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Return bounding box of a given cubic bezier curve
+	     > Parameters
+	     - p1x (number) x of the first point of the curve
+	     - p1y (number) y of the first point of the curve
+	     - c1x (number) x of the first anchor of the curve
+	     - c1y (number) y of the first anchor of the curve
+	     - c2x (number) x of the second anchor of the curve
+	     - c2y (number) y of the second anchor of the curve
+	     - p2x (number) x of the second point of the curve
+	     - p2y (number) y of the second point of the curve
+	     * or
+	     - bez (array) array of six points for bezier curve
+	     = (object) point information in format:
+	     o {
+	     o     min: {
+	     o         x: (number) x coordinate of the left point
+	     o         y: (number) y coordinate of the top point
+	     o     }
+	     o     max: {
+	     o         x: (number) x coordinate of the right point
+	     o         y: (number) y coordinate of the bottom point
+	     o     }
+	     o }
+	    \*/
+	    R.bezierBBox = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) {
+	        if (!R.is(p1x, "array")) {
+	            p1x = [p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y];
+	        }
+	        var bbox = curveDim.apply(null, p1x);
+	        return {
+	            x: bbox.min.x,
+	            y: bbox.min.y,
+	            x2: bbox.max.x,
+	            y2: bbox.max.y,
+	            width: bbox.max.x - bbox.min.x,
+	            height: bbox.max.y - bbox.min.y
+	        };
+	    };
+	    /*\
+	     * Raphael.isPointInsideBBox
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Returns `true` if given point is inside bounding boxes.
+	     > Parameters
+	     - bbox (string) bounding box
+	     - x (string) x coordinate of the point
+	     - y (string) y coordinate of the point
+	     = (boolean) `true` if point inside
+	    \*/
+	    R.isPointInsideBBox = function (bbox, x, y) {
+	        return x >= bbox.x && x <= bbox.x2 && y >= bbox.y && y <= bbox.y2;
+	    };
+	    /*\
+	     * Raphael.isBBoxIntersect
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Returns `true` if two bounding boxes intersect
+	     > Parameters
+	     - bbox1 (string) first bounding box
+	     - bbox2 (string) second bounding box
+	     = (boolean) `true` if they intersect
+	    \*/
+	    R.isBBoxIntersect = function (bbox1, bbox2) {
+	        var i = R.isPointInsideBBox;
+	        return i(bbox2, bbox1.x, bbox1.y)
+	            || i(bbox2, bbox1.x2, bbox1.y)
+	            || i(bbox2, bbox1.x, bbox1.y2)
+	            || i(bbox2, bbox1.x2, bbox1.y2)
+	            || i(bbox1, bbox2.x, bbox2.y)
+	            || i(bbox1, bbox2.x2, bbox2.y)
+	            || i(bbox1, bbox2.x, bbox2.y2)
+	            || i(bbox1, bbox2.x2, bbox2.y2)
+	            || (bbox1.x < bbox2.x2 && bbox1.x > bbox2.x || bbox2.x < bbox1.x2 && bbox2.x > bbox1.x)
+	            && (bbox1.y < bbox2.y2 && bbox1.y > bbox2.y || bbox2.y < bbox1.y2 && bbox2.y > bbox1.y);
+	    };
+	    function base3(t, p1, p2, p3, p4) {
+	        var t1 = -3 * p1 + 9 * p2 - 9 * p3 + 3 * p4,
+	            t2 = t * t1 + 6 * p1 - 12 * p2 + 6 * p3;
+	        return t * t2 - 3 * p1 + 3 * p2;
+	    }
+	    function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
+	        if (z == null) {
+	            z = 1;
+	        }
+	        z = z > 1 ? 1 : z < 0 ? 0 : z;
+	        var z2 = z / 2,
+	            n = 12,
+	            Tvalues = [-0.1252,0.1252,-0.3678,0.3678,-0.5873,0.5873,-0.7699,0.7699,-0.9041,0.9041,-0.9816,0.9816],
+	            Cvalues = [0.2491,0.2491,0.2335,0.2335,0.2032,0.2032,0.1601,0.1601,0.1069,0.1069,0.0472,0.0472],
+	            sum = 0;
+	        for (var i = 0; i < n; i++) {
+	            var ct = z2 * Tvalues[i] + z2,
+	                xbase = base3(ct, x1, x2, x3, x4),
+	                ybase = base3(ct, y1, y2, y3, y4),
+	                comb = xbase * xbase + ybase * ybase;
+	            sum += Cvalues[i] * math.sqrt(comb);
+	        }
+	        return z2 * sum;
+	    }
+	    function getTatLen(x1, y1, x2, y2, x3, y3, x4, y4, ll) {
+	        if (ll < 0 || bezlen(x1, y1, x2, y2, x3, y3, x4, y4) < ll) {
+	            return;
+	        }
+	        var t = 1,
+	            step = t / 2,
+	            t2 = t - step,
+	            l,
+	            e = .01;
+	        l = bezlen(x1, y1, x2, y2, x3, y3, x4, y4, t2);
+	        while (abs(l - ll) > e) {
+	            step /= 2;
+	            t2 += (l < ll ? 1 : -1) * step;
+	            l = bezlen(x1, y1, x2, y2, x3, y3, x4, y4, t2);
+	        }
+	        return t2;
+	    }
+	    function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
+	        if (
+	            mmax(x1, x2) < mmin(x3, x4) ||
+	            mmin(x1, x2) > mmax(x3, x4) ||
+	            mmax(y1, y2) < mmin(y3, y4) ||
+	            mmin(y1, y2) > mmax(y3, y4)
+	        ) {
+	            return;
+	        }
+	        var nx = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4),
+	            ny = (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4),
+	            denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+
+	        if (!denominator) {
+	            return;
+	        }
+	        var px = nx / denominator,
+	            py = ny / denominator,
+	            px2 = +px.toFixed(2),
+	            py2 = +py.toFixed(2);
+	        if (
+	            px2 < +mmin(x1, x2).toFixed(2) ||
+	            px2 > +mmax(x1, x2).toFixed(2) ||
+	            px2 < +mmin(x3, x4).toFixed(2) ||
+	            px2 > +mmax(x3, x4).toFixed(2) ||
+	            py2 < +mmin(y1, y2).toFixed(2) ||
+	            py2 > +mmax(y1, y2).toFixed(2) ||
+	            py2 < +mmin(y3, y4).toFixed(2) ||
+	            py2 > +mmax(y3, y4).toFixed(2)
+	        ) {
+	            return;
+	        }
+	        return {x: px, y: py};
+	    }
+	    function inter(bez1, bez2) {
+	        return interHelper(bez1, bez2);
+	    }
+	    function interCount(bez1, bez2) {
+	        return interHelper(bez1, bez2, 1);
+	    }
+	    function interHelper(bez1, bez2, justCount) {
+	        var bbox1 = R.bezierBBox(bez1),
+	            bbox2 = R.bezierBBox(bez2);
+	        if (!R.isBBoxIntersect(bbox1, bbox2)) {
+	            return justCount ? 0 : [];
+	        }
+	        var l1 = bezlen.apply(0, bez1),
+	            l2 = bezlen.apply(0, bez2),
+	            n1 = mmax(~~(l1 / 5), 1),
+	            n2 = mmax(~~(l2 / 5), 1),
+	            dots1 = [],
+	            dots2 = [],
+	            xy = {},
+	            res = justCount ? 0 : [];
+	        for (var i = 0; i < n1 + 1; i++) {
+	            var p = R.findDotsAtSegment.apply(R, bez1.concat(i / n1));
+	            dots1.push({x: p.x, y: p.y, t: i / n1});
+	        }
+	        for (i = 0; i < n2 + 1; i++) {
+	            p = R.findDotsAtSegment.apply(R, bez2.concat(i / n2));
+	            dots2.push({x: p.x, y: p.y, t: i / n2});
+	        }
+	        for (i = 0; i < n1; i++) {
+	            for (var j = 0; j < n2; j++) {
+	                var di = dots1[i],
+	                    di1 = dots1[i + 1],
+	                    dj = dots2[j],
+	                    dj1 = dots2[j + 1],
+	                    ci = abs(di1.x - di.x) < .001 ? "y" : "x",
+	                    cj = abs(dj1.x - dj.x) < .001 ? "y" : "x",
+	                    is = intersect(di.x, di.y, di1.x, di1.y, dj.x, dj.y, dj1.x, dj1.y);
+	                if (is) {
+	                    if (xy[is.x.toFixed(4)] == is.y.toFixed(4)) {
+	                        continue;
+	                    }
+	                    xy[is.x.toFixed(4)] = is.y.toFixed(4);
+	                    var t1 = di.t + abs((is[ci] - di[ci]) / (di1[ci] - di[ci])) * (di1.t - di.t),
+	                        t2 = dj.t + abs((is[cj] - dj[cj]) / (dj1[cj] - dj[cj])) * (dj1.t - dj.t);
+	                    if (t1 >= 0 && t1 <= 1.001 && t2 >= 0 && t2 <= 1.001) {
+	                        if (justCount) {
+	                            res++;
+	                        } else {
+	                            res.push({
+	                                x: is.x,
+	                                y: is.y,
+	                                t1: mmin(t1, 1),
+	                                t2: mmin(t2, 1)
+	                            });
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        return res;
+	    }
+	    /*\
+	     * Raphael.pathIntersection
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Finds intersections of two paths
+	     > Parameters
+	     - path1 (string) path string
+	     - path2 (string) path string
+	     = (array) dots of intersection
+	     o [
+	     o     {
+	     o         x: (number) x coordinate of the point
+	     o         y: (number) y coordinate of the point
+	     o         t1: (number) t value for segment of path1
+	     o         t2: (number) t value for segment of path2
+	     o         segment1: (number) order number for segment of path1
+	     o         segment2: (number) order number for segment of path2
+	     o         bez1: (array) eight coordinates representing beziér curve for the segment of path1
+	     o         bez2: (array) eight coordinates representing beziér curve for the segment of path2
+	     o     }
+	     o ]
+	    \*/
+	    R.pathIntersection = function (path1, path2) {
+	        return interPathHelper(path1, path2);
+	    };
+	    R.pathIntersectionNumber = function (path1, path2) {
+	        return interPathHelper(path1, path2, 1);
+	    };
+	    function interPathHelper(path1, path2, justCount) {
+	        path1 = R._path2curve(path1);
+	        path2 = R._path2curve(path2);
+	        var x1, y1, x2, y2, x1m, y1m, x2m, y2m, bez1, bez2,
+	            res = justCount ? 0 : [];
+	        for (var i = 0, ii = path1.length; i < ii; i++) {
+	            var pi = path1[i];
+	            if (pi[0] == "M") {
+	                x1 = x1m = pi[1];
+	                y1 = y1m = pi[2];
+	            } else {
+	                if (pi[0] == "C") {
+	                    bez1 = [x1, y1].concat(pi.slice(1));
+	                    x1 = bez1[6];
+	                    y1 = bez1[7];
+	                } else {
+	                    bez1 = [x1, y1, x1, y1, x1m, y1m, x1m, y1m];
+	                    x1 = x1m;
+	                    y1 = y1m;
+	                }
+	                for (var j = 0, jj = path2.length; j < jj; j++) {
+	                    var pj = path2[j];
+	                    if (pj[0] == "M") {
+	                        x2 = x2m = pj[1];
+	                        y2 = y2m = pj[2];
+	                    } else {
+	                        if (pj[0] == "C") {
+	                            bez2 = [x2, y2].concat(pj.slice(1));
+	                            x2 = bez2[6];
+	                            y2 = bez2[7];
+	                        } else {
+	                            bez2 = [x2, y2, x2, y2, x2m, y2m, x2m, y2m];
+	                            x2 = x2m;
+	                            y2 = y2m;
+	                        }
+	                        var intr = interHelper(bez1, bez2, justCount);
+	                        if (justCount) {
+	                            res += intr;
+	                        } else {
+	                            for (var k = 0, kk = intr.length; k < kk; k++) {
+	                                intr[k].segment1 = i;
+	                                intr[k].segment2 = j;
+	                                intr[k].bez1 = bez1;
+	                                intr[k].bez2 = bez2;
+	                            }
+	                            res = res.concat(intr);
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        return res;
+	    }
+	    /*\
+	     * Raphael.isPointInsidePath
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Returns `true` if given point is inside a given closed path.
+	     > Parameters
+	     - path (string) path string
+	     - x (number) x of the point
+	     - y (number) y of the point
+	     = (boolean) true, if point is inside the path
+	    \*/
+	    R.isPointInsidePath = function (path, x, y) {
+	        var bbox = R.pathBBox(path);
+	        return R.isPointInsideBBox(bbox, x, y) &&
+	               interPathHelper(path, [["M", x, y], ["H", bbox.x2 + 10]], 1) % 2 == 1;
+	    };
+	    R._removedFactory = function (methodname) {
+	        return function () {
+	            eve("raphael.log", null, "Rapha\xebl: you are calling to method \u201c" + methodname + "\u201d of removed object", methodname);
+	        };
+	    };
+	    /*\
+	     * Raphael.pathBBox
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Return bounding box of a given path
+	     > Parameters
+	     - path (string) path string
+	     = (object) bounding box
+	     o {
+	     o     x: (number) x coordinate of the left top point of the box
+	     o     y: (number) y coordinate of the left top point of the box
+	     o     x2: (number) x coordinate of the right bottom point of the box
+	     o     y2: (number) y coordinate of the right bottom point of the box
+	     o     width: (number) width of the box
+	     o     height: (number) height of the box
+	     o     cx: (number) x coordinate of the center of the box
+	     o     cy: (number) y coordinate of the center of the box
+	     o }
+	    \*/
+	    var pathDimensions = R.pathBBox = function (path) {
+	        var pth = paths(path);
+	        if (pth.bbox) {
+	            return clone(pth.bbox);
+	        }
+	        if (!path) {
+	            return {x: 0, y: 0, width: 0, height: 0, x2: 0, y2: 0};
+	        }
+	        path = path2curve(path);
+	        var x = 0,
+	            y = 0,
+	            X = [],
+	            Y = [],
+	            p;
+	        for (var i = 0, ii = path.length; i < ii; i++) {
+	            p = path[i];
+	            if (p[0] == "M") {
+	                x = p[1];
+	                y = p[2];
+	                X.push(x);
+	                Y.push(y);
+	            } else {
+	                var dim = curveDim(x, y, p[1], p[2], p[3], p[4], p[5], p[6]);
+	                X = X[concat](dim.min.x, dim.max.x);
+	                Y = Y[concat](dim.min.y, dim.max.y);
+	                x = p[5];
+	                y = p[6];
+	            }
+	        }
+	        var xmin = mmin[apply](0, X),
+	            ymin = mmin[apply](0, Y),
+	            xmax = mmax[apply](0, X),
+	            ymax = mmax[apply](0, Y),
+	            width = xmax - xmin,
+	            height = ymax - ymin,
+	                bb = {
+	                x: xmin,
+	                y: ymin,
+	                x2: xmax,
+	                y2: ymax,
+	                width: width,
+	                height: height,
+	                cx: xmin + width / 2,
+	                cy: ymin + height / 2
+	            };
+	        pth.bbox = clone(bb);
+	        return bb;
+	    },
+	        pathClone = function (pathArray) {
+	            var res = clone(pathArray);
+	            res.toString = R._path2string;
+	            return res;
+	        },
+	        pathToRelative = R._pathToRelative = function (pathArray) {
+	            var pth = paths(pathArray);
+	            if (pth.rel) {
+	                return pathClone(pth.rel);
+	            }
+	            if (!R.is(pathArray, array) || !R.is(pathArray && pathArray[0], array)) { // rough assumption
+	                pathArray = R.parsePathString(pathArray);
+	            }
+	            var res = [],
+	                x = 0,
+	                y = 0,
+	                mx = 0,
+	                my = 0,
+	                start = 0;
+	            if (pathArray[0][0] == "M") {
+	                x = pathArray[0][1];
+	                y = pathArray[0][2];
+	                mx = x;
+	                my = y;
+	                start++;
+	                res.push(["M", x, y]);
+	            }
+	            for (var i = start, ii = pathArray.length; i < ii; i++) {
+	                var r = res[i] = [],
+	                    pa = pathArray[i];
+	                if (pa[0] != lowerCase.call(pa[0])) {
+	                    r[0] = lowerCase.call(pa[0]);
+	                    switch (r[0]) {
+	                        case "a":
+	                            r[1] = pa[1];
+	                            r[2] = pa[2];
+	                            r[3] = pa[3];
+	                            r[4] = pa[4];
+	                            r[5] = pa[5];
+	                            r[6] = +(pa[6] - x).toFixed(3);
+	                            r[7] = +(pa[7] - y).toFixed(3);
+	                            break;
+	                        case "v":
+	                            r[1] = +(pa[1] - y).toFixed(3);
+	                            break;
+	                        case "m":
+	                            mx = pa[1];
+	                            my = pa[2];
+	                        default:
+	                            for (var j = 1, jj = pa.length; j < jj; j++) {
+	                                r[j] = +(pa[j] - ((j % 2) ? x : y)).toFixed(3);
+	                            }
+	                    }
+	                } else {
+	                    r = res[i] = [];
+	                    if (pa[0] == "m") {
+	                        mx = pa[1] + x;
+	                        my = pa[2] + y;
+	                    }
+	                    for (var k = 0, kk = pa.length; k < kk; k++) {
+	                        res[i][k] = pa[k];
+	                    }
+	                }
+	                var len = res[i].length;
+	                switch (res[i][0]) {
+	                    case "z":
+	                        x = mx;
+	                        y = my;
+	                        break;
+	                    case "h":
+	                        x += +res[i][len - 1];
+	                        break;
+	                    case "v":
+	                        y += +res[i][len - 1];
+	                        break;
+	                    default:
+	                        x += +res[i][len - 2];
+	                        y += +res[i][len - 1];
+	                }
+	            }
+	            res.toString = R._path2string;
+	            pth.rel = pathClone(res);
+	            return res;
+	        },
+	        pathToAbsolute = R._pathToAbsolute = function (pathArray) {
+	            var pth = paths(pathArray);
+	            if (pth.abs) {
+	                return pathClone(pth.abs);
+	            }
+	            if (!R.is(pathArray, array) || !R.is(pathArray && pathArray[0], array)) { // rough assumption
+	                pathArray = R.parsePathString(pathArray);
+	            }
+	            if (!pathArray || !pathArray.length) {
+	                return [["M", 0, 0]];
+	            }
+	            var res = [],
+	                x = 0,
+	                y = 0,
+	                mx = 0,
+	                my = 0,
+	                start = 0;
+	            if (pathArray[0][0] == "M") {
+	                x = +pathArray[0][1];
+	                y = +pathArray[0][2];
+	                mx = x;
+	                my = y;
+	                start++;
+	                res[0] = ["M", x, y];
+	            }
+	            var crz = pathArray.length == 3 && pathArray[0][0] == "M" && pathArray[1][0].toUpperCase() == "R" && pathArray[2][0].toUpperCase() == "Z";
+	            for (var r, pa, i = start, ii = pathArray.length; i < ii; i++) {
+	                res.push(r = []);
+	                pa = pathArray[i];
+	                if (pa[0] != upperCase.call(pa[0])) {
+	                    r[0] = upperCase.call(pa[0]);
+	                    switch (r[0]) {
+	                        case "A":
+	                            r[1] = pa[1];
+	                            r[2] = pa[2];
+	                            r[3] = pa[3];
+	                            r[4] = pa[4];
+	                            r[5] = pa[5];
+	                            r[6] = +(pa[6] + x);
+	                            r[7] = +(pa[7] + y);
+	                            break;
+	                        case "V":
+	                            r[1] = +pa[1] + y;
+	                            break;
+	                        case "H":
+	                            r[1] = +pa[1] + x;
+	                            break;
+	                        case "R":
+	                            var dots = [x, y][concat](pa.slice(1));
+	                            for (var j = 2, jj = dots.length; j < jj; j++) {
+	                                dots[j] = +dots[j] + x;
+	                                dots[++j] = +dots[j] + y;
+	                            }
+	                            res.pop();
+	                            res = res[concat](catmullRom2bezier(dots, crz));
+	                            break;
+	                        case "M":
+	                            mx = +pa[1] + x;
+	                            my = +pa[2] + y;
+	                        default:
+	                            for (j = 1, jj = pa.length; j < jj; j++) {
+	                                r[j] = +pa[j] + ((j % 2) ? x : y);
+	                            }
+	                    }
+	                } else if (pa[0] == "R") {
+	                    dots = [x, y][concat](pa.slice(1));
+	                    res.pop();
+	                    res = res[concat](catmullRom2bezier(dots, crz));
+	                    r = ["R"][concat](pa.slice(-2));
+	                } else {
+	                    for (var k = 0, kk = pa.length; k < kk; k++) {
+	                        r[k] = pa[k];
+	                    }
+	                }
+	                switch (r[0]) {
+	                    case "Z":
+	                        x = mx;
+	                        y = my;
+	                        break;
+	                    case "H":
+	                        x = r[1];
+	                        break;
+	                    case "V":
+	                        y = r[1];
+	                        break;
+	                    case "M":
+	                        mx = r[r.length - 2];
+	                        my = r[r.length - 1];
+	                    default:
+	                        x = r[r.length - 2];
+	                        y = r[r.length - 1];
+	                }
+	            }
+	            res.toString = R._path2string;
+	            pth.abs = pathClone(res);
+	            return res;
+	        },
+	        l2c = function (x1, y1, x2, y2) {
+	            return [x1, y1, x2, y2, x2, y2];
+	        },
+	        q2c = function (x1, y1, ax, ay, x2, y2) {
+	            var _13 = 1 / 3,
+	                _23 = 2 / 3;
+	            return [
+	                    _13 * x1 + _23 * ax,
+	                    _13 * y1 + _23 * ay,
+	                    _13 * x2 + _23 * ax,
+	                    _13 * y2 + _23 * ay,
+	                    x2,
+	                    y2
+	                ];
+	        },
+	        a2c = function (x1, y1, rx, ry, angle, large_arc_flag, sweep_flag, x2, y2, recursive) {
+	            // for more information of where this math came from visit:
+	            // http://www.w3.org/TR/SVG11/implnote.html#ArcImplementationNotes
+	            var _120 = PI * 120 / 180,
+	                rad = PI / 180 * (+angle || 0),
+	                res = [],
+	                xy,
+	                rotate = cacher(function (x, y, rad) {
+	                    var X = x * math.cos(rad) - y * math.sin(rad),
+	                        Y = x * math.sin(rad) + y * math.cos(rad);
+	                    return {x: X, y: Y};
+	                });
+	            if (!recursive) {
+	                xy = rotate(x1, y1, -rad);
+	                x1 = xy.x;
+	                y1 = xy.y;
+	                xy = rotate(x2, y2, -rad);
+	                x2 = xy.x;
+	                y2 = xy.y;
+	                var cos = math.cos(PI / 180 * angle),
+	                    sin = math.sin(PI / 180 * angle),
+	                    x = (x1 - x2) / 2,
+	                    y = (y1 - y2) / 2;
+	                var h = (x * x) / (rx * rx) + (y * y) / (ry * ry);
+	                if (h > 1) {
+	                    h = math.sqrt(h);
+	                    rx = h * rx;
+	                    ry = h * ry;
+	                }
+	                var rx2 = rx * rx,
+	                    ry2 = ry * ry,
+	                    k = (large_arc_flag == sweep_flag ? -1 : 1) *
+	                        math.sqrt(abs((rx2 * ry2 - rx2 * y * y - ry2 * x * x) / (rx2 * y * y + ry2 * x * x))),
+	                    cx = k * rx * y / ry + (x1 + x2) / 2,
+	                    cy = k * -ry * x / rx + (y1 + y2) / 2,
+	                    f1 = math.asin(((y1 - cy) / ry).toFixed(9)),
+	                    f2 = math.asin(((y2 - cy) / ry).toFixed(9));
+
+	                f1 = x1 < cx ? PI - f1 : f1;
+	                f2 = x2 < cx ? PI - f2 : f2;
+	                f1 < 0 && (f1 = PI * 2 + f1);
+	                f2 < 0 && (f2 = PI * 2 + f2);
+	                if (sweep_flag && f1 > f2) {
+	                    f1 = f1 - PI * 2;
+	                }
+	                if (!sweep_flag && f2 > f1) {
+	                    f2 = f2 - PI * 2;
+	                }
+	            } else {
+	                f1 = recursive[0];
+	                f2 = recursive[1];
+	                cx = recursive[2];
+	                cy = recursive[3];
+	            }
+	            var df = f2 - f1;
+	            if (abs(df) > _120) {
+	                var f2old = f2,
+	                    x2old = x2,
+	                    y2old = y2;
+	                f2 = f1 + _120 * (sweep_flag && f2 > f1 ? 1 : -1);
+	                x2 = cx + rx * math.cos(f2);
+	                y2 = cy + ry * math.sin(f2);
+	                res = a2c(x2, y2, rx, ry, angle, 0, sweep_flag, x2old, y2old, [f2, f2old, cx, cy]);
+	            }
+	            df = f2 - f1;
+	            var c1 = math.cos(f1),
+	                s1 = math.sin(f1),
+	                c2 = math.cos(f2),
+	                s2 = math.sin(f2),
+	                t = math.tan(df / 4),
+	                hx = 4 / 3 * rx * t,
+	                hy = 4 / 3 * ry * t,
+	                m1 = [x1, y1],
+	                m2 = [x1 + hx * s1, y1 - hy * c1],
+	                m3 = [x2 + hx * s2, y2 - hy * c2],
+	                m4 = [x2, y2];
+	            m2[0] = 2 * m1[0] - m2[0];
+	            m2[1] = 2 * m1[1] - m2[1];
+	            if (recursive) {
+	                return [m2, m3, m4][concat](res);
+	            } else {
+	                res = [m2, m3, m4][concat](res).join()[split](",");
+	                var newres = [];
+	                for (var i = 0, ii = res.length; i < ii; i++) {
+	                    newres[i] = i % 2 ? rotate(res[i - 1], res[i], rad).y : rotate(res[i], res[i + 1], rad).x;
+	                }
+	                return newres;
+	            }
+	        },
+	        findDotAtSegment = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
+	            var t1 = 1 - t;
+	            return {
+	                x: pow(t1, 3) * p1x + pow(t1, 2) * 3 * t * c1x + t1 * 3 * t * t * c2x + pow(t, 3) * p2x,
+	                y: pow(t1, 3) * p1y + pow(t1, 2) * 3 * t * c1y + t1 * 3 * t * t * c2y + pow(t, 3) * p2y
+	            };
+	        },
+	        curveDim = cacher(function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) {
+	            var a = (c2x - 2 * c1x + p1x) - (p2x - 2 * c2x + c1x),
+	                b = 2 * (c1x - p1x) - 2 * (c2x - c1x),
+	                c = p1x - c1x,
+	                t1 = (-b + math.sqrt(b * b - 4 * a * c)) / 2 / a,
+	                t2 = (-b - math.sqrt(b * b - 4 * a * c)) / 2 / a,
+	                y = [p1y, p2y],
+	                x = [p1x, p2x],
+	                dot;
+	            abs(t1) > "1e12" && (t1 = .5);
+	            abs(t2) > "1e12" && (t2 = .5);
+	            if (t1 > 0 && t1 < 1) {
+	                dot = findDotAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t1);
+	                x.push(dot.x);
+	                y.push(dot.y);
+	            }
+	            if (t2 > 0 && t2 < 1) {
+	                dot = findDotAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t2);
+	                x.push(dot.x);
+	                y.push(dot.y);
+	            }
+	            a = (c2y - 2 * c1y + p1y) - (p2y - 2 * c2y + c1y);
+	            b = 2 * (c1y - p1y) - 2 * (c2y - c1y);
+	            c = p1y - c1y;
+	            t1 = (-b + math.sqrt(b * b - 4 * a * c)) / 2 / a;
+	            t2 = (-b - math.sqrt(b * b - 4 * a * c)) / 2 / a;
+	            abs(t1) > "1e12" && (t1 = .5);
+	            abs(t2) > "1e12" && (t2 = .5);
+	            if (t1 > 0 && t1 < 1) {
+	                dot = findDotAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t1);
+	                x.push(dot.x);
+	                y.push(dot.y);
+	            }
+	            if (t2 > 0 && t2 < 1) {
+	                dot = findDotAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t2);
+	                x.push(dot.x);
+	                y.push(dot.y);
+	            }
+	            return {
+	                min: {x: mmin[apply](0, x), y: mmin[apply](0, y)},
+	                max: {x: mmax[apply](0, x), y: mmax[apply](0, y)}
+	            };
+	        }),
+	        path2curve = R._path2curve = cacher(function (path, path2) {
+	            var pth = !path2 && paths(path);
+	            if (!path2 && pth.curve) {
+	                return pathClone(pth.curve);
+	            }
+	            var p = pathToAbsolute(path),
+	                p2 = path2 && pathToAbsolute(path2),
+	                attrs = {x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null},
+	                attrs2 = {x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null},
+	                processPath = function (path, d, pcom) {
+	                    var nx, ny, tq = {T:1, Q:1};
+	                    if (!path) {
+	                        return ["C", d.x, d.y, d.x, d.y, d.x, d.y];
+	                    }
+	                    !(path[0] in tq) && (d.qx = d.qy = null);
+	                    switch (path[0]) {
+	                        case "M":
+	                            d.X = path[1];
+	                            d.Y = path[2];
+	                            break;
+	                        case "A":
+	                            path = ["C"][concat](a2c[apply](0, [d.x, d.y][concat](path.slice(1))));
+	                            break;
+	                        case "S":
+	                            if (pcom == "C" || pcom == "S") { // In "S" case we have to take into account, if the previous command is C/S.
+	                                nx = d.x * 2 - d.bx;          // And reflect the previous
+	                                ny = d.y * 2 - d.by;          // command's control point relative to the current point.
+	                            }
+	                            else {                            // or some else or nothing
+	                                nx = d.x;
+	                                ny = d.y;
+	                            }
+	                            path = ["C", nx, ny][concat](path.slice(1));
+	                            break;
+	                        case "T":
+	                            if (pcom == "Q" || pcom == "T") { // In "T" case we have to take into account, if the previous command is Q/T.
+	                                d.qx = d.x * 2 - d.qx;        // And make a reflection similar
+	                                d.qy = d.y * 2 - d.qy;        // to case "S".
+	                            }
+	                            else {                            // or something else or nothing
+	                                d.qx = d.x;
+	                                d.qy = d.y;
+	                            }
+	                            path = ["C"][concat](q2c(d.x, d.y, d.qx, d.qy, path[1], path[2]));
+	                            break;
+	                        case "Q":
+	                            d.qx = path[1];
+	                            d.qy = path[2];
+	                            path = ["C"][concat](q2c(d.x, d.y, path[1], path[2], path[3], path[4]));
+	                            break;
+	                        case "L":
+	                            path = ["C"][concat](l2c(d.x, d.y, path[1], path[2]));
+	                            break;
+	                        case "H":
+	                            path = ["C"][concat](l2c(d.x, d.y, path[1], d.y));
+	                            break;
+	                        case "V":
+	                            path = ["C"][concat](l2c(d.x, d.y, d.x, path[1]));
+	                            break;
+	                        case "Z":
+	                            path = ["C"][concat](l2c(d.x, d.y, d.X, d.Y));
+	                            break;
+	                    }
+	                    return path;
+	                },
+	                fixArc = function (pp, i) {
+	                    if (pp[i].length > 7) {
+	                        pp[i].shift();
+	                        var pi = pp[i];
+	                        while (pi.length) {
+	                            pcoms1[i]="A"; // if created multiple C:s, their original seg is saved
+	                            p2 && (pcoms2[i]="A"); // the same as above
+	                            pp.splice(i++, 0, ["C"][concat](pi.splice(0, 6)));
+	                        }
+	                        pp.splice(i, 1);
+	                        ii = mmax(p.length, p2 && p2.length || 0);
+	                    }
+	                },
+	                fixM = function (path1, path2, a1, a2, i) {
+	                    if (path1 && path2 && path1[i][0] == "M" && path2[i][0] != "M") {
+	                        path2.splice(i, 0, ["M", a2.x, a2.y]);
+	                        a1.bx = 0;
+	                        a1.by = 0;
+	                        a1.x = path1[i][1];
+	                        a1.y = path1[i][2];
+	                        ii = mmax(p.length, p2 && p2.length || 0);
+	                    }
+	                },
+	                pcoms1 = [], // path commands of original path p
+	                pcoms2 = [], // path commands of original path p2
+	                pfirst = "", // temporary holder for original path command
+	                pcom = ""; // holder for previous path command of original path
+	            for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i++) {
+	                p[i] && (pfirst = p[i][0]); // save current path command
+
+	                if (pfirst != "C") // C is not saved yet, because it may be result of conversion
+	                {
+	                    pcoms1[i] = pfirst; // Save current path command
+	                    i && ( pcom = pcoms1[i-1]); // Get previous path command pcom
+	                }
+	                p[i] = processPath(p[i], attrs, pcom); // Previous path command is inputted to processPath
+
+	                if (pcoms1[i] != "A" && pfirst == "C") pcoms1[i] = "C"; // A is the only command
+	                // which may produce multiple C:s
+	                // so we have to make sure that C is also C in original path
+
+	                fixArc(p, i); // fixArc adds also the right amount of A:s to pcoms1
+
+	                if (p2) { // the same procedures is done to p2
+	                    p2[i] && (pfirst = p2[i][0]);
+	                    if (pfirst != "C")
+	                    {
+	                        pcoms2[i] = pfirst;
+	                        i && (pcom = pcoms2[i-1]);
+	                    }
+	                    p2[i] = processPath(p2[i], attrs2, pcom);
+
+	                    if (pcoms2[i]!="A" && pfirst=="C") pcoms2[i]="C";
+
+	                    fixArc(p2, i);
+	                }
+	                fixM(p, p2, attrs, attrs2, i);
+	                fixM(p2, p, attrs2, attrs, i);
+	                var seg = p[i],
+	                    seg2 = p2 && p2[i],
+	                    seglen = seg.length,
+	                    seg2len = p2 && seg2.length;
+	                attrs.x = seg[seglen - 2];
+	                attrs.y = seg[seglen - 1];
+	                attrs.bx = toFloat(seg[seglen - 4]) || attrs.x;
+	                attrs.by = toFloat(seg[seglen - 3]) || attrs.y;
+	                attrs2.bx = p2 && (toFloat(seg2[seg2len - 4]) || attrs2.x);
+	                attrs2.by = p2 && (toFloat(seg2[seg2len - 3]) || attrs2.y);
+	                attrs2.x = p2 && seg2[seg2len - 2];
+	                attrs2.y = p2 && seg2[seg2len - 1];
+	            }
+	            if (!p2) {
+	                pth.curve = pathClone(p);
+	            }
+	            return p2 ? [p, p2] : p;
+	        }, null, pathClone),
+	        parseDots = R._parseDots = cacher(function (gradient) {
+	            var dots = [];
+	            for (var i = 0, ii = gradient.length; i < ii; i++) {
+	                var dot = {},
+	                    par = gradient[i].match(/^([^:]*):?([\d\.]*)/);
+	                dot.color = R.getRGB(par[1]);
+	                if (dot.color.error) {
+	                    return null;
+	                }
+	                dot.opacity = dot.color.opacity;
+	                dot.color = dot.color.hex;
+	                par[2] && (dot.offset = par[2] + "%");
+	                dots.push(dot);
+	            }
+	            for (i = 1, ii = dots.length - 1; i < ii; i++) {
+	                if (!dots[i].offset) {
+	                    var start = toFloat(dots[i - 1].offset || 0),
+	                        end = 0;
+	                    for (var j = i + 1; j < ii; j++) {
+	                        if (dots[j].offset) {
+	                            end = dots[j].offset;
+	                            break;
+	                        }
+	                    }
+	                    if (!end) {
+	                        end = 100;
+	                        j = ii;
+	                    }
+	                    end = toFloat(end);
+	                    var d = (end - start) / (j - i + 1);
+	                    for (; i < j; i++) {
+	                        start += d;
+	                        dots[i].offset = start + "%";
+	                    }
+	                }
+	            }
+	            return dots;
+	        }),
+	        tear = R._tear = function (el, paper) {
+	            el == paper.top && (paper.top = el.prev);
+	            el == paper.bottom && (paper.bottom = el.next);
+	            el.next && (el.next.prev = el.prev);
+	            el.prev && (el.prev.next = el.next);
+	        },
+	        tofront = R._tofront = function (el, paper) {
+	            if (paper.top === el) {
+	                return;
+	            }
+	            tear(el, paper);
+	            el.next = null;
+	            el.prev = paper.top;
+	            paper.top.next = el;
+	            paper.top = el;
+	        },
+	        toback = R._toback = function (el, paper) {
+	            if (paper.bottom === el) {
+	                return;
+	            }
+	            tear(el, paper);
+	            el.next = paper.bottom;
+	            el.prev = null;
+	            paper.bottom.prev = el;
+	            paper.bottom = el;
+	        },
+	        insertafter = R._insertafter = function (el, el2, paper) {
+	            tear(el, paper);
+	            el2 == paper.top && (paper.top = el);
+	            el2.next && (el2.next.prev = el);
+	            el.next = el2.next;
+	            el.prev = el2;
+	            el2.next = el;
+	        },
+	        insertbefore = R._insertbefore = function (el, el2, paper) {
+	            tear(el, paper);
+	            el2 == paper.bottom && (paper.bottom = el);
+	            el2.prev && (el2.prev.next = el);
+	            el.prev = el2.prev;
+	            el2.prev = el;
+	            el.next = el2;
+	        },
+	        /*\
+	         * Raphael.toMatrix
+	         [ method ]
+	         **
+	         * Utility method
+	         **
+	         * Returns matrix of transformations applied to a given path
+	         > Parameters
+	         - path (string) path string
+	         - transform (string|array) transformation string
+	         = (object) @Matrix
+	        \*/
+	        toMatrix = R.toMatrix = function (path, transform) {
+	            var bb = pathDimensions(path),
+	                el = {
+	                    _: {
+	                        transform: E
+	                    },
+	                    getBBox: function () {
+	                        return bb;
+	                    }
+	                };
+	            extractTransform(el, transform);
+	            return el.matrix;
+	        },
+	        /*\
+	         * Raphael.transformPath
+	         [ method ]
+	         **
+	         * Utility method
+	         **
+	         * Returns path transformed by a given transformation
+	         > Parameters
+	         - path (string) path string
+	         - transform (string|array) transformation string
+	         = (string) path
+	        \*/
+	        transformPath = R.transformPath = function (path, transform) {
+	            return mapPath(path, toMatrix(path, transform));
+	        },
+	        extractTransform = R._extractTransform = function (el, tstr) {
+	            if (tstr == null) {
+	                return el._.transform;
+	            }
+	            tstr = Str(tstr).replace(/\.{3}|\u2026/g, el._.transform || E);
+	            var tdata = R.parseTransformString(tstr),
+	                deg = 0,
+	                dx = 0,
+	                dy = 0,
+	                sx = 1,
+	                sy = 1,
+	                _ = el._,
+	                m = new Matrix;
+	            _.transform = tdata || [];
+	            if (tdata) {
+	                for (var i = 0, ii = tdata.length; i < ii; i++) {
+	                    var t = tdata[i],
+	                        tlen = t.length,
+	                        command = Str(t[0]).toLowerCase(),
+	                        absolute = t[0] != command,
+	                        inver = absolute ? m.invert() : 0,
+	                        x1,
+	                        y1,
+	                        x2,
+	                        y2,
+	                        bb;
+	                    if (command == "t" && tlen == 3) {
+	                        if (absolute) {
+	                            x1 = inver.x(0, 0);
+	                            y1 = inver.y(0, 0);
+	                            x2 = inver.x(t[1], t[2]);
+	                            y2 = inver.y(t[1], t[2]);
+	                            m.translate(x2 - x1, y2 - y1);
+	                        } else {
+	                            m.translate(t[1], t[2]);
+	                        }
+	                    } else if (command == "r") {
+	                        if (tlen == 2) {
+	                            bb = bb || el.getBBox(1);
+	                            m.rotate(t[1], bb.x + bb.width / 2, bb.y + bb.height / 2);
+	                            deg += t[1];
+	                        } else if (tlen == 4) {
+	                            if (absolute) {
+	                                x2 = inver.x(t[2], t[3]);
+	                                y2 = inver.y(t[2], t[3]);
+	                                m.rotate(t[1], x2, y2);
+	                            } else {
+	                                m.rotate(t[1], t[2], t[3]);
+	                            }
+	                            deg += t[1];
+	                        }
+	                    } else if (command == "s") {
+	                        if (tlen == 2 || tlen == 3) {
+	                            bb = bb || el.getBBox(1);
+	                            m.scale(t[1], t[tlen - 1], bb.x + bb.width / 2, bb.y + bb.height / 2);
+	                            sx *= t[1];
+	                            sy *= t[tlen - 1];
+	                        } else if (tlen == 5) {
+	                            if (absolute) {
+	                                x2 = inver.x(t[3], t[4]);
+	                                y2 = inver.y(t[3], t[4]);
+	                                m.scale(t[1], t[2], x2, y2);
+	                            } else {
+	                                m.scale(t[1], t[2], t[3], t[4]);
+	                            }
+	                            sx *= t[1];
+	                            sy *= t[2];
+	                        }
+	                    } else if (command == "m" && tlen == 7) {
+	                        m.add(t[1], t[2], t[3], t[4], t[5], t[6]);
+	                    }
+	                    _.dirtyT = 1;
+	                    el.matrix = m;
+	                }
+	            }
+
+	            /*\
+	             * Element.matrix
+	             [ property (object) ]
+	             **
+	             * Keeps @Matrix object, which represents element transformation
+	            \*/
+	            el.matrix = m;
+
+	            _.sx = sx;
+	            _.sy = sy;
+	            _.deg = deg;
+	            _.dx = dx = m.e;
+	            _.dy = dy = m.f;
+
+	            if (sx == 1 && sy == 1 && !deg && _.bbox) {
+	                _.bbox.x += +dx;
+	                _.bbox.y += +dy;
+	            } else {
+	                _.dirtyT = 1;
+	            }
+	        },
+	        getEmpty = function (item) {
+	            var l = item[0];
+	            switch (l.toLowerCase()) {
+	                case "t": return [l, 0, 0];
+	                case "m": return [l, 1, 0, 0, 1, 0, 0];
+	                case "r": if (item.length == 4) {
+	                    return [l, 0, item[2], item[3]];
+	                } else {
+	                    return [l, 0];
+	                }
+	                case "s": if (item.length == 5) {
+	                    return [l, 1, 1, item[3], item[4]];
+	                } else if (item.length == 3) {
+	                    return [l, 1, 1];
+	                } else {
+	                    return [l, 1];
+	                }
+	            }
+	        },
+	        equaliseTransform = R._equaliseTransform = function (t1, t2) {
+	            t2 = Str(t2).replace(/\.{3}|\u2026/g, t1);
+	            t1 = R.parseTransformString(t1) || [];
+	            t2 = R.parseTransformString(t2) || [];
+	            var maxlength = mmax(t1.length, t2.length),
+	                from = [],
+	                to = [],
+	                i = 0, j, jj,
+	                tt1, tt2;
+	            for (; i < maxlength; i++) {
+	                tt1 = t1[i] || getEmpty(t2[i]);
+	                tt2 = t2[i] || getEmpty(tt1);
+	                if ((tt1[0] != tt2[0]) ||
+	                    (tt1[0].toLowerCase() == "r" && (tt1[2] != tt2[2] || tt1[3] != tt2[3])) ||
+	                    (tt1[0].toLowerCase() == "s" && (tt1[3] != tt2[3] || tt1[4] != tt2[4]))
+	                    ) {
+	                    return;
+	                }
+	                from[i] = [];
+	                to[i] = [];
+	                for (j = 0, jj = mmax(tt1.length, tt2.length); j < jj; j++) {
+	                    j in tt1 && (from[i][j] = tt1[j]);
+	                    j in tt2 && (to[i][j] = tt2[j]);
+	                }
+	            }
+	            return {
+	                from: from,
+	                to: to
+	            };
+	        };
+	    R._getContainer = function (x, y, w, h) {
+	        var container;
+	        container = h == null && !R.is(x, "object") ? g.doc.getElementById(x) : x;
+	        if (container == null) {
+	            return;
+	        }
+	        if (container.tagName) {
+	            if (y == null) {
+	                return {
+	                    container: container,
+	                    width: container.style.pixelWidth || container.offsetWidth,
+	                    height: container.style.pixelHeight || container.offsetHeight
+	                };
+	            } else {
+	                return {
+	                    container: container,
+	                    width: y,
+	                    height: w
+	                };
+	            }
+	        }
+	        return {
+	            container: 1,
+	            x: x,
+	            y: y,
+	            width: w,
+	            height: h
+	        };
+	    };
+	    /*\
+	     * Raphael.pathToRelative
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Converts path to relative form
+	     > Parameters
+	     - pathString (string|array) path string or array of segments
+	     = (array) array of segments.
+	    \*/
+	    R.pathToRelative = pathToRelative;
+	    R._engine = {};
+	    /*\
+	     * Raphael.path2curve
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Converts path to a new path where all segments are cubic bezier curves.
+	     > Parameters
+	     - pathString (string|array) path string or array of segments
+	     = (array) array of segments.
+	    \*/
+	    R.path2curve = path2curve;
+	    /*\
+	     * Raphael.matrix
+	     [ method ]
+	     **
+	     * Utility method
+	     **
+	     * Returns matrix based on given parameters.
+	     > Parameters
+	     - a (number)
+	     - b (number)
+	     - c (number)
+	     - d (number)
+	     - e (number)
+	     - f (number)
+	     = (object) @Matrix
+	    \*/
+	    R.matrix = function (a, b, c, d, e, f) {
+	        return new Matrix(a, b, c, d, e, f);
+	    };
+	    function Matrix(a, b, c, d, e, f) {
+	        if (a != null) {
+	            this.a = +a;
+	            this.b = +b;
+	            this.c = +c;
+	            this.d = +d;
+	            this.e = +e;
+	            this.f = +f;
+	        } else {
+	            this.a = 1;
+	            this.b = 0;
+	            this.c = 0;
+	            this.d = 1;
+	            this.e = 0;
+	            this.f = 0;
+	        }
+	    }
+	    (function (matrixproto) {
+	        /*\
+	         * Matrix.add
+	         [ method ]
+	         **
+	         * Adds given matrix to existing one.
+	         > Parameters
+	         - a (number)
+	         - b (number)
+	         - c (number)
+	         - d (number)
+	         - e (number)
+	         - f (number)
+	         or
+	         - matrix (object) @Matrix
+	        \*/
+	        matrixproto.add = function (a, b, c, d, e, f) {
+	            var out = [[], [], []],
+	                m = [[this.a, this.c, this.e], [this.b, this.d, this.f], [0, 0, 1]],
+	                matrix = [[a, c, e], [b, d, f], [0, 0, 1]],
+	                x, y, z, res;
+
+	            if (a && a instanceof Matrix) {
+	                matrix = [[a.a, a.c, a.e], [a.b, a.d, a.f], [0, 0, 1]];
+	            }
+
+	            for (x = 0; x < 3; x++) {
+	                for (y = 0; y < 3; y++) {
+	                    res = 0;
+	                    for (z = 0; z < 3; z++) {
+	                        res += m[x][z] * matrix[z][y];
+	                    }
+	                    out[x][y] = res;
+	                }
+	            }
+	            this.a = out[0][0];
+	            this.b = out[1][0];
+	            this.c = out[0][1];
+	            this.d = out[1][1];
+	            this.e = out[0][2];
+	            this.f = out[1][2];
+	        };
+	        /*\
+	         * Matrix.invert
+	         [ method ]
+	         **
+	         * Returns inverted version of the matrix
+	         = (object) @Matrix
+	        \*/
+	        matrixproto.invert = function () {
+	            var me = this,
+	                x = me.a * me.d - me.b * me.c;
+	            return new Matrix(me.d / x, -me.b / x, -me.c / x, me.a / x, (me.c * me.f - me.d * me.e) / x, (me.b * me.e - me.a * me.f) / x);
+	        };
+	        /*\
+	         * Matrix.clone
+	         [ method ]
+	         **
+	         * Returns copy of the matrix
+	         = (object) @Matrix
+	        \*/
+	        matrixproto.clone = function () {
+	            return new Matrix(this.a, this.b, this.c, this.d, this.e, this.f);
+	        };
+	        /*\
+	         * Matrix.translate
+	         [ method ]
+	         **
+	         * Translate the matrix
+	         > Parameters
+	         - x (number)
+	         - y (number)
+	        \*/
+	        matrixproto.translate = function (x, y) {
+	            this.add(1, 0, 0, 1, x, y);
+	        };
+	        /*\
+	         * Matrix.scale
+	         [ method ]
+	         **
+	         * Scales the matrix
+	         > Parameters
+	         - x (number)
+	         - y (number) #optional
+	         - cx (number) #optional
+	         - cy (number) #optional
+	        \*/
+	        matrixproto.scale = function (x, y, cx, cy) {
+	            y == null && (y = x);
+	            (cx || cy) && this.add(1, 0, 0, 1, cx, cy);
+	            this.add(x, 0, 0, y, 0, 0);
+	            (cx || cy) && this.add(1, 0, 0, 1, -cx, -cy);
+	        };
+	        /*\
+	         * Matrix.rotate
+	         [ method ]
+	         **
+	         * Rotates the matrix
+	         > Parameters
+	         - a (number)
+	         - x (number)
+	         - y (number)
+	        \*/
+	        matrixproto.rotate = function (a, x, y) {
+	            a = R.rad(a);
+	            x = x || 0;
+	            y = y || 0;
+	            var cos = +math.cos(a).toFixed(9),
+	                sin = +math.sin(a).toFixed(9);
+	            this.add(cos, sin, -sin, cos, x, y);
+	            this.add(1, 0, 0, 1, -x, -y);
+	        };
+	        /*\
+	         * Matrix.x
+	         [ method ]
+	         **
+	         * Return x coordinate for given point after transformation described by the matrix. See also @Matrix.y
+	         > Parameters
+	         - x (number)
+	         - y (number)
+	         = (number) x
+	        \*/
+	        matrixproto.x = function (x, y) {
+	            return x * this.a + y * this.c + this.e;
+	        };
+	        /*\
+	         * Matrix.y
+	         [ method ]
+	         **
+	         * Return y coordinate for given point after transformation described by the matrix. See also @Matrix.x
+	         > Parameters
+	         - x (number)
+	         - y (number)
+	         = (number) y
+	        \*/
+	        matrixproto.y = function (x, y) {
+	            return x * this.b + y * this.d + this.f;
+	        };
+	        matrixproto.get = function (i) {
+	            return +this[Str.fromCharCode(97 + i)].toFixed(4);
+	        };
+	        matrixproto.toString = function () {
+	            return R.svg ?
+	                "matrix(" + [this.get(0), this.get(1), this.get(2), this.get(3), this.get(4), this.get(5)].join() + ")" :
+	                [this.get(0), this.get(2), this.get(1), this.get(3), 0, 0].join();
+	        };
+	        matrixproto.toFilter = function () {
+	            return "progid:DXImageTransform.Microsoft.Matrix(M11=" + this.get(0) +
+	                ", M12=" + this.get(2) + ", M21=" + this.get(1) + ", M22=" + this.get(3) +
+	                ", Dx=" + this.get(4) + ", Dy=" + this.get(5) + ", sizingmethod='auto expand')";
+	        };
+	        matrixproto.offset = function () {
+	            return [this.e.toFixed(4), this.f.toFixed(4)];
+	        };
+	        function norm(a) {
+	            return a[0] * a[0] + a[1] * a[1];
+	        }
+	        function normalize(a) {
+	            var mag = math.sqrt(norm(a));
+	            a[0] && (a[0] /= mag);
+	            a[1] && (a[1] /= mag);
+	        }
+	        /*\
+	         * Matrix.split
+	         [ method ]
+	         **
+	         * Splits matrix into primitive transformations
+	         = (object) in format:
+	         o dx (number) translation by x
+	         o dy (number) translation by y
+	         o scalex (number) scale by x
+	         o scaley (number) scale by y
+	         o shear (number) shear
+	         o rotate (number) rotation in deg
+	         o isSimple (boolean) could it be represented via simple transformations
+	        \*/
+	        matrixproto.split = function () {
+	            var out = {};
+	            // translation
+	            out.dx = this.e;
+	            out.dy = this.f;
+
+	            // scale and shear
+	            var row = [[this.a, this.c], [this.b, this.d]];
+	            out.scalex = math.sqrt(norm(row[0]));
+	            normalize(row[0]);
+
+	            out.shear = row[0][0] * row[1][0] + row[0][1] * row[1][1];
+	            row[1] = [row[1][0] - row[0][0] * out.shear, row[1][1] - row[0][1] * out.shear];
+
+	            out.scaley = math.sqrt(norm(row[1]));
+	            normalize(row[1]);
+	            out.shear /= out.scaley;
+
+	            // rotation
+	            var sin = -row[0][1],
+	                cos = row[1][1];
+	            if (cos < 0) {
+	                out.rotate = R.deg(math.acos(cos));
+	                if (sin < 0) {
+	                    out.rotate = 360 - out.rotate;
+	                }
+	            } else {
+	                out.rotate = R.deg(math.asin(sin));
+	            }
+
+	            out.isSimple = !+out.shear.toFixed(9) && (out.scalex.toFixed(9) == out.scaley.toFixed(9) || !out.rotate);
+	            out.isSuperSimple = !+out.shear.toFixed(9) && out.scalex.toFixed(9) == out.scaley.toFixed(9) && !out.rotate;
+	            out.noRotation = !+out.shear.toFixed(9) && !out.rotate;
+	            return out;
+	        };
+	        /*\
+	         * Matrix.toTransformString
+	         [ method ]
+	         **
+	         * Return transform string that represents given matrix
+	         = (string) transform string
+	        \*/
+	        matrixproto.toTransformString = function (shorter) {
+	            var s = shorter || this[split]();
+	            if (s.isSimple) {
+	                s.scalex = +s.scalex.toFixed(4);
+	                s.scaley = +s.scaley.toFixed(4);
+	                s.rotate = +s.rotate.toFixed(4);
+	                return  (s.dx || s.dy ? "t" + [s.dx, s.dy] : E) +
+	                        (s.scalex != 1 || s.scaley != 1 ? "s" + [s.scalex, s.scaley, 0, 0] : E) +
+	                        (s.rotate ? "r" + [s.rotate, 0, 0] : E);
+	            } else {
+	                return "m" + [this.get(0), this.get(1), this.get(2), this.get(3), this.get(4), this.get(5)];
+	            }
+	        };
+	    })(Matrix.prototype);
+
+	    var preventDefault = function () {
+	        this.returnValue = false;
+	    },
+	    preventTouch = function () {
+	        return this.originalEvent.preventDefault();
+	    },
+	    stopPropagation = function () {
+	        this.cancelBubble = true;
+	    },
+	    stopTouch = function () {
+	        return this.originalEvent.stopPropagation();
+	    },
+	    getEventPosition = function (e) {
+	        var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
+	            scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft;
+
+	        return {
+	            x: e.clientX + scrollX,
+	            y: e.clientY + scrollY
+	        };
+	    },
+	    addEvent = (function () {
+	        if (g.doc.addEventListener) {
+	            return function (obj, type, fn, element) {
+	                var f = function (e) {
+	                    var pos = getEventPosition(e);
+	                    return fn.call(element, e, pos.x, pos.y);
+	                };
+	                obj.addEventListener(type, f, false);
+
+	                if (supportsTouch && touchMap[type]) {
+	                    var _f = function (e) {
+	                        var pos = getEventPosition(e),
+	                            olde = e;
+
+	                        for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
+	                            if (e.targetTouches[i].target == obj) {
+	                                e = e.targetTouches[i];
+	                                e.originalEvent = olde;
+	                                e.preventDefault = preventTouch;
+	                                e.stopPropagation = stopTouch;
+	                                break;
+	                            }
+	                        }
+
+	                        return fn.call(element, e, pos.x, pos.y);
+	                    };
+	                    obj.addEventListener(touchMap[type], _f, false);
+	                }
+
+	                return function () {
+	                    obj.removeEventListener(type, f, false);
+
+	                    if (supportsTouch && touchMap[type])
+	                        obj.removeEventListener(touchMap[type], _f, false);
+
+	                    return true;
+	                };
+	            };
+	        } else if (g.doc.attachEvent) {
+	            return function (obj, type, fn, element) {
+	                var f = function (e) {
+	                    e = e || g.win.event;
+	                    var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
+	                        scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
+	                        x = e.clientX + scrollX,
+	                        y = e.clientY + scrollY;
+	                    e.preventDefault = e.preventDefault || preventDefault;
+	                    e.stopPropagation = e.stopPropagation || stopPropagation;
+	                    return fn.call(element, e, x, y);
+	                };
+	                obj.attachEvent("on" + type, f);
+	                var detacher = function () {
+	                    obj.detachEvent("on" + type, f);
+	                    return true;
+	                };
+	                return detacher;
+	            };
+	        }
+	    })(),
+	    drag = [],
+	    dragMove = function (e) {
+	        var x = e.clientX,
+	            y = e.clientY,
+	            scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
+	            scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
+	            dragi,
+	            j = drag.length;
+	        while (j--) {
+	            dragi = drag[j];
+	            if (supportsTouch && e.touches) {
+	                var i = e.touches.length,
+	                    touch;
+	                while (i--) {
+	                    touch = e.touches[i];
+	                    if (touch.identifier == dragi.el._drag.id) {
+	                        x = touch.clientX;
+	                        y = touch.clientY;
+	                        (e.originalEvent ? e.originalEvent : e).preventDefault();
+	                        break;
+	                    }
+	                }
+	            } else {
+	                e.preventDefault();
+	            }
+	            var node = dragi.el.node,
+	                o,
+	                next = node.nextSibling,
+	                parent = node.parentNode,
+	                display = node.style.display;
+	            g.win.opera && parent.removeChild(node);
+	            node.style.display = "none";
+	            o = dragi.el.paper.getElementByPoint(x, y);
+	            node.style.display = display;
+	            g.win.opera && (next ? parent.insertBefore(node, next) : parent.appendChild(node));
+	            o && eve("raphael.drag.over." + dragi.el.id, dragi.el, o);
+	            x += scrollX;
+	            y += scrollY;
+	            eve("raphael.drag.move." + dragi.el.id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
+	        }
+	    },
+	    dragUp = function (e) {
+	        R.unmousemove(dragMove).unmouseup(dragUp);
+	        var i = drag.length,
+	            dragi;
+	        while (i--) {
+	            dragi = drag[i];
+	            dragi.el._drag = {};
+	            eve("raphael.drag.end." + dragi.el.id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
+	        }
+	        drag = [];
+	    },
+	    /*\
+	     * Raphael.el
+	     [ property (object) ]
+	     **
+	     * You can add your own method to elements. This is useful when you want to hack default functionality or
+	     * want to wrap some common transformation or attributes in one method. In difference to canvas methods,
+	     * you can redefine element method at any time. Expending element methods wouldn’t affect set.
+	     > Usage
+	     | Raphael.el.red = function () {
+	     |     this.attr({fill: "#f00"});
+	     | };
+	     | // then use it
+	     | paper.circle(100, 100, 20).red();
+	    \*/
+	    elproto = R.el = {};
+	    /*\
+	     * Element.click
+	     [ method ]
+	     **
+	     * Adds event handler for click for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.unclick
+	     [ method ]
+	     **
+	     * Removes event handler for click for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.dblclick
+	     [ method ]
+	     **
+	     * Adds event handler for double click for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.undblclick
+	     [ method ]
+	     **
+	     * Removes event handler for double click for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.mousedown
+	     [ method ]
+	     **
+	     * Adds event handler for mousedown for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.unmousedown
+	     [ method ]
+	     **
+	     * Removes event handler for mousedown for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.mousemove
+	     [ method ]
+	     **
+	     * Adds event handler for mousemove for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.unmousemove
+	     [ method ]
+	     **
+	     * Removes event handler for mousemove for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.mouseout
+	     [ method ]
+	     **
+	     * Adds event handler for mouseout for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.unmouseout
+	     [ method ]
+	     **
+	     * Removes event handler for mouseout for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.mouseover
+	     [ method ]
+	     **
+	     * Adds event handler for mouseover for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.unmouseover
+	     [ method ]
+	     **
+	     * Removes event handler for mouseover for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.mouseup
+	     [ method ]
+	     **
+	     * Adds event handler for mouseup for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.unmouseup
+	     [ method ]
+	     **
+	     * Removes event handler for mouseup for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.touchstart
+	     [ method ]
+	     **
+	     * Adds event handler for touchstart for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.untouchstart
+	     [ method ]
+	     **
+	     * Removes event handler for touchstart for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.touchmove
+	     [ method ]
+	     **
+	     * Adds event handler for touchmove for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.untouchmove
+	     [ method ]
+	     **
+	     * Removes event handler for touchmove for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.touchend
+	     [ method ]
+	     **
+	     * Adds event handler for touchend for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.untouchend
+	     [ method ]
+	     **
+	     * Removes event handler for touchend for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+
+	    /*\
+	     * Element.touchcancel
+	     [ method ]
+	     **
+	     * Adds event handler for touchcancel for the element.
+	     > Parameters
+	     - handler (function) handler for the event
+	     = (object) @Element
+	    \*/
+	    /*\
+	     * Element.untouchcancel
+	     [ method ]
+	     **
+	     * Removes event handler for touchcancel for the element.
+	     > Parameters
+	     - handler (function) #optional handler for the event
+	     = (object) @Element
+	    \*/
+	    for (var i = events.length; i--;) {
+	        (function (eventName) {
+	            R[eventName] = elproto[eventName] = function (fn, scope) {
+	                if (R.is(fn, "function")) {
+	                    this.events = this.events || [];
+	                    this.events.push({name: eventName, f: fn, unbind: addEvent(this.shape || this.node || g.doc, eventName, fn, scope || this)});
+	                }
+	                return this;
+	            };
+	            R["un" + eventName] = elproto["un" + eventName] = function (fn) {
+	                var events = this.events || [],
+	                    l = events.length;
+	                while (l--){
+	                    if (events[l].name == eventName && (R.is(fn, "undefined") || events[l].f == fn)) {
+	                        events[l].unbind();
+	                        events.splice(l, 1);
+	                        !events.length && delete this.events;
+	                    }
+	                }
+	                return this;
+	            };
+	        })(events[i]);
+	    }
+
+	    /*\
+	     * Element.data
+	     [ method ]
+	     **
+	     * Adds or retrieves given value associated with given key.
+	     **
+	     * See also @Element.removeData
+	     > Parameters
+	     - key (string) key to store data
+	     - value (any) #optional value to store
+	     = (object) @Element
+	     * or, if value is not specified:
+	     = (any) value
+	     * or, if key and value are not specified:
+	     = (object) Key/value pairs for all the data associated with the element.
+	     > Usage
+	     | for (var i = 0, i < 5, i++) {
+	     |     paper.circle(10 + 15 * i, 10, 10)
+	     |          .attr({fill: "#000"})
+	     |          .data("i", i)
+	     |          .click(function () {
+	     |             alert(this.data("i"));
+	     |          });
+	     | }
+	    \*/
+	    elproto.data = function (key, value) {
+	        var data = eldata[this.id] = eldata[this.id] || {};
+	        if (arguments.length == 0) {
+	            return data;
+	        }
+	        if (arguments.length == 1) {
+	            if (R.is(key, "object")) {
+	                for (var i in key) if (key[has](i)) {
+	                    this.data(i, key[i]);
+	                }
+	                return this;
+	            }
+	            eve("raphael.data.get." + this.id, this, data[key], key);
+	            return data[key];
+	        }
+	        data[key] = value;
+	        eve("raphael.data.set." + this.id, this, value, key);
+	        return this;
+	    };
+	    /*\
+	     * Element.removeData
+	     [ method ]
+	     **
+	     * Removes value associated with an element by given key.
+	     * If key is not provided, removes all the data of the element.
+	     > Parameters
+	     - key (string) #optional key
+	     = (object) @Element
+	    \*/
+	    elproto.removeData = function (key) {
+	        if (key == null) {
+	            eldata[this.id] = {};
+	        } else {
+	            eldata[this.id] && delete eldata[this.id][key];
+	        }
+	        return this;
+	    };
+	     /*\
+	     * Element.getData
+	     [ method ]
+	     **
+	     * Retrieves the element data
+	     = (object) data
+	    \*/
+	    elproto.getData = function () {
+	        return clone(eldata[this.id] || {});
+	    };
+	    /*\
+	     * Element.hover
+	     [ method ]
+	     **
+	     * Adds event handlers for hover for the element.
+	     > Parameters
+	     - f_in (function) handler for hover in
+	     - f_out (function) handler for hover out
+	     - icontext (object) #optional context for hover in handler
+	     - ocontext (object) #optional context for hover out handler
+	     = (object) @Element
+	    \*/
+	    elproto.hover = function (f_in, f_out, scope_in, scope_out) {
+	        return this.mouseover(f_in, scope_in).mouseout(f_out, scope_out || scope_in);
+	    };
+	    /*\
+	     * Element.unhover
+	     [ method ]
+	     **
+	     * Removes event handlers for hover for the element.
+	     > Parameters
+	     - f_in (function) handler for hover in
+	     - f_out (function) handler for hover out
+	     = (object) @Element
+	    \*/
+	    elproto.unhover = function (f_in, f_out) {
+	        return this.unmouseover(f_in).unmouseout(f_out);
+	    };
+	    var draggable = [];
+	    /*\
+	     * Element.drag
+	     [ method ]
+	     **
+	     * Adds event handlers for drag of the element.
+	     > Parameters
+	     - onmove (function) handler for moving
+	     - onstart (function) handler for drag start
+	     - onend (function) handler for drag end
+	     - mcontext (object) #optional context for moving handler
+	     - scontext (object) #optional context for drag start handler
+	     - econtext (object) #optional context for drag end handler
+	     * Additionally following `drag` events will be triggered: `drag.start.<id>` on start,
+	     * `drag.end.<id>` on end and `drag.move.<id>` on every move. When element will be dragged over another element
+	     * `drag.over.<id>` will be fired as well.
+	     *
+	     * Start event and start handler will be called in specified context or in context of the element with following parameters:
+	     o x (number) x position of the mouse
+	     o y (number) y position of the mouse
+	     o event (object) DOM event object
+	     * Move event and move handler will be called in specified context or in context of the element with following parameters:
+	     o dx (number) shift by x from the start point
+	     o dy (number) shift by y from the start point
+	     o x (number) x position of the mouse
+	     o y (number) y position of the mouse
+	     o event (object) DOM event object
+	     * End event and end handler will be called in specified context or in context of the element with following parameters:
+	     o event (object) DOM event object
+	     = (object) @Element
+	    \*/
+	    elproto.drag = function (onmove, onstart, onend, move_scope, start_scope, end_scope) {
+	        function start(e) {
+	            (e.originalEvent || e).preventDefault();
+	            var x = e.clientX,
+	                y = e.clientY,
+	                scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
+	                scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft;
+	            this._drag.id = e.identifier;
+	            if (supportsTouch && e.touches) {
+	                var i = e.touches.length, touch;
+	                while (i--) {
+	                    touch = e.touches[i];
+	                    this._drag.id = touch.identifier;
+	                    if (touch.identifier == this._drag.id) {
+	                        x = touch.clientX;
+	                        y = touch.clientY;
+	                        break;
+	                    }
+	                }
+	            }
+	            this._drag.x = x + scrollX;
+	            this._drag.y = y + scrollY;
+	            !drag.length && R.mousemove(dragMove).mouseup(dragUp);
+	            drag.push({el: this, move_scope: move_scope, start_scope: start_scope, end_scope: end_scope});
+	            onstart && eve.on("raphael.drag.start." + this.id, onstart);
+	            onmove && eve.on("raphael.drag.move." + this.id, onmove);
+	            onend && eve.on("raphael.drag.end." + this.id, onend);
+	            eve("raphael.drag.start." + this.id, start_scope || move_scope || this, e.clientX + scrollX, e.clientY + scrollY, e);
+	        }
+	        this._drag = {};
+	        draggable.push({el: this, start: start});
+	        this.mousedown(start);
+	        return this;
+	    };
+	    /*\
+	     * Element.onDragOver
+	     [ method ]
+	     **
+	     * Shortcut for assigning event handler for `drag.over.<id>` event, where id is id of the element (see @Element.id).
+	     > Parameters
+	     - f (function) handler for event, first argument would be the element you are dragging over
+	    \*/
+	    elproto.onDragOver = function (f) {
+	        f ? eve.on("raphael.drag.over." + this.id, f) : eve.unbind("raphael.drag.over." + this.id);
+	    };
+	    /*\
+	     * Element.undrag
+	     [ method ]
+	     **
+	     * Removes all drag event handlers from given element.
+	    \*/
+	    elproto.undrag = function () {
+	        var i = draggable.length;
+	        while (i--) if (draggable[i].el == this) {
+	            this.unmousedown(draggable[i].start);
+	            draggable.splice(i, 1);
+	            eve.unbind("raphael.drag.*." + this.id);
+	        }
+	        !draggable.length && R.unmousemove(dragMove).unmouseup(dragUp);
+	        drag = [];
+	    };
+	    /*\
+	     * Paper.circle
+	     [ method ]
+	     **
+	     * Draws a circle.
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate of the centre
+	     - y (number) y coordinate of the centre
+	     - r (number) radius
+	     = (object) Raphaël element object with type “circle”
+	     **
+	     > Usage
+	     | var c = paper.circle(50, 50, 40);
+	    \*/
+	    paperproto.circle = function (x, y, r) {
+	        var out = R._engine.circle(this, x || 0, y || 0, r || 0);
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Paper.rect
+	     [ method ]
+	     *
+	     * Draws a rectangle.
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate of the top left corner
+	     - y (number) y coordinate of the top left corner
+	     - width (number) width
+	     - height (number) height
+	     - r (number) #optional radius for rounded corners, default is 0
+	     = (object) Raphaël element object with type “rect”
+	     **
+	     > Usage
+	     | // regular rectangle
+	     | var c = paper.rect(10, 10, 50, 50);
+	     | // rectangle with rounded corners
+	     | var c = paper.rect(40, 40, 50, 50, 10);
+	    \*/
+	    paperproto.rect = function (x, y, w, h, r) {
+	        var out = R._engine.rect(this, x || 0, y || 0, w || 0, h || 0, r || 0);
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Paper.ellipse
+	     [ method ]
+	     **
+	     * Draws an ellipse.
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate of the centre
+	     - y (number) y coordinate of the centre
+	     - rx (number) horizontal radius
+	     - ry (number) vertical radius
+	     = (object) Raphaël element object with type “ellipse”
+	     **
+	     > Usage
+	     | var c = paper.ellipse(50, 50, 40, 20);
+	    \*/
+	    paperproto.ellipse = function (x, y, rx, ry) {
+	        var out = R._engine.ellipse(this, x || 0, y || 0, rx || 0, ry || 0);
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Paper.path
+	     [ method ]
+	     **
+	     * Creates a path element by given path data string.
+	     > Parameters
+	     - pathString (string) #optional path string in SVG format.
+	     * Path string consists of one-letter commands, followed by comma seprarated arguments in numercal form. Example:
+	     | "M10,20L30,40"
+	     * Here we can see two commands: “M”, with arguments `(10, 20)` and “L” with arguments `(30, 40)`. Upper case letter mean command is absolute, lower case—relative.
+	     *
+	     # <p>Here is short list of commands available, for more details see <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path's data attribute's format are described in the SVG specification.">SVG path string format</a>.</p>
+	     # <table><thead><tr><th>Command</th><th>Name</th><th>Parameters</th></tr></thead><tbody>
+	     # <tr><td>M</td><td>moveto</td><td>(x y)+</td></tr>
+	     # <tr><td>Z</td><td>closepath</td><td>(none)</td></tr>
+	     # <tr><td>L</td><td>lineto</td><td>(x y)+</td></tr>
+	     # <tr><td>H</td><td>horizontal lineto</td><td>x+</td></tr>
+	     # <tr><td>V</td><td>vertical lineto</td><td>y+</td></tr>
+	     # <tr><td>C</td><td>curveto</td><td>(x1 y1 x2 y2 x y)+</td></tr>
+	     # <tr><td>S</td><td>smooth curveto</td><td>(x2 y2 x y)+</td></tr>
+	     # <tr><td>Q</td><td>quadratic Bézier curveto</td><td>(x1 y1 x y)+</td></tr>
+	     # <tr><td>T</td><td>smooth quadratic Bézier curveto</td><td>(x y)+</td></tr>
+	     # <tr><td>A</td><td>elliptical arc</td><td>(rx ry x-axis-rotation large-arc-flag sweep-flag x y)+</td></tr>
+	     # <tr><td>R</td><td><a href="http://en.wikipedia.org/wiki/Catmull–Rom_spline#Catmull.E2.80.93Rom_spline">Catmull-Rom curveto</a>*</td><td>x1 y1 (x y)+</td></tr></tbody></table>
+	     * * “Catmull-Rom curveto” is a not standard SVG command and added in 2.0 to make life easier.
+	     * Note: there is a special case when path consist of just three commands: “M10,10R…z”. In this case path will smoothly connects to its beginning.
+	     > Usage
+	     | var c = paper.path("M10 10L90 90");
+	     | // draw a diagonal line:
+	     | // move to 10,10, line to 90,90
+	     * For example of path strings, check out these icons: http://raphaeljs.com/icons/
+	    \*/
+	    paperproto.path = function (pathString) {
+	        pathString && !R.is(pathString, string) && !R.is(pathString[0], array) && (pathString += E);
+	        var out = R._engine.path(R.format[apply](R, arguments), this);
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Paper.image
+	     [ method ]
+	     **
+	     * Embeds an image into the surface.
+	     **
+	     > Parameters
+	     **
+	     - src (string) URI of the source image
+	     - x (number) x coordinate position
+	     - y (number) y coordinate position
+	     - width (number) width of the image
+	     - height (number) height of the image
+	     = (object) Raphaël element object with type “image”
+	     **
+	     > Usage
+	     | var c = paper.image("apple.png", 10, 10, 80, 80);
+	    \*/
+	    paperproto.image = function (src, x, y, w, h) {
+	        var out = R._engine.image(this, src || "about:blank", x || 0, y || 0, w || 0, h || 0);
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Paper.text
+	     [ method ]
+	     **
+	     * Draws a text string. If you need line breaks, put “\n” in the string.
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate position
+	     - y (number) y coordinate position
+	     - text (string) The text string to draw
+	     = (object) Raphaël element object with type “text”
+	     **
+	     > Usage
+	     | var t = paper.text(50, 50, "Raphaël\nkicks\nbutt!");
+	    \*/
+	    paperproto.text = function (x, y, text) {
+	        var out = R._engine.text(this, x || 0, y || 0, Str(text));
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Paper.set
+	     [ method ]
+	     **
+	     * Creates array-like object to keep and operate several elements at once.
+	     * Warning: it doesn’t create any elements for itself in the page, it just groups existing elements.
+	     * Sets act as pseudo elements — all methods available to an element can be used on a set.
+	     = (object) array-like object that represents set of elements
+	     **
+	     > Usage
+	     | var st = paper.set();
+	     | st.push(
+	     |     paper.circle(10, 10, 5),
+	     |     paper.circle(30, 10, 5)
+	     | );
+	     | st.attr({fill: "red"}); // changes the fill of both circles
+	    \*/
+	    paperproto.set = function (itemsArray) {
+	        !R.is(itemsArray, "array") && (itemsArray = Array.prototype.splice.call(arguments, 0, arguments.length));
+	        var out = new Set(itemsArray);
+	        this.__set__ && this.__set__.push(out);
+	        out["paper"] = this;
+	        out["type"] = "set";
+	        return out;
+	    };
+	    /*\
+	     * Paper.setStart
+	     [ method ]
+	     **
+	     * Creates @Paper.set. All elements that will be created after calling this method and before calling
+	     * @Paper.setFinish will be added to the set.
+	     **
+	     > Usage
+	     | paper.setStart();
+	     | paper.circle(10, 10, 5),
+	     | paper.circle(30, 10, 5)
+	     | var st = paper.setFinish();
+	     | st.attr({fill: "red"}); // changes the fill of both circles
+	    \*/
+	    paperproto.setStart = function (set) {
+	        this.__set__ = set || this.set();
+	    };
+	    /*\
+	     * Paper.setFinish
+	     [ method ]
+	     **
+	     * See @Paper.setStart. This method finishes catching and returns resulting set.
+	     **
+	     = (object) set
+	    \*/
+	    paperproto.setFinish = function (set) {
+	        var out = this.__set__;
+	        delete this.__set__;
+	        return out;
+	    };
+	    /*\
+	     * Paper.getSize
+	     [ method ]
+	     **
+	     * Obtains current paper actual size.
+	     **
+	     = (object)
+	     \*/
+	    paperproto.getSize = function () {
+	        var container = this.canvas.parentNode;
+	        return {
+	            width: container.offsetWidth,
+	            height: container.offsetHeight
+	                };
+	        };
+	    /*\
+	     * Paper.setSize
+	     [ method ]
+	     **
+	     * If you need to change dimensions of the canvas call this method
+	     **
+	     > Parameters
+	     **
+	     - width (number) new width of the canvas
+	     - height (number) new height of the canvas
+	    \*/
+	    paperproto.setSize = function (width, height) {
+	        return R._engine.setSize.call(this, width, height);
+	    };
+	    /*\
+	     * Paper.setViewBox
+	     [ method ]
+	     **
+	     * Sets the view box of the paper. Practically it gives you ability to zoom and pan whole paper surface by
+	     * specifying new boundaries.
+	     **
+	     > Parameters
+	     **
+	     - x (number) new x position, default is `0`
+	     - y (number) new y position, default is `0`
+	     - w (number) new width of the canvas
+	     - h (number) new height of the canvas
+	     - fit (boolean) `true` if you want graphics to fit into new boundary box
+	    \*/
+	    paperproto.setViewBox = function (x, y, w, h, fit) {
+	        return R._engine.setViewBox.call(this, x, y, w, h, fit);
+	    };
+	    /*\
+	     * Paper.top
+	     [ property ]
+	     **
+	     * Points to the topmost element on the paper
+	    \*/
+	    /*\
+	     * Paper.bottom
+	     [ property ]
+	     **
+	     * Points to the bottom element on the paper
+	    \*/
+	    paperproto.top = paperproto.bottom = null;
+	    /*\
+	     * Paper.raphael
+	     [ property ]
+	     **
+	     * Points to the @Raphael object/function
+	    \*/
+	    paperproto.raphael = R;
+	    var getOffset = function (elem) {
+	        var box = elem.getBoundingClientRect(),
+	            doc = elem.ownerDocument,
+	            body = doc.body,
+	            docElem = doc.documentElement,
+	            clientTop = docElem.clientTop || body.clientTop || 0, clientLeft = docElem.clientLeft || body.clientLeft || 0,
+	            top  = box.top  + (g.win.pageYOffset || docElem.scrollTop || body.scrollTop ) - clientTop,
+	            left = box.left + (g.win.pageXOffset || docElem.scrollLeft || body.scrollLeft) - clientLeft;
+	        return {
+	            y: top,
+	            x: left
+	        };
+	    };
+	    /*\
+	     * Paper.getElementByPoint
+	     [ method ]
+	     **
+	     * Returns you topmost element under given point.
+	     **
+	     = (object) Raphaël element object
+	     > Parameters
+	     **
+	     - x (number) x coordinate from the top left corner of the window
+	     - y (number) y coordinate from the top left corner of the window
+	     > Usage
+	     | paper.getElementByPoint(mouseX, mouseY).attr({stroke: "#f00"});
+	    \*/
+	    paperproto.getElementByPoint = function (x, y) {
+	        var paper = this,
+	            svg = paper.canvas,
+	            target = g.doc.elementFromPoint(x, y);
+	        if (g.win.opera && target.tagName == "svg") {
+	            var so = getOffset(svg),
+	                sr = svg.createSVGRect();
+	            sr.x = x - so.x;
+	            sr.y = y - so.y;
+	            sr.width = sr.height = 1;
+	            var hits = svg.getIntersectionList(sr, null);
+	            if (hits.length) {
+	                target = hits[hits.length - 1];
+	            }
+	        }
+	        if (!target) {
+	            return null;
+	        }
+	        while (target.parentNode && target != svg.parentNode && !target.raphael) {
+	            target = target.parentNode;
+	        }
+	        target == paper.canvas.parentNode && (target = svg);
+	        target = target && target.raphael ? paper.getById(target.raphaelid) : null;
+	        return target;
+	    };
+
+	    /*\
+	     * Paper.getElementsByBBox
+	     [ method ]
+	     **
+	     * Returns set of elements that have an intersecting bounding box
+	     **
+	     > Parameters
+	     **
+	     - bbox (object) bbox to check with
+	     = (object) @Set
+	     \*/
+	    paperproto.getElementsByBBox = function (bbox) {
+	        var set = this.set();
+	        this.forEach(function (el) {
+	            if (R.isBBoxIntersect(el.getBBox(), bbox)) {
+	                set.push(el);
+	            }
+	        });
+	        return set;
+	    };
+
+	    /*\
+	     * Paper.getById
+	     [ method ]
+	     **
+	     * Returns you element by its internal ID.
+	     **
+	     > Parameters
+	     **
+	     - id (number) id
+	     = (object) Raphaël element object
+	    \*/
+	    paperproto.getById = function (id) {
+	        var bot = this.bottom;
+	        while (bot) {
+	            if (bot.id == id) {
+	                return bot;
+	            }
+	            bot = bot.next;
+	        }
+	        return null;
+	    };
+	    /*\
+	     * Paper.forEach
+	     [ method ]
+	     **
+	     * Executes given function for each element on the paper
+	     *
+	     * If callback function returns `false` it will stop loop running.
+	     **
+	     > Parameters
+	     **
+	     - callback (function) function to run
+	     - thisArg (object) context object for the callback
+	     = (object) Paper object
+	     > Usage
+	     | paper.forEach(function (el) {
+	     |     el.attr({ stroke: "blue" });
+	     | });
+	    \*/
+	    paperproto.forEach = function (callback, thisArg) {
+	        var bot = this.bottom;
+	        while (bot) {
+	            if (callback.call(thisArg, bot) === false) {
+	                return this;
+	            }
+	            bot = bot.next;
+	        }
+	        return this;
+	    };
+	    /*\
+	     * Paper.getElementsByPoint
+	     [ method ]
+	     **
+	     * Returns set of elements that have common point inside
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate of the point
+	     - y (number) y coordinate of the point
+	     = (object) @Set
+	    \*/
+	    paperproto.getElementsByPoint = function (x, y) {
+	        var set = this.set();
+	        this.forEach(function (el) {
+	            if (el.isPointInside(x, y)) {
+	                set.push(el);
+	            }
+	        });
+	        return set;
+	    };
+	    function x_y() {
+	        return this.x + S + this.y;
+	    }
+	    function x_y_w_h() {
+	        return this.x + S + this.y + S + this.width + " \xd7 " + this.height;
+	    }
+	    /*\
+	     * Element.isPointInside
+	     [ method ]
+	     **
+	     * Determine if given point is inside this element’s shape
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate of the point
+	     - y (number) y coordinate of the point
+	     = (boolean) `true` if point inside the shape
+	    \*/
+	    elproto.isPointInside = function (x, y) {
+	        var rp = this.realPath = getPath[this.type](this);
+	        if (this.attr('transform') && this.attr('transform').length) {
+	            rp = R.transformPath(rp, this.attr('transform'));
+	        }
+	        return R.isPointInsidePath(rp, x, y);
+	    };
+	    /*\
+	     * Element.getBBox
+	     [ method ]
+	     **
+	     * Return bounding box for a given element
+	     **
+	     > Parameters
+	     **
+	     - isWithoutTransform (boolean) flag, `true` if you want to have bounding box before transformations. Default is `false`.
+	     = (object) Bounding box object:
+	     o {
+	     o     x: (number) top left corner x
+	     o     y: (number) top left corner y
+	     o     x2: (number) bottom right corner x
+	     o     y2: (number) bottom right corner y
+	     o     width: (number) width
+	     o     height: (number) height
+	     o }
+	    \*/
+	    elproto.getBBox = function (isWithoutTransform) {
+	        if (this.removed) {
+	            return {};
+	        }
+	        var _ = this._;
+	        if (isWithoutTransform) {
+	            if (_.dirty || !_.bboxwt) {
+	                this.realPath = getPath[this.type](this);
+	                _.bboxwt = pathDimensions(this.realPath);
+	                _.bboxwt.toString = x_y_w_h;
+	                _.dirty = 0;
+	            }
+	            return _.bboxwt;
+	        }
+	        if (_.dirty || _.dirtyT || !_.bbox) {
+	            if (_.dirty || !this.realPath) {
+	                _.bboxwt = 0;
+	                this.realPath = getPath[this.type](this);
+	            }
+	            _.bbox = pathDimensions(mapPath(this.realPath, this.matrix));
+	            _.bbox.toString = x_y_w_h;
+	            _.dirty = _.dirtyT = 0;
+	        }
+	        return _.bbox;
+	    };
+	    /*\
+	     * Element.clone
+	     [ method ]
+	     **
+	     = (object) clone of a given element
+	     **
+	    \*/
+	    elproto.clone = function () {
+	        if (this.removed) {
+	            return null;
+	        }
+	        var out = this.paper[this.type]().attr(this.attr());
+	        this.__set__ && this.__set__.push(out);
+	        return out;
+	    };
+	    /*\
+	     * Element.glow
+	     [ method ]
+	     **
+	     * Return set of elements that create glow-like effect around given element. See @Paper.set.
+	     *
+	     * Note: Glow is not connected to the element. If you change element attributes it won’t adjust itself.
+	     **
+	     > Parameters
+	     **
+	     - glow (object) #optional parameters object with all properties optional:
+	     o {
+	     o     width (number) size of the glow, default is `10`
+	     o     fill (boolean) will it be filled, default is `false`
+	     o     opacity (number) opacity, default is `0.5`
+	     o     offsetx (number) horizontal offset, default is `0`
+	     o     offsety (number) vertical offset, default is `0`
+	     o     color (string) glow colour, default is `black`
+	     o }
+	     = (object) @Paper.set of elements that represents glow
+	    \*/
+	    elproto.glow = function (glow) {
+	        if (this.type == "text") {
+	            return null;
+	        }
+	        glow = glow || {};
+	        var s = {
+	            width: (glow.width || 10) + (+this.attr("stroke-width") || 1),
+	            fill: glow.fill || false,
+	            opacity: glow.opacity == null ? .5 : glow.opacity,
+	            offsetx: glow.offsetx || 0,
+	            offsety: glow.offsety || 0,
+	            color: glow.color || "#000"
+	        },
+	            c = s.width / 2,
+	            r = this.paper,
+	            out = r.set(),
+	            path = this.realPath || getPath[this.type](this);
+	        path = this.matrix ? mapPath(path, this.matrix) : path;
+	        for (var i = 1; i < c + 1; i++) {
+	            out.push(r.path(path).attr({
+	                stroke: s.color,
+	                fill: s.fill ? s.color : "none",
+	                "stroke-linejoin": "round",
+	                "stroke-linecap": "round",
+	                "stroke-width": +(s.width / c * i).toFixed(3),
+	                opacity: +(s.opacity / c).toFixed(3)
+	            }));
+	        }
+	        return out.insertBefore(this).translate(s.offsetx, s.offsety);
+	    };
+	    var curveslengths = {},
+	    getPointAtSegmentLength = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, length) {
+	        if (length == null) {
+	            return bezlen(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y);
+	        } else {
+	            return R.findDotsAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, getTatLen(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, length));
+	        }
+	    },
+	    getLengthFactory = function (istotal, subpath) {
+	        return function (path, length, onlystart) {
+	            path = path2curve(path);
+	            var x, y, p, l, sp = "", subpaths = {}, point,
+	                len = 0;
+	            for (var i = 0, ii = path.length; i < ii; i++) {
+	                p = path[i];
+	                if (p[0] == "M") {
+	                    x = +p[1];
+	                    y = +p[2];
+	                } else {
+	                    l = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6]);
+	                    if (len + l > length) {
+	                        if (subpath && !subpaths.start) {
+	                            point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
+	                            sp += ["C" + point.start.x, point.start.y, point.m.x, point.m.y, point.x, point.y];
+	                            if (onlystart) {return sp;}
+	                            subpaths.start = sp;
+	                            sp = ["M" + point.x, point.y + "C" + point.n.x, point.n.y, point.end.x, point.end.y, p[5], p[6]].join();
+	                            len += l;
+	                            x = +p[5];
+	                            y = +p[6];
+	                            continue;
+	                        }
+	                        if (!istotal && !subpath) {
+	                            point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
+	                            return {x: point.x, y: point.y, alpha: point.alpha};
+	                        }
+	                    }
+	                    len += l;
+	                    x = +p[5];
+	                    y = +p[6];
+	                }
+	                sp += p.shift() + p;
+	            }
+	            subpaths.end = sp;
+	            point = istotal ? len : subpath ? subpaths : R.findDotsAtSegment(x, y, p[0], p[1], p[2], p[3], p[4], p[5], 1);
+	            point.alpha && (point = {x: point.x, y: point.y, alpha: point.alpha});
+	            return point;
+	        };
+	    };
+	    var getTotalLength = getLengthFactory(1),
+	        getPointAtLength = getLengthFactory(),
+	        getSubpathsAtLength = getLengthFactory(0, 1);
+	    /*\
+	     * Raphael.getTotalLength
+	     [ method ]
+	     **
+	     * Returns length of the given path in pixels.
+	     **
+	     > Parameters
+	     **
+	     - path (string) SVG path string.
+	     **
+	     = (number) length.
+	    \*/
+	    R.getTotalLength = getTotalLength;
+	    /*\
+	     * Raphael.getPointAtLength
+	     [ method ]
+	     **
+	     * Return coordinates of the point located at the given length on the given path.
+	     **
+	     > Parameters
+	     **
+	     - path (string) SVG path string
+	     - length (number)
+	     **
+	     = (object) representation of the point:
+	     o {
+	     o     x: (number) x coordinate
+	     o     y: (number) y coordinate
+	     o     alpha: (number) angle of derivative
+	     o }
+	    \*/
+	    R.getPointAtLength = getPointAtLength;
+	    /*\
+	     * Raphael.getSubpath
+	     [ method ]
+	     **
+	     * Return subpath of a given path from given length to given length.
+	     **
+	     > Parameters
+	     **
+	     - path (string) SVG path string
+	     - from (number) position of the start of the segment
+	     - to (number) position of the end of the segment
+	     **
+	     = (string) pathstring for the segment
+	    \*/
+	    R.getSubpath = function (path, from, to) {
+	        if (this.getTotalLength(path) - to < 1e-6) {
+	            return getSubpathsAtLength(path, from).end;
+	        }
+	        var a = getSubpathsAtLength(path, to, 1);
+	        return from ? getSubpathsAtLength(a, from).end : a;
+	    };
+	    /*\
+	     * Element.getTotalLength
+	     [ method ]
+	     **
+	     * Returns length of the path in pixels. Only works for element of “path” type.
+	     = (number) length.
+	    \*/
+	    elproto.getTotalLength = function () {
+	        var path = this.getPath();
+	        if (!path) {
+	            return;
+	        }
+
+	        if (this.node.getTotalLength) {
+	            return this.node.getTotalLength();
+	        }
+
+	        return getTotalLength(path);
+	    };
+	    /*\
+	     * Element.getPointAtLength
+	     [ method ]
+	     **
+	     * Return coordinates of the point located at the given length on the given path. Only works for element of “path” type.
+	     **
+	     > Parameters
+	     **
+	     - length (number)
+	     **
+	     = (object) representation of the point:
+	     o {
+	     o     x: (number) x coordinate
+	     o     y: (number) y coordinate
+	     o     alpha: (number) angle of derivative
+	     o }
+	    \*/
+	    elproto.getPointAtLength = function (length) {
+	        var path = this.getPath();
+	        if (!path) {
+	            return;
+	        }
+
+	        return getPointAtLength(path, length);
+	    };
+	    /*\
+	     * Element.getPath
+	     [ method ]
+	     **
+	     * Returns path of the element. Only works for elements of “path” type and simple elements like circle.
+	     = (object) path
+	     **
+	    \*/
+	    elproto.getPath = function () {
+	        var path,
+	            getPath = R._getPath[this.type];
+
+	        if (this.type == "text" || this.type == "set") {
+	            return;
+	        }
+
+	        if (getPath) {
+	            path = getPath(this);
+	        }
+
+	        return path;
+	    };
+	    /*\
+	     * Element.getSubpath
+	     [ method ]
+	     **
+	     * Return subpath of a given element from given length to given length. Only works for element of “path” type.
+	     **
+	     > Parameters
+	     **
+	     - from (number) position of the start of the segment
+	     - to (number) position of the end of the segment
+	     **
+	     = (string) pathstring for the segment
+	    \*/
+	    elproto.getSubpath = function (from, to) {
+	        var path = this.getPath();
+	        if (!path) {
+	            return;
+	        }
+
+	        return R.getSubpath(path, from, to);
+	    };
+	    /*\
+	     * Raphael.easing_formulas
+	     [ property ]
+	     **
+	     * Object that contains easing formulas for animation. You could extend it with your own. By default it has following list of easing:
+	     # <ul>
+	     #     <li>“linear”</li>
+	     #     <li>“&lt;” or “easeIn” or “ease-in”</li>
+	     #     <li>“>” or “easeOut” or “ease-out”</li>
+	     #     <li>“&lt;>” or “easeInOut” or “ease-in-out”</li>
+	     #     <li>“backIn” or “back-in”</li>
+	     #     <li>“backOut” or “back-out”</li>
+	     #     <li>“elastic”</li>
+	     #     <li>“bounce”</li>
+	     # </ul>
+	     # <p>See also <a href="http://raphaeljs.com/easing.html">Easing demo</a>.</p>
+	    \*/
+	    var ef = R.easing_formulas = {
+	        linear: function (n) {
+	            return n;
+	        },
+	        "<": function (n) {
+	            return pow(n, 1.7);
+	        },
+	        ">": function (n) {
+	            return pow(n, .48);
+	        },
+	        "<>": function (n) {
+	            var q = .48 - n / 1.04,
+	                Q = math.sqrt(.1734 + q * q),
+	                x = Q - q,
+	                X = pow(abs(x), 1 / 3) * (x < 0 ? -1 : 1),
+	                y = -Q - q,
+	                Y = pow(abs(y), 1 / 3) * (y < 0 ? -1 : 1),
+	                t = X + Y + .5;
+	            return (1 - t) * 3 * t * t + t * t * t;
+	        },
+	        backIn: function (n) {
+	            var s = 1.70158;
+	            return n * n * ((s + 1) * n - s);
+	        },
+	        backOut: function (n) {
+	            n = n - 1;
+	            var s = 1.70158;
+	            return n * n * ((s + 1) * n + s) + 1;
+	        },
+	        elastic: function (n) {
+	            if (n == !!n) {
+	                return n;
+	            }
+	            return pow(2, -10 * n) * math.sin((n - .075) * (2 * PI) / .3) + 1;
+	        },
+	        bounce: function (n) {
+	            var s = 7.5625,
+	                p = 2.75,
+	                l;
+	            if (n < (1 / p)) {
+	                l = s * n * n;
+	            } else {
+	                if (n < (2 / p)) {
+	                    n -= (1.5 / p);
+	                    l = s * n * n + .75;
+	                } else {
+	                    if (n < (2.5 / p)) {
+	                        n -= (2.25 / p);
+	                        l = s * n * n + .9375;
+	                    } else {
+	                        n -= (2.625 / p);
+	                        l = s * n * n + .984375;
+	                    }
+	                }
+	            }
+	            return l;
+	        }
+	    };
+	    ef.easeIn = ef["ease-in"] = ef["<"];
+	    ef.easeOut = ef["ease-out"] = ef[">"];
+	    ef.easeInOut = ef["ease-in-out"] = ef["<>"];
+	    ef["back-in"] = ef.backIn;
+	    ef["back-out"] = ef.backOut;
+
+	    var animationElements = [],
+	        requestAnimFrame = window.requestAnimationFrame       ||
+	                           window.webkitRequestAnimationFrame ||
+	                           window.mozRequestAnimationFrame    ||
+	                           window.oRequestAnimationFrame      ||
+	                           window.msRequestAnimationFrame     ||
+	                           function (callback) {
+	                               setTimeout(callback, 16);
+	                           },
+	        animation = function () {
+	            var Now = +new Date,
+	                l = 0;
+	            for (; l < animationElements.length; l++) {
+	                var e = animationElements[l];
+	                if (e.el.removed || e.paused) {
+	                    continue;
+	                }
+	                var time = Now - e.start,
+	                    ms = e.ms,
+	                    easing = e.easing,
+	                    from = e.from,
+	                    diff = e.diff,
+	                    to = e.to,
+	                    t = e.t,
+	                    that = e.el,
+	                    set = {},
+	                    now,
+	                    init = {},
+	                    key;
+	                if (e.initstatus) {
+	                    time = (e.initstatus * e.anim.top - e.prev) / (e.percent - e.prev) * ms;
+	                    e.status = e.initstatus;
+	                    delete e.initstatus;
+	                    e.stop && animationElements.splice(l--, 1);
+	                } else {
+	                    e.status = (e.prev + (e.percent - e.prev) * (time / ms)) / e.anim.top;
+	                }
+	                if (time < 0) {
+	                    continue;
+	                }
+	                if (time < ms) {
+	                    var pos = easing(time / ms);
+	                    for (var attr in from) if (from[has](attr)) {
+	                        switch (availableAnimAttrs[attr]) {
+	                            case nu:
+	                                now = +from[attr] + pos * ms * diff[attr];
+	                                break;
+	                            case "colour":
+	                                now = "rgb(" + [
+	                                    upto255(round(from[attr].r + pos * ms * diff[attr].r)),
+	                                    upto255(round(from[attr].g + pos * ms * diff[attr].g)),
+	                                    upto255(round(from[attr].b + pos * ms * diff[attr].b))
+	                                ].join(",") + ")";
+	                                break;
+	                            case "path":
+	                                now = [];
+	                                for (var i = 0, ii = from[attr].length; i < ii; i++) {
+	                                    now[i] = [from[attr][i][0]];
+	                                    for (var j = 1, jj = from[attr][i].length; j < jj; j++) {
+	                                        now[i][j] = +from[attr][i][j] + pos * ms * diff[attr][i][j];
+	                                    }
+	                                    now[i] = now[i].join(S);
+	                                }
+	                                now = now.join(S);
+	                                break;
+	                            case "transform":
+	                                if (diff[attr].real) {
+	                                    now = [];
+	                                    for (i = 0, ii = from[attr].length; i < ii; i++) {
+	                                        now[i] = [from[attr][i][0]];
+	                                        for (j = 1, jj = from[attr][i].length; j < jj; j++) {
+	                                            now[i][j] = from[attr][i][j] + pos * ms * diff[attr][i][j];
+	                                        }
+	                                    }
+	                                } else {
+	                                    var get = function (i) {
+	                                        return +from[attr][i] + pos * ms * diff[attr][i];
+	                                    };
+	                                    // now = [["r", get(2), 0, 0], ["t", get(3), get(4)], ["s", get(0), get(1), 0, 0]];
+	                                    now = [["m", get(0), get(1), get(2), get(3), get(4), get(5)]];
+	                                }
+	                                break;
+	                            case "csv":
+	                                if (attr == "clip-rect") {
+	                                    now = [];
+	                                    i = 4;
+	                                    while (i--) {
+	                                        now[i] = +from[attr][i] + pos * ms * diff[attr][i];
+	                                    }
+	                                }
+	                                break;
+	                            default:
+	                                var from2 = [][concat](from[attr]);
+	                                now = [];
+	                                i = that.paper.customAttributes[attr].length;
+	                                while (i--) {
+	                                    now[i] = +from2[i] + pos * ms * diff[attr][i];
+	                                }
+	                                break;
+	                        }
+	                        set[attr] = now;
+	                    }
+	                    that.attr(set);
+	                    (function (id, that, anim) {
+	                        setTimeout(function () {
+	                            eve("raphael.anim.frame." + id, that, anim);
+	                        });
+	                    })(that.id, that, e.anim);
+	                } else {
+	                    (function(f, el, a) {
+	                        setTimeout(function() {
+	                            eve("raphael.anim.frame." + el.id, el, a);
+	                            eve("raphael.anim.finish." + el.id, el, a);
+	                            R.is(f, "function") && f.call(el);
+	                        });
+	                    })(e.callback, that, e.anim);
+	                    that.attr(to);
+	                    animationElements.splice(l--, 1);
+	                    if (e.repeat > 1 && !e.next) {
+	                        for (key in to) if (to[has](key)) {
+	                            init[key] = e.totalOrigin[key];
+	                        }
+	                        e.el.attr(init);
+	                        runAnimation(e.anim, e.el, e.anim.percents[0], null, e.totalOrigin, e.repeat - 1);
+	                    }
+	                    if (e.next && !e.stop) {
+	                        runAnimation(e.anim, e.el, e.next, null, e.totalOrigin, e.repeat);
+	                    }
+	                }
+	            }
+	            animationElements.length && requestAnimFrame(animation);
+	        },
+	        upto255 = function (color) {
+	            return color > 255 ? 255 : color < 0 ? 0 : color;
+	        };
+	    /*\
+	     * Element.animateWith
+	     [ method ]
+	     **
+	     * Acts similar to @Element.animate, but ensure that given animation runs in sync with another given element.
+	     **
+	     > Parameters
+	     **
+	     - el (object) element to sync with
+	     - anim (object) animation to sync with
+	     - params (object) #optional final attributes for the element, see also @Element.attr
+	     - ms (number) #optional number of milliseconds for animation to run
+	     - easing (string) #optional easing type. Accept on of @Raphael.easing_formulas or CSS format: `cubic&#x2010;bezier(XX,&#160;XX,&#160;XX,&#160;XX)`
+	     - callback (function) #optional callback function. Will be called at the end of animation.
+	     * or
+	     - element (object) element to sync with
+	     - anim (object) animation to sync with
+	     - animation (object) #optional animation object, see @Raphael.animation
+	     **
+	     = (object) original element
+	    \*/
+	    elproto.animateWith = function (el, anim, params, ms, easing, callback) {
+	        var element = this;
+	        if (element.removed) {
+	            callback && callback.call(element);
+	            return element;
+	        }
+	        var a = params instanceof Animation ? params : R.animation(params, ms, easing, callback),
+	            x, y;
+	        runAnimation(a, element, a.percents[0], null, element.attr());
+	        for (var i = 0, ii = animationElements.length; i < ii; i++) {
+	            if (animationElements[i].anim == anim && animationElements[i].el == el) {
+	                animationElements[ii - 1].start = animationElements[i].start;
+	                break;
+	            }
+	        }
+	        return element;
+	        //
+	        //
+	        // var a = params ? R.animation(params, ms, easing, callback) : anim,
+	        //     status = element.status(anim);
+	        // return this.animate(a).status(a, status * anim.ms / a.ms);
+	    };
+	    function CubicBezierAtTime(t, p1x, p1y, p2x, p2y, duration) {
+	        var cx = 3 * p1x,
+	            bx = 3 * (p2x - p1x) - cx,
+	            ax = 1 - cx - bx,
+	            cy = 3 * p1y,
+	            by = 3 * (p2y - p1y) - cy,
+	            ay = 1 - cy - by;
+	        function sampleCurveX(t) {
+	            return ((ax * t + bx) * t + cx) * t;
+	        }
+	        function solve(x, epsilon) {
+	            var t = solveCurveX(x, epsilon);
+	            return ((ay * t + by) * t + cy) * t;
+	        }
+	        function solveCurveX(x, epsilon) {
+	            var t0, t1, t2, x2, d2, i;
+	            for(t2 = x, i = 0; i < 8; i++) {
+	                x2 = sampleCurveX(t2) - x;
+	                if (abs(x2) < epsilon) {
+	                    return t2;
+	                }
+	                d2 = (3 * ax * t2 + 2 * bx) * t2 + cx;
+	                if (abs(d2) < 1e-6) {
+	                    break;
+	                }
+	                t2 = t2 - x2 / d2;
+	            }
+	            t0 = 0;
+	            t1 = 1;
+	            t2 = x;
+	            if (t2 < t0) {
+	                return t0;
+	            }
+	            if (t2 > t1) {
+	                return t1;
+	            }
+	            while (t0 < t1) {
+	                x2 = sampleCurveX(t2);
+	                if (abs(x2 - x) < epsilon) {
+	                    return t2;
+	                }
+	                if (x > x2) {
+	                    t0 = t2;
+	                } else {
+	                    t1 = t2;
+	                }
+	                t2 = (t1 - t0) / 2 + t0;
+	            }
+	            return t2;
+	        }
+	        return solve(t, 1 / (200 * duration));
+	    }
+	    elproto.onAnimation = function (f) {
+	        f ? eve.on("raphael.anim.frame." + this.id, f) : eve.unbind("raphael.anim.frame." + this.id);
+	        return this;
+	    };
+	    function Animation(anim, ms) {
+	        var percents = [],
+	            newAnim = {};
+	        this.ms = ms;
+	        this.times = 1;
+	        if (anim) {
+	            for (var attr in anim) if (anim[has](attr)) {
+	                newAnim[toFloat(attr)] = anim[attr];
+	                percents.push(toFloat(attr));
+	            }
+	            percents.sort(sortByNumber);
+	        }
+	        this.anim = newAnim;
+	        this.top = percents[percents.length - 1];
+	        this.percents = percents;
+	    }
+	    /*\
+	     * Animation.delay
+	     [ method ]
+	     **
+	     * Creates a copy of existing animation object with given delay.
+	     **
+	     > Parameters
+	     **
+	     - delay (number) number of ms to pass between animation start and actual animation
+	     **
+	     = (object) new altered Animation object
+	     | var anim = Raphael.animation({cx: 10, cy: 20}, 2e3);
+	     | circle1.animate(anim); // run the given animation immediately
+	     | circle2.animate(anim.delay(500)); // run the given animation after 500 ms
+	    \*/
+	    Animation.prototype.delay = function (delay) {
+	        var a = new Animation(this.anim, this.ms);
+	        a.times = this.times;
+	        a.del = +delay || 0;
+	        return a;
+	    };
+	    /*\
+	     * Animation.repeat
+	     [ method ]
+	     **
+	     * Creates a copy of existing animation object with given repetition.
+	     **
+	     > Parameters
+	     **
+	     - repeat (number) number iterations of animation. For infinite animation pass `Infinity`
+	     **
+	     = (object) new altered Animation object
+	    \*/
+	    Animation.prototype.repeat = function (times) {
+	        var a = new Animation(this.anim, this.ms);
+	        a.del = this.del;
+	        a.times = math.floor(mmax(times, 0)) || 1;
+	        return a;
+	    };
+	    function runAnimation(anim, element, percent, status, totalOrigin, times) {
+	        percent = toFloat(percent);
+	        var params,
+	            isInAnim,
+	            isInAnimSet,
+	            percents = [],
+	            next,
+	            prev,
+	            timestamp,
+	            ms = anim.ms,
+	            from = {},
+	            to = {},
+	            diff = {};
+	        if (status) {
+	            for (i = 0, ii = animationElements.length; i < ii; i++) {
+	                var e = animationElements[i];
+	                if (e.el.id == element.id && e.anim == anim) {
+	                    if (e.percent != percent) {
+	                        animationElements.splice(i, 1);
+	                        isInAnimSet = 1;
+	                    } else {
+	                        isInAnim = e;
+	                    }
+	                    element.attr(e.totalOrigin);
+	                    break;
+	                }
+	            }
+	        } else {
+	            status = +to; // NaN
+	        }
+	        for (var i = 0, ii = anim.percents.length; i < ii; i++) {
+	            if (anim.percents[i] == percent || anim.percents[i] > status * anim.top) {
+	                percent = anim.percents[i];
+	                prev = anim.percents[i - 1] || 0;
+	                ms = ms / anim.top * (percent - prev);
+	                next = anim.percents[i + 1];
+	                params = anim.anim[percent];
+	                break;
+	            } else if (status) {
+	                element.attr(anim.anim[anim.percents[i]]);
+	            }
+	        }
+	        if (!params) {
+	            return;
+	        }
+	        if (!isInAnim) {
+	            for (var attr in params) if (params[has](attr)) {
+	                if (availableAnimAttrs[has](attr) || element.paper.customAttributes[has](attr)) {
+	                    from[attr] = element.attr(attr);
+	                    (from[attr] == null) && (from[attr] = availableAttrs[attr]);
+	                    to[attr] = params[attr];
+	                    switch (availableAnimAttrs[attr]) {
+	                        case nu:
+	                            diff[attr] = (to[attr] - from[attr]) / ms;
+	                            break;
+	                        case "colour":
+	                            from[attr] = R.getRGB(from[attr]);
+	                            var toColour = R.getRGB(to[attr]);
+	                            diff[attr] = {
+	                                r: (toColour.r - from[attr].r) / ms,
+	                                g: (toColour.g - from[attr].g) / ms,
+	                                b: (toColour.b - from[attr].b) / ms
+	                            };
+	                            break;
+	                        case "path":
+	                            var pathes = path2curve(from[attr], to[attr]),
+	                                toPath = pathes[1];
+	                            from[attr] = pathes[0];
+	                            diff[attr] = [];
+	                            for (i = 0, ii = from[attr].length; i < ii; i++) {
+	                                diff[attr][i] = [0];
+	                                for (var j = 1, jj = from[attr][i].length; j < jj; j++) {
+	                                    diff[attr][i][j] = (toPath[i][j] - from[attr][i][j]) / ms;
+	                                }
+	                            }
+	                            break;
+	                        case "transform":
+	                            var _ = element._,
+	                                eq = equaliseTransform(_[attr], to[attr]);
+	                            if (eq) {
+	                                from[attr] = eq.from;
+	                                to[attr] = eq.to;
+	                                diff[attr] = [];
+	                                diff[attr].real = true;
+	                                for (i = 0, ii = from[attr].length; i < ii; i++) {
+	                                    diff[attr][i] = [from[attr][i][0]];
+	                                    for (j = 1, jj = from[attr][i].length; j < jj; j++) {
+	                                        diff[attr][i][j] = (to[attr][i][j] - from[attr][i][j]) / ms;
+	                                    }
+	                                }
+	                            } else {
+	                                var m = (element.matrix || new Matrix),
+	                                    to2 = {
+	                                        _: {transform: _.transform},
+	                                        getBBox: function () {
+	                                            return element.getBBox(1);
+	                                        }
+	                                    };
+	                                from[attr] = [
+	                                    m.a,
+	                                    m.b,
+	                                    m.c,
+	                                    m.d,
+	                                    m.e,
+	                                    m.f
+	                                ];
+	                                extractTransform(to2, to[attr]);
+	                                to[attr] = to2._.transform;
+	                                diff[attr] = [
+	                                    (to2.matrix.a - m.a) / ms,
+	                                    (to2.matrix.b - m.b) / ms,
+	                                    (to2.matrix.c - m.c) / ms,
+	                                    (to2.matrix.d - m.d) / ms,
+	                                    (to2.matrix.e - m.e) / ms,
+	                                    (to2.matrix.f - m.f) / ms
+	                                ];
+	                                // from[attr] = [_.sx, _.sy, _.deg, _.dx, _.dy];
+	                                // var to2 = {_:{}, getBBox: function () { return element.getBBox(); }};
+	                                // extractTransform(to2, to[attr]);
+	                                // diff[attr] = [
+	                                //     (to2._.sx - _.sx) / ms,
+	                                //     (to2._.sy - _.sy) / ms,
+	                                //     (to2._.deg - _.deg) / ms,
+	                                //     (to2._.dx - _.dx) / ms,
+	                                //     (to2._.dy - _.dy) / ms
+	                                // ];
+	                            }
+	                            break;
+	                        case "csv":
+	                            var values = Str(params[attr])[split](separator),
+	                                from2 = Str(from[attr])[split](separator);
+	                            if (attr == "clip-rect") {
+	                                from[attr] = from2;
+	                                diff[attr] = [];
+	                                i = from2.length;
+	                                while (i--) {
+	                                    diff[attr][i] = (values[i] - from[attr][i]) / ms;
+	                                }
+	                            }
+	                            to[attr] = values;
+	                            break;
+	                        default:
+	                            values = [][concat](params[attr]);
+	                            from2 = [][concat](from[attr]);
+	                            diff[attr] = [];
+	                            i = element.paper.customAttributes[attr].length;
+	                            while (i--) {
+	                                diff[attr][i] = ((values[i] || 0) - (from2[i] || 0)) / ms;
+	                            }
+	                            break;
+	                    }
+	                }
+	            }
+	            var easing = params.easing,
+	                easyeasy = R.easing_formulas[easing];
+	            if (!easyeasy) {
+	                easyeasy = Str(easing).match(bezierrg);
+	                if (easyeasy && easyeasy.length == 5) {
+	                    var curve = easyeasy;
+	                    easyeasy = function (t) {
+	                        return CubicBezierAtTime(t, +curve[1], +curve[2], +curve[3], +curve[4], ms);
+	                    };
+	                } else {
+	                    easyeasy = pipe;
+	                }
+	            }
+	            timestamp = params.start || anim.start || +new Date;
+	            e = {
+	                anim: anim,
+	                percent: percent,
+	                timestamp: timestamp,
+	                start: timestamp + (anim.del || 0),
+	                status: 0,
+	                initstatus: status || 0,
+	                stop: false,
+	                ms: ms,
+	                easing: easyeasy,
+	                from: from,
+	                diff: diff,
+	                to: to,
+	                el: element,
+	                callback: params.callback,
+	                prev: prev,
+	                next: next,
+	                repeat: times || anim.times,
+	                origin: element.attr(),
+	                totalOrigin: totalOrigin
+	            };
+	            animationElements.push(e);
+	            if (status && !isInAnim && !isInAnimSet) {
+	                e.stop = true;
+	                e.start = new Date - ms * status;
+	                if (animationElements.length == 1) {
+	                    return animation();
+	                }
+	            }
+	            if (isInAnimSet) {
+	                e.start = new Date - e.ms * status;
+	            }
+	            animationElements.length == 1 && requestAnimFrame(animation);
+	        } else {
+	            isInAnim.initstatus = status;
+	            isInAnim.start = new Date - isInAnim.ms * status;
+	        }
+	        eve("raphael.anim.start." + element.id, element, anim);
+	    }
+	    /*\
+	     * Raphael.animation
+	     [ method ]
+	     **
+	     * Creates an animation object that can be passed to the @Element.animate or @Element.animateWith methods.
+	     * See also @Animation.delay and @Animation.repeat methods.
+	     **
+	     > Parameters
+	     **
+	     - params (object) final attributes for the element, see also @Element.attr
+	     - ms (number) number of milliseconds for animation to run
+	     - easing (string) #optional easing type. Accept one of @Raphael.easing_formulas or CSS format: `cubic&#x2010;bezier(XX,&#160;XX,&#160;XX,&#160;XX)`
+	     - callback (function) #optional callback function. Will be called at the end of animation.
+	     **
+	     = (object) @Animation
+	    \*/
+	    R.animation = function (params, ms, easing, callback) {
+	        if (params instanceof Animation) {
+	            return params;
+	        }
+	        if (R.is(easing, "function") || !easing) {
+	            callback = callback || easing || null;
+	            easing = null;
+	        }
+	        params = Object(params);
+	        ms = +ms || 0;
+	        var p = {},
+	            json,
+	            attr;
+	        for (attr in params) if (params[has](attr) && toFloat(attr) != attr && toFloat(attr) + "%" != attr) {
+	            json = true;
+	            p[attr] = params[attr];
+	        }
+	        if (!json) {
+	            // if percent-like syntax is used and end-of-all animation callback used
+	            if(callback){
+	                // find the last one
+	                var lastKey = 0;
+	                for(var i in params){
+	                    var percent = toInt(i);
+	                    if(params[has](i) && percent > lastKey){
+	                        lastKey = percent;
+	                    }
+	                }
+	                lastKey += '%';
+	                // if already defined callback in the last keyframe, skip
+	                !params[lastKey].callback && (params[lastKey].callback = callback);
+	            }
+	          return new Animation(params, ms);
+	        } else {
+	            easing && (p.easing = easing);
+	            callback && (p.callback = callback);
+	            return new Animation({100: p}, ms);
+	        }
+	    };
+	    /*\
+	     * Element.animate
+	     [ method ]
+	     **
+	     * Creates and starts animation for given element.
+	     **
+	     > Parameters
+	     **
+	     - params (object) final attributes for the element, see also @Element.attr
+	     - ms (number) number of milliseconds for animation to run
+	     - easing (string) #optional easing type. Accept one of @Raphael.easing_formulas or CSS format: `cubic&#x2010;bezier(XX,&#160;XX,&#160;XX,&#160;XX)`
+	     - callback (function) #optional callback function. Will be called at the end of animation.
+	     * or
+	     - animation (object) animation object, see @Raphael.animation
+	     **
+	     = (object) original element
+	    \*/
+	    elproto.animate = function (params, ms, easing, callback) {
+	        var element = this;
+	        if (element.removed) {
+	            callback && callback.call(element);
+	            return element;
+	        }
+	        var anim = params instanceof Animation ? params : R.animation(params, ms, easing, callback);
+	        runAnimation(anim, element, anim.percents[0], null, element.attr());
+	        return element;
+	    };
+	    /*\
+	     * Element.setTime
+	     [ method ]
+	     **
+	     * Sets the status of animation of the element in milliseconds. Similar to @Element.status method.
+	     **
+	     > Parameters
+	     **
+	     - anim (object) animation object
+	     - value (number) number of milliseconds from the beginning of the animation
+	     **
+	     = (object) original element if `value` is specified
+	     * Note, that during animation following events are triggered:
+	     *
+	     * On each animation frame event `anim.frame.<id>`, on start `anim.start.<id>` and on end `anim.finish.<id>`.
+	    \*/
+	    elproto.setTime = function (anim, value) {
+	        if (anim && value != null) {
+	            this.status(anim, mmin(value, anim.ms) / anim.ms);
+	        }
+	        return this;
+	    };
+	    /*\
+	     * Element.status
+	     [ method ]
+	     **
+	     * Gets or sets the status of animation of the element.
+	     **
+	     > Parameters
+	     **
+	     - anim (object) #optional animation object
+	     - value (number) #optional 0 – 1. If specified, method works like a setter and sets the status of a given animation to the value. This will cause animation to jump to the given position.
+	     **
+	     = (number) status
+	     * or
+	     = (array) status if `anim` is not specified. Array of objects in format:
+	     o {
+	     o     anim: (object) animation object
+	     o     status: (number) status
+	     o }
+	     * or
+	     = (object) original element if `value` is specified
+	    \*/
+	    elproto.status = function (anim, value) {
+	        var out = [],
+	            i = 0,
+	            len,
+	            e;
+	        if (value != null) {
+	            runAnimation(anim, this, -1, mmin(value, 1));
+	            return this;
+	        } else {
+	            len = animationElements.length;
+	            for (; i < len; i++) {
+	                e = animationElements[i];
+	                if (e.el.id == this.id && (!anim || e.anim == anim)) {
+	                    if (anim) {
+	                        return e.status;
+	                    }
+	                    out.push({
+	                        anim: e.anim,
+	                        status: e.status
+	                    });
+	                }
+	            }
+	            if (anim) {
+	                return 0;
+	            }
+	            return out;
+	        }
+	    };
+	    /*\
+	     * Element.pause
+	     [ method ]
+	     **
+	     * Stops animation of the element with ability to resume it later on.
+	     **
+	     > Parameters
+	     **
+	     - anim (object) #optional animation object
+	     **
+	     = (object) original element
+	    \*/
+	    elproto.pause = function (anim) {
+	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+	            if (eve("raphael.anim.pause." + this.id, this, animationElements[i].anim) !== false) {
+	                animationElements[i].paused = true;
+	            }
+	        }
+	        return this;
+	    };
+	    /*\
+	     * Element.resume
+	     [ method ]
+	     **
+	     * Resumes animation if it was paused with @Element.pause method.
+	     **
+	     > Parameters
+	     **
+	     - anim (object) #optional animation object
+	     **
+	     = (object) original element
+	    \*/
+	    elproto.resume = function (anim) {
+	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+	            var e = animationElements[i];
+	            if (eve("raphael.anim.resume." + this.id, this, e.anim) !== false) {
+	                delete e.paused;
+	                this.status(e.anim, e.status);
+	            }
+	        }
+	        return this;
+	    };
+	    /*\
+	     * Element.stop
+	     [ method ]
+	     **
+	     * Stops animation of the element.
+	     **
+	     > Parameters
+	     **
+	     - anim (object) #optional animation object
+	     **
+	     = (object) original element
+	    \*/
+	    elproto.stop = function (anim) {
+	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+	            if (eve("raphael.anim.stop." + this.id, this, animationElements[i].anim) !== false) {
+	                animationElements.splice(i--, 1);
+	            }
+	        }
+	        return this;
+	    };
+	    function stopAnimation(paper) {
+	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.paper == paper) {
+	            animationElements.splice(i--, 1);
+	        }
+	    }
+	    eve.on("raphael.remove", stopAnimation);
+	    eve.on("raphael.clear", stopAnimation);
+	    elproto.toString = function () {
+	        return "Rapha\xebl\u2019s object";
+	    };
+
+	    // Set
+	    var Set = function (items) {
+	        this.items = [];
+	        this.length = 0;
+	        this.type = "set";
+	        if (items) {
+	            for (var i = 0, ii = items.length; i < ii; i++) {
+	                if (items[i] && (items[i].constructor == elproto.constructor || items[i].constructor == Set)) {
+	                    this[this.items.length] = this.items[this.items.length] = items[i];
+	                    this.length++;
+	                }
+	            }
+	        }
+	    },
+	    setproto = Set.prototype;
+	    /*\
+	     * Set.push
+	     [ method ]
+	     **
+	     * Adds each argument to the current set.
+	     = (object) original element
+	    \*/
+	    setproto.push = function () {
+	        var item,
+	            len;
+	        for (var i = 0, ii = arguments.length; i < ii; i++) {
+	            item = arguments[i];
+	            if (item && (item.constructor == elproto.constructor || item.constructor == Set)) {
+	                len = this.items.length;
+	                this[len] = this.items[len] = item;
+	                this.length++;
+	            }
+	        }
+	        return this;
+	    };
+	    /*\
+	     * Set.pop
+	     [ method ]
+	     **
+	     * Removes last element and returns it.
+	     = (object) element
+	    \*/
+	    setproto.pop = function () {
+	        this.length && delete this[this.length--];
+	        return this.items.pop();
+	    };
+	    /*\
+	     * Set.forEach
+	     [ method ]
+	     **
+	     * Executes given function for each element in the set.
+	     *
+	     * If function returns `false` it will stop loop running.
+	     **
+	     > Parameters
+	     **
+	     - callback (function) function to run
+	     - thisArg (object) context object for the callback
+	     = (object) Set object
+	    \*/
+	    setproto.forEach = function (callback, thisArg) {
+	        for (var i = 0, ii = this.items.length; i < ii; i++) {
+	            if (callback.call(thisArg, this.items[i], i) === false) {
+	                return this;
+	            }
+	        }
+	        return this;
+	    };
+	    for (var method in elproto) if (elproto[has](method)) {
+	        setproto[method] = (function (methodname) {
+	            return function () {
+	                var arg = arguments;
+	                return this.forEach(function (el) {
+	                    el[methodname][apply](el, arg);
+	                });
+	            };
+	        })(method);
+	    }
+	    setproto.attr = function (name, value) {
+	        if (name && R.is(name, array) && R.is(name[0], "object")) {
+	            for (var j = 0, jj = name.length; j < jj; j++) {
+	                this.items[j].attr(name[j]);
+	            }
+	        } else {
+	            for (var i = 0, ii = this.items.length; i < ii; i++) {
+	                this.items[i].attr(name, value);
+	            }
+	        }
+	        return this;
+	    };
+	    /*\
+	     * Set.clear
+	     [ method ]
+	     **
+	     * Removes all elements from the set
+	    \*/
+	    setproto.clear = function () {
+	        while (this.length) {
+	            this.pop();
+	        }
+	    };
+	    /*\
+	     * Set.splice
+	     [ method ]
+	     **
+	     * Removes given element from the set
+	     **
+	     > Parameters
+	     **
+	     - index (number) position of the deletion
+	     - count (number) number of element to remove
+	     - insertion… (object) #optional elements to insert
+	     = (object) set elements that were deleted
+	    \*/
+	    setproto.splice = function (index, count, insertion) {
+	        index = index < 0 ? mmax(this.length + index, 0) : index;
+	        count = mmax(0, mmin(this.length - index, count));
+	        var tail = [],
+	            todel = [],
+	            args = [],
+	            i;
+	        for (i = 2; i < arguments.length; i++) {
+	            args.push(arguments[i]);
+	        }
+	        for (i = 0; i < count; i++) {
+	            todel.push(this[index + i]);
+	        }
+	        for (; i < this.length - index; i++) {
+	            tail.push(this[index + i]);
+	        }
+	        var arglen = args.length;
+	        for (i = 0; i < arglen + tail.length; i++) {
+	            this.items[index + i] = this[index + i] = i < arglen ? args[i] : tail[i - arglen];
+	        }
+	        i = this.items.length = this.length -= count - arglen;
+	        while (this[i]) {
+	            delete this[i++];
+	        }
+	        return new Set(todel);
+	    };
+	    /*\
+	     * Set.exclude
+	     [ method ]
+	     **
+	     * Removes given element from the set
+	     **
+	     > Parameters
+	     **
+	     - element (object) element to remove
+	     = (boolean) `true` if object was found & removed from the set
+	    \*/
+	    setproto.exclude = function (el) {
+	        for (var i = 0, ii = this.length; i < ii; i++) if (this[i] == el) {
+	            this.splice(i, 1);
+	            return true;
+	        }
+	    };
+	    setproto.animate = function (params, ms, easing, callback) {
+	        (R.is(easing, "function") || !easing) && (callback = easing || null);
+	        var len = this.items.length,
+	            i = len,
+	            item,
+	            set = this,
+	            collector;
+	        if (!len) {
+	            return this;
+	        }
+	        callback && (collector = function () {
+	            !--len && callback.call(set);
+	        });
+	        easing = R.is(easing, string) ? easing : collector;
+	        var anim = R.animation(params, ms, easing, collector);
+	        item = this.items[--i].animate(anim);
+	        while (i--) {
+	            this.items[i] && !this.items[i].removed && this.items[i].animateWith(item, anim, anim);
+	            (this.items[i] && !this.items[i].removed) || len--;
+	        }
+	        return this;
+	    };
+	    setproto.insertAfter = function (el) {
+	        var i = this.items.length;
+	        while (i--) {
+	            this.items[i].insertAfter(el);
+	        }
+	        return this;
+	    };
+	    setproto.getBBox = function () {
+	        var x = [],
+	            y = [],
+	            x2 = [],
+	            y2 = [];
+	        for (var i = this.items.length; i--;) if (!this.items[i].removed) {
+	            var box = this.items[i].getBBox();
+	            x.push(box.x);
+	            y.push(box.y);
+	            x2.push(box.x + box.width);
+	            y2.push(box.y + box.height);
+	        }
+	        x = mmin[apply](0, x);
+	        y = mmin[apply](0, y);
+	        x2 = mmax[apply](0, x2);
+	        y2 = mmax[apply](0, y2);
+	        return {
+	            x: x,
+	            y: y,
+	            x2: x2,
+	            y2: y2,
+	            width: x2 - x,
+	            height: y2 - y
+	        };
+	    };
+	    setproto.clone = function (s) {
+	        s = this.paper.set();
+	        for (var i = 0, ii = this.items.length; i < ii; i++) {
+	            s.push(this.items[i].clone());
+	        }
+	        return s;
+	    };
+	    setproto.toString = function () {
+	        return "Rapha\xebl\u2018s set";
+	    };
+
+	    setproto.glow = function(glowConfig) {
+	        var ret = this.paper.set();
+	        this.forEach(function(shape, index){
+	            var g = shape.glow(glowConfig);
+	            if(g != null){
+	                g.forEach(function(shape2, index2){
+	                    ret.push(shape2);
+	                });
+	            }
+	        });
+	        return ret;
+	    };
+
+
+	    /*\
+	     * Set.isPointInside
+	     [ method ]
+	     **
+	     * Determine if given point is inside this set’s elements
+	     **
+	     > Parameters
+	     **
+	     - x (number) x coordinate of the point
+	     - y (number) y coordinate of the point
+	     = (boolean) `true` if point is inside any of the set's elements
+	     \*/
+	    setproto.isPointInside = function (x, y) {
+	        var isPointInside = false;
+	        this.forEach(function (el) {
+	            if (el.isPointInside(x, y)) {
+	                isPointInside = true;
+	                return false; // stop loop
+	            }
+	        });
+	        return isPointInside;
+	    };
+
+	    /*\
+	     * Raphael.registerFont
+	     [ method ]
+	     **
+	     * Adds given font to the registered set of fonts for Raphaël. Should be used as an internal call from within Cufón’s font file.
+	     * Returns original parameter, so it could be used with chaining.
+	     # <a href="http://wiki.github.com/sorccu/cufon/about">More about Cufón and how to convert your font form TTF, OTF, etc to JavaScript file.</a>
+	     **
+	     > Parameters
+	     **
+	     - font (object) the font to register
+	     = (object) the font you passed in
+	     > Usage
+	     | Cufon.registerFont(Raphael.registerFont({…}));
+	    \*/
+	    R.registerFont = function (font) {
+	        if (!font.face) {
+	            return font;
+	        }
+	        this.fonts = this.fonts || {};
+	        var fontcopy = {
+	                w: font.w,
+	                face: {},
+	                glyphs: {}
+	            },
+	            family = font.face["font-family"];
+	        for (var prop in font.face) if (font.face[has](prop)) {
+	            fontcopy.face[prop] = font.face[prop];
+	        }
+	        if (this.fonts[family]) {
+	            this.fonts[family].push(fontcopy);
+	        } else {
+	            this.fonts[family] = [fontcopy];
+	        }
+	        if (!font.svg) {
+	            fontcopy.face["units-per-em"] = toInt(font.face["units-per-em"], 10);
+	            for (var glyph in font.glyphs) if (font.glyphs[has](glyph)) {
+	                var path = font.glyphs[glyph];
+	                fontcopy.glyphs[glyph] = {
+	                    w: path.w,
+	                    k: {},
+	                    d: path.d && "M" + path.d.replace(/[mlcxtrv]/g, function (command) {
+	                            return {l: "L", c: "C", x: "z", t: "m", r: "l", v: "c"}[command] || "M";
+	                        }) + "z"
+	                };
+	                if (path.k) {
+	                    for (var k in path.k) if (path[has](k)) {
+	                        fontcopy.glyphs[glyph].k[k] = path.k[k];
+	                    }
+	                }
+	            }
+	        }
+	        return font;
+	    };
+	    /*\
+	     * Paper.getFont
+	     [ method ]
+	     **
+	     * Finds font object in the registered fonts by given parameters. You could specify only one word from the font name, like “Myriad” for “Myriad Pro”.
+	     **
+	     > Parameters
+	     **
+	     - family (string) font family name or any word from it
+	     - weight (string) #optional font weight
+	     - style (string) #optional font style
+	     - stretch (string) #optional font stretch
+	     = (object) the font object
+	     > Usage
+	     | paper.print(100, 100, "Test string", paper.getFont("Times", 800), 30);
+	    \*/
+	    paperproto.getFont = function (family, weight, style, stretch) {
+	        stretch = stretch || "normal";
+	        style = style || "normal";
+	        weight = +weight || {normal: 400, bold: 700, lighter: 300, bolder: 800}[weight] || 400;
+	        if (!R.fonts) {
+	            return;
+	        }
+	        var font = R.fonts[family];
+	        if (!font) {
+	            var name = new RegExp("(^|\\s)" + family.replace(/[^\w\d\s+!~.:_-]/g, E) + "(\\s|$)", "i");
+	            for (var fontName in R.fonts) if (R.fonts[has](fontName)) {
+	                if (name.test(fontName)) {
+	                    font = R.fonts[fontName];
+	                    break;
+	                }
+	            }
+	        }
+	        var thefont;
+	        if (font) {
+	            for (var i = 0, ii = font.length; i < ii; i++) {
+	                thefont = font[i];
+	                if (thefont.face["font-weight"] == weight && (thefont.face["font-style"] == style || !thefont.face["font-style"]) && thefont.face["font-stretch"] == stretch) {
+	                    break;
+	                }
+	            }
+	        }
+	        return thefont;
+	    };
+	    /*\
+	     * Paper.print
+	     [ method ]
+	     **
+	     * Creates path that represent given text written using given font at given position with given size.
+	     * Result of the method is path element that contains whole text as a separate path.
+	     **
+	     > Parameters
+	     **
+	     - x (number) x position of the text
+	     - y (number) y position of the text
+	     - string (string) text to print
+	     - font (object) font object, see @Paper.getFont
+	     - size (number) #optional size of the font, default is `16`
+	     - origin (string) #optional could be `"baseline"` or `"middle"`, default is `"middle"`
+	     - letter_spacing (number) #optional number in range `-1..1`, default is `0`
+	     - line_spacing (number) #optional number in range `1..3`, default is `1`
+	     = (object) resulting path element, which consist of all letters
+	     > Usage
+	     | var txt = r.print(10, 50, "print", r.getFont("Museo"), 30).attr({fill: "#fff"});
+	    \*/
+	    paperproto.print = function (x, y, string, font, size, origin, letter_spacing, line_spacing) {
+	        origin = origin || "middle"; // baseline|middle
+	        letter_spacing = mmax(mmin(letter_spacing || 0, 1), -1);
+	        line_spacing = mmax(mmin(line_spacing || 1, 3), 1);
+	        var letters = Str(string)[split](E),
+	            shift = 0,
+	            notfirst = 0,
+	            path = E,
+	            scale;
+	        R.is(font, "string") && (font = this.getFont(font));
+	        if (font) {
+	            scale = (size || 16) / font.face["units-per-em"];
+	            var bb = font.face.bbox[split](separator),
+	                top = +bb[0],
+	                lineHeight = bb[3] - bb[1],
+	                shifty = 0,
+	                height = +bb[1] + (origin == "baseline" ? lineHeight + (+font.face.descent) : lineHeight / 2);
+	            for (var i = 0, ii = letters.length; i < ii; i++) {
+	                if (letters[i] == "\n") {
+	                    shift = 0;
+	                    curr = 0;
+	                    notfirst = 0;
+	                    shifty += lineHeight * line_spacing;
+	                } else {
+	                    var prev = notfirst && font.glyphs[letters[i - 1]] || {},
+	                        curr = font.glyphs[letters[i]];
+	                    shift += notfirst ? (prev.w || font.w) + (prev.k && prev.k[letters[i]] || 0) + (font.w * letter_spacing) : 0;
+	                    notfirst = 1;
+	                }
+	                if (curr && curr.d) {
+	                    path += R.transformPath(curr.d, ["t", shift * scale, shifty * scale, "s", scale, scale, top, height, "t", (x - top) / scale, (y - height) / scale]);
+	                }
+	            }
+	        }
+	        return this.path(path).attr({
+	            fill: "#000",
+	            stroke: "none"
+	        });
+	    };
+
+	    /*\
+	     * Paper.add
+	     [ method ]
+	     **
+	     * Imports elements in JSON array in format `{type: type, <attributes>}`
+	     **
+	     > Parameters
+	     **
+	     - json (array)
+	     = (object) resulting set of imported elements
+	     > Usage
+	     | paper.add([
+	     |     {
+	     |         type: "circle",
+	     |         cx: 10,
+	     |         cy: 10,
+	     |         r: 5
+	     |     },
+	     |     {
+	     |         type: "rect",
+	     |         x: 10,
+	     |         y: 10,
+	     |         width: 10,
+	     |         height: 10,
+	     |         fill: "#fc0"
+	     |     }
+	     | ]);
+	    \*/
+	    paperproto.add = function (json) {
+	        if (R.is(json, "array")) {
+	            var res = this.set(),
+	                i = 0,
+	                ii = json.length,
+	                j;
+	            for (; i < ii; i++) {
+	                j = json[i] || {};
+	                elements[has](j.type) && res.push(this[j.type]().attr(j));
+	            }
+	        }
+	        return res;
+	    };
+
+	    /*\
+	     * Raphael.format
+	     [ method ]
+	     **
+	     * Simple format function. Replaces construction of type “`{<number>}`” to the corresponding argument.
+	     **
+	     > Parameters
+	     **
+	     - token (string) string to format
+	     - … (string) rest of arguments will be treated as parameters for replacement
+	     = (string) formated string
+	     > Usage
+	     | var x = 10,
+	     |     y = 20,
+	     |     width = 40,
+	     |     height = 50;
+	     | // this will draw a rectangular shape equivalent to "M10,20h40v50h-40z"
+	     | paper.path(Raphael.format("M{0},{1}h{2}v{3}h{4}z", x, y, width, height, -width));
+	    \*/
+	    R.format = function (token, params) {
+	        var args = R.is(params, array) ? [0][concat](params) : arguments;
+	        token && R.is(token, string) && args.length - 1 && (token = token.replace(formatrg, function (str, i) {
+	            return args[++i] == null ? E : args[i];
+	        }));
+	        return token || E;
+	    };
+	    /*\
+	     * Raphael.fullfill
+	     [ method ]
+	     **
+	     * A little bit more advanced format function than @Raphael.format. Replaces construction of type “`{<name>}`” to the corresponding argument.
+	     **
+	     > Parameters
+	     **
+	     - token (string) string to format
+	     - json (object) object which properties will be used as a replacement
+	     = (string) formated string
+	     > Usage
+	     | // this will draw a rectangular shape equivalent to "M10,20h40v50h-40z"
+	     | paper.path(Raphael.fullfill("M{x},{y}h{dim.width}v{dim.height}h{dim['negative width']}z", {
+	     |     x: 10,
+	     |     y: 20,
+	     |     dim: {
+	     |         width: 40,
+	     |         height: 50,
+	     |         "negative width": -40
+	     |     }
+	     | }));
+	    \*/
+	    R.fullfill = (function () {
+	        var tokenRegex = /\{([^\}]+)\}/g,
+	            objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
+	            replacer = function (all, key, obj) {
+	                var res = obj;
+	                key.replace(objNotationRegex, function (all, name, quote, quotedName, isFunc) {
+	                    name = name || quotedName;
+	                    if (res) {
+	                        if (name in res) {
+	                            res = res[name];
+	                        }
+	                        typeof res == "function" && isFunc && (res = res());
+	                    }
+	                });
+	                res = (res == null || res == obj ? all : res) + "";
+	                return res;
+	            };
+	        return function (str, obj) {
+	            return String(str).replace(tokenRegex, function (all, key) {
+	                return replacer(all, key, obj);
+	            });
+	        };
+	    })();
+	    /*\
+	     * Raphael.ninja
+	     [ method ]
+	     **
+	     * If you want to leave no trace of Raphaël (Well, Raphaël creates only one global variable `Raphael`, but anyway.) You can use `ninja` method.
+	     * Beware, that in this case plugins could stop working, because they are depending on global variable existence.
+	     **
+	     = (object) Raphael object
+	     > Usage
+	     | (function (local_raphael) {
+	     |     var paper = local_raphael(10, 10, 320, 200);
+	     |     …
+	     | })(Raphael.ninja());
+	    \*/
+	    R.ninja = function () {
+	        if (oldRaphael.was) {
+	            g.win.Raphael = oldRaphael.is;
+	        } else {
+	            // IE8 raises an error when deleting window property
+	            window.Raphael = undefined;
+	            try {
+	                delete window.Raphael;
+	            } catch(e) {}
+	        }
+	        return R;
+	    };
+	    /*\
+	     * Raphael.st
+	     [ property (object) ]
+	     **
+	     * You can add your own method to elements and sets. It is wise to add a set method for each element method
+	     * you added, so you will be able to call the same method on sets too.
+	     **
+	     * See also @Raphael.el.
+	     > Usage
+	     | Raphael.el.red = function () {
+	     |     this.attr({fill: "#f00"});
+	     | };
+	     | Raphael.st.red = function () {
+	     |     this.forEach(function (el) {
+	     |         el.red();
+	     |     });
+	     | };
+	     | // then use it
+	     | paper.set(paper.circle(100, 100, 20), paper.circle(110, 100, 20)).red();
+	    \*/
+	    R.st = setproto;
+
+	    eve.on("raphael.DOMload", function () {
+	        loaded = true;
+	    });
+
+	    // Firefox <3.6 fix: http://webreflection.blogspot.com/2009/11/195-chars-to-help-lazy-loading.html
+	    (function (doc, loaded, f) {
+	        if (doc.readyState == null && doc.addEventListener){
+	            doc.addEventListener(loaded, f = function () {
+	                doc.removeEventListener(loaded, f, false);
+	                doc.readyState = "complete";
+	            }, false);
+	            doc.readyState = "loading";
+	        }
+	        function isLoaded() {
+	            (/in/).test(doc.readyState) ? setTimeout(isLoaded, 9) : R.eve("raphael.DOMload");
+	        }
+	        isLoaded();
+	    })(document, "DOMContentLoaded");
+
+	    return R;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
+	// 
+	// Licensed under the Apache License, Version 2.0 (the "License");
+	// you may not use this file except in compliance with the License.
+	// You may obtain a copy of the License at
+	// 
+	// http://www.apache.org/licenses/LICENSE-2.0
+	// 
+	// Unless required by applicable law or agreed to in writing, software
+	// distributed under the License is distributed on an "AS IS" BASIS,
+	// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	// See the License for the specific language governing permissions and
+	// limitations under the License.
+	// ┌────────────────────────────────────────────────────────────┐ \\
+	// │ Eve 0.5.0 - JavaScript Events Library                      │ \\
+	// ├────────────────────────────────────────────────────────────┤ \\
+	// │ Author Dmitry Baranovskiy (http://dmitry.baranovskiy.com/) │ \\
+	// └────────────────────────────────────────────────────────────┘ \\
+
+	(function (glob) {
+	    var version = "0.5.0",
+	        has = "hasOwnProperty",
+	        separator = /[\.\/]/,
+	        comaseparator = /\s*,\s*/,
+	        wildcard = "*",
+	        fun = function () {},
+	        numsort = function (a, b) {
+	            return a - b;
+	        },
+	        current_event,
+	        stop,
+	        events = {n: {}},
+	        firstDefined = function () {
+	            for (var i = 0, ii = this.length; i < ii; i++) {
+	                if (typeof this[i] != "undefined") {
+	                    return this[i];
+	                }
+	            }
+	        },
+	        lastDefined = function () {
+	            var i = this.length;
+	            while (--i) {
+	                if (typeof this[i] != "undefined") {
+	                    return this[i];
+	                }
+	            }
+	        },
+	        objtos = Object.prototype.toString,
+	        Str = String,
+	        isArray = Array.isArray || function (ar) {
+	            return ar instanceof Array || objtos.call(ar) == "[object Array]";
+	        };
+	    /*\
+	     * eve
+	     [ method ]
+
+	     * Fires event with given `name`, given scope and other parameters.
+
+	     > Arguments
+
+	     - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
+	     - scope (object) context for the event handlers
+	     - varargs (...) the rest of arguments will be sent to event handlers
+
+	     = (object) array of returned values from the listeners. Array has two methods `.firstDefined()` and `.lastDefined()` to get first or last not `undefined` value.
+	    \*/
+	        eve = function (name, scope) {
+	            var e = events,
+	                oldstop = stop,
+	                args = Array.prototype.slice.call(arguments, 2),
+	                listeners = eve.listeners(name),
+	                z = 0,
+	                f = false,
+	                l,
+	                indexed = [],
+	                queue = {},
+	                out = [],
+	                ce = current_event,
+	                errors = [];
+	            out.firstDefined = firstDefined;
+	            out.lastDefined = lastDefined;
+	            current_event = name;
+	            stop = 0;
+	            for (var i = 0, ii = listeners.length; i < ii; i++) if ("zIndex" in listeners[i]) {
+	                indexed.push(listeners[i].zIndex);
+	                if (listeners[i].zIndex < 0) {
+	                    queue[listeners[i].zIndex] = listeners[i];
+	                }
+	            }
+	            indexed.sort(numsort);
+	            while (indexed[z] < 0) {
+	                l = queue[indexed[z++]];
+	                out.push(l.apply(scope, args));
+	                if (stop) {
+	                    stop = oldstop;
+	                    return out;
+	                }
+	            }
+	            for (i = 0; i < ii; i++) {
+	                l = listeners[i];
+	                if ("zIndex" in l) {
+	                    if (l.zIndex == indexed[z]) {
+	                        out.push(l.apply(scope, args));
+	                        if (stop) {
+	                            break;
+	                        }
+	                        do {
+	                            z++;
+	                            l = queue[indexed[z]];
+	                            l && out.push(l.apply(scope, args));
+	                            if (stop) {
+	                                break;
+	                            }
+	                        } while (l)
+	                    } else {
+	                        queue[l.zIndex] = l;
+	                    }
+	                } else {
+	                    out.push(l.apply(scope, args));
+	                    if (stop) {
+	                        break;
+	                    }
+	                }
+	            }
+	            stop = oldstop;
+	            current_event = ce;
+	            return out;
+	        };
+	        // Undocumented. Debug only.
+	        eve._events = events;
+	    /*\
+	     * eve.listeners
+	     [ method ]
+
+	     * Internal method which gives you array of all event handlers that will be triggered by the given `name`.
+
+	     > Arguments
+
+	     - name (string) name of the event, dot (`.`) or slash (`/`) separated
+
+	     = (array) array of event handlers
+	    \*/
+	    eve.listeners = function (name) {
+	        var names = isArray(name) ? name : name.split(separator),
+	            e = events,
+	            item,
+	            items,
+	            k,
+	            i,
+	            ii,
+	            j,
+	            jj,
+	            nes,
+	            es = [e],
+	            out = [];
+	        for (i = 0, ii = names.length; i < ii; i++) {
+	            nes = [];
+	            for (j = 0, jj = es.length; j < jj; j++) {
+	                e = es[j].n;
+	                items = [e[names[i]], e[wildcard]];
+	                k = 2;
+	                while (k--) {
+	                    item = items[k];
+	                    if (item) {
+	                        nes.push(item);
+	                        out = out.concat(item.f || []);
+	                    }
+	                }
+	            }
+	            es = nes;
+	        }
+	        return out;
+	    };
+	    /*\
+	     * eve.separator
+	     [ method ]
+
+	     * If for some reasons you don’t like default separators (`.` or `/`) you can specify yours
+	     * here. Be aware that if you pass a string longer than one character it will be treated as
+	     * a list of characters.
+
+	     - separator (string) new separator. Empty string resets to default: `.` or `/`.
+	    \*/
+	    eve.separator = function (sep) {
+	        if (sep) {
+	            sep = Str(sep).replace(/(?=[\.\^\]\[\-])/g, "\\");
+	            sep = "[" + sep + "]";
+	            separator = new RegExp(sep);
+	        } else {
+	            separator = /[\.\/]/;
+	        }
+	    };
+	    /*\
+	     * eve.on
+	     [ method ]
+	     **
+	     * Binds given event handler with a given name. You can use wildcards “`*`” for the names:
+	     | eve.on("*.under.*", f);
+	     | eve("mouse.under.floor"); // triggers f
+	     * Use @eve to trigger the listener.
+	     **
+	     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
+	     - f (function) event handler function
+	     **
+	     - name (array) if you don’t want to use separators, you can use array of strings
+	     - f (function) event handler function
+	     **
+	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
+	     > Example:
+	     | eve.on("mouse", eatIt)(2);
+	     | eve.on("mouse", scream);
+	     | eve.on("mouse", catchIt)(1);
+	     * This will ensure that `catchIt` function will be called before `eatIt`.
+	     *
+	     * If you want to put your handler before non-indexed handlers, specify a negative value.
+	     * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
+	    \*/
+	    eve.on = function (name, f) {
+	        if (typeof f != "function") {
+	            return function () {};
+	        }
+	        var names = isArray(name) ? (isArray(name[0]) ? name : [name]) : Str(name).split(comaseparator);
+	        for (var i = 0, ii = names.length; i < ii; i++) {
+	            (function (name) {
+	                var names = isArray(name) ? name : Str(name).split(separator),
+	                    e = events,
+	                    exist;
+	                for (var i = 0, ii = names.length; i < ii; i++) {
+	                    e = e.n;
+	                    e = e.hasOwnProperty(names[i]) && e[names[i]] || (e[names[i]] = {n: {}});
+	                }
+	                e.f = e.f || [];
+	                for (i = 0, ii = e.f.length; i < ii; i++) if (e.f[i] == f) {
+	                    exist = true;
+	                    break;
+	                }
+	                !exist && e.f.push(f);
+	            }(names[i]));
+	        }
+	        return function (zIndex) {
+	            if (+zIndex == +zIndex) {
+	                f.zIndex = +zIndex;
+	            }
+	        };
+	    };
+	    /*\
+	     * eve.f
+	     [ method ]
+	     **
+	     * Returns function that will fire given event with optional arguments.
+	     * Arguments that will be passed to the result function will be also
+	     * concated to the list of final arguments.
+	     | el.onclick = eve.f("click", 1, 2);
+	     | eve.on("click", function (a, b, c) {
+	     |     console.log(a, b, c); // 1, 2, [event object]
+	     | });
+	     > Arguments
+	     - event (string) event name
+	     - varargs (…) and any other arguments
+	     = (function) possible event handler function
+	    \*/
+	    eve.f = function (event) {
+	        var attrs = [].slice.call(arguments, 1);
+	        return function () {
+	            eve.apply(null, [event, null].concat(attrs).concat([].slice.call(arguments, 0)));
+	        };
+	    };
+	    /*\
+	     * eve.stop
+	     [ method ]
+	     **
+	     * Is used inside an event handler to stop the event, preventing any subsequent listeners from firing.
+	    \*/
+	    eve.stop = function () {
+	        stop = 1;
+	    };
+	    /*\
+	     * eve.nt
+	     [ method ]
+	     **
+	     * Could be used inside event handler to figure out actual name of the event.
+	     **
+	     > Arguments
+	     **
+	     - subname (string) #optional subname of the event
+	     **
+	     = (string) name of the event, if `subname` is not specified
+	     * or
+	     = (boolean) `true`, if current event’s name contains `subname`
+	    \*/
+	    eve.nt = function (subname) {
+	        var cur = isArray(current_event) ? current_event.join(".") : current_event;
+	        if (subname) {
+	            return new RegExp("(?:\\.|\\/|^)" + subname + "(?:\\.|\\/|$)").test(cur);
+	        }
+	        return cur;
+	    };
+	    /*\
+	     * eve.nts
+	     [ method ]
+	     **
+	     * Could be used inside event handler to figure out actual name of the event.
+	     **
+	     **
+	     = (array) names of the event
+	    \*/
+	    eve.nts = function () {
+	        return isArray(current_event) ? current_event : current_event.split(separator);
+	    };
+	    /*\
+	     * eve.off
+	     [ method ]
+	     **
+	     * Removes given function from the list of event listeners assigned to given name.
+	     * If no arguments specified all the events will be cleared.
+	     **
+	     > Arguments
+	     **
+	     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
+	     - f (function) event handler function
+	    \*/
+	    /*\
+	     * eve.unbind
+	     [ method ]
+	     **
+	     * See @eve.off
+	    \*/
+	    eve.off = eve.unbind = function (name, f) {
+	        if (!name) {
+	            eve._events = events = {n: {}};
+	            return;
+	        }
+	        var names = isArray(name) ? (isArray(name[0]) ? name : [name]) : Str(name).split(comaseparator);
+	        if (names.length > 1) {
+	            for (var i = 0, ii = names.length; i < ii; i++) {
+	                eve.off(names[i], f);
+	            }
+	            return;
+	        }
+	        names = isArray(name) ? name : Str(name).split(separator);
+	        var e,
+	            key,
+	            splice,
+	            i, ii, j, jj,
+	            cur = [events];
+	        for (i = 0, ii = names.length; i < ii; i++) {
+	            for (j = 0; j < cur.length; j += splice.length - 2) {
+	                splice = [j, 1];
+	                e = cur[j].n;
+	                if (names[i] != wildcard) {
+	                    if (e[names[i]]) {
+	                        splice.push(e[names[i]]);
+	                    }
+	                } else {
+	                    for (key in e) if (e[has](key)) {
+	                        splice.push(e[key]);
+	                    }
+	                }
+	                cur.splice.apply(cur, splice);
+	            }
+	        }
+	        for (i = 0, ii = cur.length; i < ii; i++) {
+	            e = cur[i];
+	            while (e.n) {
+	                if (f) {
+	                    if (e.f) {
+	                        for (j = 0, jj = e.f.length; j < jj; j++) if (e.f[j] == f) {
+	                            e.f.splice(j, 1);
+	                            break;
+	                        }
+	                        !e.f.length && delete e.f;
+	                    }
+	                    for (key in e.n) if (e.n[has](key) && e.n[key].f) {
+	                        var funcs = e.n[key].f;
+	                        for (j = 0, jj = funcs.length; j < jj; j++) if (funcs[j] == f) {
+	                            funcs.splice(j, 1);
+	                            break;
+	                        }
+	                        !funcs.length && delete e.n[key].f;
+	                    }
+	                } else {
+	                    delete e.f;
+	                    for (key in e.n) if (e.n[has](key) && e.n[key].f) {
+	                        delete e.n[key].f;
+	                    }
+	                }
+	                e = e.n;
+	            }
+	        }
+	    };
+	    /*\
+	     * eve.once
+	     [ method ]
+	     **
+	     * Binds given event handler with a given name to only run once then unbind itself.
+	     | eve.once("login", f);
+	     | eve("login"); // triggers f
+	     | eve("login"); // no listeners
+	     * Use @eve to trigger the listener.
+	     **
+	     > Arguments
+	     **
+	     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
+	     - f (function) event handler function
+	     **
+	     = (function) same return function as @eve.on
+	    \*/
+	    eve.once = function (name, f) {
+	        var f2 = function () {
+	            eve.off(name, f2);
+	            return f.apply(this, arguments);
+	        };
+	        return eve.on(name, f2);
+	    };
+	    /*\
+	     * eve.version
+	     [ property (string) ]
+	     **
+	     * Current version of the library.
+	    \*/
+	    eve.version = version;
+	    eve.toString = function () {
+	        return "You are running Eve " + version;
+	    };
+	    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : ( true ? (!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return eve; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))) : (glob.eve = eve));
+	})(this);
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(R) {
+	    if (R && !R.svg) {
+	        return;
+	    }
+
+	    var has = "hasOwnProperty",
+	        Str = String,
+	        toFloat = parseFloat,
+	        toInt = parseInt,
+	        math = Math,
+	        mmax = math.max,
+	        abs = math.abs,
+	        pow = math.pow,
+	        separator = /[, ]+/,
+	        eve = R.eve,
+	        E = "",
+	        S = " ";
+	    var xlink = "http://www.w3.org/1999/xlink",
+	        markers = {
+	            block: "M5,0 0,2.5 5,5z",
+	            classic: "M5,0 0,2.5 5,5 3.5,3 3.5,2z",
+	            diamond: "M2.5,0 5,2.5 2.5,5 0,2.5z",
+	            open: "M6,1 1,3.5 6,6",
+	            oval: "M2.5,0A2.5,2.5,0,0,1,2.5,5 2.5,2.5,0,0,1,2.5,0z"
+	        },
+	        markerCounter = {};
+	    R.toString = function () {
+	        return  "Your browser supports SVG.\nYou are running Rapha\xebl " + this.version;
+	    };
+	    var $ = function (el, attr) {
+	        if (attr) {
+	            if (typeof el == "string") {
+	                el = $(el);
+	            }
+	            for (var key in attr) if (attr[has](key)) {
+	                if (key.substring(0, 6) == "xlink:") {
+	                    el.setAttributeNS(xlink, key.substring(6), Str(attr[key]));
+	                } else {
+	                    el.setAttribute(key, Str(attr[key]));
+	                }
+	            }
+	        } else {
+	            el = R._g.doc.createElementNS("http://www.w3.org/2000/svg", el);
+	            el.style && (el.style.webkitTapHighlightColor = "rgba(0,0,0,0)");
+	        }
+	        return el;
+	    },
+	    addGradientFill = function (element, gradient) {
+	        var type = "linear",
+	            id = element.id + gradient,
+	            fx = .5, fy = .5,
+	            o = element.node,
+	            SVG = element.paper,
+	            s = o.style,
+	            el = R._g.doc.getElementById(id);
+	        if (!el) {
+	            gradient = Str(gradient).replace(R._radial_gradient, function (all, _fx, _fy) {
+	                type = "radial";
+	                if (_fx && _fy) {
+	                    fx = toFloat(_fx);
+	                    fy = toFloat(_fy);
+	                    var dir = ((fy > .5) * 2 - 1);
+	                    pow(fx - .5, 2) + pow(fy - .5, 2) > .25 &&
+	                        (fy = math.sqrt(.25 - pow(fx - .5, 2)) * dir + .5) &&
+	                        fy != .5 &&
+	                        (fy = fy.toFixed(5) - 1e-5 * dir);
+	                }
+	                return E;
+	            });
+	            gradient = gradient.split(/\s*\-\s*/);
+	            if (type == "linear") {
+	                var angle = gradient.shift();
+	                angle = -toFloat(angle);
+	                if (isNaN(angle)) {
+	                    return null;
+	                }
+	                var vector = [0, 0, math.cos(R.rad(angle)), math.sin(R.rad(angle))],
+	                    max = 1 / (mmax(abs(vector[2]), abs(vector[3])) || 1);
+	                vector[2] *= max;
+	                vector[3] *= max;
+	                if (vector[2] < 0) {
+	                    vector[0] = -vector[2];
+	                    vector[2] = 0;
+	                }
+	                if (vector[3] < 0) {
+	                    vector[1] = -vector[3];
+	                    vector[3] = 0;
+	                }
+	            }
+	            var dots = R._parseDots(gradient);
+	            if (!dots) {
+	                return null;
+	            }
+	            id = id.replace(/[\(\)\s,\xb0#]/g, "_");
+
+	            if (element.gradient && id != element.gradient.id) {
+	                SVG.defs.removeChild(element.gradient);
+	                delete element.gradient;
+	            }
+
+	            if (!element.gradient) {
+	                el = $(type + "Gradient", {id: id});
+	                element.gradient = el;
+	                $(el, type == "radial" ? {
+	                    fx: fx,
+	                    fy: fy
+	                } : {
+	                    x1: vector[0],
+	                    y1: vector[1],
+	                    x2: vector[2],
+	                    y2: vector[3],
+	                    gradientTransform: element.matrix.invert()
+	                });
+	                SVG.defs.appendChild(el);
+	                for (var i = 0, ii = dots.length; i < ii; i++) {
+	                    el.appendChild($("stop", {
+	                        offset: dots[i].offset ? dots[i].offset : i ? "100%" : "0%",
+	                        "stop-color": dots[i].color || "#fff",
+	                        "stop-opacity": isFinite(dots[i].opacity) ? dots[i].opacity : 1
+	                    }));
+	                }
+	            }
+	        }
+	        $(o, {
+	            fill: fillurl(id),
+	            opacity: 1,
+	            "fill-opacity": 1
+	        });
+	        s.fill = E;
+	        s.opacity = 1;
+	        s.fillOpacity = 1;
+	        return 1;
+	    },
+	    isIE9or10 = function () {
+	      var mode = document.documentMode;
+	      return mode && (mode === 9 || mode === 10);
+	    },
+	    fillurl = function (id) {
+	      if (isIE9or10()) {
+	          return "url('#" + id + "')";
+	      }
+	      var location = document.location;
+	      var locationString = (
+	          location.protocol + '//' +
+	          location.host +
+	          location.pathname +
+	          location.search
+	      );
+	      return "url('" + locationString + "#" + id + "')";
+	    },
+	    updatePosition = function (o) {
+	        var bbox = o.getBBox(1);
+	        $(o.pattern, {patternTransform: o.matrix.invert() + " translate(" + bbox.x + "," + bbox.y + ")"});
+	    },
+	    addArrow = function (o, value, isEnd) {
+	        if (o.type == "path") {
+	            var values = Str(value).toLowerCase().split("-"),
+	                p = o.paper,
+	                se = isEnd ? "end" : "start",
+	                node = o.node,
+	                attrs = o.attrs,
+	                stroke = attrs["stroke-width"],
+	                i = values.length,
+	                type = "classic",
+	                from,
+	                to,
+	                dx,
+	                refX,
+	                attr,
+	                w = 3,
+	                h = 3,
+	                t = 5;
+	            while (i--) {
+	                switch (values[i]) {
+	                    case "block":
+	                    case "classic":
+	                    case "oval":
+	                    case "diamond":
+	                    case "open":
+	                    case "none":
+	                        type = values[i];
+	                        break;
+	                    case "wide": h = 5; break;
+	                    case "narrow": h = 2; break;
+	                    case "long": w = 5; break;
+	                    case "short": w = 2; break;
+	                }
+	            }
+	            if (type == "open") {
+	                w += 2;
+	                h += 2;
+	                t += 2;
+	                dx = 1;
+	                refX = isEnd ? 4 : 1;
+	                attr = {
+	                    fill: "none",
+	                    stroke: attrs.stroke
+	                };
+	            } else {
+	                refX = dx = w / 2;
+	                attr = {
+	                    fill: attrs.stroke,
+	                    stroke: "none"
+	                };
+	            }
+	            if (o._.arrows) {
+	                if (isEnd) {
+	                    o._.arrows.endPath && markerCounter[o._.arrows.endPath]--;
+	                    o._.arrows.endMarker && markerCounter[o._.arrows.endMarker]--;
+	                } else {
+	                    o._.arrows.startPath && markerCounter[o._.arrows.startPath]--;
+	                    o._.arrows.startMarker && markerCounter[o._.arrows.startMarker]--;
+	                }
+	            } else {
+	                o._.arrows = {};
+	            }
+	            if (type != "none") {
+	                var pathId = "raphael-marker-" + type,
+	                    markerId = "raphael-marker-" + se + type + w + h + "-obj" + o.id;
+	                if (!R._g.doc.getElementById(pathId)) {
+	                    p.defs.appendChild($($("path"), {
+	                        "stroke-linecap": "round",
+	                        d: markers[type],
+	                        id: pathId
+	                    }));
+	                    markerCounter[pathId] = 1;
+	                } else {
+	                    markerCounter[pathId]++;
+	                }
+	                var marker = R._g.doc.getElementById(markerId),
+	                    use;
+	                if (!marker) {
+	                    marker = $($("marker"), {
+	                        id: markerId,
+	                        markerHeight: h,
+	                        markerWidth: w,
+	                        orient: "auto",
+	                        refX: refX,
+	                        refY: h / 2
+	                    });
+	                    use = $($("use"), {
+	                        "xlink:href": "#" + pathId,
+	                        transform: (isEnd ? "rotate(180 " + w / 2 + " " + h / 2 + ") " : E) + "scale(" + w / t + "," + h / t + ")",
+	                        "stroke-width": (1 / ((w / t + h / t) / 2)).toFixed(4)
+	                    });
+	                    marker.appendChild(use);
+	                    p.defs.appendChild(marker);
+	                    markerCounter[markerId] = 1;
+	                } else {
+	                    markerCounter[markerId]++;
+	                    use = marker.getElementsByTagName("use")[0];
+	                }
+	                $(use, attr);
+	                var delta = dx * (type != "diamond" && type != "oval");
+	                if (isEnd) {
+	                    from = o._.arrows.startdx * stroke || 0;
+	                    to = R.getTotalLength(attrs.path) - delta * stroke;
+	                } else {
+	                    from = delta * stroke;
+	                    to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
+	                }
+	                attr = {};
+	                attr["marker-" + se] = "url(#" + markerId + ")";
+	                if (to || from) {
+	                    attr.d = R.getSubpath(attrs.path, from, to);
+	                }
+	                $(node, attr);
+	                o._.arrows[se + "Path"] = pathId;
+	                o._.arrows[se + "Marker"] = markerId;
+	                o._.arrows[se + "dx"] = delta;
+	                o._.arrows[se + "Type"] = type;
+	                o._.arrows[se + "String"] = value;
+	            } else {
+	                if (isEnd) {
+	                    from = o._.arrows.startdx * stroke || 0;
+	                    to = R.getTotalLength(attrs.path) - from;
+	                } else {
+	                    from = 0;
+	                    to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
+	                }
+	                o._.arrows[se + "Path"] && $(node, {d: R.getSubpath(attrs.path, from, to)});
+	                delete o._.arrows[se + "Path"];
+	                delete o._.arrows[se + "Marker"];
+	                delete o._.arrows[se + "dx"];
+	                delete o._.arrows[se + "Type"];
+	                delete o._.arrows[se + "String"];
+	            }
+	            for (attr in markerCounter) if (markerCounter[has](attr) && !markerCounter[attr]) {
+	                var item = R._g.doc.getElementById(attr);
+	                item && item.parentNode.removeChild(item);
+	            }
+	        }
+	    },
+	    dasharray = {
+	        "-": [3, 1],
+	        ".": [1, 1],
+	        "-.": [3, 1, 1, 1],
+	        "-..": [3, 1, 1, 1, 1, 1],
+	        ". ": [1, 3],
+	        "- ": [4, 3],
+	        "--": [8, 3],
+	        "- .": [4, 3, 1, 3],
+	        "--.": [8, 3, 1, 3],
+	        "--..": [8, 3, 1, 3, 1, 3]
+	    },
+	    addDashes = function (o, value, params) {
+	        value = dasharray[Str(value).toLowerCase()];
+	        if (value) {
+	            var width = o.attrs["stroke-width"] || "1",
+	                butt = {round: width, square: width, butt: 0}[o.attrs["stroke-linecap"] || params["stroke-linecap"]] || 0,
+	                dashes = [],
+	                i = value.length;
+	            while (i--) {
+	                dashes[i] = value[i] * width + ((i % 2) ? 1 : -1) * butt;
+	            }
+	            $(o.node, {"stroke-dasharray": dashes.join(",")});
+	        }
+	        else {
+	          $(o.node, {"stroke-dasharray": "none"});
+	        }
+	    },
+	    setFillAndStroke = function (o, params) {
+	        var node = o.node,
+	            attrs = o.attrs,
+	            vis = node.style.visibility;
+	        node.style.visibility = "hidden";
+	        for (var att in params) {
+	            if (params[has](att)) {
+	                if (!R._availableAttrs[has](att)) {
+	                    continue;
+	                }
+	                var value = params[att];
+	                attrs[att] = value;
+	                switch (att) {
+	                    case "blur":
+	                        o.blur(value);
+	                        break;
+	                    case "title":
+	                        var title = node.getElementsByTagName("title");
+
+	                        // Use the existing <title>.
+	                        if (title.length && (title = title[0])) {
+	                          title.firstChild.nodeValue = value;
+	                        } else {
+	                          title = $("title");
+	                          var val = R._g.doc.createTextNode(value);
+	                          title.appendChild(val);
+	                          node.appendChild(title);
+	                        }
+	                        break;
+	                    case "href":
+	                    case "target":
+	                        var pn = node.parentNode;
+	                        if (pn.tagName.toLowerCase() != "a") {
+	                            var hl = $("a");
+	                            pn.insertBefore(hl, node);
+	                            hl.appendChild(node);
+	                            pn = hl;
+	                        }
+	                        if (att == "target") {
+	                            pn.setAttributeNS(xlink, "show", value == "blank" ? "new" : value);
+	                        } else {
+	                            pn.setAttributeNS(xlink, att, value);
+	                        }
+	                        break;
+	                    case "cursor":
+	                        node.style.cursor = value;
+	                        break;
+	                    case "transform":
+	                        o.transform(value);
+	                        break;
+	                    case "arrow-start":
+	                        addArrow(o, value);
+	                        break;
+	                    case "arrow-end":
+	                        addArrow(o, value, 1);
+	                        break;
+	                    case "clip-rect":
+	                        var rect = Str(value).split(separator);
+	                        if (rect.length == 4) {
+	                            o.clip && o.clip.parentNode.parentNode.removeChild(o.clip.parentNode);
+	                            var el = $("clipPath"),
+	                                rc = $("rect");
+	                            el.id = R.createUUID();
+	                            $(rc, {
+	                                x: rect[0],
+	                                y: rect[1],
+	                                width: rect[2],
+	                                height: rect[3]
+	                            });
+	                            el.appendChild(rc);
+	                            o.paper.defs.appendChild(el);
+	                            $(node, {"clip-path": "url(#" + el.id + ")"});
+	                            o.clip = rc;
+	                        }
+	                        if (!value) {
+	                            var path = node.getAttribute("clip-path");
+	                            if (path) {
+	                                var clip = R._g.doc.getElementById(path.replace(/(^url\(#|\)$)/g, E));
+	                                clip && clip.parentNode.removeChild(clip);
+	                                $(node, {"clip-path": E});
+	                                delete o.clip;
+	                            }
+	                        }
+	                    break;
+	                    case "path":
+	                        if (o.type == "path") {
+	                            $(node, {d: value ? attrs.path = R._pathToAbsolute(value) : "M0,0"});
+	                            o._.dirty = 1;
+	                            if (o._.arrows) {
+	                                "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
+	                                "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
+	                            }
+	                        }
+	                        break;
+	                    case "width":
+	                        node.setAttribute(att, value);
+	                        o._.dirty = 1;
+	                        if (attrs.fx) {
+	                            att = "x";
+	                            value = attrs.x;
+	                        } else {
+	                            break;
+	                        }
+	                    case "x":
+	                        if (attrs.fx) {
+	                            value = -attrs.x - (attrs.width || 0);
+	                        }
+	                    case "rx":
+	                        if (att == "rx" && o.type == "rect") {
+	                            break;
+	                        }
+	                    case "cx":
+	                        node.setAttribute(att, value);
+	                        o.pattern && updatePosition(o);
+	                        o._.dirty = 1;
+	                        break;
+	                    case "height":
+	                        node.setAttribute(att, value);
+	                        o._.dirty = 1;
+	                        if (attrs.fy) {
+	                            att = "y";
+	                            value = attrs.y;
+	                        } else {
+	                            break;
+	                        }
+	                    case "y":
+	                        if (attrs.fy) {
+	                            value = -attrs.y - (attrs.height || 0);
+	                        }
+	                    case "ry":
+	                        if (att == "ry" && o.type == "rect") {
+	                            break;
+	                        }
+	                    case "cy":
+	                        node.setAttribute(att, value);
+	                        o.pattern && updatePosition(o);
+	                        o._.dirty = 1;
+	                        break;
+	                    case "r":
+	                        if (o.type == "rect") {
+	                            $(node, {rx: value, ry: value});
+	                        } else {
+	                            node.setAttribute(att, value);
+	                        }
+	                        o._.dirty = 1;
+	                        break;
+	                    case "src":
+	                        if (o.type == "image") {
+	                            node.setAttributeNS(xlink, "href", value);
+	                        }
+	                        break;
+	                    case "stroke-width":
+	                        if (o._.sx != 1 || o._.sy != 1) {
+	                            value /= mmax(abs(o._.sx), abs(o._.sy)) || 1;
+	                        }
+	                        node.setAttribute(att, value);
+	                        if (attrs["stroke-dasharray"]) {
+	                            addDashes(o, attrs["stroke-dasharray"], params);
+	                        }
+	                        if (o._.arrows) {
+	                            "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
+	                            "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
+	                        }
+	                        break;
+	                    case "stroke-dasharray":
+	                        addDashes(o, value, params);
+	                        break;
+	                    case "fill":
+	                        var isURL = Str(value).match(R._ISURL);
+	                        if (isURL) {
+	                            el = $("pattern");
+	                            var ig = $("image");
+	                            el.id = R.createUUID();
+	                            $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1});
+	                            $(ig, {x: 0, y: 0, "xlink:href": isURL[1]});
+	                            el.appendChild(ig);
+
+	                            (function (el) {
+	                                R._preload(isURL[1], function () {
+	                                    var w = this.offsetWidth,
+	                                        h = this.offsetHeight;
+	                                    $(el, {width: w, height: h});
+	                                    $(ig, {width: w, height: h});
+	                                });
+	                            })(el);
+	                            o.paper.defs.appendChild(el);
+	                            $(node, {fill: "url(#" + el.id + ")"});
+	                            o.pattern = el;
+	                            o.pattern && updatePosition(o);
+	                            break;
+	                        }
+	                        var clr = R.getRGB(value);
+	                        if (!clr.error) {
+	                            delete params.gradient;
+	                            delete attrs.gradient;
+	                            !R.is(attrs.opacity, "undefined") &&
+	                                R.is(params.opacity, "undefined") &&
+	                                $(node, {opacity: attrs.opacity});
+	                            !R.is(attrs["fill-opacity"], "undefined") &&
+	                                R.is(params["fill-opacity"], "undefined") &&
+	                                $(node, {"fill-opacity": attrs["fill-opacity"]});
+	                        } else if ((o.type == "circle" || o.type == "ellipse" || Str(value).charAt() != "r") && addGradientFill(o, value)) {
+	                            if ("opacity" in attrs || "fill-opacity" in attrs) {
+	                                var gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
+	                                if (gradient) {
+	                                    var stops = gradient.getElementsByTagName("stop");
+	                                    $(stops[stops.length - 1], {"stop-opacity": ("opacity" in attrs ? attrs.opacity : 1) * ("fill-opacity" in attrs ? attrs["fill-opacity"] : 1)});
+	                                }
+	                            }
+	                            attrs.gradient = value;
+	                            attrs.fill = "none";
+	                            break;
+	                        }
+	                        clr[has]("opacity") && $(node, {"fill-opacity": clr.opacity > 1 ? clr.opacity / 100 : clr.opacity});
+	                    case "stroke":
+	                        clr = R.getRGB(value);
+	                        node.setAttribute(att, clr.hex);
+	                        att == "stroke" && clr[has]("opacity") && $(node, {"stroke-opacity": clr.opacity > 1 ? clr.opacity / 100 : clr.opacity});
+	                        if (att == "stroke" && o._.arrows) {
+	                            "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
+	                            "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
+	                        }
+	                        break;
+	                    case "gradient":
+	                        (o.type == "circle" || o.type == "ellipse" || Str(value).charAt() != "r") && addGradientFill(o, value);
+	                        break;
+	                    case "opacity":
+	                        if (attrs.gradient && !attrs[has]("stroke-opacity")) {
+	                            $(node, {"stroke-opacity": value > 1 ? value / 100 : value});
+	                        }
+	                        // fall
+	                    case "fill-opacity":
+	                        if (attrs.gradient) {
+	                            gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
+	                            if (gradient) {
+	                                stops = gradient.getElementsByTagName("stop");
+	                                $(stops[stops.length - 1], {"stop-opacity": value});
+	                            }
+	                            break;
+	                        }
+	                    default:
+	                        att == "font-size" && (value = toInt(value, 10) + "px");
+	                        var cssrule = att.replace(/(\-.)/g, function (w) {
+	                            return w.substring(1).toUpperCase();
+	                        });
+	                        node.style[cssrule] = value;
+	                        o._.dirty = 1;
+	                        node.setAttribute(att, value);
+	                        break;
+	                }
+	            }
+	        }
+
+	        tuneText(o, params);
+	        node.style.visibility = vis;
+	    },
+	    leading = 1.2,
+	    tuneText = function (el, params) {
+	        if (el.type != "text" || !(params[has]("text") || params[has]("font") || params[has]("font-size") || params[has]("x") || params[has]("y"))) {
+	            return;
+	        }
+	        var a = el.attrs,
+	            node = el.node,
+	            fontSize = node.firstChild ? toInt(R._g.doc.defaultView.getComputedStyle(node.firstChild, E).getPropertyValue("font-size"), 10) : 10;
+
+	        if (params[has]("text")) {
+	            a.text = params.text;
+	            while (node.firstChild) {
+	                node.removeChild(node.firstChild);
+	            }
+	            var texts = Str(params.text).split("\n"),
+	                tspans = [],
+	                tspan;
+	            for (var i = 0, ii = texts.length; i < ii; i++) {
+	                tspan = $("tspan");
+	                i && $(tspan, {dy: fontSize * leading, x: a.x});
+	                tspan.appendChild(R._g.doc.createTextNode(texts[i]));
+	                node.appendChild(tspan);
+	                tspans[i] = tspan;
+	            }
+	        } else {
+	            tspans = node.getElementsByTagName("tspan");
+	            for (i = 0, ii = tspans.length; i < ii; i++) if (i) {
+	                $(tspans[i], {dy: fontSize * leading, x: a.x});
+	            } else {
+	                $(tspans[0], {dy: 0});
+	            }
+	        }
+	        $(node, {x: a.x, y: a.y});
+	        el._.dirty = 1;
+	        var bb = el._getBBox(),
+	            dif = a.y - (bb.y + bb.height / 2);
+	        dif && R.is(dif, "finite") && $(tspans[0], {dy: dif});
+	    },
+	    getRealNode = function (node) {
+	        if (node.parentNode && node.parentNode.tagName.toLowerCase() === "a") {
+	            return node.parentNode;
+	        } else {
+	            return node;
+	        }
+	    },
+	    Element = function (node, svg) {
+	        var X = 0,
+	            Y = 0;
+	        /*\
+	         * Element.node
+	         [ property (object) ]
+	         **
+	         * Gives you a reference to the DOM object, so you can assign event handlers or just mess around.
+	         **
+	         * Note: Don’t mess with it.
+	         > Usage
+	         | // draw a circle at coordinate 10,10 with radius of 10
+	         | var c = paper.circle(10, 10, 10);
+	         | c.node.onclick = function () {
+	         |     c.attr("fill", "red");
+	         | };
+	        \*/
+	        this[0] = this.node = node;
+	        /*\
+	         * Element.raphael
+	         [ property (object) ]
+	         **
+	         * Internal reference to @Raphael object. In case it is not available.
+	         > Usage
+	         | Raphael.el.red = function () {
+	         |     var hsb = this.paper.raphael.rgb2hsb(this.attr("fill"));
+	         |     hsb.h = 1;
+	         |     this.attr({fill: this.paper.raphael.hsb2rgb(hsb).hex});
+	         | }
+	        \*/
+	        node.raphael = true;
+	        /*\
+	         * Element.id
+	         [ property (number) ]
+	         **
+	         * Unique id of the element. Especially useful when you want to listen to events of the element,
+	         * because all events are fired in format `<module>.<action>.<id>`. Also useful for @Paper.getById method.
+	        \*/
+	        this.id = guid();
+	        node.raphaelid = this.id;
+
+	        /**
+	        * Method that returns a 5 letter/digit id, enough for 36^5 = 60466176 elements
+	        * @returns {string} id
+	        */
+	        function guid() {
+	            return ("0000" + (Math.random()*Math.pow(36,5) << 0).toString(36)).slice(-5);
+	        }
+
+	        this.matrix = R.matrix();
+	        this.realPath = null;
+	        /*\
+	         * Element.paper
+	         [ property (object) ]
+	         **
+	         * Internal reference to “paper” where object drawn. Mainly for use in plugins and element extensions.
+	         > Usage
+	         | Raphael.el.cross = function () {
+	         |     this.attr({fill: "red"});
+	         |     this.paper.path("M10,10L50,50M50,10L10,50")
+	         |         .attr({stroke: "red"});
+	         | }
+	        \*/
+	        this.paper = svg;
+	        this.attrs = this.attrs || {};
+	        this._ = {
+	            transform: [],
+	            sx: 1,
+	            sy: 1,
+	            deg: 0,
+	            dx: 0,
+	            dy: 0,
+	            dirty: 1
+	        };
+	        !svg.bottom && (svg.bottom = this);
+	        /*\
+	         * Element.prev
+	         [ property (object) ]
+	         **
+	         * Reference to the previous element in the hierarchy.
+	        \*/
+	        this.prev = svg.top;
+	        svg.top && (svg.top.next = this);
+	        svg.top = this;
+	        /*\
+	         * Element.next
+	         [ property (object) ]
+	         **
+	         * Reference to the next element in the hierarchy.
+	        \*/
+	        this.next = null;
+	    },
+	    elproto = R.el;
+
+	    Element.prototype = elproto;
+	    elproto.constructor = Element;
+
+	    R._engine.path = function (pathString, SVG) {
+	        var el = $("path");
+	        SVG.canvas && SVG.canvas.appendChild(el);
+	        var p = new Element(el, SVG);
+	        p.type = "path";
+	        setFillAndStroke(p, {
+	            fill: "none",
+	            stroke: "#000",
+	            path: pathString
+	        });
+	        return p;
+	    };
+	    /*\
+	     * Element.rotate
+	     [ method ]
+	     **
+	     * Deprecated! Use @Element.transform instead.
+	     * Adds rotation by given angle around given point to the list of
+	     * transformations of the element.
+	     > Parameters
+	     - deg (number) angle in degrees
+	     - cx (number) #optional x coordinate of the centre of rotation
+	     - cy (number) #optional y coordinate of the centre of rotation
+	     * If cx & cy aren’t specified centre of the shape is used as a point of rotation.
+	     = (object) @Element
+	    \*/
+	    elproto.rotate = function (deg, cx, cy) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        deg = Str(deg).split(separator);
+	        if (deg.length - 1) {
+	            cx = toFloat(deg[1]);
+	            cy = toFloat(deg[2]);
+	        }
+	        deg = toFloat(deg[0]);
+	        (cy == null) && (cx = cy);
+	        if (cx == null || cy == null) {
+	            var bbox = this.getBBox(1);
+	            cx = bbox.x + bbox.width / 2;
+	            cy = bbox.y + bbox.height / 2;
+	        }
+	        this.transform(this._.transform.concat([["r", deg, cx, cy]]));
+	        return this;
+	    };
+	    /*\
+	     * Element.scale
+	     [ method ]
+	     **
+	     * Deprecated! Use @Element.transform instead.
+	     * Adds scale by given amount relative to given point to the list of
+	     * transformations of the element.
+	     > Parameters
+	     - sx (number) horisontal scale amount
+	     - sy (number) vertical scale amount
+	     - cx (number) #optional x coordinate of the centre of scale
+	     - cy (number) #optional y coordinate of the centre of scale
+	     * If cx & cy aren’t specified centre of the shape is used instead.
+	     = (object) @Element
+	    \*/
+	    elproto.scale = function (sx, sy, cx, cy) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        sx = Str(sx).split(separator);
+	        if (sx.length - 1) {
+	            sy = toFloat(sx[1]);
+	            cx = toFloat(sx[2]);
+	            cy = toFloat(sx[3]);
+	        }
+	        sx = toFloat(sx[0]);
+	        (sy == null) && (sy = sx);
+	        (cy == null) && (cx = cy);
+	        if (cx == null || cy == null) {
+	            var bbox = this.getBBox(1);
+	        }
+	        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
+	        cy = cy == null ? bbox.y + bbox.height / 2 : cy;
+	        this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
+	        return this;
+	    };
+	    /*\
+	     * Element.translate
+	     [ method ]
+	     **
+	     * Deprecated! Use @Element.transform instead.
+	     * Adds translation by given amount to the list of transformations of the element.
+	     > Parameters
+	     - dx (number) horisontal shift
+	     - dy (number) vertical shift
+	     = (object) @Element
+	    \*/
+	    elproto.translate = function (dx, dy) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        dx = Str(dx).split(separator);
+	        if (dx.length - 1) {
+	            dy = toFloat(dx[1]);
+	        }
+	        dx = toFloat(dx[0]) || 0;
+	        dy = +dy || 0;
+	        this.transform(this._.transform.concat([["t", dx, dy]]));
+	        return this;
+	    };
+	    /*\
+	     * Element.transform
+	     [ method ]
+	     **
+	     * Adds transformation to the element which is separate to other attributes,
+	     * i.e. translation doesn’t change `x` or `y` of the rectange. The format
+	     * of transformation string is similar to the path string syntax:
+	     | "t100,100r30,100,100s2,2,100,100r45s1.5"
+	     * Each letter is a command. There are four commands: `t` is for translate, `r` is for rotate, `s` is for
+	     * scale and `m` is for matrix.
+	     *
+	     * There are also alternative “absolute” translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For example, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
+	     *
+	     * So, the example line above could be read like “translate by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
+	     * rotate 45° around centre; scale 1.5 times relative to centre”. As you can see rotate and scale commands have origin
+	     * coordinates as optional parameters, the default is the centre point of the element.
+	     * Matrix accepts six parameters.
+	     > Usage
+	     | var el = paper.rect(10, 20, 300, 200);
+	     | // translate 100, 100, rotate 45°, translate -100, 0
+	     | el.transform("t100,100r45t-100,0");
+	     | // if you want you can append or prepend transformations
+	     | el.transform("...t50,50");
+	     | el.transform("s2...");
+	     | // or even wrap
+	     | el.transform("t50,50...t-50-50");
+	     | // to reset transformation call method with empty string
+	     | el.transform("");
+	     | // to get current value call it without parameters
+	     | console.log(el.transform());
+	     > Parameters
+	     - tstr (string) #optional transformation string
+	     * If tstr isn’t specified
+	     = (string) current transformation string
+	     * else
+	     = (object) @Element
+	    \*/
+	    elproto.transform = function (tstr) {
+	        var _ = this._;
+	        if (tstr == null) {
+	            return _.transform;
+	        }
+	        R._extractTransform(this, tstr);
+
+	        this.clip && $(this.clip, {transform: this.matrix.invert()});
+	        this.pattern && updatePosition(this);
+	        this.node && $(this.node, {transform: this.matrix});
+
+	        if (_.sx != 1 || _.sy != 1) {
+	            var sw = this.attrs[has]("stroke-width") ? this.attrs["stroke-width"] : 1;
+	            this.attr({"stroke-width": sw});
+	        }
+
+	        return this;
+	    };
+	    /*\
+	     * Element.hide
+	     [ method ]
+	     **
+	     * Makes element invisible. See @Element.show.
+	     = (object) @Element
+	    \*/
+	    elproto.hide = function () {
+	        if(!this.removed) this.node.style.display = "none";
+	        return this;
+	    };
+	    /*\
+	     * Element.show
+	     [ method ]
+	     **
+	     * Makes element visible. See @Element.hide.
+	     = (object) @Element
+	    \*/
+	    elproto.show = function () {
+	        if(!this.removed) this.node.style.display = "";
+	        return this;
+	    };
+	    /*\
+	     * Element.remove
+	     [ method ]
+	     **
+	     * Removes element from the paper.
+	    \*/
+	    elproto.remove = function () {
+	        var node = getRealNode(this.node);
+	        if (this.removed || !node.parentNode) {
+	            return;
+	        }
+	        var paper = this.paper;
+	        paper.__set__ && paper.__set__.exclude(this);
+	        eve.unbind("raphael.*.*." + this.id);
+	        if (this.gradient) {
+	            paper.defs.removeChild(this.gradient);
+	        }
+	        R._tear(this, paper);
+
+	        node.parentNode.removeChild(node);
+
+	        // Remove custom data for element
+	        this.removeData();
+
+	        for (var i in this) {
+	            this[i] = typeof this[i] == "function" ? R._removedFactory(i) : null;
+	        }
+	        this.removed = true;
+	    };
+	    elproto._getBBox = function () {
+	        if (this.node.style.display == "none") {
+	            this.show();
+	            var hide = true;
+	        }
+	        var canvasHidden = false,
+	            containerStyle;
+	        if (this.paper.canvas.parentElement) {
+	          containerStyle = this.paper.canvas.parentElement.style;
+	        } //IE10+ can't find parentElement
+	        else if (this.paper.canvas.parentNode) {
+	          containerStyle = this.paper.canvas.parentNode.style;
+	        }
+
+	        if(containerStyle && containerStyle.display == "none") {
+	          canvasHidden = true;
+	          containerStyle.display = "";
+	        }
+	        var bbox = {};
+	        try {
+	            bbox = this.node.getBBox();
+	        } catch(e) {
+	            // Firefox 3.0.x, 25.0.1 (probably more versions affected) play badly here - possible fix
+	            bbox = {
+	                x: this.node.clientLeft,
+	                y: this.node.clientTop,
+	                width: this.node.clientWidth,
+	                height: this.node.clientHeight
+	            }
+	        } finally {
+	            bbox = bbox || {};
+	            if(canvasHidden){
+	              containerStyle.display = "none";
+	            }
+	        }
+	        hide && this.hide();
+	        return bbox;
+	    };
+	    /*\
+	     * Element.attr
+	     [ method ]
+	     **
+	     * Sets the attributes of the element.
+	     > Parameters
+	     - attrName (string) attribute’s name
+	     - value (string) value
+	     * or
+	     - params (object) object of name/value pairs
+	     * or
+	     - attrName (string) attribute’s name
+	     * or
+	     - attrNames (array) in this case method returns array of current values for given attribute names
+	     = (object) @Element if attrsName & value or params are passed in.
+	     = (...) value of the attribute if only attrsName is passed in.
+	     = (array) array of values of the attribute if attrsNames is passed in.
+	     = (object) object of attributes if nothing is passed in.
+	     > Possible parameters
+	     # <p>Please refer to the <a href="http://www.w3.org/TR/SVG/" title="The W3C Recommendation for the SVG language describes these properties in detail.">SVG specification</a> for an explanation of these parameters.</p>
+	     o arrow-end (string) arrowhead on the end of the path. The format for string is `<type>[-<width>[-<length>]]`. Possible types: `classic`, `block`, `open`, `oval`, `diamond`, `none`, width: `wide`, `narrow`, `medium`, length: `long`, `short`, `midium`.
+	     o clip-rect (string) comma or space separated values: x, y, width and height
+	     o cursor (string) CSS type of the cursor
+	     o cx (number) the x-axis coordinate of the center of the circle, or ellipse
+	     o cy (number) the y-axis coordinate of the center of the circle, or ellipse
+	     o fill (string) colour, gradient or image
+	     o fill-opacity (number)
+	     o font (string)
+	     o font-family (string)
+	     o font-size (number) font size in pixels
+	     o font-weight (string)
+	     o height (number)
+	     o href (string) URL, if specified element behaves as hyperlink
+	     o opacity (number)
+	     o path (string) SVG path string format
+	     o r (number) radius of the circle, ellipse or rounded corner on the rect
+	     o rx (number) horisontal radius of the ellipse
+	     o ry (number) vertical radius of the ellipse
+	     o src (string) image URL, only works for @Element.image element
+	     o stroke (string) stroke colour
+	     o stroke-dasharray (string) [“”, “none”, “`-`”, “`.`”, “`-.`”, “`-..`”, “`. `”, “`- `”, “`--`”, “`- .`”, “`--.`”, “`--..`”]
+	     o stroke-linecap (string) [“`butt`”, “`square`”, “`round`”]
+	     o stroke-linejoin (string) [“`bevel`”, “`round`”, “`miter`”]
+	     o stroke-miterlimit (number)
+	     o stroke-opacity (number)
+	     o stroke-width (number) stroke width in pixels, default is '1'
+	     o target (string) used with href
+	     o text (string) contents of the text element. Use `\n` for multiline text
+	     o text-anchor (string) [“`start`”, “`middle`”, “`end`”], default is “`middle`”
+	     o title (string) will create tooltip with a given text
+	     o transform (string) see @Element.transform
+	     o width (number)
+	     o x (number)
+	     o y (number)
+	     > Gradients
+	     * Linear gradient format: “`‹angle›-‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`90-#fff-#000`” – 90°
+	     * gradient from white to black or “`0-#fff-#f00:20-#000`” – 0° gradient from white via red (at 20%) to black.
+	     *
+	     * radial gradient: “`r[(‹fx›, ‹fy›)]‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`r#fff-#000`” –
+	     * gradient from white to black or “`r(0.25, 0.75)#fff-#000`” – gradient from white to black with focus point
+	     * at 0.25, 0.75. Focus point coordinates are in 0..1 range. Radial gradients can only be applied to circles and ellipses.
+	     > Path String
+	     # <p>Please refer to <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path’s data attribute’s format are described in the SVG specification.">SVG documentation regarding path string</a>. Raphaël fully supports it.</p>
+	     > Colour Parsing
+	     # <ul>
+	     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
+	     #     <li>#••• — shortened HTML colour: (“<code>#000</code>”, “<code>#fc0</code>”, etc)</li>
+	     #     <li>#•••••• — full length HTML colour: (“<code>#000000</code>”, “<code>#bd2300</code>”)</li>
+	     #     <li>rgb(•••, •••, •••) — red, green and blue channels’ values: (“<code>rgb(200,&nbsp;100,&nbsp;0)</code>”)</li>
+	     #     <li>rgb(•••%, •••%, •••%) — same as above, but in %: (“<code>rgb(100%,&nbsp;175%,&nbsp;0%)</code>”)</li>
+	     #     <li>rgba(•••, •••, •••, •••) — red, green and blue channels’ values: (“<code>rgba(200,&nbsp;100,&nbsp;0, .5)</code>”)</li>
+	     #     <li>rgba(•••%, •••%, •••%, •••%) — same as above, but in %: (“<code>rgba(100%,&nbsp;175%,&nbsp;0%, 50%)</code>”)</li>
+	     #     <li>hsb(•••, •••, •••) — hue, saturation and brightness values: (“<code>hsb(0.5,&nbsp;0.25,&nbsp;1)</code>”)</li>
+	     #     <li>hsb(•••%, •••%, •••%) — same as above, but in %</li>
+	     #     <li>hsba(•••, •••, •••, •••) — same as above, but with opacity</li>
+	     #     <li>hsl(•••, •••, •••) — almost the same as hsb, see <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" title="HSL and HSV - Wikipedia, the free encyclopedia">Wikipedia page</a></li>
+	     #     <li>hsl(•••%, •••%, •••%) — same as above, but in %</li>
+	     #     <li>hsla(•••, •••, •••, •••) — same as above, but with opacity</li>
+	     #     <li>Optionally for hsb and hsl you could specify hue as a degree: “<code>hsl(240deg,&nbsp;1,&nbsp;.5)</code>” or, if you want to go fancy, “<code>hsl(240°,&nbsp;1,&nbsp;.5)</code>”</li>
+	     # </ul>
+	    \*/
+	    elproto.attr = function (name, value) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        if (name == null) {
+	            var res = {};
+	            for (var a in this.attrs) if (this.attrs[has](a)) {
+	                res[a] = this.attrs[a];
+	            }
+	            res.gradient && res.fill == "none" && (res.fill = res.gradient) && delete res.gradient;
+	            res.transform = this._.transform;
+	            return res;
+	        }
+	        if (value == null && R.is(name, "string")) {
+	            if (name == "fill" && this.attrs.fill == "none" && this.attrs.gradient) {
+	                return this.attrs.gradient;
+	            }
+	            if (name == "transform") {
+	                return this._.transform;
+	            }
+	            var names = name.split(separator),
+	                out = {};
+	            for (var i = 0, ii = names.length; i < ii; i++) {
+	                name = names[i];
+	                if (name in this.attrs) {
+	                    out[name] = this.attrs[name];
+	                } else if (R.is(this.paper.customAttributes[name], "function")) {
+	                    out[name] = this.paper.customAttributes[name].def;
+	                } else {
+	                    out[name] = R._availableAttrs[name];
+	                }
+	            }
+	            return ii - 1 ? out : out[names[0]];
+	        }
+	        if (value == null && R.is(name, "array")) {
+	            out = {};
+	            for (i = 0, ii = name.length; i < ii; i++) {
+	                out[name[i]] = this.attr(name[i]);
+	            }
+	            return out;
+	        }
+	        if (value != null) {
+	            var params = {};
+	            params[name] = value;
+	        } else if (name != null && R.is(name, "object")) {
+	            params = name;
+	        }
+	        for (var key in params) {
+	            eve("raphael.attr." + key + "." + this.id, this, params[key]);
+	        }
+	        for (key in this.paper.customAttributes) if (this.paper.customAttributes[has](key) && params[has](key) && R.is(this.paper.customAttributes[key], "function")) {
+	            var par = this.paper.customAttributes[key].apply(this, [].concat(params[key]));
+	            this.attrs[key] = params[key];
+	            for (var subkey in par) if (par[has](subkey)) {
+	                params[subkey] = par[subkey];
+	            }
+	        }
+	        setFillAndStroke(this, params);
+	        return this;
+	    };
+	    /*\
+	     * Element.toFront
+	     [ method ]
+	     **
+	     * Moves the element so it is the closest to the viewer’s eyes, on top of other elements.
+	     = (object) @Element
+	    \*/
+	    elproto.toFront = function () {
+	        if (this.removed) {
+	            return this;
+	        }
+	        var node = getRealNode(this.node);
+	        node.parentNode.appendChild(node);
+	        var svg = this.paper;
+	        svg.top != this && R._tofront(this, svg);
+	        return this;
+	    };
+	    /*\
+	     * Element.toBack
+	     [ method ]
+	     **
+	     * Moves the element so it is the furthest from the viewer’s eyes, behind other elements.
+	     = (object) @Element
+	    \*/
+	    elproto.toBack = function () {
+	        if (this.removed) {
+	            return this;
+	        }
+	        var node = getRealNode(this.node);
+	        var parentNode = node.parentNode;
+	        parentNode.insertBefore(node, parentNode.firstChild);
+	        R._toback(this, this.paper);
+	        var svg = this.paper;
+	        return this;
+	    };
+	    /*\
+	     * Element.insertAfter
+	     [ method ]
+	     **
+	     * Inserts current object after the given one.
+	     = (object) @Element
+	    \*/
+	    elproto.insertAfter = function (element) {
+	        if (this.removed || !element) {
+	            return this;
+	        }
+
+	        var node = getRealNode(this.node);
+	        var afterNode = getRealNode(element.node || element[element.length - 1].node);
+	        if (afterNode.nextSibling) {
+	            afterNode.parentNode.insertBefore(node, afterNode.nextSibling);
+	        } else {
+	            afterNode.parentNode.appendChild(node);
+	        }
+	        R._insertafter(this, element, this.paper);
+	        return this;
+	    };
+	    /*\
+	     * Element.insertBefore
+	     [ method ]
+	     **
+	     * Inserts current object before the given one.
+	     = (object) @Element
+	    \*/
+	    elproto.insertBefore = function (element) {
+	        if (this.removed || !element) {
+	            return this;
+	        }
+
+	        var node = getRealNode(this.node);
+	        var beforeNode = getRealNode(element.node || element[0].node);
+	        beforeNode.parentNode.insertBefore(node, beforeNode);
+	        R._insertbefore(this, element, this.paper);
+	        return this;
+	    };
+	    elproto.blur = function (size) {
+	        // Experimental. No Safari support. Use it on your own risk.
+	        var t = this;
+	        if (+size !== 0) {
+	            var fltr = $("filter"),
+	                blur = $("feGaussianBlur");
+	            t.attrs.blur = size;
+	            fltr.id = R.createUUID();
+	            $(blur, {stdDeviation: +size || 1.5});
+	            fltr.appendChild(blur);
+	            t.paper.defs.appendChild(fltr);
+	            t._blur = fltr;
+	            $(t.node, {filter: "url(#" + fltr.id + ")"});
+	        } else {
+	            if (t._blur) {
+	                t._blur.parentNode.removeChild(t._blur);
+	                delete t._blur;
+	                delete t.attrs.blur;
+	            }
+	            t.node.removeAttribute("filter");
+	        }
+	        return t;
+	    };
+	    R._engine.circle = function (svg, x, y, r) {
+	        var el = $("circle");
+	        svg.canvas && svg.canvas.appendChild(el);
+	        var res = new Element(el, svg);
+	        res.attrs = {cx: x, cy: y, r: r, fill: "none", stroke: "#000"};
+	        res.type = "circle";
+	        $(el, res.attrs);
+	        return res;
+	    };
+	    R._engine.rect = function (svg, x, y, w, h, r) {
+	        var el = $("rect");
+	        svg.canvas && svg.canvas.appendChild(el);
+	        var res = new Element(el, svg);
+	        res.attrs = {x: x, y: y, width: w, height: h, rx: r || 0, ry: r || 0, fill: "none", stroke: "#000"};
+	        res.type = "rect";
+	        $(el, res.attrs);
+	        return res;
+	    };
+	    R._engine.ellipse = function (svg, x, y, rx, ry) {
+	        var el = $("ellipse");
+	        svg.canvas && svg.canvas.appendChild(el);
+	        var res = new Element(el, svg);
+	        res.attrs = {cx: x, cy: y, rx: rx, ry: ry, fill: "none", stroke: "#000"};
+	        res.type = "ellipse";
+	        $(el, res.attrs);
+	        return res;
+	    };
+	    R._engine.image = function (svg, src, x, y, w, h) {
+	        var el = $("image");
+	        $(el, {x: x, y: y, width: w, height: h, preserveAspectRatio: "none"});
+	        el.setAttributeNS(xlink, "href", src);
+	        svg.canvas && svg.canvas.appendChild(el);
+	        var res = new Element(el, svg);
+	        res.attrs = {x: x, y: y, width: w, height: h, src: src};
+	        res.type = "image";
+	        return res;
+	    };
+	    R._engine.text = function (svg, x, y, text) {
+	        var el = $("text");
+	        svg.canvas && svg.canvas.appendChild(el);
+	        var res = new Element(el, svg);
+	        res.attrs = {
+	            x: x,
+	            y: y,
+	            "text-anchor": "middle",
+	            text: text,
+	            "font-family": R._availableAttrs["font-family"],
+	            "font-size": R._availableAttrs["font-size"],
+	            stroke: "none",
+	            fill: "#000"
+	        };
+	        res.type = "text";
+	        setFillAndStroke(res, res.attrs);
+	        return res;
+	    };
+	    R._engine.setSize = function (width, height) {
+	        this.width = width || this.width;
+	        this.height = height || this.height;
+	        this.canvas.setAttribute("width", this.width);
+	        this.canvas.setAttribute("height", this.height);
+	        if (this._viewBox) {
+	            this.setViewBox.apply(this, this._viewBox);
+	        }
+	        return this;
+	    };
+	    R._engine.create = function () {
+	        var con = R._getContainer.apply(0, arguments),
+	            container = con && con.container,
+	            x = con.x,
+	            y = con.y,
+	            width = con.width,
+	            height = con.height;
+	        if (!container) {
+	            throw new Error("SVG container not found.");
+	        }
+	        var cnvs = $("svg"),
+	            css = "overflow:hidden;",
+	            isFloating;
+	        x = x || 0;
+	        y = y || 0;
+	        width = width || 512;
+	        height = height || 342;
+	        $(cnvs, {
+	            height: height,
+	            version: 1.1,
+	            width: width,
+	            xmlns: "http://www.w3.org/2000/svg",
+	            "xmlns:xlink": "http://www.w3.org/1999/xlink"
+	        });
+	        if (container == 1) {
+	            cnvs.style.cssText = css + "position:absolute;left:" + x + "px;top:" + y + "px";
+	            R._g.doc.body.appendChild(cnvs);
+	            isFloating = 1;
+	        } else {
+	            cnvs.style.cssText = css + "position:relative";
+	            if (container.firstChild) {
+	                container.insertBefore(cnvs, container.firstChild);
+	            } else {
+	                container.appendChild(cnvs);
+	            }
+	        }
+	        container = new R._Paper;
+	        container.width = width;
+	        container.height = height;
+	        container.canvas = cnvs;
+	        container.clear();
+	        container._left = container._top = 0;
+	        isFloating && (container.renderfix = function () {});
+	        container.renderfix();
+	        return container;
+	    };
+	    R._engine.setViewBox = function (x, y, w, h, fit) {
+	        eve("raphael.setViewBox", this, this._viewBox, [x, y, w, h, fit]);
+	        var paperSize = this.getSize(),
+	            size = mmax(w / paperSize.width, h / paperSize.height),
+	            top = this.top,
+	            aspectRatio = fit ? "xMidYMid meet" : "xMinYMin",
+	            vb,
+	            sw;
+	        if (x == null) {
+	            if (this._vbSize) {
+	                size = 1;
+	            }
+	            delete this._vbSize;
+	            vb = "0 0 " + this.width + S + this.height;
+	        } else {
+	            this._vbSize = size;
+	            vb = x + S + y + S + w + S + h;
+	        }
+	        $(this.canvas, {
+	            viewBox: vb,
+	            preserveAspectRatio: aspectRatio
+	        });
+	        while (size && top) {
+	            sw = "stroke-width" in top.attrs ? top.attrs["stroke-width"] : 1;
+	            top.attr({"stroke-width": sw});
+	            top._.dirty = 1;
+	            top._.dirtyT = 1;
+	            top = top.prev;
+	        }
+	        this._viewBox = [x, y, w, h, !!fit];
+	        return this;
+	    };
+	    /*\
+	     * Paper.renderfix
+	     [ method ]
+	     **
+	     * Fixes the issue of Firefox and IE9 regarding subpixel rendering. If paper is dependent
+	     * on other elements after reflow it could shift half pixel which cause for lines to lost their crispness.
+	     * This method fixes the issue.
+	     **
+	       Special thanks to Mariusz Nowak (http://www.medikoo.com/) for this method.
+	    \*/
+	    R.prototype.renderfix = function () {
+	        var cnvs = this.canvas,
+	            s = cnvs.style,
+	            pos;
+	        try {
+	            pos = cnvs.getScreenCTM() || cnvs.createSVGMatrix();
+	        } catch (e) {
+	            pos = cnvs.createSVGMatrix();
+	        }
+	        var left = -pos.e % 1,
+	            top = -pos.f % 1;
+	        if (left || top) {
+	            if (left) {
+	                this._left = (this._left + left) % 1;
+	                s.left = this._left + "px";
+	            }
+	            if (top) {
+	                this._top = (this._top + top) % 1;
+	                s.top = this._top + "px";
+	            }
+	        }
+	    };
+	    /*\
+	     * Paper.clear
+	     [ method ]
+	     **
+	     * Clears the paper, i.e. removes all the elements.
+	    \*/
+	    R.prototype.clear = function () {
+	        R.eve("raphael.clear", this);
+	        var c = this.canvas;
+	        while (c.firstChild) {
+	            c.removeChild(c.firstChild);
+	        }
+	        this.bottom = this.top = null;
+	        (this.desc = $("desc")).appendChild(R._g.doc.createTextNode("Created with Rapha\xebl " + R.version));
+	        c.appendChild(this.desc);
+	        c.appendChild(this.defs = $("defs"));
+	    };
+	    /*\
+	     * Paper.remove
+	     [ method ]
+	     **
+	     * Removes the paper from the DOM.
+	    \*/
+	    R.prototype.remove = function () {
+	        eve("raphael.remove", this);
+	        this.canvas.parentNode && this.canvas.parentNode.removeChild(this.canvas);
+	        for (var i in this) {
+	            this[i] = typeof this[i] == "function" ? R._removedFactory(i) : null;
+	        }
+	    };
+	    var setproto = R.st;
+	    for (var method in elproto) if (elproto[has](method) && !setproto[has](method)) {
+	        setproto[method] = (function (methodname) {
+	            return function () {
+	                var arg = arguments;
+	                return this.forEach(function (el) {
+	                    el[methodname].apply(el, arg);
+	                });
+	            };
+	        })(method);
+	    }
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(R) {
+	    if (R && !R.vml) {
+	        return;
+	    }
+
+	    var has = "hasOwnProperty",
+	        Str = String,
+	        toFloat = parseFloat,
+	        math = Math,
+	        round = math.round,
+	        mmax = math.max,
+	        mmin = math.min,
+	        abs = math.abs,
+	        fillString = "fill",
+	        separator = /[, ]+/,
+	        eve = R.eve,
+	        ms = " progid:DXImageTransform.Microsoft",
+	        S = " ",
+	        E = "",
+	        map = {M: "m", L: "l", C: "c", Z: "x", m: "t", l: "r", c: "v", z: "x"},
+	        bites = /([clmz]),?([^clmz]*)/gi,
+	        blurregexp = / progid:\S+Blur\([^\)]+\)/g,
+	        val = /-?[^,\s-]+/g,
+	        cssDot = "position:absolute;left:0;top:0;width:1px;height:1px;behavior:url(#default#VML)",
+	        zoom = 21600,
+	        pathTypes = {path: 1, rect: 1, image: 1},
+	        ovalTypes = {circle: 1, ellipse: 1},
+	        path2vml = function (path) {
+	            var total =  /[ahqstv]/ig,
+	                command = R._pathToAbsolute;
+	            Str(path).match(total) && (command = R._path2curve);
+	            total = /[clmz]/g;
+	            if (command == R._pathToAbsolute && !Str(path).match(total)) {
+	                var res = Str(path).replace(bites, function (all, command, args) {
+	                    var vals = [],
+	                        isMove = command.toLowerCase() == "m",
+	                        res = map[command];
+	                    args.replace(val, function (value) {
+	                        if (isMove && vals.length == 2) {
+	                            res += vals + map[command == "m" ? "l" : "L"];
+	                            vals = [];
+	                        }
+	                        vals.push(round(value * zoom));
+	                    });
+	                    return res + vals;
+	                });
+	                return res;
+	            }
+	            var pa = command(path), p, r;
+	            res = [];
+	            for (var i = 0, ii = pa.length; i < ii; i++) {
+	                p = pa[i];
+	                r = pa[i][0].toLowerCase();
+	                r == "z" && (r = "x");
+	                for (var j = 1, jj = p.length; j < jj; j++) {
+	                    r += round(p[j] * zoom) + (j != jj - 1 ? "," : E);
+	                }
+	                res.push(r);
+	            }
+	            return res.join(S);
+	        },
+	        compensation = function (deg, dx, dy) {
+	            var m = R.matrix();
+	            m.rotate(-deg, .5, .5);
+	            return {
+	                dx: m.x(dx, dy),
+	                dy: m.y(dx, dy)
+	            };
+	        },
+	        setCoords = function (p, sx, sy, dx, dy, deg) {
+	            var _ = p._,
+	                m = p.matrix,
+	                fillpos = _.fillpos,
+	                o = p.node,
+	                s = o.style,
+	                y = 1,
+	                flip = "",
+	                dxdy,
+	                kx = zoom / sx,
+	                ky = zoom / sy;
+	            s.visibility = "hidden";
+	            if (!sx || !sy) {
+	                return;
+	            }
+	            o.coordsize = abs(kx) + S + abs(ky);
+	            s.rotation = deg * (sx * sy < 0 ? -1 : 1);
+	            if (deg) {
+	                var c = compensation(deg, dx, dy);
+	                dx = c.dx;
+	                dy = c.dy;
+	            }
+	            sx < 0 && (flip += "x");
+	            sy < 0 && (flip += " y") && (y = -1);
+	            s.flip = flip;
+	            o.coordorigin = (dx * -kx) + S + (dy * -ky);
+	            if (fillpos || _.fillsize) {
+	                var fill = o.getElementsByTagName(fillString);
+	                fill = fill && fill[0];
+	                o.removeChild(fill);
+	                if (fillpos) {
+	                    c = compensation(deg, m.x(fillpos[0], fillpos[1]), m.y(fillpos[0], fillpos[1]));
+	                    fill.position = c.dx * y + S + c.dy * y;
+	                }
+	                if (_.fillsize) {
+	                    fill.size = _.fillsize[0] * abs(sx) + S + _.fillsize[1] * abs(sy);
+	                }
+	                o.appendChild(fill);
+	            }
+	            s.visibility = "visible";
+	        };
+	    R.toString = function () {
+	        return  "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl " + this.version;
+	    };
+	    var addArrow = function (o, value, isEnd) {
+	        var values = Str(value).toLowerCase().split("-"),
+	            se = isEnd ? "end" : "start",
+	            i = values.length,
+	            type = "classic",
+	            w = "medium",
+	            h = "medium";
+	        while (i--) {
+	            switch (values[i]) {
+	                case "block":
+	                case "classic":
+	                case "oval":
+	                case "diamond":
+	                case "open":
+	                case "none":
+	                    type = values[i];
+	                    break;
+	                case "wide":
+	                case "narrow": h = values[i]; break;
+	                case "long":
+	                case "short": w = values[i]; break;
+	            }
+	        }
+	        var stroke = o.node.getElementsByTagName("stroke")[0];
+	        stroke[se + "arrow"] = type;
+	        stroke[se + "arrowlength"] = w;
+	        stroke[se + "arrowwidth"] = h;
+	    },
+	    setFillAndStroke = function (o, params) {
+	        // o.paper.canvas.style.display = "none";
+	        o.attrs = o.attrs || {};
+	        var node = o.node,
+	            a = o.attrs,
+	            s = node.style,
+	            xy,
+	            newpath = pathTypes[o.type] && (params.x != a.x || params.y != a.y || params.width != a.width || params.height != a.height || params.cx != a.cx || params.cy != a.cy || params.rx != a.rx || params.ry != a.ry || params.r != a.r),
+	            isOval = ovalTypes[o.type] && (a.cx != params.cx || a.cy != params.cy || a.r != params.r || a.rx != params.rx || a.ry != params.ry),
+	            res = o;
+
+
+	        for (var par in params) if (params[has](par)) {
+	            a[par] = params[par];
+	        }
+	        if (newpath) {
+	            a.path = R._getPath[o.type](o);
+	            o._.dirty = 1;
+	        }
+	        params.href && (node.href = params.href);
+	        params.title && (node.title = params.title);
+	        params.target && (node.target = params.target);
+	        params.cursor && (s.cursor = params.cursor);
+	        "blur" in params && o.blur(params.blur);
+	        if (params.path && o.type == "path" || newpath) {
+	            node.path = path2vml(~Str(a.path).toLowerCase().indexOf("r") ? R._pathToAbsolute(a.path) : a.path);
+	            o._.dirty = 1;
+	            if (o.type == "image") {
+	                o._.fillpos = [a.x, a.y];
+	                o._.fillsize = [a.width, a.height];
+	                setCoords(o, 1, 1, 0, 0, 0);
+	            }
+	        }
+	        "transform" in params && o.transform(params.transform);
+	        if (isOval) {
+	            var cx = +a.cx,
+	                cy = +a.cy,
+	                rx = +a.rx || +a.r || 0,
+	                ry = +a.ry || +a.r || 0;
+	            node.path = R.format("ar{0},{1},{2},{3},{4},{1},{4},{1}x", round((cx - rx) * zoom), round((cy - ry) * zoom), round((cx + rx) * zoom), round((cy + ry) * zoom), round(cx * zoom));
+	            o._.dirty = 1;
+	        }
+	        if ("clip-rect" in params) {
+	            var rect = Str(params["clip-rect"]).split(separator);
+	            if (rect.length == 4) {
+	                rect[2] = +rect[2] + (+rect[0]);
+	                rect[3] = +rect[3] + (+rect[1]);
+	                var div = node.clipRect || R._g.doc.createElement("div"),
+	                    dstyle = div.style;
+	                dstyle.clip = R.format("rect({1}px {2}px {3}px {0}px)", rect);
+	                if (!node.clipRect) {
+	                    dstyle.position = "absolute";
+	                    dstyle.top = 0;
+	                    dstyle.left = 0;
+	                    dstyle.width = o.paper.width + "px";
+	                    dstyle.height = o.paper.height + "px";
+	                    node.parentNode.insertBefore(div, node);
+	                    div.appendChild(node);
+	                    node.clipRect = div;
+	                }
+	            }
+	            if (!params["clip-rect"]) {
+	                node.clipRect && (node.clipRect.style.clip = "auto");
+	            }
+	        }
+	        if (o.textpath) {
+	            var textpathStyle = o.textpath.style;
+	            params.font && (textpathStyle.font = params.font);
+	            params["font-family"] && (textpathStyle.fontFamily = '"' + params["font-family"].split(",")[0].replace(/^['"]+|['"]+$/g, E) + '"');
+	            params["font-size"] && (textpathStyle.fontSize = params["font-size"]);
+	            params["font-weight"] && (textpathStyle.fontWeight = params["font-weight"]);
+	            params["font-style"] && (textpathStyle.fontStyle = params["font-style"]);
+	        }
+	        if ("arrow-start" in params) {
+	            addArrow(res, params["arrow-start"]);
+	        }
+	        if ("arrow-end" in params) {
+	            addArrow(res, params["arrow-end"], 1);
+	        }
+	        if (params.opacity != null ||
+	            params.fill != null ||
+	            params.src != null ||
+	            params.stroke != null ||
+	            params["stroke-width"] != null ||
+	            params["stroke-opacity"] != null ||
+	            params["fill-opacity"] != null ||
+	            params["stroke-dasharray"] != null ||
+	            params["stroke-miterlimit"] != null ||
+	            params["stroke-linejoin"] != null ||
+	            params["stroke-linecap"] != null) {
+	            var fill = node.getElementsByTagName(fillString),
+	                newfill = false;
+	            fill = fill && fill[0];
+	            !fill && (newfill = fill = createNode(fillString));
+	            if (o.type == "image" && params.src) {
+	                fill.src = params.src;
+	            }
+	            params.fill && (fill.on = true);
+	            if (fill.on == null || params.fill == "none" || params.fill === null) {
+	                fill.on = false;
+	            }
+	            if (fill.on && params.fill) {
+	                var isURL = Str(params.fill).match(R._ISURL);
+	                if (isURL) {
+	                    fill.parentNode == node && node.removeChild(fill);
+	                    fill.rotate = true;
+	                    fill.src = isURL[1];
+	                    fill.type = "tile";
+	                    var bbox = o.getBBox(1);
+	                    fill.position = bbox.x + S + bbox.y;
+	                    o._.fillpos = [bbox.x, bbox.y];
+
+	                    R._preload(isURL[1], function () {
+	                        o._.fillsize = [this.offsetWidth, this.offsetHeight];
+	                    });
+	                } else {
+	                    fill.color = R.getRGB(params.fill).hex;
+	                    fill.src = E;
+	                    fill.type = "solid";
+	                    if (R.getRGB(params.fill).error && (res.type in {circle: 1, ellipse: 1} || Str(params.fill).charAt() != "r") && addGradientFill(res, params.fill, fill)) {
+	                        a.fill = "none";
+	                        a.gradient = params.fill;
+	                        fill.rotate = false;
+	                    }
+	                }
+	            }
+	            if ("fill-opacity" in params || "opacity" in params) {
+	                var opacity = ((+a["fill-opacity"] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+R.getRGB(params.fill).o + 1 || 2) - 1);
+	                opacity = mmin(mmax(opacity, 0), 1);
+	                fill.opacity = opacity;
+	                if (fill.src) {
+	                    fill.color = "none";
+	                }
+	            }
+	            node.appendChild(fill);
+	            var stroke = (node.getElementsByTagName("stroke") && node.getElementsByTagName("stroke")[0]),
+	            newstroke = false;
+	            !stroke && (newstroke = stroke = createNode("stroke"));
+	            if ((params.stroke && params.stroke != "none") ||
+	                params["stroke-width"] ||
+	                params["stroke-opacity"] != null ||
+	                params["stroke-dasharray"] ||
+	                params["stroke-miterlimit"] ||
+	                params["stroke-linejoin"] ||
+	                params["stroke-linecap"]) {
+	                stroke.on = true;
+	            }
+	            (params.stroke == "none" || params.stroke === null || stroke.on == null || params.stroke == 0 || params["stroke-width"] == 0) && (stroke.on = false);
+	            var strokeColor = R.getRGB(params.stroke);
+	            stroke.on && params.stroke && (stroke.color = strokeColor.hex);
+	            opacity = ((+a["stroke-opacity"] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+strokeColor.o + 1 || 2) - 1);
+	            var width = (toFloat(params["stroke-width"]) || 1) * .75;
+	            opacity = mmin(mmax(opacity, 0), 1);
+	            params["stroke-width"] == null && (width = a["stroke-width"]);
+	            params["stroke-width"] && (stroke.weight = width);
+	            width && width < 1 && (opacity *= width) && (stroke.weight = 1);
+	            stroke.opacity = opacity;
+
+	            params["stroke-linejoin"] && (stroke.joinstyle = params["stroke-linejoin"] || "miter");
+	            stroke.miterlimit = params["stroke-miterlimit"] || 8;
+	            params["stroke-linecap"] && (stroke.endcap = params["stroke-linecap"] == "butt" ? "flat" : params["stroke-linecap"] == "square" ? "square" : "round");
+	            if ("stroke-dasharray" in params) {
+	                var dasharray = {
+	                    "-": "shortdash",
+	                    ".": "shortdot",
+	                    "-.": "shortdashdot",
+	                    "-..": "shortdashdotdot",
+	                    ". ": "dot",
+	                    "- ": "dash",
+	                    "--": "longdash",
+	                    "- .": "dashdot",
+	                    "--.": "longdashdot",
+	                    "--..": "longdashdotdot"
+	                };
+	                stroke.dashstyle = dasharray[has](params["stroke-dasharray"]) ? dasharray[params["stroke-dasharray"]] : E;
+	            }
+	            newstroke && node.appendChild(stroke);
+	        }
+	        if (res.type == "text") {
+	            res.paper.canvas.style.display = E;
+	            var span = res.paper.span,
+	                m = 100,
+	                fontSize = a.font && a.font.match(/\d+(?:\.\d*)?(?=px)/);
+	            s = span.style;
+	            a.font && (s.font = a.font);
+	            a["font-family"] && (s.fontFamily = a["font-family"]);
+	            a["font-weight"] && (s.fontWeight = a["font-weight"]);
+	            a["font-style"] && (s.fontStyle = a["font-style"]);
+	            fontSize = toFloat(a["font-size"] || fontSize && fontSize[0]) || 10;
+	            s.fontSize = fontSize * m + "px";
+	            res.textpath.string && (span.innerHTML = Str(res.textpath.string).replace(/</g, "&#60;").replace(/&/g, "&#38;").replace(/\n/g, "<br>"));
+	            var brect = span.getBoundingClientRect();
+	            res.W = a.w = (brect.right - brect.left) / m;
+	            res.H = a.h = (brect.bottom - brect.top) / m;
+	            // res.paper.canvas.style.display = "none";
+	            res.X = a.x;
+	            res.Y = a.y + res.H / 2;
+
+	            ("x" in params || "y" in params) && (res.path.v = R.format("m{0},{1}l{2},{1}", round(a.x * zoom), round(a.y * zoom), round(a.x * zoom) + 1));
+	            var dirtyattrs = ["x", "y", "text", "font", "font-family", "font-weight", "font-style", "font-size"];
+	            for (var d = 0, dd = dirtyattrs.length; d < dd; d++) if (dirtyattrs[d] in params) {
+	                res._.dirty = 1;
+	                break;
+	            }
+
+	            // text-anchor emulation
+	            switch (a["text-anchor"]) {
+	                case "start":
+	                    res.textpath.style["v-text-align"] = "left";
+	                    res.bbx = res.W / 2;
+	                break;
+	                case "end":
+	                    res.textpath.style["v-text-align"] = "right";
+	                    res.bbx = -res.W / 2;
+	                break;
+	                default:
+	                    res.textpath.style["v-text-align"] = "center";
+	                    res.bbx = 0;
+	                break;
+	            }
+	            res.textpath.style["v-text-kern"] = true;
+	        }
+	        // res.paper.canvas.style.display = E;
+	    },
+	    addGradientFill = function (o, gradient, fill) {
+	        o.attrs = o.attrs || {};
+	        var attrs = o.attrs,
+	            pow = Math.pow,
+	            opacity,
+	            oindex,
+	            type = "linear",
+	            fxfy = ".5 .5";
+	        o.attrs.gradient = gradient;
+	        gradient = Str(gradient).replace(R._radial_gradient, function (all, fx, fy) {
+	            type = "radial";
+	            if (fx && fy) {
+	                fx = toFloat(fx);
+	                fy = toFloat(fy);
+	                pow(fx - .5, 2) + pow(fy - .5, 2) > .25 && (fy = math.sqrt(.25 - pow(fx - .5, 2)) * ((fy > .5) * 2 - 1) + .5);
+	                fxfy = fx + S + fy;
+	            }
+	            return E;
+	        });
+	        gradient = gradient.split(/\s*\-\s*/);
+	        if (type == "linear") {
+	            var angle = gradient.shift();
+	            angle = -toFloat(angle);
+	            if (isNaN(angle)) {
+	                return null;
+	            }
+	        }
+	        var dots = R._parseDots(gradient);
+	        if (!dots) {
+	            return null;
+	        }
+	        o = o.shape || o.node;
+	        if (dots.length) {
+	            o.removeChild(fill);
+	            fill.on = true;
+	            fill.method = "none";
+	            fill.color = dots[0].color;
+	            fill.color2 = dots[dots.length - 1].color;
+	            var clrs = [];
+	            for (var i = 0, ii = dots.length; i < ii; i++) {
+	                dots[i].offset && clrs.push(dots[i].offset + S + dots[i].color);
+	            }
+	            fill.colors = clrs.length ? clrs.join() : "0% " + fill.color;
+	            if (type == "radial") {
+	                fill.type = "gradientTitle";
+	                fill.focus = "100%";
+	                fill.focussize = "0 0";
+	                fill.focusposition = fxfy;
+	                fill.angle = 0;
+	            } else {
+	                // fill.rotate= true;
+	                fill.type = "gradient";
+	                fill.angle = (270 - angle) % 360;
+	            }
+	            o.appendChild(fill);
+	        }
+	        return 1;
+	    },
+	    Element = function (node, vml) {
+	        this[0] = this.node = node;
+	        node.raphael = true;
+	        this.id = R._oid++;
+	        node.raphaelid = this.id;
+	        this.X = 0;
+	        this.Y = 0;
+	        this.attrs = {};
+	        this.paper = vml;
+	        this.matrix = R.matrix();
+	        this._ = {
+	            transform: [],
+	            sx: 1,
+	            sy: 1,
+	            dx: 0,
+	            dy: 0,
+	            deg: 0,
+	            dirty: 1,
+	            dirtyT: 1
+	        };
+	        !vml.bottom && (vml.bottom = this);
+	        this.prev = vml.top;
+	        vml.top && (vml.top.next = this);
+	        vml.top = this;
+	        this.next = null;
+	    };
+	    var elproto = R.el;
+
+	    Element.prototype = elproto;
+	    elproto.constructor = Element;
+	    elproto.transform = function (tstr) {
+	        if (tstr == null) {
+	            return this._.transform;
+	        }
+	        var vbs = this.paper._viewBoxShift,
+	            vbt = vbs ? "s" + [vbs.scale, vbs.scale] + "-1-1t" + [vbs.dx, vbs.dy] : E,
+	            oldt;
+	        if (vbs) {
+	            oldt = tstr = Str(tstr).replace(/\.{3}|\u2026/g, this._.transform || E);
+	        }
+	        R._extractTransform(this, vbt + tstr);
+	        var matrix = this.matrix.clone(),
+	            skew = this.skew,
+	            o = this.node,
+	            split,
+	            isGrad = ~Str(this.attrs.fill).indexOf("-"),
+	            isPatt = !Str(this.attrs.fill).indexOf("url(");
+	        matrix.translate(1, 1);
+	        if (isPatt || isGrad || this.type == "image") {
+	            skew.matrix = "1 0 0 1";
+	            skew.offset = "0 0";
+	            split = matrix.split();
+	            if ((isGrad && split.noRotation) || !split.isSimple) {
+	                o.style.filter = matrix.toFilter();
+	                var bb = this.getBBox(),
+	                    bbt = this.getBBox(1),
+	                    dx = bb.x - bbt.x,
+	                    dy = bb.y - bbt.y;
+	                o.coordorigin = (dx * -zoom) + S + (dy * -zoom);
+	                setCoords(this, 1, 1, dx, dy, 0);
+	            } else {
+	                o.style.filter = E;
+	                setCoords(this, split.scalex, split.scaley, split.dx, split.dy, split.rotate);
+	            }
+	        } else {
+	            o.style.filter = E;
+	            skew.matrix = Str(matrix);
+	            skew.offset = matrix.offset();
+	        }
+	        if (oldt !== null) { // empty string value is true as well
+	            this._.transform = oldt;
+	            R._extractTransform(this, oldt);
+	        }
+	        return this;
+	    };
+	    elproto.rotate = function (deg, cx, cy) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        if (deg == null) {
+	            return;
+	        }
+	        deg = Str(deg).split(separator);
+	        if (deg.length - 1) {
+	            cx = toFloat(deg[1]);
+	            cy = toFloat(deg[2]);
+	        }
+	        deg = toFloat(deg[0]);
+	        (cy == null) && (cx = cy);
+	        if (cx == null || cy == null) {
+	            var bbox = this.getBBox(1);
+	            cx = bbox.x + bbox.width / 2;
+	            cy = bbox.y + bbox.height / 2;
+	        }
+	        this._.dirtyT = 1;
+	        this.transform(this._.transform.concat([["r", deg, cx, cy]]));
+	        return this;
+	    };
+	    elproto.translate = function (dx, dy) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        dx = Str(dx).split(separator);
+	        if (dx.length - 1) {
+	            dy = toFloat(dx[1]);
+	        }
+	        dx = toFloat(dx[0]) || 0;
+	        dy = +dy || 0;
+	        if (this._.bbox) {
+	            this._.bbox.x += dx;
+	            this._.bbox.y += dy;
+	        }
+	        this.transform(this._.transform.concat([["t", dx, dy]]));
+	        return this;
+	    };
+	    elproto.scale = function (sx, sy, cx, cy) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        sx = Str(sx).split(separator);
+	        if (sx.length - 1) {
+	            sy = toFloat(sx[1]);
+	            cx = toFloat(sx[2]);
+	            cy = toFloat(sx[3]);
+	            isNaN(cx) && (cx = null);
+	            isNaN(cy) && (cy = null);
+	        }
+	        sx = toFloat(sx[0]);
+	        (sy == null) && (sy = sx);
+	        (cy == null) && (cx = cy);
+	        if (cx == null || cy == null) {
+	            var bbox = this.getBBox(1);
+	        }
+	        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
+	        cy = cy == null ? bbox.y + bbox.height / 2 : cy;
+
+	        this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
+	        this._.dirtyT = 1;
+	        return this;
+	    };
+	    elproto.hide = function () {
+	        !this.removed && (this.node.style.display = "none");
+	        return this;
+	    };
+	    elproto.show = function () {
+	        !this.removed && (this.node.style.display = E);
+	        return this;
+	    };
+	    // Needed to fix the vml setViewBox issues
+	    elproto.auxGetBBox = R.el.getBBox;
+	    elproto.getBBox = function(){
+	      var b = this.auxGetBBox();
+	      if (this.paper && this.paper._viewBoxShift)
+	      {
+	        var c = {};
+	        var z = 1/this.paper._viewBoxShift.scale;
+	        c.x = b.x - this.paper._viewBoxShift.dx;
+	        c.x *= z;
+	        c.y = b.y - this.paper._viewBoxShift.dy;
+	        c.y *= z;
+	        c.width  = b.width  * z;
+	        c.height = b.height * z;
+	        c.x2 = c.x + c.width;
+	        c.y2 = c.y + c.height;
+	        return c;
+	      }
+	      return b;
+	    };
+	    elproto._getBBox = function () {
+	        if (this.removed) {
+	            return {};
+	        }
+	        return {
+	            x: this.X + (this.bbx || 0) - this.W / 2,
+	            y: this.Y - this.H,
+	            width: this.W,
+	            height: this.H
+	        };
+	    };
+	    elproto.remove = function () {
+	        if (this.removed || !this.node.parentNode) {
+	            return;
+	        }
+	        this.paper.__set__ && this.paper.__set__.exclude(this);
+	        R.eve.unbind("raphael.*.*." + this.id);
+	        R._tear(this, this.paper);
+	        this.node.parentNode.removeChild(this.node);
+	        this.shape && this.shape.parentNode.removeChild(this.shape);
+	        for (var i in this) {
+	            this[i] = typeof this[i] == "function" ? R._removedFactory(i) : null;
+	        }
+	        this.removed = true;
+	    };
+	    elproto.attr = function (name, value) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        if (name == null) {
+	            var res = {};
+	            for (var a in this.attrs) if (this.attrs[has](a)) {
+	                res[a] = this.attrs[a];
+	            }
+	            res.gradient && res.fill == "none" && (res.fill = res.gradient) && delete res.gradient;
+	            res.transform = this._.transform;
+	            return res;
+	        }
+	        if (value == null && R.is(name, "string")) {
+	            if (name == fillString && this.attrs.fill == "none" && this.attrs.gradient) {
+	                return this.attrs.gradient;
+	            }
+	            var names = name.split(separator),
+	                out = {};
+	            for (var i = 0, ii = names.length; i < ii; i++) {
+	                name = names[i];
+	                if (name in this.attrs) {
+	                    out[name] = this.attrs[name];
+	                } else if (R.is(this.paper.customAttributes[name], "function")) {
+	                    out[name] = this.paper.customAttributes[name].def;
+	                } else {
+	                    out[name] = R._availableAttrs[name];
+	                }
+	            }
+	            return ii - 1 ? out : out[names[0]];
+	        }
+	        if (this.attrs && value == null && R.is(name, "array")) {
+	            out = {};
+	            for (i = 0, ii = name.length; i < ii; i++) {
+	                out[name[i]] = this.attr(name[i]);
+	            }
+	            return out;
+	        }
+	        var params;
+	        if (value != null) {
+	            params = {};
+	            params[name] = value;
+	        }
+	        value == null && R.is(name, "object") && (params = name);
+	        for (var key in params) {
+	            eve("raphael.attr." + key + "." + this.id, this, params[key]);
+	        }
+	        if (params) {
+	            for (key in this.paper.customAttributes) if (this.paper.customAttributes[has](key) && params[has](key) && R.is(this.paper.customAttributes[key], "function")) {
+	                var par = this.paper.customAttributes[key].apply(this, [].concat(params[key]));
+	                this.attrs[key] = params[key];
+	                for (var subkey in par) if (par[has](subkey)) {
+	                    params[subkey] = par[subkey];
+	                }
+	            }
+	            // this.paper.canvas.style.display = "none";
+	            if (params.text && this.type == "text") {
+	                this.textpath.string = params.text;
+	            }
+	            setFillAndStroke(this, params);
+	            // this.paper.canvas.style.display = E;
+	        }
+	        return this;
+	    };
+	    elproto.toFront = function () {
+	        !this.removed && this.node.parentNode.appendChild(this.node);
+	        this.paper && this.paper.top != this && R._tofront(this, this.paper);
+	        return this;
+	    };
+	    elproto.toBack = function () {
+	        if (this.removed) {
+	            return this;
+	        }
+	        if (this.node.parentNode.firstChild != this.node) {
+	            this.node.parentNode.insertBefore(this.node, this.node.parentNode.firstChild);
+	            R._toback(this, this.paper);
+	        }
+	        return this;
+	    };
+	    elproto.insertAfter = function (element) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        if (element.constructor == R.st.constructor) {
+	            element = element[element.length - 1];
+	        }
+	        if (element.node.nextSibling) {
+	            element.node.parentNode.insertBefore(this.node, element.node.nextSibling);
+	        } else {
+	            element.node.parentNode.appendChild(this.node);
+	        }
+	        R._insertafter(this, element, this.paper);
+	        return this;
+	    };
+	    elproto.insertBefore = function (element) {
+	        if (this.removed) {
+	            return this;
+	        }
+	        if (element.constructor == R.st.constructor) {
+	            element = element[0];
+	        }
+	        element.node.parentNode.insertBefore(this.node, element.node);
+	        R._insertbefore(this, element, this.paper);
+	        return this;
+	    };
+	    elproto.blur = function (size) {
+	        var s = this.node.runtimeStyle,
+	            f = s.filter;
+	        f = f.replace(blurregexp, E);
+	        if (+size !== 0) {
+	            this.attrs.blur = size;
+	            s.filter = f + S + ms + ".Blur(pixelradius=" + (+size || 1.5) + ")";
+	            s.margin = R.format("-{0}px 0 0 -{0}px", round(+size || 1.5));
+	        } else {
+	            s.filter = f;
+	            s.margin = 0;
+	            delete this.attrs.blur;
+	        }
+	        return this;
+	    };
+
+	    R._engine.path = function (pathString, vml) {
+	        var el = createNode("shape");
+	        el.style.cssText = cssDot;
+	        el.coordsize = zoom + S + zoom;
+	        el.coordorigin = vml.coordorigin;
+	        var p = new Element(el, vml),
+	            attr = {fill: "none", stroke: "#000"};
+	        pathString && (attr.path = pathString);
+	        p.type = "path";
+	        p.path = [];
+	        p.Path = E;
+	        setFillAndStroke(p, attr);
+	        vml.canvas && vml.canvas.appendChild(el);
+	        var skew = createNode("skew");
+	        skew.on = true;
+	        el.appendChild(skew);
+	        p.skew = skew;
+	        p.transform(E);
+	        return p;
+	    };
+	    R._engine.rect = function (vml, x, y, w, h, r) {
+	        var path = R._rectPath(x, y, w, h, r),
+	            res = vml.path(path),
+	            a = res.attrs;
+	        res.X = a.x = x;
+	        res.Y = a.y = y;
+	        res.W = a.width = w;
+	        res.H = a.height = h;
+	        a.r = r;
+	        a.path = path;
+	        res.type = "rect";
+	        return res;
+	    };
+	    R._engine.ellipse = function (vml, x, y, rx, ry) {
+	        var res = vml.path(),
+	            a = res.attrs;
+	        res.X = x - rx;
+	        res.Y = y - ry;
+	        res.W = rx * 2;
+	        res.H = ry * 2;
+	        res.type = "ellipse";
+	        setFillAndStroke(res, {
+	            cx: x,
+	            cy: y,
+	            rx: rx,
+	            ry: ry
+	        });
+	        return res;
+	    };
+	    R._engine.circle = function (vml, x, y, r) {
+	        var res = vml.path(),
+	            a = res.attrs;
+	        res.X = x - r;
+	        res.Y = y - r;
+	        res.W = res.H = r * 2;
+	        res.type = "circle";
+	        setFillAndStroke(res, {
+	            cx: x,
+	            cy: y,
+	            r: r
+	        });
+	        return res;
+	    };
+	    R._engine.image = function (vml, src, x, y, w, h) {
+	        var path = R._rectPath(x, y, w, h),
+	            res = vml.path(path).attr({stroke: "none"}),
+	            a = res.attrs,
+	            node = res.node,
+	            fill = node.getElementsByTagName(fillString)[0];
+	        a.src = src;
+	        res.X = a.x = x;
+	        res.Y = a.y = y;
+	        res.W = a.width = w;
+	        res.H = a.height = h;
+	        a.path = path;
+	        res.type = "image";
+	        fill.parentNode == node && node.removeChild(fill);
+	        fill.rotate = true;
+	        fill.src = src;
+	        fill.type = "tile";
+	        res._.fillpos = [x, y];
+	        res._.fillsize = [w, h];
+	        node.appendChild(fill);
+	        setCoords(res, 1, 1, 0, 0, 0);
+	        return res;
+	    };
+	    R._engine.text = function (vml, x, y, text) {
+	        var el = createNode("shape"),
+	            path = createNode("path"),
+	            o = createNode("textpath");
+	        x = x || 0;
+	        y = y || 0;
+	        text = text || "";
+	        path.v = R.format("m{0},{1}l{2},{1}", round(x * zoom), round(y * zoom), round(x * zoom) + 1);
+	        path.textpathok = true;
+	        o.string = Str(text);
+	        o.on = true;
+	        el.style.cssText = cssDot;
+	        el.coordsize = zoom + S + zoom;
+	        el.coordorigin = "0 0";
+	        var p = new Element(el, vml),
+	            attr = {
+	                fill: "#000",
+	                stroke: "none",
+	                font: R._availableAttrs.font,
+	                text: text
+	            };
+	        p.shape = el;
+	        p.path = path;
+	        p.textpath = o;
+	        p.type = "text";
+	        p.attrs.text = Str(text);
+	        p.attrs.x = x;
+	        p.attrs.y = y;
+	        p.attrs.w = 1;
+	        p.attrs.h = 1;
+	        setFillAndStroke(p, attr);
+	        el.appendChild(o);
+	        el.appendChild(path);
+	        vml.canvas.appendChild(el);
+	        var skew = createNode("skew");
+	        skew.on = true;
+	        el.appendChild(skew);
+	        p.skew = skew;
+	        p.transform(E);
+	        return p;
+	    };
+	    R._engine.setSize = function (width, height) {
+	        var cs = this.canvas.style;
+	        this.width = width;
+	        this.height = height;
+	        width == +width && (width += "px");
+	        height == +height && (height += "px");
+	        cs.width = width;
+	        cs.height = height;
+	        cs.clip = "rect(0 " + width + " " + height + " 0)";
+	        if (this._viewBox) {
+	            R._engine.setViewBox.apply(this, this._viewBox);
+	        }
+	        return this;
+	    };
+	    R._engine.setViewBox = function (x, y, w, h, fit) {
+	        R.eve("raphael.setViewBox", this, this._viewBox, [x, y, w, h, fit]);
+	        var paperSize = this.getSize(),
+	            width = paperSize.width,
+	            height = paperSize.height,
+	            H, W;
+	        if (fit) {
+	            H = height / h;
+	            W = width / w;
+	            if (w * H < width) {
+	                x -= (width - w * H) / 2 / H;
+	            }
+	            if (h * W < height) {
+	                y -= (height - h * W) / 2 / W;
+	            }
+	        }
+	        this._viewBox = [x, y, w, h, !!fit];
+	        this._viewBoxShift = {
+	            dx: -x,
+	            dy: -y,
+	            scale: paperSize
+	        };
+	        this.forEach(function (el) {
+	            el.transform("...");
+	        });
+	        return this;
+	    };
+	    var createNode;
+	    R._engine.initWin = function (win) {
+	            var doc = win.document;
+	            if (doc.styleSheets.length < 31) {
+	                doc.createStyleSheet().addRule(".rvml", "behavior:url(#default#VML)");
+	            } else {
+	                // no more room, add to the existing one
+	                // http://msdn.microsoft.com/en-us/library/ms531194%28VS.85%29.aspx
+	                doc.styleSheets[0].addRule(".rvml", "behavior:url(#default#VML)");
+	            }
+	            try {
+	                !doc.namespaces.rvml && doc.namespaces.add("rvml", "urn:schemas-microsoft-com:vml");
+	                createNode = function (tagName) {
+	                    return doc.createElement('<rvml:' + tagName + ' class="rvml">');
+	                };
+	            } catch (e) {
+	                createNode = function (tagName) {
+	                    return doc.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
+	                };
+	            }
+	        };
+	    R._engine.initWin(R._g.win);
+	    R._engine.create = function () {
+	        var con = R._getContainer.apply(0, arguments),
+	            container = con.container,
+	            height = con.height,
+	            s,
+	            width = con.width,
+	            x = con.x,
+	            y = con.y;
+	        if (!container) {
+	            throw new Error("VML container not found.");
+	        }
+	        var res = new R._Paper,
+	            c = res.canvas = R._g.doc.createElement("div"),
+	            cs = c.style;
+	        x = x || 0;
+	        y = y || 0;
+	        width = width || 512;
+	        height = height || 342;
+	        res.width = width;
+	        res.height = height;
+	        width == +width && (width += "px");
+	        height == +height && (height += "px");
+	        res.coordsize = zoom * 1e3 + S + zoom * 1e3;
+	        res.coordorigin = "0 0";
+	        res.span = R._g.doc.createElement("span");
+	        res.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;";
+	        c.appendChild(res.span);
+	        cs.cssText = R.format("top:0;left:0;width:{0};height:{1};display:inline-block;position:relative;clip:rect(0 {0} {1} 0);overflow:hidden", width, height);
+	        if (container == 1) {
+	            R._g.doc.body.appendChild(c);
+	            cs.left = x + "px";
+	            cs.top = y + "px";
+	            cs.position = "absolute";
+	        } else {
+	            if (container.firstChild) {
+	                container.insertBefore(c, container.firstChild);
+	            } else {
+	                container.appendChild(c);
+	            }
+	        }
+	        res.renderfix = function () {};
+	        return res;
+	    };
+	    R.prototype.clear = function () {
+	        R.eve("raphael.clear", this);
+	        this.canvas.innerHTML = E;
+	        this.span = R._g.doc.createElement("span");
+	        this.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;display:inline;";
+	        this.canvas.appendChild(this.span);
+	        this.bottom = this.top = null;
+	    };
+	    R.prototype.remove = function () {
+	        R.eve("raphael.remove", this);
+	        this.canvas.parentNode.removeChild(this.canvas);
+	        for (var i in this) {
+	            this[i] = typeof this[i] == "function" ? R._removedFactory(i) : null;
+	        }
+	        return true;
+	    };
+
+	    var setproto = R.st;
+	    for (var method in elproto) if (elproto[has](method) && !setproto[has](method)) {
+	        setproto[method] = (function (methodname) {
+	            return function () {
+	                var arg = arguments;
+	                return this.forEach(function (el) {
+	                    el[methodname].apply(el, arg);
+	                });
+	            };
+	        })(method);
+	    }
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }
+/******/ ])
+});
+;
+/* @license
+morris.js v0.5.1
+Copyright 2014 Olly Smith All rights reserved.
+Licensed under the BSD-2-Clause License.
+*/
+
+
+(function() {
+  var $, Morris, minutesSpecHelper, secondsSpecHelper,
+    __slice = [].slice,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  Morris = window.Morris = {};
+
+  $ = jQuery;
+
+  Morris.EventEmitter = (function() {
+    function EventEmitter() {}
+
+    EventEmitter.prototype.on = function(name, handler) {
+      if (this.handlers == null) {
+        this.handlers = {};
+      }
+      if (this.handlers[name] == null) {
+        this.handlers[name] = [];
+      }
+      this.handlers[name].push(handler);
+      return this;
+    };
+
+    EventEmitter.prototype.fire = function() {
+      var args, handler, name, _i, _len, _ref, _results;
+      name = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      if ((this.handlers != null) && (this.handlers[name] != null)) {
+        _ref = this.handlers[name];
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          handler = _ref[_i];
+          _results.push(handler.apply(null, args));
+        }
+        return _results;
+      }
+    };
+
+    return EventEmitter;
+
+  })();
+
+  Morris.commas = function(num) {
+    var absnum, intnum, ret, strabsnum;
+    if (num != null) {
+      ret = num < 0 ? "-" : "";
+      absnum = Math.abs(num);
+      intnum = Math.floor(absnum).toFixed(0);
+      ret += intnum.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');
+      strabsnum = absnum.toString();
+      if (strabsnum.length > intnum.length) {
+        ret += strabsnum.slice(intnum.length);
+      }
+      return ret;
+    } else {
+      return '-';
+    }
+  };
+
+  Morris.pad2 = function(number) {
+    return (number < 10 ? '0' : '') + number;
+  };
+
+  Morris.Grid = (function(_super) {
+    __extends(Grid, _super);
+
+    function Grid(options) {
+      this.hasToShow = __bind(this.hasToShow, this);
+      this.resizeHandler = __bind(this.resizeHandler, this);
+      var _this = this;
+      if (typeof options.element === 'string') {
+        this.el = $(document.getElementById(options.element));
+      } else {
+        this.el = $(options.element);
+      }
+      if ((this.el == null) || this.el.length === 0) {
+        throw new Error("Graph container element not found");
+      }
+      if (this.el.css('position') === 'static') {
+        this.el.css('position', 'relative');
+      }
+      this.options = $.extend({}, this.gridDefaults, this.defaults || {}, options);
+      if (typeof this.options.units === 'string') {
+        this.options.postUnits = options.units;
+      }
+      this.raphael = new Raphael(this.el[0]);
+      this.elementWidth = null;
+      this.elementHeight = null;
+      this.dirty = false;
+      this.selectFrom = null;
+      if (this.init) {
+        this.init();
+      }
+      this.setData(this.options.data);
+      this.el.bind('mousemove', function(evt) {
+        var left, offset, right, width, x;
+        offset = _this.el.offset();
+        x = evt.pageX - offset.left;
+        if (_this.selectFrom) {
+          left = _this.data[_this.hitTest(Math.min(x, _this.selectFrom))]._x;
+          right = _this.data[_this.hitTest(Math.max(x, _this.selectFrom))]._x;
+          width = right - left;
+          return _this.selectionRect.attr({
+            x: left,
+            width: width
+          });
+        } else {
+          return _this.fire('hovermove', x, evt.pageY - offset.top);
+        }
+      });
+      this.el.bind('mouseleave', function(evt) {
+        if (_this.selectFrom) {
+          _this.selectionRect.hide();
+          _this.selectFrom = null;
+        }
+        return _this.fire('hoverout');
+      });
+      this.el.bind('touchstart touchmove touchend', function(evt) {
+        var offset, touch;
+        touch = evt.originalEvent.touches[0] || evt.originalEvent.changedTouches[0];
+        offset = _this.el.offset();
+        return _this.fire('hovermove', touch.pageX - offset.left, touch.pageY - offset.top);
+      });
+      this.el.bind('click', function(evt) {
+        var offset;
+        offset = _this.el.offset();
+        return _this.fire('gridclick', evt.pageX - offset.left, evt.pageY - offset.top);
+      });
+      if (this.options.rangeSelect) {
+        this.selectionRect = this.raphael.rect(0, 0, 0, this.el.innerHeight()).attr({
+          fill: this.options.rangeSelectColor,
+          stroke: false
+        }).toBack().hide();
+        this.el.bind('mousedown', function(evt) {
+          var offset;
+          offset = _this.el.offset();
+          return _this.startRange(evt.pageX - offset.left);
+        });
+        this.el.bind('mouseup', function(evt) {
+          var offset;
+          offset = _this.el.offset();
+          _this.endRange(evt.pageX - offset.left);
+          return _this.fire('hovermove', evt.pageX - offset.left, evt.pageY - offset.top);
+        });
+      }
+      if (this.options.resize) {
+        $(window).bind('resize', function(evt) {
+          if (_this.timeoutId != null) {
+            window.clearTimeout(_this.timeoutId);
+          }
+          return _this.timeoutId = window.setTimeout(_this.resizeHandler, 100);
+        });
+      }
+      this.el.css('-webkit-tap-highlight-color', 'rgba(0,0,0,0)');
+      if (this.postInit) {
+        this.postInit();
+      }
+    }
+
+    Grid.prototype.gridDefaults = {
+      dateFormat: null,
+      axes: true,
+      grid: true,
+      gridLineColor: '#aaa',
+      gridStrokeWidth: 0.5,
+      gridTextColor: '#888',
+      gridTextSize: 12,
+      gridTextFamily: 'sans-serif',
+      gridTextWeight: 'normal',
+      hideHover: false,
+      yLabelFormat: null,
+      xLabelAngle: 0,
+      numLines: 5,
+      padding: 25,
+      parseTime: true,
+      postUnits: '',
+      preUnits: '',
+      ymax: 'auto',
+      ymin: 'auto 0',
+      goals: [],
+      goalStrokeWidth: 1.0,
+      goalLineColors: ['#666633', '#999966', '#cc6666', '#663333'],
+      events: [],
+      eventStrokeWidth: 1.0,
+      eventLineColors: ['#005a04', '#ccffbb', '#3a5f0b', '#005502'],
+      rangeSelect: null,
+      rangeSelectColor: '#eef',
+      resize: false
+    };
+
+    Grid.prototype.setData = function(data, redraw) {
+      var e, flatEvents, from, idx, index, maxGoal, minGoal, ret, row, step, to, total, y, ykey, ymax, ymin, yval, _i, _len, _ref, _ref1;
+      if (redraw == null) {
+        redraw = true;
+      }
+      this.options.data = data;
+      if ((data == null) || data.length === 0) {
+        this.data = [];
+        this.raphael.clear();
+        if (this.hover != null) {
+          this.hover.hide();
+        }
+        return;
+      }
+      ymax = this.cumulative ? 0 : null;
+      ymin = this.cumulative ? 0 : null;
+      if (this.options.goals.length > 0) {
+        minGoal = Math.min.apply(Math, this.options.goals);
+        maxGoal = Math.max.apply(Math, this.options.goals);
+        ymin = ymin != null ? Math.min(ymin, minGoal) : minGoal;
+        ymax = ymax != null ? Math.max(ymax, maxGoal) : maxGoal;
+      }
+      this.data = (function() {
+        var _i, _len, _results;
+        _results = [];
+        for (index = _i = 0, _len = data.length; _i < _len; index = ++_i) {
+          row = data[index];
+          ret = {
+            src: row
+          };
+          ret.label = row[this.options.xkey];
+          if (this.options.parseTime) {
+            ret.x = Morris.parseDate(ret.label);
+            if (this.options.dateFormat) {
+              ret.label = this.options.dateFormat(ret.x);
+            } else if (typeof ret.label === 'number') {
+              ret.label = new Date(ret.label).toString();
+            }
+          } else {
+            ret.x = index;
+            if (this.options.xLabelFormat) {
+              ret.label = this.options.xLabelFormat(ret);
+            }
+          }
+          total = 0;
+          ret.y = (function() {
+            var _j, _len1, _ref, _results1;
+            _ref = this.options.ykeys;
+            _results1 = [];
+            for (idx = _j = 0, _len1 = _ref.length; _j < _len1; idx = ++_j) {
+              ykey = _ref[idx];
+              yval = row[ykey];
+              if (typeof yval === 'string') {
+                yval = parseFloat(yval);
+              }
+              if ((yval != null) && typeof yval !== 'number') {
+                yval = null;
+              }
+              if ((yval != null) && this.hasToShow(idx)) {
+                if (this.cumulative) {
+                  total += yval;
+                } else {
+                  if (ymax != null) {
+                    ymax = Math.max(yval, ymax);
+                    ymin = Math.min(yval, ymin);
+                  } else {
+                    ymax = ymin = yval;
+                  }
+                }
+              }
+              if (this.cumulative && (total != null)) {
+                ymax = Math.max(total, ymax);
+                ymin = Math.min(total, ymin);
+              }
+              _results1.push(yval);
+            }
+            return _results1;
+          }).call(this);
+          _results.push(ret);
+        }
+        return _results;
+      }).call(this);
+      if (this.options.parseTime) {
+        this.data = this.data.sort(function(a, b) {
+          return (a.x > b.x) - (b.x > a.x);
+        });
+      }
+      this.xmin = this.data[0].x;
+      this.xmax = this.data[this.data.length - 1].x;
+      this.events = [];
+      if (this.options.events.length > 0) {
+        if (this.options.parseTime) {
+          _ref = this.options.events;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            e = _ref[_i];
+            if (e instanceof Array) {
+              from = e[0], to = e[1];
+              this.events.push([Morris.parseDate(from), Morris.parseDate(to)]);
+            } else {
+              this.events.push(Morris.parseDate(e));
+            }
+          }
+        } else {
+          this.events = this.options.events;
+        }
+        flatEvents = $.map(this.events, function(e) {
+          return e;
+        });
+        this.xmax = Math.max(this.xmax, Math.max.apply(Math, flatEvents));
+        this.xmin = Math.min(this.xmin, Math.min.apply(Math, flatEvents));
+      }
+      if (this.xmin === this.xmax) {
+        this.xmin -= 1;
+        this.xmax += 1;
+      }
+      this.ymin = this.yboundary('min', ymin);
+      this.ymax = this.yboundary('max', ymax);
+      if (this.ymin === this.ymax) {
+        if (ymin) {
+          this.ymin -= 1;
+        }
+        this.ymax += 1;
+      }
+      if (((_ref1 = this.options.axes) === true || _ref1 === 'both' || _ref1 === 'y') || this.options.grid === true) {
+        if (this.options.ymax === this.gridDefaults.ymax && this.options.ymin === this.gridDefaults.ymin) {
+          this.grid = this.autoGridLines(this.ymin, this.ymax, this.options.numLines);
+          this.ymin = Math.min(this.ymin, this.grid[0]);
+          this.ymax = Math.max(this.ymax, this.grid[this.grid.length - 1]);
+        } else {
+          step = (this.ymax - this.ymin) / (this.options.numLines - 1);
+          this.grid = (function() {
+            var _j, _ref2, _ref3, _results;
+            _results = [];
+            for (y = _j = _ref2 = this.ymin, _ref3 = this.ymax; step > 0 ? _j <= _ref3 : _j >= _ref3; y = _j += step) {
+              _results.push(y);
+            }
+            return _results;
+          }).call(this);
+        }
+      }
+      this.dirty = true;
+      if (redraw) {
+        return this.redraw();
+      }
+    };
+
+    Grid.prototype.yboundary = function(boundaryType, currentValue) {
+      var boundaryOption, suggestedValue;
+      boundaryOption = this.options["y" + boundaryType];
+      if (typeof boundaryOption === 'string') {
+        if (boundaryOption.slice(0, 4) === 'auto') {
+          if (boundaryOption.length > 5) {
+            suggestedValue = parseInt(boundaryOption.slice(5), 10);
+            if (currentValue == null) {
+              return suggestedValue;
+            }
+            return Math[boundaryType](currentValue, suggestedValue);
+          } else {
+            if (currentValue != null) {
+              return currentValue;
+            } else {
+              return 0;
+            }
+          }
+        } else {
+          return parseInt(boundaryOption, 10);
+        }
+      } else {
+        return boundaryOption;
+      }
+    };
+
+    Grid.prototype.autoGridLines = function(ymin, ymax, nlines) {
+      var gmax, gmin, grid, smag, span, step, unit, y, ymag;
+      span = ymax - ymin;
+      ymag = Math.floor(Math.log(span) / Math.log(10));
+      unit = Math.pow(10, ymag);
+      gmin = Math.floor(ymin / unit) * unit;
+      gmax = Math.ceil(ymax / unit) * unit;
+      step = (gmax - gmin) / (nlines - 1);
+      if (unit === 1 && step > 1 && Math.ceil(step) !== step) {
+        step = Math.ceil(step);
+        gmax = gmin + step * (nlines - 1);
+      }
+      if (gmin < 0 && gmax > 0) {
+        gmin = Math.floor(ymin / step) * step;
+        gmax = Math.ceil(ymax / step) * step;
+      }
+      if (step < 1) {
+        smag = Math.floor(Math.log(step) / Math.log(10));
+        grid = (function() {
+          var _i, _results;
+          _results = [];
+          for (y = _i = gmin; step > 0 ? _i <= gmax : _i >= gmax; y = _i += step) {
+            _results.push(parseFloat(y.toFixed(1 - smag)));
+          }
+          return _results;
+        })();
+      } else {
+        grid = (function() {
+          var _i, _results;
+          _results = [];
+          for (y = _i = gmin; step > 0 ? _i <= gmax : _i >= gmax; y = _i += step) {
+            _results.push(y);
+          }
+          return _results;
+        })();
+      }
+      return grid;
+    };
+
+    Grid.prototype._calc = function() {
+      var angle, bottomOffsets, gridLine, h, i, w, yLabelWidths, _ref, _ref1;
+      w = this.el.width();
+      h = this.el.height();
+      if (this.elementWidth !== w || this.elementHeight !== h || this.dirty) {
+        this.elementWidth = w;
+        this.elementHeight = h;
+        this.dirty = false;
+        this.left = this.options.padding;
+        this.right = this.elementWidth - this.options.padding;
+        this.top = this.options.padding;
+        this.bottom = this.elementHeight - this.options.padding;
+        if ((_ref = this.options.axes) === true || _ref === 'both' || _ref === 'y') {
+          yLabelWidths = (function() {
+            var _i, _len, _ref1, _results;
+            _ref1 = this.grid;
+            _results = [];
+            for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+              gridLine = _ref1[_i];
+              _results.push(this.measureText(this.yAxisFormat(gridLine)).width);
+            }
+            return _results;
+          }).call(this);
+          if (!this.options.horizontal) {
+            this.left += Math.max.apply(Math, yLabelWidths);
+          } else {
+            this.bottom -= Math.max.apply(Math, yLabelWidths);
+          }
+        }
+        if ((_ref1 = this.options.axes) === true || _ref1 === 'both' || _ref1 === 'x') {
+          if (!this.options.horizontal) {
+            angle = -this.options.xLabelAngle;
+          } else {
+            angle = -90;
+          }
+          bottomOffsets = (function() {
+            var _i, _ref2, _results;
+            _results = [];
+            for (i = _i = 0, _ref2 = this.data.length; 0 <= _ref2 ? _i < _ref2 : _i > _ref2; i = 0 <= _ref2 ? ++_i : --_i) {
+              _results.push(this.measureText(this.data[i].label, angle).height);
+            }
+            return _results;
+          }).call(this);
+          if (!this.options.horizontal) {
+            this.bottom -= Math.max.apply(Math, bottomOffsets);
+          } else {
+            this.left += Math.max.apply(Math, bottomOffsets);
+          }
+        }
+        this.width = Math.max(1, this.right - this.left);
+        this.height = Math.max(1, this.bottom - this.top);
+        if (!this.options.horizontal) {
+          this.dx = this.width / (this.xmax - this.xmin);
+          this.dy = this.height / (this.ymax - this.ymin);
+          this.yStart = this.bottom;
+          this.yEnd = this.top;
+          this.xStart = this.left;
+          this.xEnd = this.right;
+          this.xSize = this.width;
+          this.ySize = this.height;
+        } else {
+          this.dx = this.height / (this.xmax - this.xmin);
+          this.dy = this.width / (this.ymax - this.ymin);
+          this.yStart = this.left;
+          this.yEnd = this.right;
+          this.xStart = this.top;
+          this.xEnd = this.bottom;
+          this.xSize = this.height;
+          this.ySize = this.width;
+        }
+        if (this.calc) {
+          return this.calc();
+        }
+      }
+    };
+
+    Grid.prototype.transY = function(y) {
+      if (!this.options.horizontal) {
+        return this.bottom - (y - this.ymin) * this.dy;
+      } else {
+        return this.left + (y - this.ymin) * this.dy;
+      }
+    };
+
+    Grid.prototype.transX = function(x) {
+      if (this.data.length === 1) {
+        return (this.xStart + this.xEnd) / 2;
+      } else {
+        return this.xStart + (x - this.xmin) * this.dx;
+      }
+    };
+
+    Grid.prototype.redraw = function() {
+      this.raphael.clear();
+      this._calc();
+      this.drawGrid();
+      this.drawGoals();
+      this.drawEvents();
+      if (this.draw) {
+        return this.draw();
+      }
+    };
+
+    Grid.prototype.measureText = function(text, angle) {
+      var ret, tt;
+      if (angle == null) {
+        angle = 0;
+      }
+      tt = this.raphael.text(100, 100, text).attr('font-size', this.options.gridTextSize).attr('font-family', this.options.gridTextFamily).attr('font-weight', this.options.gridTextWeight).rotate(angle);
+      ret = tt.getBBox();
+      tt.remove();
+      return ret;
+    };
+
+    Grid.prototype.yAxisFormat = function(label) {
+      return this.yLabelFormat(label, 0);
+    };
+
+    Grid.prototype.yLabelFormat = function(label, i) {
+      if (typeof this.options.yLabelFormat === 'function') {
+        return this.options.yLabelFormat(label, i);
+      } else {
+        return "" + this.options.preUnits + (Morris.commas(label)) + this.options.postUnits;
+      }
+    };
+
+    Grid.prototype.getYAxisLabelX = function() {
+      return this.left - this.options.padding / 2;
+    };
+
+    Grid.prototype.drawGrid = function() {
+      var basePos, lineY, pos, _i, _len, _ref, _ref1, _ref2, _results;
+      if (this.options.grid === false && ((_ref = this.options.axes) !== true && _ref !== 'both' && _ref !== 'y')) {
+        return;
+      }
+      if (!this.options.horizontal) {
+        basePos = this.getYAxisLabelX();
+      } else {
+        basePos = this.getXAxisLabelY();
+      }
+      _ref1 = this.grid;
+      _results = [];
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        lineY = _ref1[_i];
+        pos = this.transY(lineY);
+        if ((_ref2 = this.options.axes) === true || _ref2 === 'both' || _ref2 === 'y') {
+          if (!this.options.horizontal) {
+            this.drawYAxisLabel(basePos, pos, this.yAxisFormat(lineY));
+          } else {
+            this.drawXAxisLabel(pos, basePos, this.yAxisFormat(lineY));
+          }
+        }
+        if (this.options.grid) {
+          pos = Math.floor(pos) + 0.5;
+          if (!this.options.horizontal) {
+            _results.push(this.drawGridLine("M" + this.xStart + "," + pos + "H" + this.xEnd));
+          } else {
+            _results.push(this.drawGridLine("M" + pos + "," + this.xStart + "V" + this.xEnd));
+          }
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    Grid.prototype.drawGoals = function() {
+      var color, goal, i, _i, _len, _ref, _results;
+      _ref = this.options.goals;
+      _results = [];
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        goal = _ref[i];
+        color = this.options.goalLineColors[i % this.options.goalLineColors.length];
+        _results.push(this.drawGoal(goal, color));
+      }
+      return _results;
+    };
+
+    Grid.prototype.drawEvents = function() {
+      var color, event, i, _i, _len, _ref, _results;
+      _ref = this.events;
+      _results = [];
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        event = _ref[i];
+        color = this.options.eventLineColors[i % this.options.eventLineColors.length];
+        _results.push(this.drawEvent(event, color));
+      }
+      return _results;
+    };
+
+    Grid.prototype.drawGoal = function(goal, color) {
+      var path, y;
+      y = Math.floor(this.transY(goal)) + 0.5;
+      if (!this.options.horizontal) {
+        path = "M" + this.xStart + "," + y + "H" + this.xEnd;
+      } else {
+        path = "M" + y + "," + this.xStart + "V" + this.xEnd;
+      }
+      return this.raphael.path(path).attr('stroke', color).attr('stroke-width', this.options.goalStrokeWidth);
+    };
+
+    Grid.prototype.drawEvent = function(event, color) {
+      var from, path, to, x;
+      if (event instanceof Array) {
+        from = event[0], to = event[1];
+        from = Math.floor(this.transX(from)) + 0.5;
+        to = Math.floor(this.transX(to)) + 0.5;
+        if (!this.options.horizontal) {
+          return this.raphael.rect(from, this.yEnd, to - from, this.yStart - this.yEnd).attr({
+            fill: color,
+            stroke: false
+          }).toBack();
+        } else {
+          return this.raphael.rect(this.yStart, from, this.yEnd - this.yStart, to - from).attr({
+            fill: color,
+            stroke: false
+          }).toBack();
+        }
+      } else {
+        x = Math.floor(this.transX(event)) + 0.5;
+        if (!this.options.horizontal) {
+          path = "M" + x + "," + this.yStart + "V" + this.yEnd;
+        } else {
+          path = "M" + this.yStart + "," + x + "H" + this.yEnd;
+        }
+        return this.raphael.path(path).attr('stroke', color).attr('stroke-width', this.options.eventStrokeWidth);
+      }
+    };
+
+    Grid.prototype.drawYAxisLabel = function(xPos, yPos, text) {
+      return this.raphael.text(xPos, yPos, text).attr('font-size', this.options.gridTextSize).attr('font-family', this.options.gridTextFamily).attr('font-weight', this.options.gridTextWeight).attr('fill', this.options.gridTextColor).attr('text-anchor', 'end');
+    };
+
+    Grid.prototype.drawGridLine = function(path) {
+      return this.raphael.path(path).attr('stroke', this.options.gridLineColor).attr('stroke-width', this.options.gridStrokeWidth);
+    };
+
+    Grid.prototype.startRange = function(x) {
+      this.hover.hide();
+      this.selectFrom = x;
+      return this.selectionRect.attr({
+        x: x,
+        width: 0
+      }).show();
+    };
+
+    Grid.prototype.endRange = function(x) {
+      var end, start;
+      if (this.selectFrom) {
+        start = Math.min(this.selectFrom, x);
+        end = Math.max(this.selectFrom, x);
+        this.options.rangeSelect.call(this.el, {
+          start: this.data[this.hitTest(start)].x,
+          end: this.data[this.hitTest(end)].x
+        });
+        return this.selectFrom = null;
+      }
+    };
+
+    Grid.prototype.resizeHandler = function() {
+      this.timeoutId = null;
+      this.raphael.setSize(this.el.width(), this.el.height());
+      return this.redraw();
+    };
+
+    Grid.prototype.hasToShow = function(i) {
+      return this.options.shown === true || this.options.shown[i] === true;
+    };
+
+    return Grid;
+
+  })(Morris.EventEmitter);
+
+  Morris.parseDate = function(date) {
+    var isecs, m, msecs, n, o, offsetmins, p, q, r, ret, secs;
+    if (typeof date === 'number') {
+      return date;
+    }
+    m = date.match(/^(\d+) Q(\d)$/);
+    n = date.match(/^(\d+)-(\d+)$/);
+    o = date.match(/^(\d+)-(\d+)-(\d+)$/);
+    p = date.match(/^(\d+) W(\d+)$/);
+    q = date.match(/^(\d+)-(\d+)-(\d+)[ T](\d+):(\d+)(Z|([+-])(\d\d):?(\d\d))?$/);
+    r = date.match(/^(\d+)-(\d+)-(\d+)[ T](\d+):(\d+):(\d+(\.\d+)?)(Z|([+-])(\d\d):?(\d\d))?$/);
+    if (m) {
+      return new Date(parseInt(m[1], 10), parseInt(m[2], 10) * 3 - 1, 1).getTime();
+    } else if (n) {
+      return new Date(parseInt(n[1], 10), parseInt(n[2], 10) - 1, 1).getTime();
+    } else if (o) {
+      return new Date(parseInt(o[1], 10), parseInt(o[2], 10) - 1, parseInt(o[3], 10)).getTime();
+    } else if (p) {
+      ret = new Date(parseInt(p[1], 10), 0, 1);
+      if (ret.getDay() !== 4) {
+        ret.setMonth(0, 1 + ((4 - ret.getDay()) + 7) % 7);
+      }
+      return ret.getTime() + parseInt(p[2], 10) * 604800000;
+    } else if (q) {
+      if (!q[6]) {
+        return new Date(parseInt(q[1], 10), parseInt(q[2], 10) - 1, parseInt(q[3], 10), parseInt(q[4], 10), parseInt(q[5], 10)).getTime();
+      } else {
+        offsetmins = 0;
+        if (q[6] !== 'Z') {
+          offsetmins = parseInt(q[8], 10) * 60 + parseInt(q[9], 10);
+          if (q[7] === '+') {
+            offsetmins = 0 - offsetmins;
+          }
+        }
+        return Date.UTC(parseInt(q[1], 10), parseInt(q[2], 10) - 1, parseInt(q[3], 10), parseInt(q[4], 10), parseInt(q[5], 10) + offsetmins);
+      }
+    } else if (r) {
+      secs = parseFloat(r[6]);
+      isecs = Math.floor(secs);
+      msecs = Math.round((secs - isecs) * 1000);
+      if (!r[8]) {
+        return new Date(parseInt(r[1], 10), parseInt(r[2], 10) - 1, parseInt(r[3], 10), parseInt(r[4], 10), parseInt(r[5], 10), isecs, msecs).getTime();
+      } else {
+        offsetmins = 0;
+        if (r[8] !== 'Z') {
+          offsetmins = parseInt(r[10], 10) * 60 + parseInt(r[11], 10);
+          if (r[9] === '+') {
+            offsetmins = 0 - offsetmins;
+          }
+        }
+        return Date.UTC(parseInt(r[1], 10), parseInt(r[2], 10) - 1, parseInt(r[3], 10), parseInt(r[4], 10), parseInt(r[5], 10) + offsetmins, isecs, msecs);
+      }
+    } else {
+      return new Date(parseInt(date, 10), 0, 1).getTime();
+    }
+  };
+
+  Morris.Hover = (function() {
+    Hover.defaults = {
+      "class": 'morris-hover morris-default-style'
+    };
+
+    function Hover(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.options = $.extend({}, Morris.Hover.defaults, options);
+      this.el = $("<div class='" + this.options["class"] + "'></div>");
+      this.el.hide();
+      this.options.parent.append(this.el);
+    }
+
+    Hover.prototype.update = function(html, x, y, centre_y) {
+      if (!html) {
+        return this.hide();
+      } else {
+        this.html(html);
+        this.show();
+        return this.moveTo(x, y, centre_y);
+      }
+    };
+
+    Hover.prototype.html = function(content) {
+      return this.el.html(content);
+    };
+
+    Hover.prototype.moveTo = function(x, y, centre_y) {
+      var hoverHeight, hoverWidth, left, parentHeight, parentWidth, top;
+      parentWidth = this.options.parent.innerWidth();
+      parentHeight = this.options.parent.innerHeight();
+      hoverWidth = this.el.outerWidth();
+      hoverHeight = this.el.outerHeight();
+      left = Math.min(Math.max(0, x - hoverWidth / 2), parentWidth - hoverWidth);
+      if (y != null) {
+        if (centre_y === true) {
+          top = y - hoverHeight / 2;
+          if (top < 0) {
+            top = 0;
+          }
+        } else {
+          top = y - hoverHeight - 10;
+          if (top < 0) {
+            top = y + 10;
+            if (top + hoverHeight > parentHeight) {
+              top = parentHeight / 2 - hoverHeight / 2;
+            }
+          }
+        }
+      } else {
+        top = parentHeight / 2 - hoverHeight / 2;
+      }
+      return this.el.css({
+        left: left + "px",
+        top: parseInt(top) + "px"
+      });
+    };
+
+    Hover.prototype.show = function() {
+      return this.el.show();
+    };
+
+    Hover.prototype.hide = function() {
+      return this.el.hide();
+    };
+
+    return Hover;
+
+  })();
+
+  Morris.Line = (function(_super) {
+    __extends(Line, _super);
+
+    function Line(options) {
+      this.hilight = __bind(this.hilight, this);
+      this.onHoverOut = __bind(this.onHoverOut, this);
+      this.onHoverMove = __bind(this.onHoverMove, this);
+      this.onGridClick = __bind(this.onGridClick, this);
+      if (!(this instanceof Morris.Line)) {
+        return new Morris.Line(options);
+      }
+      Line.__super__.constructor.call(this, options);
+    }
+
+    Line.prototype.init = function() {
+      if (this.options.hideHover !== 'always') {
+        this.hover = new Morris.Hover({
+          parent: this.el
+        });
+        this.on('hovermove', this.onHoverMove);
+        this.on('hoverout', this.onHoverOut);
+        return this.on('gridclick', this.onGridClick);
+      }
+    };
+
+    Line.prototype.defaults = {
+      lineWidth: 3,
+      pointSize: 4,
+      lineColors: ['#0b62a4', '#7A92A3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+      pointStrokeWidths: [1],
+      pointStrokeColors: ['#ffffff'],
+      pointFillColors: [],
+      smooth: true,
+      shown: true,
+      xLabels: 'auto',
+      xLabelFormat: null,
+      xLabelMargin: 24,
+      hideHover: false,
+      trendLine: false,
+      trendLineWidth: 2,
+      trendLineColors: ['#689bc3', '#a2b3bf', '#64b764']
+    };
+
+    Line.prototype.calc = function() {
+      this.calcPoints();
+      return this.generatePaths();
+    };
+
+    Line.prototype.calcPoints = function() {
+      var row, y, _i, _len, _ref, _results;
+      _ref = this.data;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        row = _ref[_i];
+        row._x = this.transX(row.x);
+        row._y = (function() {
+          var _j, _len1, _ref1, _results1;
+          _ref1 = row.y;
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            y = _ref1[_j];
+            if (y != null) {
+              _results1.push(this.transY(y));
+            } else {
+              _results1.push(y);
+            }
+          }
+          return _results1;
+        }).call(this);
+        _results.push(row._ymax = Math.min.apply(Math, [this.bottom].concat((function() {
+          var _j, _len1, _ref1, _results1;
+          _ref1 = row._y;
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            y = _ref1[_j];
+            if (y != null) {
+              _results1.push(y);
+            }
+          }
+          return _results1;
+        })())));
+      }
+      return _results;
+    };
+
+    Line.prototype.hitTest = function(x) {
+      var index, r, _i, _len, _ref;
+      if (this.data.length === 0) {
+        return null;
+      }
+      _ref = this.data.slice(1);
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        r = _ref[index];
+        if (x < (r._x + this.data[index]._x) / 2) {
+          break;
+        }
+      }
+      return index;
+    };
+
+    Line.prototype.onGridClick = function(x, y) {
+      var index;
+      index = this.hitTest(x);
+      return this.fire('click', index, this.data[index].src, x, y);
+    };
+
+    Line.prototype.onHoverMove = function(x, y) {
+      var index;
+      index = this.hitTest(x);
+      return this.displayHoverForRow(index);
+    };
+
+    Line.prototype.onHoverOut = function() {
+      if (this.options.hideHover !== false) {
+        return this.displayHoverForRow(null);
+      }
+    };
+
+    Line.prototype.displayHoverForRow = function(index) {
+      var _ref;
+      if (index != null) {
+        (_ref = this.hover).update.apply(_ref, this.hoverContentForRow(index));
+        return this.hilight(index);
+      } else {
+        this.hover.hide();
+        return this.hilight();
+      }
+    };
+
+    Line.prototype.hoverContentForRow = function(index) {
+      var content, j, row, y, _i, _len, _ref;
+      row = this.data[index];
+      content = $("<div class='morris-hover-row-label'>").text(row.label);
+      content = content.prop('outerHTML');
+      _ref = row.y;
+      for (j = _i = 0, _len = _ref.length; _i < _len; j = ++_i) {
+        y = _ref[j];
+        if (this.options.labels[j] === false) {
+          continue;
+        }
+        content += "<div class='morris-hover-point' style='color: " + (this.colorFor(row, j, 'label')) + "'>\n  " + this.options.labels[j] + ":\n  " + (this.yLabelFormat(y, j)) + "\n</div>";
+      }
+      if (typeof this.options.hoverCallback === 'function') {
+        content = this.options.hoverCallback(index, this.options, content, row.src);
+      }
+      return [content, row._x, row._ymax];
+    };
+
+    Line.prototype.generatePaths = function() {
+      var coords, i, r, smooth;
+      return this.paths = (function() {
+        var _i, _ref, _ref1, _results;
+        _results = [];
+        for (i = _i = 0, _ref = this.options.ykeys.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+          smooth = typeof this.options.smooth === "boolean" ? this.options.smooth : (_ref1 = this.options.ykeys[i], __indexOf.call(this.options.smooth, _ref1) >= 0);
+          coords = (function() {
+            var _j, _len, _ref2, _results1;
+            _ref2 = this.data;
+            _results1 = [];
+            for (_j = 0, _len = _ref2.length; _j < _len; _j++) {
+              r = _ref2[_j];
+              if (r._y[i] !== void 0) {
+                _results1.push({
+                  x: r._x,
+                  y: r._y[i]
+                });
+              }
+            }
+            return _results1;
+          }).call(this);
+          if (coords.length > 1) {
+            _results.push(Morris.Line.createPath(coords, smooth, this.bottom));
+          } else {
+            _results.push(null);
+          }
+        }
+        return _results;
+      }).call(this);
+    };
+
+    Line.prototype.draw = function() {
+      var _ref;
+      if ((_ref = this.options.axes) === true || _ref === 'both' || _ref === 'x') {
+        this.drawXAxis();
+      }
+      this.drawSeries();
+      if (this.options.hideHover === false) {
+        return this.displayHoverForRow(this.data.length - 1);
+      }
+    };
+
+    Line.prototype.drawXAxis = function() {
+      var drawLabel, l, labels, prevAngleMargin, prevLabelMargin, row, ypos, _i, _len, _results,
+        _this = this;
+      ypos = this.bottom + this.options.padding / 2;
+      prevLabelMargin = null;
+      prevAngleMargin = null;
+      drawLabel = function(labelText, xpos) {
+        var label, labelBox, margin, offset, textBox;
+        label = _this.drawXAxisLabel(_this.transX(xpos), ypos, labelText);
+        textBox = label.getBBox();
+        label.transform("r" + (-_this.options.xLabelAngle));
+        labelBox = label.getBBox();
+        label.transform("t0," + (labelBox.height / 2) + "...");
+        if (_this.options.xLabelAngle !== 0) {
+          offset = -0.5 * textBox.width * Math.cos(_this.options.xLabelAngle * Math.PI / 180.0);
+          label.transform("t" + offset + ",0...");
+        }
+        labelBox = label.getBBox();
+        if (((prevLabelMargin == null) || prevLabelMargin >= labelBox.x + labelBox.width || (prevAngleMargin != null) && prevAngleMargin >= labelBox.x) && labelBox.x >= 0 && (labelBox.x + labelBox.width) < _this.el.width()) {
+          if (_this.options.xLabelAngle !== 0) {
+            margin = 1.25 * _this.options.gridTextSize / Math.sin(_this.options.xLabelAngle * Math.PI / 180.0);
+            prevAngleMargin = labelBox.x - margin;
+          }
+          return prevLabelMargin = labelBox.x - _this.options.xLabelMargin;
+        } else {
+          return label.remove();
+        }
+      };
+      if (this.options.parseTime) {
+        if (this.data.length === 1 && this.options.xLabels === 'auto') {
+          labels = [[this.data[0].label, this.data[0].x]];
+        } else {
+          labels = Morris.labelSeries(this.xmin, this.xmax, this.width, this.options.xLabels, this.options.xLabelFormat);
+        }
+      } else {
+        labels = (function() {
+          var _i, _len, _ref, _results;
+          _ref = this.data;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            row = _ref[_i];
+            _results.push([row.label, row.x]);
+          }
+          return _results;
+        }).call(this);
+      }
+      labels.reverse();
+      _results = [];
+      for (_i = 0, _len = labels.length; _i < _len; _i++) {
+        l = labels[_i];
+        _results.push(drawLabel(l[0], l[1]));
+      }
+      return _results;
+    };
+
+    Line.prototype.drawSeries = function() {
+      var i, _i, _j, _ref, _ref1, _results;
+      this.seriesPoints = [];
+      for (i = _i = _ref = this.options.ykeys.length - 1; _ref <= 0 ? _i <= 0 : _i >= 0; i = _ref <= 0 ? ++_i : --_i) {
+        if (this.hasToShow(i)) {
+          if (this.options.trendLine !== false && this.options.trendLine === true || this.options.trendLine[i] === true) {
+            this._drawTrendLine(i);
+          }
+          this._drawLineFor(i);
+        }
+      }
+      _results = [];
+      for (i = _j = _ref1 = this.options.ykeys.length - 1; _ref1 <= 0 ? _j <= 0 : _j >= 0; i = _ref1 <= 0 ? ++_j : --_j) {
+        if (this.hasToShow(i)) {
+          _results.push(this._drawPointFor(i));
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    Line.prototype._drawPointFor = function(index) {
+      var circle, row, _i, _len, _ref, _results;
+      this.seriesPoints[index] = [];
+      _ref = this.data;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        row = _ref[_i];
+        circle = null;
+        if (row._y[index] != null) {
+          circle = this.drawLinePoint(row._x, row._y[index], this.colorFor(row, index, 'point'), index);
+        }
+        _results.push(this.seriesPoints[index].push(circle));
+      }
+      return _results;
+    };
+
+    Line.prototype._drawLineFor = function(index) {
+      var path;
+      path = this.paths[index];
+      if (path !== null) {
+        return this.drawLinePath(path, this.colorFor(null, index, 'line'), index);
+      }
+    };
+
+    Line.prototype._drawTrendLine = function(index) {
+      var a, b, data, datapoints, path, sum_x, sum_xx, sum_xy, sum_y, val, x, y, _i, _len, _ref;
+      sum_x = 0;
+      sum_y = 0;
+      sum_xx = 0;
+      sum_xy = 0;
+      datapoints = 0;
+      _ref = this.data;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        val = _ref[_i];
+        x = val.x;
+        y = val.y[index];
+        if (y === void 0) {
+          continue;
+        }
+        datapoints += 1;
+        sum_x += x;
+        sum_y += y;
+        sum_xx += x * x;
+        sum_xy += x * y;
+      }
+      a = (datapoints * sum_xy - sum_x * sum_y) / (datapoints * sum_xx - sum_x * sum_x);
+      b = (sum_y / datapoints) - ((a * sum_x) / datapoints);
+      data = [{}, {}];
+      data[0].x = this.transX(this.data[0].x);
+      data[0].y = this.transY(this.data[0].x * a + b);
+      data[1].x = this.transX(this.data[this.data.length - 1].x);
+      data[1].y = this.transY(this.data[this.data.length - 1].x * a + b);
+      path = Morris.Line.createPath(data, false, this.bottom);
+      return path = this.raphael.path(path).attr('stroke', this.colorFor(null, index, 'trendLine')).attr('stroke-width', this.options.trendLineWidth);
+    };
+
+    Line.createPath = function(coords, smooth, bottom) {
+      var coord, g, grads, i, ix, lg, path, prevCoord, x1, x2, y1, y2, _i, _len;
+      path = "";
+      if (smooth) {
+        grads = Morris.Line.gradients(coords);
+      }
+      prevCoord = {
+        y: null
+      };
+      for (i = _i = 0, _len = coords.length; _i < _len; i = ++_i) {
+        coord = coords[i];
+        if (coord.y != null) {
+          if (prevCoord.y != null) {
+            if (smooth) {
+              g = grads[i];
+              lg = grads[i - 1];
+              ix = (coord.x - prevCoord.x) / 4;
+              x1 = prevCoord.x + ix;
+              y1 = Math.min(bottom, prevCoord.y + ix * lg);
+              x2 = coord.x - ix;
+              y2 = Math.min(bottom, coord.y - ix * g);
+              path += "C" + x1 + "," + y1 + "," + x2 + "," + y2 + "," + coord.x + "," + coord.y;
+            } else {
+              path += "L" + coord.x + "," + coord.y;
+            }
+          } else {
+            if (!smooth || (grads[i] != null)) {
+              path += "M" + coord.x + "," + coord.y;
+            }
+          }
+        }
+        prevCoord = coord;
+      }
+      return path;
+    };
+
+    Line.gradients = function(coords) {
+      var coord, grad, i, nextCoord, prevCoord, _i, _len, _results;
+      grad = function(a, b) {
+        return (a.y - b.y) / (a.x - b.x);
+      };
+      _results = [];
+      for (i = _i = 0, _len = coords.length; _i < _len; i = ++_i) {
+        coord = coords[i];
+        if (coord.y != null) {
+          nextCoord = coords[i + 1] || {
+            y: null
+          };
+          prevCoord = coords[i - 1] || {
+            y: null
+          };
+          if ((prevCoord.y != null) && (nextCoord.y != null)) {
+            _results.push(grad(prevCoord, nextCoord));
+          } else if (prevCoord.y != null) {
+            _results.push(grad(prevCoord, coord));
+          } else if (nextCoord.y != null) {
+            _results.push(grad(coord, nextCoord));
+          } else {
+            _results.push(null);
+          }
+        } else {
+          _results.push(null);
+        }
+      }
+      return _results;
+    };
+
+    Line.prototype.hilight = function(index) {
+      var i, _i, _j, _ref, _ref1;
+      if (this.prevHilight !== null && this.prevHilight !== index) {
+        for (i = _i = 0, _ref = this.seriesPoints.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+          if (this.seriesPoints[i][this.prevHilight]) {
+            this.seriesPoints[i][this.prevHilight].animate(this.pointShrinkSeries(i));
+          }
+        }
+      }
+      if (index !== null && this.prevHilight !== index) {
+        for (i = _j = 0, _ref1 = this.seriesPoints.length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
+          if (this.seriesPoints[i][index]) {
+            this.seriesPoints[i][index].animate(this.pointGrowSeries(i));
+          }
+        }
+      }
+      return this.prevHilight = index;
+    };
+
+    Line.prototype.colorFor = function(row, sidx, type) {
+      if (typeof this.options.lineColors === 'function') {
+        return this.options.lineColors.call(this, row, sidx, type);
+      } else if (type === 'point') {
+        return this.options.pointFillColors[sidx % this.options.pointFillColors.length] || this.options.lineColors[sidx % this.options.lineColors.length];
+      } else if (type === 'line') {
+        return this.options.lineColors[sidx % this.options.lineColors.length];
+      } else {
+        return this.options.trendLineColors[sidx % this.options.trendLineColors.length];
+      }
+    };
+
+    Line.prototype.drawXAxisLabel = function(xPos, yPos, text) {
+      return this.raphael.text(xPos, yPos, text).attr('font-size', this.options.gridTextSize).attr('font-family', this.options.gridTextFamily).attr('font-weight', this.options.gridTextWeight).attr('fill', this.options.gridTextColor);
+    };
+
+    Line.prototype.drawLinePath = function(path, lineColor, lineIndex) {
+      return this.raphael.path(path).attr('stroke', lineColor).attr('stroke-width', this.lineWidthForSeries(lineIndex));
+    };
+
+    Line.prototype.drawLinePoint = function(xPos, yPos, pointColor, lineIndex) {
+      return this.raphael.circle(xPos, yPos, this.pointSizeForSeries(lineIndex)).attr('fill', pointColor).attr('stroke-width', this.pointStrokeWidthForSeries(lineIndex)).attr('stroke', this.pointStrokeColorForSeries(lineIndex));
+    };
+
+    Line.prototype.pointStrokeWidthForSeries = function(index) {
+      return this.options.pointStrokeWidths[index % this.options.pointStrokeWidths.length];
+    };
+
+    Line.prototype.pointStrokeColorForSeries = function(index) {
+      return this.options.pointStrokeColors[index % this.options.pointStrokeColors.length];
+    };
+
+    Line.prototype.lineWidthForSeries = function(index) {
+      if (this.options.lineWidth instanceof Array) {
+        return this.options.lineWidth[index % this.options.lineWidth.length];
+      } else {
+        return this.options.lineWidth;
+      }
+    };
+
+    Line.prototype.pointSizeForSeries = function(index) {
+      if (this.options.pointSize instanceof Array) {
+        return this.options.pointSize[index % this.options.pointSize.length];
+      } else {
+        return this.options.pointSize;
+      }
+    };
+
+    Line.prototype.pointGrowSeries = function(index) {
+      if (this.pointSizeForSeries(index) === 0) {
+        return;
+      }
+      return Raphael.animation({
+        r: this.pointSizeForSeries(index) + 3
+      }, 25, 'linear');
+    };
+
+    Line.prototype.pointShrinkSeries = function(index) {
+      return Raphael.animation({
+        r: this.pointSizeForSeries(index)
+      }, 25, 'linear');
+    };
+
+    return Line;
+
+  })(Morris.Grid);
+
+  Morris.labelSeries = function(dmin, dmax, pxwidth, specName, xLabelFormat) {
+    var d, d0, ddensity, name, ret, s, spec, t, _i, _len, _ref;
+    ddensity = 200 * (dmax - dmin) / pxwidth;
+    d0 = new Date(dmin);
+    spec = Morris.LABEL_SPECS[specName];
+    if (spec === void 0) {
+      _ref = Morris.AUTO_LABEL_ORDER;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        name = _ref[_i];
+        s = Morris.LABEL_SPECS[name];
+        if (ddensity >= s.span) {
+          spec = s;
+          break;
+        }
+      }
+    }
+    if (spec === void 0) {
+      spec = Morris.LABEL_SPECS["second"];
+    }
+    if (xLabelFormat) {
+      spec = $.extend({}, spec, {
+        fmt: xLabelFormat
+      });
+    }
+    d = spec.start(d0);
+    ret = [];
+    while ((t = d.getTime()) <= dmax) {
+      if (t >= dmin) {
+        ret.push([spec.fmt(d), t]);
+      }
+      spec.incr(d);
+    }
+    return ret;
+  };
+
+  minutesSpecHelper = function(interval) {
+    return {
+      span: interval * 60 * 1000,
+      start: function(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours());
+      },
+      fmt: function(d) {
+        return "" + (Morris.pad2(d.getHours())) + ":" + (Morris.pad2(d.getMinutes()));
+      },
+      incr: function(d) {
+        return d.setUTCMinutes(d.getUTCMinutes() + interval);
+      }
+    };
+  };
+
+  secondsSpecHelper = function(interval) {
+    return {
+      span: interval * 1000,
+      start: function(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
+      },
+      fmt: function(d) {
+        return "" + (Morris.pad2(d.getHours())) + ":" + (Morris.pad2(d.getMinutes())) + ":" + (Morris.pad2(d.getSeconds()));
+      },
+      incr: function(d) {
+        return d.setUTCSeconds(d.getUTCSeconds() + interval);
+      }
+    };
+  };
+
+  Morris.LABEL_SPECS = {
+    "decade": {
+      span: 172800000000,
+      start: function(d) {
+        return new Date(d.getFullYear() - d.getFullYear() % 10, 0, 1);
+      },
+      fmt: function(d) {
+        return "" + (d.getFullYear());
+      },
+      incr: function(d) {
+        return d.setFullYear(d.getFullYear() + 10);
+      }
+    },
+    "year": {
+      span: 17280000000,
+      start: function(d) {
+        return new Date(d.getFullYear(), 0, 1);
+      },
+      fmt: function(d) {
+        return "" + (d.getFullYear());
+      },
+      incr: function(d) {
+        return d.setFullYear(d.getFullYear() + 1);
+      }
+    },
+    "month": {
+      span: 2419200000,
+      start: function(d) {
+        return new Date(d.getFullYear(), d.getMonth(), 1);
+      },
+      fmt: function(d) {
+        return "" + (d.getFullYear()) + "-" + (Morris.pad2(d.getMonth() + 1));
+      },
+      incr: function(d) {
+        return d.setMonth(d.getMonth() + 1);
+      }
+    },
+    "week": {
+      span: 604800000,
+      start: function(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      },
+      fmt: function(d) {
+        return "" + (d.getFullYear()) + "-" + (Morris.pad2(d.getMonth() + 1)) + "-" + (Morris.pad2(d.getDate()));
+      },
+      incr: function(d) {
+        return d.setDate(d.getDate() + 7);
+      }
+    },
+    "day": {
+      span: 86400000,
+      start: function(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      },
+      fmt: function(d) {
+        return "" + (d.getFullYear()) + "-" + (Morris.pad2(d.getMonth() + 1)) + "-" + (Morris.pad2(d.getDate()));
+      },
+      incr: function(d) {
+        return d.setDate(d.getDate() + 1);
+      }
+    },
+    "hour": minutesSpecHelper(60),
+    "30min": minutesSpecHelper(30),
+    "15min": minutesSpecHelper(15),
+    "10min": minutesSpecHelper(10),
+    "5min": minutesSpecHelper(5),
+    "minute": minutesSpecHelper(1),
+    "30sec": secondsSpecHelper(30),
+    "15sec": secondsSpecHelper(15),
+    "10sec": secondsSpecHelper(10),
+    "5sec": secondsSpecHelper(5),
+    "second": secondsSpecHelper(1)
+  };
+
+  Morris.AUTO_LABEL_ORDER = ["decade", "year", "month", "week", "day", "hour", "30min", "15min", "10min", "5min", "minute", "30sec", "15sec", "10sec", "5sec", "second"];
+
+  Morris.Area = (function(_super) {
+    var areaDefaults;
+
+    __extends(Area, _super);
+
+    areaDefaults = {
+      fillOpacity: 'auto',
+      behaveLikeLine: false
+    };
+
+    function Area(options) {
+      var areaOptions;
+      if (!(this instanceof Morris.Area)) {
+        return new Morris.Area(options);
+      }
+      areaOptions = $.extend({}, areaDefaults, options);
+      this.cumulative = !areaOptions.behaveLikeLine;
+      if (areaOptions.fillOpacity === 'auto') {
+        areaOptions.fillOpacity = areaOptions.behaveLikeLine ? .8 : 1;
+      }
+      Area.__super__.constructor.call(this, areaOptions);
+    }
+
+    Area.prototype.calcPoints = function() {
+      var row, total, y, _i, _len, _ref, _results;
+      _ref = this.data;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        row = _ref[_i];
+        row._x = this.transX(row.x);
+        total = 0;
+        row._y = (function() {
+          var _j, _len1, _ref1, _results1;
+          _ref1 = row.y;
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            y = _ref1[_j];
+            if (this.options.behaveLikeLine) {
+              _results1.push(this.transY(y));
+            } else {
+              total += y || 0;
+              _results1.push(this.transY(total));
+            }
+          }
+          return _results1;
+        }).call(this);
+        _results.push(row._ymax = Math.max.apply(Math, row._y));
+      }
+      return _results;
+    };
+
+    Area.prototype.drawSeries = function() {
+      var i, range, _i, _j, _k, _len, _ref, _ref1, _results, _results1, _results2;
+      this.seriesPoints = [];
+      if (this.options.behaveLikeLine) {
+        range = (function() {
+          _results = [];
+          for (var _i = 0, _ref = this.options.ykeys.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; 0 <= _ref ? _i++ : _i--){ _results.push(_i); }
+          return _results;
+        }).apply(this);
+      } else {
+        range = (function() {
+          _results1 = [];
+          for (var _j = _ref1 = this.options.ykeys.length - 1; _ref1 <= 0 ? _j <= 0 : _j >= 0; _ref1 <= 0 ? _j++ : _j--){ _results1.push(_j); }
+          return _results1;
+        }).apply(this);
+      }
+      _results2 = [];
+      for (_k = 0, _len = range.length; _k < _len; _k++) {
+        i = range[_k];
+        this._drawFillFor(i);
+        this._drawLineFor(i);
+        _results2.push(this._drawPointFor(i));
+      }
+      return _results2;
+    };
+
+    Area.prototype._drawFillFor = function(index) {
+      var path;
+      path = this.paths[index];
+      if (path !== null) {
+        path = path + ("L" + (this.transX(this.xmax)) + "," + this.bottom + "L" + (this.transX(this.xmin)) + "," + this.bottom + "Z");
+        return this.drawFilledPath(path, this.fillForSeries(index));
+      }
+    };
+
+    Area.prototype.fillForSeries = function(i) {
+      var color;
+      color = Raphael.rgb2hsl(this.colorFor(this.data[i], i, 'line'));
+      return Raphael.hsl(color.h, this.options.behaveLikeLine ? color.s * 0.9 : color.s * 0.75, Math.min(0.98, this.options.behaveLikeLine ? color.l * 1.2 : color.l * 1.25));
+    };
+
+    Area.prototype.drawFilledPath = function(path, fill) {
+      return this.raphael.path(path).attr('fill', fill).attr('fill-opacity', this.options.fillOpacity).attr('stroke', 'none');
+    };
+
+    return Area;
+
+  })(Morris.Line);
+
+  Morris.Bar = (function(_super) {
+    __extends(Bar, _super);
+
+    function Bar(options) {
+      this.onHoverOut = __bind(this.onHoverOut, this);
+      this.onHoverMove = __bind(this.onHoverMove, this);
+      this.onGridClick = __bind(this.onGridClick, this);
+      if (!(this instanceof Morris.Bar)) {
+        return new Morris.Bar(options);
+      }
+      Bar.__super__.constructor.call(this, $.extend({}, options, {
+        parseTime: false
+      }));
+    }
+
+    Bar.prototype.init = function() {
+      this.cumulative = this.options.stacked;
+      if (this.options.hideHover !== 'always') {
+        this.hover = new Morris.Hover({
+          parent: this.el
+        });
+        this.on('hovermove', this.onHoverMove);
+        this.on('hoverout', this.onHoverOut);
+        return this.on('gridclick', this.onGridClick);
+      }
+    };
+
+    Bar.prototype.defaults = {
+      barSizeRatio: 0.75,
+      barGap: 3,
+      barColors: ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+      barOpacity: 1.0,
+      barRadius: [0, 0, 0, 0],
+      xLabelMargin: 50,
+      horizontal: false,
+      shown: true
+    };
+
+    Bar.prototype.calc = function() {
+      var _ref;
+      this.calcBars();
+      if (this.options.hideHover === false) {
+        return (_ref = this.hover).update.apply(_ref, this.hoverContentForRow(this.data.length - 1));
+      }
+    };
+
+    Bar.prototype.calcBars = function() {
+      var idx, row, y, _i, _len, _ref, _results;
+      _ref = this.data;
+      _results = [];
+      for (idx = _i = 0, _len = _ref.length; _i < _len; idx = ++_i) {
+        row = _ref[idx];
+        row._x = this.xStart + this.xSize * (idx + 0.5) / this.data.length;
+        _results.push(row._y = (function() {
+          var _j, _len1, _ref1, _results1;
+          _ref1 = row.y;
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            y = _ref1[_j];
+            if (y != null) {
+              _results1.push(this.transY(y));
+            } else {
+              _results1.push(null);
+            }
+          }
+          return _results1;
+        }).call(this));
+      }
+      return _results;
+    };
+
+    Bar.prototype.draw = function() {
+      var _ref;
+      if ((_ref = this.options.axes) === true || _ref === 'both' || _ref === 'x') {
+        this.drawXAxis();
+      }
+      return this.drawSeries();
+    };
+
+    Bar.prototype.drawXAxis = function() {
+      var angle, basePos, i, label, labelBox, margin, maxSize, offset, prevAngleMargin, prevLabelMargin, row, size, startPos, textBox, _i, _ref, _results;
+      if (!this.options.horizontal) {
+        basePos = this.getXAxisLabelY();
+      } else {
+        basePos = this.getYAxisLabelX();
+      }
+      prevLabelMargin = null;
+      prevAngleMargin = null;
+      _results = [];
+      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        row = this.data[this.data.length - 1 - i];
+        if (!this.options.horizontal) {
+          label = this.drawXAxisLabel(row._x, basePos, row.label);
+        } else {
+          label = this.drawYAxisLabel(basePos, row._x - 0.5 * this.options.gridTextSize, row.label);
+        }
+        if (!this.options.horizontal) {
+          angle = this.options.xLabelAngle;
+        } else {
+          angle = 0;
+        }
+        textBox = label.getBBox();
+        label.transform("r" + (-angle));
+        labelBox = label.getBBox();
+        label.transform("t0," + (labelBox.height / 2) + "...");
+        if (angle !== 0) {
+          offset = -0.5 * textBox.width * Math.cos(angle * Math.PI / 180.0);
+          label.transform("t" + offset + ",0...");
+        }
+        if (!this.options.horizontal) {
+          startPos = labelBox.x;
+          size = labelBox.width;
+          maxSize = this.el.width();
+        } else {
+          startPos = labelBox.y;
+          size = labelBox.height;
+          maxSize = this.el.height();
+        }
+        if (((prevLabelMargin == null) || prevLabelMargin >= startPos + size || (prevAngleMargin != null) && prevAngleMargin >= startPos) && startPos >= 0 && (startPos + size) < maxSize) {
+          if (angle !== 0) {
+            margin = 1.25 * this.options.gridTextSize / Math.sin(angle * Math.PI / 180.0);
+            prevAngleMargin = startPos - margin;
+          }
+          if (!this.options.horizontal) {
+            _results.push(prevLabelMargin = startPos - this.options.xLabelMargin);
+          } else {
+            _results.push(prevLabelMargin = startPos);
+          }
+        } else {
+          _results.push(label.remove());
+        }
+      }
+      return _results;
+    };
+
+    Bar.prototype.getXAxisLabelY = function() {
+      return this.bottom + (this.options.xAxisLabelTopPadding || this.options.padding / 2);
+    };
+
+    Bar.prototype.drawSeries = function() {
+      var barWidth, bottom, groupWidth, i, idx, lastTop, left, leftPadding, numBars, row, sidx, size, spaceLeft, top, ypos, zeroPos, _i, _ref;
+      groupWidth = this.xSize / this.options.data.length;
+      if (this.options.stacked) {
+        numBars = 1;
+      } else {
+        numBars = 0;
+        for (i = _i = 0, _ref = this.options.ykeys.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+          if (this.hasToShow(i)) {
+            numBars += 1;
+          }
+        }
+      }
+      barWidth = (groupWidth * this.options.barSizeRatio - this.options.barGap * (numBars - 1)) / numBars;
+      if (this.options.barSize) {
+        barWidth = Math.min(barWidth, this.options.barSize);
+      }
+      spaceLeft = groupWidth - barWidth * numBars - this.options.barGap * (numBars - 1);
+      leftPadding = spaceLeft / 2;
+      zeroPos = this.ymin <= 0 && this.ymax >= 0 ? this.transY(0) : null;
+      return this.bars = (function() {
+        var _j, _len, _ref1, _results;
+        _ref1 = this.data;
+        _results = [];
+        for (idx = _j = 0, _len = _ref1.length; _j < _len; idx = ++_j) {
+          row = _ref1[idx];
+          lastTop = 0;
+          _results.push((function() {
+            var _k, _len1, _ref2, _results1;
+            _ref2 = row._y;
+            _results1 = [];
+            for (sidx = _k = 0, _len1 = _ref2.length; _k < _len1; sidx = ++_k) {
+              ypos = _ref2[sidx];
+              if (!this.hasToShow(sidx)) {
+                continue;
+              }
+              if (ypos !== null) {
+                if (zeroPos) {
+                  top = Math.min(ypos, zeroPos);
+                  bottom = Math.max(ypos, zeroPos);
+                } else {
+                  top = ypos;
+                  bottom = this.bottom;
+                }
+                left = this.xStart + idx * groupWidth + leftPadding;
+                if (!this.options.stacked) {
+                  left += sidx * (barWidth + this.options.barGap);
+                }
+                size = bottom - top;
+                if (this.options.verticalGridCondition && this.options.verticalGridCondition(row.x)) {
+                  if (!this.options.horizontal) {
+                    this.drawBar(this.xStart + idx * groupWidth, this.yEnd, groupWidth, this.ySize, this.options.verticalGridColor, this.options.verticalGridOpacity, this.options.barRadius);
+                  } else {
+                    this.drawBar(this.yStart, this.xStart + idx * groupWidth, this.ySize, groupWidth, this.options.verticalGridColor, this.options.verticalGridOpacity, this.options.barRadius);
+                  }
+                }
+                if (this.options.stacked) {
+                  top -= lastTop;
+                }
+                if (!this.options.horizontal) {
+                  this.drawBar(left, top, barWidth, size, this.colorFor(row, sidx, 'bar'), this.options.barOpacity, this.options.barRadius);
+                  _results1.push(lastTop += size);
+                } else {
+                  this.drawBar(top, left, size, barWidth, this.colorFor(row, sidx, 'bar'), this.options.barOpacity, this.options.barRadius);
+                  _results1.push(lastTop -= size);
+                }
+              } else {
+                _results1.push(null);
+              }
+            }
+            return _results1;
+          }).call(this));
+        }
+        return _results;
+      }).call(this);
+    };
+
+    Bar.prototype.colorFor = function(row, sidx, type) {
+      var r, s;
+      if (typeof this.options.barColors === 'function') {
+        r = {
+          x: row.x,
+          y: row.y[sidx],
+          label: row.label
+        };
+        s = {
+          index: sidx,
+          key: this.options.ykeys[sidx],
+          label: this.options.labels[sidx]
+        };
+        return this.options.barColors.call(this, r, s, type);
+      } else {
+        return this.options.barColors[sidx % this.options.barColors.length];
+      }
+    };
+
+    Bar.prototype.hitTest = function(x, y) {
+      var pos;
+      if (this.data.length === 0) {
+        return null;
+      }
+      if (!this.options.horizontal) {
+        pos = x;
+      } else {
+        pos = y;
+      }
+      pos = Math.max(Math.min(pos, this.xEnd), this.xStart);
+      return Math.min(this.data.length - 1, Math.floor((pos - this.xStart) / (this.xSize / this.data.length)));
+    };
+
+    Bar.prototype.onGridClick = function(x, y) {
+      var index;
+      index = this.hitTest(x, y);
+      return this.fire('click', index, this.data[index].src, x, y);
+    };
+
+    Bar.prototype.onHoverMove = function(x, y) {
+      var index, _ref;
+      index = this.hitTest(x, y);
+      return (_ref = this.hover).update.apply(_ref, this.hoverContentForRow(index));
+    };
+
+    Bar.prototype.onHoverOut = function() {
+      if (this.options.hideHover !== false) {
+        return this.hover.hide();
+      }
+    };
+
+    Bar.prototype.hoverContentForRow = function(index) {
+      var content, j, row, x, y, _i, _len, _ref;
+      row = this.data[index];
+      content = $("<div class='morris-hover-row-label'>").text(row.label);
+      content = content.prop('outerHTML');
+      _ref = row.y;
+      for (j = _i = 0, _len = _ref.length; _i < _len; j = ++_i) {
+        y = _ref[j];
+        if (this.options.labels[j] === false) {
+          continue;
+        }
+        content += "<div class='morris-hover-point' style='color: " + (this.colorFor(row, j, 'label')) + "'>\n  " + this.options.labels[j] + ":\n  " + (this.yLabelFormat(y, j)) + "\n</div>";
+      }
+      if (typeof this.options.hoverCallback === 'function') {
+        content = this.options.hoverCallback(index, this.options, content, row.src);
+      }
+      if (!this.options.horizontal) {
+        x = this.left + (index + 0.5) * this.width / this.data.length;
+        return [content, x];
+      } else {
+        x = this.left + 0.5 * this.width;
+        y = this.top + (index + 0.5) * this.height / this.data.length;
+        return [content, x, y, true];
+      }
+    };
+
+    Bar.prototype.drawXAxisLabel = function(xPos, yPos, text) {
+      var label;
+      return label = this.raphael.text(xPos, yPos, text).attr('font-size', this.options.gridTextSize).attr('font-family', this.options.gridTextFamily).attr('font-weight', this.options.gridTextWeight).attr('fill', this.options.gridTextColor);
+    };
+
+    Bar.prototype.drawBar = function(xPos, yPos, width, height, barColor, opacity, radiusArray) {
+      var maxRadius, path;
+      maxRadius = Math.max.apply(Math, radiusArray);
+      if (maxRadius === 0 || maxRadius > height) {
+        path = this.raphael.rect(xPos, yPos, width, height);
+      } else {
+        path = this.raphael.path(this.roundedRect(xPos, yPos, width, height, radiusArray));
+      }
+      return path.attr('fill', barColor).attr('fill-opacity', opacity).attr('stroke', 'none');
+    };
+
+    Bar.prototype.roundedRect = function(x, y, w, h, r) {
+      if (r == null) {
+        r = [0, 0, 0, 0];
+      }
+      return ["M", x, r[0] + y, "Q", x, y, x + r[0], y, "L", x + w - r[1], y, "Q", x + w, y, x + w, y + r[1], "L", x + w, y + h - r[2], "Q", x + w, y + h, x + w - r[2], y + h, "L", x + r[3], y + h, "Q", x, y + h, x, y + h - r[3], "Z"];
+    };
+
+    return Bar;
+
+  })(Morris.Grid);
+
+  Morris.Donut = (function(_super) {
+    __extends(Donut, _super);
+
+    Donut.prototype.defaults = {
+      colors: ['#0B62A4', '#3980B5', '#679DC6', '#95BBD7', '#B0CCE1', '#095791', '#095085', '#083E67', '#052C48', '#042135'],
+      backgroundColor: '#FFFFFF',
+      labelColor: '#000000',
+      formatter: Morris.commas,
+      resize: false
+    };
+
+    function Donut(options) {
+      this.resizeHandler = __bind(this.resizeHandler, this);
+      this.select = __bind(this.select, this);
+      this.click = __bind(this.click, this);
+      var _this = this;
+      if (!(this instanceof Morris.Donut)) {
+        return new Morris.Donut(options);
+      }
+      this.options = $.extend({}, this.defaults, options);
+      if (typeof options.element === 'string') {
+        this.el = $(document.getElementById(options.element));
+      } else {
+        this.el = $(options.element);
+      }
+      if (this.el === null || this.el.length === 0) {
+        throw new Error("Graph placeholder not found.");
+      }
+      if (options.data === void 0 || options.data.length === 0) {
+        return;
+      }
+      this.raphael = new Raphael(this.el[0]);
+      if (this.options.resize) {
+        $(window).bind('resize', function(evt) {
+          if (_this.timeoutId != null) {
+            window.clearTimeout(_this.timeoutId);
+          }
+          return _this.timeoutId = window.setTimeout(_this.resizeHandler, 100);
+        });
+      }
+      this.setData(options.data);
+    }
+
+    Donut.prototype.redraw = function() {
+      var C, cx, cy, i, idx, last, max_value, min, next, seg, total, value, w, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
+      this.raphael.clear();
+      cx = this.el.width() / 2;
+      cy = this.el.height() / 2;
+      w = (Math.min(cx, cy) - 10) / 3;
+      total = 0;
+      _ref = this.values;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        value = _ref[_i];
+        total += value;
+      }
+      min = 5 / (2 * w);
+      C = 1.9999 * Math.PI - min * this.data.length;
+      last = 0;
+      idx = 0;
+      this.segments = [];
+      _ref1 = this.values;
+      for (i = _j = 0, _len1 = _ref1.length; _j < _len1; i = ++_j) {
+        value = _ref1[i];
+        next = last + min + C * (value / total);
+        seg = new Morris.DonutSegment(cx, cy, w * 2, w, last, next, this.data[i].color || this.options.colors[idx % this.options.colors.length], this.options.backgroundColor, idx, this.raphael);
+        seg.render();
+        this.segments.push(seg);
+        seg.on('hover', this.select);
+        seg.on('click', this.click);
+        last = next;
+        idx += 1;
+      }
+      this.text1 = this.drawEmptyDonutLabel(cx, cy - 10, this.options.labelColor, 15, 800);
+      this.text2 = this.drawEmptyDonutLabel(cx, cy + 10, this.options.labelColor, 14);
+      max_value = Math.max.apply(Math, this.values);
+      idx = 0;
+      _ref2 = this.values;
+      _results = [];
+      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+        value = _ref2[_k];
+        if (value === max_value) {
+          this.select(idx);
+          break;
+        }
+        _results.push(idx += 1);
+      }
+      return _results;
+    };
+
+    Donut.prototype.setData = function(data) {
+      var row;
+      this.data = data;
+      this.values = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.data;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          row = _ref[_i];
+          _results.push(parseFloat(row.value));
+        }
+        return _results;
+      }).call(this);
+      return this.redraw();
+    };
+
+    Donut.prototype.click = function(idx) {
+      return this.fire('click', idx, this.data[idx]);
+    };
+
+    Donut.prototype.select = function(idx) {
+      var row, s, segment, _i, _len, _ref;
+      _ref = this.segments;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        s = _ref[_i];
+        s.deselect();
+      }
+      segment = this.segments[idx];
+      segment.select();
+      row = this.data[idx];
+      return this.setLabels(row.label, this.options.formatter(row.value, row));
+    };
+
+    Donut.prototype.setLabels = function(label1, label2) {
+      var inner, maxHeightBottom, maxHeightTop, maxWidth, text1bbox, text1scale, text2bbox, text2scale;
+      inner = (Math.min(this.el.width() / 2, this.el.height() / 2) - 10) * 2 / 3;
+      maxWidth = 1.8 * inner;
+      maxHeightTop = inner / 2;
+      maxHeightBottom = inner / 3;
+      this.text1.attr({
+        text: label1,
+        transform: ''
+      });
+      text1bbox = this.text1.getBBox();
+      text1scale = Math.min(maxWidth / text1bbox.width, maxHeightTop / text1bbox.height);
+      this.text1.attr({
+        transform: "S" + text1scale + "," + text1scale + "," + (text1bbox.x + text1bbox.width / 2) + "," + (text1bbox.y + text1bbox.height)
+      });
+      this.text2.attr({
+        text: label2,
+        transform: ''
+      });
+      text2bbox = this.text2.getBBox();
+      text2scale = Math.min(maxWidth / text2bbox.width, maxHeightBottom / text2bbox.height);
+      return this.text2.attr({
+        transform: "S" + text2scale + "," + text2scale + "," + (text2bbox.x + text2bbox.width / 2) + "," + text2bbox.y
+      });
+    };
+
+    Donut.prototype.drawEmptyDonutLabel = function(xPos, yPos, color, fontSize, fontWeight) {
+      var text;
+      text = this.raphael.text(xPos, yPos, '').attr('font-size', fontSize).attr('fill', color);
+      if (fontWeight != null) {
+        text.attr('font-weight', fontWeight);
+      }
+      return text;
+    };
+
+    Donut.prototype.resizeHandler = function() {
+      this.timeoutId = null;
+      this.raphael.setSize(this.el.width(), this.el.height());
+      return this.redraw();
+    };
+
+    return Donut;
+
+  })(Morris.EventEmitter);
+
+  Morris.DonutSegment = (function(_super) {
+    __extends(DonutSegment, _super);
+
+    function DonutSegment(cx, cy, inner, outer, p0, p1, color, backgroundColor, index, raphael) {
+      this.cx = cx;
+      this.cy = cy;
+      this.inner = inner;
+      this.outer = outer;
+      this.color = color;
+      this.backgroundColor = backgroundColor;
+      this.index = index;
+      this.raphael = raphael;
+      this.deselect = __bind(this.deselect, this);
+      this.select = __bind(this.select, this);
+      this.sin_p0 = Math.sin(p0);
+      this.cos_p0 = Math.cos(p0);
+      this.sin_p1 = Math.sin(p1);
+      this.cos_p1 = Math.cos(p1);
+      this.is_long = (p1 - p0) > Math.PI ? 1 : 0;
+      this.path = this.calcSegment(this.inner + 3, this.inner + this.outer - 5);
+      this.selectedPath = this.calcSegment(this.inner + 3, this.inner + this.outer);
+      this.hilight = this.calcArc(this.inner);
+    }
+
+    DonutSegment.prototype.calcArcPoints = function(r) {
+      return [this.cx + r * this.sin_p0, this.cy + r * this.cos_p0, this.cx + r * this.sin_p1, this.cy + r * this.cos_p1];
+    };
+
+    DonutSegment.prototype.calcSegment = function(r1, r2) {
+      var ix0, ix1, iy0, iy1, ox0, ox1, oy0, oy1, _ref, _ref1;
+      _ref = this.calcArcPoints(r1), ix0 = _ref[0], iy0 = _ref[1], ix1 = _ref[2], iy1 = _ref[3];
+      _ref1 = this.calcArcPoints(r2), ox0 = _ref1[0], oy0 = _ref1[1], ox1 = _ref1[2], oy1 = _ref1[3];
+      return ("M" + ix0 + "," + iy0) + ("A" + r1 + "," + r1 + ",0," + this.is_long + ",0," + ix1 + "," + iy1) + ("L" + ox1 + "," + oy1) + ("A" + r2 + "," + r2 + ",0," + this.is_long + ",1," + ox0 + "," + oy0) + "Z";
+    };
+
+    DonutSegment.prototype.calcArc = function(r) {
+      var ix0, ix1, iy0, iy1, _ref;
+      _ref = this.calcArcPoints(r), ix0 = _ref[0], iy0 = _ref[1], ix1 = _ref[2], iy1 = _ref[3];
+      return ("M" + ix0 + "," + iy0) + ("A" + r + "," + r + ",0," + this.is_long + ",0," + ix1 + "," + iy1);
+    };
+
+    DonutSegment.prototype.render = function() {
+      var _this = this;
+      this.arc = this.drawDonutArc(this.hilight, this.color);
+      return this.seg = this.drawDonutSegment(this.path, this.color, this.backgroundColor, function() {
+        return _this.fire('hover', _this.index);
+      }, function() {
+        return _this.fire('click', _this.index);
+      });
+    };
+
+    DonutSegment.prototype.drawDonutArc = function(path, color) {
+      return this.raphael.path(path).attr({
+        stroke: color,
+        'stroke-width': 2,
+        opacity: 0
+      });
+    };
+
+    DonutSegment.prototype.drawDonutSegment = function(path, fillColor, strokeColor, hoverFunction, clickFunction) {
+      return this.raphael.path(path).attr({
+        fill: fillColor,
+        stroke: strokeColor,
+        'stroke-width': 3
+      }).hover(hoverFunction).click(clickFunction);
+    };
+
+    DonutSegment.prototype.select = function() {
+      if (!this.selected) {
+        this.seg.animate({
+          path: this.selectedPath
+        }, 150, '<>');
+        this.arc.animate({
+          opacity: 1
+        }, 150, '<>');
+        return this.selected = true;
+      }
+    };
+
+    DonutSegment.prototype.deselect = function() {
+      if (this.selected) {
+        this.seg.animate({
+          path: this.path
+        }, 150, '<>');
+        this.arc.animate({
+          opacity: 0
+        }, 150, '<>');
+        return this.selected = false;
+      }
+    };
+
+    return DonutSegment;
+
+  })(Morris.EventEmitter);
+
+}).call(this);
+
+/*!
+ * jQuery Validation Plugin v1.15.0
+ *
+ * http://jqueryvalidation.org/
+ *
+ * Copyright (c) 2016 JÃ¶rn Zaefferer
+ * Released under the MIT license
+ */
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+		define( ["jquery"], factory );
+	} else if (typeof module === "object" && module.exports) {
+		module.exports = factory( require( "jquery" ) );
+	} else {
+		factory( jQuery );
+	}
+}(function( $ ) {
+
+$.extend( $.fn, {
+
+	// http://jqueryvalidation.org/validate/
+	validate: function( options ) {
+
+		// If nothing is selected, return nothing; can't chain anyway
+		if ( !this.length ) {
+			if ( options && options.debug && window.console ) {
+				console.warn( "Nothing selected, can't validate, returning nothing." );
+			}
+			return;
+		}
+
+		// Check if a validator for this form was already created
+		var validator = $.data( this[ 0 ], "validator" );
+		if ( validator ) {
+			return validator;
+		}
+
+		// Add novalidate tag if HTML5.
+		this.attr( "novalidate", "novalidate" );
+
+		validator = new $.validator( options, this[ 0 ] );
+		$.data( this[ 0 ], "validator", validator );
+
+		if ( validator.settings.onsubmit ) {
+
+			this.on( "click.validate", ":submit", function( event ) {
+				if ( validator.settings.submitHandler ) {
+					validator.submitButton = event.target;
+				}
+
+				// Allow suppressing validation by adding a cancel class to the submit button
+				if ( $( this ).hasClass( "cancel" ) ) {
+					validator.cancelSubmit = true;
+				}
+
+				// Allow suppressing validation by adding the html5 formnovalidate attribute to the submit button
+				if ( $( this ).attr( "formnovalidate" ) !== undefined ) {
+					validator.cancelSubmit = true;
+				}
+			} );
+
+			// Validate the form on submit
+			this.on( "submit.validate", function( event ) {
+				if ( validator.settings.debug ) {
+
+					// Prevent form submit to be able to see console output
+					event.preventDefault();
+				}
+				function handle() {
+					var hidden, result;
+					if ( validator.settings.submitHandler ) {
+						if ( validator.submitButton ) {
+
+							// Insert a hidden input as a replacement for the missing submit button
+							hidden = $( "<input type='hidden'/>" )
+								.attr( "name", validator.submitButton.name )
+								.val( $( validator.submitButton ).val() )
+								.appendTo( validator.currentForm );
+						}
+						result = validator.settings.submitHandler.call( validator, validator.currentForm, event );
+						if ( validator.submitButton ) {
+
+							// And clean up afterwards; thanks to no-block-scope, hidden can be referenced
+							hidden.remove();
+						}
+						if ( result !== undefined ) {
+							return result;
+						}
+						return false;
+					}
+					return true;
+				}
+
+				// Prevent submit for invalid forms or custom submit handlers
+				if ( validator.cancelSubmit ) {
+					validator.cancelSubmit = false;
+					return handle();
+				}
+				if ( validator.form() ) {
+					if ( validator.pendingRequest ) {
+						validator.formSubmitted = true;
+						return false;
+					}
+					return handle();
+				} else {
+					validator.focusInvalid();
+					return false;
+				}
+			} );
+		}
+
+		return validator;
+	},
+
+	// http://jqueryvalidation.org/valid/
+	valid: function() {
+		var valid, validator, errorList;
+
+		if ( $( this[ 0 ] ).is( "form" ) ) {
+			valid = this.validate().form();
+		} else {
+			errorList = [];
+			valid = true;
+			validator = $( this[ 0 ].form ).validate();
+			this.each( function() {
+				valid = validator.element( this ) && valid;
+				if ( !valid ) {
+					errorList = errorList.concat( validator.errorList );
+				}
+			} );
+			validator.errorList = errorList;
+		}
+		return valid;
+	},
+
+	// http://jqueryvalidation.org/rules/
+	rules: function( command, argument ) {
+
+		// If nothing is selected, return nothing; can't chain anyway
+		if ( !this.length ) {
+			return;
+		}
+
+		var element = this[ 0 ],
+			settings, staticRules, existingRules, data, param, filtered;
+
+		if ( command ) {
+			settings = $.data( element.form, "validator" ).settings;
+			staticRules = settings.rules;
+			existingRules = $.validator.staticRules( element );
+			switch ( command ) {
+			case "add":
+				$.extend( existingRules, $.validator.normalizeRule( argument ) );
+
+				// Remove messages from rules, but allow them to be set separately
+				delete existingRules.messages;
+				staticRules[ element.name ] = existingRules;
+				if ( argument.messages ) {
+					settings.messages[ element.name ] = $.extend( settings.messages[ element.name ], argument.messages );
+				}
+				break;
+			case "remove":
+				if ( !argument ) {
+					delete staticRules[ element.name ];
+					return existingRules;
+				}
+				filtered = {};
+				$.each( argument.split( /\s/ ), function( index, method ) {
+					filtered[ method ] = existingRules[ method ];
+					delete existingRules[ method ];
+					if ( method === "required" ) {
+						$( element ).removeAttr( "aria-required" );
+					}
+				} );
+				return filtered;
+			}
+		}
+
+		data = $.validator.normalizeRules(
+		$.extend(
+			{},
+			$.validator.classRules( element ),
+			$.validator.attributeRules( element ),
+			$.validator.dataRules( element ),
+			$.validator.staticRules( element )
+		), element );
+
+		// Make sure required is at front
+		if ( data.required ) {
+			param = data.required;
+			delete data.required;
+			data = $.extend( { required: param }, data );
+			$( element ).attr( "aria-required", "true" );
+		}
+
+		// Make sure remote is at back
+		if ( data.remote ) {
+			param = data.remote;
+			delete data.remote;
+			data = $.extend( data, { remote: param } );
+		}
+
+		return data;
+	}
+} );
+
+// Custom selectors
+$.extend( $.expr[ ":" ], {
+
+	// http://jqueryvalidation.org/blank-selector/
+	blank: function( a ) {
+		return !$.trim( "" + $( a ).val() );
+	},
+
+	// http://jqueryvalidation.org/filled-selector/
+	filled: function( a ) {
+		var val = $( a ).val();
+		return val !== null && !!$.trim( "" + val );
+	},
+
+	// http://jqueryvalidation.org/unchecked-selector/
+	unchecked: function( a ) {
+		return !$( a ).prop( "checked" );
+	}
+} );
+
+// Constructor for validator
+$.validator = function( options, form ) {
+	this.settings = $.extend( true, {}, $.validator.defaults, options );
+	this.currentForm = form;
+	this.init();
+};
+
+// http://jqueryvalidation.org/jQuery.validator.format/
+$.validator.format = function( source, params ) {
+	if ( arguments.length === 1 ) {
+		return function() {
+			var args = $.makeArray( arguments );
+			args.unshift( source );
+			return $.validator.format.apply( this, args );
+		};
+	}
+	if ( params === undefined ) {
+		return source;
+	}
+	if ( arguments.length > 2 && params.constructor !== Array  ) {
+		params = $.makeArray( arguments ).slice( 1 );
+	}
+	if ( params.constructor !== Array ) {
+		params = [ params ];
+	}
+	$.each( params, function( i, n ) {
+		source = source.replace( new RegExp( "\\{" + i + "\\}", "g" ), function() {
+			return n;
+		} );
+	} );
+	return source;
+};
+
+$.extend( $.validator, {
+
+	defaults: {
+		messages: {},
+		groups: {},
+		rules: {},
+		errorClass: "error",
+		pendingClass: "pending",
+		validClass: "valid",
+		errorElement: "label",
+		focusCleanup: false,
+		focusInvalid: true,
+		errorContainer: $( [] ),
+		errorLabelContainer: $( [] ),
+		onsubmit: true,
+		ignore: ":hidden",
+		ignoreTitle: false,
+		onfocusin: function( element ) {
+			this.lastActive = element;
+
+			// Hide error label and remove error class on focus if enabled
+			if ( this.settings.focusCleanup ) {
+				if ( this.settings.unhighlight ) {
+					this.settings.unhighlight.call( this, element, this.settings.errorClass, this.settings.validClass );
+				}
+				this.hideThese( this.errorsFor( element ) );
+			}
+		},
+		onfocusout: function( element ) {
+			if ( !this.checkable( element ) && ( element.name in this.submitted || !this.optional( element ) ) ) {
+				this.element( element );
+			}
+		},
+		onkeyup: function( element, event ) {
+
+			// Avoid revalidate the field when pressing one of the following keys
+			// Shift       => 16
+			// Ctrl        => 17
+			// Alt         => 18
+			// Caps lock   => 20
+			// End         => 35
+			// Home        => 36
+			// Left arrow  => 37
+			// Up arrow    => 38
+			// Right arrow => 39
+			// Down arrow  => 40
+			// Insert      => 45
+			// Num lock    => 144
+			// AltGr key   => 225
+			var excludedKeys = [
+				16, 17, 18, 20, 35, 36, 37,
+				38, 39, 40, 45, 144, 225
+			];
+
+			if ( event.which === 9 && this.elementValue( element ) === "" || $.inArray( event.keyCode, excludedKeys ) !== -1 ) {
+				return;
+			} else if ( element.name in this.submitted || element.name in this.invalid ) {
+				this.element( element );
+			}
+		},
+		onclick: function( element ) {
+
+			// Click on selects, radiobuttons and checkboxes
+			if ( element.name in this.submitted ) {
+				this.element( element );
+
+			// Or option elements, check parent select in that case
+			} else if ( element.parentNode.name in this.submitted ) {
+				this.element( element.parentNode );
+			}
+		},
+		highlight: function( element, errorClass, validClass ) {
+			if ( element.type === "radio" ) {
+				this.findByName( element.name ).addClass( errorClass ).removeClass( validClass );
+			} else {
+				$( element ).addClass( errorClass ).removeClass( validClass );
+			}
+		},
+		unhighlight: function( element, errorClass, validClass ) {
+			if ( element.type === "radio" ) {
+				this.findByName( element.name ).removeClass( errorClass ).addClass( validClass );
+			} else {
+				$( element ).removeClass( errorClass ).addClass( validClass );
+			}
+		}
+	},
+
+	// http://jqueryvalidation.org/jQuery.validator.setDefaults/
+	setDefaults: function( settings ) {
+		$.extend( $.validator.defaults, settings );
+	},
+
+	messages: {
+		required: "هذا الحقل يجب ادخاله",
+		remote: "من فضلك اصلح هذا الحقل",
+		email: "من فضلك ادخل ايميل صحيح",
+		url: "من فضلك ادخل لينك صحيح",
+		date: "من فضلك ادخل تاريخ صحيح",
+		dateISO: "Please enter a valid date ( ISO )",
+		number: "من فضلك ادخل رقم صحيح",
+		digits: "Please enter only digits",
+		equalTo: "من فضلك ادخل نفس القيمة وحاول مرة اخرى",
+		maxlength: $.validator.format( "من فضلك لا تدخل اكثر من {0}" ),
+		minlength: $.validator.format( "من فضلك لا تدخل اقل من {0}" ),
+		rangelength: $.validator.format( "Please enter a value between {0} and {1} characters long" ),
+		range: $.validator.format( "Please enter a value between {0} and {1}" ),
+		max: $.validator.format( "Please enter a value less than or equal to {0}" ),
+		min: $.validator.format( "Please enter a value greater than or equal to {0}" ),
+		step: $.validator.format( "Please enter a multiple of {0}" )
+	},
+
+	autoCreateRanges: false,
+
+	prototype: {
+
+		init: function() {
+			this.labelContainer = $( this.settings.errorLabelContainer );
+			this.errorContext = this.labelContainer.length && this.labelContainer || $( this.currentForm );
+			this.containers = $( this.settings.errorContainer ).add( this.settings.errorLabelContainer );
+			this.submitted = {};
+			this.valueCache = {};
+			this.pendingRequest = 0;
+			this.pending = {};
+			this.invalid = {};
+			this.reset();
+
+			var groups = ( this.groups = {} ),
+				rules;
+			$.each( this.settings.groups, function( key, value ) {
+				if ( typeof value === "string" ) {
+					value = value.split( /\s/ );
+				}
+				$.each( value, function( index, name ) {
+					groups[ name ] = key;
+				} );
+			} );
+			rules = this.settings.rules;
+			$.each( rules, function( key, value ) {
+				rules[ key ] = $.validator.normalizeRule( value );
+			} );
+
+			function delegate( event ) {
+				var validator = $.data( this.form, "validator" ),
+					eventType = "on" + event.type.replace( /^validate/, "" ),
+					settings = validator.settings;
+				if ( settings[ eventType ] && !$( this ).is( settings.ignore ) ) {
+					settings[ eventType ].call( validator, this, event );
+				}
+			}
+
+			$( this.currentForm )
+				.on( "focusin.validate focusout.validate keyup.validate",
+					":text, [type='password'], [type='file'], select, textarea, [type='number'], [type='search'], " +
+					"[type='tel'], [type='url'], [type='email'], [type='datetime'], [type='date'], [type='month'], " +
+					"[type='week'], [type='time'], [type='datetime-local'], [type='range'], [type='color'], " +
+					"[type='radio'], [type='checkbox'], [contenteditable]", delegate )
+
+				// Support: Chrome, oldIE
+				// "select" is provided as event.target when clicking a option
+				.on( "click.validate", "select, option, [type='radio'], [type='checkbox']", delegate );
+
+			if ( this.settings.invalidHandler ) {
+				$( this.currentForm ).on( "invalid-form.validate", this.settings.invalidHandler );
+			}
+
+			// Add aria-required to any Static/Data/Class required fields before first validation
+			// Screen readers require this attribute to be present before the initial submission http://www.w3.org/TR/WCAG-TECHS/ARIA2.html
+			$( this.currentForm ).find( "[required], [data-rule-required], .required" ).attr( "aria-required", "true" );
+		},
+
+		// http://jqueryvalidation.org/Validator.form/
+		form: function() {
+			this.checkForm();
+			$.extend( this.submitted, this.errorMap );
+			this.invalid = $.extend( {}, this.errorMap );
+			if ( !this.valid() ) {
+				$( this.currentForm ).triggerHandler( "invalid-form", [ this ] );
+			}
+			this.showErrors();
+			return this.valid();
+		},
+
+		checkForm: function() {
+			this.prepareForm();
+			for ( var i = 0, elements = ( this.currentElements = this.elements() ); elements[ i ]; i++ ) {
+				this.check( elements[ i ] );
+			}
+			return this.valid();
+		},
+
+		// http://jqueryvalidation.org/Validator.element/
+		element: function( element ) {
+			var cleanElement = this.clean( element ),
+				checkElement = this.validationTargetFor( cleanElement ),
+				v = this,
+				result = true,
+				rs, group;
+
+			if ( checkElement === undefined ) {
+				delete this.invalid[ cleanElement.name ];
+			} else {
+				this.prepareElement( checkElement );
+				this.currentElements = $( checkElement );
+
+				// If this element is grouped, then validate all group elements already
+				// containing a value
+				group = this.groups[ checkElement.name ];
+				if ( group ) {
+					$.each( this.groups, function( name, testgroup ) {
+						if ( testgroup === group && name !== checkElement.name ) {
+							cleanElement = v.validationTargetFor( v.clean( v.findByName( name ) ) );
+							if ( cleanElement && cleanElement.name in v.invalid ) {
+								v.currentElements.push( cleanElement );
+								result = result && v.check( cleanElement );
+							}
+						}
+					} );
+				}
+
+				rs = this.check( checkElement ) !== false;
+				result = result && rs;
+				if ( rs ) {
+					this.invalid[ checkElement.name ] = false;
+				} else {
+					this.invalid[ checkElement.name ] = true;
+				}
+
+				if ( !this.numberOfInvalids() ) {
+
+					// Hide error containers on last error
+					this.toHide = this.toHide.add( this.containers );
+				}
+				this.showErrors();
+
+				// Add aria-invalid status for screen readers
+				$( element ).attr( "aria-invalid", !rs );
+			}
+
+			return result;
+		},
+
+		// http://jqueryvalidation.org/Validator.showErrors/
+		showErrors: function( errors ) {
+			if ( errors ) {
+				var validator = this;
+
+				// Add items to error list and map
+				$.extend( this.errorMap, errors );
+				this.errorList = $.map( this.errorMap, function( message, name ) {
+					return {
+						message: message,
+						element: validator.findByName( name )[ 0 ]
+					};
+				} );
+
+				// Remove items from success list
+				this.successList = $.grep( this.successList, function( element ) {
+					return !( element.name in errors );
+				} );
+			}
+			if ( this.settings.showErrors ) {
+				this.settings.showErrors.call( this, this.errorMap, this.errorList );
+			} else {
+				this.defaultShowErrors();
+			}
+		},
+
+		// http://jqueryvalidation.org/Validator.resetForm/
+		resetForm: function() {
+			if ( $.fn.resetForm ) {
+				$( this.currentForm ).resetForm();
+			}
+			this.invalid = {};
+			this.submitted = {};
+			this.prepareForm();
+			this.hideErrors();
+			var elements = this.elements()
+				.removeData( "previousValue" )
+				.removeAttr( "aria-invalid" );
+
+			this.resetElements( elements );
+		},
+
+		resetElements: function( elements ) {
+			var i;
+
+			if ( this.settings.unhighlight ) {
+				for ( i = 0; elements[ i ]; i++ ) {
+					this.settings.unhighlight.call( this, elements[ i ],
+						this.settings.errorClass, "" );
+					this.findByName( elements[ i ].name ).removeClass( this.settings.validClass );
+				}
+			} else {
+				elements
+					.removeClass( this.settings.errorClass )
+					.removeClass( this.settings.validClass );
+			}
+		},
+
+		numberOfInvalids: function() {
+			return this.objectLength( this.invalid );
+		},
+
+		objectLength: function( obj ) {
+			/* jshint unused: false */
+			var count = 0,
+				i;
+			for ( i in obj ) {
+				if ( obj[ i ] ) {
+					count++;
+				}
+			}
+			return count;
+		},
+
+		hideErrors: function() {
+			this.hideThese( this.toHide );
+		},
+
+		hideThese: function( errors ) {
+			errors.not( this.containers ).text( "" );
+			this.addWrapper( errors ).hide();
+		},
+
+		valid: function() {
+			return this.size() === 0;
+		},
+
+		size: function() {
+			return this.errorList.length;
+		},
+
+		focusInvalid: function() {
+			if ( this.settings.focusInvalid ) {
+				try {
+					$( this.findLastActive() || this.errorList.length && this.errorList[ 0 ].element || [] )
+					.filter( ":visible" )
+					.focus()
+
+					// Manually trigger focusin event; without it, focusin handler isn't called, findLastActive won't have anything to find
+					.trigger( "focusin" );
+				} catch ( e ) {
+
+					// Ignore IE throwing errors when focusing hidden elements
+				}
+			}
+		},
+
+		findLastActive: function() {
+			var lastActive = this.lastActive;
+			return lastActive && $.grep( this.errorList, function( n ) {
+				return n.element.name === lastActive.name;
+			} ).length === 1 && lastActive;
+		},
+
+		elements: function() {
+			var validator = this,
+				rulesCache = {};
+
+			// Select all valid inputs inside the form (no submit or reset buttons)
+			return $( this.currentForm )
+			.find( "input, select, textarea, [contenteditable]" )
+			.not( ":submit, :reset, :image, :disabled" )
+			.not( this.settings.ignore )
+			.filter( function() {
+				var name = this.name || $( this ).attr( "name" ); // For contenteditable
+				if ( !name && validator.settings.debug && window.console ) {
+					console.error( "%o has no name assigned", this );
+				}
+
+				// Set form expando on contenteditable
+				if ( this.hasAttribute( "contenteditable" ) ) {
+					this.form = $( this ).closest( "form" )[ 0 ];
+				}
+
+				// Select only the first element for each name, and only those with rules specified
+				if ( name in rulesCache || !validator.objectLength( $( this ).rules() ) ) {
+					return false;
+				}
+
+				rulesCache[ name ] = true;
+				return true;
+			} );
+		},
+
+		clean: function( selector ) {
+			return $( selector )[ 0 ];
+		},
+
+		errors: function() {
+			var errorClass = this.settings.errorClass.split( " " ).join( "." );
+			return $( this.settings.errorElement + "." + errorClass, this.errorContext );
+		},
+
+		resetInternals: function() {
+			this.successList = [];
+			this.errorList = [];
+			this.errorMap = {};
+			this.toShow = $( [] );
+			this.toHide = $( [] );
+		},
+
+		reset: function() {
+			this.resetInternals();
+			this.currentElements = $( [] );
+		},
+
+		prepareForm: function() {
+			this.reset();
+			this.toHide = this.errors().add( this.containers );
+		},
+
+		prepareElement: function( element ) {
+			this.reset();
+			this.toHide = this.errorsFor( element );
+		},
+
+		elementValue: function( element ) {
+			var $element = $( element ),
+				type = element.type,
+				val, idx;
+
+			if ( type === "radio" || type === "checkbox" ) {
+				return this.findByName( element.name ).filter( ":checked" ).val();
+			} else if ( type === "number" && typeof element.validity !== "undefined" ) {
+				return element.validity.badInput ? "NaN" : $element.val();
+			}
+
+			if ( element.hasAttribute( "contenteditable" ) ) {
+				val = $element.text();
+			} else {
+				val = $element.val();
+			}
+
+			if ( type === "file" ) {
+
+				// Modern browser (chrome & safari)
+				if ( val.substr( 0, 12 ) === "C:\\fakepath\\" ) {
+					return val.substr( 12 );
+				}
+
+				// Legacy browsers
+				// Unix-based path
+				idx = val.lastIndexOf( "/" );
+				if ( idx >= 0 ) {
+					return val.substr( idx + 1 );
+				}
+
+				// Windows-based path
+				idx = val.lastIndexOf( "\\" );
+				if ( idx >= 0 ) {
+					return val.substr( idx + 1 );
+				}
+
+				// Just the file name
+				return val;
+			}
+
+			if ( typeof val === "string" ) {
+				return val.replace( /\r/g, "" );
+			}
+			return val;
+		},
+
+		check: function( element ) {
+			element = this.validationTargetFor( this.clean( element ) );
+
+			var rules = $( element ).rules(),
+				rulesCount = $.map( rules, function( n, i ) {
+					return i;
+				} ).length,
+				dependencyMismatch = false,
+				val = this.elementValue( element ),
+				result, method, rule;
+
+			// If a normalizer is defined for this element, then
+			// call it to retreive the changed value instead
+			// of using the real one.
+			// Note that `this` in the normalizer is `element`.
+			if ( typeof rules.normalizer === "function" ) {
+				val = rules.normalizer.call( element, val );
+
+				if ( typeof val !== "string" ) {
+					throw new TypeError( "The normalizer should return a string value." );
+				}
+
+				// Delete the normalizer from rules to avoid treating
+				// it as a pre-defined method.
+				delete rules.normalizer;
+			}
+
+			for ( method in rules ) {
+				rule = { method: method, parameters: rules[ method ] };
+				try {
+					result = $.validator.methods[ method ].call( this, val, element, rule.parameters );
+
+					// If a method indicates that the field is optional and therefore valid,
+					// don't mark it as valid when there are no other rules
+					if ( result === "dependency-mismatch" && rulesCount === 1 ) {
+						dependencyMismatch = true;
+						continue;
+					}
+					dependencyMismatch = false;
+
+					if ( result === "pending" ) {
+						this.toHide = this.toHide.not( this.errorsFor( element ) );
+						return;
+					}
+
+					if ( !result ) {
+						this.formatAndAdd( element, rule );
+						return false;
+					}
+				} catch ( e ) {
+					if ( this.settings.debug && window.console ) {
+						console.log( "Exception occurred when checking element " + element.id + ", check the '" + rule.method + "' method.", e );
+					}
+					if ( e instanceof TypeError ) {
+						e.message += ".  Exception occurred when checking element " + element.id + ", check the '" + rule.method + "' method.";
+					}
+
+					throw e;
+				}
+			}
+			if ( dependencyMismatch ) {
+				return;
+			}
+			if ( this.objectLength( rules ) ) {
+				this.successList.push( element );
+			}
+			return true;
+		},
+
+		// Return the custom message for the given element and validation method
+		// specified in the element's HTML5 data attribute
+		// return the generic message if present and no method specific message is present
+		customDataMessage: function( element, method ) {
+			return $( element ).data( "msg" + method.charAt( 0 ).toUpperCase() +
+				method.substring( 1 ).toLowerCase() ) || $( element ).data( "msg" );
+		},
+
+		// Return the custom message for the given element name and validation method
+		customMessage: function( name, method ) {
+			var m = this.settings.messages[ name ];
+			return m && ( m.constructor === String ? m : m[ method ] );
+		},
+
+		// Return the first defined argument, allowing empty strings
+		findDefined: function() {
+			for ( var i = 0; i < arguments.length; i++ ) {
+				if ( arguments[ i ] !== undefined ) {
+					return arguments[ i ];
+				}
+			}
+			return undefined;
+		},
+
+		defaultMessage: function( element, rule ) {
+			var message = this.findDefined(
+					this.customMessage( element.name, rule.method ),
+					this.customDataMessage( element, rule.method ),
+
+					// 'title' is never undefined, so handle empty string as undefined
+					!this.settings.ignoreTitle && element.title || undefined,
+					$.validator.messages[ rule.method ],
+					"<strong>Warning: No message defined for " + element.name + "</strong>"
+				),
+				theregex = /\$?\{(\d+)\}/g;
+			if ( typeof message === "function" ) {
+				message = message.call( this, rule.parameters, element );
+			} else if ( theregex.test( message ) ) {
+				message = $.validator.format( message.replace( theregex, "{$1}" ), rule.parameters );
+			}
+
+			return message;
+		},
+
+		formatAndAdd: function( element, rule ) {
+			var message = this.defaultMessage( element, rule );
+
+			this.errorList.push( {
+				message: message,
+				element: element,
+				method: rule.method
+			} );
+
+			this.errorMap[ element.name ] = message;
+			this.submitted[ element.name ] = message;
+		},
+
+		addWrapper: function( toToggle ) {
+			if ( this.settings.wrapper ) {
+				toToggle = toToggle.add( toToggle.parent( this.settings.wrapper ) );
+			}
+			return toToggle;
+		},
+
+		defaultShowErrors: function() {
+			var i, elements, error;
+			for ( i = 0; this.errorList[ i ]; i++ ) {
+				error = this.errorList[ i ];
+				if ( this.settings.highlight ) {
+					this.settings.highlight.call( this, error.element, this.settings.errorClass, this.settings.validClass );
+				}
+				this.showLabel( error.element, error.message );
+			}
+			if ( this.errorList.length ) {
+				this.toShow = this.toShow.add( this.containers );
+			}
+			if ( this.settings.success ) {
+				for ( i = 0; this.successList[ i ]; i++ ) {
+					this.showLabel( this.successList[ i ] );
+				}
+			}
+			if ( this.settings.unhighlight ) {
+				for ( i = 0, elements = this.validElements(); elements[ i ]; i++ ) {
+					this.settings.unhighlight.call( this, elements[ i ], this.settings.errorClass, this.settings.validClass );
+				}
+			}
+			this.toHide = this.toHide.not( this.toShow );
+			this.hideErrors();
+			this.addWrapper( this.toShow ).show();
+		},
+
+		validElements: function() {
+			return this.currentElements.not( this.invalidElements() );
+		},
+
+		invalidElements: function() {
+			return $( this.errorList ).map( function() {
+				return this.element;
+			} );
+		},
+
+		showLabel: function( element, message ) {
+			var place, group, errorID, v,
+				error = this.errorsFor( element ),
+				elementID = this.idOrName( element ),
+				describedBy = $( element ).attr( "aria-describedby" );
+
+			if ( error.length ) {
+
+				// Refresh error/success class
+				error.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
+
+				// Replace message on existing label
+				error.html( message );
+			} else {
+
+				// Create error element
+				error = $( "<" + this.settings.errorElement + ">" )
+					.attr( "id", elementID + "-error" )
+					.addClass( this.settings.errorClass )
+					.html( message || "" );
+
+				// Maintain reference to the element to be placed into the DOM
+				place = error;
+				if ( this.settings.wrapper ) {
+
+					// Make sure the element is visible, even in IE
+					// actually showing the wrapped element is handled elsewhere
+					place = error.hide().show().wrap( "<" + this.settings.wrapper + "/>" ).parent();
+				}
+				if ( this.labelContainer.length ) {
+					this.labelContainer.append( place );
+				} else if ( this.settings.errorPlacement ) {
+					this.settings.errorPlacement( place, $( element ) );
+				} else {
+					place.insertAfter( element );
+				}
+
+				// Link error back to the element
+				if ( error.is( "label" ) ) {
+
+					// If the error is a label, then associate using 'for'
+					error.attr( "for", elementID );
+
+					// If the element is not a child of an associated label, then it's necessary
+					// to explicitly apply aria-describedby
+				} else if ( error.parents( "label[for='" + this.escapeCssMeta( elementID ) + "']" ).length === 0 ) {
+					errorID = error.attr( "id" );
+
+					// Respect existing non-error aria-describedby
+					if ( !describedBy ) {
+						describedBy = errorID;
+					} else if ( !describedBy.match( new RegExp( "\\b" + this.escapeCssMeta( errorID ) + "\\b" ) ) ) {
+
+						// Add to end of list if not already present
+						describedBy += " " + errorID;
+					}
+					$( element ).attr( "aria-describedby", describedBy );
+
+					// If this element is grouped, then assign to all elements in the same group
+					group = this.groups[ element.name ];
+					if ( group ) {
+						v = this;
+						$.each( v.groups, function( name, testgroup ) {
+							if ( testgroup === group ) {
+								$( "[name='" + v.escapeCssMeta( name ) + "']", v.currentForm )
+									.attr( "aria-describedby", error.attr( "id" ) );
+							}
+						} );
+					}
+				}
+			}
+			if ( !message && this.settings.success ) {
+				error.text( "" );
+				if ( typeof this.settings.success === "string" ) {
+					error.addClass( this.settings.success );
+				} else {
+					this.settings.success( error, element );
+				}
+			}
+			this.toShow = this.toShow.add( error );
+		},
+
+		errorsFor: function( element ) {
+			var name = this.escapeCssMeta( this.idOrName( element ) ),
+				describer = $( element ).attr( "aria-describedby" ),
+				selector = "label[for='" + name + "'], label[for='" + name + "'] *";
+
+			// 'aria-describedby' should directly reference the error element
+			if ( describer ) {
+				selector = selector + ", #" + this.escapeCssMeta( describer )
+					.replace( /\s+/g, ", #" );
+			}
+
+			return this
+				.errors()
+				.filter( selector );
+		},
+
+		// See https://api.jquery.com/category/selectors/, for CSS
+		// meta-characters that should be escaped in order to be used with JQuery
+		// as a literal part of a name/id or any selector.
+		escapeCssMeta: function( string ) {
+			return string.replace( /([\\!"#$%&'()*+,./:;<=>?@\[\]^`{|}~])/g, "\\$1" );
+		},
+
+		idOrName: function( element ) {
+			return this.groups[ element.name ] || ( this.checkable( element ) ? element.name : element.id || element.name );
+		},
+
+		validationTargetFor: function( element ) {
+
+			// If radio/checkbox, validate first element in group instead
+			if ( this.checkable( element ) ) {
+				element = this.findByName( element.name );
+			}
+
+			// Always apply ignore filter
+			return $( element ).not( this.settings.ignore )[ 0 ];
+		},
+
+		checkable: function( element ) {
+			return ( /radio|checkbox/i ).test( element.type );
+		},
+
+		findByName: function( name ) {
+			return $( this.currentForm ).find( "[name='" + this.escapeCssMeta( name ) + "']" );
+		},
+
+		getLength: function( value, element ) {
+			switch ( element.nodeName.toLowerCase() ) {
+			case "select":
+				return $( "option:selected", element ).length;
+			case "input":
+				if ( this.checkable( element ) ) {
+					return this.findByName( element.name ).filter( ":checked" ).length;
+				}
+			}
+			return value.length;
+		},
+
+		depend: function( param, element ) {
+			return this.dependTypes[ typeof param ] ? this.dependTypes[ typeof param ]( param, element ) : true;
+		},
+
+		dependTypes: {
+			"boolean": function( param ) {
+				return param;
+			},
+			"string": function( param, element ) {
+				return !!$( param, element.form ).length;
+			},
+			"function": function( param, element ) {
+				return param( element );
+			}
+		},
+
+		optional: function( element ) {
+			var val = this.elementValue( element );
+			return !$.validator.methods.required.call( this, val, element ) && "dependency-mismatch";
+		},
+
+		startRequest: function( element ) {
+			if ( !this.pending[ element.name ] ) {
+				this.pendingRequest++;
+				$( element ).addClass( this.settings.pendingClass );
+				this.pending[ element.name ] = true;
+			}
+		},
+
+		stopRequest: function( element, valid ) {
+			this.pendingRequest--;
+
+			// Sometimes synchronization fails, make sure pendingRequest is never < 0
+			if ( this.pendingRequest < 0 ) {
+				this.pendingRequest = 0;
+			}
+			delete this.pending[ element.name ];
+			$( element ).removeClass( this.settings.pendingClass );
+			if ( valid && this.pendingRequest === 0 && this.formSubmitted && this.form() ) {
+				$( this.currentForm ).submit();
+				this.formSubmitted = false;
+			} else if ( !valid && this.pendingRequest === 0 && this.formSubmitted ) {
+				$( this.currentForm ).triggerHandler( "invalid-form", [ this ] );
+				this.formSubmitted = false;
+			}
+		},
+
+		previousValue: function( element, method ) {
+			return $.data( element, "previousValue" ) || $.data( element, "previousValue", {
+				old: null,
+				valid: true,
+				message: this.defaultMessage( element, { method: method } )
+			} );
+		},
+
+		// Cleans up all forms and elements, removes validator-specific events
+		destroy: function() {
+			this.resetForm();
+
+			$( this.currentForm )
+				.off( ".validate" )
+				.removeData( "validator" )
+				.find( ".validate-equalTo-blur" )
+					.off( ".validate-equalTo" )
+					.removeClass( "validate-equalTo-blur" );
+		}
+
+	},
+
+	classRuleSettings: {
+		required: { required: true },
+		email: { email: true },
+		url: { url: true },
+		date: { date: true },
+		dateISO: { dateISO: true },
+		number: { number: true },
+		digits: { digits: true },
+		creditcard: { creditcard: true }
+	},
+
+	addClassRules: function( className, rules ) {
+		if ( className.constructor === String ) {
+			this.classRuleSettings[ className ] = rules;
+		} else {
+			$.extend( this.classRuleSettings, className );
+		}
+	},
+
+	classRules: function( element ) {
+		var rules = {},
+			classes = $( element ).attr( "class" );
+
+		if ( classes ) {
+			$.each( classes.split( " " ), function() {
+				if ( this in $.validator.classRuleSettings ) {
+					$.extend( rules, $.validator.classRuleSettings[ this ] );
+				}
+			} );
+		}
+		return rules;
+	},
+
+	normalizeAttributeRule: function( rules, type, method, value ) {
+
+		// Convert the value to a number for number inputs, and for text for backwards compability
+		// allows type="date" and others to be compared as strings
+		if ( /min|max|step/.test( method ) && ( type === null || /number|range|text/.test( type ) ) ) {
+			value = Number( value );
+
+			// Support Opera Mini, which returns NaN for undefined minlength
+			if ( isNaN( value ) ) {
+				value = undefined;
+			}
+		}
+
+		if ( value || value === 0 ) {
+			rules[ method ] = value;
+		} else if ( type === method && type !== "range" ) {
+
+			// Exception: the jquery validate 'range' method
+			// does not test for the html5 'range' type
+			rules[ method ] = true;
+		}
+	},
+
+	attributeRules: function( element ) {
+		var rules = {},
+			$element = $( element ),
+			type = element.getAttribute( "type" ),
+			method, value;
+
+		for ( method in $.validator.methods ) {
+
+			// Support for <input required> in both html5 and older browsers
+			if ( method === "required" ) {
+				value = element.getAttribute( method );
+
+				// Some browsers return an empty string for the required attribute
+				// and non-HTML5 browsers might have required="" markup
+				if ( value === "" ) {
+					value = true;
+				}
+
+				// Force non-HTML5 browsers to return bool
+				value = !!value;
+			} else {
+				value = $element.attr( method );
+			}
+
+			this.normalizeAttributeRule( rules, type, method, value );
+		}
+
+		// 'maxlength' may be returned as -1, 2147483647 ( IE ) and 524288 ( safari ) for text inputs
+		if ( rules.maxlength && /-1|2147483647|524288/.test( rules.maxlength ) ) {
+			delete rules.maxlength;
+		}
+
+		return rules;
+	},
+
+	dataRules: function( element ) {
+		var rules = {},
+			$element = $( element ),
+			type = element.getAttribute( "type" ),
+			method, value;
+
+		for ( method in $.validator.methods ) {
+			value = $element.data( "rule" + method.charAt( 0 ).toUpperCase() + method.substring( 1 ).toLowerCase() );
+			this.normalizeAttributeRule( rules, type, method, value );
+		}
+		return rules;
+	},
+
+	staticRules: function( element ) {
+		var rules = {},
+			validator = $.data( element.form, "validator" );
+
+		if ( validator.settings.rules ) {
+			rules = $.validator.normalizeRule( validator.settings.rules[ element.name ] ) || {};
+		}
+		return rules;
+	},
+
+	normalizeRules: function( rules, element ) {
+
+		// Handle dependency check
+		$.each( rules, function( prop, val ) {
+
+			// Ignore rule when param is explicitly false, eg. required:false
+			if ( val === false ) {
+				delete rules[ prop ];
+				return;
+			}
+			if ( val.param || val.depends ) {
+				var keepRule = true;
+				switch ( typeof val.depends ) {
+				case "string":
+					keepRule = !!$( val.depends, element.form ).length;
+					break;
+				case "function":
+					keepRule = val.depends.call( element, element );
+					break;
+				}
+				if ( keepRule ) {
+					rules[ prop ] = val.param !== undefined ? val.param : true;
+				} else {
+					$.data( element.form, "validator" ).resetElements( $( element ) );
+					delete rules[ prop ];
+				}
+			}
+		} );
+
+		// Evaluate parameters
+		$.each( rules, function( rule, parameter ) {
+			rules[ rule ] = $.isFunction( parameter ) && rule !== "normalizer" ? parameter( element ) : parameter;
+		} );
+
+		// Clean number parameters
+		$.each( [ "minlength", "maxlength" ], function() {
+			if ( rules[ this ] ) {
+				rules[ this ] = Number( rules[ this ] );
+			}
+		} );
+		$.each( [ "rangelength", "range" ], function() {
+			var parts;
+			if ( rules[ this ] ) {
+				if ( $.isArray( rules[ this ] ) ) {
+					rules[ this ] = [ Number( rules[ this ][ 0 ] ), Number( rules[ this ][ 1 ] ) ];
+				} else if ( typeof rules[ this ] === "string" ) {
+					parts = rules[ this ].replace( /[\[\]]/g, "" ).split( /[\s,]+/ );
+					rules[ this ] = [ Number( parts[ 0 ] ), Number( parts[ 1 ] ) ];
+				}
+			}
+		} );
+
+		if ( $.validator.autoCreateRanges ) {
+
+			// Auto-create ranges
+			if ( rules.min != null && rules.max != null ) {
+				rules.range = [ rules.min, rules.max ];
+				delete rules.min;
+				delete rules.max;
+			}
+			if ( rules.minlength != null && rules.maxlength != null ) {
+				rules.rangelength = [ rules.minlength, rules.maxlength ];
+				delete rules.minlength;
+				delete rules.maxlength;
+			}
+		}
+
+		return rules;
+	},
+
+	// Converts a simple string to a {string: true} rule, e.g., "required" to {required:true}
+	normalizeRule: function( data ) {
+		if ( typeof data === "string" ) {
+			var transformed = {};
+			$.each( data.split( /\s/ ), function() {
+				transformed[ this ] = true;
+			} );
+			data = transformed;
+		}
+		return data;
+	},
+
+	// http://jqueryvalidation.org/jQuery.validator.addMethod/
+	addMethod: function( name, method, message ) {
+		$.validator.methods[ name ] = method;
+		$.validator.messages[ name ] = message !== undefined ? message : $.validator.messages[ name ];
+		if ( method.length < 3 ) {
+			$.validator.addClassRules( name, $.validator.normalizeRule( name ) );
+		}
+	},
+
+	// http://jqueryvalidation.org/jQuery.validator.methods/
+	methods: {
+
+		// http://jqueryvalidation.org/required-method/
+		required: function( value, element, param ) {
+
+			// Check if dependency is met
+			if ( !this.depend( param, element ) ) {
+				return "dependency-mismatch";
+			}
+			if ( element.nodeName.toLowerCase() === "select" ) {
+
+				// Could be an array for select-multiple or a string, both are fine this way
+				var val = $( element ).val();
+				return val && val.length > 0;
+			}
+			if ( this.checkable( element ) ) {
+				return this.getLength( value, element ) > 0;
+			}
+			return value.length > 0;
+		},
+
+		// http://jqueryvalidation.org/email-method/
+		email: function( value, element ) {
+
+			// From https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address
+			// Retrieved 2014-01-14
+			// If you have a problem with this implementation, report a bug against the above spec
+			// Or use custom methods to implement your own email validation
+			return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test( value );
+		},
+
+		// http://jqueryvalidation.org/url-method/
+		url: function( value, element ) {
+
+			// Copyright (c) 2010-2013 Diego Perini, MIT licensed
+			// https://gist.github.com/dperini/729294
+			// see also https://mathiasbynens.be/demo/url-regex
+			// modified to allow protocol-relative URLs
+			return this.optional( element ) || /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test( value );
+		},
+
+		// http://jqueryvalidation.org/date-method/
+		date: function( value, element ) {
+			return this.optional( element ) || !/Invalid|NaN/.test( new Date( value ).toString() );
+		},
+
+		// http://jqueryvalidation.org/dateISO-method/
+		dateISO: function( value, element ) {
+			return this.optional( element ) || /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test( value );
+		},
+
+		// http://jqueryvalidation.org/number-method/
+		number: function( value, element ) {
+			return this.optional( element ) || /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test( value );
+		},
+
+		// http://jqueryvalidation.org/digits-method/
+		digits: function( value, element ) {
+			return this.optional( element ) || /^\d+$/.test( value );
+		},
+
+		// http://jqueryvalidation.org/minlength-method/
+		minlength: function( value, element, param ) {
+			var length = $.isArray( value ) ? value.length : this.getLength( value, element );
+			return this.optional( element ) || length >= param;
+		},
+
+		// http://jqueryvalidation.org/maxlength-method/
+		maxlength: function( value, element, param ) {
+			var length = $.isArray( value ) ? value.length : this.getLength( value, element );
+			return this.optional( element ) || length <= param;
+		},
+
+		// http://jqueryvalidation.org/rangelength-method/
+		rangelength: function( value, element, param ) {
+			var length = $.isArray( value ) ? value.length : this.getLength( value, element );
+			return this.optional( element ) || ( length >= param[ 0 ] && length <= param[ 1 ] );
+		},
+
+		// http://jqueryvalidation.org/min-method/
+		min: function( value, element, param ) {
+			return this.optional( element ) || value >= param;
+		},
+
+		// http://jqueryvalidation.org/max-method/
+		max: function( value, element, param ) {
+			return this.optional( element ) || value <= param;
+		},
+
+		// http://jqueryvalidation.org/range-method/
+		range: function( value, element, param ) {
+			return this.optional( element ) || ( value >= param[ 0 ] && value <= param[ 1 ] );
+		},
+
+		// http://jqueryvalidation.org/step-method/
+		step: function( value, element, param ) {
+			var type = $( element ).attr( "type" ),
+				errorMessage = "Step attribute on input type " + type + " is not supported.",
+				supportedTypes = [ "text", "number", "range" ],
+				re = new RegExp( "\\b" + type + "\\b" ),
+				notSupported = type && !re.test( supportedTypes.join() );
+
+			// Works only for text, number and range input types
+			// TODO find a way to support input types date, datetime, datetime-local, month, time and week
+			if ( notSupported ) {
+				throw new Error( errorMessage );
+			}
+			return this.optional( element ) || ( value % param === 0 );
+		},
+
+		// http://jqueryvalidation.org/equalTo-method/
+		equalTo: function( value, element, param ) {
+
+			// Bind to the blur event of the target in order to revalidate whenever the target field is updated
+			var target = $( param );
+			if ( this.settings.onfocusout && target.not( ".validate-equalTo-blur" ).length ) {
+				target.addClass( "validate-equalTo-blur" ).on( "blur.validate-equalTo", function() {
+					$( element ).valid();
+				} );
+			}
+			return value === target.val();
+		},
+
+		// http://jqueryvalidation.org/remote-method/
+		remote: function( value, element, param, method ) {
+			if ( this.optional( element ) ) {
+				return "dependency-mismatch";
+			}
+
+			method = typeof method === "string" && method || "remote";
+
+			var previous = this.previousValue( element, method ),
+				validator, data, optionDataString;
+
+			if ( !this.settings.messages[ element.name ] ) {
+				this.settings.messages[ element.name ] = {};
+			}
+			previous.originalMessage = previous.originalMessage || this.settings.messages[ element.name ][ method ];
+			this.settings.messages[ element.name ][ method ] = previous.message;
+
+			param = typeof param === "string" && { url: param } || param;
+			optionDataString = $.param( $.extend( { data: value }, param.data ) );
+			if ( previous.old === optionDataString ) {
+				return previous.valid;
+			}
+
+			previous.old = optionDataString;
+			validator = this;
+			this.startRequest( element );
+			data = {};
+			data[ element.name ] = value;
+			$.ajax( $.extend( true, {
+				mode: "abort",
+				port: "validate" + element.name,
+				dataType: "json",
+				data: data,
+				context: validator.currentForm,
+				success: function( response ) {
+					var valid = response === true || response === "true",
+						errors, message, submitted;
+
+					validator.settings.messages[ element.name ][ method ] = previous.originalMessage;
+					if ( valid ) {
+						submitted = validator.formSubmitted;
+						validator.resetInternals();
+						validator.toHide = validator.errorsFor( element );
+						validator.formSubmitted = submitted;
+						validator.successList.push( element );
+						validator.invalid[ element.name ] = false;
+						validator.showErrors();
+					} else {
+						errors = {};
+						message = response || validator.defaultMessage( element, { method: method, parameters: value } );
+						errors[ element.name ] = previous.message = message;
+						validator.invalid[ element.name ] = true;
+						validator.showErrors( errors );
+					}
+					previous.valid = valid;
+					validator.stopRequest( element, valid );
+				}
+			}, param ) );
+			return "pending";
+		}
+	}
+
+} );
+
+// Ajax mode: abort
+// usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
+// if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
+
+var pendingRequests = {},
+	ajax;
+
+// Use a prefilter if available (1.5+)
+if ( $.ajaxPrefilter ) {
+	$.ajaxPrefilter( function( settings, _, xhr ) {
+		var port = settings.port;
+		if ( settings.mode === "abort" ) {
+			if ( pendingRequests[ port ] ) {
+				pendingRequests[ port ].abort();
+			}
+			pendingRequests[ port ] = xhr;
+		}
+	} );
+} else {
+
+	// Proxy ajax
+	ajax = $.ajax;
+	$.ajax = function( settings ) {
+		var mode = ( "mode" in settings ? settings : $.ajaxSettings ).mode,
+			port = ( "port" in settings ? settings : $.ajaxSettings ).port;
+		if ( mode === "abort" ) {
+			if ( pendingRequests[ port ] ) {
+				pendingRequests[ port ].abort();
+			}
+			pendingRequests[ port ] = ajax.apply( this, arguments );
+			return pendingRequests[ port ];
+		}
+		return ajax.apply( this, arguments );
+	};
+}
+
+}));
 !function(e,t,n){"use strict";!function o(e,t,n){function a(s,l){if(!t[s]){if(!e[s]){var i="function"==typeof require&&require;if(!l&&i)return i(s,!0);if(r)return r(s,!0);var u=new Error("Cannot find module '"+s+"'");throw u.code="MODULE_NOT_FOUND",u}var c=t[s]={exports:{}};e[s][0].call(c.exports,function(t){var n=e[s][1][t];return a(n?n:t)},c,c.exports,o,e,t,n)}return t[s].exports}for(var r="function"==typeof require&&require,s=0;s<n.length;s++)a(n[s]);return a}({1:[function(o,a,r){var s=function(e){return e&&e.__esModule?e:{"default":e}};Object.defineProperty(r,"__esModule",{value:!0});var l,i,u,c,d=o("./modules/handle-dom"),f=o("./modules/utils"),p=o("./modules/handle-swal-dom"),m=o("./modules/handle-click"),v=o("./modules/handle-key"),y=s(v),h=o("./modules/default-params"),b=s(h),g=o("./modules/set-params"),w=s(g);r["default"]=u=c=function(){function o(e){var t=a;return t[e]===n?b["default"][e]:t[e]}var a=arguments[0];if(d.addClass(t.body,"stop-scrolling"),p.resetInput(),a===n)return f.logStr("SweetAlert expects at least 1 attribute!"),!1;var r=f.extend({},b["default"]);switch(typeof a){case"string":r.title=a,r.text=arguments[1]||"",r.type=arguments[2]||"";break;case"object":if(a.title===n)return f.logStr('Missing "title" argument!'),!1;r.title=a.title;for(var s in b["default"])r[s]=o(s);r.confirmButtonText=r.showCancelButton?"Confirm":b["default"].confirmButtonText,r.confirmButtonText=o("confirmButtonText"),r.doneFunction=arguments[1]||null;break;default:return f.logStr('Unexpected type of argument! Expected "string" or "object", got '+typeof a),!1}w["default"](r),p.fixVerticalPosition(),p.openModal(arguments[1]);for(var u=p.getModal(),v=u.querySelectorAll("button"),h=["onclick","onmouseover","onmouseout","onmousedown","onmouseup","onfocus"],g=function(e){return m.handleButton(e,r,u)},C=0;C<v.length;C++)for(var S=0;S<h.length;S++){var x=h[S];v[C][x]=g}p.getOverlay().onclick=g,l=e.onkeydown;var k=function(e){return y["default"](e,r,u)};e.onkeydown=k,e.onfocus=function(){setTimeout(function(){i!==n&&(i.focus(),i=n)},0)},c.enableButtons()},u.setDefaults=c.setDefaults=function(e){if(!e)throw new Error("userParams is required");if("object"!=typeof e)throw new Error("userParams has to be a object");f.extend(b["default"],e)},u.close=c.close=function(){var o=p.getModal();d.fadeOut(p.getOverlay(),5),d.fadeOut(o,5),d.removeClass(o,"showSweetAlert"),d.addClass(o,"hideSweetAlert"),d.removeClass(o,"visible");var a=o.querySelector(".sa-icon.sa-success");d.removeClass(a,"animate"),d.removeClass(a.querySelector(".sa-tip"),"animateSuccessTip"),d.removeClass(a.querySelector(".sa-long"),"animateSuccessLong");var r=o.querySelector(".sa-icon.sa-error");d.removeClass(r,"animateErrorIcon"),d.removeClass(r.querySelector(".sa-x-mark"),"animateXMark");var s=o.querySelector(".sa-icon.sa-warning");return d.removeClass(s,"pulseWarning"),d.removeClass(s.querySelector(".sa-body"),"pulseWarningIns"),d.removeClass(s.querySelector(".sa-dot"),"pulseWarningIns"),setTimeout(function(){var e=o.getAttribute("data-custom-class");d.removeClass(o,e)},300),d.removeClass(t.body,"stop-scrolling"),e.onkeydown=l,e.previousActiveElement&&e.previousActiveElement.focus(),i=n,clearTimeout(o.timeout),!0},u.showInputError=c.showInputError=function(e){var t=p.getModal(),n=t.querySelector(".sa-input-error");d.addClass(n,"show");var o=t.querySelector(".sa-error-container");d.addClass(o,"show"),o.querySelector("p").innerHTML=e,setTimeout(function(){u.enableButtons()},1),t.querySelector("input").focus()},u.resetInputError=c.resetInputError=function(e){if(e&&13===e.keyCode)return!1;var t=p.getModal(),n=t.querySelector(".sa-input-error");d.removeClass(n,"show");var o=t.querySelector(".sa-error-container");d.removeClass(o,"show")},u.disableButtons=c.disableButtons=function(){var e=p.getModal(),t=e.querySelector("button.confirm"),n=e.querySelector("button.cancel");t.disabled=!0,n.disabled=!0},u.enableButtons=c.enableButtons=function(){var e=p.getModal(),t=e.querySelector("button.confirm"),n=e.querySelector("button.cancel");t.disabled=!1,n.disabled=!1},"undefined"!=typeof e?e.sweetAlert=e.swal=u:f.logStr("SweetAlert is a frontend module!"),a.exports=r["default"]},{"./modules/default-params":2,"./modules/handle-click":3,"./modules/handle-dom":4,"./modules/handle-key":5,"./modules/handle-swal-dom":6,"./modules/set-params":8,"./modules/utils":9}],2:[function(e,t,n){Object.defineProperty(n,"__esModule",{value:!0});var o={title:"",text:"",type:null,allowOutsideClick:!1,showConfirmButton:!0,showCancelButton:!1,closeOnConfirm:!0,closeOnCancel:!0,confirmButtonText:"OK",confirmButtonColor:"#8CD4F5",cancelButtonText:"Cancel",imageUrl:null,imageSize:null,timer:null,customClass:"",html:!1,animation:!0,allowEscapeKey:!0,inputType:"text",inputPlaceholder:"",inputValue:"",showLoaderOnConfirm:!1};n["default"]=o,t.exports=n["default"]},{}],3:[function(t,n,o){Object.defineProperty(o,"__esModule",{value:!0});var a=t("./utils"),r=(t("./handle-swal-dom"),t("./handle-dom")),s=function(t,n,o){function s(e){m&&n.confirmButtonColor&&(p.style.backgroundColor=e)}var u,c,d,f=t||e.event,p=f.target||f.srcElement,m=-1!==p.className.indexOf("confirm"),v=-1!==p.className.indexOf("sweet-overlay"),y=r.hasClass(o,"visible"),h=n.doneFunction&&"true"===o.getAttribute("data-has-done-function");switch(m&&n.confirmButtonColor&&(u=n.confirmButtonColor,c=a.colorLuminance(u,-.04),d=a.colorLuminance(u,-.14)),f.type){case"mouseover":s(c);break;case"mouseout":s(u);break;case"mousedown":s(d);break;case"mouseup":s(c);break;case"focus":var b=o.querySelector("button.confirm"),g=o.querySelector("button.cancel");m?g.style.boxShadow="none":b.style.boxShadow="none";break;case"click":var w=o===p,C=r.isDescendant(o,p);if(!w&&!C&&y&&!n.allowOutsideClick)break;m&&h&&y?l(o,n):h&&y||v?i(o,n):r.isDescendant(o,p)&&"BUTTON"===p.tagName&&sweetAlert.close()}},l=function(e,t){var n=!0;r.hasClass(e,"show-input")&&(n=e.querySelector("input").value,n||(n="")),t.doneFunction(n),t.closeOnConfirm&&sweetAlert.close(),t.showLoaderOnConfirm&&sweetAlert.disableButtons()},i=function(e,t){var n=String(t.doneFunction).replace(/\s/g,""),o="function("===n.substring(0,9)&&")"!==n.substring(9,10);o&&t.doneFunction(!1),t.closeOnCancel&&sweetAlert.close()};o["default"]={handleButton:s,handleConfirm:l,handleCancel:i},n.exports=o["default"]},{"./handle-dom":4,"./handle-swal-dom":6,"./utils":9}],4:[function(n,o,a){Object.defineProperty(a,"__esModule",{value:!0});var r=function(e,t){return new RegExp(" "+t+" ").test(" "+e.className+" ")},s=function(e,t){r(e,t)||(e.className+=" "+t)},l=function(e,t){var n=" "+e.className.replace(/[\t\r\n]/g," ")+" ";if(r(e,t)){for(;n.indexOf(" "+t+" ")>=0;)n=n.replace(" "+t+" "," ");e.className=n.replace(/^\s+|\s+$/g,"")}},i=function(e){var n=t.createElement("div");return n.appendChild(t.createTextNode(e)),n.innerHTML},u=function(e){e.style.opacity="",e.style.display="block"},c=function(e){if(e&&!e.length)return u(e);for(var t=0;t<e.length;++t)u(e[t])},d=function(e){e.style.opacity="",e.style.display="none"},f=function(e){if(e&&!e.length)return d(e);for(var t=0;t<e.length;++t)d(e[t])},p=function(e,t){for(var n=t.parentNode;null!==n;){if(n===e)return!0;n=n.parentNode}return!1},m=function(e){e.style.left="-9999px",e.style.display="block";var t,n=e.clientHeight;return t="undefined"!=typeof getComputedStyle?parseInt(getComputedStyle(e).getPropertyValue("padding-top"),10):parseInt(e.currentStyle.padding),e.style.left="",e.style.display="none","-"+parseInt((n+t)/2)+"px"},v=function(e,t){if(+e.style.opacity<1){t=t||16,e.style.opacity=0,e.style.display="block";var n=+new Date,o=function(e){function t(){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(){e.style.opacity=+e.style.opacity+(new Date-n)/100,n=+new Date,+e.style.opacity<1&&setTimeout(o,t)});o()}e.style.display="block"},y=function(e,t){t=t||16,e.style.opacity=1;var n=+new Date,o=function(e){function t(){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(){e.style.opacity=+e.style.opacity-(new Date-n)/100,n=+new Date,+e.style.opacity>0?setTimeout(o,t):e.style.display="none"});o()},h=function(n){if("function"==typeof MouseEvent){var o=new MouseEvent("click",{view:e,bubbles:!1,cancelable:!0});n.dispatchEvent(o)}else if(t.createEvent){var a=t.createEvent("MouseEvents");a.initEvent("click",!1,!1),n.dispatchEvent(a)}else t.createEventObject?n.fireEvent("onclick"):"function"==typeof n.onclick&&n.onclick()},b=function(t){"function"==typeof t.stopPropagation?(t.stopPropagation(),t.preventDefault()):e.event&&e.event.hasOwnProperty("cancelBubble")&&(e.event.cancelBubble=!0)};a.hasClass=r,a.addClass=s,a.removeClass=l,a.escapeHtml=i,a._show=u,a.show=c,a._hide=d,a.hide=f,a.isDescendant=p,a.getTopMargin=m,a.fadeIn=v,a.fadeOut=y,a.fireClick=h,a.stopEventPropagation=b},{}],5:[function(t,o,a){Object.defineProperty(a,"__esModule",{value:!0});var r=t("./handle-dom"),s=t("./handle-swal-dom"),l=function(t,o,a){var l=t||e.event,i=l.keyCode||l.which,u=a.querySelector("button.confirm"),c=a.querySelector("button.cancel"),d=a.querySelectorAll("button[tabindex]");if(-1!==[9,13,32,27].indexOf(i)){for(var f=l.target||l.srcElement,p=-1,m=0;m<d.length;m++)if(f===d[m]){p=m;break}9===i?(f=-1===p?u:p===d.length-1?d[0]:d[p+1],r.stopEventPropagation(l),f.focus(),o.confirmButtonColor&&s.setFocusStyle(f,o.confirmButtonColor)):13===i?("INPUT"===f.tagName&&(f=u,u.focus()),f=-1===p?u:n):27===i&&o.allowEscapeKey===!0?(f=c,r.fireClick(f,l)):f=n}};a["default"]=l,o.exports=a["default"]},{"./handle-dom":4,"./handle-swal-dom":6}],6:[function(n,o,a){var r=function(e){return e&&e.__esModule?e:{"default":e}};Object.defineProperty(a,"__esModule",{value:!0});var s=n("./utils"),l=n("./handle-dom"),i=n("./default-params"),u=r(i),c=n("./injected-html"),d=r(c),f=".sweet-alert",p=".sweet-overlay",m=function(){var e=t.createElement("div");for(e.innerHTML=d["default"];e.firstChild;)t.body.appendChild(e.firstChild)},v=function(e){function t(){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(){var e=t.querySelector(f);return e||(m(),e=v()),e}),y=function(){var e=v();return e?e.querySelector("input"):void 0},h=function(){return t.querySelector(p)},b=function(e,t){var n=s.hexToRgb(t);e.style.boxShadow="0 0 2px rgba("+n+", 0.8), inset 0 0 0 1px rgba(0, 0, 0, 0.05)"},g=function(n){var o=v();l.fadeIn(h(),10),l.show(o),l.addClass(o,"showSweetAlert"),l.removeClass(o,"hideSweetAlert"),e.previousActiveElement=t.activeElement;var a=o.querySelector("button.confirm");a.focus(),setTimeout(function(){l.addClass(o,"visible")},500);var r=o.getAttribute("data-timer");if("null"!==r&&""!==r){var s=n;o.timeout=setTimeout(function(){var e=(s||null)&&"true"===o.getAttribute("data-has-done-function");e?s(null):sweetAlert.close()},r)}},w=function(){var e=v(),t=y();l.removeClass(e,"show-input"),t.value=u["default"].inputValue,t.setAttribute("type",u["default"].inputType),t.setAttribute("placeholder",u["default"].inputPlaceholder),C()},C=function(e){if(e&&13===e.keyCode)return!1;var t=v(),n=t.querySelector(".sa-input-error");l.removeClass(n,"show");var o=t.querySelector(".sa-error-container");l.removeClass(o,"show")},S=function(){var e=v();e.style.marginTop=l.getTopMargin(v())};a.sweetAlertInitialize=m,a.getModal=v,a.getOverlay=h,a.getInput=y,a.setFocusStyle=b,a.openModal=g,a.resetInput=w,a.resetInputError=C,a.fixVerticalPosition=S},{"./default-params":2,"./handle-dom":4,"./injected-html":7,"./utils":9}],7:[function(e,t,n){Object.defineProperty(n,"__esModule",{value:!0});var o='<div class="sweet-overlay" tabIndex="-1"></div><div class="sweet-alert"><div class="sa-icon sa-error">\n      <span class="sa-x-mark">\n        <span class="sa-line sa-left"></span>\n        <span class="sa-line sa-right"></span>\n      </span>\n    </div><div class="sa-icon sa-warning">\n      <span class="sa-body"></span>\n      <span class="sa-dot"></span>\n    </div><div class="sa-icon sa-info"></div><div class="sa-icon sa-success">\n      <span class="sa-line sa-tip"></span>\n      <span class="sa-line sa-long"></span>\n\n      <div class="sa-placeholder"></div>\n      <div class="sa-fix"></div>\n    </div><div class="sa-icon sa-custom"></div><h2>Title</h2>\n    <p>Text</p>\n    <fieldset>\n      <input type="text" tabIndex="3" />\n      <div class="sa-input-error"></div>\n    </fieldset><div class="sa-error-container">\n      <div class="icon">!</div>\n      <p>Not valid!</p>\n    </div><div class="sa-button-container">\n      <button class="cancel" tabIndex="2">Cancel</button>\n      <div class="sa-confirm-button-container">\n        <button class="confirm" tabIndex="1">OK</button><div class="la-ball-fall">\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>\n    </div></div>';n["default"]=o,t.exports=n["default"]},{}],8:[function(e,t,o){Object.defineProperty(o,"__esModule",{value:!0});var a=e("./utils"),r=e("./handle-swal-dom"),s=e("./handle-dom"),l=["error","warning","info","success","input","prompt"],i=function(e){var t=r.getModal(),o=t.querySelector("h2"),i=t.querySelector("p"),u=t.querySelector("button.cancel"),c=t.querySelector("button.confirm");if(o.innerHTML=e.html?e.title:s.escapeHtml(e.title).split("\n").join("<br>"),i.innerHTML=e.html?e.text:s.escapeHtml(e.text||"").split("\n").join("<br>"),e.text&&s.show(i),e.customClass)s.addClass(t,e.customClass),t.setAttribute("data-custom-class",e.customClass);else{var d=t.getAttribute("data-custom-class");s.removeClass(t,d),t.setAttribute("data-custom-class","")}if(s.hide(t.querySelectorAll(".sa-icon")),e.type&&!a.isIE8()){var f=function(){for(var o=!1,a=0;a<l.length;a++)if(e.type===l[a]){o=!0;break}if(!o)return logStr("Unknown alert type: "+e.type),{v:!1};var i=["success","error","warning","info"],u=n;-1!==i.indexOf(e.type)&&(u=t.querySelector(".sa-icon.sa-"+e.type),s.show(u));var c=r.getInput();switch(e.type){case"success":s.addClass(u,"animate"),s.addClass(u.querySelector(".sa-tip"),"animateSuccessTip"),s.addClass(u.querySelector(".sa-long"),"animateSuccessLong");break;case"error":s.addClass(u,"animateErrorIcon"),s.addClass(u.querySelector(".sa-x-mark"),"animateXMark");break;case"warning":s.addClass(u,"pulseWarning"),s.addClass(u.querySelector(".sa-body"),"pulseWarningIns"),s.addClass(u.querySelector(".sa-dot"),"pulseWarningIns");break;case"input":case"prompt":c.setAttribute("type",e.inputType),c.value=e.inputValue,c.setAttribute("placeholder",e.inputPlaceholder),s.addClass(t,"show-input"),setTimeout(function(){c.focus(),c.addEventListener("keyup",swal.resetInputError)},400)}}();if("object"==typeof f)return f.v}if(e.imageUrl){var p=t.querySelector(".sa-icon.sa-custom");p.style.backgroundImage="url("+e.imageUrl+")",s.show(p);var m=80,v=80;if(e.imageSize){var y=e.imageSize.toString().split("x"),h=y[0],b=y[1];h&&b?(m=h,v=b):logStr("Parameter imageSize expects value with format WIDTHxHEIGHT, got "+e.imageSize)}p.setAttribute("style",p.getAttribute("style")+"width:"+m+"px; height:"+v+"px")}t.setAttribute("data-has-cancel-button",e.showCancelButton),e.showCancelButton?u.style.display="inline-block":s.hide(u),t.setAttribute("data-has-confirm-button",e.showConfirmButton),e.showConfirmButton?c.style.display="inline-block":s.hide(c),e.cancelButtonText&&(u.innerHTML=s.escapeHtml(e.cancelButtonText)),e.confirmButtonText&&(c.innerHTML=s.escapeHtml(e.confirmButtonText)),e.confirmButtonColor&&(c.style.backgroundColor=e.confirmButtonColor,c.style.borderLeftColor=e.confirmLoadingButtonColor,c.style.borderRightColor=e.confirmLoadingButtonColor,r.setFocusStyle(c,e.confirmButtonColor)),t.setAttribute("data-allow-outside-click",e.allowOutsideClick);var g=e.doneFunction?!0:!1;t.setAttribute("data-has-done-function",g),e.animation?"string"==typeof e.animation?t.setAttribute("data-animation",e.animation):t.setAttribute("data-animation","pop"):t.setAttribute("data-animation","none"),t.setAttribute("data-timer",e.timer)};o["default"]=i,t.exports=o["default"]},{"./handle-dom":4,"./handle-swal-dom":6,"./utils":9}],9:[function(t,n,o){Object.defineProperty(o,"__esModule",{value:!0});var a=function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e},r=function(e){var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?parseInt(t[1],16)+", "+parseInt(t[2],16)+", "+parseInt(t[3],16):null},s=function(){return e.attachEvent&&!e.addEventListener},l=function(t){e.console&&e.console.log("SweetAlert: "+t)},i=function(e,t){e=String(e).replace(/[^0-9a-f]/gi,""),e.length<6&&(e=e[0]+e[0]+e[1]+e[1]+e[2]+e[2]),t=t||0;var n,o,a="#";for(o=0;3>o;o++)n=parseInt(e.substr(2*o,2),16),n=Math.round(Math.min(Math.max(0,n+n*t),255)).toString(16),a+=("00"+n).substr(n.length);return a};o.extend=a,o.hexToRgb=r,o.isIE8=s,o.logStr=l,o.colorLuminance=i},{}]},{},[1]),"function"==typeof define&&define.amd?define(function(){return sweetAlert}):"undefined"!=typeof module&&module.exports&&(module.exports=sweetAlert)}(window,document);
+/*!jQuery Knob*/
+/**
+ * Downward compatible, touchable dial
+ *
+ * Version: 1.2.12
+ * Requires: jQuery v1.7+
+ *
+ * Copyright (c) 2012 Anthony Terrien
+ * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+ *
+ * Thanks to vor, eskimoblood, spiffistan, FabrizioC
+ */
+(function (factory) {
+    if (typeof exports === 'object') {
+        // CommonJS
+        module.exports = factory(require('jquery'));
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+
+    /**
+     * Kontrol library
+     */
+    "use strict";
+
+    /**
+     * Definition of globals and core
+     */
+    var k = {}, // kontrol
+        max = Math.max,
+        min = Math.min;
+
+    k.c = {};
+    k.c.d = $(document);
+    k.c.t = function (e) {
+        return e.originalEvent.touches.length - 1;
+    };
+
+    /**
+     * Kontrol Object
+     *
+     * Definition of an abstract UI control
+     *
+     * Each concrete component must call this one.
+     * <code>
+     * k.o.call(this);
+     * </code>
+     */
+    k.o = function () {
+        var s = this;
+
+        this.o = null; // array of options
+        this.$ = null; // jQuery wrapped element
+        this.i = null; // mixed HTMLInputElement or array of HTMLInputElement
+        this.g = null; // deprecated 2D graphics context for 'pre-rendering'
+        this.v = null; // value ; mixed array or integer
+        this.cv = null; // change value ; not commited value
+        this.x = 0; // canvas x position
+        this.y = 0; // canvas y position
+        this.w = 0; // canvas width
+        this.h = 0; // canvas height
+        this.$c = null; // jQuery canvas element
+        this.c = null; // rendered canvas context
+        this.t = 0; // touches index
+        this.isInit = false;
+        this.fgColor = null; // main color
+        this.pColor = null; // previous color
+        this.dH = null; // draw hook
+        this.cH = null; // change hook
+        this.eH = null; // cancel hook
+        this.rH = null; // release hook
+        this.scale = 1; // scale factor
+        this.relative = false;
+        this.relativeWidth = false;
+        this.relativeHeight = false;
+        this.$div = null; // component div
+
+        this.run = function () {
+            var cf = function (e, conf) {
+                var k;
+                for (k in conf) {
+                    s.o[k] = conf[k];
+                }
+                s._carve().init();
+                s._configure()
+                 ._draw();
+            };
+
+            if (this.$.data('kontroled')) return;
+            this.$.data('kontroled', true);
+
+            this.extend();
+            this.o = $.extend({
+                    // Config
+                    min: this.$.data('min') !== undefined ? this.$.data('min') : 0,
+                    max: this.$.data('max') !== undefined ? this.$.data('max') : 100,
+                    stopper: true,
+                    readOnly: this.$.data('readonly') || (this.$.attr('readonly') === 'readonly'),
+
+                    // UI
+                    cursor: this.$.data('cursor') === true && 30
+                            || this.$.data('cursor') || 0,
+                    thickness: this.$.data('thickness')
+                               && Math.max(Math.min(this.$.data('thickness'), 1), 0.01)
+                               || 0.35,
+                    lineCap: this.$.data('linecap') || 'butt',
+                    width: this.$.data('width') || 200,
+                    height: this.$.data('height') || 200,
+                    displayInput: this.$.data('displayinput') == null || this.$.data('displayinput'),
+                    displayPrevious: this.$.data('displayprevious'),
+                    fgColor: this.$.data('fgcolor') || '#87CEEB',
+                    inputColor: this.$.data('inputcolor'),
+                    font: this.$.data('font') || 'Arial',
+                    fontWeight: this.$.data('font-weight') || 'bold',
+                    inline: false,
+                    step: this.$.data('step') || 1,
+                    rotation: this.$.data('rotation'),
+
+                    // Hooks
+                    draw: null, // function () {}
+                    change: null, // function (value) {}
+                    cancel: null, // function () {}
+                    release: null, // function (value) {}
+
+                    // Output formatting, allows to add unit: %, ms ...
+                    format: function(v) {
+                        return v;
+                    },
+                    parse: function (v) {
+                        return parseFloat(v);
+                    }
+                }, this.o
+            );
+
+            // finalize options
+            this.o.flip = this.o.rotation === 'anticlockwise' || this.o.rotation === 'acw';
+            if (!this.o.inputColor) {
+                this.o.inputColor = this.o.fgColor;
+            }
+
+            // routing value
+            if (this.$.is('fieldset')) {
+
+                // fieldset = array of integer
+                this.v = {};
+                this.i = this.$.find('input');
+                this.i.each(function(k) {
+                    var $this = $(this);
+                    s.i[k] = $this;
+                    s.v[k] = s.o.parse($this.val());
+
+                    $this.bind(
+                        'change blur',
+                        function () {
+                            var val = {};
+                            val[k] = $this.val();
+                            s.val(s._validate(val));
+                        }
+                    );
+                });
+                this.$.find('legend').remove();
+            } else {
+
+                // input = integer
+                this.i = this.$;
+                this.v = this.o.parse(this.$.val());
+                this.v === '' && (this.v = this.o.min);
+                this.$.bind(
+                    'change blur',
+                    function () {
+                        s.val(s._validate(s.o.parse(s.$.val())));
+                    }
+                );
+
+            }
+
+            !this.o.displayInput && this.$.hide();
+
+            // adds needed DOM elements (canvas, div)
+            this.$c = $(document.createElement('canvas')).attr({
+                width: this.o.width,
+                height: this.o.height
+            });
+
+            // wraps all elements in a div
+            // add to DOM before Canvas init is triggered
+            this.$div = $('<div style="'
+                + (this.o.inline ? 'display:inline;' : '')
+                + 'width:' + this.o.width + 'px;height:' + this.o.height + 'px;'
+                + '"></div>');
+
+            this.$.wrap(this.$div).before(this.$c);
+            this.$div = this.$.parent();
+
+            if (typeof G_vmlCanvasManager !== 'undefined') {
+                G_vmlCanvasManager.initElement(this.$c[0]);
+            }
+
+            this.c = this.$c[0].getContext ? this.$c[0].getContext('2d') : null;
+
+            if (!this.c) {
+                throw {
+                    name:        "CanvasNotSupportedException",
+                    message:     "Canvas not supported. Please use excanvas on IE8.0.",
+                    toString:    function(){return this.name + ": " + this.message}
+                }
+            }
+
+            // hdpi support
+            this.scale = (window.devicePixelRatio || 1) / (
+                            this.c.webkitBackingStorePixelRatio ||
+                            this.c.mozBackingStorePixelRatio ||
+                            this.c.msBackingStorePixelRatio ||
+                            this.c.oBackingStorePixelRatio ||
+                            this.c.backingStorePixelRatio || 1
+                         );
+
+            // detects relative width / height
+            this.relativeWidth =  this.o.width % 1 !== 0
+                                  && this.o.width.indexOf('%');
+            this.relativeHeight = this.o.height % 1 !== 0
+                                  && this.o.height.indexOf('%');
+            this.relative = this.relativeWidth || this.relativeHeight;
+
+            // computes size and carves the component
+            this._carve();
+
+            // prepares props for transaction
+            if (this.v instanceof Object) {
+                this.cv = {};
+                this.copy(this.v, this.cv);
+            } else {
+                this.cv = this.v;
+            }
+
+            // binds configure event
+            this.$
+                .bind("configure", cf)
+                .parent()
+                .bind("configure", cf);
+
+            // finalize init
+            this._listen()
+                ._configure()
+                ._xy()
+                .init();
+
+            this.isInit = true;
+
+            this.$.val(this.o.format(this.v));
+            this._draw();
+
+            return this;
+        };
+
+        this._carve = function() {
+            if (this.relative) {
+                var w = this.relativeWidth ?
+                        this.$div.parent().width() *
+                        parseInt(this.o.width) / 100
+                        : this.$div.parent().width(),
+                    h = this.relativeHeight ?
+                        this.$div.parent().height() *
+                        parseInt(this.o.height) / 100
+                        : this.$div.parent().height();
+
+                // apply relative
+                this.w = this.h = Math.min(w, h);
+            } else {
+                this.w = this.o.width;
+                this.h = this.o.height;
+            }
+
+            // finalize div
+            this.$div.css({
+                'width': this.w + 'px',
+                'height': this.h + 'px'
+            });
+
+            // finalize canvas with computed width
+            this.$c.attr({
+                width: this.w,
+                height: this.h
+            });
+
+            // scaling
+            if (this.scale !== 1) {
+                this.$c[0].width = this.$c[0].width * this.scale;
+                this.$c[0].height = this.$c[0].height * this.scale;
+                this.$c.width(this.w);
+                this.$c.height(this.h);
+            }
+
+            return this;
+        };
+
+        this._draw = function () {
+
+            // canvas pre-rendering
+            var d = true;
+
+            s.g = s.c;
+
+            s.clear();
+
+            s.dH && (d = s.dH());
+
+            d !== false && s.draw();
+        };
+
+        this._touch = function (e) {
+            var touchMove = function (e) {
+                var v = s.xy2val(
+                            e.originalEvent.touches[s.t].pageX,
+                            e.originalEvent.touches[s.t].pageY
+                        );
+
+                if (v == s.cv) return;
+
+                if (s.cH && s.cH(v) === false) return;
+
+                s.change(s._validate(v));
+                s._draw();
+            };
+
+            // get touches index
+            this.t = k.c.t(e);
+
+            // First touch
+            touchMove(e);
+
+            // Touch events listeners
+            k.c.d
+                .bind("touchmove.k", touchMove)
+                .bind(
+                    "touchend.k",
+                    function () {
+                        k.c.d.unbind('touchmove.k touchend.k');
+                        s.val(s.cv);
+                    }
+                );
+
+            return this;
+        };
+
+        this._mouse = function (e) {
+            var mouseMove = function (e) {
+                var v = s.xy2val(e.pageX, e.pageY);
+
+                if (v == s.cv) return;
+
+                if (s.cH && (s.cH(v) === false)) return;
+
+                s.change(s._validate(v));
+                s._draw();
+            };
+
+            // First click
+            mouseMove(e);
+
+            // Mouse events listeners
+            k.c.d
+                .bind("mousemove.k", mouseMove)
+                .bind(
+                    // Escape key cancel current change
+                    "keyup.k",
+                    function (e) {
+                        if (e.keyCode === 27) {
+                            k.c.d.unbind("mouseup.k mousemove.k keyup.k");
+
+                            if (s.eH && s.eH() === false)
+                                return;
+
+                            s.cancel();
+                        }
+                    }
+                )
+                .bind(
+                    "mouseup.k",
+                    function (e) {
+                        k.c.d.unbind('mousemove.k mouseup.k keyup.k');
+                        s.val(s.cv);
+                    }
+                );
+
+            return this;
+        };
+
+        this._xy = function () {
+            var o = this.$c.offset();
+            this.x = o.left;
+            this.y = o.top;
+
+            return this;
+        };
+
+        this._listen = function () {
+            if (!this.o.readOnly) {
+                this.$c
+                    .bind(
+                        "mousedown",
+                        function (e) {
+                            e.preventDefault();
+                            s._xy()._mouse(e);
+                        }
+                    )
+                    .bind(
+                        "touchstart",
+                        function (e) {
+                            e.preventDefault();
+                            s._xy()._touch(e);
+                        }
+                    );
+
+                this.listen();
+            } else {
+                this.$.attr('readonly', 'readonly');
+            }
+
+            if (this.relative) {
+                $(window).resize(function() {
+                    s._carve().init();
+                    s._draw();
+                });
+            }
+
+            return this;
+        };
+
+        this._configure = function () {
+
+            // Hooks
+            if (this.o.draw) this.dH = this.o.draw;
+            if (this.o.change) this.cH = this.o.change;
+            if (this.o.cancel) this.eH = this.o.cancel;
+            if (this.o.release) this.rH = this.o.release;
+
+            if (this.o.displayPrevious) {
+                this.pColor = this.h2rgba(this.o.fgColor, "0.4");
+                this.fgColor = this.h2rgba(this.o.fgColor, "0.6");
+            } else {
+                this.fgColor = this.o.fgColor;
+            }
+
+            return this;
+        };
+
+        this._clear = function () {
+            this.$c[0].width = this.$c[0].width;
+        };
+
+        this._validate = function (v) {
+            var val = (~~ (((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
+            return Math.round(val * 100) / 100;
+        };
+
+        // Abstract methods
+        this.listen = function () {}; // on start, one time
+        this.extend = function () {}; // each time configure triggered
+        this.init = function () {}; // each time configure triggered
+        this.change = function (v) {}; // on change
+        this.val = function (v) {}; // on release
+        this.xy2val = function (x, y) {}; //
+        this.draw = function () {}; // on change / on release
+        this.clear = function () { this._clear(); };
+
+        // Utils
+        this.h2rgba = function (h, a) {
+            var rgb;
+            h = h.substring(1,7);
+            rgb = [
+                parseInt(h.substring(0,2), 16),
+                parseInt(h.substring(2,4), 16),
+                parseInt(h.substring(4,6), 16)
+            ];
+
+            return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
+        };
+
+        this.copy = function (f, t) {
+            for (var i in f) {
+                t[i] = f[i];
+            }
+        };
+    };
+
+
+    /**
+     * k.Dial
+     */
+    k.Dial = function () {
+        k.o.call(this);
+
+        this.startAngle = null;
+        this.xy = null;
+        this.radius = null;
+        this.lineWidth = null;
+        this.cursorExt = null;
+        this.w2 = null;
+        this.PI2 = 2*Math.PI;
+
+        this.extend = function () {
+            this.o = $.extend({
+                bgColor: this.$.data('bgcolor') || '#EEEEEE',
+                angleOffset: this.$.data('angleoffset') || 0,
+                angleArc: this.$.data('anglearc') || 360,
+                inline: true
+            }, this.o);
+        };
+
+        this.val = function (v, triggerRelease) {
+            if (null != v) {
+
+                // reverse format
+                v = this.o.parse(v);
+
+                if (triggerRelease !== false
+                    && v != this.v
+                    && this.rH
+                    && this.rH(v) === false) { return; }
+
+                this.cv = this.o.stopper ? max(min(v, this.o.max), this.o.min) : v;
+                this.v = this.cv;
+                this.$.val(this.o.format(this.v));
+                this._draw();
+            } else {
+                return this.v;
+            }
+        };
+
+        this.xy2val = function (x, y) {
+            var a, ret;
+
+            a = Math.atan2(
+                        x - (this.x + this.w2),
+                        - (y - this.y - this.w2)
+                    ) - this.angleOffset;
+
+            if (this.o.flip) {
+                a = this.angleArc - a - this.PI2;
+            }
+
+            if (this.angleArc != this.PI2 && (a < 0) && (a > -0.5)) {
+
+                // if isset angleArc option, set to min if .5 under min
+                a = 0;
+            } else if (a < 0) {
+                a += this.PI2;
+            }
+
+            ret = (a * (this.o.max - this.o.min) / this.angleArc) + this.o.min;
+
+            this.o.stopper && (ret = max(min(ret, this.o.max), this.o.min));
+
+            return ret;
+        };
+
+        this.listen = function () {
+
+            // bind MouseWheel
+            var s = this, mwTimerStop,
+                mwTimerRelease,
+                mw = function (e) {
+                    e.preventDefault();
+
+                    var ori = e.originalEvent,
+                        deltaX = ori.detail || ori.wheelDeltaX,
+                        deltaY = ori.detail || ori.wheelDeltaY,
+                        v = s._validate(s.o.parse(s.$.val()))
+                            + (
+                                deltaX > 0 || deltaY > 0
+                                ? s.o.step
+                                : deltaX < 0 || deltaY < 0 ? -s.o.step : 0
+                              );
+
+                    v = max(min(v, s.o.max), s.o.min);
+
+                    s.val(v, false);
+
+                    if (s.rH) {
+                        // Handle mousewheel stop
+                        clearTimeout(mwTimerStop);
+                        mwTimerStop = setTimeout(function () {
+                            s.rH(v);
+                            mwTimerStop = null;
+                        }, 100);
+
+                        // Handle mousewheel releases
+                        if (!mwTimerRelease) {
+                            mwTimerRelease = setTimeout(function () {
+                                if (mwTimerStop)
+                                    s.rH(v);
+                                mwTimerRelease = null;
+                            }, 200);
+                        }
+                    }
+                },
+                kval,
+                to,
+                m = 1,
+                kv = {
+                    37: -s.o.step,
+                    38: s.o.step,
+                    39: s.o.step,
+                    40: -s.o.step
+                };
+
+            this.$
+                .bind(
+                    "keydown",
+                    function (e) {
+                        var kc = e.keyCode;
+
+                        // numpad support
+                        if (kc >= 96 && kc <= 105) {
+                            kc = e.keyCode = kc - 48;
+                        }
+
+                        kval = parseInt(String.fromCharCode(kc));
+
+                        if (isNaN(kval)) {
+                            (kc !== 13)                     // enter
+                            && kc !== 8                     // bs
+                            && kc !== 9                     // tab
+                            && kc !== 189                   // -
+                            && (kc !== 190
+                                || s.$.val().match(/\./))   // . allowed once
+                            && e.preventDefault();
+
+                            // arrows
+                            if ($.inArray(kc,[37,38,39,40]) > -1) {
+                                e.preventDefault();
+
+                                var v = s.o.parse(s.$.val()) + kv[kc] * m;
+                                s.o.stopper && (v = max(min(v, s.o.max), s.o.min));
+
+                                s.change(s._validate(v));
+                                s._draw();
+
+                                // long time keydown speed-up
+                                to = window.setTimeout(function () {
+                                    m *= 2;
+                                }, 30);
+                            }
+                        }
+                    }
+                )
+                .bind(
+                    "keyup",
+                    function (e) {
+                        if (isNaN(kval)) {
+                            if (to) {
+                                window.clearTimeout(to);
+                                to = null;
+                                m = 1;
+                                s.val(s.$.val());
+                            }
+                        } else {
+                            // kval postcond
+                            (s.$.val() > s.o.max && s.$.val(s.o.max))
+                            || (s.$.val() < s.o.min && s.$.val(s.o.min));
+                        }
+                    }
+                );
+
+            this.$c.bind("mousewheel DOMMouseScroll", mw);
+            this.$.bind("mousewheel DOMMouseScroll", mw);
+        };
+
+        this.init = function () {
+            if (this.v < this.o.min
+                || this.v > this.o.max) { this.v = this.o.min; }
+
+            this.$.val(this.v);
+            this.w2 = this.w / 2;
+            this.cursorExt = this.o.cursor / 100;
+            this.xy = this.w2 * this.scale;
+            this.lineWidth = this.xy * this.o.thickness;
+            this.lineCap = this.o.lineCap;
+            this.radius = this.xy - this.lineWidth / 2;
+
+            this.o.angleOffset
+            && (this.o.angleOffset = isNaN(this.o.angleOffset) ? 0 : this.o.angleOffset);
+
+            this.o.angleArc
+            && (this.o.angleArc = isNaN(this.o.angleArc) ? this.PI2 : this.o.angleArc);
+
+            // deg to rad
+            this.angleOffset = this.o.angleOffset * Math.PI / 180;
+            this.angleArc = this.o.angleArc * Math.PI / 180;
+
+            // compute start and end angles
+            this.startAngle = 1.5 * Math.PI + this.angleOffset;
+            this.endAngle = 1.5 * Math.PI + this.angleOffset + this.angleArc;
+
+            var s = max(
+                String(Math.abs(this.o.max)).length,
+                String(Math.abs(this.o.min)).length,
+                2
+            ) + 2;
+
+            this.o.displayInput
+                && this.i.css({
+                        'width' : ((this.w / 2 + 4) >> 0) + 'px',
+                        'height' : ((this.w / 3) >> 0) + 'px',
+                        'position' : 'absolute',
+                        'vertical-align' : 'middle',
+                        'margin-top' : ((this.w / 3) >> 0) + 'px',
+                        'margin-left' : '-' + ((this.w * 3 / 4 + 2) >> 0) + 'px',
+                        'border' : 0,
+                        'background' : 'none',
+                        'font' : this.o.fontWeight + ' ' + ((this.w / s) >> 0) + 'px ' + this.o.font,
+                        'text-align' : 'center',
+                        'color' : this.o.inputColor || this.o.fgColor,
+                        'padding' : '0px',
+                        '-webkit-appearance': 'none'
+                        }) || this.i.css({
+                            'width': '0px',
+                            'visibility': 'hidden'
+                        });
+        };
+
+        this.change = function (v) {
+            this.cv = v;
+            this.$.val(this.o.format(v));
+        };
+
+        this.angle = function (v) {
+            return (v - this.o.min) * this.angleArc / (this.o.max - this.o.min);
+        };
+
+        this.arc = function (v) {
+          var sa, ea;
+          v = this.angle(v);
+          if (this.o.flip) {
+              sa = this.endAngle + 0.00001;
+              ea = sa - v - 0.00001;
+          } else {
+              sa = this.startAngle - 0.00001;
+              ea = sa + v + 0.00001;
+          }
+          this.o.cursor
+              && (sa = ea - this.cursorExt)
+              && (ea = ea + this.cursorExt);
+
+          return {
+              s: sa,
+              e: ea,
+              d: this.o.flip && !this.o.cursor
+          };
+        };
+
+        this.draw = function () {
+            var c = this.g,                 // context
+                a = this.arc(this.cv),      // Arc
+                pa,                         // Previous arc
+                r = 1;
+
+            c.lineWidth = this.lineWidth;
+            c.lineCap = this.lineCap;
+
+            if (this.o.bgColor !== "none") {
+                c.beginPath();
+                    c.strokeStyle = this.o.bgColor;
+                    c.arc(this.xy, this.xy, this.radius, this.endAngle - 0.00001, this.startAngle + 0.00001, true);
+                c.stroke();
+            }
+
+            if (this.o.displayPrevious) {
+                pa = this.arc(this.v);
+                c.beginPath();
+                c.strokeStyle = this.pColor;
+                c.arc(this.xy, this.xy, this.radius, pa.s, pa.e, pa.d);
+                c.stroke();
+                r = this.cv == this.v;
+            }
+
+            c.beginPath();
+            c.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+            c.arc(this.xy, this.xy, this.radius, a.s, a.e, a.d);
+            c.stroke();
+        };
+
+        this.cancel = function () {
+            this.val(this.v);
+        };
+    };
+
+    $.fn.dial = $.fn.knob = function (o) {
+        return this.each(
+            function () {
+                var d = new k.Dial();
+                d.o = o;
+                d.$ = $(this);
+                d.run();
+            }
+        ).parent();
+    };
+
+}));
+
 /*
  * bootstrap-tagsinput v0.6.1 by Tim Schlechter
  *
@@ -12950,6 +25755,11 @@ else if (typeof define === 'function' && define.amd) {
                 cancel: !1,
                 options: d
               });
+            //   $('#tagsInput').on('beforeItemAdd', function(event) {
+            //     if (event.item.length < 3) {
+            //         event.cancel = true;
+            //     }
+            // });
               if (f.$element.trigger(o), !o.cancel) {
                 f.itemsArray.push(b);
                 var p = a('<span class="tag ' + e(l) + (null !== m ? '" title="' + m : "") + '">' + e(k) + '<span data-role="remove"></span></span>');
@@ -13151,6 +25961,7 @@ else if (typeof define === 'function' && define.amd) {
     a("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput()
   })
 }(window.jQuery);
+
 //# sourceMappingURL=bootstrap-tagsinput.min.js.map
 
 /*! DataTables 1.10.7
@@ -14144,9 +26955,2845 @@ $(document).ready(function () {
   });
 });
 
-/*! Select2 4.0.3 | https://github.com/select2/select2/blob/master/LICENSE.md */!function(a){"function"==typeof define&&define.amd?define(["jquery"],a):a("object"==typeof exports?require("jquery"):jQuery)}(function(a){var b=function(){if(a&&a.fn&&a.fn.select2&&a.fn.select2.amd)var b=a.fn.select2.amd;var b;return function(){if(!b||!b.requirejs){b?c=b:b={};var a,c,d;!function(b){function e(a,b){return u.call(a,b)}function f(a,b){var c,d,e,f,g,h,i,j,k,l,m,n=b&&b.split("/"),o=s.map,p=o&&o["*"]||{};if(a&&"."===a.charAt(0))if(b){for(a=a.split("/"),g=a.length-1,s.nodeIdCompat&&w.test(a[g])&&(a[g]=a[g].replace(w,"")),a=n.slice(0,n.length-1).concat(a),k=0;k<a.length;k+=1)if(m=a[k],"."===m)a.splice(k,1),k-=1;else if(".."===m){if(1===k&&(".."===a[2]||".."===a[0]))break;k>0&&(a.splice(k-1,2),k-=2)}a=a.join("/")}else 0===a.indexOf("./")&&(a=a.substring(2));if((n||p)&&o){for(c=a.split("/"),k=c.length;k>0;k-=1){if(d=c.slice(0,k).join("/"),n)for(l=n.length;l>0;l-=1)if(e=o[n.slice(0,l).join("/")],e&&(e=e[d])){f=e,h=k;break}if(f)break;!i&&p&&p[d]&&(i=p[d],j=k)}!f&&i&&(f=i,h=j),f&&(c.splice(0,h,f),a=c.join("/"))}return a}function g(a,c){return function(){var d=v.call(arguments,0);return"string"!=typeof d[0]&&1===d.length&&d.push(null),n.apply(b,d.concat([a,c]))}}function h(a){return function(b){return f(b,a)}}function i(a){return function(b){q[a]=b}}function j(a){if(e(r,a)){var c=r[a];delete r[a],t[a]=!0,m.apply(b,c)}if(!e(q,a)&&!e(t,a))throw new Error("No "+a);return q[a]}function k(a){var b,c=a?a.indexOf("!"):-1;return c>-1&&(b=a.substring(0,c),a=a.substring(c+1,a.length)),[b,a]}function l(a){return function(){return s&&s.config&&s.config[a]||{}}}var m,n,o,p,q={},r={},s={},t={},u=Object.prototype.hasOwnProperty,v=[].slice,w=/\.js$/;o=function(a,b){var c,d=k(a),e=d[0];return a=d[1],e&&(e=f(e,b),c=j(e)),e?a=c&&c.normalize?c.normalize(a,h(b)):f(a,b):(a=f(a,b),d=k(a),e=d[0],a=d[1],e&&(c=j(e))),{f:e?e+"!"+a:a,n:a,pr:e,p:c}},p={require:function(a){return g(a)},exports:function(a){var b=q[a];return"undefined"!=typeof b?b:q[a]={}},module:function(a){return{id:a,uri:"",exports:q[a],config:l(a)}}},m=function(a,c,d,f){var h,k,l,m,n,s,u=[],v=typeof d;if(f=f||a,"undefined"===v||"function"===v){for(c=!c.length&&d.length?["require","exports","module"]:c,n=0;n<c.length;n+=1)if(m=o(c[n],f),k=m.f,"require"===k)u[n]=p.require(a);else if("exports"===k)u[n]=p.exports(a),s=!0;else if("module"===k)h=u[n]=p.module(a);else if(e(q,k)||e(r,k)||e(t,k))u[n]=j(k);else{if(!m.p)throw new Error(a+" missing "+k);m.p.load(m.n,g(f,!0),i(k),{}),u[n]=q[k]}l=d?d.apply(q[a],u):void 0,a&&(h&&h.exports!==b&&h.exports!==q[a]?q[a]=h.exports:l===b&&s||(q[a]=l))}else a&&(q[a]=d)},a=c=n=function(a,c,d,e,f){if("string"==typeof a)return p[a]?p[a](c):j(o(a,c).f);if(!a.splice){if(s=a,s.deps&&n(s.deps,s.callback),!c)return;c.splice?(a=c,c=d,d=null):a=b}return c=c||function(){},"function"==typeof d&&(d=e,e=f),e?m(b,a,c,d):setTimeout(function(){m(b,a,c,d)},4),n},n.config=function(a){return n(a)},a._defined=q,d=function(a,b,c){if("string"!=typeof a)throw new Error("See almond README: incorrect module build, no module name");b.splice||(c=b,b=[]),e(q,a)||e(r,a)||(r[a]=[a,b,c])},d.amd={jQuery:!0}}(),b.requirejs=a,b.require=c,b.define=d}}(),b.define("almond",function(){}),b.define("jquery",[],function(){var b=a||$;return null==b&&console&&console.error&&console.error("Select2: An instance of jQuery or a jQuery-compatible library was not found. Make sure that you are including jQuery before Select2 on your web page."),b}),b.define("select2/utils",["jquery"],function(a){function b(a){var b=a.prototype,c=[];for(var d in b){var e=b[d];"function"==typeof e&&"constructor"!==d&&c.push(d)}return c}var c={};c.Extend=function(a,b){function c(){this.constructor=a}var d={}.hasOwnProperty;for(var e in b)d.call(b,e)&&(a[e]=b[e]);return c.prototype=b.prototype,a.prototype=new c,a.__super__=b.prototype,a},c.Decorate=function(a,c){function d(){var b=Array.prototype.unshift,d=c.prototype.constructor.length,e=a.prototype.constructor;d>0&&(b.call(arguments,a.prototype.constructor),e=c.prototype.constructor),e.apply(this,arguments)}function e(){this.constructor=d}var f=b(c),g=b(a);c.displayName=a.displayName,d.prototype=new e;for(var h=0;h<g.length;h++){var i=g[h];d.prototype[i]=a.prototype[i]}for(var j=(function(a){var b=function(){};a in d.prototype&&(b=d.prototype[a]);var e=c.prototype[a];return function(){var a=Array.prototype.unshift;return a.call(arguments,b),e.apply(this,arguments)}}),k=0;k<f.length;k++){var l=f[k];d.prototype[l]=j(l)}return d};var d=function(){this.listeners={}};return d.prototype.on=function(a,b){this.listeners=this.listeners||{},a in this.listeners?this.listeners[a].push(b):this.listeners[a]=[b]},d.prototype.trigger=function(a){var b=Array.prototype.slice,c=b.call(arguments,1);this.listeners=this.listeners||{},null==c&&(c=[]),0===c.length&&c.push({}),c[0]._type=a,a in this.listeners&&this.invoke(this.listeners[a],b.call(arguments,1)),"*"in this.listeners&&this.invoke(this.listeners["*"],arguments)},d.prototype.invoke=function(a,b){for(var c=0,d=a.length;d>c;c++)a[c].apply(this,b)},c.Observable=d,c.generateChars=function(a){for(var b="",c=0;a>c;c++){var d=Math.floor(36*Math.random());b+=d.toString(36)}return b},c.bind=function(a,b){return function(){a.apply(b,arguments)}},c._convertData=function(a){for(var b in a){var c=b.split("-"),d=a;if(1!==c.length){for(var e=0;e<c.length;e++){var f=c[e];f=f.substring(0,1).toLowerCase()+f.substring(1),f in d||(d[f]={}),e==c.length-1&&(d[f]=a[b]),d=d[f]}delete a[b]}}return a},c.hasScroll=function(b,c){var d=a(c),e=c.style.overflowX,f=c.style.overflowY;return e!==f||"hidden"!==f&&"visible"!==f?"scroll"===e||"scroll"===f?!0:d.innerHeight()<c.scrollHeight||d.innerWidth()<c.scrollWidth:!1},c.escapeMarkup=function(a){var b={"\\":"&#92;","&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","/":"&#47;"};return"string"!=typeof a?a:String(a).replace(/[&<>"'\/\\]/g,function(a){return b[a]})},c.appendMany=function(b,c){if("1.7"===a.fn.jquery.substr(0,3)){var d=a();a.map(c,function(a){d=d.add(a)}),c=d}b.append(c)},c}),b.define("select2/results",["jquery","./utils"],function(a,b){function c(a,b,d){this.$element=a,this.data=d,this.options=b,c.__super__.constructor.call(this)}return b.Extend(c,b.Observable),c.prototype.render=function(){var b=a('<ul class="select2-results__options" role="tree"></ul>');return this.options.get("multiple")&&b.attr("aria-multiselectable","true"),this.$results=b,b},c.prototype.clear=function(){this.$results.empty()},c.prototype.displayMessage=function(b){var c=this.options.get("escapeMarkup");this.clear(),this.hideLoading();var d=a('<li role="treeitem" aria-live="assertive" class="select2-results__option"></li>'),e=this.options.get("translations").get(b.message);d.append(c(e(b.args))),d[0].className+=" select2-results__message",this.$results.append(d)},c.prototype.hideMessages=function(){this.$results.find(".select2-results__message").remove()},c.prototype.append=function(a){this.hideLoading();var b=[];if(null==a.results||0===a.results.length)return void(0===this.$results.children().length&&this.trigger("results:message",{message:"noResults"}));a.results=this.sort(a.results);for(var c=0;c<a.results.length;c++){var d=a.results[c],e=this.option(d);b.push(e)}this.$results.append(b)},c.prototype.position=function(a,b){var c=b.find(".select2-results");c.append(a)},c.prototype.sort=function(a){var b=this.options.get("sorter");return b(a)},c.prototype.highlightFirstItem=function(){var a=this.$results.find(".select2-results__option[aria-selected]"),b=a.filter("[aria-selected=true]");b.length>0?b.first().trigger("mouseenter"):a.first().trigger("mouseenter"),this.ensureHighlightVisible()},c.prototype.setClasses=function(){var b=this;this.data.current(function(c){var d=a.map(c,function(a){return a.id.toString()}),e=b.$results.find(".select2-results__option[aria-selected]");e.each(function(){var b=a(this),c=a.data(this,"data"),e=""+c.id;null!=c.element&&c.element.selected||null==c.element&&a.inArray(e,d)>-1?b.attr("aria-selected","true"):b.attr("aria-selected","false")})})},c.prototype.showLoading=function(a){this.hideLoading();var b=this.options.get("translations").get("searching"),c={disabled:!0,loading:!0,text:b(a)},d=this.option(c);d.className+=" loading-results",this.$results.prepend(d)},c.prototype.hideLoading=function(){this.$results.find(".loading-results").remove()},c.prototype.option=function(b){var c=document.createElement("li");c.className="select2-results__option";var d={role:"treeitem","aria-selected":"false"};b.disabled&&(delete d["aria-selected"],d["aria-disabled"]="true"),null==b.id&&delete d["aria-selected"],null!=b._resultId&&(c.id=b._resultId),b.title&&(c.title=b.title),b.children&&(d.role="group",d["aria-label"]=b.text,delete d["aria-selected"]);for(var e in d){var f=d[e];c.setAttribute(e,f)}if(b.children){var g=a(c),h=document.createElement("strong");h.className="select2-results__group";a(h);this.template(b,h);for(var i=[],j=0;j<b.children.length;j++){var k=b.children[j],l=this.option(k);i.push(l)}var m=a("<ul></ul>",{"class":"select2-results__options select2-results__options--nested"});m.append(i),g.append(h),g.append(m)}else this.template(b,c);return a.data(c,"data",b),c},c.prototype.bind=function(b,c){var d=this,e=b.id+"-results";this.$results.attr("id",e),b.on("results:all",function(a){d.clear(),d.append(a.data),b.isOpen()&&(d.setClasses(),d.highlightFirstItem())}),b.on("results:append",function(a){d.append(a.data),b.isOpen()&&d.setClasses()}),b.on("query",function(a){d.hideMessages(),d.showLoading(a)}),b.on("select",function(){b.isOpen()&&(d.setClasses(),d.highlightFirstItem())}),b.on("unselect",function(){b.isOpen()&&(d.setClasses(),d.highlightFirstItem())}),b.on("open",function(){d.$results.attr("aria-expanded","true"),d.$results.attr("aria-hidden","false"),d.setClasses(),d.ensureHighlightVisible()}),b.on("close",function(){d.$results.attr("aria-expanded","false"),d.$results.attr("aria-hidden","true"),d.$results.removeAttr("aria-activedescendant")}),b.on("results:toggle",function(){var a=d.getHighlightedResults();0!==a.length&&a.trigger("mouseup")}),b.on("results:select",function(){var a=d.getHighlightedResults();if(0!==a.length){var b=a.data("data");"true"==a.attr("aria-selected")?d.trigger("close",{}):d.trigger("select",{data:b})}}),b.on("results:previous",function(){var a=d.getHighlightedResults(),b=d.$results.find("[aria-selected]"),c=b.index(a);if(0!==c){var e=c-1;0===a.length&&(e=0);var f=b.eq(e);f.trigger("mouseenter");var g=d.$results.offset().top,h=f.offset().top,i=d.$results.scrollTop()+(h-g);0===e?d.$results.scrollTop(0):0>h-g&&d.$results.scrollTop(i)}}),b.on("results:next",function(){var a=d.getHighlightedResults(),b=d.$results.find("[aria-selected]"),c=b.index(a),e=c+1;if(!(e>=b.length)){var f=b.eq(e);f.trigger("mouseenter");var g=d.$results.offset().top+d.$results.outerHeight(!1),h=f.offset().top+f.outerHeight(!1),i=d.$results.scrollTop()+h-g;0===e?d.$results.scrollTop(0):h>g&&d.$results.scrollTop(i)}}),b.on("results:focus",function(a){a.element.addClass("select2-results__option--highlighted")}),b.on("results:message",function(a){d.displayMessage(a)}),a.fn.mousewheel&&this.$results.on("mousewheel",function(a){var b=d.$results.scrollTop(),c=d.$results.get(0).scrollHeight-b+a.deltaY,e=a.deltaY>0&&b-a.deltaY<=0,f=a.deltaY<0&&c<=d.$results.height();e?(d.$results.scrollTop(0),a.preventDefault(),a.stopPropagation()):f&&(d.$results.scrollTop(d.$results.get(0).scrollHeight-d.$results.height()),a.preventDefault(),a.stopPropagation())}),this.$results.on("mouseup",".select2-results__option[aria-selected]",function(b){var c=a(this),e=c.data("data");return"true"===c.attr("aria-selected")?void(d.options.get("multiple")?d.trigger("unselect",{originalEvent:b,data:e}):d.trigger("close",{})):void d.trigger("select",{originalEvent:b,data:e})}),this.$results.on("mouseenter",".select2-results__option[aria-selected]",function(b){var c=a(this).data("data");d.getHighlightedResults().removeClass("select2-results__option--highlighted"),d.trigger("results:focus",{data:c,element:a(this)})})},c.prototype.getHighlightedResults=function(){var a=this.$results.find(".select2-results__option--highlighted");return a},c.prototype.destroy=function(){this.$results.remove()},c.prototype.ensureHighlightVisible=function(){var a=this.getHighlightedResults();if(0!==a.length){var b=this.$results.find("[aria-selected]"),c=b.index(a),d=this.$results.offset().top,e=a.offset().top,f=this.$results.scrollTop()+(e-d),g=e-d;f-=2*a.outerHeight(!1),2>=c?this.$results.scrollTop(0):(g>this.$results.outerHeight()||0>g)&&this.$results.scrollTop(f)}},c.prototype.template=function(b,c){var d=this.options.get("templateResult"),e=this.options.get("escapeMarkup"),f=d(b,c);null==f?c.style.display="none":"string"==typeof f?c.innerHTML=e(f):a(c).append(f)},c}),b.define("select2/keys",[],function(){var a={BACKSPACE:8,TAB:9,ENTER:13,SHIFT:16,CTRL:17,ALT:18,ESC:27,SPACE:32,PAGE_UP:33,PAGE_DOWN:34,END:35,HOME:36,LEFT:37,UP:38,RIGHT:39,DOWN:40,DELETE:46};return a}),b.define("select2/selection/base",["jquery","../utils","../keys"],function(a,b,c){function d(a,b){this.$element=a,this.options=b,d.__super__.constructor.call(this)}return b.Extend(d,b.Observable),d.prototype.render=function(){var b=a('<span class="select2-selection" role="combobox"  aria-haspopup="true" aria-expanded="false"></span>');return this._tabindex=0,null!=this.$element.data("old-tabindex")?this._tabindex=this.$element.data("old-tabindex"):null!=this.$element.attr("tabindex")&&(this._tabindex=this.$element.attr("tabindex")),b.attr("title",this.$element.attr("title")),b.attr("tabindex",this._tabindex),this.$selection=b,b},d.prototype.bind=function(a,b){var d=this,e=(a.id+"-container",a.id+"-results");this.container=a,this.$selection.on("focus",function(a){d.trigger("focus",a)}),this.$selection.on("blur",function(a){d._handleBlur(a)}),this.$selection.on("keydown",function(a){d.trigger("keypress",a),a.which===c.SPACE&&a.preventDefault()}),a.on("results:focus",function(a){d.$selection.attr("aria-activedescendant",a.data._resultId)}),a.on("selection:update",function(a){d.update(a.data)}),a.on("open",function(){d.$selection.attr("aria-expanded","true"),d.$selection.attr("aria-owns",e),d._attachCloseHandler(a)}),a.on("close",function(){d.$selection.attr("aria-expanded","false"),d.$selection.removeAttr("aria-activedescendant"),d.$selection.removeAttr("aria-owns"),d.$selection.focus(),d._detachCloseHandler(a)}),a.on("enable",function(){d.$selection.attr("tabindex",d._tabindex)}),a.on("disable",function(){d.$selection.attr("tabindex","-1")})},d.prototype._handleBlur=function(b){var c=this;window.setTimeout(function(){document.activeElement==c.$selection[0]||a.contains(c.$selection[0],document.activeElement)||c.trigger("blur",b)},1)},d.prototype._attachCloseHandler=function(b){a(document.body).on("mousedown.select2."+b.id,function(b){var c=a(b.target),d=c.closest(".select2"),e=a(".select2.select2-container--open");e.each(function(){var b=a(this);if(this!=d[0]){var c=b.data("element");c.select2("close")}})})},d.prototype._detachCloseHandler=function(b){a(document.body).off("mousedown.select2."+b.id)},d.prototype.position=function(a,b){var c=b.find(".selection");c.append(a)},d.prototype.destroy=function(){this._detachCloseHandler(this.container)},d.prototype.update=function(a){throw new Error("The `update` method must be defined in child classes.")},d}),b.define("select2/selection/single",["jquery","./base","../utils","../keys"],function(a,b,c,d){function e(){e.__super__.constructor.apply(this,arguments)}return c.Extend(e,b),e.prototype.render=function(){var a=e.__super__.render.call(this);return a.addClass("select2-selection--single"),a.html('<span class="select2-selection__rendered"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>'),a},e.prototype.bind=function(a,b){var c=this;e.__super__.bind.apply(this,arguments);var d=a.id+"-container";this.$selection.find(".select2-selection__rendered").attr("id",d),this.$selection.attr("aria-labelledby",d),this.$selection.on("mousedown",function(a){1===a.which&&c.trigger("toggle",{originalEvent:a})}),this.$selection.on("focus",function(a){}),this.$selection.on("blur",function(a){}),a.on("focus",function(b){a.isOpen()||c.$selection.focus()}),a.on("selection:update",function(a){c.update(a.data)})},e.prototype.clear=function(){this.$selection.find(".select2-selection__rendered").empty()},e.prototype.display=function(a,b){var c=this.options.get("templateSelection"),d=this.options.get("escapeMarkup");return d(c(a,b))},e.prototype.selectionContainer=function(){return a("<span></span>")},e.prototype.update=function(a){if(0===a.length)return void this.clear();var b=a[0],c=this.$selection.find(".select2-selection__rendered"),d=this.display(b,c);c.empty().append(d),c.prop("title",b.title||b.text)},e}),b.define("select2/selection/multiple",["jquery","./base","../utils"],function(a,b,c){function d(a,b){d.__super__.constructor.apply(this,arguments)}return c.Extend(d,b),d.prototype.render=function(){var a=d.__super__.render.call(this);return a.addClass("select2-selection--multiple"),a.html('<ul class="select2-selection__rendered"></ul>'),a},d.prototype.bind=function(b,c){var e=this;d.__super__.bind.apply(this,arguments),this.$selection.on("click",function(a){e.trigger("toggle",{originalEvent:a})}),this.$selection.on("click",".select2-selection__choice__remove",function(b){if(!e.options.get("disabled")){var c=a(this),d=c.parent(),f=d.data("data");e.trigger("unselect",{originalEvent:b,data:f})}})},d.prototype.clear=function(){this.$selection.find(".select2-selection__rendered").empty()},d.prototype.display=function(a,b){var c=this.options.get("templateSelection"),d=this.options.get("escapeMarkup");return d(c(a,b))},d.prototype.selectionContainer=function(){var b=a('<li class="select2-selection__choice"><span class="select2-selection__choice__remove" role="presentation">&times;</span></li>');return b},d.prototype.update=function(a){if(this.clear(),0!==a.length){for(var b=[],d=0;d<a.length;d++){var e=a[d],f=this.selectionContainer(),g=this.display(e,f);f.append(g),f.prop("title",e.title||e.text),f.data("data",e),b.push(f)}var h=this.$selection.find(".select2-selection__rendered");c.appendMany(h,b)}},d}),b.define("select2/selection/placeholder",["../utils"],function(a){function b(a,b,c){this.placeholder=this.normalizePlaceholder(c.get("placeholder")),a.call(this,b,c)}return b.prototype.normalizePlaceholder=function(a,b){return"string"==typeof b&&(b={id:"",text:b}),b},b.prototype.createPlaceholder=function(a,b){var c=this.selectionContainer();return c.html(this.display(b)),c.addClass("select2-selection__placeholder").removeClass("select2-selection__choice"),c},b.prototype.update=function(a,b){var c=1==b.length&&b[0].id!=this.placeholder.id,d=b.length>1;if(d||c)return a.call(this,b);this.clear();var e=this.createPlaceholder(this.placeholder);this.$selection.find(".select2-selection__rendered").append(e)},b}),b.define("select2/selection/allowClear",["jquery","../keys"],function(a,b){function c(){}return c.prototype.bind=function(a,b,c){var d=this;a.call(this,b,c),null==this.placeholder&&this.options.get("debug")&&window.console&&console.error&&console.error("Select2: The `allowClear` option should be used in combination with the `placeholder` option."),this.$selection.on("mousedown",".select2-selection__clear",function(a){d._handleClear(a)}),b.on("keypress",function(a){d._handleKeyboardClear(a,b)})},c.prototype._handleClear=function(a,b){if(!this.options.get("disabled")){var c=this.$selection.find(".select2-selection__clear");if(0!==c.length){b.stopPropagation();for(var d=c.data("data"),e=0;e<d.length;e++){var f={data:d[e]};if(this.trigger("unselect",f),f.prevented)return}this.$element.val(this.placeholder.id).trigger("change"),this.trigger("toggle",{})}}},c.prototype._handleKeyboardClear=function(a,c,d){d.isOpen()||(c.which==b.DELETE||c.which==b.BACKSPACE)&&this._handleClear(c)},c.prototype.update=function(b,c){if(b.call(this,c),!(this.$selection.find(".select2-selection__placeholder").length>0||0===c.length)){var d=a('<span class="select2-selection__clear">&times;</span>');d.data("data",c),this.$selection.find(".select2-selection__rendered").prepend(d)}},c}),b.define("select2/selection/search",["jquery","../utils","../keys"],function(a,b,c){function d(a,b,c){a.call(this,b,c)}return d.prototype.render=function(b){var c=a('<li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" /></li>');this.$searchContainer=c,this.$search=c.find("input");var d=b.call(this);return this._transferTabIndex(),d},d.prototype.bind=function(a,b,d){var e=this;a.call(this,b,d),b.on("open",function(){e.$search.trigger("focus")}),b.on("close",function(){e.$search.val(""),e.$search.removeAttr("aria-activedescendant"),e.$search.trigger("focus")}),b.on("enable",function(){e.$search.prop("disabled",!1),e._transferTabIndex()}),b.on("disable",function(){e.$search.prop("disabled",!0)}),b.on("focus",function(a){e.$search.trigger("focus")}),b.on("results:focus",function(a){e.$search.attr("aria-activedescendant",a.id)}),this.$selection.on("focusin",".select2-search--inline",function(a){e.trigger("focus",a)}),this.$selection.on("focusout",".select2-search--inline",function(a){e._handleBlur(a)}),this.$selection.on("keydown",".select2-search--inline",function(a){a.stopPropagation(),e.trigger("keypress",a),e._keyUpPrevented=a.isDefaultPrevented();var b=a.which;if(b===c.BACKSPACE&&""===e.$search.val()){var d=e.$searchContainer.prev(".select2-selection__choice");if(d.length>0){var f=d.data("data");e.searchRemoveChoice(f),a.preventDefault()}}});var f=document.documentMode,g=f&&11>=f;this.$selection.on("input.searchcheck",".select2-search--inline",function(a){return g?void e.$selection.off("input.search input.searchcheck"):void e.$selection.off("keyup.search")}),this.$selection.on("keyup.search input.search",".select2-search--inline",function(a){if(g&&"input"===a.type)return void e.$selection.off("input.search input.searchcheck");var b=a.which;b!=c.SHIFT&&b!=c.CTRL&&b!=c.ALT&&b!=c.TAB&&e.handleSearch(a)})},d.prototype._transferTabIndex=function(a){this.$search.attr("tabindex",this.$selection.attr("tabindex")),this.$selection.attr("tabindex","-1")},d.prototype.createPlaceholder=function(a,b){this.$search.attr("placeholder",b.text)},d.prototype.update=function(a,b){var c=this.$search[0]==document.activeElement;this.$search.attr("placeholder",""),a.call(this,b),this.$selection.find(".select2-selection__rendered").append(this.$searchContainer),this.resizeSearch(),c&&this.$search.focus()},d.prototype.handleSearch=function(){if(this.resizeSearch(),!this._keyUpPrevented){var a=this.$search.val();this.trigger("query",{term:a})}this._keyUpPrevented=!1},d.prototype.searchRemoveChoice=function(a,b){this.trigger("unselect",{data:b}),this.$search.val(b.text),this.handleSearch()},d.prototype.resizeSearch=function(){this.$search.css("width","25px");var a="";if(""!==this.$search.attr("placeholder"))a=this.$selection.find(".select2-selection__rendered").innerWidth();else{var b=this.$search.val().length+1;a=.75*b+"em"}this.$search.css("width",a)},d}),b.define("select2/selection/eventRelay",["jquery"],function(a){function b(){}return b.prototype.bind=function(b,c,d){var e=this,f=["open","opening","close","closing","select","selecting","unselect","unselecting"],g=["opening","closing","selecting","unselecting"];b.call(this,c,d),c.on("*",function(b,c){if(-1!==a.inArray(b,f)){c=c||{};var d=a.Event("select2:"+b,{params:c});e.$element.trigger(d),-1!==a.inArray(b,g)&&(c.prevented=d.isDefaultPrevented())}})},b}),b.define("select2/translation",["jquery","require"],function(a,b){function c(a){this.dict=a||{}}return c.prototype.all=function(){return this.dict},c.prototype.get=function(a){return this.dict[a]},c.prototype.extend=function(b){this.dict=a.extend({},b.all(),this.dict)},c._cache={},c.loadPath=function(a){if(!(a in c._cache)){var d=b(a);c._cache[a]=d}return new c(c._cache[a])},c}),b.define("select2/diacritics",[],function(){var a={"Ⓐ":"A","Ａ":"A","À":"A","Á":"A","Â":"A","Ầ":"A","Ấ":"A","Ẫ":"A","Ẩ":"A","Ã":"A","Ā":"A","Ă":"A","Ằ":"A","Ắ":"A","Ẵ":"A","Ẳ":"A","Ȧ":"A","Ǡ":"A","Ä":"A","Ǟ":"A","Ả":"A","Å":"A","Ǻ":"A","Ǎ":"A","Ȁ":"A","Ȃ":"A","Ạ":"A","Ậ":"A","Ặ":"A","Ḁ":"A","Ą":"A","Ⱥ":"A","Ɐ":"A","Ꜳ":"AA","Æ":"AE","Ǽ":"AE","Ǣ":"AE","Ꜵ":"AO","Ꜷ":"AU","Ꜹ":"AV","Ꜻ":"AV","Ꜽ":"AY","Ⓑ":"B","Ｂ":"B","Ḃ":"B","Ḅ":"B","Ḇ":"B","Ƀ":"B","Ƃ":"B","Ɓ":"B","Ⓒ":"C","Ｃ":"C","Ć":"C","Ĉ":"C","Ċ":"C","Č":"C","Ç":"C","Ḉ":"C","Ƈ":"C","Ȼ":"C","Ꜿ":"C","Ⓓ":"D","Ｄ":"D","Ḋ":"D","Ď":"D","Ḍ":"D","Ḑ":"D","Ḓ":"D","Ḏ":"D","Đ":"D","Ƌ":"D","Ɗ":"D","Ɖ":"D","Ꝺ":"D","Ǳ":"DZ","Ǆ":"DZ","ǲ":"Dz","ǅ":"Dz","Ⓔ":"E","Ｅ":"E","È":"E","É":"E","Ê":"E","Ề":"E","Ế":"E","Ễ":"E","Ể":"E","Ẽ":"E","Ē":"E","Ḕ":"E","Ḗ":"E","Ĕ":"E","Ė":"E","Ë":"E","Ẻ":"E","Ě":"E","Ȅ":"E","Ȇ":"E","Ẹ":"E","Ệ":"E","Ȩ":"E","Ḝ":"E","Ę":"E","Ḙ":"E","Ḛ":"E","Ɛ":"E","Ǝ":"E","Ⓕ":"F","Ｆ":"F","Ḟ":"F","Ƒ":"F","Ꝼ":"F","Ⓖ":"G","Ｇ":"G","Ǵ":"G","Ĝ":"G","Ḡ":"G","Ğ":"G","Ġ":"G","Ǧ":"G","Ģ":"G","Ǥ":"G","Ɠ":"G","Ꞡ":"G","Ᵹ":"G","Ꝿ":"G","Ⓗ":"H","Ｈ":"H","Ĥ":"H","Ḣ":"H","Ḧ":"H","Ȟ":"H","Ḥ":"H","Ḩ":"H","Ḫ":"H","Ħ":"H","Ⱨ":"H","Ⱶ":"H","Ɥ":"H","Ⓘ":"I","Ｉ":"I","Ì":"I","Í":"I","Î":"I","Ĩ":"I","Ī":"I","Ĭ":"I","İ":"I","Ï":"I","Ḯ":"I","Ỉ":"I","Ǐ":"I","Ȉ":"I","Ȋ":"I","Ị":"I","Į":"I","Ḭ":"I","Ɨ":"I","Ⓙ":"J","Ｊ":"J","Ĵ":"J","Ɉ":"J","Ⓚ":"K","Ｋ":"K","Ḱ":"K","Ǩ":"K","Ḳ":"K","Ķ":"K","Ḵ":"K","Ƙ":"K","Ⱪ":"K","Ꝁ":"K","Ꝃ":"K","Ꝅ":"K","Ꞣ":"K","Ⓛ":"L","Ｌ":"L","Ŀ":"L","Ĺ":"L","Ľ":"L","Ḷ":"L","Ḹ":"L","Ļ":"L","Ḽ":"L","Ḻ":"L","Ł":"L","Ƚ":"L","Ɫ":"L","Ⱡ":"L","Ꝉ":"L","Ꝇ":"L","Ꞁ":"L","Ǉ":"LJ","ǈ":"Lj","Ⓜ":"M","Ｍ":"M","Ḿ":"M","Ṁ":"M","Ṃ":"M","Ɱ":"M","Ɯ":"M","Ⓝ":"N","Ｎ":"N","Ǹ":"N","Ń":"N","Ñ":"N","Ṅ":"N","Ň":"N","Ṇ":"N","Ņ":"N","Ṋ":"N","Ṉ":"N","Ƞ":"N","Ɲ":"N","Ꞑ":"N","Ꞥ":"N","Ǌ":"NJ","ǋ":"Nj","Ⓞ":"O","Ｏ":"O","Ò":"O","Ó":"O","Ô":"O","Ồ":"O","Ố":"O","Ỗ":"O","Ổ":"O","Õ":"O","Ṍ":"O","Ȭ":"O","Ṏ":"O","Ō":"O","Ṑ":"O","Ṓ":"O","Ŏ":"O","Ȯ":"O","Ȱ":"O","Ö":"O","Ȫ":"O","Ỏ":"O","Ő":"O","Ǒ":"O","Ȍ":"O","Ȏ":"O","Ơ":"O","Ờ":"O","Ớ":"O","Ỡ":"O","Ở":"O","Ợ":"O","Ọ":"O","Ộ":"O","Ǫ":"O","Ǭ":"O","Ø":"O","Ǿ":"O","Ɔ":"O","Ɵ":"O","Ꝋ":"O","Ꝍ":"O","Ƣ":"OI","Ꝏ":"OO","Ȣ":"OU","Ⓟ":"P","Ｐ":"P","Ṕ":"P","Ṗ":"P","Ƥ":"P","Ᵽ":"P","Ꝑ":"P","Ꝓ":"P","Ꝕ":"P","Ⓠ":"Q","Ｑ":"Q","Ꝗ":"Q","Ꝙ":"Q","Ɋ":"Q","Ⓡ":"R","Ｒ":"R","Ŕ":"R","Ṙ":"R","Ř":"R","Ȑ":"R","Ȓ":"R","Ṛ":"R","Ṝ":"R","Ŗ":"R","Ṟ":"R","Ɍ":"R","Ɽ":"R","Ꝛ":"R","Ꞧ":"R","Ꞃ":"R","Ⓢ":"S","Ｓ":"S","ẞ":"S","Ś":"S","Ṥ":"S","Ŝ":"S","Ṡ":"S","Š":"S","Ṧ":"S","Ṣ":"S","Ṩ":"S","Ș":"S","Ş":"S","Ȿ":"S","Ꞩ":"S","Ꞅ":"S","Ⓣ":"T","Ｔ":"T","Ṫ":"T","Ť":"T","Ṭ":"T","Ț":"T","Ţ":"T","Ṱ":"T","Ṯ":"T","Ŧ":"T","Ƭ":"T","Ʈ":"T","Ⱦ":"T","Ꞇ":"T","Ꜩ":"TZ","Ⓤ":"U","Ｕ":"U","Ù":"U","Ú":"U","Û":"U","Ũ":"U","Ṹ":"U","Ū":"U","Ṻ":"U","Ŭ":"U","Ü":"U","Ǜ":"U","Ǘ":"U","Ǖ":"U","Ǚ":"U","Ủ":"U","Ů":"U","Ű":"U","Ǔ":"U","Ȕ":"U","Ȗ":"U","Ư":"U","Ừ":"U","Ứ":"U","Ữ":"U","Ử":"U","Ự":"U","Ụ":"U","Ṳ":"U","Ų":"U","Ṷ":"U","Ṵ":"U","Ʉ":"U","Ⓥ":"V","Ｖ":"V","Ṽ":"V","Ṿ":"V","Ʋ":"V","Ꝟ":"V","Ʌ":"V","Ꝡ":"VY","Ⓦ":"W","Ｗ":"W","Ẁ":"W","Ẃ":"W","Ŵ":"W","Ẇ":"W","Ẅ":"W","Ẉ":"W","Ⱳ":"W","Ⓧ":"X","Ｘ":"X","Ẋ":"X","Ẍ":"X","Ⓨ":"Y","Ｙ":"Y","Ỳ":"Y","Ý":"Y","Ŷ":"Y","Ỹ":"Y","Ȳ":"Y","Ẏ":"Y","Ÿ":"Y","Ỷ":"Y","Ỵ":"Y","Ƴ":"Y","Ɏ":"Y","Ỿ":"Y","Ⓩ":"Z","Ｚ":"Z","Ź":"Z","Ẑ":"Z","Ż":"Z","Ž":"Z","Ẓ":"Z","Ẕ":"Z","Ƶ":"Z","Ȥ":"Z","Ɀ":"Z","Ⱬ":"Z","Ꝣ":"Z","ⓐ":"a","ａ":"a","ẚ":"a","à":"a","á":"a","â":"a","ầ":"a","ấ":"a","ẫ":"a","ẩ":"a","ã":"a","ā":"a","ă":"a","ằ":"a","ắ":"a","ẵ":"a","ẳ":"a","ȧ":"a","ǡ":"a","ä":"a","ǟ":"a","ả":"a","å":"a","ǻ":"a","ǎ":"a","ȁ":"a","ȃ":"a","ạ":"a","ậ":"a","ặ":"a","ḁ":"a","ą":"a","ⱥ":"a","ɐ":"a","ꜳ":"aa","æ":"ae","ǽ":"ae","ǣ":"ae","ꜵ":"ao","ꜷ":"au","ꜹ":"av","ꜻ":"av","ꜽ":"ay","ⓑ":"b","ｂ":"b","ḃ":"b","ḅ":"b","ḇ":"b","ƀ":"b","ƃ":"b","ɓ":"b","ⓒ":"c","ｃ":"c","ć":"c","ĉ":"c","ċ":"c","č":"c","ç":"c","ḉ":"c","ƈ":"c","ȼ":"c","ꜿ":"c","ↄ":"c","ⓓ":"d","ｄ":"d","ḋ":"d","ď":"d","ḍ":"d","ḑ":"d","ḓ":"d","ḏ":"d","đ":"d","ƌ":"d","ɖ":"d","ɗ":"d","ꝺ":"d","ǳ":"dz","ǆ":"dz","ⓔ":"e","ｅ":"e","è":"e","é":"e","ê":"e","ề":"e","ế":"e","ễ":"e","ể":"e","ẽ":"e","ē":"e","ḕ":"e","ḗ":"e","ĕ":"e","ė":"e","ë":"e","ẻ":"e","ě":"e","ȅ":"e","ȇ":"e","ẹ":"e","ệ":"e","ȩ":"e","ḝ":"e","ę":"e","ḙ":"e","ḛ":"e","ɇ":"e","ɛ":"e","ǝ":"e","ⓕ":"f","ｆ":"f","ḟ":"f","ƒ":"f","ꝼ":"f","ⓖ":"g","ｇ":"g","ǵ":"g","ĝ":"g","ḡ":"g","ğ":"g","ġ":"g","ǧ":"g","ģ":"g","ǥ":"g","ɠ":"g","ꞡ":"g","ᵹ":"g","ꝿ":"g","ⓗ":"h","ｈ":"h","ĥ":"h","ḣ":"h","ḧ":"h","ȟ":"h","ḥ":"h","ḩ":"h","ḫ":"h","ẖ":"h","ħ":"h","ⱨ":"h","ⱶ":"h","ɥ":"h","ƕ":"hv","ⓘ":"i","ｉ":"i","ì":"i","í":"i","î":"i","ĩ":"i","ī":"i","ĭ":"i","ï":"i","ḯ":"i","ỉ":"i","ǐ":"i","ȉ":"i","ȋ":"i","ị":"i","į":"i","ḭ":"i","ɨ":"i","ı":"i","ⓙ":"j","ｊ":"j","ĵ":"j","ǰ":"j","ɉ":"j","ⓚ":"k","ｋ":"k","ḱ":"k","ǩ":"k","ḳ":"k","ķ":"k","ḵ":"k","ƙ":"k","ⱪ":"k","ꝁ":"k","ꝃ":"k","ꝅ":"k","ꞣ":"k","ⓛ":"l","ｌ":"l","ŀ":"l","ĺ":"l","ľ":"l","ḷ":"l","ḹ":"l","ļ":"l","ḽ":"l","ḻ":"l","ſ":"l","ł":"l","ƚ":"l","ɫ":"l","ⱡ":"l","ꝉ":"l","ꞁ":"l","ꝇ":"l","ǉ":"lj","ⓜ":"m","ｍ":"m","ḿ":"m","ṁ":"m","ṃ":"m","ɱ":"m","ɯ":"m","ⓝ":"n","ｎ":"n","ǹ":"n","ń":"n","ñ":"n","ṅ":"n","ň":"n","ṇ":"n","ņ":"n","ṋ":"n","ṉ":"n","ƞ":"n","ɲ":"n","ŉ":"n","ꞑ":"n","ꞥ":"n","ǌ":"nj","ⓞ":"o","ｏ":"o","ò":"o","ó":"o","ô":"o","ồ":"o","ố":"o","ỗ":"o","ổ":"o","õ":"o","ṍ":"o","ȭ":"o","ṏ":"o","ō":"o","ṑ":"o","ṓ":"o","ŏ":"o","ȯ":"o","ȱ":"o","ö":"o","ȫ":"o","ỏ":"o","ő":"o","ǒ":"o","ȍ":"o","ȏ":"o","ơ":"o","ờ":"o","ớ":"o","ỡ":"o","ở":"o","ợ":"o","ọ":"o","ộ":"o","ǫ":"o","ǭ":"o","ø":"o","ǿ":"o","ɔ":"o","ꝋ":"o","ꝍ":"o","ɵ":"o","ƣ":"oi","ȣ":"ou","ꝏ":"oo","ⓟ":"p","ｐ":"p","ṕ":"p","ṗ":"p","ƥ":"p","ᵽ":"p","ꝑ":"p","ꝓ":"p","ꝕ":"p","ⓠ":"q","ｑ":"q","ɋ":"q","ꝗ":"q","ꝙ":"q","ⓡ":"r","ｒ":"r","ŕ":"r","ṙ":"r","ř":"r","ȑ":"r","ȓ":"r","ṛ":"r","ṝ":"r","ŗ":"r","ṟ":"r","ɍ":"r","ɽ":"r","ꝛ":"r","ꞧ":"r","ꞃ":"r","ⓢ":"s","ｓ":"s","ß":"s","ś":"s","ṥ":"s","ŝ":"s","ṡ":"s","š":"s","ṧ":"s","ṣ":"s","ṩ":"s","ș":"s","ş":"s","ȿ":"s","ꞩ":"s","ꞅ":"s","ẛ":"s","ⓣ":"t","ｔ":"t","ṫ":"t","ẗ":"t","ť":"t","ṭ":"t","ț":"t","ţ":"t","ṱ":"t","ṯ":"t","ŧ":"t","ƭ":"t","ʈ":"t","ⱦ":"t","ꞇ":"t","ꜩ":"tz","ⓤ":"u","ｕ":"u","ù":"u","ú":"u","û":"u","ũ":"u","ṹ":"u","ū":"u","ṻ":"u","ŭ":"u","ü":"u","ǜ":"u","ǘ":"u","ǖ":"u","ǚ":"u","ủ":"u","ů":"u","ű":"u","ǔ":"u","ȕ":"u","ȗ":"u","ư":"u","ừ":"u","ứ":"u","ữ":"u","ử":"u","ự":"u","ụ":"u","ṳ":"u","ų":"u","ṷ":"u","ṵ":"u","ʉ":"u","ⓥ":"v","ｖ":"v","ṽ":"v","ṿ":"v","ʋ":"v","ꝟ":"v","ʌ":"v","ꝡ":"vy","ⓦ":"w","ｗ":"w","ẁ":"w","ẃ":"w","ŵ":"w","ẇ":"w","ẅ":"w","ẘ":"w","ẉ":"w","ⱳ":"w","ⓧ":"x","ｘ":"x","ẋ":"x","ẍ":"x","ⓨ":"y","ｙ":"y","ỳ":"y","ý":"y","ŷ":"y","ỹ":"y","ȳ":"y","ẏ":"y","ÿ":"y","ỷ":"y","ẙ":"y","ỵ":"y","ƴ":"y","ɏ":"y","ỿ":"y","ⓩ":"z","ｚ":"z","ź":"z","ẑ":"z","ż":"z","ž":"z","ẓ":"z","ẕ":"z","ƶ":"z","ȥ":"z","ɀ":"z","ⱬ":"z","ꝣ":"z","Ά":"Α","Έ":"Ε","Ή":"Η","Ί":"Ι","Ϊ":"Ι","Ό":"Ο","Ύ":"Υ","Ϋ":"Υ","Ώ":"Ω","ά":"α","έ":"ε","ή":"η","ί":"ι","ϊ":"ι","ΐ":"ι","ό":"ο","ύ":"υ","ϋ":"υ","ΰ":"υ","ω":"ω","ς":"σ"};return a}),b.define("select2/data/base",["../utils"],function(a){function b(a,c){b.__super__.constructor.call(this)}return a.Extend(b,a.Observable),b.prototype.current=function(a){throw new Error("The `current` method must be defined in child classes.")},b.prototype.query=function(a,b){throw new Error("The `query` method must be defined in child classes.")},b.prototype.bind=function(a,b){},b.prototype.destroy=function(){},b.prototype.generateResultId=function(b,c){var d=b.id+"-result-";return d+=a.generateChars(4),d+=null!=c.id?"-"+c.id.toString():"-"+a.generateChars(4)},b}),b.define("select2/data/select",["./base","../utils","jquery"],function(a,b,c){function d(a,b){this.$element=a,this.options=b,d.__super__.constructor.call(this)}return b.Extend(d,a),d.prototype.current=function(a){var b=[],d=this;this.$element.find(":selected").each(function(){var a=c(this),e=d.item(a);b.push(e)}),a(b)},d.prototype.select=function(a){var b=this;if(a.selected=!0,c(a.element).is("option"))return a.element.selected=!0,void this.$element.trigger("change");
-if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push.apply(a,d);for(var f=0;f<a.length;f++){var g=a[f].id;-1===c.inArray(g,e)&&e.push(g)}b.$element.val(e),b.$element.trigger("change")});else{var d=a.id;this.$element.val(d),this.$element.trigger("change")}},d.prototype.unselect=function(a){var b=this;if(this.$element.prop("multiple"))return a.selected=!1,c(a.element).is("option")?(a.element.selected=!1,void this.$element.trigger("change")):void this.current(function(d){for(var e=[],f=0;f<d.length;f++){var g=d[f].id;g!==a.id&&-1===c.inArray(g,e)&&e.push(g)}b.$element.val(e),b.$element.trigger("change")})},d.prototype.bind=function(a,b){var c=this;this.container=a,a.on("select",function(a){c.select(a.data)}),a.on("unselect",function(a){c.unselect(a.data)})},d.prototype.destroy=function(){this.$element.find("*").each(function(){c.removeData(this,"data")})},d.prototype.query=function(a,b){var d=[],e=this,f=this.$element.children();f.each(function(){var b=c(this);if(b.is("option")||b.is("optgroup")){var f=e.item(b),g=e.matches(a,f);null!==g&&d.push(g)}}),b({results:d})},d.prototype.addOptions=function(a){b.appendMany(this.$element,a)},d.prototype.option=function(a){var b;a.children?(b=document.createElement("optgroup"),b.label=a.text):(b=document.createElement("option"),void 0!==b.textContent?b.textContent=a.text:b.innerText=a.text),a.id&&(b.value=a.id),a.disabled&&(b.disabled=!0),a.selected&&(b.selected=!0),a.title&&(b.title=a.title);var d=c(b),e=this._normalizeItem(a);return e.element=b,c.data(b,"data",e),d},d.prototype.item=function(a){var b={};if(b=c.data(a[0],"data"),null!=b)return b;if(a.is("option"))b={id:a.val(),text:a.text(),disabled:a.prop("disabled"),selected:a.prop("selected"),title:a.prop("title")};else if(a.is("optgroup")){b={text:a.prop("label"),children:[],title:a.prop("title")};for(var d=a.children("option"),e=[],f=0;f<d.length;f++){var g=c(d[f]),h=this.item(g);e.push(h)}b.children=e}return b=this._normalizeItem(b),b.element=a[0],c.data(a[0],"data",b),b},d.prototype._normalizeItem=function(a){c.isPlainObject(a)||(a={id:a,text:a}),a=c.extend({},{text:""},a);var b={selected:!1,disabled:!1};return null!=a.id&&(a.id=a.id.toString()),null!=a.text&&(a.text=a.text.toString()),null==a._resultId&&a.id&&null!=this.container&&(a._resultId=this.generateResultId(this.container,a)),c.extend({},b,a)},d.prototype.matches=function(a,b){var c=this.options.get("matcher");return c(a,b)},d}),b.define("select2/data/array",["./select","../utils","jquery"],function(a,b,c){function d(a,b){var c=b.get("data")||[];d.__super__.constructor.call(this,a,b),this.addOptions(this.convertToOptions(c))}return b.Extend(d,a),d.prototype.select=function(a){var b=this.$element.find("option").filter(function(b,c){return c.value==a.id.toString()});0===b.length&&(b=this.option(a),this.addOptions(b)),d.__super__.select.call(this,a)},d.prototype.convertToOptions=function(a){function d(a){return function(){return c(this).val()==a.id}}for(var e=this,f=this.$element.find("option"),g=f.map(function(){return e.item(c(this)).id}).get(),h=[],i=0;i<a.length;i++){var j=this._normalizeItem(a[i]);if(c.inArray(j.id,g)>=0){var k=f.filter(d(j)),l=this.item(k),m=c.extend(!0,{},j,l),n=this.option(m);k.replaceWith(n)}else{var o=this.option(j);if(j.children){var p=this.convertToOptions(j.children);b.appendMany(o,p)}h.push(o)}}return h},d}),b.define("select2/data/ajax",["./array","../utils","jquery"],function(a,b,c){function d(a,b){this.ajaxOptions=this._applyDefaults(b.get("ajax")),null!=this.ajaxOptions.processResults&&(this.processResults=this.ajaxOptions.processResults),d.__super__.constructor.call(this,a,b)}return b.Extend(d,a),d.prototype._applyDefaults=function(a){var b={data:function(a){return c.extend({},a,{q:a.term})},transport:function(a,b,d){var e=c.ajax(a);return e.then(b),e.fail(d),e}};return c.extend({},b,a,!0)},d.prototype.processResults=function(a){return a},d.prototype.query=function(a,b){function d(){var d=f.transport(f,function(d){var f=e.processResults(d,a);e.options.get("debug")&&window.console&&console.error&&(f&&f.results&&c.isArray(f.results)||console.error("Select2: The AJAX results did not return an array in the `results` key of the response.")),b(f)},function(){d.status&&"0"===d.status||e.trigger("results:message",{message:"errorLoading"})});e._request=d}var e=this;null!=this._request&&(c.isFunction(this._request.abort)&&this._request.abort(),this._request=null);var f=c.extend({type:"GET"},this.ajaxOptions);"function"==typeof f.url&&(f.url=f.url.call(this.$element,a)),"function"==typeof f.data&&(f.data=f.data.call(this.$element,a)),this.ajaxOptions.delay&&null!=a.term?(this._queryTimeout&&window.clearTimeout(this._queryTimeout),this._queryTimeout=window.setTimeout(d,this.ajaxOptions.delay)):d()},d}),b.define("select2/data/tags",["jquery"],function(a){function b(b,c,d){var e=d.get("tags"),f=d.get("createTag");void 0!==f&&(this.createTag=f);var g=d.get("insertTag");if(void 0!==g&&(this.insertTag=g),b.call(this,c,d),a.isArray(e))for(var h=0;h<e.length;h++){var i=e[h],j=this._normalizeItem(i),k=this.option(j);this.$element.append(k)}}return b.prototype.query=function(a,b,c){function d(a,f){for(var g=a.results,h=0;h<g.length;h++){var i=g[h],j=null!=i.children&&!d({results:i.children},!0),k=i.text===b.term;if(k||j)return f?!1:(a.data=g,void c(a))}if(f)return!0;var l=e.createTag(b);if(null!=l){var m=e.option(l);m.attr("data-select2-tag",!0),e.addOptions([m]),e.insertTag(g,l)}a.results=g,c(a)}var e=this;return this._removeOldTags(),null==b.term||null!=b.page?void a.call(this,b,c):void a.call(this,b,d)},b.prototype.createTag=function(b,c){var d=a.trim(c.term);return""===d?null:{id:d,text:d}},b.prototype.insertTag=function(a,b,c){b.unshift(c)},b.prototype._removeOldTags=function(b){var c=(this._lastTag,this.$element.find("option[data-select2-tag]"));c.each(function(){this.selected||a(this).remove()})},b}),b.define("select2/data/tokenizer",["jquery"],function(a){function b(a,b,c){var d=c.get("tokenizer");void 0!==d&&(this.tokenizer=d),a.call(this,b,c)}return b.prototype.bind=function(a,b,c){a.call(this,b,c),this.$search=b.dropdown.$search||b.selection.$search||c.find(".select2-search__field")},b.prototype.query=function(b,c,d){function e(b){var c=g._normalizeItem(b),d=g.$element.find("option").filter(function(){return a(this).val()===c.id});if(!d.length){var e=g.option(c);e.attr("data-select2-tag",!0),g._removeOldTags(),g.addOptions([e])}f(c)}function f(a){g.trigger("select",{data:a})}var g=this;c.term=c.term||"";var h=this.tokenizer(c,this.options,e);h.term!==c.term&&(this.$search.length&&(this.$search.val(h.term),this.$search.focus()),c.term=h.term),b.call(this,c,d)},b.prototype.tokenizer=function(b,c,d,e){for(var f=d.get("tokenSeparators")||[],g=c.term,h=0,i=this.createTag||function(a){return{id:a.term,text:a.term}};h<g.length;){var j=g[h];if(-1!==a.inArray(j,f)){var k=g.substr(0,h),l=a.extend({},c,{term:k}),m=i(l);null!=m?(e(m),g=g.substr(h+1)||"",h=0):h++}else h++}return{term:g}},b}),b.define("select2/data/minimumInputLength",[],function(){function a(a,b,c){this.minimumInputLength=c.get("minimumInputLength"),a.call(this,b,c)}return a.prototype.query=function(a,b,c){return b.term=b.term||"",b.term.length<this.minimumInputLength?void this.trigger("results:message",{message:"inputTooShort",args:{minimum:this.minimumInputLength,input:b.term,params:b}}):void a.call(this,b,c)},a}),b.define("select2/data/maximumInputLength",[],function(){function a(a,b,c){this.maximumInputLength=c.get("maximumInputLength"),a.call(this,b,c)}return a.prototype.query=function(a,b,c){return b.term=b.term||"",this.maximumInputLength>0&&b.term.length>this.maximumInputLength?void this.trigger("results:message",{message:"inputTooLong",args:{maximum:this.maximumInputLength,input:b.term,params:b}}):void a.call(this,b,c)},a}),b.define("select2/data/maximumSelectionLength",[],function(){function a(a,b,c){this.maximumSelectionLength=c.get("maximumSelectionLength"),a.call(this,b,c)}return a.prototype.query=function(a,b,c){var d=this;this.current(function(e){var f=null!=e?e.length:0;return d.maximumSelectionLength>0&&f>=d.maximumSelectionLength?void d.trigger("results:message",{message:"maximumSelected",args:{maximum:d.maximumSelectionLength}}):void a.call(d,b,c)})},a}),b.define("select2/dropdown",["jquery","./utils"],function(a,b){function c(a,b){this.$element=a,this.options=b,c.__super__.constructor.call(this)}return b.Extend(c,b.Observable),c.prototype.render=function(){var b=a('<span class="select2-dropdown"><span class="select2-results"></span></span>');return b.attr("dir",this.options.get("dir")),this.$dropdown=b,b},c.prototype.bind=function(){},c.prototype.position=function(a,b){},c.prototype.destroy=function(){this.$dropdown.remove()},c}),b.define("select2/dropdown/search",["jquery","../utils"],function(a,b){function c(){}return c.prototype.render=function(b){var c=b.call(this),d=a('<span class="select2-search select2-search--dropdown"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" /></span>');return this.$searchContainer=d,this.$search=d.find("input"),c.prepend(d),c},c.prototype.bind=function(b,c,d){var e=this;b.call(this,c,d),this.$search.on("keydown",function(a){e.trigger("keypress",a),e._keyUpPrevented=a.isDefaultPrevented()}),this.$search.on("input",function(b){a(this).off("keyup")}),this.$search.on("keyup input",function(a){e.handleSearch(a)}),c.on("open",function(){e.$search.attr("tabindex",0),e.$search.focus(),window.setTimeout(function(){e.$search.focus()},0)}),c.on("close",function(){e.$search.attr("tabindex",-1),e.$search.val("")}),c.on("focus",function(){c.isOpen()&&e.$search.focus()}),c.on("results:all",function(a){if(null==a.query.term||""===a.query.term){var b=e.showSearch(a);b?e.$searchContainer.removeClass("select2-search--hide"):e.$searchContainer.addClass("select2-search--hide")}})},c.prototype.handleSearch=function(a){if(!this._keyUpPrevented){var b=this.$search.val();this.trigger("query",{term:b})}this._keyUpPrevented=!1},c.prototype.showSearch=function(a,b){return!0},c}),b.define("select2/dropdown/hidePlaceholder",[],function(){function a(a,b,c,d){this.placeholder=this.normalizePlaceholder(c.get("placeholder")),a.call(this,b,c,d)}return a.prototype.append=function(a,b){b.results=this.removePlaceholder(b.results),a.call(this,b)},a.prototype.normalizePlaceholder=function(a,b){return"string"==typeof b&&(b={id:"",text:b}),b},a.prototype.removePlaceholder=function(a,b){for(var c=b.slice(0),d=b.length-1;d>=0;d--){var e=b[d];this.placeholder.id===e.id&&c.splice(d,1)}return c},a}),b.define("select2/dropdown/infiniteScroll",["jquery"],function(a){function b(a,b,c,d){this.lastParams={},a.call(this,b,c,d),this.$loadingMore=this.createLoadingMore(),this.loading=!1}return b.prototype.append=function(a,b){this.$loadingMore.remove(),this.loading=!1,a.call(this,b),this.showLoadingMore(b)&&this.$results.append(this.$loadingMore)},b.prototype.bind=function(b,c,d){var e=this;b.call(this,c,d),c.on("query",function(a){e.lastParams=a,e.loading=!0}),c.on("query:append",function(a){e.lastParams=a,e.loading=!0}),this.$results.on("scroll",function(){var b=a.contains(document.documentElement,e.$loadingMore[0]);if(!e.loading&&b){var c=e.$results.offset().top+e.$results.outerHeight(!1),d=e.$loadingMore.offset().top+e.$loadingMore.outerHeight(!1);c+50>=d&&e.loadMore()}})},b.prototype.loadMore=function(){this.loading=!0;var b=a.extend({},{page:1},this.lastParams);b.page++,this.trigger("query:append",b)},b.prototype.showLoadingMore=function(a,b){return b.pagination&&b.pagination.more},b.prototype.createLoadingMore=function(){var b=a('<li class="select2-results__option select2-results__option--load-more"role="treeitem" aria-disabled="true"></li>'),c=this.options.get("translations").get("loadingMore");return b.html(c(this.lastParams)),b},b}),b.define("select2/dropdown/attachBody",["jquery","../utils"],function(a,b){function c(b,c,d){this.$dropdownParent=d.get("dropdownParent")||a(document.body),b.call(this,c,d)}return c.prototype.bind=function(a,b,c){var d=this,e=!1;a.call(this,b,c),b.on("open",function(){d._showDropdown(),d._attachPositioningHandler(b),e||(e=!0,b.on("results:all",function(){d._positionDropdown(),d._resizeDropdown()}),b.on("results:append",function(){d._positionDropdown(),d._resizeDropdown()}))}),b.on("close",function(){d._hideDropdown(),d._detachPositioningHandler(b)}),this.$dropdownContainer.on("mousedown",function(a){a.stopPropagation()})},c.prototype.destroy=function(a){a.call(this),this.$dropdownContainer.remove()},c.prototype.position=function(a,b,c){b.attr("class",c.attr("class")),b.removeClass("select2"),b.addClass("select2-container--open"),b.css({position:"absolute",top:-999999}),this.$container=c},c.prototype.render=function(b){var c=a("<span></span>"),d=b.call(this);return c.append(d),this.$dropdownContainer=c,c},c.prototype._hideDropdown=function(a){this.$dropdownContainer.detach()},c.prototype._attachPositioningHandler=function(c,d){var e=this,f="scroll.select2."+d.id,g="resize.select2."+d.id,h="orientationchange.select2."+d.id,i=this.$container.parents().filter(b.hasScroll);i.each(function(){a(this).data("select2-scroll-position",{x:a(this).scrollLeft(),y:a(this).scrollTop()})}),i.on(f,function(b){var c=a(this).data("select2-scroll-position");a(this).scrollTop(c.y)}),a(window).on(f+" "+g+" "+h,function(a){e._positionDropdown(),e._resizeDropdown()})},c.prototype._detachPositioningHandler=function(c,d){var e="scroll.select2."+d.id,f="resize.select2."+d.id,g="orientationchange.select2."+d.id,h=this.$container.parents().filter(b.hasScroll);h.off(e),a(window).off(e+" "+f+" "+g)},c.prototype._positionDropdown=function(){var b=a(window),c=this.$dropdown.hasClass("select2-dropdown--above"),d=this.$dropdown.hasClass("select2-dropdown--below"),e=null,f=this.$container.offset();f.bottom=f.top+this.$container.outerHeight(!1);var g={height:this.$container.outerHeight(!1)};g.top=f.top,g.bottom=f.top+g.height;var h={height:this.$dropdown.outerHeight(!1)},i={top:b.scrollTop(),bottom:b.scrollTop()+b.height()},j=i.top<f.top-h.height,k=i.bottom>f.bottom+h.height,l={left:f.left,top:g.bottom},m=this.$dropdownParent;"static"===m.css("position")&&(m=m.offsetParent());var n=m.offset();l.top-=n.top,l.left-=n.left,c||d||(e="below"),k||!j||c?!j&&k&&c&&(e="below"):e="above",("above"==e||c&&"below"!==e)&&(l.top=g.top-n.top-h.height),null!=e&&(this.$dropdown.removeClass("select2-dropdown--below select2-dropdown--above").addClass("select2-dropdown--"+e),this.$container.removeClass("select2-container--below select2-container--above").addClass("select2-container--"+e)),this.$dropdownContainer.css(l)},c.prototype._resizeDropdown=function(){var a={width:this.$container.outerWidth(!1)+"px"};this.options.get("dropdownAutoWidth")&&(a.minWidth=a.width,a.position="relative",a.width="auto"),this.$dropdown.css(a)},c.prototype._showDropdown=function(a){this.$dropdownContainer.appendTo(this.$dropdownParent),this._positionDropdown(),this._resizeDropdown()},c}),b.define("select2/dropdown/minimumResultsForSearch",[],function(){function a(b){for(var c=0,d=0;d<b.length;d++){var e=b[d];e.children?c+=a(e.children):c++}return c}function b(a,b,c,d){this.minimumResultsForSearch=c.get("minimumResultsForSearch"),this.minimumResultsForSearch<0&&(this.minimumResultsForSearch=1/0),a.call(this,b,c,d)}return b.prototype.showSearch=function(b,c){return a(c.data.results)<this.minimumResultsForSearch?!1:b.call(this,c)},b}),b.define("select2/dropdown/selectOnClose",[],function(){function a(){}return a.prototype.bind=function(a,b,c){var d=this;a.call(this,b,c),b.on("close",function(a){d._handleSelectOnClose(a)})},a.prototype._handleSelectOnClose=function(a,b){if(b&&null!=b.originalSelect2Event){var c=b.originalSelect2Event;if("select"===c._type||"unselect"===c._type)return}var d=this.getHighlightedResults();if(!(d.length<1)){var e=d.data("data");null!=e.element&&e.element.selected||null==e.element&&e.selected||this.trigger("select",{data:e})}},a}),b.define("select2/dropdown/closeOnSelect",[],function(){function a(){}return a.prototype.bind=function(a,b,c){var d=this;a.call(this,b,c),b.on("select",function(a){d._selectTriggered(a)}),b.on("unselect",function(a){d._selectTriggered(a)})},a.prototype._selectTriggered=function(a,b){var c=b.originalEvent;c&&c.ctrlKey||this.trigger("close",{originalEvent:c,originalSelect2Event:b})},a}),b.define("select2/i18n/en",[],function(){return{errorLoading:function(){return"The results could not be loaded."},inputTooLong:function(a){var b=a.input.length-a.maximum,c="Please delete "+b+" character";return 1!=b&&(c+="s"),c},inputTooShort:function(a){var b=a.minimum-a.input.length,c="Please enter "+b+" or more characters";return c},loadingMore:function(){return"Loading more results…"},maximumSelected:function(a){var b="You can only select "+a.maximum+" item";return 1!=a.maximum&&(b+="s"),b},noResults:function(){return"No results found"},searching:function(){return"Searching…"}}}),b.define("select2/defaults",["jquery","require","./results","./selection/single","./selection/multiple","./selection/placeholder","./selection/allowClear","./selection/search","./selection/eventRelay","./utils","./translation","./diacritics","./data/select","./data/array","./data/ajax","./data/tags","./data/tokenizer","./data/minimumInputLength","./data/maximumInputLength","./data/maximumSelectionLength","./dropdown","./dropdown/search","./dropdown/hidePlaceholder","./dropdown/infiniteScroll","./dropdown/attachBody","./dropdown/minimumResultsForSearch","./dropdown/selectOnClose","./dropdown/closeOnSelect","./i18n/en"],function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C){function D(){this.reset()}D.prototype.apply=function(l){if(l=a.extend(!0,{},this.defaults,l),null==l.dataAdapter){if(null!=l.ajax?l.dataAdapter=o:null!=l.data?l.dataAdapter=n:l.dataAdapter=m,l.minimumInputLength>0&&(l.dataAdapter=j.Decorate(l.dataAdapter,r)),l.maximumInputLength>0&&(l.dataAdapter=j.Decorate(l.dataAdapter,s)),l.maximumSelectionLength>0&&(l.dataAdapter=j.Decorate(l.dataAdapter,t)),l.tags&&(l.dataAdapter=j.Decorate(l.dataAdapter,p)),(null!=l.tokenSeparators||null!=l.tokenizer)&&(l.dataAdapter=j.Decorate(l.dataAdapter,q)),null!=l.query){var C=b(l.amdBase+"compat/query");l.dataAdapter=j.Decorate(l.dataAdapter,C)}if(null!=l.initSelection){var D=b(l.amdBase+"compat/initSelection");l.dataAdapter=j.Decorate(l.dataAdapter,D)}}if(null==l.resultsAdapter&&(l.resultsAdapter=c,null!=l.ajax&&(l.resultsAdapter=j.Decorate(l.resultsAdapter,x)),null!=l.placeholder&&(l.resultsAdapter=j.Decorate(l.resultsAdapter,w)),l.selectOnClose&&(l.resultsAdapter=j.Decorate(l.resultsAdapter,A))),null==l.dropdownAdapter){if(l.multiple)l.dropdownAdapter=u;else{var E=j.Decorate(u,v);l.dropdownAdapter=E}if(0!==l.minimumResultsForSearch&&(l.dropdownAdapter=j.Decorate(l.dropdownAdapter,z)),l.closeOnSelect&&(l.dropdownAdapter=j.Decorate(l.dropdownAdapter,B)),null!=l.dropdownCssClass||null!=l.dropdownCss||null!=l.adaptDropdownCssClass){var F=b(l.amdBase+"compat/dropdownCss");l.dropdownAdapter=j.Decorate(l.dropdownAdapter,F)}l.dropdownAdapter=j.Decorate(l.dropdownAdapter,y)}if(null==l.selectionAdapter){if(l.multiple?l.selectionAdapter=e:l.selectionAdapter=d,null!=l.placeholder&&(l.selectionAdapter=j.Decorate(l.selectionAdapter,f)),l.allowClear&&(l.selectionAdapter=j.Decorate(l.selectionAdapter,g)),l.multiple&&(l.selectionAdapter=j.Decorate(l.selectionAdapter,h)),null!=l.containerCssClass||null!=l.containerCss||null!=l.adaptContainerCssClass){var G=b(l.amdBase+"compat/containerCss");l.selectionAdapter=j.Decorate(l.selectionAdapter,G)}l.selectionAdapter=j.Decorate(l.selectionAdapter,i)}if("string"==typeof l.language)if(l.language.indexOf("-")>0){var H=l.language.split("-"),I=H[0];l.language=[l.language,I]}else l.language=[l.language];if(a.isArray(l.language)){var J=new k;l.language.push("en");for(var K=l.language,L=0;L<K.length;L++){var M=K[L],N={};try{N=k.loadPath(M)}catch(O){try{M=this.defaults.amdLanguageBase+M,N=k.loadPath(M)}catch(P){l.debug&&window.console&&console.warn&&console.warn('Select2: The language file for "'+M+'" could not be automatically loaded. A fallback will be used instead.');continue}}J.extend(N)}l.translations=J}else{var Q=k.loadPath(this.defaults.amdLanguageBase+"en"),R=new k(l.language);R.extend(Q),l.translations=R}return l},D.prototype.reset=function(){function b(a){function b(a){return l[a]||a}return a.replace(/[^\u0000-\u007E]/g,b)}function c(d,e){if(""===a.trim(d.term))return e;if(e.children&&e.children.length>0){for(var f=a.extend(!0,{},e),g=e.children.length-1;g>=0;g--){var h=e.children[g],i=c(d,h);null==i&&f.children.splice(g,1)}return f.children.length>0?f:c(d,f)}var j=b(e.text).toUpperCase(),k=b(d.term).toUpperCase();return j.indexOf(k)>-1?e:null}this.defaults={amdBase:"./",amdLanguageBase:"./i18n/",closeOnSelect:!0,debug:!1,dropdownAutoWidth:!1,escapeMarkup:j.escapeMarkup,language:C,matcher:c,minimumInputLength:0,maximumInputLength:0,maximumSelectionLength:0,minimumResultsForSearch:0,selectOnClose:!1,sorter:function(a){return a},templateResult:function(a){return a.text},templateSelection:function(a){return a.text},theme:"default",width:"resolve"}},D.prototype.set=function(b,c){var d=a.camelCase(b),e={};e[d]=c;var f=j._convertData(e);a.extend(this.defaults,f)};var E=new D;return E}),b.define("select2/options",["require","jquery","./defaults","./utils"],function(a,b,c,d){function e(b,e){if(this.options=b,null!=e&&this.fromElement(e),this.options=c.apply(this.options),e&&e.is("input")){var f=a(this.get("amdBase")+"compat/inputData");this.options.dataAdapter=d.Decorate(this.options.dataAdapter,f)}}return e.prototype.fromElement=function(a){var c=["select2"];null==this.options.multiple&&(this.options.multiple=a.prop("multiple")),null==this.options.disabled&&(this.options.disabled=a.prop("disabled")),null==this.options.language&&(a.prop("lang")?this.options.language=a.prop("lang").toLowerCase():a.closest("[lang]").prop("lang")&&(this.options.language=a.closest("[lang]").prop("lang"))),null==this.options.dir&&(a.prop("dir")?this.options.dir=a.prop("dir"):a.closest("[dir]").prop("dir")?this.options.dir=a.closest("[dir]").prop("dir"):this.options.dir="ltr"),a.prop("disabled",this.options.disabled),a.prop("multiple",this.options.multiple),a.data("select2Tags")&&(this.options.debug&&window.console&&console.warn&&console.warn('Select2: The `data-select2-tags` attribute has been changed to use the `data-data` and `data-tags="true"` attributes and will be removed in future versions of Select2.'),a.data("data",a.data("select2Tags")),a.data("tags",!0)),a.data("ajaxUrl")&&(this.options.debug&&window.console&&console.warn&&console.warn("Select2: The `data-ajax-url` attribute has been changed to `data-ajax--url` and support for the old attribute will be removed in future versions of Select2."),a.attr("ajax--url",a.data("ajaxUrl")),a.data("ajax--url",a.data("ajaxUrl")));var e={};e=b.fn.jquery&&"1."==b.fn.jquery.substr(0,2)&&a[0].dataset?b.extend(!0,{},a[0].dataset,a.data()):a.data();var f=b.extend(!0,{},e);f=d._convertData(f);for(var g in f)b.inArray(g,c)>-1||(b.isPlainObject(this.options[g])?b.extend(this.options[g],f[g]):this.options[g]=f[g]);return this},e.prototype.get=function(a){return this.options[a]},e.prototype.set=function(a,b){this.options[a]=b},e}),b.define("select2/core",["jquery","./options","./utils","./keys"],function(a,b,c,d){var e=function(a,c){null!=a.data("select2")&&a.data("select2").destroy(),this.$element=a,this.id=this._generateId(a),c=c||{},this.options=new b(c,a),e.__super__.constructor.call(this);var d=a.attr("tabindex")||0;a.data("old-tabindex",d),a.attr("tabindex","-1");var f=this.options.get("dataAdapter");this.dataAdapter=new f(a,this.options);var g=this.render();this._placeContainer(g);var h=this.options.get("selectionAdapter");this.selection=new h(a,this.options),this.$selection=this.selection.render(),this.selection.position(this.$selection,g);var i=this.options.get("dropdownAdapter");this.dropdown=new i(a,this.options),this.$dropdown=this.dropdown.render(),this.dropdown.position(this.$dropdown,g);var j=this.options.get("resultsAdapter");this.results=new j(a,this.options,this.dataAdapter),this.$results=this.results.render(),this.results.position(this.$results,this.$dropdown);var k=this;this._bindAdapters(),this._registerDomEvents(),this._registerDataEvents(),this._registerSelectionEvents(),this._registerDropdownEvents(),this._registerResultsEvents(),this._registerEvents(),this.dataAdapter.current(function(a){k.trigger("selection:update",{data:a})}),a.addClass("select2-hidden-accessible"),a.attr("aria-hidden","true"),this._syncAttributes(),a.data("select2",this)};return c.Extend(e,c.Observable),e.prototype._generateId=function(a){var b="";return b=null!=a.attr("id")?a.attr("id"):null!=a.attr("name")?a.attr("name")+"-"+c.generateChars(2):c.generateChars(4),b=b.replace(/(:|\.|\[|\]|,)/g,""),b="select2-"+b},e.prototype._placeContainer=function(a){a.insertAfter(this.$element);var b=this._resolveWidth(this.$element,this.options.get("width"));null!=b&&a.css("width",b)},e.prototype._resolveWidth=function(a,b){var c=/^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;if("resolve"==b){var d=this._resolveWidth(a,"style");return null!=d?d:this._resolveWidth(a,"element")}if("element"==b){var e=a.outerWidth(!1);return 0>=e?"auto":e+"px"}if("style"==b){var f=a.attr("style");if("string"!=typeof f)return null;for(var g=f.split(";"),h=0,i=g.length;i>h;h+=1){var j=g[h].replace(/\s/g,""),k=j.match(c);if(null!==k&&k.length>=1)return k[1]}return null}return b},e.prototype._bindAdapters=function(){this.dataAdapter.bind(this,this.$container),this.selection.bind(this,this.$container),this.dropdown.bind(this,this.$container),this.results.bind(this,this.$container)},e.prototype._registerDomEvents=function(){var b=this;this.$element.on("change.select2",function(){b.dataAdapter.current(function(a){b.trigger("selection:update",{data:a})})}),this.$element.on("focus.select2",function(a){b.trigger("focus",a)}),this._syncA=c.bind(this._syncAttributes,this),this._syncS=c.bind(this._syncSubtree,this),this.$element[0].attachEvent&&this.$element[0].attachEvent("onpropertychange",this._syncA);var d=window.MutationObserver||window.WebKitMutationObserver||window.MozMutationObserver;null!=d?(this._observer=new d(function(c){a.each(c,b._syncA),a.each(c,b._syncS)}),this._observer.observe(this.$element[0],{attributes:!0,childList:!0,subtree:!1})):this.$element[0].addEventListener&&(this.$element[0].addEventListener("DOMAttrModified",b._syncA,!1),this.$element[0].addEventListener("DOMNodeInserted",b._syncS,!1),this.$element[0].addEventListener("DOMNodeRemoved",b._syncS,!1))},e.prototype._registerDataEvents=function(){var a=this;this.dataAdapter.on("*",function(b,c){a.trigger(b,c)})},e.prototype._registerSelectionEvents=function(){var b=this,c=["toggle","focus"];this.selection.on("toggle",function(){b.toggleDropdown()}),this.selection.on("focus",function(a){b.focus(a)}),this.selection.on("*",function(d,e){-1===a.inArray(d,c)&&b.trigger(d,e)})},e.prototype._registerDropdownEvents=function(){var a=this;this.dropdown.on("*",function(b,c){a.trigger(b,c)})},e.prototype._registerResultsEvents=function(){var a=this;this.results.on("*",function(b,c){a.trigger(b,c)})},e.prototype._registerEvents=function(){var a=this;this.on("open",function(){a.$container.addClass("select2-container--open")}),this.on("close",function(){a.$container.removeClass("select2-container--open")}),this.on("enable",function(){a.$container.removeClass("select2-container--disabled")}),this.on("disable",function(){a.$container.addClass("select2-container--disabled")}),this.on("blur",function(){a.$container.removeClass("select2-container--focus")}),this.on("query",function(b){a.isOpen()||a.trigger("open",{}),this.dataAdapter.query(b,function(c){a.trigger("results:all",{data:c,query:b})})}),this.on("query:append",function(b){this.dataAdapter.query(b,function(c){a.trigger("results:append",{data:c,query:b})})}),this.on("keypress",function(b){var c=b.which;a.isOpen()?c===d.ESC||c===d.TAB||c===d.UP&&b.altKey?(a.close(),b.preventDefault()):c===d.ENTER?(a.trigger("results:select",{}),b.preventDefault()):c===d.SPACE&&b.ctrlKey?(a.trigger("results:toggle",{}),b.preventDefault()):c===d.UP?(a.trigger("results:previous",{}),b.preventDefault()):c===d.DOWN&&(a.trigger("results:next",{}),b.preventDefault()):(c===d.ENTER||c===d.SPACE||c===d.DOWN&&b.altKey)&&(a.open(),b.preventDefault())})},e.prototype._syncAttributes=function(){this.options.set("disabled",this.$element.prop("disabled")),this.options.get("disabled")?(this.isOpen()&&this.close(),this.trigger("disable",{})):this.trigger("enable",{})},e.prototype._syncSubtree=function(a,b){var c=!1,d=this;if(!a||!a.target||"OPTION"===a.target.nodeName||"OPTGROUP"===a.target.nodeName){if(b)if(b.addedNodes&&b.addedNodes.length>0)for(var e=0;e<b.addedNodes.length;e++){var f=b.addedNodes[e];f.selected&&(c=!0)}else b.removedNodes&&b.removedNodes.length>0&&(c=!0);else c=!0;c&&this.dataAdapter.current(function(a){d.trigger("selection:update",{data:a})})}},e.prototype.trigger=function(a,b){var c=e.__super__.trigger,d={open:"opening",close:"closing",select:"selecting",unselect:"unselecting"};if(void 0===b&&(b={}),a in d){var f=d[a],g={prevented:!1,name:a,args:b};if(c.call(this,f,g),g.prevented)return void(b.prevented=!0)}c.call(this,a,b)},e.prototype.toggleDropdown=function(){this.options.get("disabled")||(this.isOpen()?this.close():this.open())},e.prototype.open=function(){this.isOpen()||this.trigger("query",{})},e.prototype.close=function(){this.isOpen()&&this.trigger("close",{})},e.prototype.isOpen=function(){return this.$container.hasClass("select2-container--open")},e.prototype.hasFocus=function(){return this.$container.hasClass("select2-container--focus")},e.prototype.focus=function(a){this.hasFocus()||(this.$container.addClass("select2-container--focus"),this.trigger("focus",{}))},e.prototype.enable=function(a){this.options.get("debug")&&window.console&&console.warn&&console.warn('Select2: The `select2("enable")` method has been deprecated and will be removed in later Select2 versions. Use $element.prop("disabled") instead.'),(null==a||0===a.length)&&(a=[!0]);var b=!a[0];this.$element.prop("disabled",b)},e.prototype.data=function(){this.options.get("debug")&&arguments.length>0&&window.console&&console.warn&&console.warn('Select2: Data can no longer be set using `select2("data")`. You should consider setting the value instead using `$element.val()`.');var a=[];return this.dataAdapter.current(function(b){a=b}),a},e.prototype.val=function(b){if(this.options.get("debug")&&window.console&&console.warn&&console.warn('Select2: The `select2("val")` method has been deprecated and will be removed in later Select2 versions. Use $element.val() instead.'),null==b||0===b.length)return this.$element.val();var c=b[0];a.isArray(c)&&(c=a.map(c,function(a){return a.toString()})),this.$element.val(c).trigger("change")},e.prototype.destroy=function(){this.$container.remove(),this.$element[0].detachEvent&&this.$element[0].detachEvent("onpropertychange",this._syncA),null!=this._observer?(this._observer.disconnect(),this._observer=null):this.$element[0].removeEventListener&&(this.$element[0].removeEventListener("DOMAttrModified",this._syncA,!1),this.$element[0].removeEventListener("DOMNodeInserted",this._syncS,!1),this.$element[0].removeEventListener("DOMNodeRemoved",this._syncS,!1)),this._syncA=null,this._syncS=null,this.$element.off(".select2"),this.$element.attr("tabindex",this.$element.data("old-tabindex")),this.$element.removeClass("select2-hidden-accessible"),this.$element.attr("aria-hidden","false"),this.$element.removeData("select2"),this.dataAdapter.destroy(),this.selection.destroy(),this.dropdown.destroy(),this.results.destroy(),this.dataAdapter=null,this.selection=null,this.dropdown=null,this.results=null;
-},e.prototype.render=function(){var b=a('<span class="select2 select2-container"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>');return b.attr("dir",this.options.get("dir")),this.$container=b,this.$container.addClass("select2-container--"+this.options.get("theme")),b.data("element",this.$element),b},e}),b.define("select2/compat/utils",["jquery"],function(a){function b(b,c,d){var e,f,g=[];e=a.trim(b.attr("class")),e&&(e=""+e,a(e.split(/\s+/)).each(function(){0===this.indexOf("select2-")&&g.push(this)})),e=a.trim(c.attr("class")),e&&(e=""+e,a(e.split(/\s+/)).each(function(){0!==this.indexOf("select2-")&&(f=d(this),null!=f&&g.push(f))})),b.attr("class",g.join(" "))}return{syncCssClasses:b}}),b.define("select2/compat/containerCss",["jquery","./utils"],function(a,b){function c(a){return null}function d(){}return d.prototype.render=function(d){var e=d.call(this),f=this.options.get("containerCssClass")||"";a.isFunction(f)&&(f=f(this.$element));var g=this.options.get("adaptContainerCssClass");if(g=g||c,-1!==f.indexOf(":all:")){f=f.replace(":all:","");var h=g;g=function(a){var b=h(a);return null!=b?b+" "+a:a}}var i=this.options.get("containerCss")||{};return a.isFunction(i)&&(i=i(this.$element)),b.syncCssClasses(e,this.$element,g),e.css(i),e.addClass(f),e},d}),b.define("select2/compat/dropdownCss",["jquery","./utils"],function(a,b){function c(a){return null}function d(){}return d.prototype.render=function(d){var e=d.call(this),f=this.options.get("dropdownCssClass")||"";a.isFunction(f)&&(f=f(this.$element));var g=this.options.get("adaptDropdownCssClass");if(g=g||c,-1!==f.indexOf(":all:")){f=f.replace(":all:","");var h=g;g=function(a){var b=h(a);return null!=b?b+" "+a:a}}var i=this.options.get("dropdownCss")||{};return a.isFunction(i)&&(i=i(this.$element)),b.syncCssClasses(e,this.$element,g),e.css(i),e.addClass(f),e},d}),b.define("select2/compat/initSelection",["jquery"],function(a){function b(a,b,c){c.get("debug")&&window.console&&console.warn&&console.warn("Select2: The `initSelection` option has been deprecated in favor of a custom data adapter that overrides the `current` method. This method is now called multiple times instead of a single time when the instance is initialized. Support will be removed for the `initSelection` option in future versions of Select2"),this.initSelection=c.get("initSelection"),this._isInitialized=!1,a.call(this,b,c)}return b.prototype.current=function(b,c){var d=this;return this._isInitialized?void b.call(this,c):void this.initSelection.call(null,this.$element,function(b){d._isInitialized=!0,a.isArray(b)||(b=[b]),c(b)})},b}),b.define("select2/compat/inputData",["jquery"],function(a){function b(a,b,c){this._currentData=[],this._valueSeparator=c.get("valueSeparator")||",","hidden"===b.prop("type")&&c.get("debug")&&console&&console.warn&&console.warn("Select2: Using a hidden input with Select2 is no longer supported and may stop working in the future. It is recommended to use a `<select>` element instead."),a.call(this,b,c)}return b.prototype.current=function(b,c){function d(b,c){var e=[];return b.selected||-1!==a.inArray(b.id,c)?(b.selected=!0,e.push(b)):b.selected=!1,b.children&&e.push.apply(e,d(b.children,c)),e}for(var e=[],f=0;f<this._currentData.length;f++){var g=this._currentData[f];e.push.apply(e,d(g,this.$element.val().split(this._valueSeparator)))}c(e)},b.prototype.select=function(b,c){if(this.options.get("multiple")){var d=this.$element.val();d+=this._valueSeparator+c.id,this.$element.val(d),this.$element.trigger("change")}else this.current(function(b){a.map(b,function(a){a.selected=!1})}),this.$element.val(c.id),this.$element.trigger("change")},b.prototype.unselect=function(a,b){var c=this;b.selected=!1,this.current(function(a){for(var d=[],e=0;e<a.length;e++){var f=a[e];b.id!=f.id&&d.push(f.id)}c.$element.val(d.join(c._valueSeparator)),c.$element.trigger("change")})},b.prototype.query=function(a,b,c){for(var d=[],e=0;e<this._currentData.length;e++){var f=this._currentData[e],g=this.matches(b,f);null!==g&&d.push(g)}c({results:d})},b.prototype.addOptions=function(b,c){var d=a.map(c,function(b){return a.data(b[0],"data")});this._currentData.push.apply(this._currentData,d)},b}),b.define("select2/compat/matcher",["jquery"],function(a){function b(b){function c(c,d){var e=a.extend(!0,{},d);if(null==c.term||""===a.trim(c.term))return e;if(d.children){for(var f=d.children.length-1;f>=0;f--){var g=d.children[f],h=b(c.term,g.text,g);h||e.children.splice(f,1)}if(e.children.length>0)return e}return b(c.term,d.text,d)?e:null}return c}return b}),b.define("select2/compat/query",[],function(){function a(a,b,c){c.get("debug")&&window.console&&console.warn&&console.warn("Select2: The `query` option has been deprecated in favor of a custom data adapter that overrides the `query` method. Support will be removed for the `query` option in future versions of Select2."),a.call(this,b,c)}return a.prototype.query=function(a,b,c){b.callback=c;var d=this.options.get("query");d.call(null,b)},a}),b.define("select2/dropdown/attachContainer",[],function(){function a(a,b,c){a.call(this,b,c)}return a.prototype.position=function(a,b,c){var d=c.find(".dropdown-wrapper");d.append(b),b.addClass("select2-dropdown--below"),c.addClass("select2-container--below")},a}),b.define("select2/dropdown/stopPropagation",[],function(){function a(){}return a.prototype.bind=function(a,b,c){a.call(this,b,c);var d=["blur","change","click","dblclick","focus","focusin","focusout","input","keydown","keyup","keypress","mousedown","mouseenter","mouseleave","mousemove","mouseover","mouseup","search","touchend","touchstart"];this.$dropdown.on(d.join(" "),function(a){a.stopPropagation()})},a}),b.define("select2/selection/stopPropagation",[],function(){function a(){}return a.prototype.bind=function(a,b,c){a.call(this,b,c);var d=["blur","change","click","dblclick","focus","focusin","focusout","input","keydown","keyup","keypress","mousedown","mouseenter","mouseleave","mousemove","mouseover","mouseup","search","touchend","touchstart"];this.$selection.on(d.join(" "),function(a){a.stopPropagation()})},a}),function(c){"function"==typeof b.define&&b.define.amd?b.define("jquery-mousewheel",["jquery"],c):"object"==typeof exports?module.exports=c:c(a)}(function(a){function b(b){var g=b||window.event,h=i.call(arguments,1),j=0,l=0,m=0,n=0,o=0,p=0;if(b=a.event.fix(g),b.type="mousewheel","detail"in g&&(m=-1*g.detail),"wheelDelta"in g&&(m=g.wheelDelta),"wheelDeltaY"in g&&(m=g.wheelDeltaY),"wheelDeltaX"in g&&(l=-1*g.wheelDeltaX),"axis"in g&&g.axis===g.HORIZONTAL_AXIS&&(l=-1*m,m=0),j=0===m?l:m,"deltaY"in g&&(m=-1*g.deltaY,j=m),"deltaX"in g&&(l=g.deltaX,0===m&&(j=-1*l)),0!==m||0!==l){if(1===g.deltaMode){var q=a.data(this,"mousewheel-line-height");j*=q,m*=q,l*=q}else if(2===g.deltaMode){var r=a.data(this,"mousewheel-page-height");j*=r,m*=r,l*=r}if(n=Math.max(Math.abs(m),Math.abs(l)),(!f||f>n)&&(f=n,d(g,n)&&(f/=40)),d(g,n)&&(j/=40,l/=40,m/=40),j=Math[j>=1?"floor":"ceil"](j/f),l=Math[l>=1?"floor":"ceil"](l/f),m=Math[m>=1?"floor":"ceil"](m/f),k.settings.normalizeOffset&&this.getBoundingClientRect){var s=this.getBoundingClientRect();o=b.clientX-s.left,p=b.clientY-s.top}return b.deltaX=l,b.deltaY=m,b.deltaFactor=f,b.offsetX=o,b.offsetY=p,b.deltaMode=0,h.unshift(b,j,l,m),e&&clearTimeout(e),e=setTimeout(c,200),(a.event.dispatch||a.event.handle).apply(this,h)}}function c(){f=null}function d(a,b){return k.settings.adjustOldDeltas&&"mousewheel"===a.type&&b%120===0}var e,f,g=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],h="onwheel"in document||document.documentMode>=9?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"],i=Array.prototype.slice;if(a.event.fixHooks)for(var j=g.length;j;)a.event.fixHooks[g[--j]]=a.event.mouseHooks;var k=a.event.special.mousewheel={version:"3.1.12",setup:function(){if(this.addEventListener)for(var c=h.length;c;)this.addEventListener(h[--c],b,!1);else this.onmousewheel=b;a.data(this,"mousewheel-line-height",k.getLineHeight(this)),a.data(this,"mousewheel-page-height",k.getPageHeight(this))},teardown:function(){if(this.removeEventListener)for(var c=h.length;c;)this.removeEventListener(h[--c],b,!1);else this.onmousewheel=null;a.removeData(this,"mousewheel-line-height"),a.removeData(this,"mousewheel-page-height")},getLineHeight:function(b){var c=a(b),d=c["offsetParent"in a.fn?"offsetParent":"parent"]();return d.length||(d=a("body")),parseInt(d.css("fontSize"),10)||parseInt(c.css("fontSize"),10)||16},getPageHeight:function(b){return a(b).height()},settings:{adjustOldDeltas:!0,normalizeOffset:!0}};a.fn.extend({mousewheel:function(a){return a?this.bind("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.unbind("mousewheel",a)}})}),b.define("jquery.select2",["jquery","jquery-mousewheel","./select2/core","./select2/defaults"],function(a,b,c,d){if(null==a.fn.select2){var e=["open","close","destroy"];a.fn.select2=function(b){if(b=b||{},"object"==typeof b)return this.each(function(){var d=a.extend(!0,{},b);new c(a(this),d)}),this;if("string"==typeof b){var d,f=Array.prototype.slice.call(arguments,1);return this.each(function(){var c=a(this).data("select2");null==c&&window.console&&console.error&&console.error("The select2('"+b+"') method was called on an element that is not using Select2."),d=c[b].apply(c,f)}),a.inArray(b,e)>-1?this:d}throw new Error("Invalid arguments for Select2: "+b)}}return null==a.fn.select2.defaults&&(a.fn.select2.defaults=d),c}),{define:b.define,require:b.require}}(),c=b.require("jquery.select2");return a.fn.select2.amd=b,c});
+/*! Select2 4.0.3 | https://github.com/select2/select2/blob/master/LICENSE.md */ ! function(a) {
+    "function" == typeof define && define.amd ? define(["jquery"], a) : a("object" == typeof exports ? require("jquery") : jQuery)
+}(function(a) {
+    var b = function() {
+            if (a && a.fn && a.fn.select2 && a.fn.select2.amd) var b = a.fn.select2.amd;
+            var b;
+            return function() {
+                    if (!b || !b.requirejs) {
+                        b ? c = b : b = {};
+                        var a, c, d;
+                        ! function(b) {
+                            function e(a, b) {
+                                return u.call(a, b)
+                            }
+
+                            function f(a, b) {
+                                var c, d, e, f, g, h, i, j, k, l, m, n = b && b.split("/"),
+                                    o = s.map,
+                                    p = o && o["*"] || {};
+                                if (a && "." === a.charAt(0))
+                                    if (b) {
+                                        for (a = a.split("/"), g = a.length - 1, s.nodeIdCompat && w.test(a[g]) && (a[g] = a[g].replace(w, "")), a = n.slice(0, n.length - 1).concat(a), k = 0; k < a.length; k += 1)
+                                            if (m = a[k], "." === m) a.splice(k, 1), k -= 1;
+                                            else if (".." === m) {
+                                            if (1 === k && (".." === a[2] || ".." === a[0])) break;
+                                            k > 0 && (a.splice(k - 1, 2), k -= 2)
+                                        }
+                                        a = a.join("/")
+                                    } else 0 === a.indexOf("./") && (a = a.substring(2));
+                                if ((n || p) && o) {
+                                    for (c = a.split("/"), k = c.length; k > 0; k -= 1) {
+                                        if (d = c.slice(0, k).join("/"), n)
+                                            for (l = n.length; l > 0; l -= 1)
+                                                if (e = o[n.slice(0, l).join("/")], e && (e = e[d])) {
+                                                    f = e, h = k;
+                                                    break
+                                                }
+                                        if (f) break;
+                                        !i && p && p[d] && (i = p[d], j = k)
+                                    }!f && i && (f = i, h = j), f && (c.splice(0, h, f), a = c.join("/"))
+                                }
+                                return a
+                            }
+
+                            function g(a, c) {
+                                return function() {
+                                    var d = v.call(arguments, 0);
+                                    return "string" != typeof d[0] && 1 === d.length && d.push(null), n.apply(b, d.concat([a, c]))
+                                }
+                            }
+
+                            function h(a) {
+                                return function(b) {
+                                    return f(b, a)
+                                }
+                            }
+
+                            function i(a) {
+                                return function(b) {
+                                    q[a] = b
+                                }
+                            }
+
+                            function j(a) {
+                                if (e(r, a)) {
+                                    var c = r[a];
+                                    delete r[a], t[a] = !0, m.apply(b, c)
+                                }
+                                if (!e(q, a) && !e(t, a)) throw new Error("No " + a);
+                                return q[a]
+                            }
+
+                            function k(a) {
+                                var b, c = a ? a.indexOf("!") : -1;
+                                return c > -1 && (b = a.substring(0, c), a = a.substring(c + 1, a.length)), [b, a]
+                            }
+
+                            function l(a) {
+                                return function() {
+                                    return s && s.config && s.config[a] || {}
+                                }
+                            }
+                            var m, n, o, p, q = {},
+                                r = {},
+                                s = {},
+                                t = {},
+                                u = Object.prototype.hasOwnProperty,
+                                v = [].slice,
+                                w = /\.js$/;
+                            o = function(a, b) {
+                                var c, d = k(a),
+                                    e = d[0];
+                                return a = d[1], e && (e = f(e, b), c = j(e)), e ? a = c && c.normalize ? c.normalize(a, h(b)) : f(a, b) : (a = f(a, b), d = k(a), e = d[0], a = d[1], e && (c = j(e))), {
+                                    f: e ? e + "!" + a : a,
+                                    n: a,
+                                    pr: e,
+                                    p: c
+                                }
+                            }, p = {
+                                require: function(a) {
+                                    return g(a)
+                                },
+                                exports: function(a) {
+                                    var b = q[a];
+                                    return "undefined" != typeof b ? b : q[a] = {}
+                                },
+                                module: function(a) {
+                                    return {
+                                        id: a,
+                                        uri: "",
+                                        exports: q[a],
+                                        config: l(a)
+                                    }
+                                }
+                            }, m = function(a, c, d, f) {
+                                var h, k, l, m, n, s, u = [],
+                                    v = typeof d;
+                                if (f = f || a, "undefined" === v || "function" === v) {
+                                    for (c = !c.length && d.length ? ["require", "exports", "module"] : c, n = 0; n < c.length; n += 1)
+                                        if (m = o(c[n], f), k = m.f, "require" === k) u[n] = p.require(a);
+                                        else if ("exports" === k) u[n] = p.exports(a), s = !0;
+                                    else if ("module" === k) h = u[n] = p.module(a);
+                                    else if (e(q, k) || e(r, k) || e(t, k)) u[n] = j(k);
+                                    else {
+                                        if (!m.p) throw new Error(a + " missing " + k);
+                                        m.p.load(m.n, g(f, !0), i(k), {}), u[n] = q[k]
+                                    }
+                                    l = d ? d.apply(q[a], u) : void 0, a && (h && h.exports !== b && h.exports !== q[a] ? q[a] = h.exports : l === b && s || (q[a] = l))
+                                } else a && (q[a] = d)
+                            }, a = c = n = function(a, c, d, e, f) {
+                                if ("string" == typeof a) return p[a] ? p[a](c) : j(o(a, c).f);
+                                if (!a.splice) {
+                                    if (s = a, s.deps && n(s.deps, s.callback), !c) return;
+                                    c.splice ? (a = c, c = d, d = null) : a = b
+                                }
+                                return c = c || function() {}, "function" == typeof d && (d = e, e = f), e ? m(b, a, c, d) : setTimeout(function() {
+                                    m(b, a, c, d)
+                                }, 4), n
+                            }, n.config = function(a) {
+                                return n(a)
+                            }, a._defined = q, d = function(a, b, c) {
+                                if ("string" != typeof a) throw new Error("See almond README: incorrect module build, no module name");
+                                b.splice || (c = b, b = []), e(q, a) || e(r, a) || (r[a] = [a, b, c])
+                            }, d.amd = {
+                                jQuery: !0
+                            }
+                        }(), b.requirejs = a, b.require = c, b.define = d
+                    }
+                }(), b.define("almond", function() {}), b.define("jquery", [], function() {
+                    var b = a || $;
+                    return null == b && console && console.error && console.error("Select2: An instance of jQuery or a jQuery-compatible library was not found. Make sure that you are including jQuery before Select2 on your web page."), b
+                }), b.define("select2/utils", ["jquery"], function(a) {
+                    function b(a) {
+                        var b = a.prototype,
+                            c = [];
+                        for (var d in b) {
+                            var e = b[d];
+                            "function" == typeof e && "constructor" !== d && c.push(d)
+                        }
+                        return c
+                    }
+                    var c = {};
+                    c.Extend = function(a, b) {
+                        function c() {
+                            this.constructor = a
+                        }
+                        var d = {}.hasOwnProperty;
+                        for (var e in b) d.call(b, e) && (a[e] = b[e]);
+                        return c.prototype = b.prototype, a.prototype = new c, a.__super__ = b.prototype, a
+                    }, c.Decorate = function(a, c) {
+                        function d() {
+                            var b = Array.prototype.unshift,
+                                d = c.prototype.constructor.length,
+                                e = a.prototype.constructor;
+                            d > 0 && (b.call(arguments, a.prototype.constructor), e = c.prototype.constructor), e.apply(this, arguments)
+                        }
+
+                        function e() {
+                            this.constructor = d
+                        }
+                        var f = b(c),
+                            g = b(a);
+                        c.displayName = a.displayName, d.prototype = new e;
+                        for (var h = 0; h < g.length; h++) {
+                            var i = g[h];
+                            d.prototype[i] = a.prototype[i]
+                        }
+                        for (var j = (function(a) {
+                                var b = function() {};
+                                a in d.prototype && (b = d.prototype[a]);
+                                var e = c.prototype[a];
+                                return function() {
+                                    var a = Array.prototype.unshift;
+                                    return a.call(arguments, b), e.apply(this, arguments)
+                                }
+                            }), k = 0; k < f.length; k++) {
+                            var l = f[k];
+                            d.prototype[l] = j(l)
+                        }
+                        return d
+                    };
+                    var d = function() {
+                        this.listeners = {}
+                    };
+                    return d.prototype.on = function(a, b) {
+                        this.listeners = this.listeners || {}, a in this.listeners ? this.listeners[a].push(b) : this.listeners[a] = [b]
+                    }, d.prototype.trigger = function(a) {
+                        var b = Array.prototype.slice,
+                            c = b.call(arguments, 1);
+                        this.listeners = this.listeners || {}, null == c && (c = []), 0 === c.length && c.push({}), c[0]._type = a, a in this.listeners && this.invoke(this.listeners[a], b.call(arguments, 1)), "*" in this.listeners && this.invoke(this.listeners["*"], arguments)
+                    }, d.prototype.invoke = function(a, b) {
+                        for (var c = 0, d = a.length; d > c; c++) a[c].apply(this, b)
+                    }, c.Observable = d, c.generateChars = function(a) {
+                        for (var b = "", c = 0; a > c; c++) {
+                            var d = Math.floor(36 * Math.random());
+                            b += d.toString(36)
+                        }
+                        return b
+                    }, c.bind = function(a, b) {
+                        return function() {
+                            a.apply(b, arguments)
+                        }
+                    }, c._convertData = function(a) {
+                        for (var b in a) {
+                            var c = b.split("-"),
+                                d = a;
+                            if (1 !== c.length) {
+                                for (var e = 0; e < c.length; e++) {
+                                    var f = c[e];
+                                    f = f.substring(0, 1).toLowerCase() + f.substring(1), f in d || (d[f] = {}), e == c.length - 1 && (d[f] = a[b]), d = d[f]
+                                }
+                                delete a[b]
+                            }
+                        }
+                        return a
+                    }, c.hasScroll = function(b, c) {
+                        var d = a(c),
+                            e = c.style.overflowX,
+                            f = c.style.overflowY;
+                        return e !== f || "hidden" !== f && "visible" !== f ? "scroll" === e || "scroll" === f ? !0 : d.innerHeight() < c.scrollHeight || d.innerWidth() < c.scrollWidth : !1
+                    }, c.escapeMarkup = function(a) {
+                        var b = {
+                            "\\": "&#92;",
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                            "'": "&#39;",
+                            "/": "&#47;"
+                        };
+                        return "string" != typeof a ? a : String(a).replace(/[&<>"'\/\\]/g, function(a) {
+                            return b[a]
+                        })
+                    }, c.appendMany = function(b, c) {
+                        if ("1.7" === a.fn.jquery.substr(0, 3)) {
+                            var d = a();
+                            a.map(c, function(a) {
+                                d = d.add(a)
+                            }), c = d
+                        }
+                        b.append(c)
+                    }, c
+                }), b.define("select2/results", ["jquery", "./utils"], function(a, b) {
+                    function c(a, b, d) {
+                        this.$element = a, this.data = d, this.options = b, c.__super__.constructor.call(this)
+                    }
+                    return b.Extend(c, b.Observable), c.prototype.render = function() {
+                        var b = a('<ul class="select2-results__options" role="tree"></ul>');
+                        return this.options.get("multiple") && b.attr("aria-multiselectable", "true"), this.$results = b, b
+                    }, c.prototype.clear = function() {
+                        this.$results.empty()
+                    }, c.prototype.displayMessage = function(b) {
+                        var c = this.options.get("escapeMarkup");
+                        this.clear(), this.hideLoading();
+                        var d = a('<li role="treeitem" aria-live="assertive" class="select2-results__option"></li>'),
+                            e = this.options.get("translations").get(b.message);
+                        d.append(c(e(b.args))), d[0].className += " select2-results__message", this.$results.append(d)
+                    }, c.prototype.hideMessages = function() {
+                        this.$results.find(".select2-results__message").remove()
+                    }, c.prototype.append = function(a) {
+                        this.hideLoading();
+                        var b = [];
+                        if (null == a.results || 0 === a.results.length) return void(0 === this.$results.children().length && this.trigger("results:message", {
+                            message: "noResults"
+                        }));
+                        a.results = this.sort(a.results);
+                        for (var c = 0; c < a.results.length; c++) {
+                            var d = a.results[c],
+                                e = this.option(d);
+                            b.push(e)
+                        }
+                        this.$results.append(b)
+                    }, c.prototype.position = function(a, b) {
+                        var c = b.find(".select2-results");
+                        c.append(a)
+                    }, c.prototype.sort = function(a) {
+                        var b = this.options.get("sorter");
+                        return b(a)
+                    }, c.prototype.highlightFirstItem = function() {
+                        var a = this.$results.find(".select2-results__option[aria-selected]"),
+                            b = a.filter("[aria-selected=true]");
+                        b.length > 0 ? b.first().trigger("mouseenter") : a.first().trigger("mouseenter"), this.ensureHighlightVisible()
+                    }, c.prototype.setClasses = function() {
+                        var b = this;
+                        this.data.current(function(c) {
+                            var d = a.map(c, function(a) {
+                                    return a.id.toString()
+                                }),
+                                e = b.$results.find(".select2-results__option[aria-selected]");
+                            e.each(function() {
+                                var b = a(this),
+                                    c = a.data(this, "data"),
+                                    e = "" + c.id;
+                                null != c.element && c.element.selected || null == c.element && a.inArray(e, d) > -1 ? b.attr("aria-selected", "true") : b.attr("aria-selected", "false")
+                            })
+                        })
+                    }, c.prototype.showLoading = function(a) {
+                        this.hideLoading();
+                        var b = this.options.get("translations").get("searching"),
+                            c = {
+                                disabled: !0,
+                                loading: !0,
+                                text: b(a)
+                            },
+                            d = this.option(c);
+                        d.className += " loading-results", this.$results.prepend(d)
+                    }, c.prototype.hideLoading = function() {
+                        this.$results.find(".loading-results").remove()
+                    }, c.prototype.option = function(b) {
+                        var c = document.createElement("li");
+                        c.className = "select2-results__option";
+                        var d = {
+                            role: "treeitem",
+                            "aria-selected": "false"
+                        };
+                        b.disabled && (delete d["aria-selected"], d["aria-disabled"] = "true"), null == b.id && delete d["aria-selected"], null != b._resultId && (c.id = b._resultId), b.title && (c.title = b.title), b.children && (d.role = "group", d["aria-label"] = b.text, delete d["aria-selected"]);
+                        for (var e in d) {
+                            var f = d[e];
+                            c.setAttribute(e, f)
+                        }
+                        if (b.children) {
+                            var g = a(c),
+                                h = document.createElement("strong");
+                            h.className = "select2-results__group";
+                            a(h);
+                            this.template(b, h);
+                            for (var i = [], j = 0; j < b.children.length; j++) {
+                                var k = b.children[j],
+                                    l = this.option(k);
+                                i.push(l)
+                            }
+                            var m = a("<ul></ul>", {
+                                "class": "select2-results__options select2-results__options--nested"
+                            });
+                            m.append(i), g.append(h), g.append(m)
+                        } else this.template(b, c);
+                        return a.data(c, "data", b), c
+                    }, c.prototype.bind = function(b, c) {
+                        var d = this,
+                            e = b.id + "-results";
+                        this.$results.attr("id", e), b.on("results:all", function(a) {
+                            d.clear(), d.append(a.data), b.isOpen() && (d.setClasses(), d.highlightFirstItem())
+                        }), b.on("results:append", function(a) {
+                            d.append(a.data), b.isOpen() && d.setClasses()
+                        }), b.on("query", function(a) {
+                            d.hideMessages(), d.showLoading(a)
+                        }), b.on("select", function() {
+                            b.isOpen() && (d.setClasses(), d.highlightFirstItem())
+                        }), b.on("unselect", function() {
+                            b.isOpen() && (d.setClasses(), d.highlightFirstItem())
+                        }), b.on("open", function() {
+                            d.$results.attr("aria-expanded", "true"), d.$results.attr("aria-hidden", "false"), d.setClasses(), d.ensureHighlightVisible()
+                        }), b.on("close", function() {
+                            d.$results.attr("aria-expanded", "false"), d.$results.attr("aria-hidden", "true"), d.$results.removeAttr("aria-activedescendant")
+                        }), b.on("results:toggle", function() {
+                            var a = d.getHighlightedResults();
+                            0 !== a.length && a.trigger("mouseup")
+                        }), b.on("results:select", function() {
+                            var a = d.getHighlightedResults();
+                            if (0 !== a.length) {
+                                var b = a.data("data");
+                                "true" == a.attr("aria-selected") ? d.trigger("close", {}) : d.trigger("select", {
+                                    data: b
+                                })
+                            }
+                        }), b.on("results:previous", function() {
+                            var a = d.getHighlightedResults(),
+                                b = d.$results.find("[aria-selected]"),
+                                c = b.index(a);
+                            if (0 !== c) {
+                                var e = c - 1;
+                                0 === a.length && (e = 0);
+                                var f = b.eq(e);
+                                f.trigger("mouseenter");
+                                var g = d.$results.offset().top,
+                                    h = f.offset().top,
+                                    i = d.$results.scrollTop() + (h - g);
+                                0 === e ? d.$results.scrollTop(0) : 0 > h - g && d.$results.scrollTop(i)
+                            }
+                        }), b.on("results:next", function() {
+                            var a = d.getHighlightedResults(),
+                                b = d.$results.find("[aria-selected]"),
+                                c = b.index(a),
+                                e = c + 1;
+                            if (!(e >= b.length)) {
+                                var f = b.eq(e);
+                                f.trigger("mouseenter");
+                                var g = d.$results.offset().top + d.$results.outerHeight(!1),
+                                    h = f.offset().top + f.outerHeight(!1),
+                                    i = d.$results.scrollTop() + h - g;
+                                0 === e ? d.$results.scrollTop(0) : h > g && d.$results.scrollTop(i)
+                            }
+                        }), b.on("results:focus", function(a) {
+                            a.element.addClass("select2-results__option--highlighted")
+                        }), b.on("results:message", function(a) {
+                            d.displayMessage(a)
+                        }), a.fn.mousewheel && this.$results.on("mousewheel", function(a) {
+                            var b = d.$results.scrollTop(),
+                                c = d.$results.get(0).scrollHeight - b + a.deltaY,
+                                e = a.deltaY > 0 && b - a.deltaY <= 0,
+                                f = a.deltaY < 0 && c <= d.$results.height();
+                            e ? (d.$results.scrollTop(0), a.preventDefault(), a.stopPropagation()) : f && (d.$results.scrollTop(d.$results.get(0).scrollHeight - d.$results.height()), a.preventDefault(), a.stopPropagation())
+                        }), this.$results.on("mouseup", ".select2-results__option[aria-selected]", function(b) {
+                            var c = a(this),
+                                e = c.data("data");
+                            return "true" === c.attr("aria-selected") ? void(d.options.get("multiple") ? d.trigger("unselect", {
+                                originalEvent: b,
+                                data: e
+                            }) : d.trigger("close", {})) : void d.trigger("select", {
+                                originalEvent: b,
+                                data: e
+                            })
+                        }), this.$results.on("mouseenter", ".select2-results__option[aria-selected]", function(b) {
+                            var c = a(this).data("data");
+                            d.getHighlightedResults().removeClass("select2-results__option--highlighted"), d.trigger("results:focus", {
+                                data: c,
+                                element: a(this)
+                            })
+                        })
+                    }, c.prototype.getHighlightedResults = function() {
+                        var a = this.$results.find(".select2-results__option--highlighted");
+                        return a
+                    }, c.prototype.destroy = function() {
+                        this.$results.remove()
+                    }, c.prototype.ensureHighlightVisible = function() {
+                        var a = this.getHighlightedResults();
+                        if (0 !== a.length) {
+                            var b = this.$results.find("[aria-selected]"),
+                                c = b.index(a),
+                                d = this.$results.offset().top,
+                                e = a.offset().top,
+                                f = this.$results.scrollTop() + (e - d),
+                                g = e - d;
+                            f -= 2 * a.outerHeight(!1), 2 >= c ? this.$results.scrollTop(0) : (g > this.$results.outerHeight() || 0 > g) && this.$results.scrollTop(f)
+                        }
+                    }, c.prototype.template = function(b, c) {
+                        var d = this.options.get("templateResult"),
+                            e = this.options.get("escapeMarkup"),
+                            f = d(b, c);
+                        null == f ? c.style.display = "none" : "string" == typeof f ? c.innerHTML = e(f) : a(c).append(f)
+                    }, c
+                }), b.define("select2/keys", [], function() {
+                    var a = {
+                        BACKSPACE: 8,
+                        TAB: 9,
+                        ENTER: 13,
+                        SHIFT: 16,
+                        CTRL: 17,
+                        ALT: 18,
+                        ESC: 27,
+                        SPACE: 32,
+                        PAGE_UP: 33,
+                        PAGE_DOWN: 34,
+                        END: 35,
+                        HOME: 36,
+                        LEFT: 37,
+                        UP: 38,
+                        RIGHT: 39,
+                        DOWN: 40,
+                        DELETE: 46
+                    };
+                    return a
+                }), b.define("select2/selection/base", ["jquery", "../utils", "../keys"], function(a, b, c) {
+                    function d(a, b) {
+                        this.$element = a, this.options = b, d.__super__.constructor.call(this)
+                    }
+                    return b.Extend(d, b.Observable), d.prototype.render = function() {
+                        var b = a('<span class="select2-selection" role="combobox"  aria-haspopup="true" aria-expanded="false"></span>');
+                        return this._tabindex = 0, null != this.$element.data("old-tabindex") ? this._tabindex = this.$element.data("old-tabindex") : null != this.$element.attr("tabindex") && (this._tabindex = this.$element.attr("tabindex")), b.attr("title", this.$element.attr("title")), b.attr("tabindex", this._tabindex), this.$selection = b, b
+                    }, d.prototype.bind = function(a, b) {
+                        var d = this,
+                            e = (a.id + "-container", a.id + "-results");
+                        this.container = a, this.$selection.on("focus", function(a) {
+                            d.trigger("focus", a)
+                        }), this.$selection.on("blur", function(a) {
+                            d._handleBlur(a)
+                        }), this.$selection.on("keydown", function(a) {
+                            d.trigger("keypress", a), a.which === c.SPACE && a.preventDefault()
+                        }), a.on("results:focus", function(a) {
+                            d.$selection.attr("aria-activedescendant", a.data._resultId)
+                        }), a.on("selection:update", function(a) {
+                            d.update(a.data)
+                        }), a.on("open", function() {
+                            d.$selection.attr("aria-expanded", "true"), d.$selection.attr("aria-owns", e), d._attachCloseHandler(a)
+                        }), a.on("close", function() {
+                            d.$selection.attr("aria-expanded", "false"), d.$selection.removeAttr("aria-activedescendant"), d.$selection.removeAttr("aria-owns"), d.$selection.focus(), d._detachCloseHandler(a)
+                        }), a.on("enable", function() {
+                            d.$selection.attr("tabindex", d._tabindex)
+                        }), a.on("disable", function() {
+                            d.$selection.attr("tabindex", "-1")
+                        })
+                    }, d.prototype._handleBlur = function(b) {
+                        var c = this;
+                        window.setTimeout(function() {
+                            document.activeElement == c.$selection[0] || a.contains(c.$selection[0], document.activeElement) || c.trigger("blur", b)
+                        }, 1)
+                    }, d.prototype._attachCloseHandler = function(b) {
+                        a(document.body).on("mousedown.select2." + b.id, function(b) {
+                            var c = a(b.target),
+                                d = c.closest(".select2"),
+                                e = a(".select2.select2-container--open");
+                            e.each(function() {
+                                var b = a(this);
+                                if (this != d[0]) {
+                                    var c = b.data("element");
+                                    c.select2("close")
+                                }
+                            })
+                        })
+                    }, d.prototype._detachCloseHandler = function(b) {
+                        a(document.body).off("mousedown.select2." + b.id)
+                    }, d.prototype.position = function(a, b) {
+                        var c = b.find(".selection");
+                        c.append(a)
+                    }, d.prototype.destroy = function() {
+                        this._detachCloseHandler(this.container)
+                    }, d.prototype.update = function(a) {
+                        throw new Error("The `update` method must be defined in child classes.")
+                    }, d
+                }), b.define("select2/selection/single", ["jquery", "./base", "../utils", "../keys"], function(a, b, c, d) {
+                    function e() {
+                        e.__super__.constructor.apply(this, arguments)
+                    }
+                    return c.Extend(e, b), e.prototype.render = function() {
+                        var a = e.__super__.render.call(this);
+                        return a.addClass("select2-selection--single"), a.html('<span class="select2-selection__rendered"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>'), a
+                    }, e.prototype.bind = function(a, b) {
+                        var c = this;
+                        e.__super__.bind.apply(this, arguments);
+                        var d = a.id + "-container";
+                        this.$selection.find(".select2-selection__rendered").attr("id", d), this.$selection.attr("aria-labelledby", d), this.$selection.on("mousedown", function(a) {
+                            1 === a.which && c.trigger("toggle", {
+                                originalEvent: a
+                            })
+                        }), this.$selection.on("focus", function(a) {}), this.$selection.on("blur", function(a) {}), a.on("focus", function(b) {
+                            a.isOpen() || c.$selection.focus()
+                        }), a.on("selection:update", function(a) {
+                            c.update(a.data)
+                        })
+                    }, e.prototype.clear = function() {
+                        this.$selection.find(".select2-selection__rendered").empty()
+                    }, e.prototype.display = function(a, b) {
+                        var c = this.options.get("templateSelection"),
+                            d = this.options.get("escapeMarkup");
+                        return d(c(a, b))
+                    }, e.prototype.selectionContainer = function() {
+                        return a("<span></span>")
+                    }, e.prototype.update = function(a) {
+                        if (0 === a.length) return void this.clear();
+                        var b = a[0],
+                            c = this.$selection.find(".select2-selection__rendered"),
+                            d = this.display(b, c);
+                        c.empty().append(d), c.prop("title", b.title || b.text)
+                    }, e
+                }), b.define("select2/selection/multiple", ["jquery", "./base", "../utils"], function(a, b, c) {
+                    function d(a, b) {
+                        d.__super__.constructor.apply(this, arguments)
+                    }
+                    return c.Extend(d, b), d.prototype.render = function() {
+                        var a = d.__super__.render.call(this);
+                        return a.addClass("select2-selection--multiple"), a.html('<ul class="select2-selection__rendered"></ul>'), a
+                    }, d.prototype.bind = function(b, c) {
+                        var e = this;
+                        d.__super__.bind.apply(this, arguments), this.$selection.on("click", function(a) {
+                            e.trigger("toggle", {
+                                originalEvent: a
+                            })
+                        }), this.$selection.on("click", ".select2-selection__choice__remove", function(b) {
+                            if (!e.options.get("disabled")) {
+                                var c = a(this),
+                                    d = c.parent(),
+                                    f = d.data("data");
+                                e.trigger("unselect", {
+                                    originalEvent: b,
+                                    data: f
+                                })
+                            }
+                        })
+                    }, d.prototype.clear = function() {
+                        this.$selection.find(".select2-selection__rendered").empty()
+                    }, d.prototype.display = function(a, b) {
+                        var c = this.options.get("templateSelection"),
+                            d = this.options.get("escapeMarkup");
+                        return d(c(a, b))
+                    }, d.prototype.selectionContainer = function() {
+                        var b = a('<li class="select2-selection__choice"><span class="select2-selection__choice__remove" role="presentation">&times;</span></li>');
+                        return b
+                    }, d.prototype.update = function(a) {
+                        if (this.clear(), 0 !== a.length) {
+                            for (var b = [], d = 0; d < a.length; d++) {
+                                var e = a[d],
+                                    f = this.selectionContainer(),
+                                    g = this.display(e, f);
+                                f.append(g), f.prop("title", e.title || e.text), f.data("data", e), b.push(f)
+                            }
+                            var h = this.$selection.find(".select2-selection__rendered");
+                            c.appendMany(h, b)
+                        }
+                    }, d
+                }), b.define("select2/selection/placeholder", ["../utils"], function(a) {
+                    function b(a, b, c) {
+                        this.placeholder = this.normalizePlaceholder(c.get("placeholder")), a.call(this, b, c)
+                    }
+                    return b.prototype.normalizePlaceholder = function(a, b) {
+                        return "string" == typeof b && (b = {
+                            id: "",
+                            text: b
+                        }), b
+                    }, b.prototype.createPlaceholder = function(a, b) {
+                        var c = this.selectionContainer();
+                        return c.html(this.display(b)), c.addClass("select2-selection__placeholder").removeClass("select2-selection__choice"), c
+                    }, b.prototype.update = function(a, b) {
+                        var c = 1 == b.length && b[0].id != this.placeholder.id,
+                            d = b.length > 1;
+                        if (d || c) return a.call(this, b);
+                        this.clear();
+                        var e = this.createPlaceholder(this.placeholder);
+                        this.$selection.find(".select2-selection__rendered").append(e)
+                    }, b
+                }), b.define("select2/selection/allowClear", ["jquery", "../keys"], function(a, b) {
+                    function c() {}
+                    return c.prototype.bind = function(a, b, c) {
+                        var d = this;
+                        a.call(this, b, c), null == this.placeholder && this.options.get("debug") && window.console && console.error && console.error("Select2: The `allowClear` option should be used in combination with the `placeholder` option."), this.$selection.on("mousedown", ".select2-selection__clear", function(a) {
+                            d._handleClear(a)
+                        }), b.on("keypress", function(a) {
+                            d._handleKeyboardClear(a, b)
+                        })
+                    }, c.prototype._handleClear = function(a, b) {
+                        if (!this.options.get("disabled")) {
+                            var c = this.$selection.find(".select2-selection__clear");
+                            if (0 !== c.length) {
+                                b.stopPropagation();
+                                for (var d = c.data("data"), e = 0; e < d.length; e++) {
+                                    var f = {
+                                        data: d[e]
+                                    };
+                                    if (this.trigger("unselect", f), f.prevented) return
+                                }
+                                this.$element.val(this.placeholder.id).trigger("change"), this.trigger("toggle", {})
+                            }
+                        }
+                    }, c.prototype._handleKeyboardClear = function(a, c, d) {
+                        d.isOpen() || (c.which == b.DELETE || c.which == b.BACKSPACE) && this._handleClear(c)
+                    }, c.prototype.update = function(b, c) {
+                        if (b.call(this, c), !(this.$selection.find(".select2-selection__placeholder").length > 0 || 0 === c.length)) {
+                            var d = a('<span class="select2-selection__clear">&times;</span>');
+                            d.data("data", c), this.$selection.find(".select2-selection__rendered").prepend(d)
+                        }
+                    }, c
+                }), b.define("select2/selection/search", ["jquery", "../utils", "../keys"], function(a, b, c) {
+                    function d(a, b, c) {
+                        a.call(this, b, c)
+                    }
+                    return d.prototype.render = function(b) {
+                        var c = a('<li class="select2-search select2-search--inline"><input style="display:none" class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" /></li>');
+                        this.$searchContainer = c, this.$search = c.find("input");
+                        var d = b.call(this);
+                        return this._transferTabIndex(), d
+                    }, d.prototype.bind = function(a, b, d) {
+                        var e = this;
+                        a.call(this, b, d), b.on("open", function() {
+                            e.$search.trigger("focus")
+                        }), b.on("close", function() {
+                            e.$search.val(""), e.$search.removeAttr("aria-activedescendant"), e.$search.trigger("focus")
+                        }), b.on("enable", function() {
+                            e.$search.prop("disabled", !1), e._transferTabIndex()
+                        }), b.on("disable", function() {
+                            e.$search.prop("disabled", !0)
+                        }), b.on("focus", function(a) {
+                            e.$search.trigger("focus")
+                        }), b.on("results:focus", function(a) {
+                            e.$search.attr("aria-activedescendant", a.id)
+                        }), this.$selection.on("focusin", ".select2-search--inline", function(a) {
+                            e.trigger("focus", a)
+                        }), this.$selection.on("focusout", ".select2-search--inline", function(a) {
+                            e._handleBlur(a)
+                        }), this.$selection.on("keydown", ".select2-search--inline", function(a) {
+                            a.stopPropagation(), e.trigger("keypress", a), e._keyUpPrevented = a.isDefaultPrevented();
+                            var b = a.which;
+                            if (b === c.BACKSPACE && "" === e.$search.val()) {
+                                var d = e.$searchContainer.prev(".select2-selection__choice");
+                                if (d.length > 0) {
+                                    var f = d.data("data");
+                                    e.searchRemoveChoice(f), a.preventDefault()
+                                }
+                            }
+                        });
+                        var f = document.documentMode,
+                            g = f && 11 >= f;
+                        this.$selection.on("input.searchcheck", ".select2-search--inline", function(a) {
+                            return g ? void e.$selection.off("input.search input.searchcheck") : void e.$selection.off("keyup.search")
+                        }), this.$selection.on("keyup.search input.search", ".select2-search--inline", function(a) {
+                            if (g && "input" === a.type) return void e.$selection.off("input.search input.searchcheck");
+                            var b = a.which;
+                            b != c.SHIFT && b != c.CTRL && b != c.ALT && b != c.TAB && e.handleSearch(a)
+                        })
+                    }, d.prototype._transferTabIndex = function(a) {
+                        this.$search.attr("tabindex", this.$selection.attr("tabindex")), this.$selection.attr("tabindex", "-1")
+                    }, d.prototype.createPlaceholder = function(a, b) {
+                        this.$search.attr("placeholder", b.text)
+                    }, d.prototype.update = function(a, b) {
+                        var c = this.$search[0] == document.activeElement;
+                        this.$search.attr("placeholder", ""), a.call(this, b), this.$selection.find(".select2-selection__rendered").append(this.$searchContainer), this.resizeSearch(), c && this.$search.focus()
+                    }, d.prototype.handleSearch = function() {
+                        if (this.resizeSearch(), !this._keyUpPrevented) {
+                            var a = this.$search.val();
+                            this.trigger("query", {
+                                term: a
+                            })
+                        }
+                        this._keyUpPrevented = !1
+                    }, d.prototype.searchRemoveChoice = function(a, b) {
+                        this.trigger("unselect", {
+                            data: b
+                        }), this.$search.val(b.text), this.handleSearch()
+                    }, d.prototype.resizeSearch = function() {
+                        this.$search.css("width", "25px");
+                        var a = "";
+                        if ("" !== this.$search.attr("placeholder")) a = this.$selection.find(".select2-selection__rendered").innerWidth();
+                        else {
+                            var b = this.$search.val().length + 1;
+                            a = .75 * b + "em"
+                        }
+                        this.$search.css("width", a)
+                    }, d
+                }), b.define("select2/selection/eventRelay", ["jquery"], function(a) {
+                    function b() {}
+                    return b.prototype.bind = function(b, c, d) {
+                        var e = this,
+                            f = ["open", "opening", "close", "closing", "select", "selecting", "unselect", "unselecting"],
+                            g = ["opening", "closing", "selecting", "unselecting"];
+                        b.call(this, c, d), c.on("*", function(b, c) {
+                            if (-1 !== a.inArray(b, f)) {
+                                c = c || {};
+                                var d = a.Event("select2:" + b, {
+                                    params: c
+                                });
+                                e.$element.trigger(d), -1 !== a.inArray(b, g) && (c.prevented = d.isDefaultPrevented())
+                            }
+                        })
+                    }, b
+                }), b.define("select2/translation", ["jquery", "require"], function(a, b) {
+                    function c(a) {
+                        this.dict = a || {}
+                    }
+                    return c.prototype.all = function() {
+                        return this.dict
+                    }, c.prototype.get = function(a) {
+                        return this.dict[a]
+                    }, c.prototype.extend = function(b) {
+                        this.dict = a.extend({}, b.all(), this.dict)
+                    }, c._cache = {}, c.loadPath = function(a) {
+                        if (!(a in c._cache)) {
+                            var d = b(a);
+                            c._cache[a] = d
+                        }
+                        return new c(c._cache[a])
+                    }, c
+                }), b.define("select2/diacritics", [], function() {
+                    var a = {
+                        "Ⓐ": "A",
+                        "Ａ": "A",
+                        "À": "A",
+                        "Á": "A",
+                        "Â": "A",
+                        "Ầ": "A",
+                        "Ấ": "A",
+                        "Ẫ": "A",
+                        "Ẩ": "A",
+                        "Ã": "A",
+                        "Ā": "A",
+                        "Ă": "A",
+                        "Ằ": "A",
+                        "Ắ": "A",
+                        "Ẵ": "A",
+                        "Ẳ": "A",
+                        "Ȧ": "A",
+                        "Ǡ": "A",
+                        "Ä": "A",
+                        "Ǟ": "A",
+                        "Ả": "A",
+                        "Å": "A",
+                        "Ǻ": "A",
+                        "Ǎ": "A",
+                        "Ȁ": "A",
+                        "Ȃ": "A",
+                        "Ạ": "A",
+                        "Ậ": "A",
+                        "Ặ": "A",
+                        "Ḁ": "A",
+                        "Ą": "A",
+                        "Ⱥ": "A",
+                        "Ɐ": "A",
+                        "Ꜳ": "AA",
+                        "Æ": "AE",
+                        "Ǽ": "AE",
+                        "Ǣ": "AE",
+                        "Ꜵ": "AO",
+                        "Ꜷ": "AU",
+                        "Ꜹ": "AV",
+                        "Ꜻ": "AV",
+                        "Ꜽ": "AY",
+                        "Ⓑ": "B",
+                        "Ｂ": "B",
+                        "Ḃ": "B",
+                        "Ḅ": "B",
+                        "Ḇ": "B",
+                        "Ƀ": "B",
+                        "Ƃ": "B",
+                        "Ɓ": "B",
+                        "Ⓒ": "C",
+                        "Ｃ": "C",
+                        "Ć": "C",
+                        "Ĉ": "C",
+                        "Ċ": "C",
+                        "Č": "C",
+                        "Ç": "C",
+                        "Ḉ": "C",
+                        "Ƈ": "C",
+                        "Ȼ": "C",
+                        "Ꜿ": "C",
+                        "Ⓓ": "D",
+                        "Ｄ": "D",
+                        "Ḋ": "D",
+                        "Ď": "D",
+                        "Ḍ": "D",
+                        "Ḑ": "D",
+                        "Ḓ": "D",
+                        "Ḏ": "D",
+                        "Đ": "D",
+                        "Ƌ": "D",
+                        "Ɗ": "D",
+                        "Ɖ": "D",
+                        "Ꝺ": "D",
+                        "Ǳ": "DZ",
+                        "Ǆ": "DZ",
+                        "ǲ": "Dz",
+                        "ǅ": "Dz",
+                        "Ⓔ": "E",
+                        "Ｅ": "E",
+                        "È": "E",
+                        "É": "E",
+                        "Ê": "E",
+                        "Ề": "E",
+                        "Ế": "E",
+                        "Ễ": "E",
+                        "Ể": "E",
+                        "Ẽ": "E",
+                        "Ē": "E",
+                        "Ḕ": "E",
+                        "Ḗ": "E",
+                        "Ĕ": "E",
+                        "Ė": "E",
+                        "Ë": "E",
+                        "Ẻ": "E",
+                        "Ě": "E",
+                        "Ȅ": "E",
+                        "Ȇ": "E",
+                        "Ẹ": "E",
+                        "Ệ": "E",
+                        "Ȩ": "E",
+                        "Ḝ": "E",
+                        "Ę": "E",
+                        "Ḙ": "E",
+                        "Ḛ": "E",
+                        "Ɛ": "E",
+                        "Ǝ": "E",
+                        "Ⓕ": "F",
+                        "Ｆ": "F",
+                        "Ḟ": "F",
+                        "Ƒ": "F",
+                        "Ꝼ": "F",
+                        "Ⓖ": "G",
+                        "Ｇ": "G",
+                        "Ǵ": "G",
+                        "Ĝ": "G",
+                        "Ḡ": "G",
+                        "Ğ": "G",
+                        "Ġ": "G",
+                        "Ǧ": "G",
+                        "Ģ": "G",
+                        "Ǥ": "G",
+                        "Ɠ": "G",
+                        "Ꞡ": "G",
+                        "Ᵹ": "G",
+                        "Ꝿ": "G",
+                        "Ⓗ": "H",
+                        "Ｈ": "H",
+                        "Ĥ": "H",
+                        "Ḣ": "H",
+                        "Ḧ": "H",
+                        "Ȟ": "H",
+                        "Ḥ": "H",
+                        "Ḩ": "H",
+                        "Ḫ": "H",
+                        "Ħ": "H",
+                        "Ⱨ": "H",
+                        "Ⱶ": "H",
+                        "Ɥ": "H",
+                        "Ⓘ": "I",
+                        "Ｉ": "I",
+                        "Ì": "I",
+                        "Í": "I",
+                        "Î": "I",
+                        "Ĩ": "I",
+                        "Ī": "I",
+                        "Ĭ": "I",
+                        "İ": "I",
+                        "Ï": "I",
+                        "Ḯ": "I",
+                        "Ỉ": "I",
+                        "Ǐ": "I",
+                        "Ȉ": "I",
+                        "Ȋ": "I",
+                        "Ị": "I",
+                        "Į": "I",
+                        "Ḭ": "I",
+                        "Ɨ": "I",
+                        "Ⓙ": "J",
+                        "Ｊ": "J",
+                        "Ĵ": "J",
+                        "Ɉ": "J",
+                        "Ⓚ": "K",
+                        "Ｋ": "K",
+                        "Ḱ": "K",
+                        "Ǩ": "K",
+                        "Ḳ": "K",
+                        "Ķ": "K",
+                        "Ḵ": "K",
+                        "Ƙ": "K",
+                        "Ⱪ": "K",
+                        "Ꝁ": "K",
+                        "Ꝃ": "K",
+                        "Ꝅ": "K",
+                        "Ꞣ": "K",
+                        "Ⓛ": "L",
+                        "Ｌ": "L",
+                        "Ŀ": "L",
+                        "Ĺ": "L",
+                        "Ľ": "L",
+                        "Ḷ": "L",
+                        "Ḹ": "L",
+                        "Ļ": "L",
+                        "Ḽ": "L",
+                        "Ḻ": "L",
+                        "Ł": "L",
+                        "Ƚ": "L",
+                        "Ɫ": "L",
+                        "Ⱡ": "L",
+                        "Ꝉ": "L",
+                        "Ꝇ": "L",
+                        "Ꞁ": "L",
+                        "Ǉ": "LJ",
+                        "ǈ": "Lj",
+                        "Ⓜ": "M",
+                        "Ｍ": "M",
+                        "Ḿ": "M",
+                        "Ṁ": "M",
+                        "Ṃ": "M",
+                        "Ɱ": "M",
+                        "Ɯ": "M",
+                        "Ⓝ": "N",
+                        "Ｎ": "N",
+                        "Ǹ": "N",
+                        "Ń": "N",
+                        "Ñ": "N",
+                        "Ṅ": "N",
+                        "Ň": "N",
+                        "Ṇ": "N",
+                        "Ņ": "N",
+                        "Ṋ": "N",
+                        "Ṉ": "N",
+                        "Ƞ": "N",
+                        "Ɲ": "N",
+                        "Ꞑ": "N",
+                        "Ꞥ": "N",
+                        "Ǌ": "NJ",
+                        "ǋ": "Nj",
+                        "Ⓞ": "O",
+                        "Ｏ": "O",
+                        "Ò": "O",
+                        "Ó": "O",
+                        "Ô": "O",
+                        "Ồ": "O",
+                        "Ố": "O",
+                        "Ỗ": "O",
+                        "Ổ": "O",
+                        "Õ": "O",
+                        "Ṍ": "O",
+                        "Ȭ": "O",
+                        "Ṏ": "O",
+                        "Ō": "O",
+                        "Ṑ": "O",
+                        "Ṓ": "O",
+                        "Ŏ": "O",
+                        "Ȯ": "O",
+                        "Ȱ": "O",
+                        "Ö": "O",
+                        "Ȫ": "O",
+                        "Ỏ": "O",
+                        "Ő": "O",
+                        "Ǒ": "O",
+                        "Ȍ": "O",
+                        "Ȏ": "O",
+                        "Ơ": "O",
+                        "Ờ": "O",
+                        "Ớ": "O",
+                        "Ỡ": "O",
+                        "Ở": "O",
+                        "Ợ": "O",
+                        "Ọ": "O",
+                        "Ộ": "O",
+                        "Ǫ": "O",
+                        "Ǭ": "O",
+                        "Ø": "O",
+                        "Ǿ": "O",
+                        "Ɔ": "O",
+                        "Ɵ": "O",
+                        "Ꝋ": "O",
+                        "Ꝍ": "O",
+                        "Ƣ": "OI",
+                        "Ꝏ": "OO",
+                        "Ȣ": "OU",
+                        "Ⓟ": "P",
+                        "Ｐ": "P",
+                        "Ṕ": "P",
+                        "Ṗ": "P",
+                        "Ƥ": "P",
+                        "Ᵽ": "P",
+                        "Ꝑ": "P",
+                        "Ꝓ": "P",
+                        "Ꝕ": "P",
+                        "Ⓠ": "Q",
+                        "Ｑ": "Q",
+                        "Ꝗ": "Q",
+                        "Ꝙ": "Q",
+                        "Ɋ": "Q",
+                        "Ⓡ": "R",
+                        "Ｒ": "R",
+                        "Ŕ": "R",
+                        "Ṙ": "R",
+                        "Ř": "R",
+                        "Ȑ": "R",
+                        "Ȓ": "R",
+                        "Ṛ": "R",
+                        "Ṝ": "R",
+                        "Ŗ": "R",
+                        "Ṟ": "R",
+                        "Ɍ": "R",
+                        "Ɽ": "R",
+                        "Ꝛ": "R",
+                        "Ꞧ": "R",
+                        "Ꞃ": "R",
+                        "Ⓢ": "S",
+                        "Ｓ": "S",
+                        "ẞ": "S",
+                        "Ś": "S",
+                        "Ṥ": "S",
+                        "Ŝ": "S",
+                        "Ṡ": "S",
+                        "Š": "S",
+                        "Ṧ": "S",
+                        "Ṣ": "S",
+                        "Ṩ": "S",
+                        "Ș": "S",
+                        "Ş": "S",
+                        "Ȿ": "S",
+                        "Ꞩ": "S",
+                        "Ꞅ": "S",
+                        "Ⓣ": "T",
+                        "Ｔ": "T",
+                        "Ṫ": "T",
+                        "Ť": "T",
+                        "Ṭ": "T",
+                        "Ț": "T",
+                        "Ţ": "T",
+                        "Ṱ": "T",
+                        "Ṯ": "T",
+                        "Ŧ": "T",
+                        "Ƭ": "T",
+                        "Ʈ": "T",
+                        "Ⱦ": "T",
+                        "Ꞇ": "T",
+                        "Ꜩ": "TZ",
+                        "Ⓤ": "U",
+                        "Ｕ": "U",
+                        "Ù": "U",
+                        "Ú": "U",
+                        "Û": "U",
+                        "Ũ": "U",
+                        "Ṹ": "U",
+                        "Ū": "U",
+                        "Ṻ": "U",
+                        "Ŭ": "U",
+                        "Ü": "U",
+                        "Ǜ": "U",
+                        "Ǘ": "U",
+                        "Ǖ": "U",
+                        "Ǚ": "U",
+                        "Ủ": "U",
+                        "Ů": "U",
+                        "Ű": "U",
+                        "Ǔ": "U",
+                        "Ȕ": "U",
+                        "Ȗ": "U",
+                        "Ư": "U",
+                        "Ừ": "U",
+                        "Ứ": "U",
+                        "Ữ": "U",
+                        "Ử": "U",
+                        "Ự": "U",
+                        "Ụ": "U",
+                        "Ṳ": "U",
+                        "Ų": "U",
+                        "Ṷ": "U",
+                        "Ṵ": "U",
+                        "Ʉ": "U",
+                        "Ⓥ": "V",
+                        "Ｖ": "V",
+                        "Ṽ": "V",
+                        "Ṿ": "V",
+                        "Ʋ": "V",
+                        "Ꝟ": "V",
+                        "Ʌ": "V",
+                        "Ꝡ": "VY",
+                        "Ⓦ": "W",
+                        "Ｗ": "W",
+                        "Ẁ": "W",
+                        "Ẃ": "W",
+                        "Ŵ": "W",
+                        "Ẇ": "W",
+                        "Ẅ": "W",
+                        "Ẉ": "W",
+                        "Ⱳ": "W",
+                        "Ⓧ": "X",
+                        "Ｘ": "X",
+                        "Ẋ": "X",
+                        "Ẍ": "X",
+                        "Ⓨ": "Y",
+                        "Ｙ": "Y",
+                        "Ỳ": "Y",
+                        "Ý": "Y",
+                        "Ŷ": "Y",
+                        "Ỹ": "Y",
+                        "Ȳ": "Y",
+                        "Ẏ": "Y",
+                        "Ÿ": "Y",
+                        "Ỷ": "Y",
+                        "Ỵ": "Y",
+                        "Ƴ": "Y",
+                        "Ɏ": "Y",
+                        "Ỿ": "Y",
+                        "Ⓩ": "Z",
+                        "Ｚ": "Z",
+                        "Ź": "Z",
+                        "Ẑ": "Z",
+                        "Ż": "Z",
+                        "Ž": "Z",
+                        "Ẓ": "Z",
+                        "Ẕ": "Z",
+                        "Ƶ": "Z",
+                        "Ȥ": "Z",
+                        "Ɀ": "Z",
+                        "Ⱬ": "Z",
+                        "Ꝣ": "Z",
+                        "ⓐ": "a",
+                        "ａ": "a",
+                        "ẚ": "a",
+                        "à": "a",
+                        "á": "a",
+                        "â": "a",
+                        "ầ": "a",
+                        "ấ": "a",
+                        "ẫ": "a",
+                        "ẩ": "a",
+                        "ã": "a",
+                        "ā": "a",
+                        "ă": "a",
+                        "ằ": "a",
+                        "ắ": "a",
+                        "ẵ": "a",
+                        "ẳ": "a",
+                        "ȧ": "a",
+                        "ǡ": "a",
+                        "ä": "a",
+                        "ǟ": "a",
+                        "ả": "a",
+                        "å": "a",
+                        "ǻ": "a",
+                        "ǎ": "a",
+                        "ȁ": "a",
+                        "ȃ": "a",
+                        "ạ": "a",
+                        "ậ": "a",
+                        "ặ": "a",
+                        "ḁ": "a",
+                        "ą": "a",
+                        "ⱥ": "a",
+                        "ɐ": "a",
+                        "ꜳ": "aa",
+                        "æ": "ae",
+                        "ǽ": "ae",
+                        "ǣ": "ae",
+                        "ꜵ": "ao",
+                        "ꜷ": "au",
+                        "ꜹ": "av",
+                        "ꜻ": "av",
+                        "ꜽ": "ay",
+                        "ⓑ": "b",
+                        "ｂ": "b",
+                        "ḃ": "b",
+                        "ḅ": "b",
+                        "ḇ": "b",
+                        "ƀ": "b",
+                        "ƃ": "b",
+                        "ɓ": "b",
+                        "ⓒ": "c",
+                        "ｃ": "c",
+                        "ć": "c",
+                        "ĉ": "c",
+                        "ċ": "c",
+                        "č": "c",
+                        "ç": "c",
+                        "ḉ": "c",
+                        "ƈ": "c",
+                        "ȼ": "c",
+                        "ꜿ": "c",
+                        "ↄ": "c",
+                        "ⓓ": "d",
+                        "ｄ": "d",
+                        "ḋ": "d",
+                        "ď": "d",
+                        "ḍ": "d",
+                        "ḑ": "d",
+                        "ḓ": "d",
+                        "ḏ": "d",
+                        "đ": "d",
+                        "ƌ": "d",
+                        "ɖ": "d",
+                        "ɗ": "d",
+                        "ꝺ": "d",
+                        "ǳ": "dz",
+                        "ǆ": "dz",
+                        "ⓔ": "e",
+                        "ｅ": "e",
+                        "è": "e",
+                        "é": "e",
+                        "ê": "e",
+                        "ề": "e",
+                        "ế": "e",
+                        "ễ": "e",
+                        "ể": "e",
+                        "ẽ": "e",
+                        "ē": "e",
+                        "ḕ": "e",
+                        "ḗ": "e",
+                        "ĕ": "e",
+                        "ė": "e",
+                        "ë": "e",
+                        "ẻ": "e",
+                        "ě": "e",
+                        "ȅ": "e",
+                        "ȇ": "e",
+                        "ẹ": "e",
+                        "ệ": "e",
+                        "ȩ": "e",
+                        "ḝ": "e",
+                        "ę": "e",
+                        "ḙ": "e",
+                        "ḛ": "e",
+                        "ɇ": "e",
+                        "ɛ": "e",
+                        "ǝ": "e",
+                        "ⓕ": "f",
+                        "ｆ": "f",
+                        "ḟ": "f",
+                        "ƒ": "f",
+                        "ꝼ": "f",
+                        "ⓖ": "g",
+                        "ｇ": "g",
+                        "ǵ": "g",
+                        "ĝ": "g",
+                        "ḡ": "g",
+                        "ğ": "g",
+                        "ġ": "g",
+                        "ǧ": "g",
+                        "ģ": "g",
+                        "ǥ": "g",
+                        "ɠ": "g",
+                        "ꞡ": "g",
+                        "ᵹ": "g",
+                        "ꝿ": "g",
+                        "ⓗ": "h",
+                        "ｈ": "h",
+                        "ĥ": "h",
+                        "ḣ": "h",
+                        "ḧ": "h",
+                        "ȟ": "h",
+                        "ḥ": "h",
+                        "ḩ": "h",
+                        "ḫ": "h",
+                        "ẖ": "h",
+                        "ħ": "h",
+                        "ⱨ": "h",
+                        "ⱶ": "h",
+                        "ɥ": "h",
+                        "ƕ": "hv",
+                        "ⓘ": "i",
+                        "ｉ": "i",
+                        "ì": "i",
+                        "í": "i",
+                        "î": "i",
+                        "ĩ": "i",
+                        "ī": "i",
+                        "ĭ": "i",
+                        "ï": "i",
+                        "ḯ": "i",
+                        "ỉ": "i",
+                        "ǐ": "i",
+                        "ȉ": "i",
+                        "ȋ": "i",
+                        "ị": "i",
+                        "į": "i",
+                        "ḭ": "i",
+                        "ɨ": "i",
+                        "ı": "i",
+                        "ⓙ": "j",
+                        "ｊ": "j",
+                        "ĵ": "j",
+                        "ǰ": "j",
+                        "ɉ": "j",
+                        "ⓚ": "k",
+                        "ｋ": "k",
+                        "ḱ": "k",
+                        "ǩ": "k",
+                        "ḳ": "k",
+                        "ķ": "k",
+                        "ḵ": "k",
+                        "ƙ": "k",
+                        "ⱪ": "k",
+                        "ꝁ": "k",
+                        "ꝃ": "k",
+                        "ꝅ": "k",
+                        "ꞣ": "k",
+                        "ⓛ": "l",
+                        "ｌ": "l",
+                        "ŀ": "l",
+                        "ĺ": "l",
+                        "ľ": "l",
+                        "ḷ": "l",
+                        "ḹ": "l",
+                        "ļ": "l",
+                        "ḽ": "l",
+                        "ḻ": "l",
+                        "ſ": "l",
+                        "ł": "l",
+                        "ƚ": "l",
+                        "ɫ": "l",
+                        "ⱡ": "l",
+                        "ꝉ": "l",
+                        "ꞁ": "l",
+                        "ꝇ": "l",
+                        "ǉ": "lj",
+                        "ⓜ": "m",
+                        "ｍ": "m",
+                        "ḿ": "m",
+                        "ṁ": "m",
+                        "ṃ": "m",
+                        "ɱ": "m",
+                        "ɯ": "m",
+                        "ⓝ": "n",
+                        "ｎ": "n",
+                        "ǹ": "n",
+                        "ń": "n",
+                        "ñ": "n",
+                        "ṅ": "n",
+                        "ň": "n",
+                        "ṇ": "n",
+                        "ņ": "n",
+                        "ṋ": "n",
+                        "ṉ": "n",
+                        "ƞ": "n",
+                        "ɲ": "n",
+                        "ŉ": "n",
+                        "ꞑ": "n",
+                        "ꞥ": "n",
+                        "ǌ": "nj",
+                        "ⓞ": "o",
+                        "ｏ": "o",
+                        "ò": "o",
+                        "ó": "o",
+                        "ô": "o",
+                        "ồ": "o",
+                        "ố": "o",
+                        "ỗ": "o",
+                        "ổ": "o",
+                        "õ": "o",
+                        "ṍ": "o",
+                        "ȭ": "o",
+                        "ṏ": "o",
+                        "ō": "o",
+                        "ṑ": "o",
+                        "ṓ": "o",
+                        "ŏ": "o",
+                        "ȯ": "o",
+                        "ȱ": "o",
+                        "ö": "o",
+                        "ȫ": "o",
+                        "ỏ": "o",
+                        "ő": "o",
+                        "ǒ": "o",
+                        "ȍ": "o",
+                        "ȏ": "o",
+                        "ơ": "o",
+                        "ờ": "o",
+                        "ớ": "o",
+                        "ỡ": "o",
+                        "ở": "o",
+                        "ợ": "o",
+                        "ọ": "o",
+                        "ộ": "o",
+                        "ǫ": "o",
+                        "ǭ": "o",
+                        "ø": "o",
+                        "ǿ": "o",
+                        "ɔ": "o",
+                        "ꝋ": "o",
+                        "ꝍ": "o",
+                        "ɵ": "o",
+                        "ƣ": "oi",
+                        "ȣ": "ou",
+                        "ꝏ": "oo",
+                        "ⓟ": "p",
+                        "ｐ": "p",
+                        "ṕ": "p",
+                        "ṗ": "p",
+                        "ƥ": "p",
+                        "ᵽ": "p",
+                        "ꝑ": "p",
+                        "ꝓ": "p",
+                        "ꝕ": "p",
+                        "ⓠ": "q",
+                        "ｑ": "q",
+                        "ɋ": "q",
+                        "ꝗ": "q",
+                        "ꝙ": "q",
+                        "ⓡ": "r",
+                        "ｒ": "r",
+                        "ŕ": "r",
+                        "ṙ": "r",
+                        "ř": "r",
+                        "ȑ": "r",
+                        "ȓ": "r",
+                        "ṛ": "r",
+                        "ṝ": "r",
+                        "ŗ": "r",
+                        "ṟ": "r",
+                        "ɍ": "r",
+                        "ɽ": "r",
+                        "ꝛ": "r",
+                        "ꞧ": "r",
+                        "ꞃ": "r",
+                        "ⓢ": "s",
+                        "ｓ": "s",
+                        "ß": "s",
+                        "ś": "s",
+                        "ṥ": "s",
+                        "ŝ": "s",
+                        "ṡ": "s",
+                        "š": "s",
+                        "ṧ": "s",
+                        "ṣ": "s",
+                        "ṩ": "s",
+                        "ș": "s",
+                        "ş": "s",
+                        "ȿ": "s",
+                        "ꞩ": "s",
+                        "ꞅ": "s",
+                        "ẛ": "s",
+                        "ⓣ": "t",
+                        "ｔ": "t",
+                        "ṫ": "t",
+                        "ẗ": "t",
+                        "ť": "t",
+                        "ṭ": "t",
+                        "ț": "t",
+                        "ţ": "t",
+                        "ṱ": "t",
+                        "ṯ": "t",
+                        "ŧ": "t",
+                        "ƭ": "t",
+                        "ʈ": "t",
+                        "ⱦ": "t",
+                        "ꞇ": "t",
+                        "ꜩ": "tz",
+                        "ⓤ": "u",
+                        "ｕ": "u",
+                        "ù": "u",
+                        "ú": "u",
+                        "û": "u",
+                        "ũ": "u",
+                        "ṹ": "u",
+                        "ū": "u",
+                        "ṻ": "u",
+                        "ŭ": "u",
+                        "ü": "u",
+                        "ǜ": "u",
+                        "ǘ": "u",
+                        "ǖ": "u",
+                        "ǚ": "u",
+                        "ủ": "u",
+                        "ů": "u",
+                        "ű": "u",
+                        "ǔ": "u",
+                        "ȕ": "u",
+                        "ȗ": "u",
+                        "ư": "u",
+                        "ừ": "u",
+                        "ứ": "u",
+                        "ữ": "u",
+                        "ử": "u",
+                        "ự": "u",
+                        "ụ": "u",
+                        "ṳ": "u",
+                        "ų": "u",
+                        "ṷ": "u",
+                        "ṵ": "u",
+                        "ʉ": "u",
+                        "ⓥ": "v",
+                        "ｖ": "v",
+                        "ṽ": "v",
+                        "ṿ": "v",
+                        "ʋ": "v",
+                        "ꝟ": "v",
+                        "ʌ": "v",
+                        "ꝡ": "vy",
+                        "ⓦ": "w",
+                        "ｗ": "w",
+                        "ẁ": "w",
+                        "ẃ": "w",
+                        "ŵ": "w",
+                        "ẇ": "w",
+                        "ẅ": "w",
+                        "ẘ": "w",
+                        "ẉ": "w",
+                        "ⱳ": "w",
+                        "ⓧ": "x",
+                        "ｘ": "x",
+                        "ẋ": "x",
+                        "ẍ": "x",
+                        "ⓨ": "y",
+                        "ｙ": "y",
+                        "ỳ": "y",
+                        "ý": "y",
+                        "ŷ": "y",
+                        "ỹ": "y",
+                        "ȳ": "y",
+                        "ẏ": "y",
+                        "ÿ": "y",
+                        "ỷ": "y",
+                        "ẙ": "y",
+                        "ỵ": "y",
+                        "ƴ": "y",
+                        "ɏ": "y",
+                        "ỿ": "y",
+                        "ⓩ": "z",
+                        "ｚ": "z",
+                        "ź": "z",
+                        "ẑ": "z",
+                        "ż": "z",
+                        "ž": "z",
+                        "ẓ": "z",
+                        "ẕ": "z",
+                        "ƶ": "z",
+                        "ȥ": "z",
+                        "ɀ": "z",
+                        "ⱬ": "z",
+                        "ꝣ": "z",
+                        "Ά": "Α",
+                        "Έ": "Ε",
+                        "Ή": "Η",
+                        "Ί": "Ι",
+                        "Ϊ": "Ι",
+                        "Ό": "Ο",
+                        "Ύ": "Υ",
+                        "Ϋ": "Υ",
+                        "Ώ": "Ω",
+                        "ά": "α",
+                        "έ": "ε",
+                        "ή": "η",
+                        "ί": "ι",
+                        "ϊ": "ι",
+                        "ΐ": "ι",
+                        "ό": "ο",
+                        "ύ": "υ",
+                        "ϋ": "υ",
+                        "ΰ": "υ",
+                        "ω": "ω",
+                        "ς": "σ"
+                    };
+                    return a
+                }), b.define("select2/data/base", ["../utils"], function(a) {
+                    function b(a, c) {
+                        b.__super__.constructor.call(this)
+                    }
+                    return a.Extend(b, a.Observable), b.prototype.current = function(a) {
+                        throw new Error("The `current` method must be defined in child classes.")
+                    }, b.prototype.query = function(a, b) {
+                        throw new Error("The `query` method must be defined in child classes.")
+                    }, b.prototype.bind = function(a, b) {}, b.prototype.destroy = function() {}, b.prototype.generateResultId = function(b, c) {
+                        var d = b.id + "-result-";
+                        return d += a.generateChars(4), d += null != c.id ? "-" + c.id.toString() : "-" + a.generateChars(4)
+                    }, b
+                }), b.define("select2/data/select", ["./base", "../utils", "jquery"], function(a, b, c) {
+                    function d(a, b) {
+                        this.$element = a, this.options = b, d.__super__.constructor.call(this)
+                    }
+                    return b.Extend(d, a), d.prototype.current = function(a) {
+                        var b = [],
+                            d = this;
+                        this.$element.find(":selected").each(function() {
+                            var a = c(this),
+                                e = d.item(a);
+                            b.push(e)
+                        }), a(b)
+                    }, d.prototype.select = function(a) {
+                        var b = this;
+                        if (a.selected = !0, c(a.element).is("option")) return a.element.selected = !0, void this.$element.trigger("change");
+                        if (this.$element.prop("multiple")) this.current(function(d) {
+                            var e = [];
+                            a = [a], a.push.apply(a, d);
+                            for (var f = 0; f < a.length; f++) {
+                                var g = a[f].id; - 1 === c.inArray(g, e) && e.push(g)
+                            }
+                            b.$element.val(e), b.$element.trigger("change")
+                        });
+                        else {
+                            var d = a.id;
+                            this.$element.val(d), this.$element.trigger("change")
+                        }
+                    }, d.prototype.unselect = function(a) {
+                        var b = this;
+                        if (this.$element.prop("multiple")) return a.selected = !1, c(a.element).is("option") ? (a.element.selected = !1, void this.$element.trigger("change")) : void this.current(function(d) {
+                            for (var e = [], f = 0; f < d.length; f++) {
+                                var g = d[f].id;
+                                g !== a.id && -1 === c.inArray(g, e) && e.push(g)
+                            }
+                            b.$element.val(e), b.$element.trigger("change")
+                        })
+                    }, d.prototype.bind = function(a, b) {
+                        var c = this;
+                        this.container = a, a.on("select", function(a) {
+                            c.select(a.data)
+                        }), a.on("unselect", function(a) {
+                            c.unselect(a.data)
+                        })
+                    }, d.prototype.destroy = function() {
+                        this.$element.find("*").each(function() {
+                            c.removeData(this, "data")
+                        })
+                    }, d.prototype.query = function(a, b) {
+                        var d = [],
+                            e = this,
+                            f = this.$element.children();
+                        f.each(function() {
+                            var b = c(this);
+                            if (b.is("option") || b.is("optgroup")) {
+                                var f = e.item(b),
+                                    g = e.matches(a, f);
+                                null !== g && d.push(g)
+                            }
+                        }), b({
+                            results: d
+                        })
+                    }, d.prototype.addOptions = function(a) {
+                        b.appendMany(this.$element, a)
+                    }, d.prototype.option = function(a) {
+                        var b;
+                        a.children ? (b = document.createElement("optgroup"), b.label = a.text) : (b = document.createElement("option"), void 0 !== b.textContent ? b.textContent = a.text : b.innerText = a.text), a.id && (b.value = a.id), a.disabled && (b.disabled = !0), a.selected && (b.selected = !0), a.title && (b.title = a.title);
+                        var d = c(b),
+                            e = this._normalizeItem(a);
+                        return e.element = b, c.data(b, "data", e), d
+                    }, d.prototype.item = function(a) {
+                        var b = {};
+                        if (b = c.data(a[0], "data"), null != b) return b;
+                        if (a.is("option")) b = {
+                            id: a.val(),
+                            text: a.text(),
+                            disabled: a.prop("disabled"),
+                            selected: a.prop("selected"),
+                            title: a.prop("title")
+                        };
+                        else if (a.is("optgroup")) {
+                            b = {
+                                text: a.prop("label"),
+                                children: [],
+                                title: a.prop("title")
+                            };
+                            for (var d = a.children("option"), e = [], f = 0; f < d.length; f++) {
+                                var g = c(d[f]),
+                                    h = this.item(g);
+                                e.push(h)
+                            }
+                            b.children = e
+                        }
+                        return b = this._normalizeItem(b), b.element = a[0], c.data(a[0], "data", b), b
+                    }, d.prototype._normalizeItem = function(a) {
+                        c.isPlainObject(a) || (a = {
+                            id: a,
+                            text: a
+                        }), a = c.extend({}, {
+                            text: ""
+                        }, a);
+                        var b = {
+                            selected: !1,
+                            disabled: !1
+                        };
+                        return null != a.id && (a.id = a.id.toString()), null != a.text && (a.text = a.text.toString()), null == a._resultId && a.id && null != this.container && (a._resultId = this.generateResultId(this.container, a)), c.extend({}, b, a)
+                    }, d.prototype.matches = function(a, b) {
+                        var c = this.options.get("matcher");
+                        return c(a, b)
+                    }, d
+                }), b.define("select2/data/array", ["./select", "../utils", "jquery"], function(a, b, c) {
+                    function d(a, b) {
+                        var c = b.get("data") || [];
+                        d.__super__.constructor.call(this, a, b), this.addOptions(this.convertToOptions(c))
+                    }
+                    return b.Extend(d, a), d.prototype.select = function(a) {
+                        var b = this.$element.find("option").filter(function(b, c) {
+                            return c.value == a.id.toString()
+                        });
+                        0 === b.length && (b = this.option(a), this.addOptions(b)), d.__super__.select.call(this, a)
+                    }, d.prototype.convertToOptions = function(a) {
+                        function d(a) {
+                            return function() {
+                                return c(this).val() == a.id
+                            }
+                        }
+                        for (var e = this, f = this.$element.find("option"), g = f.map(function() {
+                                return e.item(c(this)).id
+                            }).get(), h = [], i = 0; i < a.length; i++) {
+                            var j = this._normalizeItem(a[i]);
+                            if (c.inArray(j.id, g) >= 0) {
+                                var k = f.filter(d(j)),
+                                    l = this.item(k),
+                                    m = c.extend(!0, {}, j, l),
+                                    n = this.option(m);
+                                k.replaceWith(n)
+                            } else {
+                                var o = this.option(j);
+                                if (j.children) {
+                                    var p = this.convertToOptions(j.children);
+                                    b.appendMany(o, p)
+                                }
+                                h.push(o)
+                            }
+                        }
+                        return h
+                    }, d
+                }), b.define("select2/data/ajax", ["./array", "../utils", "jquery"], function(a, b, c) {
+                    function d(a, b) {
+                        this.ajaxOptions = this._applyDefaults(b.get("ajax")), null != this.ajaxOptions.processResults && (this.processResults = this.ajaxOptions.processResults), d.__super__.constructor.call(this, a, b)
+                    }
+                    return b.Extend(d, a), d.prototype._applyDefaults = function(a) {
+                        var b = {
+                            data: function(a) {
+                                return c.extend({}, a, {
+                                    q: a.term
+                                })
+                            },
+                            transport: function(a, b, d) {
+                                var e = c.ajax(a);
+                                return e.then(b), e.fail(d), e
+                            }
+                        };
+                        return c.extend({}, b, a, !0)
+                    }, d.prototype.processResults = function(a) {
+                        return a
+                    }, d.prototype.query = function(a, b) {
+                        function d() {
+                            var d = f.transport(f, function(d) {
+                                var f = e.processResults(d, a);
+                                e.options.get("debug") && window.console && console.error && (f && f.results && c.isArray(f.results) || console.error("Select2: The AJAX results did not return an array in the `results` key of the response.")), b(f)
+                            }, function() {
+                                d.status && "0" === d.status || e.trigger("results:message", {
+                                    message: "errorLoading"
+                                })
+                            });
+                            e._request = d
+                        }
+                        var e = this;
+                        null != this._request && (c.isFunction(this._request.abort) && this._request.abort(), this._request = null);
+                        var f = c.extend({
+                            type: "GET"
+                        }, this.ajaxOptions);
+                        "function" == typeof f.url && (f.url = f.url.call(this.$element, a)), "function" == typeof f.data && (f.data = f.data.call(this.$element, a)), this.ajaxOptions.delay && null != a.term ? (this._queryTimeout && window.clearTimeout(this._queryTimeout), this._queryTimeout = window.setTimeout(d, this.ajaxOptions.delay)) : d()
+                    }, d
+                }), b.define("select2/data/tags", ["jquery"], function(a) {
+                    function b(b, c, d) {
+                        var e = d.get("tags"),
+                            f = d.get("createTag");
+                        void 0 !== f && (this.createTag = f);
+                        var g = d.get("insertTag");
+                        if (void 0 !== g && (this.insertTag = g), b.call(this, c, d), a.isArray(e))
+                            for (var h = 0; h < e.length; h++) {
+                                var i = e[h],
+                                    j = this._normalizeItem(i),
+                                    k = this.option(j);
+                                this.$element.append(k)
+                            }
+                    }
+                    return b.prototype.query = function(a, b, c) {
+                        function d(a, f) {
+                            for (var g = a.results, h = 0; h < g.length; h++) {
+                                var i = g[h],
+                                    j = null != i.children && !d({
+                                        results: i.children
+                                    }, !0),
+                                    k = i.text === b.term;
+                                if (k || j) return f ? !1 : (a.data = g, void c(a))
+                            }
+                            if (f) return !0;
+                            var l = e.createTag(b);
+                            if (null != l) {
+                                var m = e.option(l);
+                                m.attr("data-select2-tag", !0), e.addOptions([m]), e.insertTag(g, l)
+                            }
+                            a.results = g, c(a)
+                        }
+                        var e = this;
+                        return this._removeOldTags(), null == b.term || null != b.page ? void a.call(this, b, c) : void a.call(this, b, d)
+                    }, b.prototype.createTag = function(b, c) {
+                        var d = a.trim(c.term);
+                        return "" === d ? null : {
+                            id: d,
+                            text: d
+                        }
+                    }, b.prototype.insertTag = function(a, b, c) {
+                        b.unshift(c)
+                    }, b.prototype._removeOldTags = function(b) {
+                        var c = (this._lastTag, this.$element.find("option[data-select2-tag]"));
+                        c.each(function() {
+                            this.selected || a(this).remove()
+                        })
+                    }, b
+                }), b.define("select2/data/tokenizer", ["jquery"], function(a) {
+                    function b(a, b, c) {
+                        var d = c.get("tokenizer");
+                        void 0 !== d && (this.tokenizer = d), a.call(this, b, c)
+                    }
+                    return b.prototype.bind = function(a, b, c) {
+                        a.call(this, b, c), this.$search = b.dropdown.$search || b.selection.$search || c.find(".select2-search__field")
+                    }, b.prototype.query = function(b, c, d) {
+                        function e(b) {
+                            var c = g._normalizeItem(b),
+                                d = g.$element.find("option").filter(function() {
+                                    return a(this).val() === c.id
+                                });
+                            if (!d.length) {
+                                var e = g.option(c);
+                                e.attr("data-select2-tag", !0), g._removeOldTags(), g.addOptions([e])
+                            }
+                            f(c)
+                        }
+
+                        function f(a) {
+                            g.trigger("select", {
+                                data: a
+                            })
+                        }
+                        var g = this;
+                        c.term = c.term || "";
+                        var h = this.tokenizer(c, this.options, e);
+                        h.term !== c.term && (this.$search.length && (this.$search.val(h.term), this.$search.focus()), c.term = h.term), b.call(this, c, d)
+                    }, b.prototype.tokenizer = function(b, c, d, e) {
+                        for (var f = d.get("tokenSeparators") || [], g = c.term, h = 0, i = this.createTag || function(a) {
+                                return {
+                                    id: a.term,
+                                    text: a.term
+                                }
+                            }; h < g.length;) {
+                            var j = g[h];
+                            if (-1 !== a.inArray(j, f)) {
+                                var k = g.substr(0, h),
+                                    l = a.extend({}, c, {
+                                        term: k
+                                    }),
+                                    m = i(l);
+                                null != m ? (e(m), g = g.substr(h + 1) || "", h = 0) : h++
+                            } else h++
+                        }
+                        return {
+                            term: g
+                        }
+                    }, b
+                }), b.define("select2/data/minimumInputLength", [], function() {
+                    function a(a, b, c) {
+                        this.minimumInputLength = c.get("minimumInputLength"), a.call(this, b, c)
+                    }
+                    return a.prototype.query = function(a, b, c) {
+                        return b.term = b.term || "", b.term.length < this.minimumInputLength ? void this.trigger("results:message", {
+                            message: "inputTooShort",
+                            args: {
+                                minimum: this.minimumInputLength,
+                                input: b.term,
+                                params: b
+                            }
+                        }) : void a.call(this, b, c)
+                    }, a
+                }), b.define("select2/data/maximumInputLength", [], function() {
+                    function a(a, b, c) {
+                        this.maximumInputLength = c.get("maximumInputLength"), a.call(this, b, c)
+                    }
+                    return a.prototype.query = function(a, b, c) {
+                        return b.term = b.term || "", this.maximumInputLength > 0 && b.term.length > this.maximumInputLength ? void this.trigger("results:message", {
+                            message: "inputTooLong",
+                            args: {
+                                maximum: this.maximumInputLength,
+                                input: b.term,
+                                params: b
+                            }
+                        }) : void a.call(this, b, c)
+                    }, a
+                }), b.define("select2/data/maximumSelectionLength", [], function() {
+                    function a(a, b, c) {
+                        this.maximumSelectionLength = c.get("maximumSelectionLength"), a.call(this, b, c)
+                    }
+                    return a.prototype.query = function(a, b, c) {
+                        var d = this;
+                        this.current(function(e) {
+                            var f = null != e ? e.length : 0;
+                            return d.maximumSelectionLength > 0 && f >= d.maximumSelectionLength ? void d.trigger("results:message", {
+                                message: "maximumSelected",
+                                args: {
+                                    maximum: d.maximumSelectionLength
+                                }
+                            }) : void a.call(d, b, c)
+                        })
+                    }, a
+                }), b.define("select2/dropdown", ["jquery", "./utils"], function(a, b) {
+                    function c(a, b) {
+                        this.$element = a, this.options = b, c.__super__.constructor.call(this)
+                    }
+                    return b.Extend(c, b.Observable), c.prototype.render = function() {
+                        var b = a('<span class="select2-dropdown"><span class="select2-results"></span></span>');
+                        return b.attr("dir", this.options.get("dir")), this.$dropdown = b, b
+                    }, c.prototype.bind = function() {}, c.prototype.position = function(a, b) {}, c.prototype.destroy = function() {
+                        this.$dropdown.remove()
+                    }, c
+                }), b.define("select2/dropdown/search", ["jquery", "../utils"], function(a, b) {
+                    function c() {}
+                    return c.prototype.render = function(b) {
+                        var c = b.call(this),
+                            d = a('<span class="select2-search select2-search--dropdown"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" /></span>');
+                        return this.$searchContainer = d, this.$search = d.find("input"), c.prepend(d), c
+                    }, c.prototype.bind = function(b, c, d) {
+                        var e = this;
+                        b.call(this, c, d), this.$search.on("keydown", function(a) {
+                            e.trigger("keypress", a), e._keyUpPrevented = a.isDefaultPrevented()
+                        }), this.$search.on("input", function(b) {
+                            a(this).off("keyup")
+                        }), this.$search.on("keyup input", function(a) {
+                            e.handleSearch(a)
+                        }), c.on("open", function() {
+                            e.$search.attr("tabindex", 0), e.$search.focus(), window.setTimeout(function() {
+                                e.$search.focus()
+                            }, 0)
+                        }), c.on("close", function() {
+                            e.$search.attr("tabindex", -1), e.$search.val("")
+                        }), c.on("focus", function() {
+                            c.isOpen() && e.$search.focus()
+                        }), c.on("results:all", function(a) {
+                            if (null == a.query.term || "" === a.query.term) {
+                                var b = e.showSearch(a);
+                                b ? e.$searchContainer.removeClass("select2-search--hide") : e.$searchContainer.addClass("select2-search--hide")
+                            }
+                        })
+                    }, c.prototype.handleSearch = function(a) {
+                        if (!this._keyUpPrevented) {
+                            var b = this.$search.val();
+                            this.trigger("query", {
+                                term: b
+                            })
+                        }
+                        this._keyUpPrevented = !1
+                    }, c.prototype.showSearch = function(a, b) {
+                        return !0
+                    }, c
+                }), b.define("select2/dropdown/hidePlaceholder", [], function() {
+                    function a(a, b, c, d) {
+                        this.placeholder = this.normalizePlaceholder(c.get("placeholder")), a.call(this, b, c, d)
+                    }
+                    return a.prototype.append = function(a, b) {
+                        b.results = this.removePlaceholder(b.results), a.call(this, b)
+                    }, a.prototype.normalizePlaceholder = function(a, b) {
+                        return "string" == typeof b && (b = {
+                            id: "",
+                            text: b
+                        }), b
+                    }, a.prototype.removePlaceholder = function(a, b) {
+                        for (var c = b.slice(0), d = b.length - 1; d >= 0; d--) {
+                            var e = b[d];
+                            this.placeholder.id === e.id && c.splice(d, 1)
+                        }
+                        return c
+                    }, a
+                }), b.define("select2/dropdown/infiniteScroll", ["jquery"], function(a) {
+                    function b(a, b, c, d) {
+                        this.lastParams = {}, a.call(this, b, c, d), this.$loadingMore = this.createLoadingMore(), this.loading = !1
+                    }
+                    return b.prototype.append = function(a, b) {
+                        this.$loadingMore.remove(), this.loading = !1, a.call(this, b), this.showLoadingMore(b) && this.$results.append(this.$loadingMore)
+                    }, b.prototype.bind = function(b, c, d) {
+                        var e = this;
+                        b.call(this, c, d), c.on("query", function(a) {
+                            e.lastParams = a, e.loading = !0
+                        }), c.on("query:append", function(a) {
+                            e.lastParams = a, e.loading = !0
+                        }), this.$results.on("scroll", function() {
+                            var b = a.contains(document.documentElement, e.$loadingMore[0]);
+                            if (!e.loading && b) {
+                                var c = e.$results.offset().top + e.$results.outerHeight(!1),
+                                    d = e.$loadingMore.offset().top + e.$loadingMore.outerHeight(!1);
+                                c + 50 >= d && e.loadMore()
+                            }
+                        })
+                    }, b.prototype.loadMore = function() {
+                        this.loading = !0;
+                        var b = a.extend({}, {
+                            page: 1
+                        }, this.lastParams);
+                        b.page++, this.trigger("query:append", b)
+                    }, b.prototype.showLoadingMore = function(a, b) {
+                        return b.pagination && b.pagination.more
+                    }, b.prototype.createLoadingMore = function() {
+                        var b = a('<li class="select2-results__option select2-results__option--load-more"role="treeitem" aria-disabled="true"></li>'),
+                            c = this.options.get("translations").get("loadingMore");
+                        return b.html(c(this.lastParams)), b
+                    }, b
+                }), b.define("select2/dropdown/attachBody", ["jquery", "../utils"], function(a, b) {
+                    function c(b, c, d) {
+                        this.$dropdownParent = d.get("dropdownParent") || a(document.body), b.call(this, c, d)
+                    }
+                    return c.prototype.bind = function(a, b, c) {
+                        var d = this,
+                            e = !1;
+                        a.call(this, b, c), b.on("open", function() {
+                            d._showDropdown(), d._attachPositioningHandler(b), e || (e = !0, b.on("results:all", function() {
+                                d._positionDropdown(), d._resizeDropdown()
+                            }), b.on("results:append", function() {
+                                d._positionDropdown(), d._resizeDropdown()
+                            }))
+                        }), b.on("close", function() {
+                            d._hideDropdown(), d._detachPositioningHandler(b)
+                        }), this.$dropdownContainer.on("mousedown", function(a) {
+                            a.stopPropagation()
+                        })
+                    }, c.prototype.destroy = function(a) {
+                        a.call(this), this.$dropdownContainer.remove()
+                    }, c.prototype.position = function(a, b, c) {
+                        b.attr("class", c.attr("class")), b.removeClass("select2"), b.addClass("select2-container--open"), b.css({
+                            position: "absolute",
+                            top: -999999
+                        }), this.$container = c
+                    }, c.prototype.render = function(b) {
+                        var c = a("<span></span>"),
+                            d = b.call(this);
+                        return c.append(d), this.$dropdownContainer = c, c
+                    }, c.prototype._hideDropdown = function(a) {
+                        this.$dropdownContainer.detach()
+                    }, c.prototype._attachPositioningHandler = function(c, d) {
+                        var e = this,
+                            f = "scroll.select2." + d.id,
+                            g = "resize.select2." + d.id,
+                            h = "orientationchange.select2." + d.id,
+                            i = this.$container.parents().filter(b.hasScroll);
+                        i.each(function() {
+                            a(this).data("select2-scroll-position", {
+                                x: a(this).scrollLeft(),
+                                y: a(this).scrollTop()
+                            })
+                        }), i.on(f, function(b) {
+                            var c = a(this).data("select2-scroll-position");
+                            a(this).scrollTop(c.y)
+                        }), a(window).on(f + " " + g + " " + h, function(a) {
+                            e._positionDropdown(), e._resizeDropdown()
+                        })
+                    }, c.prototype._detachPositioningHandler = function(c, d) {
+                        var e = "scroll.select2." + d.id,
+                            f = "resize.select2." + d.id,
+                            g = "orientationchange.select2." + d.id,
+                            h = this.$container.parents().filter(b.hasScroll);
+                        h.off(e), a(window).off(e + " " + f + " " + g)
+                    }, c.prototype._positionDropdown = function() {
+                        var b = a(window),
+                            c = this.$dropdown.hasClass("select2-dropdown--above"),
+                            d = this.$dropdown.hasClass("select2-dropdown--below"),
+                            e = null,
+                            f = this.$container.offset();
+                        f.bottom = f.top + this.$container.outerHeight(!1);
+                        var g = {
+                            height: this.$container.outerHeight(!1)
+                        };
+                        g.top = f.top, g.bottom = f.top + g.height;
+                        var h = {
+                                height: this.$dropdown.outerHeight(!1)
+                            },
+                            i = {
+                                top: b.scrollTop(),
+                                bottom: b.scrollTop() + b.height()
+                            },
+                            j = i.top < f.top - h.height,
+                            k = i.bottom > f.bottom + h.height,
+                            l = {
+                                left: f.left,
+                                top: g.bottom
+                            },
+                            m = this.$dropdownParent;
+                        "static" === m.css("position") && (m = m.offsetParent());
+                        var n = m.offset();
+                        l.top -= n.top, l.left -= n.left, c || d || (e = "below"), k || !j || c ? !j && k && c && (e = "below") : e = "above", ("above" == e || c && "below" !== e) && (l.top = g.top - n.top - h.height), null != e && (this.$dropdown.removeClass("select2-dropdown--below select2-dropdown--above").addClass("select2-dropdown--" + e), this.$container.removeClass("select2-container--below select2-container--above").addClass("select2-container--" + e)), this.$dropdownContainer.css(l)
+                    }, c.prototype._resizeDropdown = function() {
+                        var a = {
+                            width: this.$container.outerWidth(!1) + "px"
+                        };
+                        this.options.get("dropdownAutoWidth") && (a.minWidth = a.width, a.position = "relative", a.width = "auto"), this.$dropdown.css(a)
+                    }, c.prototype._showDropdown = function(a) {
+                        this.$dropdownContainer.appendTo(this.$dropdownParent), this._positionDropdown(), this._resizeDropdown()
+                    }, c
+                }), b.define("select2/dropdown/minimumResultsForSearch", [], function() {
+                    function a(b) {
+                        for (var c = 0, d = 0; d < b.length; d++) {
+                            var e = b[d];
+                            e.children ? c += a(e.children) : c++
+                        }
+                        return c
+                    }
+
+                    function b(a, b, c, d) {
+                        this.minimumResultsForSearch = c.get("minimumResultsForSearch"), this.minimumResultsForSearch < 0 && (this.minimumResultsForSearch = 1 / 0), a.call(this, b, c, d)
+                    }
+                    return b.prototype.showSearch = function(b, c) {
+                        return a(c.data.results) < this.minimumResultsForSearch ? !1 : b.call(this, c)
+                    }, b
+                }), b.define("select2/dropdown/selectOnClose", [], function() {
+                    function a() {}
+                    return a.prototype.bind = function(a, b, c) {
+                        var d = this;
+                        a.call(this, b, c), b.on("close", function(a) {
+                            d._handleSelectOnClose(a)
+                        })
+                    }, a.prototype._handleSelectOnClose = function(a, b) {
+                        if (b && null != b.originalSelect2Event) {
+                            var c = b.originalSelect2Event;
+                            if ("select" === c._type || "unselect" === c._type) return
+                        }
+                        var d = this.getHighlightedResults();
+                        if (!(d.length < 1)) {
+                            var e = d.data("data");
+                            null != e.element && e.element.selected || null == e.element && e.selected || this.trigger("select", {
+                                data: e
+                            })
+                        }
+                    }, a
+                }), b.define("select2/dropdown/closeOnSelect", [], function() {
+                    function a() {}
+                    return a.prototype.bind = function(a, b, c) {
+                        var d = this;
+                        a.call(this, b, c), b.on("select", function(a) {
+                            d._selectTriggered(a)
+                        }), b.on("unselect", function(a) {
+                            d._selectTriggered(a)
+                        })
+                    }, a.prototype._selectTriggered = function(a, b) {
+                        var c = b.originalEvent;
+                        c && c.ctrlKey || this.trigger("close", {
+                            originalEvent: c,
+                            originalSelect2Event: b
+                        })
+                    }, a
+                }), b.define("select2/i18n/en", [], function() {
+                    return {
+                        errorLoading: function() {
+                            return "The results could not be loaded."
+                        },
+                        inputTooLong: function(a) {
+                            var b = a.input.length - a.maximum,
+                                c = "Please delete " + b + " character";
+                            return 1 != b && (c += "s"), c
+                        },
+                        inputTooShort: function(a) {
+                            var b = a.minimum - a.input.length,
+                                c = "Please enter " + b + " or more characters";
+                            return c
+                        },
+                        loadingMore: function() {
+                            return "Loading more results…"
+                        },
+                        maximumSelected: function(a) {
+                            var b = "You can only select " + a.maximum + " item";
+                            return 1 != a.maximum && (b += "s"), b
+                        },
+                        noResults: function() {
+                            return "No results found"
+                        },
+                        searching: function() {
+                            return "Searching…"
+                        }
+                    }
+                }), b.define("select2/defaults", ["jquery", "require", "./results", "./selection/single", "./selection/multiple", "./selection/placeholder", "./selection/allowClear", "./selection/search", "./selection/eventRelay", "./utils", "./translation", "./diacritics", "./data/select", "./data/array", "./data/ajax", "./data/tags", "./data/tokenizer", "./data/minimumInputLength", "./data/maximumInputLength", "./data/maximumSelectionLength", "./dropdown", "./dropdown/search", "./dropdown/hidePlaceholder", "./dropdown/infiniteScroll", "./dropdown/attachBody", "./dropdown/minimumResultsForSearch", "./dropdown/selectOnClose", "./dropdown/closeOnSelect", "./i18n/en"], function(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C) {
+                    function D() {
+                        this.reset()
+                    }
+                    D.prototype.apply = function(l) {
+                        if (l = a.extend(!0, {}, this.defaults, l), null == l.dataAdapter) {
+                            if (null != l.ajax ? l.dataAdapter = o : null != l.data ? l.dataAdapter = n : l.dataAdapter = m, l.minimumInputLength > 0 && (l.dataAdapter = j.Decorate(l.dataAdapter, r)), l.maximumInputLength > 0 && (l.dataAdapter = j.Decorate(l.dataAdapter, s)), l.maximumSelectionLength > 0 && (l.dataAdapter = j.Decorate(l.dataAdapter, t)), l.tags && (l.dataAdapter = j.Decorate(l.dataAdapter, p)), (null != l.tokenSeparators || null != l.tokenizer) && (l.dataAdapter = j.Decorate(l.dataAdapter, q)), null != l.query) {
+                                var C = b(l.amdBase + "compat/query");
+                                l.dataAdapter = j.Decorate(l.dataAdapter, C)
+                            }
+                            if (null != l.initSelection) {
+                                var D = b(l.amdBase + "compat/initSelection");
+                                l.dataAdapter = j.Decorate(l.dataAdapter, D)
+                            }
+                        }
+                        if (null == l.resultsAdapter && (l.resultsAdapter = c, null != l.ajax && (l.resultsAdapter = j.Decorate(l.resultsAdapter, x)), null != l.placeholder && (l.resultsAdapter = j.Decorate(l.resultsAdapter, w)), l.selectOnClose && (l.resultsAdapter = j.Decorate(l.resultsAdapter, A))), null == l.dropdownAdapter) {
+                            if (l.multiple) l.dropdownAdapter = u;
+                            else {
+                                var E = j.Decorate(u, v);
+                                l.dropdownAdapter = E
+                            }
+                            if (0 !== l.minimumResultsForSearch && (l.dropdownAdapter = j.Decorate(l.dropdownAdapter, z)), l.closeOnSelect && (l.dropdownAdapter = j.Decorate(l.dropdownAdapter, B)), null != l.dropdownCssClass || null != l.dropdownCss || null != l.adaptDropdownCssClass) {
+                                var F = b(l.amdBase + "compat/dropdownCss");
+                                l.dropdownAdapter = j.Decorate(l.dropdownAdapter, F)
+                            }
+                            l.dropdownAdapter = j.Decorate(l.dropdownAdapter, y)
+                        }
+                        if (null == l.selectionAdapter) {
+                            if (l.multiple ? l.selectionAdapter = e : l.selectionAdapter = d, null != l.placeholder && (l.selectionAdapter = j.Decorate(l.selectionAdapter, f)), l.allowClear && (l.selectionAdapter = j.Decorate(l.selectionAdapter, g)), l.multiple && (l.selectionAdapter = j.Decorate(l.selectionAdapter, h)), null != l.containerCssClass || null != l.containerCss || null != l.adaptContainerCssClass) {
+                                var G = b(l.amdBase + "compat/containerCss");
+                                l.selectionAdapter = j.Decorate(l.selectionAdapter, G)
+                            }
+                            l.selectionAdapter = j.Decorate(l.selectionAdapter, i)
+                        }
+                        if ("string" == typeof l.language)
+                            if (l.language.indexOf("-") > 0) {
+                                var H = l.language.split("-"),
+                                    I = H[0];
+                                l.language = [l.language, I]
+                            } else l.language = [l.language];
+                        if (a.isArray(l.language)) {
+                            var J = new k;
+                            l.language.push("en");
+                            for (var K = l.language, L = 0; L < K.length; L++) {
+                                var M = K[L],
+                                    N = {};
+                                try {
+                                    N = k.loadPath(M)
+                                } catch (O) {
+                                    try {
+                                        M = this.defaults.amdLanguageBase + M, N = k.loadPath(M)
+                                    } catch (P) {
+                                        l.debug && window.console && console.warn && console.warn('Select2: The language file for "' + M + '" could not be automatically loaded. A fallback will be used instead.');
+                                        continue
+                                    }
+                                }
+                                J.extend(N)
+                            }
+                            l.translations = J
+                        } else {
+                            var Q = k.loadPath(this.defaults.amdLanguageBase + "en"),
+                                R = new k(l.language);
+                            R.extend(Q), l.translations = R
+                        }
+                        return l
+                    }, D.prototype.reset = function() {
+                        function b(a) {
+                            function b(a) {
+                                return l[a] || a
+                            }
+                            return a.replace(/[^\u0000-\u007E]/g, b)
+                        }
+
+                        function c(d, e) {
+                            if ("" === a.trim(d.term)) return e;
+                            if (e.children && e.children.length > 0) {
+                                for (var f = a.extend(!0, {}, e), g = e.children.length - 1; g >= 0; g--) {
+                                    var h = e.children[g],
+                                        i = c(d, h);
+                                    null == i && f.children.splice(g, 1)
+                                }
+                                return f.children.length > 0 ? f : c(d, f)
+                            }
+                            var j = b(e.text).toUpperCase(),
+                                k = b(d.term).toUpperCase();
+                            return j.indexOf(k) > -1 ? e : null
+                        }
+                        this.defaults = {
+                            amdBase: "./",
+                            amdLanguageBase: "./i18n/",
+                            closeOnSelect: !0,
+                            debug: !1,
+                            dropdownAutoWidth: !1,
+                            escapeMarkup: j.escapeMarkup,
+                            language: C,
+                            matcher: c,
+                            minimumInputLength: 0,
+                            maximumInputLength: 0,
+                            maximumSelectionLength: 0,
+                            minimumResultsForSearch: 0,
+                            selectOnClose: !1,
+                            sorter: function(a) {
+                                return a
+                            },
+                            templateResult: function(a) {
+                                return a.text
+                            },
+                            templateSelection: function(a) {
+                                return a.text
+                            },
+                            theme: "default",
+                            width: "resolve"
+                        }
+                    }, D.prototype.set = function(b, c) {
+                        var d = a.camelCase(b),
+                            e = {};
+                        e[d] = c;
+                        var f = j._convertData(e);
+                        a.extend(this.defaults, f)
+                    };
+                    var E = new D;
+                    return E
+                }), b.define("select2/options", ["require", "jquery", "./defaults", "./utils"], function(a, b, c, d) {
+                    function e(b, e) {
+                        if (this.options = b, null != e && this.fromElement(e), this.options = c.apply(this.options), e && e.is("input")) {
+                            var f = a(this.get("amdBase") + "compat/inputData");
+                            this.options.dataAdapter = d.Decorate(this.options.dataAdapter, f)
+                        }
+                    }
+                    return e.prototype.fromElement = function(a) {
+                        var c = ["select2"];
+                        null == this.options.multiple && (this.options.multiple = a.prop("multiple")), null == this.options.disabled && (this.options.disabled = a.prop("disabled")), null == this.options.language && (a.prop("lang") ? this.options.language = a.prop("lang").toLowerCase() : a.closest("[lang]").prop("lang") && (this.options.language = a.closest("[lang]").prop("lang"))), null == this.options.dir && (a.prop("dir") ? this.options.dir = a.prop("dir") : a.closest("[dir]").prop("dir") ? this.options.dir = a.closest("[dir]").prop("dir") : this.options.dir = "ltr"), a.prop("disabled", this.options.disabled), a.prop("multiple", this.options.multiple), a.data("select2Tags") && (this.options.debug && window.console && console.warn && console.warn('Select2: The `data-select2-tags` attribute has been changed to use the `data-data` and `data-tags="true"` attributes and will be removed in future versions of Select2.'), a.data("data", a.data("select2Tags")), a.data("tags", !0)), a.data("ajaxUrl") && (this.options.debug && window.console && console.warn && console.warn("Select2: The `data-ajax-url` attribute has been changed to `data-ajax--url` and support for the old attribute will be removed in future versions of Select2."), a.attr("ajax--url", a.data("ajaxUrl")), a.data("ajax--url", a.data("ajaxUrl")));
+                        var e = {};
+                        e = b.fn.jquery && "1." == b.fn.jquery.substr(0, 2) && a[0].dataset ? b.extend(!0, {}, a[0].dataset, a.data()) : a.data();
+                        var f = b.extend(!0, {}, e);
+                        f = d._convertData(f);
+                        for (var g in f) b.inArray(g, c) > -1 || (b.isPlainObject(this.options[g]) ? b.extend(this.options[g], f[g]) : this.options[g] = f[g]);
+                        return this
+                    }, e.prototype.get = function(a) {
+                        return this.options[a]
+                    }, e.prototype.set = function(a, b) {
+                        this.options[a] = b
+                    }, e
+                }), b.define("select2/core", ["jquery", "./options", "./utils", "./keys"], function(a, b, c, d) {
+                    var e = function(a, c) {
+                        null != a.data("select2") && a.data("select2").destroy(), this.$element = a, this.id = this._generateId(a), c = c || {}, this.options = new b(c, a), e.__super__.constructor.call(this);
+                        var d = a.attr("tabindex") || 0;
+                        a.data("old-tabindex", d), a.attr("tabindex", "-1");
+                        var f = this.options.get("dataAdapter");
+                        this.dataAdapter = new f(a, this.options);
+                        var g = this.render();
+                        this._placeContainer(g);
+                        var h = this.options.get("selectionAdapter");
+                        this.selection = new h(a, this.options), this.$selection = this.selection.render(), this.selection.position(this.$selection, g);
+                        var i = this.options.get("dropdownAdapter");
+                        this.dropdown = new i(a, this.options), this.$dropdown = this.dropdown.render(), this.dropdown.position(this.$dropdown, g);
+                        var j = this.options.get("resultsAdapter");
+                        this.results = new j(a, this.options, this.dataAdapter), this.$results = this.results.render(), this.results.position(this.$results, this.$dropdown);
+                        var k = this;
+                        this._bindAdapters(), this._registerDomEvents(), this._registerDataEvents(), this._registerSelectionEvents(), this._registerDropdownEvents(), this._registerResultsEvents(), this._registerEvents(), this.dataAdapter.current(function(a) {
+                            k.trigger("selection:update", {
+                                data: a
+                            })
+                        }), a.addClass("select2-hidden-accessible"), a.attr("aria-hidden", "true"), this._syncAttributes(), a.data("select2", this)
+                    };
+                    return c.Extend(e, c.Observable), e.prototype._generateId = function(a) {
+                        var b = "";
+                        return b = null != a.attr("id") ? a.attr("id") : null != a.attr("name") ? a.attr("name") + "-" + c.generateChars(2) : c.generateChars(4), b = b.replace(/(:|\.|\[|\]|,)/g, ""), b = "select2-" + b
+                    }, e.prototype._placeContainer = function(a) {
+                        a.insertAfter(this.$element);
+                        var b = this._resolveWidth(this.$element, this.options.get("width"));
+                        null != b && a.css("width", b)
+                    }, e.prototype._resolveWidth = function(a, b) {
+                        var c = /^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;
+                        if ("resolve" == b) {
+                            var d = this._resolveWidth(a, "style");
+                            return null != d ? d : this._resolveWidth(a, "element")
+                        }
+                        if ("element" == b) {
+                            var e = a.outerWidth(!1);
+                            return 0 >= e ? "auto" : e + "px"
+                        }
+                        if ("style" == b) {
+                            var f = a.attr("style");
+                            if ("string" != typeof f) return null;
+                            for (var g = f.split(";"), h = 0, i = g.length; i > h; h += 1) {
+                                var j = g[h].replace(/\s/g, ""),
+                                    k = j.match(c);
+                                if (null !== k && k.length >= 1) return k[1]
+                            }
+                            return null
+                        }
+                        return b
+                    }, e.prototype._bindAdapters = function() {
+                        this.dataAdapter.bind(this, this.$container), this.selection.bind(this, this.$container), this.dropdown.bind(this, this.$container), this.results.bind(this, this.$container)
+                    }, e.prototype._registerDomEvents = function() {
+                        var b = this;
+                        this.$element.on("change.select2", function() {
+                            b.dataAdapter.current(function(a) {
+                                b.trigger("selection:update", {
+                                    data: a
+                                })
+                            })
+                        }), this.$element.on("focus.select2", function(a) {
+                            b.trigger("focus", a)
+                        }), this._syncA = c.bind(this._syncAttributes, this), this._syncS = c.bind(this._syncSubtree, this), this.$element[0].attachEvent && this.$element[0].attachEvent("onpropertychange", this._syncA);
+                        var d = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+                        null != d ? (this._observer = new d(function(c) {
+                            a.each(c, b._syncA), a.each(c, b._syncS)
+                        }), this._observer.observe(this.$element[0], {
+                            attributes: !0,
+                            childList: !0,
+                            subtree: !1
+                        })) : this.$element[0].addEventListener && (this.$element[0].addEventListener("DOMAttrModified", b._syncA, !1), this.$element[0].addEventListener("DOMNodeInserted", b._syncS, !1), this.$element[0].addEventListener("DOMNodeRemoved", b._syncS, !1))
+                    }, e.prototype._registerDataEvents = function() {
+                        var a = this;
+                        this.dataAdapter.on("*", function(b, c) {
+                            a.trigger(b, c)
+                        })
+                    }, e.prototype._registerSelectionEvents = function() {
+                        var b = this,
+                            c = ["toggle", "focus"];
+                        this.selection.on("toggle", function() {
+                            b.toggleDropdown()
+                        }), this.selection.on("focus", function(a) {
+                            b.focus(a)
+                        }), this.selection.on("*", function(d, e) {
+                            -1 === a.inArray(d, c) && b.trigger(d, e)
+                        })
+                    }, e.prototype._registerDropdownEvents = function() {
+                        var a = this;
+                        this.dropdown.on("*", function(b, c) {
+                            a.trigger(b, c)
+                        })
+                    }, e.prototype._registerResultsEvents = function() {
+                        var a = this;
+                        this.results.on("*", function(b, c) {
+                            a.trigger(b, c)
+                        })
+                    }, e.prototype._registerEvents = function() {
+                        var a = this;
+                        this.on("open", function() {
+                            a.$container.addClass("select2-container--open")
+                        }), this.on("close", function() {
+                            a.$container.removeClass("select2-container--open")
+                        }), this.on("enable", function() {
+                            a.$container.removeClass("select2-container--disabled")
+                        }), this.on("disable", function() {
+                            a.$container.addClass("select2-container--disabled")
+                        }), this.on("blur", function() {
+                            a.$container.removeClass("select2-container--focus")
+                        }), this.on("query", function(b) {
+                            a.isOpen() || a.trigger("open", {}), this.dataAdapter.query(b, function(c) {
+                                a.trigger("results:all", {
+                                    data: c,
+                                    query: b
+                                })
+                            })
+                        }), this.on("query:append", function(b) {
+                            this.dataAdapter.query(b, function(c) {
+                                a.trigger("results:append", {
+                                    data: c,
+                                    query: b
+                                })
+                            })
+                        }), this.on("keypress", function(b) {
+                            var c = b.which;
+                            a.isOpen() ? c === d.ESC || c === d.TAB || c === d.UP && b.altKey ? (a.close(), b.preventDefault()) : c === d.ENTER ? (a.trigger("results:select", {}), b.preventDefault()) : c === d.SPACE && b.ctrlKey ? (a.trigger("results:toggle", {}), b.preventDefault()) : c === d.UP ? (a.trigger("results:previous", {}), b.preventDefault()) : c === d.DOWN && (a.trigger("results:next", {}), b.preventDefault()) : (c === d.ENTER || c === d.SPACE || c === d.DOWN && b.altKey) && (a.open(), b.preventDefault())
+                        })
+                    }, e.prototype._syncAttributes = function() {
+                        this.options.set("disabled", this.$element.prop("disabled")), this.options.get("disabled") ? (this.isOpen() && this.close(), this.trigger("disable", {})) : this.trigger("enable", {})
+                    }, e.prototype._syncSubtree = function(a, b) {
+                        var c = !1,
+                            d = this;
+                        if (!a || !a.target || "OPTION" === a.target.nodeName || "OPTGROUP" === a.target.nodeName) {
+                            if (b)
+                                if (b.addedNodes && b.addedNodes.length > 0)
+                                    for (var e = 0; e < b.addedNodes.length; e++) {
+                                        var f = b.addedNodes[e];
+                                        f.selected && (c = !0)
+                                    } else b.removedNodes && b.removedNodes.length > 0 && (c = !0);
+                                else c = !0;
+                            c && this.dataAdapter.current(function(a) {
+                                d.trigger("selection:update", {
+                                    data: a
+                                })
+                            })
+                        }
+                    }, e.prototype.trigger = function(a, b) {
+                        var c = e.__super__.trigger,
+                            d = {
+                                open: "opening",
+                                close: "closing",
+                                select: "selecting",
+                                unselect: "unselecting"
+                            };
+                        if (void 0 === b && (b = {}), a in d) {
+                            var f = d[a],
+                                g = {
+                                    prevented: !1,
+                                    name: a,
+                                    args: b
+                                };
+                            if (c.call(this, f, g), g.prevented) return void(b.prevented = !0)
+                        }
+                        c.call(this, a, b)
+                    }, e.prototype.toggleDropdown = function() {
+                        this.options.get("disabled") || (this.isOpen() ? this.close() : this.open())
+                    }, e.prototype.open = function() {
+                        this.isOpen() || this.trigger("query", {})
+                    }, e.prototype.close = function() {
+                        this.isOpen() && this.trigger("close", {})
+                    }, e.prototype.isOpen = function() {
+                        return this.$container.hasClass("select2-container--open")
+                    }, e.prototype.hasFocus = function() {
+                        return this.$container.hasClass("select2-container--focus")
+                    }, e.prototype.focus = function(a) {
+                        this.hasFocus() || (this.$container.addClass("select2-container--focus"), this.trigger("focus", {}))
+                    }, e.prototype.enable = function(a) {
+                        this.options.get("debug") && window.console && console.warn && console.warn('Select2: The `select2("enable")` method has been deprecated and will be removed in later Select2 versions. Use $element.prop("disabled") instead.'), (null == a || 0 === a.length) && (a = [!0]);
+                        var b = !a[0];
+                        this.$element.prop("disabled", b)
+                    }, e.prototype.data = function() {
+                        this.options.get("debug") && arguments.length > 0 && window.console && console.warn && console.warn('Select2: Data can no longer be set using `select2("data")`. You should consider setting the value instead using `$element.val()`.');
+                        var a = [];
+                        return this.dataAdapter.current(function(b) {
+                            a = b
+                        }), a
+                    }, e.prototype.val = function(b) {
+                        if (this.options.get("debug") && window.console && console.warn && console.warn('Select2: The `select2("val")` method has been deprecated and will be removed in later Select2 versions. Use $element.val() instead.'), null == b || 0 === b.length) return this.$element.val();
+                        var c = b[0];
+                        a.isArray(c) && (c = a.map(c, function(a) {
+                            return a.toString()
+                        })), this.$element.val(c).trigger("change")
+                    }, e.prototype.destroy = function() {
+                        this.$container.remove(), this.$element[0].detachEvent && this.$element[0].detachEvent("onpropertychange", this._syncA), null != this._observer ? (this._observer.disconnect(), this._observer = null) : this.$element[0].removeEventListener && (this.$element[0].removeEventListener("DOMAttrModified", this._syncA, !1), this.$element[0].removeEventListener("DOMNodeInserted", this._syncS, !1), this.$element[0].removeEventListener("DOMNodeRemoved", this._syncS, !1)), this._syncA = null, this._syncS = null, this.$element.off(".select2"), this.$element.attr("tabindex", this.$element.data("old-tabindex")), this.$element.removeClass("select2-hidden-accessible"), this.$element.attr("aria-hidden", "false"), this.$element.removeData("select2"), this.dataAdapter.destroy(), this.selection.destroy(), this.dropdown.destroy(), this.results.destroy(), this.dataAdapter = null, this.selection = null, this.dropdown = null, this.results = null;
+                    }, e.prototype.render = function() {
+                        var b = a('<span class="select2 select2-container"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>');
+                        return b.attr("dir", this.options.get("dir")), this.$container = b, this.$container.addClass("select2-container--" + this.options.get("theme")), b.data("element", this.$element), b
+                    }, e
+                }), b.define("select2/compat/utils", ["jquery"], function(a) {
+                    function b(b, c, d) {
+                        var e, f, g = [];
+                        e = a.trim(b.attr("class")), e && (e = "" + e, a(e.split(/\s+/)).each(function() {
+                            0 === this.indexOf("select2-") && g.push(this)
+                        })), e = a.trim(c.attr("class")), e && (e = "" + e, a(e.split(/\s+/)).each(function() {
+                            0 !== this.indexOf("select2-") && (f = d(this), null != f && g.push(f))
+                        })), b.attr("class", g.join(" "))
+                    }
+                    return {
+                        syncCssClasses: b
+                    }
+                }), b.define("select2/compat/containerCss", ["jquery", "./utils"], function(a, b) {
+                    function c(a) {
+                        return null
+                    }
+
+                    function d() {}
+                    return d.prototype.render = function(d) {
+                        var e = d.call(this),
+                            f = this.options.get("containerCssClass") || "";
+                        a.isFunction(f) && (f = f(this.$element));
+                        var g = this.options.get("adaptContainerCssClass");
+                        if (g = g || c, -1 !== f.indexOf(":all:")) {
+                            f = f.replace(":all:", "");
+                            var h = g;
+                            g = function(a) {
+                                var b = h(a);
+                                return null != b ? b + " " + a : a
+                            }
+                        }
+                        var i = this.options.get("containerCss") || {};
+                        return a.isFunction(i) && (i = i(this.$element)), b.syncCssClasses(e, this.$element, g), e.css(i), e.addClass(f), e
+                    }, d
+                }), b.define("select2/compat/dropdownCss", ["jquery", "./utils"], function(a, b) {
+                    function c(a) {
+                        return null
+                    }
+
+                    function d() {}
+                    return d.prototype.render = function(d) {
+                        var e = d.call(this),
+                            f = this.options.get("dropdownCssClass") || "";
+                        a.isFunction(f) && (f = f(this.$element));
+                        var g = this.options.get("adaptDropdownCssClass");
+                        if (g = g || c, -1 !== f.indexOf(":all:")) {
+                            f = f.replace(":all:", "");
+                            var h = g;
+                            g = function(a) {
+                                var b = h(a);
+                                return null != b ? b + " " + a : a
+                            }
+                        }
+                        var i = this.options.get("dropdownCss") || {};
+                        return a.isFunction(i) && (i = i(this.$element)), b.syncCssClasses(e, this.$element, g), e.css(i), e.addClass(f), e
+                    }, d
+                }), b.define("select2/compat/initSelection", ["jquery"], function(a) {
+                    function b(a, b, c) {
+                        c.get("debug") && window.console && console.warn && console.warn("Select2: The `initSelection` option has been deprecated in favor of a custom data adapter that overrides the `current` method. This method is now called multiple times instead of a single time when the instance is initialized. Support will be removed for the `initSelection` option in future versions of Select2"), this.initSelection = c.get("initSelection"), this._isInitialized = !1, a.call(this, b, c)
+                    }
+                    return b.prototype.current = function(b, c) {
+                        var d = this;
+                        return this._isInitialized ? void b.call(this, c) : void this.initSelection.call(null, this.$element, function(b) {
+                            d._isInitialized = !0, a.isArray(b) || (b = [b]), c(b)
+                        })
+                    }, b
+                }), b.define("select2/compat/inputData", ["jquery"], function(a) {
+                    function b(a, b, c) {
+                        this._currentData = [], this._valueSeparator = c.get("valueSeparator") || ",", "hidden" === b.prop("type") && c.get("debug") && console && console.warn && console.warn("Select2: Using a hidden input with Select2 is no longer supported and may stop working in the future. It is recommended to use a `<select>` element instead."), a.call(this, b, c)
+                    }
+                    return b.prototype.current = function(b, c) {
+                        function d(b, c) {
+                            var e = [];
+                            return b.selected || -1 !== a.inArray(b.id, c) ? (b.selected = !0, e.push(b)) : b.selected = !1, b.children && e.push.apply(e, d(b.children, c)), e
+                        }
+                        for (var e = [], f = 0; f < this._currentData.length; f++) {
+                            var g = this._currentData[f];
+                            e.push.apply(e, d(g, this.$element.val().split(this._valueSeparator)))
+                        }
+                        c(e)
+                    }, b.prototype.select = function(b, c) {
+                        if (this.options.get("multiple")) {
+                            var d = this.$element.val();
+                            d += this._valueSeparator + c.id, this.$element.val(d), this.$element.trigger("change")
+                        } else this.current(function(b) {
+                            a.map(b, function(a) {
+                                a.selected = !1
+                            })
+                        }), this.$element.val(c.id), this.$element.trigger("change")
+                    }, b.prototype.unselect = function(a, b) {
+                        var c = this;
+                        b.selected = !1, this.current(function(a) {
+                            for (var d = [], e = 0; e < a.length; e++) {
+                                var f = a[e];
+                                b.id != f.id && d.push(f.id)
+                            }
+                            c.$element.val(d.join(c._valueSeparator)), c.$element.trigger("change")
+                        })
+                    }, b.prototype.query = function(a, b, c) {
+                        for (var d = [], e = 0; e < this._currentData.length; e++) {
+                            var f = this._currentData[e],
+                                g = this.matches(b, f);
+                            null !== g && d.push(g)
+                        }
+                        c({
+                            results: d
+                        })
+                    }, b.prototype.addOptions = function(b, c) {
+                        var d = a.map(c, function(b) {
+                            return a.data(b[0], "data")
+                        });
+                        this._currentData.push.apply(this._currentData, d)
+                    }, b
+                }), b.define("select2/compat/matcher", ["jquery"], function(a) {
+                    function b(b) {
+                        function c(c, d) {
+                            var e = a.extend(!0, {}, d);
+                            if (null == c.term || "" === a.trim(c.term)) return e;
+                            if (d.children) {
+                                for (var f = d.children.length - 1; f >= 0; f--) {
+                                    var g = d.children[f],
+                                        h = b(c.term, g.text, g);
+                                    h || e.children.splice(f, 1)
+                                }
+                                if (e.children.length > 0) return e
+                            }
+                            return b(c.term, d.text, d) ? e : null
+                        }
+                        return c
+                    }
+                    return b
+                }), b.define("select2/compat/query", [], function() {
+                    function a(a, b, c) {
+                        c.get("debug") && window.console && console.warn && console.warn("Select2: The `query` option has been deprecated in favor of a custom data adapter that overrides the `query` method. Support will be removed for the `query` option in future versions of Select2."), a.call(this, b, c)
+                    }
+                    return a.prototype.query = function(a, b, c) {
+                        b.callback = c;
+                        var d = this.options.get("query");
+                        d.call(null, b)
+                    }, a
+                }), b.define("select2/dropdown/attachContainer", [], function() {
+                    function a(a, b, c) {
+                        a.call(this, b, c)
+                    }
+                    return a.prototype.position = function(a, b, c) {
+                        var d = c.find(".dropdown-wrapper");
+                        d.append(b), b.addClass("select2-dropdown--below"), c.addClass("select2-container--below")
+                    }, a
+                }), b.define("select2/dropdown/stopPropagation", [], function() {
+                    function a() {}
+                    return a.prototype.bind = function(a, b, c) {
+                        a.call(this, b, c);
+                        var d = ["blur", "change", "click", "dblclick", "focus", "focusin", "focusout", "input", "keydown", "keyup", "keypress", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup", "search", "touchend", "touchstart"];
+                        this.$dropdown.on(d.join(" "), function(a) {
+                            a.stopPropagation()
+                        })
+                    }, a
+                }), b.define("select2/selection/stopPropagation", [], function() {
+                    function a() {}
+                    return a.prototype.bind = function(a, b, c) {
+                        a.call(this, b, c);
+                        var d = ["blur", "change", "click", "dblclick", "focus", "focusin", "focusout", "input", "keydown", "keyup", "keypress", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup", "search", "touchend", "touchstart"];
+                        this.$selection.on(d.join(" "), function(a) {
+                            a.stopPropagation()
+                        })
+                    }, a
+                }),
+                function(c) {
+                    "function" == typeof b.define && b.define.amd ? b.define("jquery-mousewheel", ["jquery"], c) : "object" == typeof exports ? module.exports = c : c(a)
+                }(function(a) {
+                    function b(b) {
+                        var g = b || window.event,
+                            h = i.call(arguments, 1),
+                            j = 0,
+                            l = 0,
+                            m = 0,
+                            n = 0,
+                            o = 0,
+                            p = 0;
+                        if (b = a.event.fix(g), b.type = "mousewheel", "detail" in g && (m = -1 * g.detail), "wheelDelta" in g && (m = g.wheelDelta), "wheelDeltaY" in g && (m = g.wheelDeltaY), "wheelDeltaX" in g && (l = -1 * g.wheelDeltaX), "axis" in g && g.axis === g.HORIZONTAL_AXIS && (l = -1 * m, m = 0), j = 0 === m ? l : m, "deltaY" in g && (m = -1 * g.deltaY, j = m), "deltaX" in g && (l = g.deltaX, 0 === m && (j = -1 * l)), 0 !== m || 0 !== l) {
+                            if (1 === g.deltaMode) {
+                                var q = a.data(this, "mousewheel-line-height");
+                                j *= q, m *= q, l *= q
+                            } else if (2 === g.deltaMode) {
+                                var r = a.data(this, "mousewheel-page-height");
+                                j *= r, m *= r, l *= r
+                            }
+                            if (n = Math.max(Math.abs(m), Math.abs(l)), (!f || f > n) && (f = n, d(g, n) && (f /= 40)), d(g, n) && (j /= 40, l /= 40, m /= 40), j = Math[j >= 1 ? "floor" : "ceil"](j / f), l = Math[l >= 1 ? "floor" : "ceil"](l / f), m = Math[m >= 1 ? "floor" : "ceil"](m / f), k.settings.normalizeOffset && this.getBoundingClientRect) {
+                                var s = this.getBoundingClientRect();
+                                o = b.clientX - s.left, p = b.clientY - s.top
+                            }
+                            return b.deltaX = l, b.deltaY = m, b.deltaFactor = f, b.offsetX = o, b.offsetY = p, b.deltaMode = 0, h.unshift(b, j, l, m), e && clearTimeout(e), e = setTimeout(c, 200), (a.event.dispatch || a.event.handle).apply(this, h)
+                        }
+                    }
+
+                    function c() {
+                        f = null
+                    }
+
+                    function d(a, b) {
+                        return k.settings.adjustOldDeltas && "mousewheel" === a.type && b % 120 === 0
+                    }
+                    var e, f, g = ["wheel", "mousewheel", "DOMMouseScroll", "MozMousePixelScroll"],
+                        h = "onwheel" in document || document.documentMode >= 9 ? ["wheel"] : ["mousewheel", "DomMouseScroll", "MozMousePixelScroll"],
+                        i = Array.prototype.slice;
+                    if (a.event.fixHooks)
+                        for (var j = g.length; j;) a.event.fixHooks[g[--j]] = a.event.mouseHooks;
+                    var k = a.event.special.mousewheel = {
+                        version: "3.1.12",
+                        setup: function() {
+                            if (this.addEventListener)
+                                for (var c = h.length; c;) this.addEventListener(h[--c], b, !1);
+                            else this.onmousewheel = b;
+                            a.data(this, "mousewheel-line-height", k.getLineHeight(this)), a.data(this, "mousewheel-page-height", k.getPageHeight(this))
+                        },
+                        teardown: function() {
+                            if (this.removeEventListener)
+                                for (var c = h.length; c;) this.removeEventListener(h[--c], b, !1);
+                            else this.onmousewheel = null;
+                            a.removeData(this, "mousewheel-line-height"), a.removeData(this, "mousewheel-page-height")
+                        },
+                        getLineHeight: function(b) {
+                            var c = a(b),
+                                d = c["offsetParent" in a.fn ? "offsetParent" : "parent"]();
+                            return d.length || (d = a("body")), parseInt(d.css("fontSize"), 10) || parseInt(c.css("fontSize"), 10) || 16
+                        },
+                        getPageHeight: function(b) {
+                            return a(b).height()
+                        },
+                        settings: {
+                            adjustOldDeltas: !0,
+                            normalizeOffset: !0
+                        }
+                    };
+                    a.fn.extend({
+                        mousewheel: function(a) {
+                            return a ? this.bind("mousewheel", a) : this.trigger("mousewheel")
+                        },
+                        unmousewheel: function(a) {
+                            return this.unbind("mousewheel", a)
+                        }
+                    })
+                }), b.define("jquery.select2", ["jquery", "jquery-mousewheel", "./select2/core", "./select2/defaults"], function(a, b, c, d) {
+                    if (null == a.fn.select2) {
+                        var e = ["open", "close", "destroy"];
+                        a.fn.select2 = function(b) {
+                            if (b = b || {}, "object" == typeof b) return this.each(function() {
+                                var d = a.extend(!0, {}, b);
+                                new c(a(this), d)
+                            }), this;
+                            if ("string" == typeof b) {
+                                var d, f = Array.prototype.slice.call(arguments, 1);
+                                return this.each(function() {
+                                    var c = a(this).data("select2");
+                                    null == c && window.console && console.error && console.error("The select2('" + b + "') method was called on an element that is not using Select2."), d = c[b].apply(c, f)
+                                }), a.inArray(b, e) > -1 ? this : d
+                            }
+                            throw new Error("Invalid arguments for Select2: " + b)
+                        }
+                    }
+                    return null == a.fn.select2.defaults && (a.fn.select2.defaults = d), c
+                }), {
+                    define: b.define,
+                    require: b.require
+                }
+        }(),
+        c = b.require("jquery.select2");
+    return a.fn.select2.amd = b, c
+});
 /*!
  * pickadate.js v3.5.0, 2014/04/13
  * By Amsul, http://amsul.ca
@@ -19458,6 +35105,503 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
   e.fn.timepicker.Constructor = i
 })(jQuery, window, document);
 
+/*!
+ * BootstrapValidator (http://bootstrapvalidator.com)
+ * The best jQuery plugin to validate form fields. Designed to use with Bootstrap 3
+ *
+ * @version     v0.5.3, built on 2014-11-05 9:14:18 PM
+ * @author      https://twitter.com/nghuuphuoc
+ * @copyright   (c) 2013 - 2014 Nguyen Huu Phuoc
+ * @license     Commercial: http://bootstrapvalidator.com/license/
+ *              Non-commercial: http://creativecommons.org/licenses/by-nc-nd/3.0/
+ */
+if("undefined"==typeof jQuery)throw new Error("BootstrapValidator requires jQuery");!function(a){var b=a.fn.jquery.split(" ")[0].split(".");if(+b[0]<2&&+b[1]<9||1===+b[0]&&9===+b[1]&&+b[2]<1)throw new Error("BootstrapValidator requires jQuery version 1.9.1 or higher")}(window.jQuery),function(a){var b=function(b,c){this.$form=a(b),this.options=a.extend({},a.fn.bootstrapValidator.DEFAULT_OPTIONS,c),this.$invalidFields=a([]),this.$submitButton=null,this.$hiddenButton=null,this.STATUS_NOT_VALIDATED="NOT_VALIDATED",this.STATUS_VALIDATING="VALIDATING",this.STATUS_INVALID="INVALID",this.STATUS_VALID="VALID";var d=function(){for(var a=3,b=document.createElement("div"),c=b.all||[];b.innerHTML="<!--[if gt IE "+ ++a+"]><br><![endif]-->",c[0];);return a>4?a:!a}(),e=document.createElement("div");this._changeEvent=9!==d&&"oninput"in e?"input":"keyup",this._submitIfValid=null,this._cacheFields={},this._init()};b.prototype={constructor:b,_init:function(){var b=this,c={autoFocus:this.$form.attr("data-bv-autofocus"),container:this.$form.attr("data-bv-container"),events:{formInit:this.$form.attr("data-bv-events-form-init"),formError:this.$form.attr("data-bv-events-form-error"),formSuccess:this.$form.attr("data-bv-events-form-success"),fieldAdded:this.$form.attr("data-bv-events-field-added"),fieldRemoved:this.$form.attr("data-bv-events-field-removed"),fieldInit:this.$form.attr("data-bv-events-field-init"),fieldError:this.$form.attr("data-bv-events-field-error"),fieldSuccess:this.$form.attr("data-bv-events-field-success"),fieldStatus:this.$form.attr("data-bv-events-field-status"),validatorError:this.$form.attr("data-bv-events-validator-error"),validatorSuccess:this.$form.attr("data-bv-events-validator-success")},excluded:this.$form.attr("data-bv-excluded"),feedbackIcons:{valid:this.$form.attr("data-bv-feedbackicons-valid"),invalid:this.$form.attr("data-bv-feedbackicons-invalid"),validating:this.$form.attr("data-bv-feedbackicons-validating")},group:this.$form.attr("data-bv-group"),live:this.$form.attr("data-bv-live"),message:this.$form.attr("data-bv-message"),onError:this.$form.attr("data-bv-onerror"),onSuccess:this.$form.attr("data-bv-onsuccess"),submitButtons:this.$form.attr("data-bv-submitbuttons"),threshold:this.$form.attr("data-bv-threshold"),trigger:this.$form.attr("data-bv-trigger"),verbose:this.$form.attr("data-bv-verbose"),fields:{}};this.$form.attr("novalidate","novalidate").addClass(this.options.elementClass).on("submit.bv",function(a){a.preventDefault(),b.validate()}).on("click.bv",this.options.submitButtons,function(){b.$submitButton=a(this),b._submitIfValid=!0}).find("[name], [data-bv-field]").each(function(){var d=a(this),e=d.attr("name")||d.attr("data-bv-field"),f=b._parseOptions(d);f&&(d.attr("data-bv-field",e),c.fields[e]=a.extend({},f,c.fields[e]))}),this.options=a.extend(!0,this.options,c),this.$hiddenButton=a("<button/>").attr("type","submit").prependTo(this.$form).addClass("bv-hidden-submit").css({display:"none",width:0,height:0}),this.$form.on("click.bv",'[type="submit"]',function(c){if(!c.isDefaultPrevented()){var d=a(c.target),e=d.is('[type="submit"]')?d.eq(0):d.parent('[type="submit"]').eq(0);!b.options.submitButtons||e.is(b.options.submitButtons)||e.is(b.$hiddenButton)||b.$form.off("submit.bv").submit()}});for(var d in this.options.fields)this._initField(d);this.$form.trigger(a.Event(this.options.events.formInit),{bv:this,options:this.options}),this.options.onSuccess&&this.$form.on(this.options.events.formSuccess,function(c){a.fn.bootstrapValidator.helpers.call(b.options.onSuccess,[c])}),this.options.onError&&this.$form.on(this.options.events.formError,function(c){a.fn.bootstrapValidator.helpers.call(b.options.onError,[c])})},_parseOptions:function(b){var c,d,e,f,g,h,i,j,k,l=b.attr("name")||b.attr("data-bv-field"),m={};for(d in a.fn.bootstrapValidator.validators)if(c=a.fn.bootstrapValidator.validators[d],e="data-bv-"+d.toLowerCase(),f=b.attr(e)+"",k="function"==typeof c.enableByHtml5?c.enableByHtml5(b):null,k&&"false"!==f||k!==!0&&(""===f||"true"===f||e===f.toLowerCase())){c.html5Attributes=a.extend({},{message:"message",onerror:"onError",onsuccess:"onSuccess"},c.html5Attributes),m[d]=a.extend({},k===!0?{}:k,m[d]);for(j in c.html5Attributes)g=c.html5Attributes[j],h="data-bv-"+d.toLowerCase()+"-"+j,i=b.attr(h),i&&("true"===i||h===i.toLowerCase()?i=!0:"false"===i&&(i=!1),m[d][g]=i)}var n={autoFocus:b.attr("data-bv-autofocus"),container:b.attr("data-bv-container"),excluded:b.attr("data-bv-excluded"),feedbackIcons:b.attr("data-bv-feedbackicons"),group:b.attr("data-bv-group"),message:b.attr("data-bv-message"),onError:b.attr("data-bv-onerror"),onStatus:b.attr("data-bv-onstatus"),onSuccess:b.attr("data-bv-onsuccess"),selector:b.attr("data-bv-selector"),threshold:b.attr("data-bv-threshold"),trigger:b.attr("data-bv-trigger"),verbose:b.attr("data-bv-verbose"),validators:m},o=a.isEmptyObject(n),p=a.isEmptyObject(m);return!p||!o&&this.options.fields&&this.options.fields[l]?(n.validators=m,n):null},_initField:function(b){var c=a([]);switch(typeof b){case"object":c=b,b=b.attr("data-bv-field");break;case"string":c=this.getFieldElements(b),c.attr("data-bv-field",b)}if(0!==c.length&&null!==this.options.fields[b]&&null!==this.options.fields[b].validators){var d;for(d in this.options.fields[b].validators)a.fn.bootstrapValidator.validators[d]||delete this.options.fields[b].validators[d];null===this.options.fields[b].enabled&&(this.options.fields[b].enabled=!0);for(var e=this,f=c.length,g=c.attr("type"),h=1===f||"radio"===g||"checkbox"===g,i="radio"===g||"checkbox"===g||"file"===g||"SELECT"===c.eq(0).get(0).tagName?"change":this._changeEvent,j=(this.options.fields[b].trigger||this.options.trigger||i).split(" "),k=a.map(j,function(a){return a+".update.bv"}).join(" "),l=0;f>l;l++){var m=c.eq(l),n=this.options.fields[b].group||this.options.group,o=m.parents(n),p="function"==typeof(this.options.fields[b].container||this.options.container)?(this.options.fields[b].container||this.options.container).call(this,m,this):this.options.fields[b].container||this.options.container,q=p&&"tooltip"!==p&&"popover"!==p?a(p):this._getMessageContainer(m,n);p&&"tooltip"!==p&&"popover"!==p&&q.addClass("has-error"),q.find('.help-block[data-bv-validator][data-bv-for="'+b+'"]').remove(),o.find('i[data-bv-icon-for="'+b+'"]').remove(),m.off(k).on(k,function(){e.updateStatus(a(this),e.STATUS_NOT_VALIDATED)}),m.data("bv.messages",q);for(d in this.options.fields[b].validators)m.data("bv.result."+d,this.STATUS_NOT_VALIDATED),h&&l!==f-1||a("<small/>").css("display","none").addClass("help-block").attr("data-bv-validator",d).attr("data-bv-for",b).attr("data-bv-result",this.STATUS_NOT_VALIDATED).html(this._getMessage(b,d)).appendTo(q),"function"==typeof a.fn.bootstrapValidator.validators[d].init&&a.fn.bootstrapValidator.validators[d].init(this,m,this.options.fields[b].validators[d]);if(this.options.fields[b].feedbackIcons!==!1&&"false"!==this.options.fields[b].feedbackIcons&&this.options.feedbackIcons&&this.options.feedbackIcons.validating&&this.options.feedbackIcons.invalid&&this.options.feedbackIcons.valid&&(!h||l===f-1)){o.addClass("has-feedback");var r=a("<i/>").css("display","none").addClass("form-control-feedback").attr("data-bv-icon-for",b).insertAfter(m);if("checkbox"===g||"radio"===g){var s=m.parent();s.hasClass(g)?r.insertAfter(s):s.parent().hasClass(g)&&r.insertAfter(s.parent())}0===o.find("label").length&&r.addClass("bv-no-label"),0!==o.find(".input-group").length&&r.addClass("bv-icon-input-group").insertAfter(o.find(".input-group").eq(0)),h?l===f-1&&c.data("bv.icon",r):m.data("bv.icon",r),p&&m.off("focus.container.bv").on("focus.container.bv",function(){switch(p){case"tooltip":a(this).data("bv.icon").tooltip("show");break;case"popover":a(this).data("bv.icon").popover("show")}}).off("blur.container.bv").on("blur.container.bv",function(){switch(p){case"tooltip":a(this).data("bv.icon").tooltip("hide");break;case"popover":a(this).data("bv.icon").popover("hide")}})}}switch(c.on(this.options.events.fieldSuccess,function(b,c){var d=e.getOptions(c.field,null,"onSuccess");d&&a.fn.bootstrapValidator.helpers.call(d,[b,c])}).on(this.options.events.fieldError,function(b,c){var d=e.getOptions(c.field,null,"onError");d&&a.fn.bootstrapValidator.helpers.call(d,[b,c])}).on(this.options.events.fieldStatus,function(b,c){var d=e.getOptions(c.field,null,"onStatus");d&&a.fn.bootstrapValidator.helpers.call(d,[b,c])}).on(this.options.events.validatorError,function(b,c){var d=e.getOptions(c.field,c.validator,"onError");d&&a.fn.bootstrapValidator.helpers.call(d,[b,c])}).on(this.options.events.validatorSuccess,function(b,c){var d=e.getOptions(c.field,c.validator,"onSuccess");d&&a.fn.bootstrapValidator.helpers.call(d,[b,c])}),k=a.map(j,function(a){return a+".live.bv"}).join(" "),this.options.live){case"submitted":break;case"disabled":c.off(k);break;case"enabled":default:c.off(k).on(k,function(){e._exceedThreshold(a(this))&&e.validateField(a(this))})}c.trigger(a.Event(this.options.events.fieldInit),{bv:this,field:b,element:c})}},_getMessage:function(b,c){if(!(this.options.fields[b]&&a.fn.bootstrapValidator.validators[c]&&this.options.fields[b].validators&&this.options.fields[b].validators[c]))return"";var d=this.options.fields[b].validators[c];switch(!0){case!!d.message:return d.message;case!!this.options.fields[b].message:return this.options.fields[b].message;case!!a.fn.bootstrapValidator.i18n[c]:return a.fn.bootstrapValidator.i18n[c]["default"];default:return this.options.message}},_getMessageContainer:function(a,b){var c=a.parent();if(c.is(b))return c;var d=c.attr("class");if(!d)return this._getMessageContainer(c,b);d=d.split(" ");for(var e=d.length,f=0;e>f;f++)if(/^col-(xs|sm|md|lg)-\d+$/.test(d[f])||/^col-(xs|sm|md|lg)-offset-\d+$/.test(d[f]))return c;return this._getMessageContainer(c,b)},_submit:function(){var b=this.isValid(),c=b?this.options.events.formSuccess:this.options.events.formError,d=a.Event(c);this.$form.trigger(d),this.$submitButton&&(b?this._onSuccess(d):this._onError(d))},_isExcluded:function(b){var c=b.attr("data-bv-excluded"),d=b.attr("data-bv-field")||b.attr("name");switch(!0){case!!d&&this.options.fields&&this.options.fields[d]&&("true"===this.options.fields[d].excluded||this.options.fields[d].excluded===!0):case"true"===c:case""===c:return!0;case!!d&&this.options.fields&&this.options.fields[d]&&("false"===this.options.fields[d].excluded||this.options.fields[d].excluded===!1):case"false"===c:return!1;default:if(this.options.excluded){"string"==typeof this.options.excluded&&(this.options.excluded=a.map(this.options.excluded.split(","),function(b){return a.trim(b)}));for(var e=this.options.excluded.length,f=0;e>f;f++)if("string"==typeof this.options.excluded[f]&&b.is(this.options.excluded[f])||"function"==typeof this.options.excluded[f]&&this.options.excluded[f].call(this,b,this)===!0)return!0}return!1}},_exceedThreshold:function(b){var c=b.attr("data-bv-field"),d=this.options.fields[c].threshold||this.options.threshold;if(!d)return!0;var e=-1!==a.inArray(b.attr("type"),["button","checkbox","file","hidden","image","radio","reset","submit"]);return e||b.val().length>=d},_onError:function(b){if(!b.isDefaultPrevented()){if("submitted"===this.options.live){this.options.live="enabled";var c=this;for(var d in this.options.fields)!function(b){var e=c.getFieldElements(b);if(e.length){var f=a(e[0]).attr("type"),g="radio"===f||"checkbox"===f||"file"===f||"SELECT"===a(e[0]).get(0).tagName?"change":c._changeEvent,h=c.options.fields[d].trigger||c.options.trigger||g,i=a.map(h.split(" "),function(a){return a+".live.bv"}).join(" ");e.off(i).on(i,function(){c._exceedThreshold(a(this))&&c.validateField(a(this))})}}(d)}for(var e=0;e<this.$invalidFields.length;e++){var f=this.$invalidFields.eq(e),g=this._isOptionEnabled(f.attr("data-bv-field"),"autoFocus");if(g){var h,i=f.parents(".tab-pane");i&&(h=i.attr("id"))&&a('a[href="#'+h+'"][data-toggle="tab"]').tab("show"),f.focus();break}}}},_onSuccess:function(a){a.isDefaultPrevented()||this.disableSubmitButtons(!0).defaultSubmit()},_onFieldValidated:function(b,c){var d=b.attr("data-bv-field"),e=this.options.fields[d].validators,f={},g=0,h={bv:this,field:d,element:b,validator:c,result:b.data("bv.response."+c)};if(c)switch(b.data("bv.result."+c)){case this.STATUS_INVALID:b.trigger(a.Event(this.options.events.validatorError),h);break;case this.STATUS_VALID:b.trigger(a.Event(this.options.events.validatorSuccess),h)}f[this.STATUS_NOT_VALIDATED]=0,f[this.STATUS_VALIDATING]=0,f[this.STATUS_INVALID]=0,f[this.STATUS_VALID]=0;for(var i in e)if(e[i].enabled!==!1){g++;var j=b.data("bv.result."+i);j&&f[j]++}f[this.STATUS_VALID]===g?(this.$invalidFields=this.$invalidFields.not(b),b.trigger(a.Event(this.options.events.fieldSuccess),h)):(0===f[this.STATUS_NOT_VALIDATED]||!this._isOptionEnabled(d,"verbose"))&&0===f[this.STATUS_VALIDATING]&&f[this.STATUS_INVALID]>0&&(this.$invalidFields=this.$invalidFields.add(b),b.trigger(a.Event(this.options.events.fieldError),h))},_isOptionEnabled:function(a,b){return!this.options.fields[a]||"true"!==this.options.fields[a][b]&&this.options.fields[a][b]!==!0?!this.options.fields[a]||"false"!==this.options.fields[a][b]&&this.options.fields[a][b]!==!1?"true"===this.options[b]||this.options[b]===!0:!1:!0},getFieldElements:function(b){return this._cacheFields[b]||(this._cacheFields[b]=this.options.fields[b]&&this.options.fields[b].selector?a(this.options.fields[b].selector):this.$form.find('[name="'+b+'"]')),this._cacheFields[b]},getOptions:function(a,b,c){if(!a)return c?this.options[c]:this.options;if("object"==typeof a&&(a=a.attr("data-bv-field")),!this.options.fields[a])return null;var d=this.options.fields[a];return b?d.validators&&d.validators[b]?c?d.validators[b][c]:d.validators[b]:null:c?d[c]:d},disableSubmitButtons:function(a){return a?"disabled"!==this.options.live&&this.$form.find(this.options.submitButtons).attr("disabled","disabled"):this.$form.find(this.options.submitButtons).removeAttr("disabled"),this},validate:function(){if(!this.options.fields)return this;this.disableSubmitButtons(!0),this._submitIfValid=!1;for(var a in this.options.fields)this.validateField(a);return this._submit(),this._submitIfValid=!0,this},validateField:function(b){var c=a([]);switch(typeof b){case"object":c=b,b=b.attr("data-bv-field");break;case"string":c=this.getFieldElements(b)}if(0===c.length||!this.options.fields[b]||this.options.fields[b].enabled===!1)return this;for(var d,e,f=this,g=c.attr("type"),h="radio"===g||"checkbox"===g?1:c.length,i="radio"===g||"checkbox"===g,j=this.options.fields[b].validators,k=this._isOptionEnabled(b,"verbose"),l=0;h>l;l++){var m=c.eq(l);if(!this._isExcluded(m)){var n=!1;for(d in j){if(m.data("bv.dfs."+d)&&m.data("bv.dfs."+d).reject(),n)break;var o=m.data("bv.result."+d);if(o!==this.STATUS_VALID&&o!==this.STATUS_INVALID)if(j[d].enabled!==!1){if(m.data("bv.result."+d,this.STATUS_VALIDATING),e=a.fn.bootstrapValidator.validators[d].validate(this,m,j[d]),"object"==typeof e&&e.resolve)this.updateStatus(i?b:m,this.STATUS_VALIDATING,d),m.data("bv.dfs."+d,e),e.done(function(a,b,c){a.removeData("bv.dfs."+b).data("bv.response."+b,c),c.message&&f.updateMessage(a,b,c.message),f.updateStatus(i?a.attr("data-bv-field"):a,c.valid?f.STATUS_VALID:f.STATUS_INVALID,b),c.valid&&f._submitIfValid===!0?f._submit():c.valid||k||(n=!0)});else if("object"==typeof e&&void 0!==e.valid&&void 0!==e.message){if(m.data("bv.response."+d,e),this.updateMessage(i?b:m,d,e.message),this.updateStatus(i?b:m,e.valid?this.STATUS_VALID:this.STATUS_INVALID,d),!e.valid&&!k)break}else if("boolean"==typeof e&&(m.data("bv.response."+d,e),this.updateStatus(i?b:m,e?this.STATUS_VALID:this.STATUS_INVALID,d),!e&&!k))break}else this.updateStatus(i?b:m,this.STATUS_VALID,d);else this._onFieldValidated(m,d)}}}return this},updateMessage:function(b,c,d){var e=a([]);switch(typeof b){case"object":e=b,b=b.attr("data-bv-field");break;case"string":e=this.getFieldElements(b)}e.each(function(){a(this).data("bv.messages").find('.help-block[data-bv-validator="'+c+'"][data-bv-for="'+b+'"]').html(d)})},updateStatus:function(b,c,d){var e=a([]);switch(typeof b){case"object":e=b,b=b.attr("data-bv-field");break;case"string":e=this.getFieldElements(b)}c===this.STATUS_NOT_VALIDATED&&(this._submitIfValid=!1);for(var f=this,g=e.attr("type"),h=this.options.fields[b].group||this.options.group,i="radio"===g||"checkbox"===g?1:e.length,j=0;i>j;j++){var k=e.eq(j);if(!this._isExcluded(k)){var l=k.parents(h),m=k.data("bv.messages"),n=m.find('.help-block[data-bv-validator][data-bv-for="'+b+'"]'),o=d?n.filter('[data-bv-validator="'+d+'"]'):n,p=k.data("bv.icon"),q="function"==typeof(this.options.fields[b].container||this.options.container)?(this.options.fields[b].container||this.options.container).call(this,k,this):this.options.fields[b].container||this.options.container,r=null;if(d)k.data("bv.result."+d,c);else for(var s in this.options.fields[b].validators)k.data("bv.result."+s,c);o.attr("data-bv-result",c);var t,u,v=k.parents(".tab-pane");switch(v&&(t=v.attr("id"))&&(u=a('a[href="#'+t+'"][data-toggle="tab"]').parent()),c){case this.STATUS_VALIDATING:r=null,this.disableSubmitButtons(!0),l.removeClass("has-success").removeClass("has-error"),p&&p.removeClass(this.options.feedbackIcons.valid).removeClass(this.options.feedbackIcons.invalid).addClass(this.options.feedbackIcons.validating).show(),u&&u.removeClass("bv-tab-success").removeClass("bv-tab-error");break;case this.STATUS_INVALID:r=!1,this.disableSubmitButtons(!0),l.removeClass("has-success").addClass("has-error"),p&&p.removeClass(this.options.feedbackIcons.valid).removeClass(this.options.feedbackIcons.validating).addClass(this.options.feedbackIcons.invalid).show(),u&&u.removeClass("bv-tab-success").addClass("bv-tab-error");break;case this.STATUS_VALID:r=0===n.filter('[data-bv-result="'+this.STATUS_NOT_VALIDATED+'"]').length?n.filter('[data-bv-result="'+this.STATUS_VALID+'"]').length===n.length:null,null!==r&&(this.disableSubmitButtons(this.$submitButton?!this.isValid():!r),p&&p.removeClass(this.options.feedbackIcons.invalid).removeClass(this.options.feedbackIcons.validating).removeClass(this.options.feedbackIcons.valid).addClass(r?this.options.feedbackIcons.valid:this.options.feedbackIcons.invalid).show()),l.removeClass("has-error has-success").addClass(this.isValidContainer(l)?"has-success":"has-error"),u&&u.removeClass("bv-tab-success").removeClass("bv-tab-error").addClass(this.isValidContainer(v)?"bv-tab-success":"bv-tab-error");break;case this.STATUS_NOT_VALIDATED:default:r=null,this.disableSubmitButtons(!1),l.removeClass("has-success").removeClass("has-error"),p&&p.removeClass(this.options.feedbackIcons.valid).removeClass(this.options.feedbackIcons.invalid).removeClass(this.options.feedbackIcons.validating).hide(),u&&u.removeClass("bv-tab-success").removeClass("bv-tab-error")}switch(!0){case p&&"tooltip"===q:r===!1?p.css("cursor","pointer").tooltip("destroy").tooltip({container:"body",html:!0,placement:"auto top",title:n.filter('[data-bv-result="'+f.STATUS_INVALID+'"]').eq(0).html()}):p.css("cursor","").tooltip("destroy");break;case p&&"popover"===q:r===!1?p.css("cursor","pointer").popover("destroy").popover({container:"body",content:n.filter('[data-bv-result="'+f.STATUS_INVALID+'"]').eq(0).html(),html:!0,placement:"auto top",trigger:"hover click"}):p.css("cursor","").popover("destroy");break;default:c===this.STATUS_INVALID?o.show():o.hide()}k.trigger(a.Event(this.options.events.fieldStatus),{bv:this,field:b,element:k,status:c}),this._onFieldValidated(k,d)}}return this},isValid:function(){for(var a in this.options.fields)if(!this.isValidField(a))return!1;return!0},isValidField:function(b){var c=a([]);switch(typeof b){case"object":c=b,b=b.attr("data-bv-field");break;case"string":c=this.getFieldElements(b)}if(0===c.length||!this.options.fields[b]||this.options.fields[b].enabled===!1)return!0;for(var d,e,f,g=c.attr("type"),h="radio"===g||"checkbox"===g?1:c.length,i=0;h>i;i++)if(d=c.eq(i),!this._isExcluded(d))for(e in this.options.fields[b].validators)if(this.options.fields[b].validators[e].enabled!==!1&&(f=d.data("bv.result."+e),f!==this.STATUS_VALID))return!1;return!0},isValidContainer:function(b){var c=this,d={},e="string"==typeof b?a(b):b;if(0===e.length)return!0;e.find("[data-bv-field]").each(function(){var b=a(this),e=b.attr("data-bv-field");c._isExcluded(b)||d[e]||(d[e]=b)});for(var f in d){var g=d[f];if(g.data("bv.messages").find('.help-block[data-bv-validator][data-bv-for="'+f+'"]').filter('[data-bv-result="'+this.STATUS_INVALID+'"]').length>0)return!1}return!0},defaultSubmit:function(){this.$submitButton&&a("<input/>").attr("type","hidden").attr("data-bv-submit-hidden","").attr("name",this.$submitButton.attr("name")).val(this.$submitButton.val()).appendTo(this.$form),this.$form.off("submit.bv").submit()},getInvalidFields:function(){return this.$invalidFields},getSubmitButton:function(){return this.$submitButton},getMessages:function(b,c){var d=this,e=[],f=a([]);switch(!0){case b&&"object"==typeof b:f=b;break;case b&&"string"==typeof b:var g=this.getFieldElements(b);if(g.length>0){var h=g.attr("type");f="radio"===h||"checkbox"===h?g.eq(0):g}break;default:f=this.$invalidFields}var i=c?'[data-bv-validator="'+c+'"]':"";return f.each(function(){e=e.concat(a(this).data("bv.messages").find('.help-block[data-bv-for="'+a(this).attr("data-bv-field")+'"][data-bv-result="'+d.STATUS_INVALID+'"]'+i).map(function(){var b=a(this).attr("data-bv-validator"),c=a(this).attr("data-bv-for");return d.options.fields[c].validators[b].enabled===!1?"":a(this).html()}).get())}),e},updateOption:function(a,b,c,d){return"object"==typeof a&&(a=a.attr("data-bv-field")),this.options.fields[a]&&this.options.fields[a].validators[b]&&(this.options.fields[a].validators[b][c]=d,this.updateStatus(a,this.STATUS_NOT_VALIDATED,b)),this},addField:function(b,c){var d=a([]);switch(typeof b){case"object":d=b,b=b.attr("data-bv-field")||b.attr("name");break;case"string":delete this._cacheFields[b],d=this.getFieldElements(b)}d.attr("data-bv-field",b);for(var e=d.attr("type"),f="radio"===e||"checkbox"===e?1:d.length,g=0;f>g;g++){var h=d.eq(g),i=this._parseOptions(h);i=null===i?c:a.extend(!0,c,i),this.options.fields[b]=a.extend(!0,this.options.fields[b],i),this._cacheFields[b]=this._cacheFields[b]?this._cacheFields[b].add(h):h,this._initField("checkbox"===e||"radio"===e?b:h)}return this.disableSubmitButtons(!1),this.$form.trigger(a.Event(this.options.events.fieldAdded),{field:b,element:d,options:this.options.fields[b]}),this},removeField:function(b){var c=a([]);switch(typeof b){case"object":c=b,b=b.attr("data-bv-field")||b.attr("name"),c.attr("data-bv-field",b);break;case"string":c=this.getFieldElements(b)}if(0===c.length)return this;for(var d=c.attr("type"),e="radio"===d||"checkbox"===d?1:c.length,f=0;e>f;f++){var g=c.eq(f);this.$invalidFields=this.$invalidFields.not(g),this._cacheFields[b]=this._cacheFields[b].not(g)}return this._cacheFields[b]&&0!==this._cacheFields[b].length||delete this.options.fields[b],("checkbox"===d||"radio"===d)&&this._initField(b),this.disableSubmitButtons(!1),this.$form.trigger(a.Event(this.options.events.fieldRemoved),{field:b,element:c}),this},resetField:function(b,c){var d=a([]);switch(typeof b){case"object":d=b,b=b.attr("data-bv-field");break;case"string":d=this.getFieldElements(b)}var e=d.length;if(this.options.fields[b])for(var f=0;e>f;f++)for(var g in this.options.fields[b].validators)d.eq(f).removeData("bv.dfs."+g);if(this.updateStatus(b,this.STATUS_NOT_VALIDATED),c){var h=d.attr("type");"radio"===h||"checkbox"===h?d.removeAttr("checked").removeAttr("selected"):d.val("")}return this},resetForm:function(b){for(var c in this.options.fields)this.resetField(c,b);return this.$invalidFields=a([]),this.$submitButton=null,this.disableSubmitButtons(!1),this},revalidateField:function(a){return this.updateStatus(a,this.STATUS_NOT_VALIDATED).validateField(a),this},enableFieldValidators:function(a,b,c){var d=this.options.fields[a].validators;if(c&&d&&d[c]&&d[c].enabled!==b)this.options.fields[a].validators[c].enabled=b,this.updateStatus(a,this.STATUS_NOT_VALIDATED,c);else if(!c&&this.options.fields[a].enabled!==b){this.options.fields[a].enabled=b;for(var e in d)this.enableFieldValidators(a,b,e)}return this},getDynamicOption:function(b,c){var d="string"==typeof b?this.getFieldElements(b):b,e=d.val();if("function"==typeof c)return a.fn.bootstrapValidator.helpers.call(c,[e,this,d]);if("string"==typeof c){var f=this.getFieldElements(c);return f.length?f.val():a.fn.bootstrapValidator.helpers.call(c,[e,this,d])||c}return null},destroy:function(){var b,c,d,e,f,g;for(b in this.options.fields){c=this.getFieldElements(b),g=this.options.fields[b].group||this.options.group;for(var h=0;h<c.length;h++){if(d=c.eq(h),d.data("bv.messages").find('.help-block[data-bv-validator][data-bv-for="'+b+'"]').remove().end().end().removeData("bv.messages").parents(g).removeClass("has-feedback has-error has-success").end().off(".bv").removeAttr("data-bv-field"),f=d.data("bv.icon")){var i="function"==typeof(this.options.fields[b].container||this.options.container)?(this.options.fields[b].container||this.options.container).call(this,d,this):this.options.fields[b].container||this.options.container;switch(i){case"tooltip":f.tooltip("destroy").remove();break;case"popover":f.popover("destroy").remove();break;default:f.remove()}}d.removeData("bv.icon");for(e in this.options.fields[b].validators)d.data("bv.dfs."+e)&&d.data("bv.dfs."+e).reject(),d.removeData("bv.result."+e).removeData("bv.response."+e).removeData("bv.dfs."+e),"function"==typeof a.fn.bootstrapValidator.validators[e].destroy&&a.fn.bootstrapValidator.validators[e].destroy(this,d,this.options.fields[b].validators[e])}}this.disableSubmitButtons(!1),this.$hiddenButton.remove(),this.$form.removeClass(this.options.elementClass).off(".bv").removeData("bootstrapValidator").find("[data-bv-submit-hidden]").remove().end().find('[type="submit"]').off("click.bv")}},a.fn.bootstrapValidator=function(c){var d=arguments;return this.each(function(){var e=a(this),f=e.data("bootstrapValidator"),g="object"==typeof c&&c;f||(f=new b(this,g),e.data("bootstrapValidator",f)),"string"==typeof c&&f[c].apply(f,Array.prototype.slice.call(d,1))})},a.fn.bootstrapValidator.DEFAULT_OPTIONS={autoFocus:!0,container:null,elementClass:"bv-form",events:{formInit:"init.form.bv",formError:"error.form.bv",formSuccess:"success.form.bv",fieldAdded:"added.field.bv",fieldRemoved:"removed.field.bv",fieldInit:"init.field.bv",fieldError:"error.field.bv",fieldSuccess:"success.field.bv",fieldStatus:"status.field.bv",validatorError:"error.validator.bv",validatorSuccess:"success.validator.bv"},excluded:[":disabled",":hidden",":not(:visible)"],feedbackIcons:{valid:null,invalid:null,validating:null},fields:null,group:".form-group",live:"enabled",message:"This value is not valid",submitButtons:'[type="submit"]',threshold:null,verbose:!0},a.fn.bootstrapValidator.validators={},a.fn.bootstrapValidator.i18n={},a.fn.bootstrapValidator.Constructor=b,a.fn.bootstrapValidator.helpers={call:function(a,b){if("function"==typeof a)return a.apply(this,b);if("string"==typeof a){"()"===a.substring(a.length-2)&&(a=a.substring(0,a.length-2));for(var c=a.split("."),d=c.pop(),e=window,f=0;f<c.length;f++)e=e[c[f]];return"undefined"==typeof e[d]?null:e[d].apply(this,b)}},format:function(b,c){a.isArray(c)||(c=[c]);for(var d in c)b=b.replace("%s",c[d]);return b},date:function(a,b,c,d){if(isNaN(a)||isNaN(b)||isNaN(c))return!1;if(c.length>2||b.length>2||a.length>4)return!1;if(c=parseInt(c,10),b=parseInt(b,10),a=parseInt(a,10),1e3>a||a>9999||0>=b||b>12)return!1;var e=[31,28,31,30,31,30,31,31,30,31,30,31];if((a%400===0||a%100!==0&&a%4===0)&&(e[1]=29),0>=c||c>e[b-1])return!1;if(d===!0){var f=new Date,g=f.getFullYear(),h=f.getMonth(),i=f.getDate();return g>a||a===g&&h>b-1||a===g&&b-1===h&&i>c}return!0},luhn:function(a){for(var b=a.length,c=0,d=[[0,1,2,3,4,5,6,7,8,9],[0,2,4,6,8,1,3,5,7,9]],e=0;b--;)e+=d[c][parseInt(a.charAt(b),10)],c^=1;return e%10===0&&e>0},mod11And10:function(a){for(var b=5,c=a.length,d=0;c>d;d++)b=(2*(b||10)%11+parseInt(a.charAt(d),10))%10;return 1===b},mod37And36:function(a,b){b=b||"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";for(var c=b.length,d=a.length,e=Math.floor(c/2),f=0;d>f;f++)e=(2*(e||c)%(c+1)+b.indexOf(a.charAt(f)))%c;return 1===e}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.base64=a.extend(a.fn.bootstrapValidator.i18n.base64||{},{"default":"Please enter a valid base 64 encoded"}),a.fn.bootstrapValidator.validators.base64={validate:function(a,b){var c=b.val();return""===c?!0:/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/.test(c)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.between=a.extend(a.fn.bootstrapValidator.i18n.between||{},{"default":"Please enter a value between %s and %s",notInclusive:"Please enter a value between %s and %s strictly"}),a.fn.bootstrapValidator.validators.between={html5Attributes:{message:"message",min:"min",max:"max",inclusive:"inclusive"},enableByHtml5:function(a){return"range"===a.attr("type")?{min:a.attr("min"),max:a.attr("max")}:!1},validate:function(b,c,d){var e=c.val();if(""===e)return!0;if(e=this._format(e),!a.isNumeric(e))return!1;var f=a.isNumeric(d.min)?d.min:b.getDynamicOption(c,d.min),g=a.isNumeric(d.max)?d.max:b.getDynamicOption(c,d.max),h=this._format(f),i=this._format(g);return e=parseFloat(e),d.inclusive===!0||void 0===d.inclusive?{valid:e>=h&&i>=e,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.between["default"],[f,g])}:{valid:e>h&&i>e,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.between.notInclusive,[f,g])}},_format:function(a){return(a+"").replace(",",".")}}}(window.jQuery),function(a){a.fn.bootstrapValidator.validators.blank={validate:function(){return!0}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.callback=a.extend(a.fn.bootstrapValidator.i18n.callback||{},{"default":"Please enter a valid value"}),a.fn.bootstrapValidator.validators.callback={html5Attributes:{message:"message",callback:"callback"},validate:function(b,c,d){var e=c.val(),f=new a.Deferred,g={valid:!0};if(d.callback){var h=a.fn.bootstrapValidator.helpers.call(d.callback,[e,b,c]);g="boolean"==typeof h?{valid:h}:h}return f.resolve(c,"callback",g),f}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.choice=a.extend(a.fn.bootstrapValidator.i18n.choice||{},{"default":"Please enter a valid value",less:"Please choose %s options at minimum",more:"Please choose %s options at maximum",between:"Please choose %s - %s options"}),a.fn.bootstrapValidator.validators.choice={html5Attributes:{message:"message",min:"min",max:"max"},validate:function(b,c,d){var e=c.is("select")?b.getFieldElements(c.attr("data-bv-field")).find("option").filter(":selected").length:b.getFieldElements(c.attr("data-bv-field")).filter(":checked").length,f=d.min?a.isNumeric(d.min)?d.min:b.getDynamicOption(c,d.min):null,g=d.max?a.isNumeric(d.max)?d.max:b.getDynamicOption(c,d.max):null,h=!0,i=d.message||a.fn.bootstrapValidator.i18n.choice["default"];switch((f&&e<parseInt(f,10)||g&&e>parseInt(g,10))&&(h=!1),!0){case!!f&&!!g:i=a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.choice.between,[parseInt(f,10),parseInt(g,10)]);break;case!!f:i=a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.choice.less,parseInt(f,10));break;case!!g:i=a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.choice.more,parseInt(g,10))}return{valid:h,message:i}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.color=a.extend(a.fn.bootstrapValidator.i18n.color||{},{"default":"Please enter a valid color"}),a.fn.bootstrapValidator.validators.color={SUPPORTED_TYPES:["hex","rgb","rgba","hsl","hsla","keyword"],KEYWORD_COLORS:["aliceblue","antiquewhite","aqua","aquamarine","azure","beige","bisque","black","blanchedalmond","blue","blueviolet","brown","burlywood","cadetblue","chartreuse","chocolate","coral","cornflowerblue","cornsilk","crimson","cyan","darkblue","darkcyan","darkgoldenrod","darkgray","darkgreen","darkgrey","darkkhaki","darkmagenta","darkolivegreen","darkorange","darkorchid","darkred","darksalmon","darkseagreen","darkslateblue","darkslategray","darkslategrey","darkturquoise","darkviolet","deeppink","deepskyblue","dimgray","dimgrey","dodgerblue","firebrick","floralwhite","forestgreen","fuchsia","gainsboro","ghostwhite","gold","goldenrod","gray","green","greenyellow","grey","honeydew","hotpink","indianred","indigo","ivory","khaki","lavender","lavenderblush","lawngreen","lemonchiffon","lightblue","lightcoral","lightcyan","lightgoldenrodyellow","lightgray","lightgreen","lightgrey","lightpink","lightsalmon","lightseagreen","lightskyblue","lightslategray","lightslategrey","lightsteelblue","lightyellow","lime","limegreen","linen","magenta","maroon","mediumaquamarine","mediumblue","mediumorchid","mediumpurple","mediumseagreen","mediumslateblue","mediumspringgreen","mediumturquoise","mediumvioletred","midnightblue","mintcream","mistyrose","moccasin","navajowhite","navy","oldlace","olive","olivedrab","orange","orangered","orchid","palegoldenrod","palegreen","paleturquoise","palevioletred","papayawhip","peachpuff","peru","pink","plum","powderblue","purple","red","rosybrown","royalblue","saddlebrown","salmon","sandybrown","seagreen","seashell","sienna","silver","skyblue","slateblue","slategray","slategrey","snow","springgreen","steelblue","tan","teal","thistle","tomato","transparent","turquoise","violet","wheat","white","whitesmoke","yellow","yellowgreen"],validate:function(b,c,d){var e=c.val();
+    if(""===e)return!0;var f=d.type||this.SUPPORTED_TYPES;a.isArray(f)||(f=f.replace(/s/g,"").split(","));for(var g,h,i=!1,j=0;j<f.length;j++)if(h=f[j],g="_"+h.toLowerCase(),i=i||this[g](e))return!0;return!1},_hex:function(a){return/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a)},_hsl:function(a){return/^hsl\((\s*(-?\d+)\s*,)(\s*(\b(0?\d{1,2}|100)\b%)\s*,)(\s*(\b(0?\d{1,2}|100)\b%)\s*)\)$/.test(a)},_hsla:function(a){return/^hsla\((\s*(-?\d+)\s*,)(\s*(\b(0?\d{1,2}|100)\b%)\s*,){2}(\s*(0?(\.\d+)?|1(\.0+)?)\s*)\)$/.test(a)},_keyword:function(b){return a.inArray(b,this.KEYWORD_COLORS)>=0},_rgb:function(a){var b=/^rgb\((\s*(\b([01]?\d{1,2}|2[0-4]\d|25[0-5])\b)\s*,){2}(\s*(\b([01]?\d{1,2}|2[0-4]\d|25[0-5])\b)\s*)\)$/,c=/^rgb\((\s*(\b(0?\d{1,2}|100)\b%)\s*,){2}(\s*(\b(0?\d{1,2}|100)\b%)\s*)\)$/;return b.test(a)||c.test(a)},_rgba:function(a){var b=/^rgba\((\s*(\b([01]?\d{1,2}|2[0-4]\d|25[0-5])\b)\s*,){3}(\s*(0?(\.\d+)?|1(\.0+)?)\s*)\)$/,c=/^rgba\((\s*(\b(0?\d{1,2}|100)\b%)\s*,){3}(\s*(0?(\.\d+)?|1(\.0+)?)\s*)\)$/;return b.test(a)||c.test(a)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.creditCard=a.extend(a.fn.bootstrapValidator.i18n.creditCard||{},{"default":"Please enter a valid credit card number"}),a.fn.bootstrapValidator.validators.creditCard={validate:function(b,c){var d=c.val();if(""===d)return!0;if(/[^0-9-\s]+/.test(d))return!1;if(d=d.replace(/\D/g,""),!a.fn.bootstrapValidator.helpers.luhn(d))return!1;var e,f,g={AMERICAN_EXPRESS:{length:[15],prefix:["34","37"]},DINERS_CLUB:{length:[14],prefix:["300","301","302","303","304","305","36"]},DINERS_CLUB_US:{length:[16],prefix:["54","55"]},DISCOVER:{length:[16],prefix:["6011","622126","622127","622128","622129","62213","62214","62215","62216","62217","62218","62219","6222","6223","6224","6225","6226","6227","6228","62290","62291","622920","622921","622922","622923","622924","622925","644","645","646","647","648","649","65"]},JCB:{length:[16],prefix:["3528","3529","353","354","355","356","357","358"]},LASER:{length:[16,17,18,19],prefix:["6304","6706","6771","6709"]},MAESTRO:{length:[12,13,14,15,16,17,18,19],prefix:["5018","5020","5038","6304","6759","6761","6762","6763","6764","6765","6766"]},MASTERCARD:{length:[16],prefix:["51","52","53","54","55"]},SOLO:{length:[16,18,19],prefix:["6334","6767"]},UNIONPAY:{length:[16,17,18,19],prefix:["622126","622127","622128","622129","62213","62214","62215","62216","62217","62218","62219","6222","6223","6224","6225","6226","6227","6228","62290","62291","622920","622921","622922","622923","622924","622925"]},VISA:{length:[16],prefix:["4"]}};for(e in g)for(f in g[e].prefix)if(d.substr(0,g[e].prefix[f].length)===g[e].prefix[f]&&-1!==a.inArray(d.length,g[e].length))return!0;return!1}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.cusip=a.extend(a.fn.bootstrapValidator.i18n.cusip||{},{"default":"Please enter a valid CUSIP number"}),a.fn.bootstrapValidator.validators.cusip={validate:function(b,c){var d=c.val();if(""===d)return!0;if(d=d.toUpperCase(),!/^[0-9A-Z]{9}$/.test(d))return!1;for(var e=a.map(d.split(""),function(a){var b=a.charCodeAt(0);return b>="A".charCodeAt(0)&&b<="Z".charCodeAt(0)?b-"A".charCodeAt(0)+10:a}),f=e.length,g=0,h=0;f-1>h;h++){var i=parseInt(e[h],10);h%2!==0&&(i*=2),i>9&&(i-=9),g+=i}return g=(10-g%10)%10,g===e[f-1]}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.cvv=a.extend(a.fn.bootstrapValidator.i18n.cvv||{},{"default":"Please enter a valid CVV number"}),a.fn.bootstrapValidator.validators.cvv={html5Attributes:{message:"message",ccfield:"creditCardField"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;if(!/^[0-9]{3,4}$/.test(e))return!1;if(!d.creditCardField)return!0;var f=b.getFieldElements(d.creditCardField).val();if(""===f)return!0;f=f.replace(/\D/g,"");var g,h,i={AMERICAN_EXPRESS:{length:[15],prefix:["34","37"]},DINERS_CLUB:{length:[14],prefix:["300","301","302","303","304","305","36"]},DINERS_CLUB_US:{length:[16],prefix:["54","55"]},DISCOVER:{length:[16],prefix:["6011","622126","622127","622128","622129","62213","62214","62215","62216","62217","62218","62219","6222","6223","6224","6225","6226","6227","6228","62290","62291","622920","622921","622922","622923","622924","622925","644","645","646","647","648","649","65"]},JCB:{length:[16],prefix:["3528","3529","353","354","355","356","357","358"]},LASER:{length:[16,17,18,19],prefix:["6304","6706","6771","6709"]},MAESTRO:{length:[12,13,14,15,16,17,18,19],prefix:["5018","5020","5038","6304","6759","6761","6762","6763","6764","6765","6766"]},MASTERCARD:{length:[16],prefix:["51","52","53","54","55"]},SOLO:{length:[16,18,19],prefix:["6334","6767"]},UNIONPAY:{length:[16,17,18,19],prefix:["622126","622127","622128","622129","62213","62214","62215","62216","62217","62218","62219","6222","6223","6224","6225","6226","6227","6228","62290","62291","622920","622921","622922","622923","622924","622925"]},VISA:{length:[16],prefix:["4"]}},j=null;for(g in i)for(h in i[g].prefix)if(f.substr(0,i[g].prefix[h].length)===i[g].prefix[h]&&-1!==a.inArray(f.length,i[g].length)){j=g;break}return null===j?!1:"AMERICAN_EXPRESS"===j?4===e.length:3===e.length}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.date=a.extend(a.fn.bootstrapValidator.i18n.date||{},{"default":"Please enter a valid date",min:"Please enter a date after %s",max:"Please enter a date before %s",range:"Please enter a date in the range %s - %s"}),a.fn.bootstrapValidator.validators.date={html5Attributes:{message:"message",format:"format",min:"min",max:"max",separator:"separator"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;d.format=d.format||"MM/DD/YYYY","date"===c.attr("type")&&(d.format="YYYY-MM-DD");var f=d.format.split(" "),g=f[0],h=f.length>1?f[1]:null,i=f.length>2?f[2]:null,j=e.split(" "),k=j[0],l=j.length>1?j[1]:null;if(f.length!==j.length)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};var m=d.separator;if(m||(m=-1!==k.indexOf("/")?"/":-1!==k.indexOf("-")?"-":null),null===m||-1===k.indexOf(m))return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};if(k=k.split(m),g=g.split(m),k.length!==g.length)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};var n=k[a.inArray("YYYY",g)],o=k[a.inArray("MM",g)],p=k[a.inArray("DD",g)];if(!n||!o||!p||4!==n.length)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};var q=null,r=null,s=null;if(h){if(h=h.split(":"),l=l.split(":"),h.length!==l.length)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};if(r=l.length>0?l[0]:null,q=l.length>1?l[1]:null,s=l.length>2?l[2]:null){if(isNaN(s)||s.length>2)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};if(s=parseInt(s,10),0>s||s>60)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]}}if(r){if(isNaN(r)||r.length>2)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};if(r=parseInt(r,10),0>r||r>=24||i&&r>12)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]}}if(q){if(isNaN(q)||q.length>2)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]};if(q=parseInt(q,10),0>q||q>59)return{valid:!1,message:d.message||a.fn.bootstrapValidator.i18n.date["default"]}}}var t=a.fn.bootstrapValidator.helpers.date(n,o,p),u=d.message||a.fn.bootstrapValidator.i18n.date["default"],v=null,w=null,x=d.min,y=d.max;switch(x&&(isNaN(Date.parse(x))&&(x=b.getDynamicOption(c,x)),v=this._parseDate(x,g,m)),y&&(isNaN(Date.parse(y))&&(y=b.getDynamicOption(c,y)),w=this._parseDate(y,g,m)),k=new Date(n,o,p,r,q,s),!0){case x&&!y&&t:t=k.getTime()>=v.getTime(),u=d.message||a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.date.min,x);break;case y&&!x&&t:t=k.getTime()<=w.getTime(),u=d.message||a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.date.max,y);break;case y&&x&&t:t=k.getTime()<=w.getTime()&&k.getTime()>=v.getTime(),u=d.message||a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.date.range,[x,y])}return{valid:t,message:u}},_parseDate:function(b,c,d){var e=0,f=0,g=0,h=b.split(" "),i=h[0],j=h.length>1?h[1]:null;i=i.split(d);var k=i[a.inArray("YYYY",c)],l=i[a.inArray("MM",c)],m=i[a.inArray("DD",c)];return j&&(j=j.split(":"),f=j.length>0?j[0]:null,e=j.length>1?j[1]:null,g=j.length>2?j[2]:null),new Date(k,l,m,f,e,g)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.different=a.extend(a.fn.bootstrapValidator.i18n.different||{},{"default":"Please enter a different value"}),a.fn.bootstrapValidator.validators.different={html5Attributes:{message:"message",field:"field"},validate:function(a,b,c){var d=b.val();if(""===d)return!0;for(var e=c.field.split(","),f=!0,g=0;g<e.length;g++){var h=a.getFieldElements(e[g]);if(null!=h&&0!==h.length){var i=h.val();d===i?f=!1:""!==i&&a.updateStatus(h,a.STATUS_VALID,"different")}}return f}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.digits=a.extend(a.fn.bootstrapValidator.i18n.digits||{},{"default":"Please enter only digits"}),a.fn.bootstrapValidator.validators.digits={validate:function(a,b){var c=b.val();return""===c?!0:/^\d+$/.test(c)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.ean=a.extend(a.fn.bootstrapValidator.i18n.ean||{},{"default":"Please enter a valid EAN number"}),a.fn.bootstrapValidator.validators.ean={validate:function(a,b){var c=b.val();if(""===c)return!0;if(!/^(\d{8}|\d{12}|\d{13})$/.test(c))return!1;for(var d=c.length,e=0,f=8===d?[3,1]:[1,3],g=0;d-1>g;g++)e+=parseInt(c.charAt(g),10)*f[g%2];return e=(10-e%10)%10,e+""===c.charAt(d-1)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.emailAddress=a.extend(a.fn.bootstrapValidator.i18n.emailAddress||{},{"default":"Please enter a valid email address"}),a.fn.bootstrapValidator.validators.emailAddress={html5Attributes:{message:"message",multiple:"multiple",separator:"separator"},enableByHtml5:function(a){return"email"===a.attr("type")},validate:function(a,b,c){var d=b.val();if(""===d)return!0;var e=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,f=c.multiple===!0||"true"===c.multiple;if(f){for(var g=c.separator||/[,;]/,h=this._splitEmailAddresses(d,g),i=0;i<h.length;i++)if(!e.test(h[i]))return!1;return!0}return e.test(d)},_splitEmailAddresses:function(a,b){for(var c=a.split(/"/),d=c.length,e=[],f="",g=0;d>g;g++)if(g%2===0){var h=c[g].split(b),i=h.length;if(1===i)f+=h[0];else{e.push(f+h[0]);for(var j=1;i-1>j;j++)e.push(h[j]);f=h[i-1]}}else f+='"'+c[g],d-1>g&&(f+='"');return e.push(f),e}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.file=a.extend(a.fn.bootstrapValidator.i18n.file||{},{"default":"Please choose a valid file"}),a.fn.bootstrapValidator.validators.file={html5Attributes:{extension:"extension",maxfiles:"maxFiles",minfiles:"minFiles",maxsize:"maxSize",minsize:"minSize",maxtotalsize:"maxTotalSize",mintotalsize:"minTotalSize",message:"message",type:"type"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;var f,g=d.extension?d.extension.toLowerCase().split(","):null,h=d.type?d.type.toLowerCase().split(","):null,i=window.File&&window.FileList&&window.FileReader;if(i){var j=c.get(0).files,k=j.length,l=0;if(d.maxFiles&&k>parseInt(d.maxFiles,10)||d.minFiles&&k<parseInt(d.minFiles,10))return!1;for(var m=0;k>m;m++)if(l+=j[m].size,f=j[m].name.substr(j[m].name.lastIndexOf(".")+1),d.minSize&&j[m].size<parseInt(d.minSize,10)||d.maxSize&&j[m].size>parseInt(d.maxSize,10)||g&&-1===a.inArray(f.toLowerCase(),g)||j[m].type&&h&&-1===a.inArray(j[m].type.toLowerCase(),h))return!1;if(d.maxTotalSize&&l>parseInt(d.maxTotalSize,10)||d.minTotalSize&&l<parseInt(d.minTotalSize,10))return!1}else if(f=e.substr(e.lastIndexOf(".")+1),g&&-1===a.inArray(f.toLowerCase(),g))return!1;return!0}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.greaterThan=a.extend(a.fn.bootstrapValidator.i18n.greaterThan||{},{"default":"Please enter a value greater than or equal to %s",notInclusive:"Please enter a value greater than %s"}),a.fn.bootstrapValidator.validators.greaterThan={html5Attributes:{message:"message",value:"value",inclusive:"inclusive"},enableByHtml5:function(a){var b=a.attr("type"),c=a.attr("min");return c&&"date"!==b?{value:c}:!1},validate:function(b,c,d){var e=c.val();if(""===e)return!0;if(e=this._format(e),!a.isNumeric(e))return!1;var f=a.isNumeric(d.value)?d.value:b.getDynamicOption(c,d.value),g=this._format(f);return e=parseFloat(e),d.inclusive===!0||void 0===d.inclusive?{valid:e>=g,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.greaterThan["default"],f)}:{valid:e>g,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.greaterThan.notInclusive,f)}},_format:function(a){return(a+"").replace(",",".")}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.grid=a.extend(a.fn.bootstrapValidator.i18n.grid||{},{"default":"Please enter a valid GRId number"}),a.fn.bootstrapValidator.validators.grid={validate:function(b,c){var d=c.val();return""===d?!0:(d=d.toUpperCase(),/^[GRID:]*([0-9A-Z]{2})[-\s]*([0-9A-Z]{5})[-\s]*([0-9A-Z]{10})[-\s]*([0-9A-Z]{1})$/g.test(d)?(d=d.replace(/\s/g,"").replace(/-/g,""),"GRID:"===d.substr(0,5)&&(d=d.substr(5)),a.fn.bootstrapValidator.helpers.mod37And36(d)):!1)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.hex=a.extend(a.fn.bootstrapValidator.i18n.hex||{},{"default":"Please enter a valid hexadecimal number"}),a.fn.bootstrapValidator.validators.hex={validate:function(a,b){var c=b.val();return""===c?!0:/^[0-9a-fA-F]+$/.test(c)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.hexColor=a.extend(a.fn.bootstrapValidator.i18n.hexColor||{},{"default":"Please enter a valid hex color"}),a.fn.bootstrapValidator.validators.hexColor={enableByHtml5:function(a){return"color"===a.attr("type")},validate:function(a,b){var c=b.val();return""===c?!0:"color"===b.attr("type")?/^#[0-9A-F]{6}$/i.test(c):/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(c)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.iban=a.extend(a.fn.bootstrapValidator.i18n.iban||{},{"default":"Please enter a valid IBAN number",countryNotSupported:"The country code %s is not supported",country:"Please enter a valid IBAN number in %s",countries:{AD:"Andorra",AE:"United Arab Emirates",AL:"Albania",AO:"Angola",AT:"Austria",AZ:"Azerbaijan",BA:"Bosnia and Herzegovina",BE:"Belgium",BF:"Burkina Faso",BG:"Bulgaria",BH:"Bahrain",BI:"Burundi",BJ:"Benin",BR:"Brazil",CH:"Switzerland",CI:"Ivory Coast",CM:"Cameroon",CR:"Costa Rica",CV:"Cape Verde",CY:"Cyprus",CZ:"Czech Republic",DE:"Germany",DK:"Denmark",DO:"Dominican Republic",DZ:"Algeria",EE:"Estonia",ES:"Spain",FI:"Finland",FO:"Faroe Islands",FR:"France",GB:"United Kingdom",GE:"Georgia",GI:"Gibraltar",GL:"Greenland",GR:"Greece",GT:"Guatemala",HR:"Croatia",HU:"Hungary",IE:"Ireland",IL:"Israel",IR:"Iran",IS:"Iceland",IT:"Italy",JO:"Jordan",KW:"Kuwait",KZ:"Kazakhstan",LB:"Lebanon",LI:"Liechtenstein",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",MC:"Monaco",MD:"Moldova",ME:"Montenegro",MG:"Madagascar",MK:"Macedonia",ML:"Mali",MR:"Mauritania",MT:"Malta",MU:"Mauritius",MZ:"Mozambique",NL:"Netherlands",NO:"Norway",PK:"Pakistan",PL:"Poland",PS:"Palestine",PT:"Portugal",QA:"Qatar",RO:"Romania",RS:"Serbia",SA:"Saudi Arabia",SE:"Sweden",SI:"Slovenia",SK:"Slovakia",SM:"San Marino",SN:"Senegal",TN:"Tunisia",TR:"Turkey",VG:"Virgin Islands, British"}}),a.fn.bootstrapValidator.validators.iban={html5Attributes:{message:"message",country:"country"},REGEX:{AD:"AD[0-9]{2}[0-9]{4}[0-9]{4}[A-Z0-9]{12}",AE:"AE[0-9]{2}[0-9]{3}[0-9]{16}",AL:"AL[0-9]{2}[0-9]{8}[A-Z0-9]{16}",AO:"AO[0-9]{2}[0-9]{21}",AT:"AT[0-9]{2}[0-9]{5}[0-9]{11}",AZ:"AZ[0-9]{2}[A-Z]{4}[A-Z0-9]{20}",BA:"BA[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{8}[0-9]{2}",BE:"BE[0-9]{2}[0-9]{3}[0-9]{7}[0-9]{2}",BF:"BF[0-9]{2}[0-9]{23}",BG:"BG[0-9]{2}[A-Z]{4}[0-9]{4}[0-9]{2}[A-Z0-9]{8}",BH:"BH[0-9]{2}[A-Z]{4}[A-Z0-9]{14}",BI:"BI[0-9]{2}[0-9]{12}",BJ:"BJ[0-9]{2}[A-Z]{1}[0-9]{23}",BR:"BR[0-9]{2}[0-9]{8}[0-9]{5}[0-9]{10}[A-Z][A-Z0-9]",CH:"CH[0-9]{2}[0-9]{5}[A-Z0-9]{12}",CI:"CI[0-9]{2}[A-Z]{1}[0-9]{23}",CM:"CM[0-9]{2}[0-9]{23}",CR:"CR[0-9]{2}[0-9]{3}[0-9]{14}",CV:"CV[0-9]{2}[0-9]{21}",CY:"CY[0-9]{2}[0-9]{3}[0-9]{5}[A-Z0-9]{16}",CZ:"CZ[0-9]{2}[0-9]{20}",DE:"DE[0-9]{2}[0-9]{8}[0-9]{10}",DK:"DK[0-9]{2}[0-9]{14}",DO:"DO[0-9]{2}[A-Z0-9]{4}[0-9]{20}",DZ:"DZ[0-9]{2}[0-9]{20}",EE:"EE[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{11}[0-9]{1}",ES:"ES[0-9]{2}[0-9]{4}[0-9]{4}[0-9]{1}[0-9]{1}[0-9]{10}",FI:"FI[0-9]{2}[0-9]{6}[0-9]{7}[0-9]{1}",FO:"FO[0-9]{2}[0-9]{4}[0-9]{9}[0-9]{1}",FR:"FR[0-9]{2}[0-9]{5}[0-9]{5}[A-Z0-9]{11}[0-9]{2}",GB:"GB[0-9]{2}[A-Z]{4}[0-9]{6}[0-9]{8}",GE:"GE[0-9]{2}[A-Z]{2}[0-9]{16}",GI:"GI[0-9]{2}[A-Z]{4}[A-Z0-9]{15}",GL:"GL[0-9]{2}[0-9]{4}[0-9]{9}[0-9]{1}",GR:"GR[0-9]{2}[0-9]{3}[0-9]{4}[A-Z0-9]{16}",GT:"GT[0-9]{2}[A-Z0-9]{4}[A-Z0-9]{20}",HR:"HR[0-9]{2}[0-9]{7}[0-9]{10}",HU:"HU[0-9]{2}[0-9]{3}[0-9]{4}[0-9]{1}[0-9]{15}[0-9]{1}",IE:"IE[0-9]{2}[A-Z]{4}[0-9]{6}[0-9]{8}",IL:"IL[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{13}",IR:"IR[0-9]{2}[0-9]{22}",IS:"IS[0-9]{2}[0-9]{4}[0-9]{2}[0-9]{6}[0-9]{10}",IT:"IT[0-9]{2}[A-Z]{1}[0-9]{5}[0-9]{5}[A-Z0-9]{12}",JO:"JO[0-9]{2}[A-Z]{4}[0-9]{4}[0]{8}[A-Z0-9]{10}",KW:"KW[0-9]{2}[A-Z]{4}[0-9]{22}",KZ:"KZ[0-9]{2}[0-9]{3}[A-Z0-9]{13}",LB:"LB[0-9]{2}[0-9]{4}[A-Z0-9]{20}",LI:"LI[0-9]{2}[0-9]{5}[A-Z0-9]{12}",LT:"LT[0-9]{2}[0-9]{5}[0-9]{11}",LU:"LU[0-9]{2}[0-9]{3}[A-Z0-9]{13}",LV:"LV[0-9]{2}[A-Z]{4}[A-Z0-9]{13}",MC:"MC[0-9]{2}[0-9]{5}[0-9]{5}[A-Z0-9]{11}[0-9]{2}",MD:"MD[0-9]{2}[A-Z0-9]{20}",ME:"ME[0-9]{2}[0-9]{3}[0-9]{13}[0-9]{2}",MG:"MG[0-9]{2}[0-9]{23}",MK:"MK[0-9]{2}[0-9]{3}[A-Z0-9]{10}[0-9]{2}",ML:"ML[0-9]{2}[A-Z]{1}[0-9]{23}",MR:"MR13[0-9]{5}[0-9]{5}[0-9]{11}[0-9]{2}",MT:"MT[0-9]{2}[A-Z]{4}[0-9]{5}[A-Z0-9]{18}",MU:"MU[0-9]{2}[A-Z]{4}[0-9]{2}[0-9]{2}[0-9]{12}[0-9]{3}[A-Z]{3}",MZ:"MZ[0-9]{2}[0-9]{21}",NL:"NL[0-9]{2}[A-Z]{4}[0-9]{10}",NO:"NO[0-9]{2}[0-9]{4}[0-9]{6}[0-9]{1}",PK:"PK[0-9]{2}[A-Z]{4}[A-Z0-9]{16}",PL:"PL[0-9]{2}[0-9]{8}[0-9]{16}",PS:"PS[0-9]{2}[A-Z]{4}[A-Z0-9]{21}",PT:"PT[0-9]{2}[0-9]{4}[0-9]{4}[0-9]{11}[0-9]{2}",QA:"QA[0-9]{2}[A-Z]{4}[A-Z0-9]{21}",RO:"RO[0-9]{2}[A-Z]{4}[A-Z0-9]{16}",RS:"RS[0-9]{2}[0-9]{3}[0-9]{13}[0-9]{2}",SA:"SA[0-9]{2}[0-9]{2}[A-Z0-9]{18}",SE:"SE[0-9]{2}[0-9]{3}[0-9]{16}[0-9]{1}",SI:"SI[0-9]{2}[0-9]{5}[0-9]{8}[0-9]{2}",SK:"SK[0-9]{2}[0-9]{4}[0-9]{6}[0-9]{10}",SM:"SM[0-9]{2}[A-Z]{1}[0-9]{5}[0-9]{5}[A-Z0-9]{12}",SN:"SN[0-9]{2}[A-Z]{1}[0-9]{23}",TN:"TN59[0-9]{2}[0-9]{3}[0-9]{13}[0-9]{2}",TR:"TR[0-9]{2}[0-9]{5}[A-Z0-9]{1}[A-Z0-9]{16}",VG:"VG[0-9]{2}[A-Z]{4}[0-9]{16}"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;e=e.replace(/[^a-zA-Z0-9]/g,"").toUpperCase();var f=d.country;if(f?"string"==typeof f&&this.REGEX[f]||(f=b.getDynamicOption(c,f)):f=e.substr(0,2),!this.REGEX[f])return{valid:!1,message:a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.iban.countryNotSupported,f)};if(!new RegExp("^"+this.REGEX[f]+"$").test(e))return{valid:!1,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.iban.country,a.fn.bootstrapValidator.i18n.iban.countries[f])};e=e.substr(4)+e.substr(0,4),e=a.map(e.split(""),function(a){var b=a.charCodeAt(0);return b>="A".charCodeAt(0)&&b<="Z".charCodeAt(0)?b-"A".charCodeAt(0)+10:a}),e=e.join("");for(var g=parseInt(e.substr(0,1),10),h=e.length,i=1;h>i;++i)g=(10*g+parseInt(e.substr(i,1),10))%97;return{valid:1===g,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.iban.country,a.fn.bootstrapValidator.i18n.iban.countries[f])}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.id=a.extend(a.fn.bootstrapValidator.i18n.id||{},{"default":"Please enter a valid identification number",countryNotSupported:"The country code %s is not supported",country:"Please enter a valid identification number in %s",countries:{BA:"Bosnia and Herzegovina",BG:"Bulgaria",BR:"Brazil",CH:"Switzerland",CL:"Chile",CN:"China",CZ:"Czech Republic",DK:"Denmark",EE:"Estonia",ES:"Spain",FI:"Finland",HR:"Croatia",IE:"Ireland",IS:"Iceland",LT:"Lithuania",LV:"Latvia",ME:"Montenegro",MK:"Macedonia",NL:"Netherlands",RO:"Romania",RS:"Serbia",SE:"Sweden",SI:"Slovenia",SK:"Slovakia",SM:"San Marino",TH:"Thailand",ZA:"South Africa"}}),a.fn.bootstrapValidator.validators.id={html5Attributes:{message:"message",country:"country"},COUNTRY_CODES:["BA","BG","BR","CH","CL","CN","CZ","DK","EE","ES","FI","HR","IE","IS","LT","LV","ME","MK","NL","RO","RS","SE","SI","SK","SM","TH","ZA"],validate:function(b,c,d){var e=c.val();if(""===e)return!0;var f=d.country;if(f?("string"!=typeof f||-1===a.inArray(f.toUpperCase(),this.COUNTRY_CODES))&&(f=b.getDynamicOption(c,f)):f=e.substr(0,2),-1===a.inArray(f,this.COUNTRY_CODES))return{valid:!1,message:a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.id.countryNotSupported,f)};var g=["_",f.toLowerCase()].join("");return this[g](e)?!0:{valid:!1,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.id.country,a.fn.bootstrapValidator.i18n.id.countries[f.toUpperCase()])}},_validateJMBG:function(a,b){if(!/^\d{13}$/.test(a))return!1;var c=parseInt(a.substr(0,2),10),d=parseInt(a.substr(2,2),10),e=(parseInt(a.substr(4,3),10),parseInt(a.substr(7,2),10)),f=parseInt(a.substr(12,1),10);if(c>31||d>12)return!1;for(var g=0,h=0;6>h;h++)g+=(7-h)*(parseInt(a.charAt(h),10)+parseInt(a.charAt(h+6),10));if(g=11-g%11,(10===g||11===g)&&(g=0),g!==f)return!1;switch(b.toUpperCase()){case"BA":return e>=10&&19>=e;case"MK":return e>=41&&49>=e;case"ME":return e>=20&&29>=e;case"RS":return e>=70&&99>=e;case"SI":return e>=50&&59>=e;default:return!0}},_ba:function(a){return this._validateJMBG(a,"BA")},_mk:function(a){return this._validateJMBG(a,"MK")},_me:function(a){return this._validateJMBG(a,"ME")},_rs:function(a){return this._validateJMBG(a,"RS")},_si:function(a){return this._validateJMBG(a,"SI")},_bg:function(b){if(!/^\d{10}$/.test(b)&&!/^\d{6}\s\d{3}\s\d{1}$/.test(b))return!1;b=b.replace(/\s/g,"");var c=parseInt(b.substr(0,2),10)+1900,d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10);if(d>40?(c+=100,d-=40):d>20&&(c-=100,d-=20),!a.fn.bootstrapValidator.helpers.date(c,d,e))return!1;for(var f=0,g=[2,4,8,5,10,9,7,3,6],h=0;9>h;h++)f+=parseInt(b.charAt(h),10)*g[h];return f=f%11%10,f+""===b.substr(9,1)},_br:function(a){if(/^1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11}|0{11}$/.test(a))return!1;if(!/^\d{11}$/.test(a)&&!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(a))return!1;a=a.replace(/\./g,"").replace(/-/g,"");for(var b=0,c=0;9>c;c++)b+=(10-c)*parseInt(a.charAt(c),10);if(b=11-b%11,(10===b||11===b)&&(b=0),b+""!==a.charAt(9))return!1;var d=0;for(c=0;10>c;c++)d+=(11-c)*parseInt(a.charAt(c),10);return d=11-d%11,(10===d||11===d)&&(d=0),d+""===a.charAt(10)},_ch:function(a){if(!/^756[\.]{0,1}[0-9]{4}[\.]{0,1}[0-9]{4}[\.]{0,1}[0-9]{2}$/.test(a))return!1;a=a.replace(/\D/g,"").substr(3);for(var b=a.length,c=0,d=8===b?[3,1]:[1,3],e=0;b-1>e;e++)c+=parseInt(a.charAt(e),10)*d[e%2];return c=10-c%10,c+""===a.charAt(b-1)},_cl:function(a){if(!/^\d{7,8}[-]{0,1}[0-9K]$/i.test(a))return!1;for(a=a.replace(/\-/g,"");a.length<9;)a="0"+a;for(var b=0,c=[3,2,7,6,5,4,3,2],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=11-b%11,11===b?b=0:10===b&&(b="K"),b+""===a.charAt(8).toUpperCase()},_cn:function(b){if(b=b.trim(),!/^\d{15}$/.test(b)&&!/^\d{17}[\dXx]{1}$/.test(b))return!1;var c={11:{0:[0],1:[[0,9],[11,17]],2:[0,28,29]},12:{0:[0],1:[[0,16]],2:[0,21,23,25]},13:{0:[0],1:[[0,5],7,8,21,[23,33],[81,85]],2:[[0,5],[7,9],[23,25],27,29,30,81,83],3:[[0,4],[21,24]],4:[[0,4],6,21,[23,35],81],5:[[0,3],[21,35],81,82],6:[[0,4],[21,38],[81,84]],7:[[0,3],5,6,[21,33]],8:[[0,4],[21,28]],9:[[0,3],[21,30],[81,84]],10:[[0,3],[22,26],28,81,82],11:[[0,2],[21,28],81,82]},14:{0:[0],1:[0,1,[5,10],[21,23],81],2:[[0,3],11,12,[21,27]],3:[[0,3],11,21,22],4:[[0,2],11,21,[23,31],81],5:[[0,2],21,22,24,25,81],6:[[0,3],[21,24]],7:[[0,2],[21,29],81],8:[[0,2],[21,30],81,82],9:[[0,2],[21,32],81],10:[[0,2],[21,34],81,82],11:[[0,2],[21,30],81,82],23:[[0,3],22,23,[25,30],32,33]},15:{0:[0],1:[[0,5],[21,25]],2:[[0,7],[21,23]],3:[[0,4]],4:[[0,4],[21,26],[28,30]],5:[[0,2],[21,26],81],6:[[0,2],[21,27]],7:[[0,3],[21,27],[81,85]],8:[[0,2],[21,26]],9:[[0,2],[21,29],81],22:[[0,2],[21,24]],25:[[0,2],[22,31]],26:[[0,2],[24,27],[29,32],34],28:[0,1,[22,27]],29:[0,[21,23]]},21:{0:[0],1:[[0,6],[11,14],[22,24],81],2:[[0,4],[11,13],24,[81,83]],3:[[0,4],11,21,23,81],4:[[0,4],11,[21,23]],5:[[0,5],21,22],6:[[0,4],24,81,82],7:[[0,3],11,26,27,81,82],8:[[0,4],11,81,82],9:[[0,5],11,21,22],10:[[0,5],11,21,81],11:[[0,3],21,22],12:[[0,2],4,21,23,24,81,82],13:[[0,3],21,22,24,81,82],14:[[0,4],21,22,81]},22:{0:[0],1:[[0,6],12,22,[81,83]],2:[[0,4],11,21,[81,84]],3:[[0,3],22,23,81,82],4:[[0,3],21,22],5:[[0,3],21,23,24,81,82],6:[[0,2],4,5,[21,23],25,81],7:[[0,2],[21,24],81],8:[[0,2],21,22,81,82],24:[[0,6],24,26]},23:{0:[0],1:[[0,12],21,[23,29],[81,84]],2:[[0,8],21,[23,25],27,[29,31],81],3:[[0,7],21,81,82],4:[[0,7],21,22],5:[[0,3],5,6,[21,24]],6:[[0,6],[21,24]],7:[[0,16],22,81],8:[[0,5],11,22,26,28,33,81,82],9:[[0,4],21],10:[[0,5],24,25,81,[83,85]],11:[[0,2],21,23,24,81,82],12:[[0,2],[21,26],[81,83]],27:[[0,4],[21,23]]},31:{0:[0],1:[0,1,[3,10],[12,20]],2:[0,30]},32:{0:[0],1:[[0,7],11,[13,18],24,25],2:[[0,6],11,81,82],3:[[0,5],11,12,[21,24],81,82],4:[[0,2],4,5,11,12,81,82],5:[[0,9],[81,85]],6:[[0,2],11,12,21,23,[81,84]],7:[0,1,3,5,6,[21,24]],8:[[0,4],11,26,[29,31]],9:[[0,3],[21,25],28,81,82],10:[[0,3],11,12,23,81,84,88],11:[[0,2],11,12,[81,83]],12:[[0,4],[81,84]],13:[[0,2],11,[21,24]]},33:{0:[0],1:[[0,6],[8,10],22,27,82,83,85],2:[0,1,[3,6],11,12,25,26,[81,83]],3:[[0,4],22,24,[26,29],81,82],4:[[0,2],11,21,24,[81,83]],5:[[0,3],[21,23]],6:[[0,2],21,24,[81,83]],7:[[0,3],23,26,27,[81,84]],8:[[0,3],22,24,25,81],9:[[0,3],21,22],10:[[0,4],[21,24],81,82],11:[[0,2],[21,27],81]},34:{0:[0],1:[[0,4],11,[21,24],81],2:[[0,4],7,8,[21,23],25],3:[[0,4],11,[21,23]],4:[[0,6],21],5:[[0,4],6,[21,23]],6:[[0,4],21],7:[[0,3],11,21],8:[[0,3],11,[22,28],81],10:[[0,4],[21,24]],11:[[0,3],22,[24,26],81,82],12:[[0,4],21,22,25,26,82],13:[[0,2],[21,24]],14:[[0,2],[21,24]],15:[[0,3],[21,25]],16:[[0,2],[21,23]],17:[[0,2],[21,23]],18:[[0,2],[21,25],81]},35:{0:[0],1:[[0,5],11,[21,25],28,81,82],2:[[0,6],[11,13]],3:[[0,5],22],4:[[0,3],21,[23,30],81],5:[[0,5],21,[24,27],[81,83]],6:[[0,3],[22,29],81],7:[[0,2],[21,25],[81,84]],8:[[0,2],[21,25],81],9:[[0,2],[21,26],81,82]},36:{0:[0],1:[[0,5],11,[21,24]],2:[[0,3],22,81],3:[[0,2],13,[21,23]],4:[[0,3],21,[23,30],81,82],5:[[0,2],21],6:[[0,2],22,81],7:[[0,2],[21,35],81,82],8:[[0,3],[21,30],81],9:[[0,2],[21,26],[81,83]],10:[[0,2],[21,30]],11:[[0,2],[21,30],81]},37:{0:[0],1:[[0,5],12,13,[24,26],81],2:[[0,3],5,[11,14],[81,85]],3:[[0,6],[21,23]],4:[[0,6],81],5:[[0,3],[21,23]],6:[[0,2],[11,13],34,[81,87]],7:[[0,5],24,25,[81,86]],8:[[0,2],11,[26,32],[81,83]],9:[[0,3],11,21,23,82,83],10:[[0,2],[81,83]],11:[[0,3],21,22],12:[[0,3]],13:[[0,2],11,12,[21,29]],14:[[0,2],[21,28],81,82],15:[[0,2],[21,26],81],16:[[0,2],[21,26]],17:[[0,2],[21,28]]},41:{0:[0],1:[[0,6],8,22,[81,85]],2:[[0,5],11,[21,25]],3:[[0,7],11,[22,29],81],4:[[0,4],11,[21,23],25,81,82],5:[[0,3],5,6,22,23,26,27,81],6:[[0,3],11,21,22],7:[[0,4],11,21,[24,28],81,82],8:[[0,4],11,[21,23],25,[81,83]],9:[[0,2],22,23,[26,28]],10:[[0,2],[23,25],81,82],11:[[0,4],[21,23]],12:[[0,2],21,22,24,81,82],13:[[0,3],[21,30],81],14:[[0,3],[21,26],81],15:[[0,3],[21,28]],16:[[0,2],[21,28],81],17:[[0,2],[21,29]],90:[0,1]},42:{0:[0],1:[[0,7],[11,17]],2:[[0,5],22,81],3:[[0,3],[21,25],81],5:[[0,6],[25,29],[81,83]],6:[[0,2],6,7,[24,26],[82,84]],7:[[0,4]],8:[[0,2],4,21,22,81],9:[[0,2],[21,23],81,82,84],10:[[0,3],[22,24],81,83,87],11:[[0,2],[21,27],81,82],12:[[0,2],[21,24],81],13:[[0,3],21,81],28:[[0,2],22,23,[25,28]],90:[0,[4,6],21]},43:{0:[0],1:[[0,5],11,12,21,22,24,81],2:[[0,4],11,21,[23,25],81],3:[[0,2],4,21,81,82],4:[0,1,[5,8],12,[21,24],26,81,82],5:[[0,3],11,[21,25],[27,29],81],6:[[0,3],11,21,23,24,26,81,82],7:[[0,3],[21,26],81],8:[[0,2],11,21,22],9:[[0,3],[21,23],81],10:[[0,3],[21,28],81],11:[[0,3],[21,29]],12:[[0,2],[21,30],81],13:[[0,2],21,22,81,82],31:[0,1,[22,27],30]},44:{0:[0],1:[[0,7],[11,16],83,84],2:[[0,5],21,22,24,29,32,33,81,82],3:[0,1,[3,8]],4:[[0,4]],5:[0,1,[6,15],23,82,83],6:[0,1,[4,8]],7:[0,1,[3,5],81,[83,85]],8:[[0,4],11,23,25,[81,83]],9:[[0,3],23,[81,83]],12:[[0,3],[23,26],83,84],13:[[0,3],[22,24],81],14:[[0,2],[21,24],26,27,81],15:[[0,2],21,23,81],16:[[0,2],[21,25]],17:[[0,2],21,23,81],18:[[0,3],21,23,[25,27],81,82],19:[0],20:[0],51:[[0,3],21,22],52:[[0,3],21,22,24,81],53:[[0,2],[21,23],81]},45:{0:[0],1:[[0,9],[21,27]],2:[[0,5],[21,26]],3:[[0,5],11,12,[21,32]],4:[0,1,[3,6],11,[21,23],81],5:[[0,3],12,21],6:[[0,3],21,81],7:[[0,3],21,22],8:[[0,4],21,81],9:[[0,3],[21,24],81],10:[[0,2],[21,31]],11:[[0,2],[21,23]],12:[[0,2],[21,29],81],13:[[0,2],[21,24],81],14:[[0,2],[21,25],81]},46:{0:[0],1:[0,1,[5,8]],2:[0,1],3:[0,[21,23]],90:[[0,3],[5,7],[21,39]]},50:{0:[0],1:[[0,19]],2:[0,[22,38],[40,43]],3:[0,[81,84]]},51:{0:[0],1:[0,1,[4,8],[12,15],[21,24],29,31,32,[81,84]],3:[[0,4],11,21,22],4:[[0,3],11,21,22],5:[[0,4],21,22,24,25],6:[0,1,3,23,26,[81,83]],7:[0,1,3,4,[22,27],81],8:[[0,2],11,12,[21,24]],9:[[0,4],[21,23]],10:[[0,2],11,24,25,28],11:[[0,2],[11,13],23,24,26,29,32,33,81],13:[[0,4],[21,25],81],14:[[0,2],[21,25]],15:[[0,3],[21,29]],16:[[0,3],[21,23],81],17:[[0,3],[21,25],81],18:[[0,3],[21,27]],19:[[0,3],[21,23]],20:[[0,2],21,22,81],32:[0,[21,33]],33:[0,[21,38]],34:[0,1,[22,37]]},52:{0:[0],1:[[0,3],[11,15],[21,23],81],2:[0,1,3,21,22],3:[[0,3],[21,30],81,82],4:[[0,2],[21,25]],5:[[0,2],[21,27]],6:[[0,3],[21,28]],22:[0,1,[22,30]],23:[0,1,[22,28]],24:[0,1,[22,28]],26:[0,1,[22,36]],27:[[0,2],22,23,[25,32]]},53:{0:[0],1:[[0,3],[11,14],21,22,[24,29],81],3:[[0,2],[21,26],28,81],4:[[0,2],[21,28]],5:[[0,2],[21,24]],6:[[0,2],[21,30]],7:[[0,2],[21,24]],8:[[0,2],[21,29]],9:[[0,2],[21,27]],23:[0,1,[22,29],31],25:[[0,4],[22,32]],26:[0,1,[21,28]],27:[0,1,[22,30]],28:[0,1,22,23],29:[0,1,[22,32]],31:[0,2,3,[22,24]],34:[0,[21,23]],33:[0,21,[23,25]],35:[0,[21,28]]},54:{0:[0],1:[[0,2],[21,27]],21:[0,[21,29],32,33],22:[0,[21,29],[31,33]],23:[0,1,[22,38]],24:[0,[21,31]],25:[0,[21,27]],26:[0,[21,27]]},61:{0:[0],1:[[0,4],[11,16],22,[24,26]],2:[[0,4],22],3:[[0,4],[21,24],[26,31]],4:[[0,4],[22,31],81],5:[[0,2],[21,28],81,82],6:[[0,2],[21,32]],7:[[0,2],[21,30]],8:[[0,2],[21,31]],9:[[0,2],[21,29]],10:[[0,2],[21,26]]},62:{0:[0],1:[[0,5],11,[21,23]],2:[0,1],3:[[0,2],21],4:[[0,3],[21,23]],5:[[0,3],[21,25]],6:[[0,2],[21,23]],7:[[0,2],[21,25]],8:[[0,2],[21,26]],9:[[0,2],[21,24],81,82],10:[[0,2],[21,27]],11:[[0,2],[21,26]],12:[[0,2],[21,28]],24:[0,21,[24,29]],26:[0,21,[23,30]],29:[0,1,[21,27]],30:[0,1,[21,27]]},63:{0:[0],1:[[0,5],[21,23]],2:[0,2,[21,25]],21:[0,[21,23],[26,28]],22:[0,[21,24]],23:[0,[21,24]],25:[0,[21,25]],26:[0,[21,26]],27:[0,1,[21,26]],28:[[0,2],[21,23]]},64:{0:[0],1:[0,1,[4,6],21,22,81],2:[[0,3],5,[21,23]],3:[[0,3],[21,24],81],4:[[0,2],[21,25]],5:[[0,2],21,22]},65:{0:[0],1:[[0,9],21],2:[[0,5]],21:[0,1,22,23],22:[0,1,22,23],23:[[0,3],[23,25],27,28],28:[0,1,[22,29]],29:[0,1,[22,29]],30:[0,1,[22,24]],31:[0,1,[21,31]],32:[0,1,[21,27]],40:[0,2,3,[21,28]],42:[[0,2],21,[23,26]],43:[0,1,[21,26]],90:[[0,4]],27:[[0,2],22,23]},71:{0:[0]},81:{0:[0]},82:{0:[0]}},d=parseInt(b.substr(0,2),10),e=parseInt(b.substr(2,2),10),f=parseInt(b.substr(4,2),10);if(!c[d]||!c[d][e])return!1;for(var g=!1,h=c[d][e],i=0;i<h.length;i++)if(a.isArray(h[i])&&h[i][0]<=f&&f<=h[i][1]||!a.isArray(h[i])&&f===h[i]){g=!0;break}if(!g)return!1;var j;j=18===b.length?b.substr(6,8):"19"+b.substr(6,6);var k=parseInt(j.substr(0,4),10),l=parseInt(j.substr(4,2),10),m=parseInt(j.substr(6,2),10);if(!a.fn.bootstrapValidator.helpers.date(k,l,m))return!1;if(18===b.length){var n=0,o=[7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2];for(i=0;17>i;i++)n+=parseInt(b.charAt(i),10)*o[i];n=(12-n%11)%11;var p="X"!==b.charAt(17).toUpperCase()?parseInt(b.charAt(17),10):10;return p===n}return!0
+    },_cz:function(b){if(!/^\d{9,10}$/.test(b))return!1;var c=1900+parseInt(b.substr(0,2),10),d=parseInt(b.substr(2,2),10)%50%20,e=parseInt(b.substr(4,2),10);if(9===b.length){if(c>=1980&&(c-=100),c>1953)return!1}else 1954>c&&(c+=100);if(!a.fn.bootstrapValidator.helpers.date(c,d,e))return!1;if(10===b.length){var f=parseInt(b.substr(0,9),10)%11;return 1985>c&&(f%=10),f+""===b.substr(9,1)}return!0},_dk:function(b){if(!/^[0-9]{6}[-]{0,1}[0-9]{4}$/.test(b))return!1;b=b.replace(/-/g,"");var c=parseInt(b.substr(0,2),10),d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10);switch(!0){case-1!=="5678".indexOf(b.charAt(6))&&e>=58:e+=1800;break;case-1!=="0123".indexOf(b.charAt(6)):case-1!=="49".indexOf(b.charAt(6))&&e>=37:e+=1900;break;default:e+=2e3}return a.fn.bootstrapValidator.helpers.date(e,d,c)},_ee:function(a){return this._lt(a)},_es:function(a){if(!/^[0-9A-Z]{8}[-]{0,1}[0-9A-Z]$/.test(a)&&!/^[XYZ][-]{0,1}[0-9]{7}[-]{0,1}[0-9A-Z]$/.test(a))return!1;a=a.replace(/-/g,"");var b="XYZ".indexOf(a.charAt(0));-1!==b&&(a=b+a.substr(1)+"");var c=parseInt(a.substr(0,8),10);return c="TRWAGMYFPDXBNJZSQVHLCKE"[c%23],c===a.substr(8,1)},_fi:function(b){if(!/^[0-9]{6}[-+A][0-9]{3}[0-9ABCDEFHJKLMNPRSTUVWXY]$/.test(b))return!1;var c=parseInt(b.substr(0,2),10),d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10),f={"+":1800,"-":1900,A:2e3};if(e=f[b.charAt(6)]+e,!a.fn.bootstrapValidator.helpers.date(e,d,c))return!1;var g=parseInt(b.substr(7,3),10);if(2>g)return!1;var h=b.substr(0,6)+b.substr(7,3)+"";return h=parseInt(h,10),"0123456789ABCDEFHJKLMNPRSTUVWXY".charAt(h%31)===b.charAt(10)},_hr:function(b){return/^[0-9]{11}$/.test(b)?a.fn.bootstrapValidator.helpers.mod11And10(b):!1},_ie:function(a){if(!/^\d{7}[A-W][AHWTX]?$/.test(a))return!1;var b=function(a){for(;a.length<7;)a="0"+a;for(var b="WABCDEFGHIJKLMNOPQRSTUV",c=0,d=0;7>d;d++)c+=parseInt(a.charAt(d),10)*(8-d);return c+=9*b.indexOf(a.substr(7)),b[c%23]};return 9!==a.length||"A"!==a.charAt(8)&&"H"!==a.charAt(8)?a.charAt(7)===b(a.substr(0,7)):a.charAt(7)===b(a.substr(0,7)+a.substr(8)+"")},_is:function(b){if(!/^[0-9]{6}[-]{0,1}[0-9]{4}$/.test(b))return!1;b=b.replace(/-/g,"");var c=parseInt(b.substr(0,2),10),d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10),f=parseInt(b.charAt(9),10);if(e=9===f?1900+e:100*(20+f)+e,!a.fn.bootstrapValidator.helpers.date(e,d,c,!0))return!1;for(var g=0,h=[3,2,7,6,5,4,3,2],i=0;8>i;i++)g+=parseInt(b.charAt(i),10)*h[i];return g=11-g%11,g+""===b.charAt(8)},_lt:function(b){if(!/^[0-9]{11}$/.test(b))return!1;var c=parseInt(b.charAt(0),10),d=parseInt(b.substr(1,2),10),e=parseInt(b.substr(3,2),10),f=parseInt(b.substr(5,2),10),g=c%2===0?17+c/2:17+(c+1)/2;if(d=100*g+d,!a.fn.bootstrapValidator.helpers.date(d,e,f,!0))return!1;for(var h=0,i=[1,2,3,4,5,6,7,8,9,1],j=0;10>j;j++)h+=parseInt(b.charAt(j),10)*i[j];if(h%=11,10!==h)return h+""===b.charAt(10);for(h=0,i=[3,4,5,6,7,8,9,1,2,3],j=0;10>j;j++)h+=parseInt(b.charAt(j),10)*i[j];return h%=11,10===h&&(h=0),h+""===b.charAt(10)},_lv:function(b){if(!/^[0-9]{6}[-]{0,1}[0-9]{5}$/.test(b))return!1;b=b.replace(/\D/g,"");var c=parseInt(b.substr(0,2),10),d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10);if(e=e+1800+100*parseInt(b.charAt(6),10),!a.fn.bootstrapValidator.helpers.date(e,d,c,!0))return!1;for(var f=0,g=[10,5,8,4,2,1,6,3,7,9],h=0;10>h;h++)f+=parseInt(b.charAt(h),10)*g[h];return f=(f+1)%11%10,f+""===b.charAt(10)},_nl:function(a){for(;a.length<9;)a="0"+a;if(!/^[0-9]{4}[.]{0,1}[0-9]{2}[.]{0,1}[0-9]{3}$/.test(a))return!1;if(a=a.replace(/\./g,""),0===parseInt(a,10))return!1;for(var b=0,c=a.length,d=0;c-1>d;d++)b+=(9-d)*parseInt(a.charAt(d),10);return b%=11,10===b&&(b=0),b+""===a.charAt(c-1)},_ro:function(b){if(!/^[0-9]{13}$/.test(b))return!1;var c=parseInt(b.charAt(0),10);if(0===c||7===c||8===c)return!1;var d=parseInt(b.substr(1,2),10),e=parseInt(b.substr(3,2),10),f=parseInt(b.substr(5,2),10),g={1:1900,2:1900,3:1800,4:1800,5:2e3,6:2e3};if(f>31&&e>12)return!1;if(9!==c&&(d=g[c+""]+d,!a.fn.bootstrapValidator.helpers.date(d,e,f)))return!1;for(var h=0,i=[2,7,9,1,4,6,3,5,8,2,7,9],j=b.length,k=0;j-1>k;k++)h+=parseInt(b.charAt(k),10)*i[k];return h%=11,10===h&&(h=1),h+""===b.charAt(j-1)},_se:function(b){if(!/^[0-9]{10}$/.test(b)&&!/^[0-9]{6}[-|+][0-9]{4}$/.test(b))return!1;b=b.replace(/[^0-9]/g,"");var c=parseInt(b.substr(0,2),10)+1900,d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10);return a.fn.bootstrapValidator.helpers.date(c,d,e)?a.fn.bootstrapValidator.helpers.luhn(b):!1},_sk:function(a){return this._cz(a)},_sm:function(a){return/^\d{5}$/.test(a)},_th:function(a){if(13!==a.length)return!1;for(var b=0,c=0;12>c;c++)b+=parseInt(a.charAt(c),10)*(13-c);return(11-b%11)%10===parseInt(a.charAt(12),10)},_za:function(b){if(!/^[0-9]{10}[0|1][8|9][0-9]$/.test(b))return!1;var c=parseInt(b.substr(0,2),10),d=(new Date).getFullYear()%100,e=parseInt(b.substr(2,2),10),f=parseInt(b.substr(4,2),10);return c=c>=d?c+1900:c+2e3,a.fn.bootstrapValidator.helpers.date(c,e,f)?a.fn.bootstrapValidator.helpers.luhn(b):!1}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.identical=a.extend(a.fn.bootstrapValidator.i18n.identical||{},{"default":"Please enter the same value"}),a.fn.bootstrapValidator.validators.identical={html5Attributes:{message:"message",field:"field"},validate:function(a,b,c){var d=b.val();if(""===d)return!0;var e=a.getFieldElements(c.field);return null===e||0===e.length?!0:d===e.val()?(a.updateStatus(c.field,a.STATUS_VALID,"identical"),!0):!1}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.imei=a.extend(a.fn.bootstrapValidator.i18n.imei||{},{"default":"Please enter a valid IMEI number"}),a.fn.bootstrapValidator.validators.imei={validate:function(b,c){var d=c.val();if(""===d)return!0;switch(!0){case/^\d{15}$/.test(d):case/^\d{2}-\d{6}-\d{6}-\d{1}$/.test(d):case/^\d{2}\s\d{6}\s\d{6}\s\d{1}$/.test(d):return d=d.replace(/[^0-9]/g,""),a.fn.bootstrapValidator.helpers.luhn(d);case/^\d{14}$/.test(d):case/^\d{16}$/.test(d):case/^\d{2}-\d{6}-\d{6}(|-\d{2})$/.test(d):case/^\d{2}\s\d{6}\s\d{6}(|\s\d{2})$/.test(d):return!0;default:return!1}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.imo=a.extend(a.fn.bootstrapValidator.i18n.imo||{},{"default":"Please enter a valid IMO number"}),a.fn.bootstrapValidator.validators.imo={validate:function(a,b){var c=b.val();if(""===c)return!0;if(!/^IMO \d{7}$/i.test(c))return!1;for(var d=0,e=c.replace(/^.*(\d{7})$/,"$1"),f=6;f>=1;f--)d+=e.slice(6-f,-f)*(f+1);return d%10===parseInt(e.charAt(6),10)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.integer=a.extend(a.fn.bootstrapValidator.i18n.integer||{},{"default":"Please enter a valid number"}),a.fn.bootstrapValidator.validators.integer={enableByHtml5:function(a){return"number"===a.attr("type")&&(void 0===a.attr("step")||a.attr("step")%1===0)},validate:function(a,b){if(this.enableByHtml5(b)&&b.get(0).validity&&b.get(0).validity.badInput===!0)return!1;var c=b.val();return""===c?!0:/^(?:-?(?:0|[1-9][0-9]*))$/.test(c)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.ip=a.extend(a.fn.bootstrapValidator.i18n.ip||{},{"default":"Please enter a valid IP address",ipv4:"Please enter a valid IPv4 address",ipv6:"Please enter a valid IPv6 address"}),a.fn.bootstrapValidator.validators.ip={html5Attributes:{message:"message",ipv4:"ipv4",ipv6:"ipv6"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;d=a.extend({},{ipv4:!0,ipv6:!0},d);var f,g=/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,h=/^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/,i=!1;switch(!0){case d.ipv4&&!d.ipv6:i=g.test(e),f=d.message||a.fn.bootstrapValidator.i18n.ip.ipv4;break;case!d.ipv4&&d.ipv6:i=h.test(e),f=d.message||a.fn.bootstrapValidator.i18n.ip.ipv6;break;case d.ipv4&&d.ipv6:default:i=g.test(e)||h.test(e),f=d.message||a.fn.bootstrapValidator.i18n.ip["default"]}return{valid:i,message:f}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.isbn=a.extend(a.fn.bootstrapValidator.i18n.isbn||{},{"default":"Please enter a valid ISBN number"}),a.fn.bootstrapValidator.validators.isbn={validate:function(a,b){var c=b.val();if(""===c)return!0;var d;switch(!0){case/^\d{9}[\dX]$/.test(c):case 13===c.length&&/^(\d+)-(\d+)-(\d+)-([\dX])$/.test(c):case 13===c.length&&/^(\d+)\s(\d+)\s(\d+)\s([\dX])$/.test(c):d="ISBN10";break;case/^(978|979)\d{9}[\dX]$/.test(c):case 17===c.length&&/^(978|979)-(\d+)-(\d+)-(\d+)-([\dX])$/.test(c):case 17===c.length&&/^(978|979)\s(\d+)\s(\d+)\s(\d+)\s([\dX])$/.test(c):d="ISBN13";break;default:return!1}c=c.replace(/[^0-9X]/gi,"");var e,f,g=c.split(""),h=g.length,i=0;switch(d){case"ISBN10":for(i=0,e=0;h-1>e;e++)i+=parseInt(g[e],10)*(10-e);return f=11-i%11,11===f?f=0:10===f&&(f="X"),f+""===g[h-1];case"ISBN13":for(i=0,e=0;h-1>e;e++)i+=e%2===0?parseInt(g[e],10):3*parseInt(g[e],10);return f=10-i%10,10===f&&(f="0"),f+""===g[h-1];default:return!1}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.isin=a.extend(a.fn.bootstrapValidator.i18n.isin||{},{"default":"Please enter a valid ISIN number"}),a.fn.bootstrapValidator.validators.isin={COUNTRY_CODES:"AF|AX|AL|DZ|AS|AD|AO|AI|AQ|AG|AR|AM|AW|AU|AT|AZ|BS|BH|BD|BB|BY|BE|BZ|BJ|BM|BT|BO|BQ|BA|BW|BV|BR|IO|BN|BG|BF|BI|KH|CM|CA|CV|KY|CF|TD|CL|CN|CX|CC|CO|KM|CG|CD|CK|CR|CI|HR|CU|CW|CY|CZ|DK|DJ|DM|DO|EC|EG|SV|GQ|ER|EE|ET|FK|FO|FJ|FI|FR|GF|PF|TF|GA|GM|GE|DE|GH|GI|GR|GL|GD|GP|GU|GT|GG|GN|GW|GY|HT|HM|VA|HN|HK|HU|IS|IN|ID|IR|IQ|IE|IM|IL|IT|JM|JP|JE|JO|KZ|KE|KI|KP|KR|KW|KG|LA|LV|LB|LS|LR|LY|LI|LT|LU|MO|MK|MG|MW|MY|MV|ML|MT|MH|MQ|MR|MU|YT|MX|FM|MD|MC|MN|ME|MS|MA|MZ|MM|NA|NR|NP|NL|NC|NZ|NI|NE|NG|NU|NF|MP|NO|OM|PK|PW|PS|PA|PG|PY|PE|PH|PN|PL|PT|PR|QA|RE|RO|RU|RW|BL|SH|KN|LC|MF|PM|VC|WS|SM|ST|SA|SN|RS|SC|SL|SG|SX|SK|SI|SB|SO|ZA|GS|SS|ES|LK|SD|SR|SJ|SZ|SE|CH|SY|TW|TJ|TZ|TH|TL|TG|TK|TO|TT|TN|TR|TM|TC|TV|UG|UA|AE|GB|US|UM|UY|UZ|VU|VE|VN|VG|VI|WF|EH|YE|ZM|ZW",validate:function(a,b){var c=b.val();if(""===c)return!0;c=c.toUpperCase();var d=new RegExp("^("+this.COUNTRY_CODES+")[0-9A-Z]{10}$");if(!d.test(c))return!1;for(var e="",f=c.length,g=0;f-1>g;g++){var h=c.charCodeAt(g);e+=h>57?(h-55).toString():c.charAt(g)}var i="",j=e.length,k=j%2!==0?0:1;for(g=0;j>g;g++)i+=parseInt(e[g],10)*(g%2===k?2:1)+"";var l=0;for(g=0;g<i.length;g++)l+=parseInt(i.charAt(g),10);return l=(10-l%10)%10,l+""===c.charAt(f-1)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.ismn=a.extend(a.fn.bootstrapValidator.i18n.ismn||{},{"default":"Please enter a valid ISMN number"}),a.fn.bootstrapValidator.validators.ismn={validate:function(a,b){var c=b.val();if(""===c)return!0;var d;switch(!0){case/^M\d{9}$/.test(c):case/^M-\d{4}-\d{4}-\d{1}$/.test(c):case/^M\s\d{4}\s\d{4}\s\d{1}$/.test(c):d="ISMN10";break;case/^9790\d{9}$/.test(c):case/^979-0-\d{4}-\d{4}-\d{1}$/.test(c):case/^979\s0\s\d{4}\s\d{4}\s\d{1}$/.test(c):d="ISMN13";break;default:return!1}"ISMN10"===d&&(c="9790"+c.substr(1)),c=c.replace(/[^0-9]/gi,"");for(var e=c.length,f=0,g=[1,3],h=0;e-1>h;h++)f+=parseInt(c.charAt(h),10)*g[h%2];return f=10-f%10,f+""===c.charAt(e-1)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.issn=a.extend(a.fn.bootstrapValidator.i18n.issn||{},{"default":"Please enter a valid ISSN number"}),a.fn.bootstrapValidator.validators.issn={validate:function(a,b){var c=b.val();if(""===c)return!0;if(!/^\d{4}\-\d{3}[\dX]$/.test(c))return!1;c=c.replace(/[^0-9X]/gi,"");var d=c.split(""),e=d.length,f=0;"X"===d[7]&&(d[7]=10);for(var g=0;e>g;g++)f+=parseInt(d[g],10)*(8-g);return f%11===0}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.lessThan=a.extend(a.fn.bootstrapValidator.i18n.lessThan||{},{"default":"Please enter a value less than or equal to %s",notInclusive:"Please enter a value less than %s"}),a.fn.bootstrapValidator.validators.lessThan={html5Attributes:{message:"message",value:"value",inclusive:"inclusive"},enableByHtml5:function(a){var b=a.attr("type"),c=a.attr("max");return c&&"date"!==b?{value:c}:!1},validate:function(b,c,d){var e=c.val();if(""===e)return!0;if(e=this._format(e),!a.isNumeric(e))return!1;var f=a.isNumeric(d.value)?d.value:b.getDynamicOption(c,d.value),g=this._format(f);return e=parseFloat(e),d.inclusive===!0||void 0===d.inclusive?{valid:g>=e,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.lessThan["default"],f)}:{valid:g>e,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.lessThan.notInclusive,f)}},_format:function(a){return(a+"").replace(",",".")}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.mac=a.extend(a.fn.bootstrapValidator.i18n.mac||{},{"default":"Please enter a valid MAC address"}),a.fn.bootstrapValidator.validators.mac={validate:function(a,b){var c=b.val();return""===c?!0:/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/.test(c)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.meid=a.extend(a.fn.bootstrapValidator.i18n.meid||{},{"default":"Please enter a valid MEID number"}),a.fn.bootstrapValidator.validators.meid={validate:function(b,c){var d=c.val();if(""===d)return!0;switch(!0){case/^[0-9A-F]{15}$/i.test(d):case/^[0-9A-F]{2}[- ][0-9A-F]{6}[- ][0-9A-F]{6}[- ][0-9A-F]$/i.test(d):case/^\d{19}$/.test(d):case/^\d{5}[- ]\d{5}[- ]\d{4}[- ]\d{4}[- ]\d$/.test(d):var e=d.charAt(d.length-1);if(d=d.replace(/[- ]/g,""),d.match(/^\d*$/i))return a.fn.bootstrapValidator.helpers.luhn(d);d=d.slice(0,-1);for(var f="",g=1;13>=g;g+=2)f+=(2*parseInt(d.charAt(g),16)).toString(16);var h=0;for(g=0;g<f.length;g++)h+=parseInt(f.charAt(g),16);return h%10===0?"0"===e:e===(2*(10*Math.floor((h+10)/10)-h)).toString(16);case/^[0-9A-F]{14}$/i.test(d):case/^[0-9A-F]{2}[- ][0-9A-F]{6}[- ][0-9A-F]{6}$/i.test(d):case/^\d{18}$/.test(d):case/^\d{5}[- ]\d{5}[- ]\d{4}[- ]\d{4}$/.test(d):return!0;default:return!1}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.notEmpty=a.extend(a.fn.bootstrapValidator.i18n.notEmpty||{},{"default":"Please enter a value"}),a.fn.bootstrapValidator.validators.notEmpty={enableByHtml5:function(a){var b=a.attr("required")+"";return"required"===b||"true"===b},validate:function(b,c){var d=c.attr("type");return"radio"===d||"checkbox"===d?b.getFieldElements(c.attr("data-bv-field")).filter(":checked").length>0:"number"===d&&c.get(0).validity&&c.get(0).validity.badInput===!0?!0:""!==a.trim(c.val())}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.numeric=a.extend(a.fn.bootstrapValidator.i18n.numeric||{},{"default":"Please enter a valid float number"}),a.fn.bootstrapValidator.validators.numeric={html5Attributes:{message:"message",separator:"separator"},enableByHtml5:function(a){return"number"===a.attr("type")&&void 0!==a.attr("step")&&a.attr("step")%1!==0},validate:function(a,b,c){if(this.enableByHtml5(b)&&b.get(0).validity&&b.get(0).validity.badInput===!0)return!1;var d=b.val();if(""===d)return!0;var e=c.separator||".";return"."!==e&&(d=d.replace(e,".")),!isNaN(parseFloat(d))&&isFinite(d)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.phone=a.extend(a.fn.bootstrapValidator.i18n.phone||{},{"default":"Please enter a valid phone number",countryNotSupported:"The country code %s is not supported",country:"Please enter a valid phone number in %s",countries:{BR:"Brazil",CN:"China",CZ:"Czech Republic",DE:"Germany",DK:"Denmark",ES:"Spain",FR:"France",GB:"United Kingdom",MA:"Morocco",PK:"Pakistan",RO:"Romania",RU:"Russia",SK:"Slovakia",TH:"Thailand",US:"USA",VE:"Venezuela"}}),a.fn.bootstrapValidator.validators.phone={html5Attributes:{message:"message",country:"country"},COUNTRY_CODES:["BR","CN","CZ","DE","DK","ES","FR","GB","MA","PK","RO","RU","SK","TH","US","VE"],validate:function(b,c,d){var e=c.val();if(""===e)return!0;var f=d.country;if(("string"!=typeof f||-1===a.inArray(f,this.COUNTRY_CODES))&&(f=b.getDynamicOption(c,f)),!f||-1===a.inArray(f.toUpperCase(),this.COUNTRY_CODES))return{valid:!1,message:a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.phone.countryNotSupported,f)};var g=!0;switch(f.toUpperCase()){case"BR":e=a.trim(e),g=/^(([\d]{4}[-.\s]{1}[\d]{2,3}[-.\s]{1}[\d]{2}[-.\s]{1}[\d]{2})|([\d]{4}[-.\s]{1}[\d]{3}[-.\s]{1}[\d]{4})|((\(?\+?[0-9]{2}\)?\s?)?(\(?\d{2}\)?\s?)?\d{4,5}[-.\s]?\d{4}))$/.test(e);break;case"CN":e=a.trim(e),g=/^((00|\+)?(86(?:-| )))?((\d{11})|(\d{3}[- ]{1}\d{4}[- ]{1}\d{4})|((\d{2,4}[- ]){1}(\d{7,8}|(\d{3,4}[- ]{1}\d{4}))([- ]{1}\d{1,4})?))$/.test(e);break;case"CZ":g=/^(((00)([- ]?)|\+)(420)([- ]?))?((\d{3})([- ]?)){2}(\d{3})$/.test(e);break;case"DE":e=a.trim(e),g=/^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$/.test(e);break;case"DK":e=a.trim(e),g=/^(\+45|0045|\(45\))?\s?[2-9](\s?\d){7}$/.test(e);break;case"ES":e=a.trim(e),g=/^(?:(?:(?:\+|00)34\D?))?(?:9|6)(?:\d\D?){8}$/.test(e);break;case"FR":e=a.trim(e),g=/^(?:(?:(?:\+|00)33[ ]?(?:\(0\)[ ]?)?)|0){1}[1-9]{1}([ .-]?)(?:\d{2}\1?){3}\d{2}$/.test(e);break;case"GB":e=a.trim(e),g=/^\(?(?:(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?\(?(?:0\)?[\s-]?\(?)?|0)(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}|\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4}|\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3})|\d{5}\)?[\s-]?\d{4,5}|8(?:00[\s-]?11[\s-]?11|45[\s-]?46[\s-]?4\d))(?:(?:[\s-]?(?:x|ext\.?\s?|\#)\d+)?)$/.test(e);break;case"MA":e=a.trim(e),g=/^(?:(?:(?:\+|00)212[\s]?(?:[\s]?\(0\)[\s]?)?)|0){1}(?:5[\s.-]?[2-3]|6[\s.-]?[13-9]){1}[0-9]{1}(?:[\s.-]?\d{2}){3}$/.test(e);break;case"PK":e=a.trim(e),g=/^0?3[0-9]{2}[0-9]{7}$/.test(e);break;case"RO":g=/^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$/g.test(e);break;case"RU":g=/^((8|\+7|007)[\-\.\/ ]?)?([\(\/\.]?\d{3}[\)\/\.]?[\-\.\/ ]?)?[\d\-\.\/ ]{7,10}$/g.test(e);break;case"SK":g=/^(((00)([- ]?)|\+)(420)([- ]?))?((\d{3})([- ]?)){2}(\d{3})$/.test(e);break;case"TH":g=/^0\(?([6|8-9]{2})*-([0-9]{3})*-([0-9]{4})$/.test(e);break;case"VE":e=a.trim(e),g=/^0(?:2(?:12|4[0-9]|5[1-9]|6[0-9]|7[0-8]|8[1-35-8]|9[1-5]|3[45789])|4(?:1[246]|2[46]))\d{7}$/.test(e);break;case"US":default:e=e.replace(/\D/g,""),g=/^(?:(1\-?)|(\+1 ?))?\(?(\d{3})[\)\-\.]?(\d{3})[\-\.]?(\d{4})$/.test(e)&&10===e.length}return{valid:g,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.phone.country,a.fn.bootstrapValidator.i18n.phone.countries[f])}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.regexp=a.extend(a.fn.bootstrapValidator.i18n.regexp||{},{"default":"Please enter a value matching the pattern"}),a.fn.bootstrapValidator.validators.regexp={html5Attributes:{message:"message",regexp:"regexp"},enableByHtml5:function(a){var b=a.attr("pattern");return b?{regexp:b}:!1},validate:function(a,b,c){var d=b.val();if(""===d)return!0;var e="string"==typeof c.regexp?new RegExp(c.regexp):c.regexp;return e.test(d)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.remote=a.extend(a.fn.bootstrapValidator.i18n.remote||{},{"default":"Please enter a valid value"}),a.fn.bootstrapValidator.validators.remote={html5Attributes:{message:"message",name:"name",type:"type",url:"url",data:"data",delay:"delay"},destroy:function(a,b){b.data("bv.remote.timer")&&(clearTimeout(b.data("bv.remote.timer")),b.removeData("bv.remote.timer"))},validate:function(b,c,d){function e(){var b=a.ajax({type:k,headers:l,url:j,dataType:"json",data:i});return b.then(function(a){a.valid=a.valid===!0||"true"===a.valid,g.resolve(c,"remote",a)}),g.fail(function(){b.abort()}),g}var f=c.val(),g=new a.Deferred;if(""===f)return g.resolve(c,"remote",{valid:!0}),g;var h=c.attr("data-bv-field"),i=d.data||{},j=d.url,k=d.type||"GET",l=d.headers||{};return"function"==typeof i&&(i=i.call(this,b)),"string"==typeof i&&(i=JSON.parse(i)),"function"==typeof j&&(j=j.call(this,b)),i[d.name||h]=f,d.delay?(c.data("bv.remote.timer")&&clearTimeout(c.data("bv.remote.timer")),c.data("bv.remote.timer",setTimeout(e,d.delay)),g):e()}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.rtn=a.extend(a.fn.bootstrapValidator.i18n.rtn||{},{"default":"Please enter a valid RTN number"}),a.fn.bootstrapValidator.validators.rtn={validate:function(a,b){var c=b.val();if(""===c)return!0;if(!/^\d{9}$/.test(c))return!1;for(var d=0,e=0;e<c.length;e+=3)d+=3*parseInt(c.charAt(e),10)+7*parseInt(c.charAt(e+1),10)+parseInt(c.charAt(e+2),10);return 0!==d&&d%10===0}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.sedol=a.extend(a.fn.bootstrapValidator.i18n.sedol||{},{"default":"Please enter a valid SEDOL number"}),a.fn.bootstrapValidator.validators.sedol={validate:function(a,b){var c=b.val();if(""===c)return!0;if(c=c.toUpperCase(),!/^[0-9A-Z]{7}$/.test(c))return!1;for(var d=0,e=[1,3,1,7,3,9,1],f=c.length,g=0;f-1>g;g++)d+=e[g]*parseInt(c.charAt(g),36);return d=(10-d%10)%10,d+""===c.charAt(f-1)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.siren=a.extend(a.fn.bootstrapValidator.i18n.siren||{},{"default":"Please enter a valid SIREN number"}),a.fn.bootstrapValidator.validators.siren={validate:function(b,c){var d=c.val();return""===d?!0:/^\d{9}$/.test(d)?a.fn.bootstrapValidator.helpers.luhn(d):!1}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.siret=a.extend(a.fn.bootstrapValidator.i18n.siret||{},{"default":"Please enter a valid SIRET number"}),a.fn.bootstrapValidator.validators.siret={validate:function(a,b){var c=b.val();if(""===c)return!0;for(var d,e=0,f=c.length,g=0;f>g;g++)d=parseInt(c.charAt(g),10),g%2===0&&(d=2*d,d>9&&(d-=9)),e+=d;return e%10===0}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.step=a.extend(a.fn.bootstrapValidator.i18n.step||{},{"default":"Please enter a valid step of %s"}),a.fn.bootstrapValidator.validators.step={html5Attributes:{message:"message",base:"baseValue",step:"step"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;if(d=a.extend({},{baseValue:0,step:1},d),e=parseFloat(e),!a.isNumeric(e))return!1;var f=function(a,b){var c=Math.pow(10,b);a*=c;var d=a>0|-(0>a),e=a%1===.5*d;return e?(Math.floor(a)+(d>0))/c:Math.round(a)/c},g=function(a,b){if(0===b)return 1;var c=(a+"").split("."),d=(b+"").split("."),e=(1===c.length?0:c[1].length)+(1===d.length?0:d[1].length);return f(a-b*Math.floor(a/b),e)},h=g(e-d.baseValue,d.step);return{valid:0===h||h===d.step,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.step["default"],[d.step])}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.stringCase=a.extend(a.fn.bootstrapValidator.i18n.stringCase||{},{"default":"Please enter only lowercase characters",upper:"Please enter only uppercase characters"}),a.fn.bootstrapValidator.validators.stringCase={html5Attributes:{message:"message","case":"case"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;var f=(d["case"]||"lower").toLowerCase();return{valid:"upper"===f?e===e.toUpperCase():e===e.toLowerCase(),message:d.message||("upper"===f?a.fn.bootstrapValidator.i18n.stringCase.upper:a.fn.bootstrapValidator.i18n.stringCase["default"])}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.stringLength=a.extend(a.fn.bootstrapValidator.i18n.stringLength||{},{"default":"Please enter a value with valid length",less:"Please enter less than %s characters",more:"Please enter more than %s characters",between:"Please enter value between %s and %s characters long"}),a.fn.bootstrapValidator.validators.stringLength={html5Attributes:{message:"message",min:"min",max:"max",trim:"trim",utf8bytes:"utf8Bytes"},enableByHtml5:function(b){var c={},d=b.attr("maxlength"),e=b.attr("minlength");return d&&(c.max=parseInt(d,10)),e&&(c.min=parseInt(e,10)),a.isEmptyObject(c)?!1:c},validate:function(b,c,d){var e=c.val();if((d.trim===!0||"true"===d.trim)&&(e=a.trim(e)),""===e)return!0;var f=a.isNumeric(d.min)?d.min:b.getDynamicOption(c,d.min),g=a.isNumeric(d.max)?d.max:b.getDynamicOption(c,d.max),h=function(a){for(var b=a.length,c=a.length-1;c>=0;c--){var d=a.charCodeAt(c);d>127&&2047>=d?b++:d>2047&&65535>=d&&(b+=2),d>=56320&&57343>=d&&c--}return b},i=d.utf8Bytes?h(e):e.length,j=!0,k=d.message||a.fn.bootstrapValidator.i18n.stringLength["default"];switch((f&&i<parseInt(f,10)||g&&i>parseInt(g,10))&&(j=!1),!0){case!!f&&!!g:k=a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.stringLength.between,[parseInt(f,10),parseInt(g,10)]);break;case!!f:k=a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.stringLength.more,parseInt(f,10));break;case!!g:k=a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.stringLength.less,parseInt(g,10))}return{valid:j,message:k}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.uri=a.extend(a.fn.bootstrapValidator.i18n.uri||{},{"default":"Please enter a valid URI"}),a.fn.bootstrapValidator.validators.uri={html5Attributes:{message:"message",allowlocal:"allowLocal",protocol:"protocol"},enableByHtml5:function(a){return"url"===a.attr("type")},validate:function(a,b,c){var d=b.val();if(""===d)return!0;var e=c.allowLocal===!0||"true"===c.allowLocal,f=(c.protocol||"http, https, ftp").split(",").join("|").replace(/\s/g,""),g=new RegExp("^(?:(?:"+f+")://)(?:\\S+(?::\\S*)?@)?(?:"+(e?"":"(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})")+"(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))"+(e?"?":"")+")(?::\\d{2,5})?(?:/[^\\s]*)?$","i");return g.test(d)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.uuid=a.extend(a.fn.bootstrapValidator.i18n.uuid||{},{"default":"Please enter a valid UUID number",version:"Please enter a valid UUID version %s number"}),a.fn.bootstrapValidator.validators.uuid={html5Attributes:{message:"message",version:"version"},validate:function(b,c,d){var e=c.val();if(""===e)return!0;var f={3:/^[0-9A-F]{8}-[0-9A-F]{4}-3[0-9A-F]{3}-[0-9A-F]{4}-[0-9A-F]{12}$/i,4:/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i,5:/^[0-9A-F]{8}-[0-9A-F]{4}-5[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i,all:/^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/i},g=d.version?d.version+"":"all";return{valid:null===f[g]?!0:f[g].test(e),message:d.version?a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.uuid.version,d.version):d.message||a.fn.bootstrapValidator.i18n.uuid["default"]}}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.vat=a.extend(a.fn.bootstrapValidator.i18n.vat||{},{"default":"Please enter a valid VAT number",countryNotSupported:"The country code %s is not supported",country:"Please enter a valid VAT number in %s",countries:{AT:"Austria",BE:"Belgium",BG:"Bulgaria",BR:"Brazil",CH:"Switzerland",CY:"Cyprus",CZ:"Czech Republic",DE:"Germany",DK:"Denmark",EE:"Estonia",ES:"Spain",FI:"Finland",FR:"France",GB:"United Kingdom",GR:"Greek",EL:"Greek",HU:"Hungary",HR:"Croatia",IE:"Ireland",IS:"Iceland",IT:"Italy",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",MT:"Malta",NL:"Netherlands",NO:"Norway",PL:"Poland",PT:"Portugal",RO:"Romania",RU:"Russia",RS:"Serbia",SE:"Sweden",SI:"Slovenia",SK:"Slovakia",VE:"Venezuela",ZA:"South Africa"}}),a.fn.bootstrapValidator.validators.vat={html5Attributes:{message:"message",country:"country"},COUNTRY_CODES:["AT","BE","BG","BR","CH","CY","CZ","DE","DK","EE","EL","ES","FI","FR","GB","GR","HR","HU","IE","IS","IT","LT","LU","LV","MT","NL","NO","PL","PT","RO","RU","RS","SE","SK","SI","VE","ZA"],validate:function(b,c,d){var e=c.val();if(""===e)return!0;var f=d.country;if(f?("string"!=typeof f||-1===a.inArray(f.toUpperCase(),this.COUNTRY_CODES))&&(f=b.getDynamicOption(c,f)):f=e.substr(0,2),-1===a.inArray(f,this.COUNTRY_CODES))return{valid:!1,message:a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.vat.countryNotSupported,f)};var g=["_",f.toLowerCase()].join("");return this[g](e)?!0:{valid:!1,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.vat.country,a.fn.bootstrapValidator.i18n.vat.countries[f.toUpperCase()])}},_at:function(a){if(/^ATU[0-9]{8}$/.test(a)&&(a=a.substr(2)),!/^U[0-9]{8}$/.test(a))return!1;a=a.substr(1);for(var b=0,c=[1,2,1,2,1,2,1],d=0,e=0;7>e;e++)d=parseInt(a.charAt(e),10)*c[e],d>9&&(d=Math.floor(d/10)+d%10),b+=d;return b=10-(b+4)%10,10===b&&(b=0),b+""===a.substr(7,1)},_be:function(a){if(/^BE[0]{0,1}[0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[0]{0,1}[0-9]{9}$/.test(a))return!1;if(9===a.length&&(a="0"+a),"0"===a.substr(1,1))return!1;var b=parseInt(a.substr(0,8),10)+parseInt(a.substr(8,2),10);return b%97===0},_bg:function(b){if(/^BG[0-9]{9,10}$/.test(b)&&(b=b.substr(2)),!/^[0-9]{9,10}$/.test(b))return!1;var c=0,d=0;if(9===b.length){for(d=0;8>d;d++)c+=parseInt(b.charAt(d),10)*(d+1);if(c%=11,10===c)for(c=0,d=0;8>d;d++)c+=parseInt(b.charAt(d),10)*(d+3);return c%=10,c+""===b.substr(8)}if(10===b.length){var e=function(b){var c=parseInt(b.substr(0,2),10)+1900,d=parseInt(b.substr(2,2),10),e=parseInt(b.substr(4,2),10);if(d>40?(c+=100,d-=40):d>20&&(c-=100,d-=20),!a.fn.bootstrapValidator.helpers.date(c,d,e))return!1;for(var f=0,g=[2,4,8,5,10,9,7,3,6],h=0;9>h;h++)f+=parseInt(b.charAt(h),10)*g[h];return f=f%11%10,f+""===b.substr(9,1)},f=function(a){for(var b=0,c=[21,19,17,13,11,9,7,3,1],d=0;9>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%=10,b+""===a.substr(9,1)},g=function(a){for(var b=0,c=[4,3,2,7,6,5,4,3,2],d=0;9>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=11-b%11,10===b?!1:(11===b&&(b=0),b+""===a.substr(9,1))};return e(b)||f(b)||g(b)}return!1},_br:function(a){if(""===a)return!0;var b=a.replace(/[^\d]+/g,"");if(""===b||14!==b.length)return!1;if("00000000000000"===b||"11111111111111"===b||"22222222222222"===b||"33333333333333"===b||"44444444444444"===b||"55555555555555"===b||"66666666666666"===b||"77777777777777"===b||"88888888888888"===b||"99999999999999"===b)return!1;for(var c=b.length-2,d=b.substring(0,c),e=b.substring(c),f=0,g=c-7,h=c;h>=1;h--)f+=parseInt(d.charAt(c-h),10)*g--,2>g&&(g=9);var i=2>f%11?0:11-f%11;if(i!==parseInt(e.charAt(0),10))return!1;for(c+=1,d=b.substring(0,c),f=0,g=c-7,h=c;h>=1;h--)f+=parseInt(d.charAt(c-h),10)*g--,2>g&&(g=9);return i=2>f%11?0:11-f%11,i===parseInt(e.charAt(1),10)},_ch:function(a){if(/^CHE[0-9]{9}(MWST)?$/.test(a)&&(a=a.substr(2)),!/^E[0-9]{9}(MWST)?$/.test(a))return!1;a=a.substr(1);for(var b=0,c=[5,4,3,2,7,6,5,4],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=11-b%11,10===b?!1:(11===b&&(b=0),b+""===a.substr(8,1))},_cy:function(a){if(/^CY[0-5|9]{1}[0-9]{7}[A-Z]{1}$/.test(a)&&(a=a.substr(2)),!/^[0-5|9]{1}[0-9]{7}[A-Z]{1}$/.test(a))return!1;if("12"===a.substr(0,2))return!1;for(var b=0,c={0:1,1:0,2:5,3:7,4:9,5:13,6:15,7:17,8:19,9:21},d=0;8>d;d++){var e=parseInt(a.charAt(d),10);d%2===0&&(e=c[e+""]),b+=e}return b="ABCDEFGHIJKLMNOPQRSTUVWXYZ"[b%26],b+""===a.substr(8,1)},_cz:function(b){if(/^CZ[0-9]{8,10}$/.test(b)&&(b=b.substr(2)),!/^[0-9]{8,10}$/.test(b))return!1;var c=0,d=0;if(8===b.length){if(b.charAt(0)+""=="9")return!1;for(c=0,d=0;7>d;d++)c+=parseInt(b.charAt(d),10)*(8-d);return c=11-c%11,10===c&&(c=0),11===c&&(c=1),c+""===b.substr(7,1)
+    }if(9===b.length&&b.charAt(0)+""=="6"){for(c=0,d=0;7>d;d++)c+=parseInt(b.charAt(d+1),10)*(8-d);return c=11-c%11,10===c&&(c=0),11===c&&(c=1),c=[8,7,6,5,4,3,2,1,0,9,10][c-1],c+""===b.substr(8,1)}if(9===b.length||10===b.length){var e=1900+parseInt(b.substr(0,2),10),f=parseInt(b.substr(2,2),10)%50%20,g=parseInt(b.substr(4,2),10);if(9===b.length){if(e>=1980&&(e-=100),e>1953)return!1}else 1954>e&&(e+=100);if(!a.fn.bootstrapValidator.helpers.date(e,f,g))return!1;if(10===b.length){var h=parseInt(b.substr(0,9),10)%11;return 1985>e&&(h%=10),h+""===b.substr(9,1)}return!0}return!1},_de:function(b){return/^DE[0-9]{9}$/.test(b)&&(b=b.substr(2)),/^[0-9]{9}$/.test(b)?a.fn.bootstrapValidator.helpers.mod11And10(b):!1},_dk:function(a){if(/^DK[0-9]{8}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{8}$/.test(a))return!1;for(var b=0,c=[2,7,6,5,4,3,2,1],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%11===0},_ee:function(a){if(/^EE[0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{9}$/.test(a))return!1;for(var b=0,c=[3,7,1,3,7,1,3,7,1],d=0;9>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%10===0},_es:function(a){if(/^ES[0-9A-Z][0-9]{7}[0-9A-Z]$/.test(a)&&(a=a.substr(2)),!/^[0-9A-Z][0-9]{7}[0-9A-Z]$/.test(a))return!1;var b=function(a){var b=parseInt(a.substr(0,8),10);return b="TRWAGMYFPDXBNJZSQVHLCKE"[b%23],b+""===a.substr(8,1)},c=function(a){var b=["XYZ".indexOf(a.charAt(0)),a.substr(1)].join("");return b=parseInt(b,10),b="TRWAGMYFPDXBNJZSQVHLCKE"[b%23],b+""===a.substr(8,1)},d=function(a){var b,c=a.charAt(0);if(-1!=="KLM".indexOf(c))return b=parseInt(a.substr(1,8),10),b="TRWAGMYFPDXBNJZSQVHLCKE"[b%23],b+""===a.substr(8,1);if(-1!=="ABCDEFGHJNPQRSUVW".indexOf(c)){for(var d=0,e=[2,1,2,1,2,1,2],f=0,g=0;7>g;g++)f=parseInt(a.charAt(g+1),10)*e[g],f>9&&(f=Math.floor(f/10)+f%10),d+=f;return d=10-d%10,d+""===a.substr(8,1)||"JABCDEFGHI"[d]===a.substr(8,1)}return!1},e=a.charAt(0);return/^[0-9]$/.test(e)?b(a):/^[XYZ]$/.test(e)?c(a):d(a)},_fi:function(a){if(/^FI[0-9]{8}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{8}$/.test(a))return!1;for(var b=0,c=[7,9,10,5,8,4,2,1],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%11===0},_fr:function(b){if(/^FR[0-9A-Z]{2}[0-9]{9}$/.test(b)&&(b=b.substr(2)),!/^[0-9A-Z]{2}[0-9]{9}$/.test(b))return!1;if(!a.fn.bootstrapValidator.helpers.luhn(b.substr(2)))return!1;if(/^[0-9]{2}$/.test(b.substr(0,2)))return b.substr(0,2)===parseInt(b.substr(2)+"12",10)%97+"";var c,d="0123456789ABCDEFGHJKLMNPQRSTUVWXYZ";return c=/^[0-9]{1}$/.test(b.charAt(0))?24*d.indexOf(b.charAt(0))+d.indexOf(b.charAt(1))-10:34*d.indexOf(b.charAt(0))+d.indexOf(b.charAt(1))-100,(parseInt(b.substr(2),10)+1+Math.floor(c/11))%11===c%11},_gb:function(a){if((/^GB[0-9]{9}$/.test(a)||/^GB[0-9]{12}$/.test(a)||/^GBGD[0-9]{3}$/.test(a)||/^GBHA[0-9]{3}$/.test(a)||/^GB(GD|HA)8888[0-9]{5}$/.test(a))&&(a=a.substr(2)),!(/^[0-9]{9}$/.test(a)||/^[0-9]{12}$/.test(a)||/^GD[0-9]{3}$/.test(a)||/^HA[0-9]{3}$/.test(a)||/^(GD|HA)8888[0-9]{5}$/.test(a)))return!1;var b=a.length;if(5===b){var c=a.substr(0,2),d=parseInt(a.substr(2),10);return"GD"===c&&500>d||"HA"===c&&d>=500}if(11===b&&("GD8888"===a.substr(0,6)||"HA8888"===a.substr(0,6)))return"GD"===a.substr(0,2)&&parseInt(a.substr(6,3),10)>=500||"HA"===a.substr(0,2)&&parseInt(a.substr(6,3),10)<500?!1:parseInt(a.substr(6,3),10)%97===parseInt(a.substr(9,2),10);if(9===b||12===b){for(var e=0,f=[8,7,6,5,4,3,2,10,1],g=0;9>g;g++)e+=parseInt(a.charAt(g),10)*f[g];return e%=97,parseInt(a.substr(0,3),10)>=100?0===e||42===e||55===e:0===e}return!0},_gr:function(a){if(/^(GR|EL)[0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{9}$/.test(a))return!1;8===a.length&&(a="0"+a);for(var b=0,c=[256,128,64,32,16,8,4,2],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=b%11%10,b+""===a.substr(8,1)},_el:function(a){return this._gr(a)},_hu:function(a){if(/^HU[0-9]{8}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{8}$/.test(a))return!1;for(var b=0,c=[9,7,3,1,9,7,3,1],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%10===0},_hr:function(b){return/^HR[0-9]{11}$/.test(b)&&(b=b.substr(2)),/^[0-9]{11}$/.test(b)?a.fn.bootstrapValidator.helpers.mod11And10(b):!1},_ie:function(a){if(/^IE[0-9]{1}[0-9A-Z\*\+]{1}[0-9]{5}[A-Z]{1,2}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{1}[0-9A-Z\*\+]{1}[0-9]{5}[A-Z]{1,2}$/.test(a))return!1;var b=function(a){for(;a.length<7;)a="0"+a;for(var b="WABCDEFGHIJKLMNOPQRSTUV",c=0,d=0;7>d;d++)c+=parseInt(a.charAt(d),10)*(8-d);return c+=9*b.indexOf(a.substr(7)),b[c%23]};return/^[0-9]+$/.test(a.substr(0,7))?a.charAt(7)===b(a.substr(0,7)+a.substr(8)+""):-1!=="ABCDEFGHIJKLMNOPQRSTUVWXYZ+*".indexOf(a.charAt(1))?a.charAt(7)===b(a.substr(2,5)+a.substr(0,1)+""):!0},_is:function(a){return/^IS[0-9]{5,6}$/.test(a)&&(a=a.substr(2)),/^[0-9]{5,6}$/.test(a)},_it:function(b){if(/^IT[0-9]{11}$/.test(b)&&(b=b.substr(2)),!/^[0-9]{11}$/.test(b))return!1;if(0===parseInt(b.substr(0,7),10))return!1;var c=parseInt(b.substr(7,3),10);return 1>c||c>201&&999!==c&&888!==c?!1:a.fn.bootstrapValidator.helpers.luhn(b)},_lt:function(a){if(/^LT([0-9]{7}1[0-9]{1}|[0-9]{10}1[0-9]{1})$/.test(a)&&(a=a.substr(2)),!/^([0-9]{7}1[0-9]{1}|[0-9]{10}1[0-9]{1})$/.test(a))return!1;var b,c=a.length,d=0;for(b=0;c-1>b;b++)d+=parseInt(a.charAt(b),10)*(1+b%9);var e=d%11;if(10===e)for(d=0,b=0;c-1>b;b++)d+=parseInt(a.charAt(b),10)*(1+(b+2)%9);return e=e%11%10,e+""===a.charAt(c-1)},_lu:function(a){return/^LU[0-9]{8}$/.test(a)&&(a=a.substr(2)),/^[0-9]{8}$/.test(a)?parseInt(a.substr(0,6),10)%89+""===a.substr(6,2):!1},_lv:function(b){if(/^LV[0-9]{11}$/.test(b)&&(b=b.substr(2)),!/^[0-9]{11}$/.test(b))return!1;var c,d=parseInt(b.charAt(0),10),e=0,f=[],g=b.length;if(d>3){for(e=0,f=[9,1,4,8,3,10,2,5,7,6,1],c=0;g>c;c++)e+=parseInt(b.charAt(c),10)*f[c];return e%=11,3===e}var h=parseInt(b.substr(0,2),10),i=parseInt(b.substr(2,2),10),j=parseInt(b.substr(4,2),10);if(j=j+1800+100*parseInt(b.charAt(6),10),!a.fn.bootstrapValidator.helpers.date(j,i,h))return!1;for(e=0,f=[10,5,8,4,2,1,6,3,7,9],c=0;g-1>c;c++)e+=parseInt(b.charAt(c),10)*f[c];return e=(e+1)%11%10,e+""===b.charAt(g-1)},_mt:function(a){if(/^MT[0-9]{8}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{8}$/.test(a))return!1;for(var b=0,c=[3,4,6,7,8,9,10,1],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%37===0},_nl:function(a){if(/^NL[0-9]{9}B[0-9]{2}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{9}B[0-9]{2}$/.test(a))return!1;for(var b=0,c=[9,8,7,6,5,4,3,2],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%=11,b>9&&(b=0),b+""===a.substr(8,1)},_no:function(a){if(/^NO[0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{9}$/.test(a))return!1;for(var b=0,c=[3,2,7,6,5,4,3,2],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=11-b%11,11===b&&(b=0),b+""===a.substr(8,1)},_pl:function(a){if(/^PL[0-9]{10}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{10}$/.test(a))return!1;for(var b=0,c=[6,5,7,2,3,4,5,6,7,-1],d=0;10>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b%11===0},_pt:function(a){if(/^PT[0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{9}$/.test(a))return!1;for(var b=0,c=[9,8,7,6,5,4,3,2],d=0;8>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=11-b%11,b>9&&(b=0),b+""===a.substr(8,1)},_ro:function(a){if(/^RO[1-9][0-9]{1,9}$/.test(a)&&(a=a.substr(2)),!/^[1-9][0-9]{1,9}$/.test(a))return!1;for(var b=a.length,c=[7,5,3,2,1,7,5,3,2].slice(10-b),d=0,e=0;b-1>e;e++)d+=parseInt(a.charAt(e),10)*c[e];return d=10*d%11%10,d+""===a.substr(b-1,1)},_ru:function(a){if(/^RU([0-9]{10}|[0-9]{12})$/.test(a)&&(a=a.substr(2)),!/^([0-9]{10}|[0-9]{12})$/.test(a))return!1;var b=0;if(10===a.length){var c=0,d=[2,4,10,3,5,9,4,6,8,0];for(b=0;10>b;b++)c+=parseInt(a.charAt(b),10)*d[b];return c%=11,c>9&&(c%=10),c+""===a.substr(9,1)}if(12===a.length){var e=0,f=[7,2,4,10,3,5,9,4,6,8,0],g=0,h=[3,7,2,4,10,3,5,9,4,6,8,0];for(b=0;11>b;b++)e+=parseInt(a.charAt(b),10)*f[b],g+=parseInt(a.charAt(b),10)*h[b];return e%=11,e>9&&(e%=10),g%=11,g>9&&(g%=10),e+""===a.substr(10,1)&&g+""===a.substr(11,1)}return!1},_rs:function(a){if(/^RS[0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{9}$/.test(a))return!1;for(var b=10,c=0,d=0;8>d;d++)c=(parseInt(a.charAt(d),10)+b)%10,0===c&&(c=10),b=2*c%11;return(b+parseInt(a.substr(8,1),10))%10===1},_se:function(b){return/^SE[0-9]{10}01$/.test(b)&&(b=b.substr(2)),/^[0-9]{10}01$/.test(b)?(b=b.substr(0,10),a.fn.bootstrapValidator.helpers.luhn(b)):!1},_si:function(a){if(/^SI[0-9]{8}$/.test(a)&&(a=a.substr(2)),!/^[0-9]{8}$/.test(a))return!1;for(var b=0,c=[8,7,6,5,4,3,2],d=0;7>d;d++)b+=parseInt(a.charAt(d),10)*c[d];return b=11-b%11,10===b&&(b=0),b+""===a.substr(7,1)},_sk:function(a){return/^SK[1-9][0-9][(2-4)|(6-9)][0-9]{7}$/.test(a)&&(a=a.substr(2)),/^[1-9][0-9][(2-4)|(6-9)][0-9]{7}$/.test(a)?parseInt(a,10)%11===0:!1},_ve:function(a){if(/^VE[VEJPG][0-9]{9}$/.test(a)&&(a=a.substr(2)),!/^[VEJPG][0-9]{9}$/.test(a))return!1;for(var b={V:4,E:8,J:12,P:16,G:20},c=b[a.charAt(0)],d=[3,2,7,6,5,4,3,2],e=0;8>e;e++)c+=parseInt(a.charAt(e+1),10)*d[e];return c=11-c%11,(11===c||10===c)&&(c=0),c+""===a.substr(9,1)},_za:function(a){return/^ZA4[0-9]{9}$/.test(a)&&(a=a.substr(2)),/^4[0-9]{9}$/.test(a)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.vin=a.extend(a.fn.bootstrapValidator.i18n.vin||{},{"default":"Please enter a valid VIN number"}),a.fn.bootstrapValidator.validators.vin={validate:function(a,b){var c=b.val();if(""===c)return!0;if(!/^[a-hj-npr-z0-9]{8}[0-9xX][a-hj-npr-z0-9]{8}$/i.test(c))return!1;c=c.toUpperCase();for(var d={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,J:1,K:2,L:3,M:4,N:5,P:7,R:9,S:2,T:3,U:4,V:5,W:6,X:7,Y:8,Z:9,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,0:0},e=[8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2],f=0,g=c.length,h=0;g>h;h++)f+=d[c.charAt(h)+""]*e[h];var i=f%11;return 10===i&&(i="X"),i+""===c.charAt(8)}}}(window.jQuery),function(a){a.fn.bootstrapValidator.i18n.zipCode=a.extend(a.fn.bootstrapValidator.i18n.zipCode||{},{"default":"Please enter a valid postal code",countryNotSupported:"The country code %s is not supported",country:"Please enter a valid postal code in %s",countries:{AT:"Austria",BR:"Brazil",CA:"Canada",CH:"Switzerland",CZ:"Czech Republic",DE:"Germany",DK:"Denmark",FR:"France",GB:"United Kingdom",IE:"Ireland",IT:"Italy",MA:"Morocco",NL:"Netherlands",PT:"Portugal",RO:"Romania",RU:"Russia",SE:"Sweden",SG:"Singapore",SK:"Slovakia",US:"USA"}}),a.fn.bootstrapValidator.validators.zipCode={html5Attributes:{message:"message",country:"country"},COUNTRY_CODES:["AT","BR","CA","CH","CZ","DE","DK","FR","GB","IE","IT","MA","NL","PT","RO","RU","SE","SG","SK","US"],validate:function(b,c,d){var e=c.val();if(""===e||!d.country)return!0;var f=d.country;if(("string"!=typeof f||-1===a.inArray(f,this.COUNTRY_CODES))&&(f=b.getDynamicOption(c,f)),!f||-1===a.inArray(f.toUpperCase(),this.COUNTRY_CODES))return{valid:!1,message:a.fn.bootstrapValidator.helpers.format(a.fn.bootstrapValidator.i18n.zipCode.countryNotSupported,f)};var g=!1;switch(f=f.toUpperCase()){case"AT":g=/^([1-9]{1})(\d{3})$/.test(e);break;case"BR":g=/^(\d{2})([\.]?)(\d{3})([\-]?)(\d{3})$/.test(e);break;case"CA":g=/^(?:A|B|C|E|G|H|J|K|L|M|N|P|R|S|T|V|X|Y){1}[0-9]{1}(?:A|B|C|E|G|H|J|K|L|M|N|P|R|S|T|V|W|X|Y|Z){1}\s?[0-9]{1}(?:A|B|C|E|G|H|J|K|L|M|N|P|R|S|T|V|W|X|Y|Z){1}[0-9]{1}$/i.test(e);break;case"CH":g=/^([1-9]{1})(\d{3})$/.test(e);break;case"CZ":g=/^(\d{3})([ ]?)(\d{2})$/.test(e);break;case"DE":g=/^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$/.test(e);break;case"DK":g=/^(DK(-|\s)?)?\d{4}$/i.test(e);break;case"FR":g=/^[0-9]{5}$/i.test(e);break;case"GB":g=this._gb(e);break;case"IE":g=/^(D6W|[ACDEFHKNPRTVWXY]\d{2})\s[0-9ACDEFHKNPRTVWXY]{4}$/.test(e);break;case"IT":g=/^(I-|IT-)?\d{5}$/i.test(e);break;case"MA":g=/^[1-9][0-9]{4}$/i.test(e);break;case"NL":g=/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i.test(e);break;case"PT":g=/^[1-9]\d{3}-\d{3}$/.test(e);break;case"RO":g=/^(0[1-8]{1}|[1-9]{1}[0-5]{1})?[0-9]{4}$/i.test(e);break;case"RU":g=/^[0-9]{6}$/i.test(e);break;case"SE":g=/^(S-)?\d{3}\s?\d{2}$/i.test(e);break;case"SG":g=/^([0][1-9]|[1-6][0-9]|[7]([0-3]|[5-9])|[8][0-2])(\d{4})$/i.test(e);break;case"SK":g=/^(\d{3})([ ]?)(\d{2})$/.test(e);break;case"US":default:g=/^\d{4,5}([\-]?\d{4})?$/.test(e)}return{valid:g,message:a.fn.bootstrapValidator.helpers.format(d.message||a.fn.bootstrapValidator.i18n.zipCode.country,a.fn.bootstrapValidator.i18n.zipCode.countries[f])}},_gb:function(a){for(var b="[ABCDEFGHIJKLMNOPRSTUWYZ]",c="[ABCDEFGHKLMNOPQRSTUVWXY]",d="[ABCDEFGHJKPMNRSTUVWXY]",e="[ABEHMNPRVWXY]",f="[ABDEFGHJLNPQRSTUWXYZ]",g=[new RegExp("^("+b+"{1}"+c+"?[0-9]{1,2})(\\s*)([0-9]{1}"+f+"{2})$","i"),new RegExp("^("+b+"{1}[0-9]{1}"+d+"{1})(\\s*)([0-9]{1}"+f+"{2})$","i"),new RegExp("^("+b+"{1}"+c+"{1}?[0-9]{1}"+e+"{1})(\\s*)([0-9]{1}"+f+"{2})$","i"),new RegExp("^(BF1)(\\s*)([0-6]{1}[ABDEFGHJLNPQRST]{1}[ABDEFGHJLNPQRSTUWZYZ]{1})$","i"),/^(GIR)(\s*)(0AA)$/i,/^(BFPO)(\s*)([0-9]{1,4})$/i,/^(BFPO)(\s*)(c\/o\s*[0-9]{1,3})$/i,/^([A-Z]{4})(\s*)(1ZZ)$/i,/^(AI-2640)$/i],h=0;h<g.length;h++)if(g[h].test(a))return!0;return!1}}}(window.jQuery);
+! function(a, b) {
+    "use strict";
+    if ("function" == typeof define && define.amd) define(["jquery", "moment"], b);
+    else if ("object" == typeof exports) b(require("jquery"), require("moment"));
+    else {
+        if (!jQuery) throw new Error("bootstrap-datetimepicker requires jQuery to be loaded first");
+        if (!moment) throw new Error("bootstrap-datetimepicker requires moment.js to be loaded first");
+        b(a.jQuery, moment)
+    }
+}(this, function(a, b) {
+    "use strict";
+    if ("undefined" == typeof b) throw new Error("momentjs is required");
+    var c = 0,
+        d = function(d, e) {
+            var f, g = a.fn.datetimepicker.defaults,
+                h = {
+                    time: "glyphicon glyphicon-time",
+                    date: "glyphicon glyphicon-calendar",
+                    up: "glyphicon glyphicon-chevron-up",
+                    down: "glyphicon glyphicon-chevron-down"
+                },
+                i = this,
+                j = !1,
+                k = function() {
+                    var f, j, k = !1;
+                    if (i.options = a.extend({}, g, e), i.options.icons = a.extend({}, h, i.options.icons), i.element = a(d), m(), !i.options.pickTime && !i.options.pickDate) throw new Error("Must choose at least one picker");
+                    if (i.id = c++, b.locale(i.options.language), i.date = b(), i.unset = !1, i.isInput = i.element.is("input"), i.component = !1, i.element.hasClass("input-group") && (i.component = i.element.find(0 === i.element.find(".datepickerbutton").size() ? '[class^="input-group-"]' : ".datepickerbutton")), i.format = i.options.format, f = b().localeData(), i.format || (i.format = i.options.pickDate ? f.longDateFormat("L") : "", i.options.pickDate && i.options.pickTime && (i.format += " "), i.format += i.options.pickTime ? f.longDateFormat("LT") : "", i.options.useSeconds && (-1 !== f.longDateFormat("LT").indexOf(" A") ? i.format = i.format.split(" A")[0] + ":ss A" : i.format += ":ss")), i.use24hours = i.format.toLowerCase().indexOf("a") < 0 && i.format.indexOf("h") < 0, i.component && (k = i.component.find("span")), i.options.pickTime && k && k.addClass(i.options.icons.time), i.options.pickDate && k && (k.removeClass(i.options.icons.time), k.addClass(i.options.icons.date)), i.options.widgetParent = "string" == typeof i.options.widgetParent && i.options.widgetParent || i.element.parents().filter(function() {
+                            return "scroll" === a(this).css("overflow-y")
+                        }).get(0) || "body", i.widget = a(Q()).appendTo(i.options.widgetParent), i.minViewMode = i.options.minViewMode || 0, "string" == typeof i.minViewMode) switch (i.minViewMode) {
+                        case "months":
+                            i.minViewMode = 1;
+                            break;
+                        case "years":
+                            i.minViewMode = 2;
+                            break;
+                        default:
+                            i.minViewMode = 0
+                    }
+                    if (i.viewMode = i.options.viewMode || 0, "string" == typeof i.viewMode) switch (i.viewMode) {
+                        case "months":
+                            i.viewMode = 1;
+                            break;
+                        case "years":
+                            i.viewMode = 2;
+                            break;
+                        default:
+                            i.viewMode = 0
+                    }
+                    i.viewMode = Math.max(i.viewMode, i.minViewMode), i.options.disabledDates = O(i.options.disabledDates), i.options.enabledDates = O(i.options.enabledDates), i.startViewMode = i.viewMode, i.setMinDate(i.options.minDate), i.setMaxDate(i.options.maxDate), r(), s(), u(), v(), w(), q(), E(), l().prop("disabled") || F(), "" !== i.options.defaultDate && "" === l().val() && i.setValue(i.options.defaultDate), 1 !== i.options.minuteStepping && (j = i.options.minuteStepping, i.date.minutes(Math.round(i.date.minutes() / j) * j % 60).seconds(0))
+                },
+                l = function() {
+                    var a;
+                    if (i.isInput) return i.element;
+                    if (a = i.element.find(".datepickerinput"), 0 === a.size()) a = i.element.find("input");
+                    else if (!a.is("input")) throw new Error('CSS class "datepickerinput" cannot be applied to non input element');
+                    return a
+                },
+                m = function() {
+                    var a;
+                    a = i.element.is("input") ? i.element.data() : i.element.find("input").data(), void 0 !== a.dateFormat && (i.options.format = a.dateFormat), void 0 !== a.datePickdate && (i.options.pickDate = a.datePickdate), void 0 !== a.datePicktime && (i.options.pickTime = a.datePicktime), void 0 !== a.dateUseminutes && (i.options.useMinutes = a.dateUseminutes), void 0 !== a.dateUseseconds && (i.options.useSeconds = a.dateUseseconds), void 0 !== a.dateUsecurrent && (i.options.useCurrent = a.dateUsecurrent), void 0 !== a.calendarWeeks && (i.options.calendarWeeks = a.calendarWeeks), void 0 !== a.dateMinutestepping && (i.options.minuteStepping = a.dateMinutestepping), void 0 !== a.dateMindate && (i.options.minDate = a.dateMindate), void 0 !== a.dateMaxdate && (i.options.maxDate = a.dateMaxdate), void 0 !== a.dateShowtoday && (i.options.showToday = a.dateShowtoday), void 0 !== a.dateCollapse && (i.options.collapse = a.dateCollapse), void 0 !== a.dateLanguage && (i.options.language = a.dateLanguage), void 0 !== a.dateDefaultdate && (i.options.defaultDate = a.dateDefaultdate), void 0 !== a.dateDisableddates && (i.options.disabledDates = a.dateDisableddates), void 0 !== a.dateEnableddates && (i.options.enabledDates = a.dateEnableddates), void 0 !== a.dateIcons && (i.options.icons = a.dateIcons), void 0 !== a.dateUsestrict && (i.options.useStrict = a.dateUsestrict), void 0 !== a.dateDirection && (i.options.direction = a.dateDirection), void 0 !== a.dateSidebyside && (i.options.sideBySide = a.dateSidebyside), void 0 !== a.dateDaysofweekdisabled && (i.options.daysOfWeekDisabled = a.dateDaysofweekdisabled)
+                },
+                n = function() {
+                    var b, c = "absolute",
+                        d = i.component ? i.component.offset() : i.element.offset(),
+                        e = a(window);
+                    i.width = i.component ? i.component.outerWidth() : i.element.outerWidth(), d.top = d.top + i.element.outerHeight(), "up" === i.options.direction ? b = "top" : "bottom" === i.options.direction ? b = "bottom" : "auto" === i.options.direction && (b = d.top + i.widget.height() > e.height() + e.scrollTop() && i.widget.height() + i.element.outerHeight() < d.top ? "top" : "bottom"), "top" === b ? (d.bottom = e.height() - d.top + i.element.outerHeight() + 3, i.widget.addClass("top").removeClass("bottom")) : (d.top += 1, i.widget.addClass("bottom").removeClass("top")), void 0 !== i.options.width && i.widget.width(i.options.width), "left" === i.options.orientation && (i.widget.addClass("left-oriented"), d.left = d.left - i.widget.width() + 20), J() && (c = "fixed", d.top -= e.scrollTop(), d.left -= e.scrollLeft()), e.width() < d.left + i.widget.outerWidth() ? (d.right = e.width() - d.left - i.width, d.left = "auto", i.widget.addClass("pull-right")) : (d.right = "auto", i.widget.removeClass("pull-right")), i.widget.css("top" === b ? {
+                        position: c,
+                        bottom: ((d.bottom)+80),
+                        top: "auto",
+                        left: d.left,
+                        right: d.right
+                    } : {
+                        position: c,
+                        top: ((d.top)-300),
+                        bottom: "auto",
+                        left: d.left,
+                        right: d.right
+                    })
+                },
+                o = function(a, c) {
+                    (!b(i.date).isSame(b(a)) || j) && (j = !1, i.element.trigger({
+                        type: "dp.change",
+                        date: b(i.date),
+                        oldDate: b(a)
+                    }), "change" !== c && i.element.change())
+                },
+                p = function(a) {
+                    j = !0, i.element.trigger({
+                        type: "dp.error",
+                        date: b(a, i.format, i.options.useStrict)
+                    })
+                },
+                q = function(a) {
+                    b.locale(i.options.language);
+                    var c = a;
+                    c || (c = l().val(), c && (i.date = b(c, i.format, i.options.useStrict)), i.date || (i.date = b())), i.viewDate = b(i.date).startOf("month"), t(), x()
+                },
+                r = function() {
+                    b.locale(i.options.language);
+                    var c, d = a("<tr>"),
+                        e = b.weekdaysMin();
+                    if (i.options.calendarWeeks === !0 && d.append('<th class="cw">#</th>'), 0 === b().localeData()._week.dow)
+                        for (c = 0; 7 > c; c++) d.append('<th class="dow">' + e[c] + "</th>");
+                    else
+                        for (c = 1; 8 > c; c++) d.append(7 === c ? '<th class="dow">' + e[0] + "</th>" : '<th class="dow">' + e[c] + "</th>");
+                    i.widget.find(".datepicker-days thead").append(d)
+                },
+                s = function() {
+                    b.locale(i.options.language);
+                    var a, c = "",
+                        d = b.monthsShort();
+                    for (a = 0; 12 > a; a++) c += '<span class="month">' + d[a] + "</span>";
+                    i.widget.find(".datepicker-months td").append(c)
+                },
+                t = function() {
+                    if (i.options.pickDate) {
+                        b.locale(i.options.language);
+                        var c, d, e, f, g, h, j, k, l, m = i.viewDate.year(),
+                            n = i.viewDate.month(),
+                            o = i.options.minDate.year(),
+                            p = i.options.minDate.month(),
+                            q = i.options.maxDate.year(),
+                            r = i.options.maxDate.month(),
+                            s = [],
+                            t = b.months();
+                        for (i.widget.find(".datepicker-days").find(".disabled").removeClass("disabled"), i.widget.find(".datepicker-months").find(".disabled").removeClass("disabled"), i.widget.find(".datepicker-years").find(".disabled").removeClass("disabled"), i.widget.find(".datepicker-days th:eq(1)").text(t[n] + " " + m), d = b(i.viewDate, i.format, i.options.useStrict).subtract(1, "months"), j = d.daysInMonth(), d.date(j).startOf("week"), (m === o && p >= n || o > m) && i.widget.find(".datepicker-days th:eq(0)").addClass("disabled"), (m === q && n >= r || m > q) && i.widget.find(".datepicker-days th:eq(2)").addClass("disabled"), e = b(d).add(42, "d"); d.isBefore(e);) {
+                            if (d.weekday() === b().startOf("week").weekday() && (f = a("<tr>"), s.push(f), i.options.calendarWeeks === !0 && f.append('<td class="cw">' + d.week() + "</td>")), g = "", d.year() < m || d.year() === m && d.month() < n ? g += " old" : (d.year() > m || d.year() === m && d.month() > n) && (g += " new"), d.isSame(b({
+                                    y: i.date.year(),
+                                    M: i.date.month(),
+                                    d: i.date.date()
+                                })) && (g += " active"), (M(d, "day") || !N(d)) && (g += " disabled"), i.options.showToday === !0 && d.isSame(b(), "day") && (g += " today"), i.options.daysOfWeekDisabled)
+                                for (h = 0; h < i.options.daysOfWeekDisabled.length; h++)
+                                    if (d.day() === i.options.daysOfWeekDisabled[h]) {
+                                        g += " disabled";
+                                        break
+                                    }
+                            f.append('<td class="day' + g + '">' + d.date() + "</td>"), c = d.date(), d.add(1, "d"), c === d.date() && d.add(1, "d")
+                        }
+                        for (i.widget.find(".datepicker-days tbody").empty().append(s), l = i.date.year(), t = i.widget.find(".datepicker-months").find("th:eq(1)").text(m).end().find("span").removeClass("active"), l === m && t.eq(i.date.month()).addClass("active"), o > m - 1 && i.widget.find(".datepicker-months th:eq(0)").addClass("disabled"), m + 1 > q && i.widget.find(".datepicker-months th:eq(2)").addClass("disabled"), h = 0; 12 > h; h++) m === o && p > h || o > m ? a(t[h]).addClass("disabled") : (m === q && h > r || m > q) && a(t[h]).addClass("disabled");
+                        for (s = "", m = 10 * parseInt(m / 10, 10), k = i.widget.find(".datepicker-years").find("th:eq(1)").text(m + "-" + (m + 9)).parents("table").find("td"), i.widget.find(".datepicker-years").find("th").removeClass("disabled"), o > m && i.widget.find(".datepicker-years").find("th:eq(0)").addClass("disabled"), m + 9 > q && i.widget.find(".datepicker-years").find("th:eq(2)").addClass("disabled"), m -= 1, h = -1; 11 > h; h++) s += '<span class="year' + (-1 === h || 10 === h ? " old" : "") + (l === m ? " active" : "") + (o > m || m > q ? " disabled" : "") + '">' + m + "</span>", m += 1;
+                        k.html(s)
+                    }
+                },
+                u = function() {
+                    b.locale(i.options.language);
+                    var a, c, d, e = i.widget.find(".timepicker .timepicker-hours table"),
+                        f = "";
+                    if (e.parent().hide(), i.use24hours)
+                        for (a = 0, c = 0; 6 > c; c += 1) {
+                            for (f += "<tr>", d = 0; 4 > d; d += 1) f += '<td class="hour">' + P(a.toString()) + "</td>", a++;
+                            f += "</tr>"
+                        } else
+                            for (a = 1, c = 0; 3 > c; c += 1) {
+                                for (f += "<tr>", d = 0; 4 > d; d += 1) f += '<td class="hour">' + P(a.toString()) + "</td>", a++;
+                                f += "</tr>"
+                            }
+                    e.html(f)
+                },
+                v = function() {
+                    var a, b, c = i.widget.find(".timepicker .timepicker-minutes table"),
+                        d = "",
+                        e = 0,
+                        f = i.options.minuteStepping;
+                    for (c.parent().hide(), 1 === f && (f = 5), a = 0; a < Math.ceil(60 / f / 4); a++) {
+                        for (d += "<tr>", b = 0; 4 > b; b += 1) 60 > e ? (d += '<td class="minute">' + P(e.toString()) + "</td>", e += f) : d += "<td></td>";
+                        d += "</tr>"
+                    }
+                    c.html(d)
+                },
+                w = function() {
+                    var a, b, c = i.widget.find(".timepicker .timepicker-seconds table"),
+                        d = "",
+                        e = 0;
+                    for (c.parent().hide(), a = 0; 3 > a; a++) {
+                        for (d += "<tr>", b = 0; 4 > b; b += 1) d += '<td class="second">' + P(e.toString()) + "</td>", e += 5;
+                        d += "</tr>"
+                    }
+                    c.html(d)
+                },
+                x = function() {
+                    if (i.date) {
+                        var a = i.widget.find(".timepicker span[data-time-component]"),
+                            b = i.date.hours(),
+                            c = i.date.format("A");
+                        i.use24hours || (0 === b ? b = 12 : 12 !== b && (b %= 12), i.widget.find(".timepicker [data-action=togglePeriod]").text(c)), a.filter("[data-time-component=hours]").text(P(b)), a.filter("[data-time-component=minutes]").text(P(i.date.minutes())), a.filter("[data-time-component=seconds]").text(P(i.date.second()))
+                    }
+                },
+                y = function(c) {
+                    c.stopPropagation(), c.preventDefault(), i.unset = !1;
+                    var d, e, f, g, h = a(c.target).closest("span, td, th"),
+                        j = b(i.date);
+                    if (1 === h.length && !h.is(".disabled")) switch (h[0].nodeName.toLowerCase()) {
+                        case "th":
+                            switch (h[0].className) {
+                                case "picker-switch":
+                                    E(1);
+                                    break;
+                                case "prev":
+                                case "next":
+                                    f = R.modes[i.viewMode].navStep, "prev" === h[0].className && (f = -1 * f), i.viewDate.add(f, R.modes[i.viewMode].navFnc), t()
+                            }
+                            break;
+                        case "span":
+                            h.is(".month") ? (d = h.parent().find("span").index(h), i.viewDate.month(d)) : (e = parseInt(h.text(), 10) || 0, i.viewDate.year(e)), i.viewMode === i.minViewMode && (i.date = b({
+                                y: i.viewDate.year(),
+                                M: i.viewDate.month(),
+                                d: i.viewDate.date(),
+                                h: i.date.hours(),
+                                m: i.date.minutes(),
+                                s: i.date.seconds()
+                            }), K(), o(j, c.type)), E(-1), t();
+                            break;
+                        case "td":
+                            h.is(".day") && (g = parseInt(h.text(), 10) || 1, d = i.viewDate.month(), e = i.viewDate.year(), h.is(".old") ? 0 === d ? (d = 11, e -= 1) : d -= 1 : h.is(".new") && (11 === d ? (d = 0, e += 1) : d += 1), i.date = b({
+                                y: e,
+                                M: d,
+                                d: g,
+                                h: i.date.hours(),
+                                m: i.date.minutes(),
+                                s: i.date.seconds()
+                            }), i.viewDate = b({
+                                y: e,
+                                M: d,
+                                d: Math.min(28, g)
+                            }), t(), K(), o(j, c.type))
+                    }
+                },
+                z = {
+                    incrementHours: function() {
+                        L("add", "hours", 1)
+                    },
+                    incrementMinutes: function() {
+                        L("add", "minutes", i.options.minuteStepping)
+                    },
+                    incrementSeconds: function() {
+                        L("add", "seconds", 1)
+                    },
+                    decrementHours: function() {
+                        L("subtract", "hours", 1)
+                    },
+                    decrementMinutes: function() {
+                        L("subtract", "minutes", i.options.minuteStepping)
+                    },
+                    decrementSeconds: function() {
+                        L("subtract", "seconds", 1)
+                    },
+                    togglePeriod: function() {
+                        var a = i.date.hours();
+                        a >= 12 ? a -= 12 : a += 12, i.date.hours(a)
+                    },
+                    showPicker: function() {
+                        i.widget.find(".timepicker > div:not(.timepicker-picker)").hide(), i.widget.find(".timepicker .timepicker-picker").show()
+                    },
+                    showHours: function() {
+                        i.widget.find(".timepicker .timepicker-picker").hide(), i.widget.find(".timepicker .timepicker-hours").show()
+                    },
+                    showMinutes: function() {
+                        i.widget.find(".timepicker .timepicker-picker").hide(), i.widget.find(".timepicker .timepicker-minutes").show()
+                    },
+                    showSeconds: function() {
+                        i.widget.find(".timepicker .timepicker-picker").hide(), i.widget.find(".timepicker .timepicker-seconds").show()
+                    },
+                    selectHour: function(b) {
+                        var c = parseInt(a(b.target).text(), 10);
+                        i.use24hours || (i.date.hours() >= 12 ? 12 !== c && (c += 12) : 12 === c && (c = 0)), i.date.hours(c), z.showPicker.call(i)
+                    },
+                    selectMinute: function(b) {
+                        i.date.minutes(parseInt(a(b.target).text(), 10)), z.showPicker.call(i)
+                    },
+                    selectSecond: function(b) {
+                        i.date.seconds(parseInt(a(b.target).text(), 10)), z.showPicker.call(i)
+                    }
+                },
+                A = function(c) {
+                    var d = b(i.date),
+                        e = a(c.currentTarget).data("action"),
+                        f = z[e].apply(i, arguments);
+                    return B(c), i.date || (i.date = b({
+                        y: 1970
+                    })), K(), x(), o(d, c.type), f
+                },
+                B = function(a) {
+                    a.stopPropagation(), a.preventDefault()
+                },
+                C = function(a) {
+                    27 === a.keyCode && i.hide()
+                },
+                D = function(c) {
+                    b.locale(i.options.language);
+                    var d = a(c.target),
+                        e = b(i.date),
+                        f = b(d.val(), i.format, i.options.useStrict);
+                    f.isValid() && !M(f) && N(f) ? (q(), i.setValue(f), o(e, c.type), K()) : (i.viewDate = e, i.unset = !0, o(e, c.type), p(f))
+                },
+                E = function(a) {
+                    a && (i.viewMode = Math.max(i.minViewMode, Math.min(2, i.viewMode + a))), i.widget.find(".datepicker > div").hide().filter(".datepicker-" + R.modes[i.viewMode].clsName).show()
+                },
+                F = function() {
+                    var b, c, d, e, f;
+                    i.widget.on("click", ".datepicker *", a.proxy(y, this)), i.widget.on("click", "[data-action]", a.proxy(A, this)), i.widget.on("mousedown", a.proxy(B, this)), i.element.on("keydown", a.proxy(C, this)), i.options.pickDate && i.options.pickTime && i.widget.on("click.togglePicker", ".accordion-toggle", function(g) {
+                        if (g.stopPropagation(), b = a(this), c = b.closest("ul"), d = c.find(".in"), e = c.find(".collapse:not(.in)"), d && d.length) {
+                            if (f = d.data("collapse"), f && f.transitioning) return;
+                            d.collapse("hide"), e.collapse("show"), b.find("span").toggleClass(i.options.icons.time + " " + i.options.icons.date), i.component && i.component.find("span").toggleClass(i.options.icons.time + " " + i.options.icons.date)
+                        }
+                    }), i.isInput ? i.element.on({
+                        click: a.proxy(i.show, this),
+                        focus: a.proxy(i.show, this),
+                        change: a.proxy(D, this),
+                        blur: a.proxy(i.hide, this)
+                    }) : (i.element.on({
+                        change: a.proxy(D, this)
+                    }, "input"), i.component ? (i.component.on("click", a.proxy(i.show, this)), i.component.on("mousedown", a.proxy(B, this))) : i.element.on("click", a.proxy(i.show, this)))
+                },
+                G = function() {
+                    a(window).on("resize.datetimepicker" + i.id, a.proxy(n, this)), i.isInput || a(document).on("mousedown.datetimepicker" + i.id, a.proxy(i.hide, this))
+                },
+                H = function() {
+                    i.widget.off("click", ".datepicker *", i.click), i.widget.off("click", "[data-action]"), i.widget.off("mousedown", i.stopEvent), i.options.pickDate && i.options.pickTime && i.widget.off("click.togglePicker"), i.isInput ? i.element.off({
+                        focus: i.show,
+                        change: D,
+                        click: i.show,
+                        blur: i.hide
+                    }) : (i.element.off({
+                        change: D
+                    }, "input"), i.component ? (i.component.off("click", i.show), i.component.off("mousedown", i.stopEvent)) : i.element.off("click", i.show))
+                },
+                I = function() {
+                    a(window).off("resize.datetimepicker" + i.id), i.isInput || a(document).off("mousedown.datetimepicker" + i.id)
+                },
+                J = function() {
+                    if (i.element) {
+                        var b, c = i.element.parents(),
+                            d = !1;
+                        for (b = 0; b < c.length; b++)
+                            if ("fixed" === a(c[b]).css("position")) {
+                                d = !0;
+                                break
+                            }
+                        return d
+                    }
+                    return !1
+                },
+                K = function() {
+                    b.locale(i.options.language);
+                    var a = "";
+                    i.unset || (a = b(i.date).format(i.format)), l().val(a), i.element.data("date", a), i.options.pickTime || i.hide()
+                },
+                L = function(a, c, d) {
+                    b.locale(i.options.language);
+                    var e;
+                    return "add" === a ? (e = b(i.date), 23 === e.hours() && e.add(d, c), e.add(d, c)) : e = b(i.date).subtract(d, c), M(b(e.subtract(d, c))) || M(e) ? void p(e.format(i.format)) : ("add" === a ? i.date.add(d, c) : i.date.subtract(d, c), void(i.unset = !1))
+                },
+                M = function(a, c) {
+                    b.locale(i.options.language);
+                    var d = b(i.options.maxDate, i.format, i.options.useStrict),
+                        e = b(i.options.minDate, i.format, i.options.useStrict);
+                    return c && (d = d.endOf(c), e = e.startOf(c)), a.isAfter(d) || a.isBefore(e) ? !0 : i.options.disabledDates === !1 ? !1 : i.options.disabledDates[a.format("YYYY-MM-DD")] === !0
+                },
+                N = function(a) {
+                    return b.locale(i.options.language), i.options.enabledDates === !1 ? !0 : i.options.enabledDates[a.format("YYYY-MM-DD")] === !0
+                },
+                O = function(a) {
+                    var c, d = {},
+                        e = 0;
+                    for (c = 0; c < a.length; c++) f = b.isMoment(a[c]) || a[c] instanceof Date ? b(a[c]) : b(a[c], i.format, i.options.useStrict), f.isValid() && (d[f.format("YYYY-MM-DD")] = !0, e++);
+                    return e > 0 ? d : !1
+                },
+                P = function(a) {
+                    return a = a.toString(), a.length >= 2 ? a : "0" + a
+                },
+                Q = function() {
+                    var a = '<thead><tr><th class="prev">&lsaquo;</th><th colspan="' + (i.options.calendarWeeks ? "6" : "5") + '" class="picker-switch"></th><th class="next">&rsaquo;</th></tr></thead>',
+                        b = '<tbody><tr><td colspan="' + (i.options.calendarWeeks ? "8" : "7") + '"></td></tr></tbody>',
+                        c = '<div class="datepicker-days"><table class="table-condensed">' + a + '<tbody></tbody></table></div><div class="datepicker-months"><table class="table-condensed">' + a + b + '</table></div><div class="datepicker-years"><table class="table-condensed">' + a + b + "</table></div>",
+                        d = "";
+                    return i.options.pickDate && i.options.pickTime ? (d = '<div class="bootstrap-datetimepicker-widget' + (i.options.sideBySide ? " timepicker-sbs" : "") + (i.use24hours ? " usetwentyfour" : "") + ' dropdown-menu" style="z-index:9999 !important;">', d += i.options.sideBySide ? '<div class="row"><div class="col-sm-6 datepicker">' + c + '</div><div class="col-sm-6 timepicker">' + S.getTemplate() + "</div></div>" : '<ul class="list-unstyled"><li' + (i.options.collapse ? ' class="collapse in"' : "") + '><div class="datepicker">' + c + '</div></li><li class="picker-switch accordion-toggle"><a class="btn" style="width:100%"><span class="' + i.options.icons.time + '"></span></a></li><li' + (i.options.collapse ? ' class="collapse"' : "") + '><div class="timepicker">' + S.getTemplate() + "</div></li></ul>", d += "</div>") : i.options.pickTime ? '<div class="bootstrap-datetimepicker-widget dropdown-menu"><div class="timepicker">' + S.getTemplate() + "</div></div>" : '<div class="bootstrap-datetimepicker-widget dropdown-menu"><div class="datepicker">' + c + "</div></div>"
+                },
+                R = {
+                    modes: [{
+                        clsName: "days",
+                        navFnc: "month",
+                        navStep: 1
+                    }, {
+                        clsName: "months",
+                        navFnc: "year",
+                        navStep: 1
+                    }, {
+                        clsName: "years",
+                        navFnc: "year",
+                        navStep: 10
+                    }]
+                },
+                S = {
+                    hourTemplate: '<span data-action="showHours"   data-time-component="hours"   class="timepicker-hour"></span>',
+                    minuteTemplate: '<span data-action="showMinutes" data-time-component="minutes" class="timepicker-minute"></span>',
+                    secondTemplate: '<span data-action="showSeconds"  data-time-component="seconds" class="timepicker-second"></span>'
+                };
+            S.getTemplate = function() {
+                return '<div class="timepicker-picker"><table class="table-condensed"><tr><td><a href="#" class="btn" data-action="incrementHours"><span class="' + i.options.icons.up + '"></span></a></td><td class="separator"></td><td>' + (i.options.useMinutes ? '<a href="#" class="btn" data-action="incrementMinutes"><span class="' + i.options.icons.up + '"></span></a>' : "") + "</td>" + (i.options.useSeconds ? '<td class="separator"></td><td><a href="#" class="btn" data-action="incrementSeconds"><span class="' + i.options.icons.up + '"></span></a></td>' : "") + (i.use24hours ? "" : '<td class="separator"></td>') + "</tr><tr><td>" + S.hourTemplate + '</td> <td class="separator">:</td><td>' + (i.options.useMinutes ? S.minuteTemplate : '<span class="timepicker-minute">00</span>') + "</td> " + (i.options.useSeconds ? '<td class="separator">:</td><td>' + S.secondTemplate + "</td>" : "") + (i.use24hours ? "" : '<td class="separator"></td><td><button type="button" class="btn btn-primary" data-action="togglePeriod"></button></td>') + '</tr><tr><td><a href="#" class="btn" data-action="decrementHours"><span class="' + i.options.icons.down + '"></span></a></td><td class="separator"></td><td>' + (i.options.useMinutes ? '<a href="#" class="btn" data-action="decrementMinutes"><span class="' + i.options.icons.down + '"></span></a>' : "") + "</td>" + (i.options.useSeconds ? '<td class="separator"></td><td><a href="#" class="btn" data-action="decrementSeconds"><span class="' + i.options.icons.down + '"></span></a></td>' : "") + (i.use24hours ? "" : '<td class="separator"></td>') + '</tr></table></div><div class="timepicker-hours" data-action="selectHour"><table class="table-condensed"></table></div><div class="timepicker-minutes" data-action="selectMinute"><table class="table-condensed"></table></div>' + (i.options.useSeconds ? '<div class="timepicker-seconds" data-action="selectSecond"><table class="table-condensed"></table></div>' : "")
+            }, i.destroy = function() {
+                H(), I(), i.widget.remove(), i.element.removeData("DateTimePicker"), i.component && i.component.removeData("DateTimePicker")
+            }, i.show = function(a) {
+                if (!l().prop("disabled")) {
+                    if (i.options.useCurrent && "" === l().val()) {
+                        if (1 !== i.options.minuteStepping) {
+                            var c = b(),
+                                d = i.options.minuteStepping;
+                            c.minutes(Math.round(c.minutes() / d) * d % 60).seconds(0), i.setValue(c.format(i.format))
+                        } else i.setValue(b().format(i.format));
+                        o("", a.type)
+                    }
+                    a && "click" === a.type && i.isInput && i.widget.hasClass("picker-open") || (i.widget.hasClass("picker-open") ? (i.widget.hide(), i.widget.removeClass("picker-open")) : (i.widget.show(), i.widget.addClass("picker-open")), i.height = i.component ? i.component.outerHeight() : i.element.outerHeight(), n(), i.element.trigger({
+                        type: "dp.show",
+                        date: b(i.date)
+                    }), G(), a && B(a))
+                }
+            }, i.disable = function() {
+                var a = l();
+                a.prop("disabled") || (a.prop("disabled", !0), H())
+            }, i.enable = function() {
+                var a = l();
+                a.prop("disabled") && (a.prop("disabled", !1), F())
+            }, i.hide = function() {
+                var a, c, d = i.widget.find(".collapse");
+                for (a = 0; a < d.length; a++)
+                    if (c = d.eq(a).data("collapse"), c && c.transitioning) return;
+                i.widget.hide(), i.widget.removeClass("picker-open"), i.viewMode = i.startViewMode, E(), i.element.trigger({
+                    type: "dp.hide",
+                    date: b(i.date)
+                }), I()
+            }, i.setValue = function(a) {
+                b.locale(i.options.language), a ? i.unset = !1 : (i.unset = !0, K()), a = b.isMoment(a) ? a.locale(i.options.language) : a instanceof Date ? b(a) : b(a, i.format, i.options.useStrict), a.isValid() ? (i.date = a, K(), i.viewDate = b({
+                    y: i.date.year(),
+                    M: i.date.month()
+                }), t(), x()) : p(a)
+            }, i.getDate = function() {
+                return i.unset ? null : b(i.date)
+            }, i.setDate = function(a) {
+                var c = b(i.date);
+                i.setValue(a ? a : null), o(c, "function")
+            }, i.setDisabledDates = function(a) {
+                i.options.disabledDates = O(a), i.viewDate && q()
+            }, i.setEnabledDates = function(a) {
+                i.options.enabledDates = O(a), i.viewDate && q()
+            }, i.setMaxDate = function(a) {
+                void 0 !== a && (i.options.maxDate = b.isMoment(a) || a instanceof Date ? b(a) : b(a, i.format, i.options.useStrict), i.viewDate && q())
+            }, i.setMinDate = function(a) {
+                void 0 !== a && (i.options.minDate = b.isMoment(a) || a instanceof Date ? b(a) : b(a, i.format, i.options.useStrict), i.viewDate && q())
+            }, k()
+        };
+    a.fn.datetimepicker = function(b) {
+        return this.each(function() {
+            var c = a(this),
+                e = c.data("DateTimePicker");
+            e || c.data("DateTimePicker", new d(this, b))
+        })
+    }, a.fn.datetimepicker.defaults = {
+        format: !1,
+        pickDate: !0,
+        pickTime: !0,
+        useMinutes: !0,
+        useSeconds: !1,
+        useCurrent: !0,
+        calendarWeeks: !1,
+        minuteStepping: 1,
+        minDate: b({
+            y: 1900
+        }),
+        maxDate: b().add(100, "y"),
+        showToday: !0,
+        collapse: !0,
+        language: b.locale(),
+        defaultDate: "",
+        disabledDates: !1,
+        enabledDates: !1,
+        icons: {},
+        useStrict: !1,
+        direction: "auto",
+        sideBySide: !1,
+        daysOfWeekDisabled: [],
+        widgetParent: !1
+    }
+});
 /* ========================================================================
  * bootstrap-switch - v3.3.2
  * http://www.bootstrap-switch.org
@@ -20853,3 +36997,220 @@ $(document).ready(function () {
     table.row('.selected').remove().draw(false);
   });
 });
+
+
+
+function dateRange_2(startID,endID){
+  var bindDateRangeValidation = function (f, s, e) {
+      console.log(s)
+      console.log(e)
+
+          if(!(f instanceof jQuery)){
+                  console.log("Not passing a jQuery object");
+          }
+      
+          var jqForm = f,
+              startDateId = s,
+              endDateId = e;
+      
+          var checkDateRange = function (startDate, endDate) {
+              var isValid = (startDate != "" && endDate != "") ? startDate <= endDate : true;
+              return isValid;
+          }
+
+          var bindValidator = function () {
+              var bstpValidate = jqForm.data('bootstrapValidator');
+              var validateFields = {
+                  startDate: {
+                      validators: {
+                          notEmpty: { message: 'This field is required.' },
+                          callback: {
+                              message: 'Start Date must less than or equal to End Date.',
+                              callback: function (startDate, validator, $field) {
+                                  return checkDateRange(startDate, $('#' + endDateId).val())
+                              }
+                          }
+                      }
+                  },
+                  endDate: {
+                      validators: {
+                          notEmpty: { message: 'This field is required.' },
+                          callback: {
+                              message: 'End Date must greater than or equal to Start Date.',
+                              callback: function (endDate, validator, $field) {
+                                  return checkDateRange($('#' + startDateId).val(), endDate);
+                              }
+                          }
+                      }
+                  },
+                  customize: {
+                      validators: {
+                          customize: { message: 'customize.' }
+                      }
+                  }
+              }
+              if (!bstpValidate) {
+                  jqForm.bootstrapValidator({
+                      excluded: [':disabled'], 
+                  })
+              }
+          
+              jqForm.bootstrapValidator('addField', startDateId, validateFields.startDate);
+              jqForm.bootstrapValidator('addField', endDateId, validateFields.endDate);
+          
+          };
+
+          var hookValidatorEvt = function () {
+              var dateBlur = function (e, bundleDateId, action) {
+                  jqForm.bootstrapValidator('revalidateField', e.target.id);
+              }
+
+              $('#' + startDateId).on("dp.change dp.update blur", function (e) {
+                  $('#' + endDateId).data("DateTimePicker").setMinDate(e.date);
+                  dateBlur(e, endDateId);
+              });
+
+              $('#' + endDateId).on("dp.change dp.update blur", function (e) {
+                  $('#' + startDateId).data("DateTimePicker").setMaxDate(e.date);
+                  dateBlur(e, startDateId);
+              });
+          }
+
+          bindValidator();
+          hookValidatorEvt();
+      };
+
+
+      $(function () {
+          console.log("jjjj")
+          var sd = new Date(), ed = new Date();
+      
+          $("#"+startID).datetimepicker({ 
+          pickTime: false, 
+          format: "YYYY/MM/DD", 
+          defaultDate: sd, 
+          maxDate: ed 
+          });
+      
+          $("#"+endID).datetimepicker({ 
+          pickTime: false, 
+          format: "YYYY/MM/DD", 
+          defaultDate: ed, 
+          minDate: sd 
+          });
+
+          //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
+          bindDateRangeValidation($("#form"), startID, endID);
+      });
+
+}
+
+function dateRange(startId,endId,year_s,month_s,day_s,year_e,month_e,day_e,max_start_date){
+  var bindDateRangeValidation = function (f, s, e) {
+              if(!(f instanceof jQuery)){
+                      console.log("Not passing a jQuery object");
+              }
+          
+              var jqForm = f,
+                  startDateId = s,
+                  endDateId = e;
+          
+              var checkDateRange = function (startDate, endDate) {
+                  var isValid = (startDate != "" && endDate != "") ? startDate <= endDate : true;
+                  return isValid;
+              }
+
+              var bindValidator = function () {
+                  var bstpValidate = jqForm.data('bootstrapValidator');
+                  var validateFields = {
+                      startDate: {
+                          validators: {
+                              notEmpty: { message: 'This field is required.' },
+                              callback: {
+                                  message: 'Start Date must less than or equal to End Date.',
+                                  callback: function (startDate, validator, $field) {
+                                      //- return checkDateRange(startDate, $('#' + endDateId).val())
+                                  }
+                              }
+                          }
+                      },
+                      endDate: {
+                          validators: {
+                              notEmpty: { message: 'This field is required.' },
+                              callback: {
+                                  message: 'End Date must greater than or equal to Start Date.',
+                                  callback: function (endDate, validator, $field) {
+                                      return checkDateRange($('#' + startDateId).val(), endDate);
+                                  }
+                              }
+                          }
+                      },
+                      customize: {
+                          validators: {
+                              customize: { message: 'customize.' }
+                          }
+                      }
+                  }
+                  if (!bstpValidate) {
+                      jqForm.bootstrapValidator({
+                          excluded: [':disabled'], 
+                      })
+                  }
+              
+                  jqForm.bootstrapValidator('addField', startDateId, validateFields.startDate);
+                  jqForm.bootstrapValidator('addField', endDateId, validateFields.endDate);
+              
+              };
+
+              var hookValidatorEvt = function () {
+                  var dateBlur = function (e, bundleDateId, action) {
+                      jqForm.bootstrapValidator('revalidateField', e.target.id);
+                  }
+
+                  $('#' + startDateId).on("dp.change dp.update blur", function (e) {
+                      $('#' + endDateId).data("DateTimePicker").setMinDate(e.date);
+                      dateBlur(e, endDateId);
+                  });
+
+                  $('#' + endDateId).on("dp.change dp.update blur", function (e) {
+                      $('#' + startDateId).data("DateTimePicker").setMaxDate(e.date);
+                      dateBlur(e, startDateId);
+                  });
+              }
+
+              bindValidator();
+              hookValidatorEvt();
+          };
+
+
+        
+          $(function () {
+            var sd = new Date(), ed = new Date();
+            var month_new_s = parseInt(month_s)-1
+            var month_new_e = parseInt(month_e)-1
+            console.log(month_new_s);
+            var test = new Date(year_s,month_new_s,day_s);
+            var test2 = new Date(year_e,month_new_e,day_e);
+            console.log("/*/*/*")
+                console.log(test)
+            $('#'+startId).datetimepicker({ 
+            pickTime: false, 
+            format: "DD/MM/YYYY", 
+            defaultDate: test, 
+            minDate:test,
+            maxDate: max_start_date,
+            });
+        
+            $('#'+endId).datetimepicker({ 
+            pickTime: false, 
+            format: "DD/MM/YYYY", 
+            defaultDate: test2, 
+            maxDate:test2,
+            minDate: test, 
+            });
+
+            //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
+            bindDateRangeValidation($("#form"), startId, endId);
+        });
+
+}

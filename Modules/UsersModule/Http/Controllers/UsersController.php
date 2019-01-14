@@ -160,6 +160,7 @@ class UsersController extends Controller
             'user_photo'=> 'required|image|mimes:jpeg,png,jpg|max:2048',
             'activation'=> '',
             'notification' => '',
+            'specializations' => '',
         ]);
 
         try {
@@ -169,7 +170,7 @@ class UsersController extends Controller
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->mobile = $request->phone;
+            $user->mobile = $request->mobile;
             $user->is_active = $request->status;
             
             if ($request->hasFile('user_photo')) {
@@ -181,17 +182,28 @@ class UsersController extends Controller
 
             $user->save();
             $user->rules()->attach([$request->user_type, 1]);
-
+            if(isset($request->categories)){
+            $user->sponsorCategories()->attach($request->categories);
+             };
+              if(isset($request->cities)){
+            $user->sponsorCities()->attach($request->cities);
+             };
+              if(isset($request->regions)){
+            $user->sponsorRegions()->attach($request->regions);
+             };
+              if(isset($request->specializations)){
+            $user->sponsorSpecializations()->attach($request->specializations);
+             };
             $userInfo = new UserInfo;
             $userInfo->user_id = $user->id;
             $userInfo->address = $request->address;
-            // $userInfo->city_id = $request->
+          
             $userInfo->save();
 
             // TODO: NOTIFICATIONS
 
         } catch(Exception $ex) {
-            Session::flash('warning', 'Can not add backend user لا يمكن اضافة المستخدم');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user', ' لا يمكن اضافة المستخدم');
             return redirect()->back();
         }
 
@@ -211,50 +223,141 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function backend_edit($id, Request $request)
+
+    public function backend_edit(Users $user)
     {
-        $validator = Validator::make($request->all(), [
-            'firstName' => 'required|min:3|max:100',
-            // 'lastName'  => 'required|min:3|max:100',
-            'username' => 'required|min:3|max:100|unique:users,deleted_at',
-            'rule' => 'required',
-            // 'password'  => 'required|min:6|confirmed',
-            // 'password_confirmation' => 'required|min:6',
-            'email' => 'required|email|max:40',
-            'phone' => 'required|digits_between:1,14',
-            'image' => 'image|mimes:jpg,jpeg,png|max:5120',
+        $data['user']=$user;
+       // dd($user->city_id);
+        $data['categories']= $user->sponsorCategories()->get();
+        $data['cities']= $user->sponsorCategories()->get();
+       // dd($user->sponsorCities);
+        $data['rule_id'] = $user->rules()->where('rule_id','!=',1)->first()->id;
+        $data['address'] = ($user->userInfo)?$user->userInfo->address:"";
+        $data['userTypes'] = Rules::all();
+        $data['sponsorCategories'] = SponsorCategory::all();
+        $data['cities'] = Cities::all();
+        $data['regions']= GeoRegion::all();
+        $data['specs'] = DoctorSpecialization::all();
+
+        return view('usersmodule::backend.editBackEndUser', $data);
+    }
+
+    /**
+     * Update User
+     * 
+     *  */
+    public function backend_update(Users $user, Request $request)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'firstName' => 'required|min:3|max:100',
+        //     // 'lastName'  => 'required|min:3|max:100',
+        //     'username' => 'required|min:3|max:100|unique:users,deleted_at',
+        //     'rule' => 'required',
+        //     // 'password'  => 'required|min:6|confirmed',
+        //     // 'password_confirmation' => 'required|min:6',
+        //     'email' => 'required|email|max:40',
+        //     'phone' => 'required|digits_between:1,14',
+        //     'image' => 'image|mimes:jpg,jpeg,png|max:5120',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+        // $user = Users::find($id);
+        // if ($request->hasFile('image')) {
+        //     $destinationPath = 'backend_users';
+        //     $fileNameToStore = $destinationPath . '/' . $request->username . time() . rand(111, 999) . '.' . Input::file('image')->getClientOriginalExtension();
+        //     File::delete($user->photo);
+        //     Input::file('image')->move($destinationPath, $fileNameToStore);
+        //     $user->photo = $fileNameToStore;
+        // }
+
+        // $user->first_name = $request->firstName;
+        // $user->last_name = $request->lastName;
+        // $user->username = $request->username;
+        // $user->email = $request->email;
+        // // $user->password     = bcrypt($request->password);
+        // $user->mobile = $request->phone;
+        // $user->is_active = $request->status;
+        // $user->save();
+        // $user->rules()->detach();
+        // $user->rules()->attach([$request->rule, 1]);
+
+        // if ($user->id == Auth::id()) {
+        //     Auth::logout();
+        //     return redirect('/login');
+        // }
+
+        $this->validate($request, [
+            'user_type' => 'required',
+            'fullname'  => 'required',
+            'address'   => 'required',
+            'password'  => ($request->password)?'min:3':'',
+            'mobile'    => 'required',
+            'categories'=> '',
+            'cities'    => '',
+            'regions'   => '',
+            'user_photo'=> 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'activation'=> '',
+            'notification' => '',
         ]);
+        try {
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-        $user = Users::find($id);
-        if ($request->hasFile('image')) {
-            $destinationPath = 'backend_users';
-            $fileNameToStore = $destinationPath . '/' . $request->username . time() . rand(111, 999) . '.' . Input::file('image')->getClientOriginalExtension();
-            File::delete($user->photo);
-            Input::file('image')->move($destinationPath, $fileNameToStore);
-            $user->photo = $fileNameToStore;
-        }
+            $user->first_name = $request->fullname;
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->mobile = $request->phone;
+            $user->is_active = ($request->activation == 1) ? 1:0;
+            
+            if ($request->hasFile('user_photo')) {
+                $destinationPath = 'backend_users';
+                $fileNameToStore = $destinationPath . '/' . $request->name . time() . rand(111, 999) . '.' . Input::file('user_photo')->getClientOriginalExtension();
+                Input::file('user_photo')->move($destinationPath, $fileNameToStore);
+                $user->photo = $fileNameToStore;
+            }
 
-        $user->first_name = $request->firstName;
-        $user->last_name = $request->lastName;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        // $user->password     = bcrypt($request->password);
-        $user->mobile = $request->phone;
-        $user->is_active = $request->status;
-        $user->save();
-        $user->rules()->detach();
-        $user->rules()->attach([$request->rule, 1]);
+            $user->save();
+            $user->rules()->detach();
+            $user->rules()->attach([$request->user_type, 1]);
 
-        if ($user->id == Auth::id()) {
-            Auth::logout();
-            return redirect('/login');
+            if(isset($request->categories)){
+            $user->sponsorCategories()->sync($request->categories);
+             }
+
+               if(isset($request->cities)){
+            $user->sponsorCities()->sync($request->cities);
+             };
+              if(isset($request->regions)){
+            $user->sponsorRegions()->sync($request->regions);
+             };
+              if(isset($request->specializations)){
+            $user->sponsorSpecializations()->sync($request->specializations);
+             };
+
+            if($user->info)
+            {
+                $user->userInfo->address = $request->address;
+                // $userInfo->city_id = $request->
+                $user->info->save();
+    
+            }else{
+                $userInfo = new UserInfo;
+                $userInfo->user_id = $user->id;
+                $userInfo->address = $request->address;
+                $userInfo->save();
+
+            }
+
+            // TODO: NOTIFICATIONS
+
+        } catch(Exception $ex) {
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user لا يمكن اضافة المستخدم');
+            return redirect()->back();
         }
-        return redirect()->back();
+        return redirect("/users_backend");
     }
 
     /**

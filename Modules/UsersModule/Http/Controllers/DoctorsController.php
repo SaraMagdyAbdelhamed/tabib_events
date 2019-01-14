@@ -41,7 +41,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 0);
         })->get();
@@ -52,18 +52,18 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->get();
 
-        
+
         //  get doctors(users) registred in my list
         $data['myList'] = Users::whereHas('rules', function ($q) {
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 1);
         })->get();
 
@@ -83,10 +83,10 @@ class DoctorsController extends Controller
         $spec_id = $request->specialization;
         $gender_id = isset($request->gender) ? $request->gender : null;
 
-        // Filter User by country, city and gender first, then filter by specialization 
+        // Filter User by country, city and gender first, then filter by specialization
         if (!is_null($country_id) || !is_null($city_id) || !is_null($spec_id) || !is_null($gender_id)) {
             $users = new Users;  // create new object of users.
-            
+
             // Filter by country
             if (isset($country_id) && !empty($country_id)) {
                 $users = $users->where('country_id', $country_id);
@@ -128,7 +128,7 @@ class DoctorsController extends Controller
                 break;
 
             default:
-                Session::flash('warning', 'Filter Error! حدث خطأ في الفلتر');
+                Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Error while filtering data!', 'حدث خطأ ما');
                 return redirect('/users_mobile');
                 break;
         }
@@ -141,9 +141,9 @@ class DoctorsController extends Controller
     }
 
     /**
-     *  Pass a collection of filtered users by [country, city, gender or specialization] 
+     *  Pass a collection of filtered users by [country, city, gender or specialization]
      *  to be filtered by user type
-     * 
+     *
      *  @param  $users  Collection  filtered users collection   default: NULL
      *  @param  $flag   Int         1 => mobile_users, 2 => general_list, 3 => my_list
      */
@@ -156,13 +156,13 @@ class DoctorsController extends Controller
                     $users1 = $users;
                     $users2 = $users3 = new Users;
                     break;
-    
+
                 // In case of general list doctors is being filtered
                 case 2:
                     $users2 = $users;
                     $users1 = $users3 = new Users;
                     break;
-    
+
                 // In case of my list doctors is being filtered
                 case 3:
                     $users3 = $users;
@@ -183,7 +183,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 0);
         })->get();
@@ -194,7 +194,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->get();
@@ -205,7 +205,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 1);
         })->get();
 
@@ -255,7 +255,7 @@ class DoctorsController extends Controller
             $doctor->password = bcrypt($request->password);
             $doctor->gender_id = $request->gender;
             $doctor->is_active = $request->activation ? : 0;
-            
+
             // Insert doctor's image if exists
             if ($request->hasfile('doctorImage')) {
                 $image = $request->doctorImage;
@@ -282,14 +282,13 @@ class DoctorsController extends Controller
             $doctor->rules()->attach(2);
 
         } catch (Exception $exp) {
-            dd($exp);
-            Session::flash('warning', 'can not add new doctor! خطأ ، لا يمكن إضافة طبيب جديد');
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
             return redirect()->back();
         }
 
 
         // Flash success and redirect to its home page
-        Session::flash('success', 'Doctor added successfully! تم إضافة الطبيب بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', 'تم إضافة الطبيب بنجاح');
         return redirect('/users_mobile');
     }
 
@@ -358,12 +357,12 @@ class DoctorsController extends Controller
     public function mobile_show($id)
     {
         // find this user
-        $user = Users::find($id);  
+        $user = Users::find($id);
 
         // check if user exists
         if ($user == null) {
             // not found
-            Session::flash('warning', 'Not found! غير موجود');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Not found!', 'غير موجود');
             return redirect('/users_mobile');
         } else {
             // user found
@@ -371,7 +370,7 @@ class DoctorsController extends Controller
                 // filter users through table `user_rules`
                 $q->where('rule_id', 2);
             })->whereHas('userInfo', function ($q) {
-                // filter users through table `user_info` 
+                // filter users through table `user_info`
                 $q->where('is_profile_completed', 0)
                     ->where('is_backend', 0);
             })->first();
@@ -396,17 +395,17 @@ class DoctorsController extends Controller
 
             /** TODO: SEND NOTIFICATIONS */
 
-            Session::flash('success', 'Doctor activated! تم تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor activated successfully!', 'تم تفعيل الطبيب');
             return redirect('/users_mobile');
         } else if ($request->id && !isset($request->activation)) {
             $user = Users::find($request->id);
             $user->is_active = 0;
             $user->save();
 
-            Session::flash('success', 'Doctor deactivated! تم الغاء تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor deactivated!', ' تم الغاء تفعيل الطبيب');
             return redirect('/users_mobile');
         } else {
-            Session::flash('warning', 'Doctor not found! لم يتم العثور علي هذا الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor not found!', ' لم يتم العثور علي هذا الطبيب');
             return redirect('/users_mobile');
         }
     }
@@ -418,12 +417,12 @@ class DoctorsController extends Controller
     public function myList_show($id)
     {
         // find this user
-        $user = Users::find($id);  
+        $user = Users::find($id);
 
         // check if user exists
         if ($user == null) {
             // not found
-            Session::flash('warning', 'Not found! غير موجود');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Not found', 'غير موجود');
             return redirect('/users_mobile');
         } else {
             // user found
@@ -431,7 +430,7 @@ class DoctorsController extends Controller
                 // filter users through table `user_rules`
                 $q->where('rule_id', 2);
             })->whereHas('userInfo', function ($q) {
-                // filter users through table `user_info` 
+                // filter users through table `user_info`
                 $q->where('is_profile_completed', 1);
             })->first();
 
@@ -451,17 +450,17 @@ class DoctorsController extends Controller
 
             /** TODO: SEND NOTIFICATIONS */
 
-            Session::flash('success', 'Doctor activated! تم تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor activated!', ' تم تفعيل الطبيب');
             return redirect('/users_mobile');
         } else if ($request->id && !isset($request->activation)) {
             $user = Users::find($request->id);
             $user->is_active = 0;
             $user->save();
 
-            Session::flash('success', 'Doctor deactivated! تم الغاء تفعيل الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor deactivated!', 'تم الغاء تفعيل الطبيب');
             return redirect('/users_mobile');
         } else {
-            Session::flash('warning', 'Doctor not found! لم يتم العثور علي هذا الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', ' لم يتم العثور علي هذا الطبيب');
             return redirect('/users_mobile');
         }
     }
@@ -488,7 +487,7 @@ class DoctorsController extends Controller
             // filter users through table `user_rules`
             $q->where('rule_id', 2);
         })->whereHas('userInfo', function ($q) {
-            // filter users through table `user_info` 
+            // filter users through table `user_info`
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->first();
@@ -503,7 +502,7 @@ class DoctorsController extends Controller
 
             return view('usersmodule::doctors.editDoctor', $data);
         } else {
-            Session::flash('warning', 'Doctor not found! لم نتمكن من العثور علي هذا الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', ' لم نتمكن من العثور علي هذا الطبيب');
             return redirect()->back();
         }
     }
@@ -549,7 +548,7 @@ class DoctorsController extends Controller
 
                 $doctor->gender_id = $request->gender;
                 $doctor->is_active = $request->activation ? : 0;
-            
+
             // Insert doctor's image if exists
                 if ($request->hasfile('doctorImage')) {
                     File::delete($doctor->photo);   // delete old
@@ -579,16 +578,16 @@ class DoctorsController extends Controller
 
             } catch (Exception $exp) {
                 dd($exp);
-                Session::flash('warning', 'can not update new doctor! خطأ ، لا يمكن تعديل طبيب جديد');
+                Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not update new doctor!', ' خطأ ، لا يمكن تعديل طبيب جديد');
                 return redirect()->back();
             }
 
 
         // Flash success and redirect to its home page
-            Session::flash('success', 'Doctor updated successfully! تم تعديل الطبيب بنجاح');
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor updated successfully!', ' تم تعديل الطبيب بنجاح');
             return redirect('/users_mobile');
         } else {
-            Session::flash('warning', 'can not update this doctor! لا يمكن تعديل معلومات الطبيب');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not update this doctor!', ' لا يمكن تعديل معلومات الطبيب');
             return redirect()->back();
         }
     }
@@ -613,7 +612,7 @@ class DoctorsController extends Controller
                     $doctor->password = bcrypt($request->password);
                     $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
                     $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
-                    
+
                     // Insert doctor's image if exists
                     // if ($request->hasfile('doctorImage')) {
                     //     $image = $request->doctorImage;
@@ -641,19 +640,19 @@ class DoctorsController extends Controller
 
                 } catch (Exception $exp) {
                     dd($exp);
-                    Session::flash('warning', 'can not add new doctor! خطأ ، لا يمكن إضافة طبيب جديد');
+                    Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!',' خطأ ، لا يمكن إضافة طبيب جديد');
                     return redirect()->back();
                 }
             }
 
 
         } else {
-            Session::flash('warning', 'Error uploading excel file! خطأ في تحميل ملف الاكسيل');
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Error uploading excel file! خطأ في تحميل ملف الاكسيل');
             return redirect()->back();
         }
 
         // Flash success and redirect to its home page
-        Session::flash('success', 'Doctor added successfully! تم إضافة الطبيب بنجاح');
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
         return redirect('/users_mobile');
     }
 }

@@ -19,7 +19,7 @@ class LoginController extends Controller
     }
 
     protected $redirectTo = '/';
-    
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -34,7 +34,7 @@ class LoginController extends Controller
             'username' => 'required:max:20',
             'password' => 'required|min:3|max:8'
         ]);
-        
+
         $username = $request->username;               // incoming username
         $password = bcrypt( $request->password );     // incoming password
 
@@ -44,17 +44,18 @@ class LoginController extends Controller
         // try to authenticate user
         if ( Auth::attempt(['username' => $username, 'password' => $request->password]) ) {
 
-            // add last login timestamp
-            $user = Users::find(Auth::user()->id);
+        // add last login timestamp
+            $user = Auth::user();
             $userLocale = Helper::getUserLocale();
-            $user->last_login = Carbon::now()->toDateTimeString();
+            $user->last_login = Carbon::now()->setTimezone($request->timezone);
             $user->timezone = $request->timezone;
-            $user->save(); 
+            $user->save();
+
             return redirect('/about');
 
         } else {
             return redirect('/login')->with('error', 'من فضلك ، تأكد من الاسم وكلمة السر ثم حاول ثانيةَ')
-                                    ->with('error_en', 'Invalid user name or password, Please be sure from your user name or password');
+                                    ->with('error_en', 'Invalid username or password, Please be sure from your user name or password');
         }
     }
 

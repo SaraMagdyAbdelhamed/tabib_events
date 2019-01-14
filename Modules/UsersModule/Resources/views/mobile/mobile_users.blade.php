@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div class="row">
   <div class="col-xs-12">
@@ -40,7 +40,7 @@
                   href="#">@lang('keywords.deleteSelected')</a>
               </div>
               <div class="remodal" data-remodal-id="filter-users" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-                
+
                 {{-- Filter Form --}}
                 <form action="{{ route('doctor.filter') }}" method="GET" id="filterForm">
                   <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
@@ -187,24 +187,24 @@
                       {{-- Country --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->country->name : \Helper::localization('geo_countries','name',$doctor->country_id,'2',
-                              $doctor->country->name)}}
+                          {{\App::isLocale('en') ? $doctor->getCountry() : \Helper::localization('geo_countries','name',$doctor->country_id,'2',
+                              $doctor->getCountry())}}
                         </span>
                       </td>
 
                       {{-- City --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->city->name : \Helper::localization('geo_cities','name',$doctor->city_id,'2',
-                              $doctor->city->name)}}
+                          {{\App::isLocale('en') ? $doctor->getCity() : \Helper::localization('geo_cities','name',$doctor->city_id,'2',
+                              $doctor->getCity() )}}
                         </span>
                       </td>
 
                       {{-- Region --}}
                       <td>
                         <span class="cellcontent">
-                          {{\App::isLocale('en') ? $doctor->userInfo->region->name : \Helper::localization('geo_regions','name',$doctor->userInfo->region->city_id,'2',
-                              $doctor->city->name)}}
+                          {{\App::isLocale('en') ? $doctor->getRegionName() : \Helper::localization('geo_regions','name', $doctor->getRegionCityId(),'2',
+                              $doctor->getCity() )}}
                         </span>
                       </td>
 
@@ -227,7 +227,7 @@
                       <td>
                         <span class="cellcontent">
                             {{\App::isLocale('en') ? (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) : \Helper::localization('specializations','name',$doctor->specialization_id,'2',
-                            ($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not') ) }}  
+                            ($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not') ) }}
                         </span>
                       </td>
 
@@ -422,7 +422,7 @@
                       <td>
                         <span class="cellcontent">
                               {{\App::isLocale('en') ? (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) : \Helper::localization('specializations','name',$doctor->userInfo->specialization_id,'2',
-                               (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) ) }}  
+                               (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) ) }}
                           </span>
                       </td>
 
@@ -444,17 +444,17 @@
 
                       <td>
                         <span class="cellcontent">
-  
+
                             {{-- Edit button --}}
                             <a href="{{ route('doctor.edit', $doctor->id) }}" class="action-btn bgcolor--fadegreen color--white ">
                               <i class="fa  fa-pencil"></i>
                             </a>
-  
+
                             {{-- Delete button --}}
                             <a href="#" data-id="{{ $doctor->id }}" class="{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} action-btn bgcolor--fadebrown color--white deleteRecord">
                               <i class="fa  fa-trash-o"></i>
                             </a>
-  
+
                           </span>
                       </td>
                     </tr>
@@ -756,7 +756,7 @@
                       <td>
                         <span class="cellcontent">
                             {{\App::isLocale('en') ? (isset($doctor->userInfo->specialization) ? $doctor->userInfo->specialization->name : __('keywords.not')) : \Helper::localization('specializations','name',$doctor->gender_id,'2',
-                            ($doctor->gender ? $doctor->gender->name : __('keywords.not') ) ) }}  
+                            (__('keywords.not') ) ) }}
                         </span>
                       </td>
 
@@ -1009,7 +1009,7 @@
     confirm('إختر طبيب علي الاقل لتستطيع حذفه');
     } else {
 
-    var ids = allVals;    
+    var ids = allVals;
     var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
     var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
 
@@ -1025,7 +1025,7 @@
     },
     function(isConfirm){
         if (isConfirm){
-            
+
         $.ajax(
         {
             url: "{{ route('doctor.user.destroy.all') }}",
@@ -1058,7 +1058,7 @@
 
   // delete a row
   $('.deleteRecord').click(function(){
-      
+
       var id = $(this).data("id");
       var token = '{{ csrf_token() }}';
       var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
@@ -1076,7 +1076,7 @@
       },
       function(isConfirm){
           if (isConfirm){
-                  
+
           $.ajax(
           {
               url: "{{ route('doctor.user.destroy') }}",
@@ -1097,7 +1097,7 @@
                   console.log(response);
               }
           });
-              
+
           } else {
               swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
           }
@@ -1155,7 +1155,7 @@
                           // console.log(value[key].id +": "+ value[key].name);
                           $("#doctor_city").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                       }
-                      
+
                   });
                 }
             });

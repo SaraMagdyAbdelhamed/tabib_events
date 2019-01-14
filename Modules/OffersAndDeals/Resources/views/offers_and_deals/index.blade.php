@@ -7,7 +7,7 @@
                   <div class="cover-inside-container margin--small-top-bottom bradius--no bshadow--0" style="background-image: url({{ asset('/img/covers/dummy2.jpg ')  }}  )   ; background-position: center center; background-repeat: no-repeat; background-size:cover;">
                     <div class="row">
                       <div class="col-xs-12">
-                        <div class="text-xs-center">         
+                        <div class="text-xs-center">
                           <div class="text-wraper">
                             <h3 class="cover-inside-title  ">@lang('keywords.offers_and_deals')</h3>
                           </div>
@@ -41,7 +41,7 @@
                             <tr data-id="{{$offer->id}}">
                               <td><span class="cellcontent" data-id="{{ $offer->id }}"></span></td>
                               <td><span class="cellcontent">{{$offer->id}}</span></td>
-                              <td><span class="cellcontent"><img src = "{{$offer->image}}" , class = " img-in-table"></span></td>
+                              <td><span class="cellcontent"><img src = "{{ asset( str_replace('\\', '', $offer->image) ) }}" , class = " img-in-table"></span></td>
                                <td><span class="cellcontent">{{$offer->name}}</span></td>
                               <td><span class="cellcontent">{{$offer->description}}</span></td>
                               @if($offer->is_active)
@@ -53,7 +53,7 @@
                               <td>
                               <span class="cellcontent">
                               <a href= "{{route('offers_and_deals.edit',$offer->id)}}" ,  class= "action-btn bgcolor--fadegreen color--white "><i class = "fa  fa-pencil"></i></a>
-                               <a    data-id="{{ $offer->id }}"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord"><i class = "fa  fa-trash-o"></i></a>
+                              <a data-id="{{ $offer->id }}"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord"><i class = "fa  fa-trash-o"></i></a>
                                </span>
                             </tr>
                             @endforeach
@@ -221,7 +221,7 @@
                   </div>
                 </div><br>
               </div>
-            
+
 
 
 <script>
@@ -238,7 +238,7 @@
 
             // push cities IDs selected by user
             $('input.input-in-table:checked').each(function() {
-                allVals.push( $(this).data("id") );
+                allVals.push( $(this).closest('tr').data("id") );
             });
 
             // check if user selected nothing
@@ -261,7 +261,7 @@
             },
             function(isConfirm){
                 if (isConfirm){
-                    
+
                 $.ajax(
                 {
                     url: "{{ route('offers_and_deals.deleteSelected') }}",
@@ -279,9 +279,9 @@
                         $.each(allVals, function( index, value ) {
                             $('tr[data-id='+value+']').fadeOut();
                         });
-                       
 
-                        
+
+
                     },
                     error: function(response) {
                         console.log(response);
@@ -297,7 +297,7 @@
 
         // delete a row
         $('.deleteRecord').click(function(){
-            
+
             var id = $(this).data("id");
             var token = '{{ csrf_token() }}';
             var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
@@ -315,7 +315,7 @@
             },
             function(isConfirm){
                 if (isConfirm){
-                        
+
                 $.ajax(
                 {
                     url: "{{ route('offers_and_deals.delete') }}",
@@ -328,7 +328,7 @@
                     },
                     success: function(data)
                     {
-                       
+
                         $('tr[data-id='+id+']').fadeOut();
                     },
                         error: function(response) {
@@ -336,7 +336,7 @@
                     }
                 });
                  swal("تم الحذف!", "تم الحذف بنجاح", "success");
-                    
+
                 } else {
                     swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
                 }
@@ -344,7 +344,7 @@
         });
 
 
-       
+
 
 
     });

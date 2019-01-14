@@ -22,64 +22,62 @@ class OffersAndDealsController extends Controller
      */
     public function index()
     {
-        $data['offers']=Offer::all();
-        return view('offersanddeals::offers_and_deals.index',$data);
+        $data['offers'] = Offer::all();
+        return view('offersanddeals::offers_and_deals.index', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create(Request $request )
+    public function create(Request $request)
     {
-        // dd($request->all());
-        if ($request->has('activation')) 
-        {
-            $is_active=1;
+         dd($request->all());
+
+        $start_date = str_replace('/', '-', $request->start_date_);
+        $end_date = str_replace('/', '-', $request->end_date_);
+
+        if ($request->has('activation')) {
+            $is_active = 1;
+        } else {
+            $is_active = 0;
         }
-        else{
-            $is_active=0;
-        }
-        $user=Users::find(\Auth::id());
-        if($user->isSponsor())
-        {
-            $sponsor_id=$user->id;
-        }
-        else
-        {
-            $sponsor_id=$request->offer_sponsor;
+        $user = Users::find(\Auth::id());
+        if ($user->isSponsor()) {
+            $sponsor_id = $user->id;
+        } else {
+            $sponsor_id = $request->offer_sponsor;
         }
         if ($request->hasFile('offer_image')) {
             // dd($request->offer_image->getClientOriginalExtension());
             // foreach ($request->offer_image as $key => $file) {
-                
-                $destinationPath = 'offer_images';
-                $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
+
+            $destinationPath = 'offer_images';
+            $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
             // dd($fileNameToStore);
-                Input::file('offer_image')->move($destinationPath, $fileNameToStore);
+            Input::file('offer_image')->move($destinationPath, $fileNameToStore);
 
-               $offer= Offer::Create([
-                    
-                    'name' => $request->offer_title,
-                    'description' => $request->offer_description,
-                    'image' => $fileNameToStore,
-                    'is_active'=>$is_active,
-                    'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
-                    'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
-                    'sponsor_id'=>$sponsor_id
+            $offer = Offer::Create([
+
+                'name' => $request->offer_title,
+                'description' => $request->offer_description,
+                'image' => $fileNameToStore,
+                'is_active' => $is_active,
+                'start_datetime' => date('Y-m-d', strtotime($start_date)),
+                'end_datetime' => date('Y-m-d', strtotime($end_date)),
+                'sponsor_id' => $sponsor_id
+            ]);
+
+            foreach ($request->offer_category as $cat) {
+                OfferOfferCategory::create([
+                    'offer_id' => $offer->id,
+                    'offer_category_id' => $cat
                 ]);
-
-                foreach($request->offer_category as $cat)
-                {
-                    OfferOfferCategory::create([
-                        'offer_id'=>$offer->id,
-                        'offer_category_id'=>$cat
-                    ]);
-                }
+            }
             // }
         }
-        $data['offers']=Offer::all();
-        Session::flash('success', 'Offer Added successfully! تم أضافه العرض بنجاح');
+        $data['offers'] = Offer::all();
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Offer Added successfully!', ' تم أضافه العرض بنجاح');
         return redirect('/offers_and_deals');
     }
 
@@ -90,13 +88,13 @@ class OffersAndDealsController extends Controller
      */
     public function store(Request $request)
     {
-        $data['categories']=OfferCategory::all();
-        $data['sponsors']=Users::whereHas('rules',function($q){
-            $q->where('rule_id',4);
+        $data['categories'] = OfferCategory::all();
+        $data['sponsors'] = Users::whereHas('rules', function ($q) {
+            $q->where('rules.name', 'like', '%Sponsor%');
         })->with('rules')->get();
-        $user=Users::find(\Auth::id());
-        $data['isSponsor']=$user->isSponsor();
-        return view('offersanddeals::offers_and_deals.create',$data);
+        $user = Users::find(\Auth::id());
+        $data['isSponsor'] = $user->isSponsor();
+        return view('offersanddeals::offers_and_deals.create', $data);
     }
 
     /**
@@ -114,15 +112,15 @@ class OffersAndDealsController extends Controller
      */
     public function edit(Request $request)
     {
-        $data['categories']=OfferCategory::all();
-        $data['offer']=Offer::find($request->route('id'));
-        $data['sponsors']=Users::whereHas('rules',function($q){
-            $q->where('rule_id',4);
+        $data['categories'] = OfferCategory::all();
+        $data['offer'] = Offer::find($request->route('id'));
+        $data['sponsors'] = Users::whereHas('rules', function ($q) {
+                $q->where('rules.name', 'like', '%Sponsor%');
         })->with('rules')->get();
-        $user=Users::find(\Auth::id());
-        $data['isSponsor']=$user->isSponsor();
+        $user = Users::find(\Auth::id());
+        $data['isSponsor'] = $user->isSponsor();
         //   dd($data['offer']);
-        return view('offersanddeals::offers_and_deals.update',$data);
+        return view('offersanddeals::offers_and_deals.update', $data);
     }
 
     /**
@@ -130,70 +128,69 @@ class OffersAndDealsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request ,$id)
+    public function update(Request $request, $id)
     {
         // dd($request->all());
-        $offer=Offer::find($id);
-        if ($request->has('activation')) 
-        {
-            $is_active=1;
+      // dd($request->start_date_);
+
+        $start_date = str_replace('/', '-', $request->start_date_);
+        $end_date = str_replace('/', '-', $request->end_date_);
+       // dd( date('Y-m-d', strtotime($start_date))) ;
+
+        $offer = Offer::find($id);
+        if ($request->has('activation')) {
+            $is_active = 1;
+        } else {
+            $is_active = 0;
         }
-        else{
-            $is_active=0;
-        }
-        $user=Users::find(\Auth::id());
-        if($user->isSponsor())
-        {
-            $sponsor_id=$user->id;
-        }
-        else
-        {
-            $sponsor_id=$request->offer_sponsor;
+        $user = Users::find(\Auth::id());
+        if ($user->isSponsor()) {
+            $sponsor_id = $user->id;
+        } else {
+            $sponsor_id = $request->offer_sponsor;
         }
         if ($request->hasFile('offer_image')) {
             // dd($request->offer_image->getClientOriginalExtension());
             // foreach ($request->offer_image as $key => $file) {
-                
-                $destinationPath = 'offer_images';
-                $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
+
+            $destinationPath = 'offer_images';
+            $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
             // dd($fileNameToStore);
-                Input::file('offer_image')->move($destinationPath, $fileNameToStore);
-
-               $offer->update([
-                    
-                    'name' => $request->offer_title,
-                    'description' => $request->offer_description,
-                    'image' => $fileNameToStore,
-                    'is_active'=>$is_active,
-                    'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
-                    'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
-                    'sponsor_id'=>$sponsor_id
-                ]);
-
-               
-            // }
-        }
-        else
-        {
+            Input::file('offer_image')->move($destinationPath, $fileNameToStore);
+           
             $offer->update([
-                    
+
                 'name' => $request->offer_title,
                 'description' => $request->offer_description,
-                'is_active'=>$is_active,
-                'start_datetime'=>date('Y-m-d',strtotime($request->start_date)),
-                'end_datetime'=>date('Y-m-d',strtotime($request->end_date)),
-                'sponsor_id'=>$sponsor_id
+                'image' => $fileNameToStore,
+                'is_active' => $is_active,
+                'start_datetime' => date('Y-m-d', strtotime($start_date)),
+                'end_datetime' => date('Y-m-d', strtotime($end_date)),
+                'sponsor_id' => $sponsor_id
+            ]);
+
+
+            // }
+        } else {
+            $offer->update([
+
+                'name' => $request->offer_title,
+                'description' => $request->offer_description,
+                'is_active' => $is_active,
+                'start_datetime' => date('Y-m-d', strtotime($start_date)),
+                'end_datetime' => date('Y-m-d', strtotime($end_date)),
+                'sponsor_id' => $sponsor_id
             ]);
         }
-        OfferOfferCategory::where('offer_id',$offer->id)->delete();
-        foreach($request->offer_category as $cat)
-        {
+        OfferOfferCategory::where('offer_id', $offer->id)->delete();
+        foreach ($request->offer_category as $cat) {
             OfferOfferCategory::create([
-                'offer_id'=>$offer->id,
-                'offer_category_id'=>$cat
+                'offer_id' => $offer->id,
+                'offer_category_id' => $cat
             ]);
         }
-        Session::flash('success', 'Offer Updated successfully! تم تعديل العرض بنجاح');
+
+        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Offer Updated successfully!', ' تم تعديل العرض بنجاح');
         return redirect('/offers_and_deals');
     }
 
@@ -208,19 +205,28 @@ class OffersAndDealsController extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        Offer::destroy($id);
-        OfferOfferCategory::where('offer_id',$id)->delete();
-        return redirect()->back();
+
+        try {
+            Offer::destroy($id);
+            OfferOfferCategory::where('offer_id', $id)->delete();
+        } catch (\Exception $e) {
+            return response()->json('error', 'Something went wrong, code: '.$e->getMessage());
+        }
+
+        return response()->json(['success' => 'success']);
     }
 
     public function deleteSelected(Request $request)
     {
         $ids = $request->ids;
-        foreach($ids as $id)
-        {
-            Offer::destroy($id);
-            OfferOfferCategory::where('offer_id',$id)->delete(); 
+        foreach ($ids as $id) {
+            try {
+                Offer::destroy($id);
+                OfferOfferCategory::where('offer_id', $id)->delete();
+            } catch (\Exception $e) {
+                return response()->json('error', 'Something went wrong, code: ' . $e->getMessage());
+            }
         }
-        return redirect()->back();
+        return response()->json(['success' => 'success']);
     }
 }

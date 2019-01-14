@@ -26,14 +26,18 @@
 
     <style>
       #submit-button {
-        border: 0px; 
-        padding: 10px 35px; 
-        background-color: #281160; 
+        border: 0px;
+        padding: 10px 35px;
+        background-color: #281160;
         color: white;
       }
 
       #submit-button:hover {
         background-color: #473670;
+      }
+
+      .alert-danger {
+        color: #e74c3c !important;
       }
     </style>
   </head>
@@ -45,8 +49,8 @@
           <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <div class="login-page">
               <div class="form-login inherit bradius--small inherit ">
-                <img class="logo" src="{{ asset('img/logo/logo__dark.svg') }}" alt="">
-                
+                <img class="logo" src="{{ asset('img/logo__dark.png') }}" alt="">
+
                 {{-- login form --}}
                 <form class="login-form" action="{{ route('login') }}" method="POST">
                     {{ csrf_field() }}
@@ -69,19 +73,19 @@
                     <input type="hidden" name="timezone" id="timezone">
 
                     {{-- custom error message --}}
-                    @if(\session('error'))
+                    @if(Session::has('error'))
                         <div class="alert alert-danger">
-                          {{\session('error')}}
+                          {{Session::get('error')}}
                         </div>
                     @endif
 
                     {{-- custom error message --}}
-                    @if(\session('error_en'))
+                    @if(Session::has('error_en'))
                         <div class="alert alert-danger">
-                          {{\session('error_en')}}
+                          {{Session::get('error_en')}}
                         </div>
                     @endif
-                    
+
                     <button type="submit" class="inherit inherit bradius--small inherit" id="submit-button">
                       login
                     </button>

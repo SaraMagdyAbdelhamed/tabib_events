@@ -23,7 +23,7 @@
         <div class="filter__btns"><a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>@lang('keywords.filter')</a></div>
         <div class="bottomActions__btns">
           {{-- Delete Selected --}}
-          <a class="master-btn #" href="#" id="deleteSelected">@lang('deleteSelected')</a>
+          <a class="master-btn "  id="deleteSelected">@lang('deleteSelected')</a>
         </div>
         <div class="remodal" data-remodal-id="filter-users" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
           <form action="{{ route('events.filter') }}" method="POST">
@@ -98,7 +98,7 @@
             <thead>
               <tr class="bgcolor--gray_mm color--gray_d">
                 <th><span class="cellcontent">&lt;input type=&quot;checkbox&quot; data-click-state=&quot;0&quot; name=&quot;select-all&quot; id=&quot;select-all&quot; /&gt;</span></th>
-                <th><span class="cellcontent">@lang('keywords.serialNo')</span></th>
+                <th><span class="cellcontent">ss@lang('keywords.serialNo')</span></th>
                 <th><span class="cellcontent">@lang('keywords.eventName')</span></th>
                 <th><span class="cellcontent">@lang('keywords.address')</span></th>
                 <th><span class="cellcontent">@lang('keywords.eventCat')</span></th>
@@ -113,7 +113,7 @@
             <tbody>
               @if ( isset($events) && !empty($events) )
                   @foreach ($events as $event)
-                  <tr>
+                  <tr data-id="{{$event->id}}">
                     <td><span class="cellcontent"></span></td>
                     <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                     <td><span class="cellcontent">{{ $event->name    ? : __('keywords.not') }}</span></td>
@@ -148,10 +148,9 @@
                         </a>
                         
                         {{-- Delete Event --}}
-                        <a href="#"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
+                        <a    href="#" data-id="{{ $event->id }}" class= "{{ \App::isLocale('en') ? 'btn-warning-confirm' : 'btn-warning-confirm-ar'}} btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
                           <i class = "fa  fa-trash-o"></i>
                         </a>
-
                       </span>
                     </td>
                   </tr>
@@ -160,166 +159,128 @@
             </tbody>
           </table>
         </form>
-        <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-          <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
-          <div>
-            <h2 class="title">title of the changing log in</h2>
-            <div class="log-content">
-              <div class="log-container">
-                <table class="log-table">
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <th>log title</th>
-                    <th>user</th>
-                    <th>time</th>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div><br>
 </div>
-            
+@endsection
+
+@section('js')
+<script>
+$(document).ready(function(){
+    $('.deleteRecord').click(function(){
+            alert('hi');
+            var id = $(this).data("id");
+            var token = '{{ csrf_token() }}';
+            var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
+            var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
+
+            swal({
+            title: title,
+            text: text,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#281160',
+            confirmButtonText: "{{ \App::isLocale('en') ? 'Yes, delete it!' : 'نعم احذفه' }}",
+            cancelButtonText: "{{ \App::isLocale('en') ? 'Cancel' : 'إالغاء' }}",
+            closeOnConfirm: false
+            },
+            function(isConfirm){
+                if (isConfirm){
+                        
+                $.ajax(
+                {
+                    url: "{{ route('event_backend.destroy') }}",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        "_method": 'POST',
+                        "_token": token,
+                    },
+                    success: function(data)
+                    {
+                      swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                        $('tr[data-id='+id+']').fadeOut();
+                    },
+                        error: function(response) {
+                        console.log(response);
+                    }
+                });
+                
+                    
+                } else {
+                    swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                }
+            });
+        });
+    $('#deleteSelected').click(function(){
+            var allVals = [];                   // selected IDs
+            var token = '{{ csrf_token() }}';
+
+            // push cities IDs selected by user
+            $('input.input-in-table:checked').each(function() {
+                allVals.push( $(this).data("id") );
+            });
+
+            // check if user selected nothing
+            if(allVals.length <= 0) {
+            confirm('إختر حدث علي الاقل لتستطيع حذفه');
+            } else {
+            var ids = allVals;    // join array of IDs into a single variable to explode in controller
+            var title = "{{ \App::isLocale('en') ? 'Are you sure?' : 'هل أنت متأكد؟' }}";
+            var text  = "{{ \App::isLocale('en') ? 'You wont be able to fetch this information later!' : 'لن تستطيع إسترجاع هذه المعلومة لاحقا' }}";
+
+            swal({
+            title: title,
+            text: text,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#281160',
+            confirmButtonText: "{{ \App::isLocale('en') ? 'Yes, delete it!' : 'نعم احذفه' }}",
+            cancelButtonText: "{{ \App::isLocale('en') ? 'Cancel' : 'إالغاء' }}",
+            closeOnConfirm: false
+            },
+            function(isConfirm){
+                if (isConfirm){
+                    
+                $.ajax(
+                {
+                    url: "{{ route('event_backend.deleteSelected') }}",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        "ids": ids,
+                        "_method": 'POST',
+                        "_token": token,
+                    },
+                    success: function (data)
+                    {
+                     // alert(allVals);
+                      // fade out selected checkboxes after deletion
+                      swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                        $.each(allVals, function( index, value ) {
+                            $('tr[data-id='+value+']').fadeOut();
+                        });
+                       
+
+                        
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
+                
+                } else {
+                swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                }
+            });
+            }
+        });
+
+        // delete a row
+
+
+      });
+</script>
 @endsection

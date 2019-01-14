@@ -41,7 +41,7 @@ class ReportsAndStatisticsController extends Controller
         $ids = Users::whereHas('rules', function ($q) {
             $q->where('rule_id', 5);
         })->pluck('id')->toArray();
-        $data['doc_org'] = Users::whereIn('created_by',$ids)->count(); 
+        $data['doc_org'] = Users::whereIn('created_by', $ids)->count();
         // doctors that created from mobile app
         $data['doc_mob'] = Users::whereHas('rules', function ($q) {
             // filter users through table `user_rules`
@@ -63,96 +63,85 @@ class ReportsAndStatisticsController extends Controller
                 $q->where('rule_id', 3);
             });
         })->count();
-        return view('reportsandstatistics::index',$data);
+        return view('reportsandstatistics::index', $data);
     }
 
     public function sponsor()
     {
         $data['offers'] = Offer::all();
         $data['categories'] = OfferCategory::all();
-        $data['sponsors'] = Users::whereHas('rules' , function($q){
-            $q->where('rule_id',6);
+        $data['sponsors'] = Users::whereHas('rules', function ($q) {
+            $q->where('rule_id', 6);
         })->get();
-        return view('reportsandstatistics::sponsor_report',$data);
+        return view('reportsandstatistics::sponsor_report', $data);
     }
 
-    public function sponsor_filter(Request $request){
-        $data['offers'] = Offer::where(function($q) use($request){
-            $start_date = date('Y-m-d H:i:s',strtotime($request->start_date));
-            $end_date = date('Y-m-d 23:59:59',strtotime($request->end_date));
+    public function sponsor_filter(Request $request)
+    {
+        $data['offers'] = Offer::where(function ($q) use ($request) {
+            $start_date = date('Y-m-d H:i:s', strtotime($request->start_date));
+            $end_date = date('Y-m-d 23:59:59', strtotime($request->end_date));
 
-            if($request->has('sponsor_name') )
-            {
-             $q->where('sponsor_id',$request->sponsor_name);;
-         }
+            if ($request->has('sponsor_name')) {
+                $q->where('sponsor_id', $request->sponsor_name);;
+            }
 
-         if($request->has('offers') )
-         {
-            $q->whereHas('categories', function ($q) use($request) {
-                $q->whereIn('offer_category_id',$request->offers);
-            });
-        }
+            if ($request->has('offers')) {
+                $q->whereHas('categories', function ($q) use ($request) {
+                    $q->whereIn('offer_category_id', $request->offers);
+                });
+            }
 
-        if($request->filled('start_date') && $request->filled('end_date') )
-        {
-            $q->whereBetween('start_datetime', array($start_date, $end_date));
-        }
-        elseif($request->filled('start_date'))
-        {
-            $q->where('start_datetime','>=',$start_date);
-        }
-        elseif($request->filled('end_date'))
-        {
-            $q->where('start_datetime','<=',$end_date);
-        }
+            if ($request->filled('start_date') && $request->filled('end_date')) {
+                $q->whereBetween('start_datetime', array($start_date, $end_date));
+            } elseif ($request->filled('start_date')) {
+                $q->where('start_datetime', '>=', $start_date);
+            } elseif ($request->filled('end_date')) {
+                $q->where('start_datetime', '<=', $end_date);
+            }
 
 
 
-    })->get();
-
-        $data['categories'] = OfferCategory::all();
-        $data['sponsors'] = Users::whereHas('rules' , function($q){
-            $q->where('rule_id',6);
         })->get();
 
-        foreach($data['offers'] as $offer)
-        {
-            $filter_ids[]=$offer->id;
+        $data['categories'] = OfferCategory::all();
+        $data['sponsors'] = Users::whereHas('rules', function ($q) {
+            $q->where('rule_id', 6);
+        })->get();
+
+        foreach ($data['offers'] as $offer) {
+            $filter_ids[] = $offer->id;
         }
-        if(!empty($filter_ids))
-        {
-            Session::flash('filter_ids',$filter_ids);
-        }
-        else{
-            $filter_ids[]=0;
-            Session::flash('filter_ids',$filter_ids);
+        if (!empty($filter_ids)) {
+            Session::flash('filter_ids', $filter_ids);
+        } else {
+            $filter_ids[] = 0;
+            Session::flash('filter_ids', $filter_ids);
         }
 
-        return view('reportsandstatistics::sponsor_report',$data);
+        return view('reportsandstatistics::sponsor_report', $data);
 
     }
 
 
     public function sponsor_excel()
-    {   
-      $filepath ='public/excel/';
-      $PathForJson='storage/excel/';
-      $filename = 'offers'.time().'.xlsx';
-      if(isset($_GET['ids'])){
-         $ids = $_GET['ids'];
-         Excel::store(new SponsorsExport($ids),$filepath.$filename);
-         return response()->json($PathForJson.$filename);
-     }
-     elseif ($_GET['filters']!='') {
-      $filters = json_decode($_GET['filters']);
-      Excel::store((new SponsorsExport($filters)),$filepath.$filename);
-      return response()->json($PathForJson.$filename); 
-  }
-  else{
-      Excel::store((new SponsorsExport()),$filepath.$filename);
-      return response()->json($PathForJson.$filename); 
-  }
-}
+    {
+        $filepath = 'public/excel/';
+        $PathForJson = 'storage/excel/';
+        $filename = 'offers' . time() . '.xlsx';
+        if (isset($_GET['ids'])) {
+            $ids = $_GET['ids'];
+            Excel::store(new SponsorsExport($ids), $filepath . $filename);
+            return response()->json($PathForJson . $filename);
+        } elseif ($_GET['filters'] != '') {
+            $filters = json_decode($_GET['filters']);
+            Excel::store((new SponsorsExport($filters)), $filepath . $filename);
+            return response()->json($PathForJson . $filename);
+        } else {
+            Excel::store((new SponsorsExport()), $filepath . $filename);
+            return response()->json($PathForJson . $filename);
+        }
+    }
 
     // public function getOffer(Request $request){
     //     $offers= OfferCategory::where('created_by', $request->id)->pluck('name', 'id');
@@ -161,88 +150,77 @@ class ReportsAndStatisticsController extends Controller
 
     public function event()
     {
-    $data['organizers'] = Users::whereHas('rules' , function($q){
-        $q->where('rule_id',5);
-    })->get();
-    $data['categories'] = Category::all();
-    $data['events'] = EventBackend::all() ;
-    return view('reportsandstatistics::event_report',$data);
+        $data['organizers'] = Users::whereHas('rules', function ($q) {
+            $q->where('rule_id', 5);
+        })->get();
+        $data['categories'] = Category::all();
+        $data['events'] = EventBackend::all();
+        return view('reportsandstatistics::event_report', $data);
     }
 
-    public function event_filter(Request $request){
-        $data['events'] = EventBackend::where(function($q) use($request){
-            $start_date = date('Y-m-d H:i:s',strtotime($request->start_date));
-            $end_date = date('Y-m-d 23:59:59',strtotime($request->end_date));
+    public function event_filter(Request $request)
+    {
+        $data['events'] = EventBackend::where(function ($q) use ($request) {
+            $start_date = date('Y-m-d H:i:s', strtotime($request->start_date));
+            $end_date = date('Y-m-d 23:59:59', strtotime($request->end_date));
 
-            if($request->has('organizer_name') )
-            {
-             $q->where('created_by',$request->organizer_name);;
-         }
+            if ($request->has('organizer_name')) {
+                $q->where('created_by', $request->organizer_name);;
+            }
 
-         if($request->has('categories') )
-         {
-            $q->whereHas('categories', function ($q) use($request) {
-                $q->whereIn('category_id',$request->categories);
-            });
-        }
+            if ($request->has('categories')) {
+                $q->whereHas('categories', function ($q) use ($request) {
+                    $q->whereIn('category_id', $request->categories);
+                });
+            }
 
-        if($request->filled('start_date') && $request->filled('end_date') )
-        {
-            $q->whereBetween('start_datetime', array($start_date, $end_date));
-        }
-        elseif($request->filled('start_date'))
-        {
-            $q->where('start_datetime','>=',$start_date);
-        }
-        elseif($request->filled('end_date'))
-        {
-            $q->where('start_datetime','<=',$end_date);
-        }
+            if ($request->filled('start_date') && $request->filled('end_date')) {
+                $q->whereBetween('start_datetime', array($start_date, $end_date));
+            } elseif ($request->filled('start_date')) {
+                $q->where('start_datetime', '>=', $start_date);
+            } elseif ($request->filled('end_date')) {
+                $q->where('start_datetime', '<=', $end_date);
+            }
 
 
 
-    })->get();
+        })->get();
 
-        $data['organizers'] = Users::whereHas('rules' , function($q){
-            $q->where('rule_id',5);
+        $data['organizers'] = Users::whereHas('rules', function ($q) {
+            $q->where('rule_id', 5);
         })->get();
         $data['categories'] = Category::all();
 
-        foreach($data['events'] as $event)
-        {
-            $filter_ids[]=$event->id;
+        foreach ($data['events'] as $event) {
+            $filter_ids[] = $event->id;
         }
-        if(!empty($filter_ids))
-        {
-            Session::flash('filter_ids',$filter_ids);
-        }
-        else{
-            $filter_ids[]=0;
-            Session::flash('filter_ids',$filter_ids);
+        if (!empty($filter_ids)) {
+            Session::flash('filter_ids', $filter_ids);
+        } else {
+            $filter_ids[] = 0;
+            Session::flash('filter_ids', $filter_ids);
         }
 
-        return view('reportsandstatistics::event_report',$data);
+        return view('reportsandstatistics::event_report', $data);
 
     }
 
-        public function event_excel()
-    {   
-      $filepath ='public/excel/';
-      $PathForJson='storage/excel/';
-      $filename = 'events'.time().'.xlsx';
-      if(isset($_GET['ids'])){
-         $ids = $_GET['ids'];
-         Excel::store(new EventsExport($ids),$filepath.$filename);
-         return response()->json($PathForJson.$filename);
-     }
-     elseif ($_GET['filters']!='') {
-      $filters = json_decode($_GET['filters']);
-      Excel::store((new EventsExport($filters)),$filepath.$filename);
-      return response()->json($PathForJson.$filename); 
-  }
-  else{
-      Excel::store((new EventsExport()),$filepath.$filename);
-      return response()->json($PathForJson.$filename); 
+    public function event_excel()
+    {
+        $filepath = 'public/excel/';
+        $PathForJson = 'storage/excel/';
+        $filename = 'events' . time() . '.xlsx';
+        if (isset($_GET['ids'])) {
+            $ids = $_GET['ids'];
+            Excel::store(new EventsExport($ids), $filepath . $filename);
+            return response()->json($PathForJson . $filename);
+        } elseif ($_GET['filters'] != '') {
+            $filters = json_decode($_GET['filters']);
+            Excel::store((new EventsExport($filters)), $filepath . $filename);
+            return response()->json($PathForJson . $filename);
+        } else {
+            Excel::store((new EventsExport()), $filepath . $filename);
+            return response()->json($PathForJson . $filename);
         }
     }
 

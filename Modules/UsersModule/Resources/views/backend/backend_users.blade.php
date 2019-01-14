@@ -126,7 +126,7 @@
                 <td><span class="cellcontent">{{$user->created_at}}</span></td>
                 <td>
                   <span class="cellcontent">
-                    <a href= "{{ route('backend_edit', $user->id) }}" ,  class= "action-btn bgcolor--fadegreen color--white ">
+                    <a href= "{{ route('backend_edit', $user) }}" ,  class= "action-btn bgcolor--fadegreen color--white ">
                       <i class = "fa  fa-pencil"></i>
                     </a>
                     <a href="#" data-id="{{ $user->id }}" id="" class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
