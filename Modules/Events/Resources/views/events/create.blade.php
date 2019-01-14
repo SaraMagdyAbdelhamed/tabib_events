@@ -783,8 +783,23 @@
                   }).validate({
               errorPlacement: function errorPlacement(error, element) { element.before(error); }
   });
-  dateRange('start_date_','end_date_','2018','7','30','2018','8','30','22/11/2018')
-  dateRange('workshop_start_date','workshop_end_date','2018','7','30','2018','8','30','22/11/2018')
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  
+  dateRange_2('start_date_','end_date_')
+
+  dateRange_2('workshop_start_date','workshop_end_date')
+</script>
+<script>
+ $(document).ready(function(){
+    $("#start_date_,#end_date_,#workshop_start_date,#workshop_end_date").on('keypress',function(e){
+      e.preventDefault();
+    })
+
+ })
+   
 </script>
 
 <script type="text/javascript">
