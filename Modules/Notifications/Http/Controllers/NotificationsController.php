@@ -85,7 +85,7 @@ class NotificationsController extends Controller
 
             if($request->has('gender') )
             {
-               $q->whereIn('gender',$request->gender);
+               $q->whereIn('gender_id',$request->gender);
            }
 
            if($request->has('doctors') )

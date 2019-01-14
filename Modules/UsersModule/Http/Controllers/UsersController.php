@@ -56,6 +56,7 @@ class UsersController extends Controller
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
         $data['rules'] = Rules::whereIn('id', $rules)->get();
+        // dd($data['users']);
         return view('usersmodule::backend.backend_users', $data);
     }
 
