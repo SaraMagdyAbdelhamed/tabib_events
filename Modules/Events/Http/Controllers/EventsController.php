@@ -336,6 +336,7 @@ class EventsController extends Controller
     public function edit($id)
     {
         $data['event'] = Event::find($id);
+        dd($data['event']);
         $data['doctors'] = Users::wherehas('rules', function ($q) {
             $q->where('rule_id', 2);
         })->get();
@@ -529,11 +530,22 @@ catch (Exception $ex)
         if (isset($request['event']['youtube'])) {
             EventMedia::where('event_id', $event->id)->where('type', 2)->delete();
             foreach ($request['event']['youtube'] as $youtube) {
-                EventMedia::create([
-                    "event_id" => $event->id,
-                    "link" => $youtube,
-                    "type" => 2
-                ]);
+                if($youtube != null)
+                {
+                    if (strpos($youtube, 'youtube') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    } elseif (strpos($youtube, 'watch') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    }
+                    str_replace("watch", "embed", $youtube);
+                    EventMedia::create([
+                        "event_id" => $event->id,
+                        "link" => $youtube,
+                        "type" => 2
+                    ]);
+                }
             }
         }
        
