@@ -126,7 +126,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::get('/events/create', '\Modules\Events\Http\Controllers\EventsController@create')->name('events.create');
 
         Route::post('/events_filter', '\Modules\Events\Http\Controllers\EventsController@filter')->name('events_filter');
-        Route::post('/events_destroy/{id}', '\Modules\Events\Http\Controllers\EventsController@destroy')->name('events.destroy');
+        Route::post('/events_destroy', '\Modules\Events\Http\Controllers\EventsController@destroy')->name('events.destroy');
         Route::post('/events_destroy_all', '\Modules\Events\Http\Controllers\EventsController@destroy_all')->name('events.destroy.all');
 
         Route::get('/events/edit/{id}', '\Modules\Events\Http\Controllers\EventsController@edit')->name('events.edit');

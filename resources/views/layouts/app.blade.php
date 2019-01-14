@@ -38,264 +38,14 @@
       <div class="layout_sidebar">
         <div class="wrapper">
           <!-- top navbar-->
-          <header class="topnavbar-wrapper">
-            <nav class="top-navbar navbar-expand-lg     bradius--noborder bshadow--1 ">
-              <div class="container"><span></span>
-                <button class="navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars  "></span></button>
-                <ul class="actionsbar moile-view hidden-lg hidden-md hidden-sm">
-                  <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i><span class="badge badge-default badge_style">7</span></a>
-                    <ul class="dropdowny-menu" role="menu">
-                      <li><a href="#">
-                          <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                          <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                            11:00:00AM</span></a></li>
-                      <li><a href="#">
-                          <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                          <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                            11:00:00AM</span></a></li>
-                      <li><a href="#">
-                          <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                          <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                            11:00:00AM</span></a></li>
-                      <li><a href="#">
-                          <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                          <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                            11:00:00AM</span></a></li>
-                      <li><a href="#">
-                          <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                          <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                            11:00:00AM</span></a></li>
-                      <li><a href="#">
-                          <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                          <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                            11:00:00AM</span></a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <div class="collapse navbar-collapse nav pull-right  " id="navbarSupportedContent">
-                  <ul class="navbar-nav">
+          @include('layouts.navbar')
 
-                  <li class="nav-item" style="font-size: 14px important; padding: 0px;">
-                    <form action="{{ route('changeLang') }}" method="POST">
-                      {{ csrf_field() }}
-                      <input type="hidden" name="url" value="{{ Request::url() }}">
-                      <input type="hidden" name="locale" value="{{ \Helper::getUserLocale() }}">
-                        <button type="submit" class="nav-link English" style="background-color: inherit; border: 0px; color: white; ">{{ App::isLocale('ar') ? 'English' : 'العربية' }}</button>
-                    </form>
-
-                  </li>
-                  </ul>
-                  <ul class="actionsbar desktop-view hidden-xs">
-                    <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i><span class="badge badge-default badge_style">7</span></a>
-                      @if(App::isLocale("en"))
-                        <ul class="dropdowny-menu" role="menu">
-
-                        {{-- @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
-                          <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>{{$notification->msg}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
-                              {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
-                        @endforeach --}}
-                         </ul>
-                      @else
-                      <ul class="dropdowny-menu" role="menu">
-                        {{-- @if( count(\Helper::ListNotifications()) > 0 )
-                          @foreach(\App\Helpers\Helper::ListNotifications() as $notification)
-                          <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>{{$notification->msg_ar}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
-                              {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
-                          @endforeach
-                        @endif --}}
-                         </ul>
-                      @endif
-                      <ul class="dropdowny-menu" role="menu">
-                        <li class="request"><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarsslorem ipsum dollar lorem ipsum dollarss lorem ipsum dollar lorem ipsum dollarss</p>
-                            <div class="pull-right">
-                              <button class="btn_2 btn_accept"><i class="fa fa-check"> Accept</i></button>
-                              <button class="btn_2 btn_reject"><i class="fa fa-close"> Reject</i></button>
-                            </div><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                      </ul>
-                      <!-- <ul class="dropdowny-menu" role="menu">
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>Medo ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                        <li><a href="#">
-                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
-                            <p>lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
-                              11:00:00AM</span></a></li>
-                      </ul> -->
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
-          </header>
           <div class="full-body">
             <div class="overlay-toggle-up"></div>
-            <!-- sidebar-->
-            <!-- ==============================================================-->
-            <!-- ============================SIDEBAR==============================-->
-            <!-- ==============================================================-->
-            <!-- Sidebar-->
-            <nav class="navbar navbar-fixed-top   bshadow--0 bradius--noborder " id="sidebar-wrapper" role="navigation">
-              <ul class="sidebar-navigation">
-                <li class="brand   bshadow--0"><a href="{{ route('about') }}"> <img src="{{ asset('img/logo__light.png') }}" alt="طبيب"></a></li>
-              </ul>
-              <div class="coverglobal text-center bshadow--2" style="background:undefined url( '{{ asset('img/covers/dummy.jpg') }}') no-repeat center center; background-size:cover;">
-                <button class="hamburger is-closed" type="button" data-toggle="offcanvas"><span class="hamb-top"></span><span class="hamb-middle"></span><span class="hamb-bottom"></span></button>
-                <div class="text-center">
-                    <img class="coverglobal__avatar bradius--circle" src="{{ asset('img/avaters/male.jpg') }}">
-                    <h3 class="coverglobal__title">{{ Auth::user()->first_name .' '. Auth::user()->last_name }}</h3>
-                    <small class="coverglobal__slogan">
-                      <div class="row text-center">
-                        {{ Auth::user()->last_login->format('h:i A - M d, Y')  }}
-                      </div>
-                    </small>
+            
+            {{-- sidebar --}}
+            @include('layouts.sidebar')
 
-                    <div style="margin-top: 5%;">
-                      <a href="{{ route('logout') }}" class="master-btn bradius--small">{{ __('keywords.logout') }}</a>
-                    </div>
-                </div>
-              </div>
-              <div class="side">
-                <ul class="side-menu">
-                  @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
-                  <li class="side__list" id="menu_1"><a class="side__item side__item--sub">@lang('keywords.mainData')</a>
-
-                    <ul class="side__submenu">
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_1" href="{{ route('about') }}">@lang('keywords.aboutUs')</a>
-                      </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_2" href="{{ route('terms')  }}">@lang('keywords.terms')</a>
-                      </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_3" href="{{ route('privacy')  }}">@lang('keywords.privacy')</a>
-                      </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_4" href="{{ route('contact')  }}">@lang('keywords.contactUs')</a>
-                      </li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_5" href="{{ route('event.categories')  }}">@lang('keywords.eventCategories')</a>
-                      </li>
-
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_6" href="{{ route('sponsor.categories')  }}">@lang('keywords.sponsorCategories')</a>
-                      </li>
-
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_7" href="{{ route('offers.categories')  }}">@lang('keywords.offerCategories')</a>
-                      </li>
-
-                      <li class="side__sublist"><a class="side__subitem" id="sub_1_8" href="{{ route('speciality.categories')  }}">@lang('keywords.doctorSpecialists')</a>
-                      </li>
-
-                    </ul>
-                  </li>
-                  @endif
-                  @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
-                  <li class="side__list" id="menu_2"> <a class="side__item side__item--sub">@lang('keywords.Users')</a>
-                    <ul class="side__submenu">
-                      <li class="side__sublist"><a class="side__subitem" id="sub_2_1" href="{{ route('users_mobile')  }}">@lang('keywords.MobileAppUsers')</a></li>
-                      <li class="side__sublist"><a class="side__subitem" id="sub_2_2" href="{{ route('users_backend')  }}">@lang('keywords.BackendUsers')</a></li>
-                    </ul>
-                  </li>
-                  @endif
-
-
-                  @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
-                  <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
-                      </li>
-                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a></li>
-                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
-                  <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('events')}}">@lang('keywords.events')</a></li>
-
-                  @endif
-                </ul>
-              </div>
-            </nav>
             <!-- Page content-->
             <div class="container-fluid">
 
@@ -808,13 +558,13 @@
     </script>
     <script type="text/javascript">
       $(document).ready(function() {
-  $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
+        $(window).keydown(function(event){
+          if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+          }
+        });
+      });
       $(function () {
         $(".select2").select2();
       });
@@ -916,6 +666,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 @yield('js')
-
+@include('layouts.ajax_actions')
   </body>
 </html>

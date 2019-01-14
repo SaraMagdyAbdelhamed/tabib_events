@@ -347,9 +347,9 @@ class EventsController extends Controller
         return view('events::events.edit', $data);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $event = Event::find($id);
+        $event = Event::find($request->id);
 
         // Transactions used to rollback if one of the relations faild to be deleted, then it will rollback.
         if ($event != null) {
@@ -366,14 +366,16 @@ class EventsController extends Controller
                 DB::commit();
             } catch (Exception $exp) {
                 DB::rollback();
+                return response()->json(['error' => 'Error', 'msg' => 'Error!']);
             }
         }
 
+        return response()->json(['success' => 'Success', 'msg' => 'deleted successfully!']);
     }
 
-    public function destroy_all()
+    public function destroy_all(Request $request)
     {
-        $ids = $_POST['ids'];
+        $ids = $request->ids;
         foreach ($ids as $id) {
             $event = Event::find($id);
 
@@ -392,9 +394,12 @@ class EventsController extends Controller
                     DB::commit();
                 } catch (Exception $exp) {
                     DB::rollback();
+                    return response()->json(['error' => 'Error', 'msg' => 'Error!']);
                 }
             }
         }
+
+        return response()->json(['success' => 'Success', 'msg' => 'deleted successfully!']);
     }
 
     public function filter(Request $request)
