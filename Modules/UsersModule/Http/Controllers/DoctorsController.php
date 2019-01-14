@@ -366,7 +366,7 @@ class DoctorsController extends Controller
             return redirect('/users_mobile');
         } else {
             // user found
-            $data['user'] = $user->whereHas('rules', function ($q) {
+            $data['user'] = Users::where('id', $id)->whereHas('rules', function ($q) {
                 // filter users through table `user_rules`
                 $q->where('rule_id', 2);
             })->whereHas('userInfo', function ($q) {

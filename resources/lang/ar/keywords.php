@@ -4,6 +4,7 @@
     return [
         // general names
         'website_name'      => 'طبيب',
+        'welcome'           => 'مرحبا',
         'login_page_name'   => 'صفحة الدخول',
         'login_username'    => 'اسم المستخدم',
         'login_password'    => 'كلمة السر',
