@@ -32,8 +32,6 @@ class OffersAndDealsController extends Controller
      */
     public function create(Request $request)
     {
-         dd($request->all());
-
         $start_date = str_replace('/', '-', $request->start_date_);
         $end_date = str_replace('/', '-', $request->end_date_);
 
@@ -54,7 +52,7 @@ class OffersAndDealsController extends Controller
 
             $destinationPath = 'offer_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request->offer_image->getClientOriginalExtension();
-            // dd($fileNameToStore);
+
             Input::file('offer_image')->move($destinationPath, $fileNameToStore);
 
             $offer = Offer::Create([
@@ -119,7 +117,7 @@ class OffersAndDealsController extends Controller
         })->with('rules')->get();
         $user = Users::find(\Auth::id());
         $data['isSponsor'] = $user->isSponsor();
-        //   dd($data['offer']);
+
         return view('offersanddeals::offers_and_deals.update', $data);
     }
 
@@ -130,8 +128,6 @@ class OffersAndDealsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
-      // dd($request->start_date_);
 
         $start_date = str_replace('/', '-', $request->start_date_);
         $end_date = str_replace('/', '-', $request->end_date_);

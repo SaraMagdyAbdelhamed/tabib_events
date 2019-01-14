@@ -34,6 +34,7 @@ use Kreait\Firebase\ServiceAccount;
 use Session;
 use Illuminate\Support\Facades\DB;
 use App\Countries;
+use Helper;
 
 class EventsController extends Controller
 {
@@ -75,7 +76,11 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
-            // dd($request->all());
+        // if(array_key_exists('category',$request['event']))
+        // {
+        //     dd($request->all());
+        // }
+           
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
             'event.description' => 'required|min:2|max:250',
@@ -89,10 +94,11 @@ class EventsController extends Controller
             'event.end_time' => 'required'
         ]);
         if ($validation->fails()) {
+            
             // change below as required
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
-        if (isset($request['event']['image'])) {
+        if (array_key_exists('image',$request['event'])) {
             $destinationPath = 'event_images';
             $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
         // dd($fileNameToStore);
@@ -104,7 +110,7 @@ class EventsController extends Controller
         } else {
             $active = 0;
         }
-
+    try{
         $event = Event::create([
             "name" => $request['event']['name'],
             "description" => $request['event']['description'],
@@ -124,6 +130,7 @@ class EventsController extends Controller
             "created_by" => \Auth::id(),
             "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
         ]);
+        
         if ($event->use_ticketing_system == 1) {
             EventTicket::create([
                 "event_id" => $event->id,
@@ -134,24 +141,30 @@ class EventsController extends Controller
             ]);
         }
 
-        if (isset($request['event']['youtube'])) {
+        if (array_key_exists('youtube',$request['event'])) {
 
 
             foreach ($request['event']['youtube'] as $youtube) {
-                if (strpos($youtube, 'youtube') == false) {
-                    return redirect()->back();
-                } elseif (strpos($youtube, 'watch') == false) {
-                    return redirect()->back();
+                if($youtube != null)
+                {
+                    if (strpos($youtube, 'youtube') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    } elseif (strpos($youtube, 'watch') == false) {
+                        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                        return redirect()->back();
+                    }
+                    str_replace("watch", "embed", $youtube);
+                    EventMedia::create([
+                        "event_id" => $event->id,
+                        "link" => $youtube,
+                        "type" => 2
+                    ]);
                 }
-                str_replace("watch", "embed", $youtube);
-                EventMedia::create([
-                    "event_id" => $event->id,
-                    "link" => $youtube,
-                    "type" => 2
-                ]);
+               
             }
         }
-        if (isset($request['event']['images'])) {
+        if (array_key_exists('images',$request['event'])) {
             foreach ($request['event']['images'] as $key => $file) {
                 $destinationPath = 'event_images';
                 $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $file->getClientOriginalExtension();
@@ -164,13 +177,17 @@ class EventsController extends Controller
                 ]);
             }
         }
-        foreach ($request['event']['category'] as $category) {
-            EventCategory::create([
-                "event_id" => $event->id,
-                "category_id" => $category
-            ]);
+        if (array_key_exists('category',$request['event'])) {
+            foreach ($request['event']['category'] as $category) {
+                EventCategory::create([
+                    "event_id" => $event->id,
+                    "category_id" => $category
+                ]);
+            }
         }
-        if (isset($request['event']['special'])) {
+        
+        if (array_key_exists('special',$request['event'])) {
+            // dd($request['event']['special']);
             foreach ($request['event']['special'] as $special) {
                 EventSpecialization::create([
                     "event_id" => $event->id,
@@ -178,6 +195,7 @@ class EventsController extends Controller
                 ]);
             }
         }
+        
 
         foreach ($request['event']['doctor'] as $doctor) {
             EventOwner::create([
@@ -186,7 +204,8 @@ class EventsController extends Controller
             ]);
         }
 
-        if (isset($request['workshop'])) {
+        if ($request->has('workshop')) {
+           
             foreach ($request['workshop'] as $value) {
                 $workshop = Workshop::create([
                     "name" => $value['name'],
@@ -225,7 +244,7 @@ class EventsController extends Controller
                     "is_realtime" => 1
                 ]);
                 if ($survey->is_realtime == 1) {
-                    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+                    $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
                     $firebase = (new Factory)
                         ->withServiceAccount($serviceAccount)
                         ->withDatabaseUri('https://tabibevent.firebaseio.com/')
@@ -273,7 +292,15 @@ class EventsController extends Controller
                 $database->getReference()
                     ->update($updates);
             }
-        }
+       }
+    }  
+    catch(Exception $ex)
+    {
+        Event::destroy($event->id);
+        Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Error while adding Event!', 'حدث خطأ اثناء اضافه الحدث');
+        return redirect()->back();
+    }  
+      
 
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event added successfully!', ' تم إضافة الحدث بنجاح');
         return redirect('/events/index');
@@ -320,9 +347,9 @@ class EventsController extends Controller
         return view('events::events.edit', $data);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $event = Event::find($id);
+        $event = Event::find($request->id);
 
         // Transactions used to rollback if one of the relations faild to be deleted, then it will rollback.
         if ($event != null) {
@@ -339,14 +366,16 @@ class EventsController extends Controller
                 DB::commit();
             } catch (Exception $exp) {
                 DB::rollback();
+                return response()->json(['error' => 'Error', 'msg' => 'Error!']);
             }
         }
 
+        return response()->json(['success' => 'Success', 'msg' => 'deleted successfully!']);
     }
 
-    public function destroy_all()
+    public function destroy_all(Request $request)
     {
-        $ids = $_POST['ids'];
+        $ids = $request->ids;
         foreach ($ids as $id) {
             $event = Event::find($id);
 
@@ -365,9 +394,12 @@ class EventsController extends Controller
                     DB::commit();
                 } catch (Exception $exp) {
                     DB::rollback();
+                    return response()->json(['error' => 'Error', 'msg' => 'Error!']);
                 }
             }
         }
+
+        return response()->json(['success' => 'Success', 'msg' => 'deleted successfully!']);
     }
 
     public function filter(Request $request)
@@ -421,7 +453,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
             'event.description' => 'required|min:2|max:250',
@@ -436,8 +468,10 @@ class EventsController extends Controller
         ]);
         if ($validation->fails()) {
             // change below as required
+            dd($validation->messages());
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
+        // dd($request->all());
         $event = Event::find($id);
         if (isset($request['event']['image'])) {
             $destinationPath = 'event_images';
@@ -452,26 +486,35 @@ class EventsController extends Controller
         } else {
             $active = 0;
         }
+try{
+    $event->update([
+        "name" => $request['event']['name'],
+        "description" => $request['event']['description'],
+        "image" => $fileNameToStore,
+        "venue" => $request['event']['place'],
+        "latitude" => $request->lat,
+        "longtuide" => $request->lng,
+        "address" => $request['event']['place'],
+        "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
+        "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
+        "is_paid" => $request['event']['ticket'],
+        "mobile" => $request['event']['mobile'],
+        "email" => $request['event']['email'],
+        "website" => $request['event']['website'],
+        "code" => $request['event']['code'],
+        "is_active" => $active,
+        "created_by" => \Auth::id(),
+        "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
+    ]);
+}
+catch (Exception $ex)
+{
+    Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Event not updated !', ' تعديل الحدث  حدث خطأ ');
 
-        $event->update([
-            "name" => $request['event']['name'],
-            "description" => $request['event']['description'],
-            "image" => $fileNameToStore,
-            "venue" => $request['event']['place'],
-            "latitude" => $request->lat,
-            "longtuide" => $request->lng,
-            "address" => $request['event']['place'],
-            "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
-            "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
-            "is_paid" => $request['event']['ticket'],
-            "mobile" => $request['event']['mobile'],
-            "email" => $request['event']['email'],
-            "website" => $request['event']['website'],
-            "code" => $request['event']['code'],
-            "is_active" => $active,
-            "created_by" => \Auth::id(),
-            "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
-        ]);
+ return redirect()->back();
+}
+        
+        
         if ($event->use_ticketing_system == 1) {
             EventTicket::where('event_id', $event->id)->delete();
             EventTicket::create([
@@ -493,6 +536,7 @@ class EventsController extends Controller
                 ]);
             }
         }
+       
         if (isset($request['event']['images'])) {
             EventMedia::where('event_id', $event->id)->where('type', 1)->delete();
             foreach ($request['event']['images'] as $key => $file) {
@@ -533,6 +577,7 @@ class EventsController extends Controller
         }
 
         if (isset($request['workshop'])) {
+            
             $workshops = EventWorkshop::where('event_id', $event->id)->get();
             foreach ($workshops as $work) {
                 Workshop::destroy($work->work_shop_id);
@@ -637,7 +682,7 @@ class EventsController extends Controller
     }
     public function firebase()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-b5519e3c0e09.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->withDatabaseUri('https://tabibevent.firebaseio.com/')

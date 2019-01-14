@@ -23,8 +23,12 @@
     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
       <div class="full-table">
         <div class="filter__btns"><a class="filter-btn master-btn" href="#filter-users"><i class="fa fa-filter"></i>filters</a></div>
-        <div class="bottomActions__btns"><a class="master-btn btn-warning-cancel-all" href="#">@lang('keywords.deleteSelected')</a>
+        
+        {{-- delete selected --}}
+        <div class="bottomActions__btns">
+          <a class="master-btn btn-warning-cancel-all" href="#" onclick="delete_many('#dataTableTriggerId_001', '{{ route('events.destroy.all') }}')">@lang('keywords.deleteSelected')</a>
         </div>
+
         <div class="remodal" data-remodal-id="filter-users" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
           <form role="form"  method="post" action="{{route('events_filter')}}" accept-charset="utf-8">
             {{csrf_field()}}
@@ -113,7 +117,7 @@
             <tbody>
               @if ( isset($events) && !empty($events) )
               @foreach ($events as $event)
-              <tr>
+              <tr data-id="{{ $event->id }}">
                 <td><span class="cellcontent"></span></td>
                 <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                 <td><span class="cellcontent">{{ $event->name    ? : __('keywords.not') }}</span></td>
@@ -148,7 +152,7 @@
                     </a>
                     
                     {{-- Delete Event --}}
-                    <a href="#"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
+                    <a href="#" onclick="delete_single('{{$event->id }}', '{{ route('events.destroy') }}')"  class= "btn-warning-confirm action-btn bgcolor--fadebrown color--white deleteRecord">
                       <i class = "fa  fa-trash-o"></i>
                     </a>
                     
@@ -160,234 +164,14 @@
             </tbody>
           </table>
         </form>
-        <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-          <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
-          <div>
-            <h2 class="title">title of the changing log in</h2>
-            <div class="log-content">
-              <div class="log-container">
-                <table class="log-table">
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <th>log title</th>
-                    <th>user</th>
-                    <th>time</th>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                  </tr>
-                  <tr class="log-row" data-link="https://www.google.com.eg/">
-                    <td>February</td>
-                    <td>$80</td>
-                    <td>$80</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div><br>
 </div>
 @section('js')
 <script type="text/javascript">
-  $('.deleteRecord').click(function(){
-    var event_id = $(this).closest('tr').attr('data-event-id');
-    var _token = '{{csrf_token()}}';
-    swal({
-      title: "هل أنت متأكد؟",
-      text: "لن تستطيع إسترجاع هذه المعلومة لاحقا",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: 'نعم متأكد!',
-      cancelButtonText: "إلغاء",
-      closeOnConfirm: false,
-      closeOnCancel: false
-    },
-    function(isConfirm){
-      if (isConfirm){
-       $.ajax({
-         type:'POST',
-         url:'{{url('events_destroy')}}'+'/'+event_id,
-         data:{_token:_token},
-         success:function(data){
-          $('tr[data-event-id='+event_id+']').fadeOut();
-        }
-      });
-       swal("تم الحذف!", "تم الحذف بنجاح", "success");
-     } else {
-      swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
-    }
-  });
-  });
 
-  $('.btn-warning-cancel-all').click(function(){
-    var selectedIds = $("input:checkbox:checked").map(function(){
-      return $(this).closest('tr').attr('data-event-id');
-    }).get();
-    var _token = '{{csrf_token()}}';
-    swal({
-      title: "هل أنت متأكد؟",
-      text: "لن تستطيع إسترجاع هذه المعلومة لاحقا",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: 'نعم متأكد!',
-      cancelButtonText: "إلغاء",
-      closeOnConfirm: false,
-      closeOnCancel: false
-    },
-    function(isConfirm){
-      if (isConfirm){
-       $.ajax({
-         type:'POST',
-         url:'{{url('events_destroy_all')}}',
-         data:{ids:selectedIds,_token:_token},
-         success:function(data){
-          $.each( selectedIds, function( key, value ) {
-            $('tr[data-event-id='+value+']').fadeOut();
-          });
-        }
-      });
-       swal("تم الحذف!", "تم الحذف بنجاح", "success");
-     } else {
-      swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
-    }
-  });
-  });
 </script>
 @endsection            
 @endsection
