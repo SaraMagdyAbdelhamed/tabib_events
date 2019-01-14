@@ -88,7 +88,7 @@
                   <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email">
                   
                   @if ( $errors->has('email') )
-                    <span class="valid-label"></span><span class="master_message inherit">{{ $errors->first('email') }}</span>
+                    <span class="master_message inherit">{{ $errors->first('email') }}</span>
                   @endif
                 </div>
               </div>
@@ -257,7 +257,12 @@
                       <div class="file-select-name" id="noFile"></div>
                       <input class="chooseFile" type="file" name="user_photo" id="user_photo">
                     </div>
-                  </div><span class="master_message inherit">message content</span>
+                  </div>
+                  
+                  {{-- Validation Message --}}
+                  @if ( $errors->has('user_photo') )
+                    <span class="master_message inherit">{{ $errors->first('user_photo') }}</span>
+                  @endif
                 </div>
               </div>
 

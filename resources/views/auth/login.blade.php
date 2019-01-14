@@ -63,6 +63,8 @@
                     @endif
 
                     <input name="password" class="inherit inherit bradius--small inherit" type="password" placeholder="password" required>
+                    <div class="inherit hide-show show-me">Show</div>
+
                      @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>

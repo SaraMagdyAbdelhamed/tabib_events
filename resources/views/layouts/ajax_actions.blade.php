@@ -21,7 +21,6 @@
             swal({
                 title: "Are you sure you want to delete this record?!",
                 text: "You won'\t be able to retrieve this record.",
-                type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#281160',
                 confirmButtonText: 'Yes, delete it!',
@@ -40,7 +39,7 @@
                         },
                         success: function ()
                         {
-                            swal("{{ Session::get('locale') == 'en' ? 'Success' : 'تم بنجاح' }}", '{{ Session::get('success') }}', 'success');
+                            swal("{{ Session::get('locale') == 'en' ? 'Success' : 'تم بنجاح' }}", '{{ Session::get('success') }}');
                             table.rows('.selected').remove().draw( false );
                         },
                         error: function(response) {
@@ -48,7 +47,7 @@
                         }
                     });
                 } else {
-                swal("Canceled", "data still exists.", "error");
+                swal("Canceled", "data still exists.");
                 }
 
             });
@@ -66,7 +65,6 @@
         swal({
             title: "Are you sure?",
             text: "You will not be able to recover this record!",
-            type: "warning",
             showCancelButton: true,
             confirmButtonColor: '#281160',
             confirmButtonText: 'Yes, delete it!',
@@ -85,15 +83,15 @@
                     },
                     success: function ()
                     {
-                        swal("Deleted!", "Deleted Successfully!", "success");
+                        swal("Deleted!", "Deleted Successfully!");
                         $('tr[data-id='+id+']').fadeOut();
                     },
                     error: function(response) {
-                        swal('Error', response.msg, 'error');
+                        swal('Error', response.msg);
                     }
                 });
             } else {
-            swal("Canceled", "data still exists.", "error");
+            swal("Canceled", "data still exists.");
             }
 
         });
