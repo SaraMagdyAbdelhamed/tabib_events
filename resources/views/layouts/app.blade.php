@@ -43,7 +43,7 @@
               <div class="container"><span></span>
                 <button class="navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars  "></span></button>
                 <ul class="actionsbar moile-view hidden-lg hidden-md hidden-sm">
-                  <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i></a>
+                  <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i><span class="badge badge-default badge_style">7</span></a>
                     <ul class="dropdowny-menu" role="menu">
                       <li><a href="#">
                           <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
@@ -86,7 +86,7 @@
                   </li>
                   </ul>
                   <ul class="actionsbar desktop-view hidden-xs">
-                    <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i></a>
+                    <li class="dropdowny"><a class="nav-link dropdowny-toggle  " href="#"><i class="fa fa-bell"></i><span class="badge badge-default badge_style">7</span></a>
                       @if(App::isLocale("en"))
                         <ul class="dropdowny-menu" role="menu">
 
@@ -109,6 +109,60 @@
                         @endif --}}
                          </ul>
                       @endif
+                      <ul class="dropdowny-menu" role="menu">
+                        <li class="request"><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarsslorem ipsum dollar lorem ipsum dollarss lorem ipsum dollar lorem ipsum dollarss</p>
+                            <div class="pull-right">
+                              <button class="btn_2 btn_accept"><i class="fa fa-check"> Accept</i></button>
+                              <button class="btn_2 btn_reject"><i class="fa fa-close"> Reject</i></button>
+                            </div><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum dollarss</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                        <li><a href="#">
+                            <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
+                            <p class="text-left">lorem ipsum dollar lorem ipsum</p><span class="notification_date"><i class="fa fa-clock-o"></i>5/11/2015
+                              11:00:00AM</span></a></li>
+                      </ul>
                       <!-- <ul class="dropdowny-menu" role="menu">
                         <li><a href="#">
                             <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
