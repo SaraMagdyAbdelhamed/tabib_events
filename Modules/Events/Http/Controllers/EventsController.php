@@ -547,7 +547,7 @@ class EventsController extends Controller
             foreach($surveys as $sur)
             {
                 $database = self::firebase();
-                    
+                   
                     $database  ->getReference('surveys/'.$sur->firebase_id)
                                 ->remove();
                 SurveyQuestions::where('survey_id',$sur->id)->delete();
