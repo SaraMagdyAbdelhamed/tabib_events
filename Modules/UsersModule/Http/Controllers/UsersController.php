@@ -53,7 +53,7 @@ class UsersController extends Controller
 
         $data['users'] = Users::whereHas('rules', function ($q) use ($rule_names) {
             $q->whereIn('rules.id', $rule_names);
-        })->get();
+        })->orderBy('id', 'desc')->get();
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
         $data['rules'] = Rules::whereIn('id', $rules)->get();
