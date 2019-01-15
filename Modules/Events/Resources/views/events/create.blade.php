@@ -906,26 +906,26 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
-                                <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]">
+                                <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]" required>
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc') </label>
-                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]"></textarea>
+                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]" required></textarea>
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace')</label>
-                                <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]">
+                                <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]" required>
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label" for="workshop${next_count}_start_date">@lang('keywords.workshopStartDate')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="datepicker master_input" type="text" placeholder="start date"  id="workshop${next_count}_start_date" name="workshop[${next_count}][start_date]">
+                                  <input class="datepicker master_input" type="text" placeholder="start date"  id="workshop${next_count}_start_date" name="workshop[${next_count}][start_date]" required>
                                 </div>
                               </div>
                             </div>
@@ -933,7 +933,7 @@
                               <div class="master_field">
                                 <label class="master_label" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]">
+                                  <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]" required>
                                 </div>
                               </div>
                             </div>
@@ -941,7 +941,7 @@
                               <div class="master_field">
                                 <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]">
+                                  <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]" required>
                                 </div>
                               </div>
                             </div>
@@ -949,7 +949,7 @@
                               <div class="master_field">
                                 <label class="master_label" for="end_time">@lang('keywords.workshopEndTime')</label>
                                 <div class="bootstrap-timepicker">
-                                  <input class="timepicker master_input" type="text" placeholder="end time" Required id="end_time" name="workshop[${next_count}][end_time]">
+                                  <input class="timepicker master_input" type="text" placeholder="end time" Required id="end_time" name="workshop[${next_count}][end_time]" required>
                                 </div>
                               </div>
                               </div>
