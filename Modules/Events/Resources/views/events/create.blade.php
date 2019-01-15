@@ -535,6 +535,11 @@
                               </div>
                             </div>
                           </div>
+                          
+                          {{-- base64 images --}}
+                          {{ --EventImages--
+<inputtype="hidden"name="event_images_base64"id="event_images_base64"/>
+ }}
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
@@ -552,6 +557,7 @@
 
           </div>
         </fieldset>
+
       </form>
     </div>
   </div><br>
@@ -788,11 +794,22 @@
               },
                   onFinishing: function (event, currentIndex)
                   {
+                    /** base64 images procidures **/
+                    // add base64 images to an input
+                    var event_images = '';
+                    var base64_input = '#event_images_base64';
 
+                    // get Event images
+                    for(i=0; i<listAr.length; i++) {
+                      event_images += '-' + listAr[i].image;
+                    }
 
-                      var form = $(this);
+                    // assign concatinated base64 images to this input
+                    $(base64_input).val(event_images);
 
-                      form.submit();
+                    // submit form
+                    var form = $(this);
+                    form.submit();
                   },
                   onFinished: function (event, currentIndex) {
 

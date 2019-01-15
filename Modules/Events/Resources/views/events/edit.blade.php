@@ -29,8 +29,10 @@
                       <li id="surveys">@lang('keywords.survey') </li>
                       <li id="media">@lang('keywords.media')</li>
                     </ul>
-                     <form action="{{ route('events.update',$event->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+
+                  <form action="{{ route('events.update',$event->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
                     {{csrf_field()}}
+
                     <ul class="tab__content">
                    
                       <li class="tab__content_item active" id="info-content">
@@ -605,16 +607,22 @@
                           </div>
                         </div>
                         </div>
+
+                        {{-- --EventImages-- --}}
+                        <input type="hidden"name="event_images_base64"id="event_images_base64"/>
+
                       </li>
                       <div class="div" style="text-align:end;">
                         <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                         </button>
-                       <a href="{{ route('events') }}"> <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
-                        </button></a>
+                        <a href="{{ route('events') }}"> <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+                          </button>
+                        </a>
                       </div>
                       
                     </ul>
-                    </form>
+                  </form>
+
                   </div>
                 </div>
                 <div class="clearfix"></div>
