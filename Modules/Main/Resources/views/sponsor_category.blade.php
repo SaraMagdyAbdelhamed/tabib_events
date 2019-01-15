@@ -44,7 +44,8 @@
                             <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                             <td>
                               <span class="cellcontent">
-                                {{ \App::isLocale('en') ? $event->name : Helper::localization('sponsor_categories', 'name', $event->id, 2)  }}
+                                
+                                {{$event->nameMultilang}}
                               </span>
                             </td>
                             <td>
