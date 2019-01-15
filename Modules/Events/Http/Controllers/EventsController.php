@@ -485,6 +485,8 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $logo = '';
+        $images_logo = explode('-', $request->event_images_base64);
         $images_en = explode('-', $request->event_images_base64);
 
         $validation = Validator::make($request->all(), [
@@ -504,14 +506,48 @@ class EventsController extends Controller
             dd($validation->messages());
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
-        // dd($request->all());
+
         $event = Event::find($id);
-        if (isset($request['event']['image'])) {
-            $destinationPath = 'event_images';
-            $fileNameToStore = $destinationPath . '/' . time() . rand(111, 999) . '.' . $request['event']['image']->getClientOriginalExtension();
-        // dd($fileNameToStore);
-            Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        
+        // convert base64 images into normal images
+        // update English images.
+        if (count($images_logo) > 0) {
+            // add new images
+            foreach ($images_logo as $image) {
+                // check if image exist
+                if (strpos($image, 'event_images') !== false) { 
+                    // search for its name
+                    preg_match('/events\/english\/(.*)/', $image, $match);
+
+                    if (count($match) > 0) {
+                        $name = $match[0];
+
+                        $logo = $image;
+                    }
+
+                }
+                // check if image is new
+                if (strpos($image, 'base64') !== false) {
+                    // get image extension
+                    preg_match('/image\/(.*)\;/', $image, $match);
+
+                    if (count($match) > 0) {
+                        $ext = $match[1];
+                        $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
+                        $image = str_replace(' ', '+', $image);
+                        $imageName = 'event_images/' . time() . rand(1111, 9999) . '.' . $ext;
+                        // dd([$imageName, $image]);
+                        \File::put(public_path() . '/' . $imageName, base64_decode($image));
+
+                        $logo = $imageName;
+
+                    }
+                }
+            }
+
         }
+
+
         $fileNameToStore = $event->image;
 
         if (isset($request['event']['active'])) {
@@ -523,7 +559,7 @@ class EventsController extends Controller
             $event->update([
                 "name" => $request['event']['name'],
                 "description" => $request['event']['description'],
-                "image" => $fileNameToStore,
+                "image" => $logo,
                 "venue" => $request['event']['place'],
                 "latitude" => $request->lat,
                 "longtuide" => $request->lng,
@@ -545,6 +581,56 @@ class EventsController extends Controller
             return redirect()->back();
         }
 
+        $event->media()->delete();
+
+        // convert base64 images into normal images
+        // update English images.
+        if (count($images_en) > 0) {
+            // add new images
+
+            foreach ($images_en as $image) {
+                // check if image exist
+                if (strpos($image, 'event_images') !== false) { 
+                    // search for its name
+                    preg_match('/events\/english\/(.*)/', $image, $match);
+
+                    if (count($match) > 0) {
+                        $name = $match[0];
+
+
+                        EventMedia::create([
+                            "event_id" => $event->id,
+                            "link" => $name,
+                            "type" => 1
+                        ]);
+                    }
+
+                }
+                // check if image is new
+                if (strpos($image, 'base64') !== false) {
+                    // get image extension
+                    preg_match('/image\/(.*)\;/', $image, $match);
+
+                    if (count($match) > 0) {
+                        $ext = $match[1];
+                        $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
+                        $image = str_replace(' ', '+', $image);
+                        $imageName = 'event_images/' . time() . rand(1111, 9999) . '.' . $ext;
+                        // dd([$imageName, $image]);
+                        \File::put(public_path() . '/' . $imageName, base64_decode($image));
+
+
+                        EventMedia::create([
+                            "event_id" => $event->id,
+                            "link" => $imageName,
+                            "type" => 1
+                        ]);
+
+                    }
+                }
+            }
+
+        }
 
         if ($event->use_ticketing_system == 1) {
             EventTicket::where('event_id', $event->id)->delete();
@@ -578,51 +664,6 @@ class EventsController extends Controller
             }
         }
 
-            // convert base64 images into normal images
-            // update English images.
-        if (count($images_en) > 0) {
-                // add new images
-            foreach ($images_en as $image) {
-                    // check if image exist
-                if (strpos($image, 'event_images') !== false) { 
-                        // search for its name
-                    preg_match('/events\/english\/(.*)/', $image, $match);
-
-                    if (count($match) > 0) {
-                        $name = $match[0];
-
-                        EventMedia::create([
-                            "event_id" => $event->id,
-                            "link" => $name,
-                            "type" => 1
-                        ]);
-                    }
-
-                }
-                    // check if image is new
-                if (strpos($image, 'base64') !== false) {
-                        // get image extension
-                    preg_match('/image\/(.*)\;/', $image, $match);
-
-                    if (count($match) > 0) {
-                        $ext = $match[1];
-                        $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
-                        $image = str_replace(' ', '+', $image);
-                        $imageName = 'event_images/' . time() . rand(1111, 9999) . '.' . $ext;
-                            // dd([$imageName, $image]);
-                        \File::put(public_path() . '/' . $imageName, base64_decode($image));
-
-                        EventMedia::create([
-                            "event_id" => $event->id,
-                            "link" => $imageName,
-                            "type" => 1
-                        ]);
-
-                    }
-                }
-            }
-
-        }
 
         foreach ($request['event']['category'] as $category) {
             EventCategory::where('event_id', $event->id)->delete();

@@ -537,9 +537,9 @@
                           </div>
                           
                           {{-- base64 images --}}
-                          {{ --EventImages--
-<inputtype="hidden"name="event_images_base64"id="event_images_base64"/>
- }}
+                          {{-- {{ --EventImages-- --}}
+                          <input type="hidden"name="event_images_base64"id="event_images_base64"/>
+                          
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">

@@ -30,7 +30,7 @@
                       <li id="media">@lang('keywords.media')</li>
                     </ul>
 
-                  <form action="{{ route('events.update',$event->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                  <form action="{{ route('events.update',$event->id) }}" method="post" enctype="multipart/form-data" accept-charset="utf-8" id="edit_form">
                     {{csrf_field()}}
 
                     <ul class="tab__content">
@@ -609,11 +609,12 @@
                         </div>
 
                         {{-- --EventImages-- --}}
+                        <input type="hidden"name="event_logo_base64"id="event_logo_base64"/>
                         <input type="hidden"name="event_images_base64"id="event_images_base64"/>
 
                       </li>
                       <div class="div" style="text-align:end;">
-                        <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
+                        <button id="save_btn" class="master-btn   undefined bgcolor--main  bshadow--0" type="button"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                         </button>
                         <a href="{{ route('events') }}"> <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                           </button>
@@ -638,6 +639,8 @@
       var check = false;
       var img;
       var reader=new FileReader();
+
+    
 
     function closebtn(index,value){
         if(value==1){
@@ -800,23 +803,22 @@
     
 
     function get_images(){
-      eventImgList.push({
-                                'name': 'test1',
-                                'size': '25',
-                                'image': '../../../img/avaters/male.jpg',
-                                'id':'55'
-      },
-      {
-                                'name': 'test1',
-                                'size': '25',
-                                'image': '../../../img/avaters/female.jpg',
-                                'id':'25',
-      }
-      )
+      //get  images from database
+      @if( count($event_images) > 0 )
+        @foreach($event_images as $image)
+        eventImgList.push({
+            'name': '{{ ++$loop->index }}',
+            'size': '',
+            'image': '{{ asset($image->link) }}',
+            'id': '{{ $image->id }}'
+          });
+        @endforeach
+      @endif 
+        
       eventImg.push({
                                 'name': 'test1',
                                 'size': '25',
-                                'image': '../../../img/avaters/male.jpg',
+                                'image': '{{ asset($event->image) }}',
                                 'id':'55'
       },
       
@@ -1248,4 +1250,29 @@ var event_long;
       
       });
     </script>
+
+  <script>
+    $("#save_btn").click(function() {
+      /** base64 images procidures **/
+      // add base64 images to an input
+      var event_logo   = '';
+      var event_images = '';
+      var base64_logo  = "#event_logo_base64";
+      var base64_input = '#event_images_base64';
+
+      // get Event logo
+      event_logo = eventImg[0].image;
+
+      // get Event images
+      for(i=0; i<eventImgList.length; i++) {
+        event_images += '-' + eventImgList[i].image;
+      }
+
+      // assign concatinated base64 images to this input
+      $(base64_logo).val(event_logo);
+      $(base64_input).val(event_images);
+
+      $("#edit_form").submit();
+    });
+  </script>
 @endsection
