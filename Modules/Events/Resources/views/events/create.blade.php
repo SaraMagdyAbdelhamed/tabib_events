@@ -342,7 +342,7 @@
 
                       <h3>@lang('keywords.workshop')</h3>
                       <fieldset>
-                        <div class="row">
+                        <!-- <div class="row">
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
                               <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
@@ -420,7 +420,7 @@
 
 
 
-                        </div>
+                        </div> -->
                         <div id="more_workshop"></div>
                         <div class="col-sm-12 col-xs-12">
                           <button class="btn-block master-btn bgcolor--gray_mm" id="add_more_btn" type="button"><i class="fa fa-plus color--main"></i><span class="color--main">Add more</span></button>
@@ -452,7 +452,7 @@
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
-                              <label class="master_label " for="survey_answer1">@lang('keywords.Squestion')</label>
+                              <label class="master_label " for="survey_answer1">@lang('keywords.answer')1</label>
                               <input class="master_input" type="text" maxlength="100" id="survey_answer1" name="survey[0][question][0][answer][0]" require >
                             </div>
                           </div>
@@ -900,8 +900,7 @@
         var next_count=0;
         $("#add_more_btn").on('click',function(){
 
-          next_count= current_count+1;
-          current_count +=1;
+          
           $("#more_workshop").append(`<div><p style="text-align: center;background-color: #1ca6c0;color: azure;"> @lang('keywords.workshop') ${next_count}</p></div>
                           <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -982,7 +981,8 @@
 
           $(".select2").select2();
           dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
-
+          next_count= current_count+1;
+          current_count +=1;
         })
       })
     </script>
