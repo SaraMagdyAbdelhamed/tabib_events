@@ -130,7 +130,7 @@ class UsersController extends Controller
     /** Show insert form */
     public function backend_create()
     {
-        $data['userTypes'] = Rules::whereNotIn('id', [1])->get();
+        $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
