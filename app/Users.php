@@ -95,7 +95,7 @@ class Users extends Authenticatable
 
     public function CurrentRule()
     {
-        return \App::isLocale('en') ? $this->rules[0]->name : \Helper::localization('rules', 'name', $this->rules[0]->id, 2);
+        return  $this->rules[0]->nameMultilang;
     }
 
     public function IsBackEndUser()

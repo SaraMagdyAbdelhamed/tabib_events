@@ -293,6 +293,8 @@
             </div>
           </div><br>
         </li>
+
+        <!--my list hhhhh-->
         <li class="tab__content_item" id="general_list-content">
           <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="full-table">
@@ -624,19 +626,26 @@
             </div>
           </div><br>
         </li>
+        
         <li class="tab__content_item" id="my_list-content">
           <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="full-table">
               {{-- Filter Button --}}
-              <div class="filter__btns">
-                <a class="filter-btn master-btn filterBtn" data-id="3" href="#filter-users"><i class="fa fa-filter"></i>@lang('keywords.filter')</a>
+              <div class="filter__btns" style="position: absolute;right: 0;top: 30px;padding-right: 4px;">
+                <a class="filter-btn master-btn filterBtn" data-id="3" href="#filter-users">
+                <i class="fa fa-filter"></i>@lang('keywords.filter')</a>
               </div>
 
               {{-- Delete Selected Button --}}
-              <div class="bottomActions__btns">
+              <div class="bottomActions__btns" style=" position: absolute;bottom: 29px;"> 
                 <a data-id="#dataTableTriggerId_003" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected"
                   href="#">@lang('keywords.deleteSelected')</a>
               </div>
+
+
+             
+
+              
               <form id="dataTableTriggerId_003_form">
 
                 {{-- My List --}}
@@ -1168,6 +1177,19 @@
     });
   });
 
+</script>
+<script>
+  function selectTab(id){
+    $(".tabs").children().removeClass('active');
+    $(".tab__content").children().removeClass('active');
+
+    $("#"+id).addClass('active')
+    $("#"+id+"-content").addClass('active')
+    
+  }
+  $(function(){
+    // selectTab('my_list')
+  })
 </script>
 @endsection
 
