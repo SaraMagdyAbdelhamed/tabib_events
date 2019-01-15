@@ -418,6 +418,7 @@
         'selectUserType'=> 'Select a User Type',
         'selectSponsorCategory' => 'Select a Sponsor Category',
         'surveys'       => 'Surveys',
+        'activate' => 'Activate'
     ];
 
 ?>

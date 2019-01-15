@@ -997,7 +997,8 @@
           $(".timepicker").timepicker({showInputs: false});
 
           $(".select2").select2();
-          dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
+          // dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
+          dateRange_2(`workshop${next_count}_start_date`,`workshop${next_count}_end_date`)
           next_count= current_count+1;
           current_count +=1;
         })

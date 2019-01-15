@@ -231,7 +231,7 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="checkboxrobo">
                         <input type="checkbox" id="activation" checked="true" name="activation" value="1">
-                        <label for="activation">@lang('keywords.Activate')</label>
+                        <label for="activation">@lang('keywords.activate')</label>
                     </div>
                     </div>
                 </div>

@@ -105,11 +105,13 @@
           
           {{-- List all users --}}
           @if(count($users) > 0)
+           <?php $i=0; ?>
             @foreach($users as $user)
               @if (!$user->isSuperAdmin())
+              <?php $i++; ?>
                 <tr data-id="{{$user->id}}">
                   <td><span data-id="{{ $user->id }}" class="cellcontent"></span></td>
-                  <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
+                  <td><span class="cellcontent">{{$i}}</span></td>
                   <td><span class="cellcontent">{{$user->username}}</span></td>
                   <td><span class="cellcontent">{{$user->email}}</span></td>
                   <td><span class="cellcontent">{{$user->mobile}}</span></td>

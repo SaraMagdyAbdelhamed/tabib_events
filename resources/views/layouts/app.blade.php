@@ -287,7 +287,7 @@
               "infoFiltered":   "(filtered from _MAX_ total entries)",
               "loadingRecords": "جارى التحميل...",
               "processing":     "جارى المعالجة...",
-              "zeroRecords":    "لا توجد نتائج مطابخة",
+              "zeroRecords":    "لا توجد نتائج مطابقه",
               "paginate": {
                 "first":      "الاول",
                 "last":       "الاخير",

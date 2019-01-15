@@ -35,6 +35,7 @@ use Session;
 use Illuminate\Support\Facades\DB;
 use App\Countries;
 use Helper;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
@@ -44,6 +45,7 @@ class EventsController extends Controller
      */
     public function index()
     {
+        // dd(Auth::user());
         $data['events'] = Event::all();
         $data['categories'] = Category::all();
 
