@@ -1154,11 +1154,8 @@
                            </div>
                             <div id="more_question_${next_count_survey}"></div>
                            <div style="text-align:end">
-                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i></button>
-                            <div class="checkboxrobo pull-right">
-                              <input type="checkbox" id="activation_${next_count_survey}" name="activation_${next_count_survey}" checked="true">
-                              <label for="activation_${next_count_survey}">@lang('keywords.Active')</label>
-                            </div>
+                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main">Add Question</i></button>
+                            
                             </div>
                            <br>
                            `

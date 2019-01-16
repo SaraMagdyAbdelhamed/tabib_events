@@ -42,7 +42,7 @@
                         <div class="master_field">
                           <label class="master_label mandatory" for="offer_category">@lang('keywords.Doctors')</label>
                           <select class="master_input" id="offer_category" name="doctors" required>
-                          <option selected disabled>choose type</option>
+                          {{-- <option selected disabled>choose type</option> --}}
                             <option value="1">All doctors</option>
                             <option value="2">General list doctors</option>
                             <option value="3">My list doctors</option>
