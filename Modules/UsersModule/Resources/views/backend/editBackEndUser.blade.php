@@ -59,17 +59,11 @@
               {{-- User Name --}}
               <div class="col-md-3 col-sm-2 col-xs-12">
                 <div class="master_field">
-<<<<<<< HEAD
                   <label class="master_label mandatory" for="username">@lang('keywords.FullName')</label>
                 <input class="master_input" value="{{$user->first_name}}" type="text" maxlength="40" id="username" name="fullname" required>
                   
                   @if ( $errors->has('fullname') )                      
-=======
-                  <label class="master_label" for="username">@lang('keywords.FullName')</label>
-                <input class="master_input" value="{{$user->first_name}}" type="text" maxlength="40" id="username" name="fullname">
 
-                  @if ( $errors->has('fullname') )
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                     <span class="master_message inherit">{{ $errors->first('fullname') }}</span>
                   @endif
 
@@ -79,15 +73,10 @@
               {{-- Username --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-<<<<<<< HEAD
                   <label class="master_label mandatory" for="login_username">@lang('keywords.UserName')</label>
                   <input class="master_input" value="{{$user->username}}" type="text" maxlength="20" id="login_username" name="username" required>
                   
-=======
-                  <label class="master_label" for="login_username">@lang('keywords.UserName')</label>
-                  <input class="master_input" value="{{$user->username}}" type="text" maxlength="20" id="login_username" name="username">
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                   @if ( $errors->has('username') )
                     <span class="master_message inherit">{{ $errors->first('username') }}</span>
                   @endif
@@ -97,15 +86,10 @@
               {{-- Email --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-<<<<<<< HEAD
                   <label class="master_label mandatory" for="user_email">@lang('keywords.email')</label>
                   <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email" required>
                   
-=======
-                  <label class="master_label" for="user_email">@lang('keywords.email')</label>
-                  <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email">
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                   @if ( $errors->has('email') )
                     <span class="master_message inherit">{{ $errors->first('email') }}</span>
                   @endif
@@ -155,15 +139,10 @@
               <div id="sponsor_section">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
-<<<<<<< HEAD
                     <label class="master_label mandatory" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
                     <select class="master_input select2" id="sponsor_category" 
                       multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]" required>
-=======
-                    <label class="master_label" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
-                    <select class="master_input select2" id="sponsor_category"
-                      multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
+
 
                       {{-- List all options --}}
                       @if ( isset($sponsorCategories) && !empty($sponsorCategories) )

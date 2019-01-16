@@ -72,12 +72,7 @@
 
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="form_">
-<<<<<<< HEAD
             <form id="addNewDr" action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
-=======
-
-            <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                 {{ csrf_field() }}
 
                 <div class="row">
@@ -218,36 +213,8 @@
                         @endif
                     </div>
                     </div>
-<<<<<<< HEAD
                    
                   
-=======
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
-                        <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;">
-                            <option selected disabled>-- @lang('keywords.selectSpec') --</option>
-
-                            @if (isset($specs) && !empty($specs))
-                                @foreach ($specs as $spec)
-                                    <option value="{{ $spec->id }}">{{ $spec->name }}</option>
-                                @endforeach
-                            @endif
-
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label" for="doctor_password">@lang('keywords.Password')</label>
-                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
-                        <div class="hide-show show-me">Show</div>
-                        @if ( $errors->has('password') )
-                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
-                        @endif
-                    </div>
-                    </div>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -299,61 +266,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-=======
-
-
-<script type="text/javascript">
-    var listimg = [];
-
-    //close_btn_in image
-    function closebtn(index){
-        listimg.splice(index,1);
-        $("#img_list_item").empty();
-        $("#img_dr_").show();
-      }
-   //display image
-        updateList = function () {
-            let input = document.getElementById('file-1');
-            let output = document.getElementById('fileList');
-            let files1 = input.files;
-
-                if (window.File && window.FileList && window.FileReader) {
-
-                    for (var i = 0; i < files1.length; i++) {
-                        var file = files1[i];
-                        var imgReader = new FileReader();
-                        imgReader.addEventListener("load", function (event) {
-                            var imgFile = event.target;
-                            listimg.push({
-
-                                'index': listimg.length,
-                                'image': imgFile.result
-                            });
-                            output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                            for (var i = 0; i < listimg.length; i++) {
-                                output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
-                                <span class="uploader__file-list__button"></span>
-                                <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
-                                </a></span>
-                                <span class="uploader__file-list__text"></span>
-                                <span class="uploader__file-list__thumbnail">
-                                <img class="thumbnail"  src="${listimg[i].image}"></span>
-                                </li>`;
-                            }
-                            output.innerHTML += '</ul>';
-
-                        });
-
-                        //Read the image
-                        imgReader.readAsDataURL(file);
-                        $("#file-1")[i].value='';
-                    }
-                }
-                 $("#img_dr_").hide();
-        }
-</script>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
 
 <script type="text/javascript">
     $(document).ready(function(){
