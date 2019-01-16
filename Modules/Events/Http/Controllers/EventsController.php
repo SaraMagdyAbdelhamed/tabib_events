@@ -241,16 +241,29 @@ class EventsController extends Controller
 
             if ($request->has('workshop')) {
 
-                foreach ($request['workshop'] as $value) {
-                    $workshop = Workshop::create([
-                        "name" => $value['name'],
-                        "description" => $value['description'],
-                        "venue" => $value['place'],
-                        "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
-                        "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
-                    ]);
+        if ($request->has('workshop')) {
+           
+            foreach ($request['workshop'] as $value) {
+                $workshop = Workshop::create([
+                    "name" => $value['name'],
+                    "description" => $value['description'],
+                    "venue" => $value['place'],
+                    "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
+                    "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
+                ]);
+                if(isset($value['doctor']))
+                {
                     foreach ($value['doctor'] as $doctor) {
                         WorkshopOwner::create([
+                            "workshop_id" => $workshop->id,
+                            "user_id" => $doctor
+                        ]);
+                    }
+                }
+                
+                if (isset($value['special'])) {
+                    foreach ($value['special'] as $special) {
+                        WorkshopSpecialization::create([
                             "workshop_id" => $workshop->id,
                             "user_id" => $doctor
                         ]);
@@ -329,7 +342,10 @@ class EventsController extends Controller
                 }
             }
 
-        } catch (\Exception $ex) {
+        } 
+    }
+}
+        catch(\Exception $ex) {
             Event::destroy($event->id);
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Error while adding Event!', 'حدث خطأ اثناء اضافه الحدث');
             return redirect()->back();
@@ -577,7 +593,7 @@ class EventsController extends Controller
                 "created_by" => \Auth::id(),
                 "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
             ]);
-        } catch (Exception $ex) {
+        } catch(\Exception $ex) {
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Event not updated !', ' تعديل الحدث  حدث خطأ ');
 
             return redirect()->back();

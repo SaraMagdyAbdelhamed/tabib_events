@@ -134,6 +134,7 @@
         	$("#radbtn_3").prop('checked', false);
           $('.paid-details').fadeOut();
         });
+        $('#sub_8_4').addClass('pure-active');
       });
     </script>
 @endsection
