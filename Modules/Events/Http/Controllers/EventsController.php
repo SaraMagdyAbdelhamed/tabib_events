@@ -124,7 +124,7 @@ class EventsController extends Controller
                 "address" => $request['event']['place'],
                 "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
                 "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
-                "is_paid" => $request['event']['ticket'],
+                "is_paid" => 0,
                 "mobile" => $request['event']['mobile'],
                 "email" => $request['event']['email'],
                 "website" => $request['event']['website'],
@@ -134,15 +134,15 @@ class EventsController extends Controller
                 "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
             ]);
 
-            if ($event->use_ticketing_system == 1) {
-                EventTicket::create([
-                    "event_id" => $event->id,
-                    "price" => $request['event']['price'],
-                    "available_tickets" => $request['event']['available_tickets'],
-                    "current_available_tickets" => $request['event']['available_tickets'],
-                    "currency_id" => $request['event']['currency']
-                ]);
-            }
+            // if ($event->use_ticketing_system == 1) {
+            //     EventTicket::create([
+            //         "event_id" => $event->id,
+            //         "price" => $request['event']['price'],
+            //         "available_tickets" => $request['event']['available_tickets'],
+            //         "current_available_tickets" => $request['event']['available_tickets'],
+            //         "currency_id" => $request['event']['currency']
+            //     ]);
+            // }
 
             if (array_key_exists('youtube', $request['event'])) {
 
@@ -582,7 +582,7 @@ class EventsController extends Controller
                 "address" => $request['event']['place'],
                 "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
                 "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
-                "is_paid" => $request['event']['ticket'],
+                "is_paid" => 0,
                 "mobile" => $request['event']['mobile'],
                 "email" => $request['event']['email'],
                 "website" => $request['event']['website'],
@@ -648,16 +648,16 @@ class EventsController extends Controller
 
         }
 
-        if ($event->use_ticketing_system == 1) {
-            EventTicket::where('event_id', $event->id)->delete();
-            EventTicket::create([
-                "event_id" => $event->id,
-                "price" => $request['event']['price'],
-                "available_tickets" => $request['event']['available_tickets'],
-                "current_available_tickets" => $request['event']['available_tickets'],
-                "currency_id" => $request['event']['currency']
-            ]);
-        }
+        // if ($event->use_ticketing_system == 1) {
+        //     EventTicket::where('event_id', $event->id)->delete();
+        //     EventTicket::create([
+        //         "event_id" => $event->id,
+        //         "price" => $request['event']['price'],
+        //         "available_tickets" => $request['event']['available_tickets'],
+        //         "current_available_tickets" => $request['event']['available_tickets'],
+        //         "currency_id" => $request['event']['currency']
+        //     ]);
+        // }
 
         if (isset($request['event']['youtube'])) {
             EventMedia::where('event_id', $event->id)->where('type', 2)->delete();
