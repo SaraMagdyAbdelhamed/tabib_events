@@ -7,7 +7,7 @@
         <div class="add-mode">Adding mode</div>
         <div class="row">
             <div class="col-xs-12">
-            <div class="text-xs-center">         
+            <div class="text-xs-center">
                 <div class="text-wraper">
                 <h4 class="cover-inside-title">@lang('keywords.Doctors')</h4><i class="fa fa-chevron-circle-right"></i>
                 <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.generalList')</h4>
@@ -34,7 +34,7 @@
                 <label for="excel">@lang('keywords.fromExcel')</label>
                 </div>
             </div>
-            <div class="col-md-12 col-sm-12 col-xs-12"> 
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="radiorobo">
                 <input type="radio" id="form" name="add_user">
                 <label for="form">@lang('keywords.fromForm')</label>
@@ -54,7 +54,11 @@
                         <div class="file-select-name" id="noFile">اضغط لإدخال ملف اكسيل</div>
                         <input class="chooseFile" type="file" name="excel_file" id="excel_file_">
                     </div>
-                    </div><span class="master_message inherit">message content</span>
+                    </div>
+
+                    @if ( $errors->has('excel_file') )
+                        <span class="master_message inherit">{{ $errors->first('excel_file') }}</span>
+                    @endif
                 </div>
                 <div class="div" style="text-align:end;">
                     <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
@@ -63,7 +67,7 @@
                     </button>
                 </div>
             </form>
-            
+
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="form_">
             <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
@@ -77,8 +81,8 @@
                         </label>
                         <input class="master_input" type="text" maxlength="100" id="doctor_name" name="doctorName">
                         @if ( $errors->has('doctorName') )
-                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>    
-                        @endif                   
+                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -89,8 +93,8 @@
                         <input class="master_input" type="email" maxlength="35" id="doctor_email" name="doctorEmail">
                         <span class="valid-label"></span>
                         @if ( $errors->has('doctorEmail') )
-                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="row">
@@ -103,7 +107,7 @@
                             <select name="doctorTeleCode" class="master_input select2" style="width:100%;">
                                 <option disabled selected>-- @lang('keywords.selectTeleCode') --</option>
                                 @if (isset($countries) && !empty($countries))
-                                    @foreach ($countries as $country)   
+                                    @foreach ($countries as $country)
                                         @if ($country->tele_code)
                                             <option value="{{ $country->id }}" class="country">{{ '('. $country->tele_code .') ' . $country->name }}</option>
                                         @endif
@@ -117,8 +121,8 @@
                             <label class="master_label" for="doctor_mobile">@lang('keywords.mobile1')</label>
                             <input class="master_input" type="number" id="doctor_mobile" min="0" name="mobile1">
                             @if ( $errors->has('mobile1') )
-                            <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>
+                        @endif
                         </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -126,8 +130,8 @@
                             <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
                             <input class="master_input" type="number" id="doctor_mobile2" min="0" name="mobile2">
                             @if ( $errors->has('mobile2') )
-                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>    
-                            @endif 
+                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>
+                            @endif
                         </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -135,8 +139,8 @@
                             <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
                             <input class="master_input" type="number" id="doctor_mobile3" min="0" name="mobile3">
                             @if ( $errors->has('mobile3') )
-                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>    
-                            @endif 
+                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>
+                            @endif
                         </div>
                         </div>
                     </div>
@@ -178,8 +182,8 @@
                         <label class="master_label" for="doctor_address">@lang('keywords.address')</label>
                         <input class="master_input" type="text" id="doctor_address" name="doctorAddress">
                         @if ( $errors->has('doctorAddress') )
-                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -203,8 +207,8 @@
                         <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
                         <div class="hide-show show-me">Show</div>
                         @if ( $errors->has('password') )
-                            <span class="master_message inherit">{{ $errors->first('password') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -242,7 +246,7 @@
                     </button>
                 </div>
             </form>
-            
+
         </div>
         </div>
     </div>
@@ -250,7 +254,7 @@
 
 <script type="text/javascript">
     var listimg = [];
-   
+
     //close_btn_in image
     function closebtn(index){
         listimg.splice(index,1);
@@ -262,16 +266,16 @@
             let input = document.getElementById('file-1');
             let output = document.getElementById('fileList');
             let files1 = input.files;
-   
+
                 if (window.File && window.FileList && window.FileReader) {
-   
+
                     for (var i = 0; i < files1.length; i++) {
                         var file = files1[i];
                         var imgReader = new FileReader();
                         imgReader.addEventListener("load", function (event) {
                             var imgFile = event.target;
                             listimg.push({
-                                
+
                                 'index': listimg.length,
                                 'image': imgFile.result
                             });
@@ -287,9 +291,9 @@
                                 </li>`;
                             }
                             output.innerHTML += '</ul>';
-   
+
                         });
-   
+
                         //Read the image
                         imgReader.readAsDataURL(file);
                         $("#file-1")[i].value='';
@@ -299,7 +303,7 @@
         }
 </script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
     $(document).ready(function(){
 
         $("#form_").hide();
@@ -318,7 +322,7 @@
             $("#doctor_Region").attr('disabled',false)
         });
     })
-    
+
 </script>
 
 <script>
@@ -352,7 +356,7 @@
                                 // console.log(value[key].id +": "+ value[key].name);
                                 $("#doctor_city").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
-                            
+
                         });
                     }
                 });
@@ -382,10 +386,10 @@
                         // foreach response values, append options
                         $.each( response, function(key, value){
                             for(var key in value) {
-                                
+
                                 $("#doctor_Region").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
-                            
+
                         });
                     }
                 });
