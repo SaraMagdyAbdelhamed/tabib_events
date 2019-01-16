@@ -92,4 +92,11 @@
               </div>
             </div>
   </form>
+  <script>
+    $(document).ready(function() {
+
+      $('#sub_8_4').addClass('pure-active');
+
+    });
+</script>
 @endsection
