@@ -214,7 +214,7 @@
                                 <label for="file-1"><span>اختر صورة</span></label>
                             </div>
                             <ul  class="js-uploader__file-list uploader__file-list" id="img_list"padding-left:9%">
-                                <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
+                                <li class="js-uploader__file-list uploader__file-list" style="text-align: -webkit-right;"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
                             </ul>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12" id="activatioCol">
@@ -362,7 +362,7 @@
                                if($('html').attr('lang') == 'en'){
                                 output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
                                 for (var i = 0; i < listimg.length; i++) {
-                                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item" style="text-align: right;">
                                     <span class="uploader__file-list__button"></span>
                                     <span class="uploader__file-list__thumbnail">
                                     <img class="thumbnail"  src="${listimg[i].image}"></span>
