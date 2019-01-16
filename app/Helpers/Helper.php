@@ -299,7 +299,7 @@ class Helper
 
             // update optional fields
             if(count($opt_field) > 0) {
-                $newObject::update($opt_field);
+                $newObject->update($opt_field);
             }
 
             return $newObject->id;
