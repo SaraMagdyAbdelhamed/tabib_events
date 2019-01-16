@@ -65,11 +65,14 @@
                     </button>
                     <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                     </button>
+
+                    <button type="button" class="master-btn   undefined bgcolor--fadeorange  bshadow--0">@lang('keywords.downloadSample')</button>
                 </div>
             </form>
 
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="form_">
+
             <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
                 {{ csrf_field() }}
 
@@ -242,8 +245,9 @@
                 <div class="div" style="text-align:end;">
                     <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
                     </button>
-                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
+                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button" id="cancel_button"><i class="fa fa-close"></i><span>الغاء</span>
                     </button>
+
                 </div>
             </form>
 
@@ -251,6 +255,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script type="text/javascript">
     var listimg = [];

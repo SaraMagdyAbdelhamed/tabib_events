@@ -42,10 +42,10 @@ class UsersController extends Controller
     public function index_backend()
     {
         // dd(Auth::user());
-        // check current usere rule that based on it, filter backend-users will work as follows: 
+        // check current usere rule that based on it, filter backend-users will work as follows:
         if (Auth::user()->isSuperAdmin()) {
             $rule_names = [1, 4, 5, 6, 7];   // Current user is Super Admin, it will list Super Admins, Admins and data entry
-        } else if (Auth::user()->isAdmin()) {   
+        } else if (Auth::user()->isAdmin()) {
             $rule_names = [1, 4, 5, 6, 7];                   // Current user is Admin it will list Admins & Data entry only
         } else {
             $rule_names = [5, 6, 4];                           // else it will list data entry only
@@ -114,7 +114,7 @@ class UsersController extends Controller
         //             ->with('mobiles', $data['mobiles'])
         //             ->with('countries', $data['countries'])
         //             ->with('cities', $data['cities'])
-        //             ->with('age_ranges', $data['age_ranges']);   
+        //             ->with('age_ranges', $data['age_ranges']);
     }
 
 
@@ -174,7 +174,7 @@ class UsersController extends Controller
             $user->password = bcrypt($request->password);
             $user->mobile = $request->mobile;
             $user->is_active = $request->activation;
-            
+
 
             if ($request->hasFile('user_photo')) {
                 $destinationPath = 'backend_users';
@@ -243,13 +243,13 @@ class UsersController extends Controller
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
         $data['specs'] = DoctorSpecialization::all();
-
+// return $data;
         return view('usersmodule::backend.editBackEndUser', $data);
     }
 
     /**
      * Update User
-     * 
+     *
      *  */
     public function backend_update(Users $user, Request $request)
     {
@@ -306,7 +306,7 @@ class UsersController extends Controller
             if (isset($request->regions)) {
                 $user->sponsorRegions()->sync($request->regions);
             };
-            
+
             if (isset($request->specializations)) {
                 $user->sponsorSpecializations()->sync($request->specializations);
             };
