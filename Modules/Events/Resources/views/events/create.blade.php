@@ -235,13 +235,13 @@
             <div class="col-xs-12" style="text-align:end;">
               <label class="master_label mandatory">@lang('keywords.ticketPayment')</label>
               <div class="col-md-12 col-sm-12 col-xs-12"></div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-sm-12 col-xs-12" id="freeTicket">
                 <div class="radiorobo">
                   <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked="checked">
                   <label for="free_ticket">@lang('keywords.free')</label>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-sm-12 col-xs-12" id="paidTicket">
                 <div class="radiorobo">
                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1">
                   <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -1047,6 +1047,10 @@
           `)
         }
       $(document).ready(function(){
+       
+        if($('html').attr('lang')=='en'){
+            $("#freeTicket,#paidTicket").addClass('text-left')
+        }
        var current_count_question = 0;
        var next_count_question = 0;
        var current_count_survey = 0;
