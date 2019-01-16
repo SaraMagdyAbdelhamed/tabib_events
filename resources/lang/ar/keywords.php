@@ -415,7 +415,10 @@
         'selectUserType'=> 'من فضلك اختر صلاحية المستخدم',
         'selectSponsorCategory' => 'من فضلك اختر تصنيف الراعي',
         'surveys' => 'الدراسات الاستقصائية',
-        'downloadSample' => 'تحميل ملف الاكسيل',
+        'addquestion' => 'اضافة سؤال',
+        'addsurvey' => 'أضف دراسة',
+        'downloadSample' => 'تحميل ملف الاكسيل'
+
 	];
 
 
