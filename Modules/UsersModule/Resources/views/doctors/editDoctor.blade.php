@@ -7,7 +7,7 @@
         <div class="edit-mode">Edit mode</div>
         <div class="row">
             <div class="col-xs-12">
-            <div class="text-xs-center">         
+            <div class="text-xs-center">
                 <div class="text-wraper">
                 <h4 class="cover-inside-title">@lang('keywords.Doctors')</h4><i class="fa fa-chevron-circle-right"></i>
                 <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.generalList')</h4>
@@ -35,8 +35,8 @@
                         </label>
                         <input class="master_input" type="text" maxlength="100" id="doctor_name" name="doctorName" value="{{ $doctor->username ? : '' }}" required>
                         @if ( $errors->has('doctorName') )
-                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>    
-                        @endif                   
+                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>
+                        @endif
                     </div>
                     </div>
 
@@ -48,8 +48,8 @@
                         <input class="master_input" type="email" maxlength="35" id="doctor_email" name="doctorEmail" value="{{ $doctor->email ? : '' }}">
                         <span class="valid-label"></span>
                         @if ( $errors->has('doctorEmail') )
-                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-12">
@@ -90,7 +90,7 @@
                             <select name="doctorTeleCode" class="master_input select2" style="width:100%;" required>
                                 <option disabled selected>-- @lang('keywords.selectTeleCode') --</option>
                                 @if (isset($countries) && !empty($countries))
-                                    @foreach ($countries as $country)   
+                                    @foreach ($countries as $country)
                                         @if ($country->tele_code)
                                             <option value="{{ $country->id }}" {{ $country->id == $doctor->tele_code ? "selected" : "" }} class="country">
                                                 {{ '('. $country->tele_code .') ' . $country->name }}
@@ -106,8 +106,8 @@
                             <label class="master_label mandatory" for="doctor_mobile">@lang('keywords.mobile1')</label>
                             <input class="master_input" type="number" id="doctor_mobile" name="mobile1" value="{{ $doctor->mobile ? : '' }}" required>
                             @if ( $errors->has('mobile1') )
-                                <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>    
-                            @endif 
+                                <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>
+                            @endif
                         </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -115,8 +115,8 @@
                             <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
                             <input class="master_input" type="number" id="doctor_mobile2" name="mobile2" value="{{ $doctor->userInfo ? $doctor->userInfo->mobile2 : '' }}">
                             @if ( $errors->has('mobile2') )
-                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>    
-                            @endif 
+                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>
+                            @endif
                         </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -124,8 +124,8 @@
                             <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
                             <input class="master_input" type="number" id="doctor_mobile3" name="mobile3" value="{{ $doctor->userInfo ? $doctor->userInfo->mobile3 : '' }}">
                             @if ( $errors->has('mobile3') )
-                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>    
-                            @endif 
+                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>
+                            @endif
                         </div>
                         </div>
                     </div>
@@ -172,7 +172,7 @@
 
                             @if (isset($regions) && !empty($regions))
                                 @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}" {{ $region->city_id == $doctor->city->id ? "selected" : "" }}>
+                                    <option value="{{ $region->id }}" {{ $region->id == $doctor->userInfo->region->id ? "selected" : "" }}>
                                         {{ $region->name }}
                                     </option>
                                 @endforeach
@@ -188,11 +188,41 @@
                         <label class="master_label mandatory" for="doctor_address">@lang('keywords.address')</label>
                         <input class="master_input" type="text" id="doctor_address" name="doctorAddress" value="{{ $doctor->userInfo ? $doctor->userInfo->address : '' }}" required>
                         @if ( $errors->has('doctorAddress') )
-                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>
+                        @endif
                     </div>
                     </div>
+<<<<<<< HEAD
                     
+=======
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
+                        <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;">
+                            <option selected disabled>-- @lang('keywords.selectSpec') --</option>
+
+                            @if (isset($specs) && !empty($specs))
+                                @foreach ($specs as $spec)
+                                    <option value="{{ $spec->id }}" {{ $spec->id == $doctor->userInfo->specialization->id ? 'selected' : '' }}>
+                                        {{ $spec->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label" for="doctor_password">@lang('keywords.newPassword')</label>
+                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
+                        <div class="hide-show show-me">Show</div>
+                        @if ( $errors->has('password') )
+                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
+                        @endif
+                    </div>
+                    </div>
+>>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -231,12 +261,65 @@
                     </button>
                 </div>
             </form>
-            
+
         </div>
         </div>
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+    var listimg = [];
+
+    //close_btn_in image
+    function closebtn(index){
+        listimg.splice(index,1);
+        $("#img_list_item").empty();
+        $("#img_dr_").show();
+      }
+   //display image
+        updateList = function () {
+            let input = document.getElementById('file-1');
+            let output = document.getElementById('fileList');
+            let files1 = input.files;
+
+                if (window.File && window.FileList && window.FileReader) {
+
+                    for (var i = 0; i < files1.length; i++) {
+                        var file = files1[i];
+                        var imgReader = new FileReader();
+                        imgReader.addEventListener("load", function (event) {
+                            var imgFile = event.target;
+                            listimg.push({
+
+                                'index': listimg.length,
+                                'image': imgFile.result
+                            });
+                            output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                            for (var i = 0; i < listimg.length; i++) {
+                                output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                                <span class="uploader__file-list__button"></span>
+                                <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
+                                </a></span>
+                                <span class="uploader__file-list__text"></span>
+                                <span class="uploader__file-list__thumbnail">
+                                <img class="thumbnail"  src="${listimg[i].image}"></span>
+                                </li>`;
+                            }
+                            output.innerHTML += '</ul>';
+
+                        });
+
+                        //Read the image
+                        imgReader.readAsDataURL(file);
+                        $("#file-1")[i].value='';
+                    }
+                }
+                 $("#img_dr_").hide();
+        }
+</script>
+>>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
 
 
 <script>
@@ -270,7 +353,7 @@
                                 // console.log(value[key].id +": "+ value[key].name);
                                 $("#doctor_city").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
-                            
+
                         });
                     }
                 });
@@ -299,7 +382,7 @@
                             for(var key in value) {
                                 $("#doctor_Region").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
-                            
+
                         });
                     }
                 });

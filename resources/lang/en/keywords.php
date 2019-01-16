@@ -67,7 +67,7 @@
         'EditContact'   => 'Edit Contact Us',
         'EditEvent'     => 'Edit an Event',
         'EditUser' => 'Edit User',
-        
+
 
         //Users
         'Users' => 'Users',
@@ -94,8 +94,8 @@
         'generalList'    => 'General List',
         'myList'         => 'My List',
         'Doctors'        => 'Doctors',
-        
-        
+
+
         'UserType'  =>'User Type',
         'SelectGender'  =>'SelectGender',
         'Male'      =>'Male',
@@ -115,7 +115,7 @@
         'Active'    =>'Active',
         'Inactive'  =>'Inactive',
         'pleaseSetTheUserStatus'=>'please Set The User Status',
-		
+
 
 
 
@@ -145,8 +145,8 @@
         'added by'=>'Added by',
         'event information'=>'Event information',
 
-        
-		
+
+
         // Events Mobile
         'addfromMobile' => 'Added from mobile application',
         'Current' => 'Current',
@@ -257,7 +257,7 @@
         'link'=>'Youtube Link ',
         'surveyN'=>'Survey Number',
 
-        
+
         // Offers & Deals AND Famous Attractions
         'offers'    => 'Offers and Deals',
         'placeName' => 'Place Name',
@@ -282,7 +282,7 @@
         'startDate'=>'Start Date ',
         'endDate'=>'End Date ',
         'offerSponsor'=>'Offer Sponsor',
-		
+
         //Statistics
         'statistics'=>'Statistics',
         'Number of all users'=>'Number of all users',
@@ -376,7 +376,7 @@
         'age'=>'Age ',
         'gender'=>'Gender ',
         'notification text'=>'Notification text',
-        
+
         'male'=>'Male ',
         'female'=>'Female',
         'images'=>'Images',
@@ -394,8 +394,8 @@
         'branch_address'=>'Branch Address',
         'branch_start'=>'Start Time',
         'branch_end'=>'End Time',
-        
-        
+
+
         // New Keywords
         'Doctor'        => 'Doctor',
         'doctorName'    => 'Doctor Name',
@@ -418,7 +418,10 @@
         'selectUserType'=> 'Select a User Type',
         'selectSponsorCategory' => 'Select a Sponsor Category',
         'surveys'       => 'Surveys',
-        'activate' => 'Activate'
+        'activate' => 'Activate',
+        'downloadSample'    => 'Download Sample',
+        'addquestion' => 'Add Question',
+        'addsurvey' => 'Add Survey'
     ];
 
 ?>

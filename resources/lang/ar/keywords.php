@@ -1,5 +1,5 @@
 <?php
- 
+
     // keywords array
     return [
         // general names
@@ -97,12 +97,12 @@
         'Birthdate'=>'تاريخ الميلاد',
         'RegisterationDate'=>'تاريخ التسجيل',
         'Status'=>'الحالة',
-        
+
         'UserType'=>'نوع المستخدم',
         'SelectGender'=>'اختر النوع',
         'Male'=>'ذكر',
         'Female'=>'انثي',
-        
+
         'ApplyFilter'=>'فعل الفلتر',
         'Countries'=>'البلاد',
         'Cities'=>'المدن',
@@ -115,7 +115,7 @@
         'activate' => 'تفعيل',
         'Active'=>'مفعل',
         'Inactive'=>'غير مفعل',
-       
+
         'pleaseSetTheUserStatus'=>'من فضلك اضف حالة المستخدم',
 
 
@@ -147,7 +147,7 @@
         'events categories'=>'فئات الايفينت',
         'added by'=>'تم إضافته من قبل',
         'event information'=>'معلومات الايفينت',
-        
+
         //events
         'eventDescription'=>'وصف الحدث ',
         'eventPlace'=>'مكان الحدث ',
@@ -189,7 +189,7 @@
         'link'=>'رابط الفيديو',
         'surveyN'=>'دراسه رقم',
         'add new event'=>'إضافه ايفينت جديد ',
-        
+
         // Events Mobile
         'addfromMobile' => 'المضاف من التطبيق',
 		'Current' => 'الحالية',
@@ -274,7 +274,7 @@
         'number of all events that added by superAdmins'=>'العدد الكلى للايفنتات المضافة من قبل المسئولين',
         'sponsor report'=>'تقرير الراعي',
         'event report'=>'تقرير الايفينت',
-        
+
         //sponsor report
         'sponsor name'=>'اسم الراعي',
         'offer category'=>'فئه العرض',
@@ -310,7 +310,7 @@
         'offerCategory'=>'فئه العرض',
         'offerImage'=>'صوره العرض',
         'offerSponsor'=>'ممول العرض ',
-        
+
         'addNewOffer'=>'إضافه عروض واتفقايات جديده',
         'active'=>'تفعيل',
         'not active'=>'عدم تفعيل',
@@ -322,7 +322,7 @@
                     <b>تم حفظ الترتيب بنجاح</b>
                   </div>',
 		'bigevents_description'    => 'يتم من خلال هذه الشاشة تحديد الاحداث الهامة و التي ستعرض على تطبيق الهاتف كما يتم ترتيبها ، يتم اختيار بحد أقصى 5 أحداث هامة ',
-    
+
 	     'All Events'    => 'كل الاحداث',
 		'Suggested Events' => 'احداث  مقترحة كأحداث هامة',
 		'sort_list' => 'قائمة ترتيب الأحداث',
@@ -335,7 +335,7 @@
         'shop_photo'=>'صوره المحل',
         'shop_name'=>'اسم المحل ',
         'shop_phone'=>'تليفون ',
-        
+
         'shop_actions'=>'اكشنز',
         'add_new_shop'=>'أضافه محل او مطعم جديد',
         'delete_selected_shops'=>'حذف المحلات المحدده',
@@ -374,7 +374,7 @@
         'age'=>'السن ',
         'gender'=>'النوع ',
         'notification text'=>'نص الإشعار',
-        
+
         'male'=>'ذكر ',
         'female'=>'انثي',
         'images'=>'صور ',
@@ -415,6 +415,9 @@
         'selectUserType'=> 'من فضلك اختر صلاحية المستخدم',
         'selectSponsorCategory' => 'من فضلك اختر تصنيف الراعي',
         'surveys' => 'الدراسات الاستقصائية',
+        'addquestion' => 'اضافة سؤال',
+        'addsurvey' => 'أضف دراسة',
+        'downloadSample' => 'تحميل ملف الاكسيل'
 
 	];
 

@@ -11,6 +11,7 @@ class GeoRegion extends Model
     protected $table = 'geo_regions';
     protected $appends = ['name'];
     protected $fillable = ['name', 'city_id', 'application_id'];
+    public $timestamps = false;
 
     /** Relations **/
     public function userInfo() {

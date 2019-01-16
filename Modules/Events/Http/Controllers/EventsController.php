@@ -46,7 +46,7 @@ class EventsController extends Controller
     public function index()
     {
         // dd(Auth::user());
-        $data['events'] = Event::all();
+        $data['events'] = Event::orderBy('created_at','desc')->get();
         $data['categories'] = Category::all();
 
         return view('events::index', $data);
@@ -124,7 +124,7 @@ class EventsController extends Controller
                 "address" => $request['event']['place'],
                 "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
                 "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
-                "is_paid" => $request['event']['ticket'],
+                "is_paid" => 0,
                 "mobile" => $request['event']['mobile'],
                 "email" => $request['event']['email'],
                 "website" => $request['event']['website'],
@@ -134,15 +134,15 @@ class EventsController extends Controller
                 "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
             ]);
 
-            if ($event->use_ticketing_system == 1) {
-                EventTicket::create([
-                    "event_id" => $event->id,
-                    "price" => $request['event']['price'],
-                    "available_tickets" => $request['event']['available_tickets'],
-                    "current_available_tickets" => $request['event']['available_tickets'],
-                    "currency_id" => $request['event']['currency']
-                ]);
-            }
+            // if ($event->use_ticketing_system == 1) {
+            //     EventTicket::create([
+            //         "event_id" => $event->id,
+            //         "price" => $request['event']['price'],
+            //         "available_tickets" => $request['event']['available_tickets'],
+            //         "current_available_tickets" => $request['event']['available_tickets'],
+            //         "currency_id" => $request['event']['currency']
+            //     ]);
+            // }
 
             if (array_key_exists('youtube', $request['event'])) {
 
@@ -150,10 +150,10 @@ class EventsController extends Controller
                 foreach ($request['event']['youtube'] as $youtube) {
                     if ($youtube != null) {
                         if (strpos($youtube, 'youtube') == false) {
-                            Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
                             return redirect()->back();
                         } elseif (strpos($youtube, 'watch') == false) {
-                            Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
                             return redirect()->back();
                         }
                         str_replace("watch", "embed", $youtube);
@@ -241,95 +241,109 @@ class EventsController extends Controller
 
             if ($request->has('workshop')) {
 
-                foreach ($request['workshop'] as $value) {
-                    $workshop = Workshop::create([
-                        "name" => $value['name'],
-                        "description" => $value['description'],
-                        "venue" => $value['place'],
-                        "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
-                        "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
-                    ]);
+        
+           
+            foreach ($request['workshop'] as $value) {
+                $workshop = Workshop::create([
+                    "name" => $value['name'],
+                    "description" => $value['description'],
+                    "venue" => $value['place'],
+                    "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
+                    "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
+                ]);
+                if(isset($value['doctor']))
+                {
                     foreach ($value['doctor'] as $doctor) {
                         WorkshopOwner::create([
                             "workshop_id" => $workshop->id,
                             "user_id" => $doctor
                         ]);
                     }
-                    if (isset($value['special'])) {
-                        foreach ($value['special'] as $special) {
-                            WorkshopSpecialization::create([
-                                "workshop_id" => $workshop->id,
-                                "specialization_id" => $special
-                            ]);
-                        }
+                }
+                
+               
+                  
+                if (isset($value['special'])) {
+                    foreach ($value['special'] as $special) {
+                        WorkshopSpecialization::create([
+                            "workshop_id" => $workshop->id,
+                            "specialization_id" => $special
+                        ]);
                     }
+                }
 
                     EventWorkshop::create([
                         "event_id" => $event->id,
                         "work_shop_id" => $workshop->id
                     ]);
-                }
+                
             }
-
+        }
             if (isset($request['survey'])) {
                 foreach ($request['survey'] as $value) {
-                    $survey = Survey::create([
-                        "event_id" => $event->id,
-                        "name" => $value['name'],
-                        "is_realtime" => 1
-                    ]);
-                    if ($survey->is_realtime == 1) {
-                        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
-                        $firebase = (new Factory)
-                            ->withServiceAccount($serviceAccount)
-                            ->withDatabaseUri('https://tabibevent.firebaseio.com/')
-                            ->create();
-
-                        $database = $firebase->getDatabase();
-
-                        $newPost = $database
-                            ->getReference('surveys')
-                            ->push([
-                                'parent_id' => $event->id,
-                                'name' => $value['name'],
-                                'questions' => '',
-                                'id' => ''
+                    if($value['name'] != null)
+                    {
+                        $survey = Survey::create([
+                            "event_id" => $event->id,
+                            "name" => $value['name'],
+                            "is_realtime" => 1
+                        ]);
+                        if ($survey->is_realtime == 1) {
+                            $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
+                            $firebase = (new Factory)
+                                ->withServiceAccount($serviceAccount)
+                                ->withDatabaseUri('https://tabibevent.firebaseio.com/')
+                                ->create();
+    
+                            $database = $firebase->getDatabase();
+    
+                            $newPost = $database
+                                ->getReference('surveys')
+                                ->push([
+                                    'parent_id' => $event->id,
+                                    'name' => $value['name'],
+                                    'questions' => '',
+                                    'id' => ''
+                                ]);
+                            $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
+                            $database->getReference()
+                                ->update($updates);
+                            $survey->update(["firebase_id" => $newPost->getKey()]);
+                        }
+                            // $questions=[];
+                        foreach ($value['question'] as $key1 => $value_question) {
+                            $question = SurveyQuestions::create([
+                                "survey_id" => $survey->id,
+                                "name" => $value_question['name'],
+                                "firebase_id" => $key1
                             ]);
-                        $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
+                            $questions[$key1]['name'] = $value_question['name'];
+                            $questions[$key1]['id'] = $key1;
+                            foreach ($value_question['answer'] as $key => $answer) {
+                                SurveyQuestionAnswer::create([
+                                    "survey_id" => $survey->id,
+                                    "question_id" => $question->id,
+                                    "name" => $answer,
+                                    "number_of_selections" => 0,
+                                    "firebase_id" => $key
+                                ]);
+                                $questions[$key1]['answers'][$key]['name'] = $answer;
+                                $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
+                                $questions[$key1]['answers'][$key]['id'] = $key;
+                            }
+                        }
+                        // dd($questions);
+                        $updates = ['surveys/' . $newPost->getKey() . '/questions' => $questions];
                         $database->getReference()
                             ->update($updates);
-                        $survey->update(["firebase_id" => $newPost->getKey()]);
                     }
-                        // $questions=[];
-                    foreach ($value['question'] as $key1 => $value_question) {
-                        $question = SurveyQuestions::create([
-                            "survey_id" => $survey->id,
-                            "name" => $value_question['name'],
-                            "firebase_id" => $key1
-                        ]);
-                        $questions[$key1]['name'] = $value_question['name'];
-                        $questions[$key1]['id'] = $key1;
-                        foreach ($value_question['answer'] as $key => $answer) {
-                            SurveyQuestionAnswer::create([
-                                "survey_id" => $survey->id,
-                                "question_id" => $question->id,
-                                "name" => $answer,
-                                "number_of_selections" => 0,
-                                "firebase_id" => $key
-                            ]);
-                            $questions[$key1]['answers'][$key]['name'] = $answer;
-                            $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
-                            $questions[$key1]['answers'][$key]['id'] = $key;
-                        }
-                    }
-                    // dd($questions);
-                    $updates = ['surveys/' . $newPost->getKey() . '/questions' => $questions];
-                    $database->getReference()
-                        ->update($updates);
+                   
                 }
             }
 
-        } catch (\Exception $ex) {
+      
+}
+        catch(\Exception $ex) {
             Event::destroy($event->id);
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Error while adding Event!', 'حدث خطأ اثناء اضافه الحدث');
             return redirect()->back();
@@ -568,7 +582,7 @@ class EventsController extends Controller
                 "address" => $request['event']['place'],
                 "start_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['start_date'] . $request['event']['start_time'])),
                 "end_datetime" => date('Y-m-d h:i:s', strtotime($request['event']['end_date'] . $request['event']['end_time'])),
-                "is_paid" => $request['event']['ticket'],
+                "is_paid" => 0,
                 "mobile" => $request['event']['mobile'],
                 "email" => $request['event']['email'],
                 "website" => $request['event']['website'],
@@ -577,7 +591,7 @@ class EventsController extends Controller
                 "created_by" => \Auth::id(),
                 "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
             ]);
-        } catch (Exception $ex) {
+        } catch(\Exception $ex) {
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Event not updated !', ' تعديل الحدث  حدث خطأ ');
 
             return redirect()->back();
@@ -634,16 +648,16 @@ class EventsController extends Controller
 
         }
 
-        if ($event->use_ticketing_system == 1) {
-            EventTicket::where('event_id', $event->id)->delete();
-            EventTicket::create([
-                "event_id" => $event->id,
-                "price" => $request['event']['price'],
-                "available_tickets" => $request['event']['available_tickets'],
-                "current_available_tickets" => $request['event']['available_tickets'],
-                "currency_id" => $request['event']['currency']
-            ]);
-        }
+        // if ($event->use_ticketing_system == 1) {
+        //     EventTicket::where('event_id', $event->id)->delete();
+        //     EventTicket::create([
+        //         "event_id" => $event->id,
+        //         "price" => $request['event']['price'],
+        //         "available_tickets" => $request['event']['available_tickets'],
+        //         "current_available_tickets" => $request['event']['available_tickets'],
+        //         "currency_id" => $request['event']['currency']
+        //     ]);
+        // }
 
         if (isset($request['event']['youtube'])) {
             EventMedia::where('event_id', $event->id)->where('type', 2)->delete();

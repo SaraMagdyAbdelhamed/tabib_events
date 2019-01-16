@@ -6,7 +6,7 @@
       <div class="cover-inside-container margin--small-top-bottom bradius--no bshadow--0" style="background-image:  url({{ asset('/img/covers/dummy2.jpg ')  }}  )   ; background-position: center center; background-repeat: no-repeat; background-size:cover;">
         <div class="row">
           <div class="col-xs-12">
-            <div class="text-xs-center">         
+            <div class="text-xs-center">
               <div class="text-wraper">
                 <h4 class="cover-inside-title">@lang('keywords.mainData')</h4><i class="fa fa-chevron-circle-right"></i>
                 <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.aboutUs') </h4>
@@ -51,7 +51,7 @@
         <div class="col-xs-12">
           <form action="{{ route('about.edit', ['id' => 1]) }}" method="POST">
             {{ csrf_field() }}
-            
+
             <div class="tabs--wrapper">
                 <div class="clearfix"></div>
                 <ul class="tabs">
@@ -76,7 +76,7 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            
+
             <div class="col-xs-12">
                  <button class="remodal-cancel" data-remodal-action="cancel">@lang('keywords.cancel')</button>
                 <button type="submit" class="remodal-confirm">@lang('keywords.save')</button>
