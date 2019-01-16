@@ -214,7 +214,7 @@
                                 <label for="file-1"><span>اختر صورة</span></label>
                             </div>
                             <ul  class="js-uploader__file-list uploader__file-list" id="img_list"padding-left:9%">
-                                <li class="js-uploader__file-list uploader__file-list" style="text-align: -webkit-right;"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
+                                <li class="js-uploader__file-list uploader__file-list" style="text-align: -webkit-right;-moz-right;"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
                             </ul>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12" id="activatioCol">
