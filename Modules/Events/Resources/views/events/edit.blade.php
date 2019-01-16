@@ -23,7 +23,7 @@
                     <div class="clearfix"></div>
                     <ul class="tabs">
                       <li id="info"> @lang('keywords.aboutEvent')</li>
-                      <li id="tickets">@lang('keywords.tickets')</li>
+                      {{-- <li id="tickets">@lang('keywords.tickets')</li> --}}
                       <li id="contactInfo"> @lang('keywords.eventCall')</li>
                       <li id="workshops"> @lang('keywords.workshop')</li>
                       <li id="surveys">@lang('keywords.survey') </li>
@@ -223,7 +223,7 @@
                           </div>
                         </div><br>
                       </li>
-                      <li class="tab__content_item" id="tickets-content">
+                      {{-- <li class="tab__content_item" id="tickets-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                           <div class="row">
                             <div class="col-xs-12 "style="text-align:right">
@@ -310,7 +310,7 @@
                             </div>
                           </div>
                         </div><br>
-                      </li>
+                      </li> --}}
                       <li class="tab__content_item" id="contactInfo-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                            <div class="row">
