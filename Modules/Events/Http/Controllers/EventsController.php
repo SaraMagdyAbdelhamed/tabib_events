@@ -241,7 +241,7 @@ class EventsController extends Controller
 
             if ($request->has('workshop')) {
 
-        if ($request->has('workshop')) {
+        
            
             foreach ($request['workshop'] as $value) {
                 $workshop = Workshop::create([
@@ -261,89 +261,87 @@ class EventsController extends Controller
                     }
                 }
                 
+               
+                  
                 if (isset($value['special'])) {
                     foreach ($value['special'] as $special) {
                         WorkshopSpecialization::create([
                             "workshop_id" => $workshop->id,
-                            "user_id" => $doctor
+                            "specialization_id" => $special
                         ]);
                     }
-                    if (isset($value['special'])) {
-                        foreach ($value['special'] as $special) {
-                            WorkshopSpecialization::create([
-                                "workshop_id" => $workshop->id,
-                                "specialization_id" => $special
-                            ]);
-                        }
-                    }
+                }
 
                     EventWorkshop::create([
                         "event_id" => $event->id,
                         "work_shop_id" => $workshop->id
                     ]);
-                }
+                
             }
-
+        }
             if (isset($request['survey'])) {
                 foreach ($request['survey'] as $value) {
-                    $survey = Survey::create([
-                        "event_id" => $event->id,
-                        "name" => $value['name'],
-                        "is_realtime" => 1
-                    ]);
-                    if ($survey->is_realtime == 1) {
-                        $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
-                        $firebase = (new Factory)
-                            ->withServiceAccount($serviceAccount)
-                            ->withDatabaseUri('https://tabibevent.firebaseio.com/')
-                            ->create();
-
-                        $database = $firebase->getDatabase();
-
-                        $newPost = $database
-                            ->getReference('surveys')
-                            ->push([
-                                'parent_id' => $event->id,
-                                'name' => $value['name'],
-                                'questions' => '',
-                                'id' => ''
+                    if($value['name'] != null)
+                    {
+                        $survey = Survey::create([
+                            "event_id" => $event->id,
+                            "name" => $value['name'],
+                            "is_realtime" => 1
+                        ]);
+                        if ($survey->is_realtime == 1) {
+                            $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
+                            $firebase = (new Factory)
+                                ->withServiceAccount($serviceAccount)
+                                ->withDatabaseUri('https://tabibevent.firebaseio.com/')
+                                ->create();
+    
+                            $database = $firebase->getDatabase();
+    
+                            $newPost = $database
+                                ->getReference('surveys')
+                                ->push([
+                                    'parent_id' => $event->id,
+                                    'name' => $value['name'],
+                                    'questions' => '',
+                                    'id' => ''
+                                ]);
+                            $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
+                            $database->getReference()
+                                ->update($updates);
+                            $survey->update(["firebase_id" => $newPost->getKey()]);
+                        }
+                            // $questions=[];
+                        foreach ($value['question'] as $key1 => $value_question) {
+                            $question = SurveyQuestions::create([
+                                "survey_id" => $survey->id,
+                                "name" => $value_question['name'],
+                                "firebase_id" => $key1
                             ]);
-                        $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
+                            $questions[$key1]['name'] = $value_question['name'];
+                            $questions[$key1]['id'] = $key1;
+                            foreach ($value_question['answer'] as $key => $answer) {
+                                SurveyQuestionAnswer::create([
+                                    "survey_id" => $survey->id,
+                                    "question_id" => $question->id,
+                                    "name" => $answer,
+                                    "number_of_selections" => 0,
+                                    "firebase_id" => $key
+                                ]);
+                                $questions[$key1]['answers'][$key]['name'] = $answer;
+                                $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
+                                $questions[$key1]['answers'][$key]['id'] = $key;
+                            }
+                        }
+                        // dd($questions);
+                        $updates = ['surveys/' . $newPost->getKey() . '/questions' => $questions];
                         $database->getReference()
                             ->update($updates);
-                        $survey->update(["firebase_id" => $newPost->getKey()]);
                     }
-                        // $questions=[];
-                    foreach ($value['question'] as $key1 => $value_question) {
-                        $question = SurveyQuestions::create([
-                            "survey_id" => $survey->id,
-                            "name" => $value_question['name'],
-                            "firebase_id" => $key1
-                        ]);
-                        $questions[$key1]['name'] = $value_question['name'];
-                        $questions[$key1]['id'] = $key1;
-                        foreach ($value_question['answer'] as $key => $answer) {
-                            SurveyQuestionAnswer::create([
-                                "survey_id" => $survey->id,
-                                "question_id" => $question->id,
-                                "name" => $answer,
-                                "number_of_selections" => 0,
-                                "firebase_id" => $key
-                            ]);
-                            $questions[$key1]['answers'][$key]['name'] = $answer;
-                            $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
-                            $questions[$key1]['answers'][$key]['id'] = $key;
-                        }
-                    }
-                    // dd($questions);
-                    $updates = ['surveys/' . $newPost->getKey() . '/questions' => $questions];
-                    $database->getReference()
-                        ->update($updates);
+                   
                 }
             }
 
-        } 
-    }
+      
 }
         catch(\Exception $ex) {
             Event::destroy($event->id);
