@@ -25,9 +25,9 @@
         {{ csrf_field() }}
         <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="master_field">
-              <label class="master_label" for="offer_title"> @lang('keywords.title')</label>
-              <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" value="{{$offer->name}}">
+            <div class="master_field ">
+              <label class="master_label mandatory" for="offer_title"> @lang('keywords.title')</label>
+              <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" value="{{$offer->name}}" required>
 
               {{-- Validation message --}}
               @if ( $errors->has('offer_title') )
@@ -38,8 +38,8 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="offer_description">@lang('keywords.offerDescription')</label>
-              <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" >{{$offer->description}}</textarea>
+              <label class="master_label mandatory" for="offer_description">@lang('keywords.offerDescription')</label>
+              <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" required >{{$offer->description}}</textarea>
 
               {{-- Validation message --}}
               @if ( $errors->has('offer_description') )
@@ -110,9 +110,9 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="start_date_"> @lang('keywords.startDate')</label>
+              <label class="master_label mandatory" for="start_date_"> @lang('keywords.startDate')</label>
               <div class="">
-                <input class=" master_input" type="text" Required id="start_date_" name="start_date_" value="{{ $offer->start_datetime->format('d/m/Y') }}">
+                <input class=" master_input" type="text" Required id="start_date_" name="start_date_" value="{{ $offer->start_datetime->format('d/m/Y') }}" required>
               </div>
 
               {{-- Validation message --}}
@@ -125,9 +125,9 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="end_date_"> @lang('keywords.endDate')</label>
+              <label class="master_label mandatory" for="end_date_"> @lang('keywords.endDate')</label>
               <div class="">
-                <input class="datepicker master_input" type="text" Required id="end_date_" name="end_date_" value="{{ $offer->end_datetime->format('d/m/Y') }}">
+                <input class="datepicker master_input" type="text" Required id="end_date_" name="end_date_" value="{{ $offer->end_datetime->format('d/m/Y') }}" required>
               </div>
 
               {{-- Validation message --}}
@@ -316,5 +316,8 @@
           `)
         }
       })
+    </script>
+    <script type="text/javascript">
+      
     </script>
 @endsection

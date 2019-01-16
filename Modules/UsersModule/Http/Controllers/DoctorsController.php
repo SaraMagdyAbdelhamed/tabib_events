@@ -70,6 +70,7 @@ class DoctorsController extends Controller
         $data['countries'] = Countries::all();
         $data['cities'] = Cities::all();
         $data['specs'] = DoctorSpecialization::all();
+        $data['tab_index'] = 0;
 
         return view('usersmodule::mobile.mobile_users', $data);
     }
@@ -136,6 +137,7 @@ class DoctorsController extends Controller
         $data['countries'] = Countries::all();
         $data['cities'] = Cities::all();
         $data['specs'] = DoctorSpecialization::all();
+        $data['tab_index'] = $request->tab_id;
 
         return view('usersmodule::mobile.mobile_users', $data);
     }
@@ -652,7 +654,8 @@ class DoctorsController extends Controller
 
         // Flash success and redirect to its home page
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
-        return redirect('/users_mobile');
+
+        return redirect('/users_mobile')->with('tab_index', 1);
     }
 
     /** Download excel sample */

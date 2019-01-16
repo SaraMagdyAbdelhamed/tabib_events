@@ -72,7 +72,7 @@
           <div class="row">
             <div class="col-xs-6">
               <div class="master_field">
-                <label class="master_label" for="Event_name">@lang('keywords.eventName') </label>
+                <label class="master_label mandatory" for="Event_name">@lang('keywords.eventName') </label>
                 <input class="master_input" type="text" maxlength="100" minlength="5" id="Event_name" name="event[name]" Required>
                 @if ( $errors->has('event[name]') )
                   <span class="master_message color--fadegreen">{{ $errors->first('event[name]') }}</span>
@@ -81,7 +81,7 @@
             </div>
             <div class="col-xs-6">
               <div class="master_field">
-                <label class="master_label" for="description"> @lang('keywords.eventDescription')</label>
+                <label class="master_label mandatory" for="description"> @lang('keywords.eventDescription')</label>
                 <textarea class="master_input" name="event[description]" minlength="5" id="description" Required></textarea>
                 @if ( $errors->has('event[description]') )
                   <span class="master_message color--fadegreen">{{ $errors->first('event[description]') }}</span>
@@ -166,7 +166,7 @@
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div class="master_field">
-                <label class="master_label" for="start_date">@lang('keywords.eventDateStart')</label>
+                <label class="master_label mandatory" for="start_date">@lang('keywords.eventDateStart')</label>
                 <div class="">
                   <input class=" master_input" type="text" Required id="start_date_" name="event[start_date]">
                 </div>
@@ -178,7 +178,7 @@
 
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div class="master_field">
-                <label class="master_label" for="end_date">@lang('keywords.eventDateEnd')</label>
+                <label class="master_label mandatory" for="end_date">@lang('keywords.eventDateEnd')</label>
                 <div class="">
                   <input class=" master_input" type="text" Required id="end_date_" name="event[end_date]">
                 </div>
@@ -190,9 +190,9 @@
 
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div class="master_field">
-                <label class="master_label" for="start_time"> @lang('keywords.eventTimeStart')</label>
+                <label class="master_label mandatory" for="start_time"> @lang('keywords.eventTimeStart')</label>
                 <div class="bootstrap-timepicker">
-                  <input class="timepicker master_input" type="text" Required id="start_time" name="event[start_time]">
+                  <input class="timepicker master_input" type="text"  id="start_time" name="event[start_time]">
                 </div>
                 @if ( $errors->has('event[start_time]') )
                   <span class="master_message color--fadegreen">{{ $errors->first('event[start_time]') }}</span>
@@ -202,9 +202,9 @@
 
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div class="master_field">
-                <label class="master_label" for="end_time">@lang('keywords.eventTimeEnd')</label>
+                <label class="master_label mandatory" for="end_time">@lang('keywords.eventTimeEnd')</label>
                 <div class="bootstrap-timepicker">
-                  <input class="timepicker master_input" type="text" Required id="end_time" name="event[end_time]">
+                  <input class="timepicker master_input" type="text"  id="end_time" name="event[end_time]">
                 </div>
                 @if ( $errors->has('event[end_time]') )
                   <span class="master_message color--fadegreen">{{ $errors->first('event[end_time]') }}</span>
@@ -922,25 +922,25 @@
                           <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
+                                <label class="master_label mandatory" for="workshop_name">@lang('keywords.workshopName')</label>
                                 <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]" required>
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc') </label>
+                                <label class="master_label mandatory" for="workshop_description">@lang('keywords.workshopDesc') </label>
                                 <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]" required></textarea>
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace')</label>
+                                <label class="master_label mandatory" for="workshop_venue">@lang('keywords.workshopPlace')</label>
                                 <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]" required>
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="workshop${next_count}_start_date">@lang('keywords.workshopStartDate')</label>
+                                <label class="master_label mandatory" for="workshop${next_count}_start_date">@lang('keywords.workshopStartDate')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="datepicker master_input" type="text" placeholder="start date"  id="workshop${next_count}_start_date" name="workshop[${next_count}][start_date]" required>
                                 </div>
@@ -948,7 +948,7 @@
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
+                                <label class="master_label mandatory" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]" required>
                                 </div>
@@ -956,15 +956,15 @@
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
                               <div class="master_field">
-                                <label class="master_label" for="start_time">@lang('keywords.workshopStartTime')</label>
+                                <label class="master_label mandatory" for="start_time">@lang('keywords.workshopStartTime')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]" required>
                                 </div>
                               </div>
                             </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label" for="end_time">@lang('keywords.workshopEndTime')</label>
+                              <div class="master_field ">
+                                <label class="master_label mandatory" for="end_time">@lang('keywords.workshopEndTime')</label>
                                 <div class="bootstrap-timepicker">
                                   <input class="timepicker master_input" type="text" placeholder="end time" Required id="end_time" name="workshop[${next_count}][end_time]" required>
                                 </div>
@@ -1019,25 +1019,25 @@
                                  <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]">
                                </div>
                              </div>
-                             <div class="col-xs-6">
+                             <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="survey_answer1"> @lang('keywords.answer') 1</label>
                                  <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[${value}][question][${question}][answer][0]">
                                </div>
                              </div>
-                             <div class="col-xs-6">
+                             <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="survey_answer2">  @lang('keywords.answer') 2</label>
                                  <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required name="survey[${value}][question][${question}][answer][1]">
                                </div>
                              </div>
-                             <div class="col-xs-6">
+                             <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
                                  <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[${value}][question][${question}][answer][2]">
                                </div>
                              </div>
-                             <div class="col-xs-6">
+                             <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
                                  <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[${value}][question][${question}][answer][3]">
@@ -1086,7 +1086,7 @@
                                  <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[0][question][${next_count_question}][answer][2]">
                                </div>
                              </div>
-                             <div class="col-xs-6">
+                             <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
                                  <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[0][question][${next_count_question}][answer][3]">

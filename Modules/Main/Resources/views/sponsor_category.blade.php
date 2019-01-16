@@ -96,7 +96,7 @@
                     <li class="tab__content_item active" id="arabic-content">
                     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                         <div class="master_field">
-                        <label class="master_label" for="cat_id_ar">اضف تصنيف راعي باللغة العربية</label>
+                        <label class="master_label mandatory" for="cat_id_ar">اضف تصنيف راعي باللغة العربية</label>
                         <input name="arabicContent" class="master_input" type="text" placeholder="new categories in arabic"  id="cat_id_ar" required>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                     <li class="tab__content_item" id="english-content">
                     <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                         <div class="master_field">
-                        <label class="master_label" for="cat_id_en">Add sponsor category name in English</label>
+                        <label class="master_label mandatory" for="cat_id_en">Add sponsor category name in English</label>
                         <input name="englishContent" class="master_input" type="text" placeholder="new categories in English" id="cat_id_en" required >
                         </div>
                     </div>
@@ -146,13 +146,13 @@
               <ul class="tab__content">
                 <li class="tab__content_item active" id="arabic1-content">
                   <div class="master_field">
-                    <label class="master_label" for="cat_id_ar">تعديل تصنيف راعي باللغة العربية</label>
+                    <label class="master_label mandatory" for="cat_id_ar">تعديل تصنيف راعي باللغة العربية</label>
                     <input name="arabicContent"class="master_input" type="text" placeholder="new categories in arabic" Required id="edit_id_ar" oninvalid="this.setCustomValidity('من فضلك لا تترك هذا الحقل فارغاَ')">
                   </div>
                 </li>
                 <li class="tab__content_item" id="english1-content">
                   <div class="master_field">
-                    <label class="master_label" for="cat_id_en">Edit sponsor category in English</label>
+                    <label class="master_label mandatory" for="cat_id_en">Edit sponsor category in English</label>
                     <input name="englishContent" class="master_input" type="text" placeholder="new categories in English" Required id="edit_id_en">
                   </div>
                 </li>

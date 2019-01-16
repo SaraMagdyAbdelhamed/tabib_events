@@ -26,7 +26,7 @@
         <div class="row">
           <div class="col-md-3 col-sm-3 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="offer_image"> @lang('keywords.offerImage') </label>
+              <label class="master_label " for="offer_image"> @lang('keywords.offerImage') </label>
               <div class="file-upload">
                 <div class="file-select">
                   <div class="file-select-name" id="noFile">اضغط لأضافة الصورة</div>
@@ -38,8 +38,8 @@
 
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12">
-            <div class="master_field">
-              <label class="master_label" for="offer_title"> @lang('keywords.title')</label>
+            <div class="master_field ">
+              <label class="master_label mandatory" for="offer_title"> @lang('keywords.title')</label>
               <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" required>
 
               {{-- Validation message --}}
@@ -50,7 +50,7 @@
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="offer_description">@lang('keywords.offerDescription')</label>
+              <label class="master_label mandatory" for="offer_description">@lang('keywords.offerDescription')</label>
               <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" required></textarea>
               {{-- Validation message --}}
               @if ( $errors->has('offer_description') )
@@ -122,7 +122,7 @@
               @endif
             </div>
           </div>
-          <div class="col-xs-12" style="text-align:end;">
+          <div class="col-xs-12 end-txt" id="activationCol" >
             <div class="checkboxrobo">
               <input type="checkbox" id="activation" name="activation">
               <label for="activation">@lang('keywords.active')</label>
@@ -130,12 +130,18 @@
           </div>
         </div>
 
-      <div class="div" style="text-align:end;">
+      <!-- <div class="div" style="text-align:end;">
         <button id="submit" class="master-btn   undefined bgcolor--main  bshadow--0" type="submit" disabled="false"><i class="fa fa-save" ></i><span>@lang('keywords.save')</span>
         </button>
         <a class="master-btn   undefined bgcolor--fadebrown  bshadow--0" href="{{route('offers_and_deals')}}"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
         </a>
-      </div>
+      </div> -->
+        <div class="div" style="text-align:end;">
+            <button id="save_btn" class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
+            </button>
+            <a class="master-btn   undefined bgcolor--fadebrown  bshadow--0"  href="{{route('offers_and_deals')}}" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+              </a>
+          </div>
         </form>
     </div>
   </div><br>
@@ -186,5 +192,15 @@ if ($.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
     )
 
  })
+ </script>
+ <script type="text/javascript">
+    if($('html').attr('lang')=='en'){
+      $("#activationCol").removeClass('end-txt')
+    }
+ </script>
+ <script type="text/javascript">
+    $("#save_btn").on('click',function(){
+      $("#offers_add").validate();
+    })
  </script>
 @endsection

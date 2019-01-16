@@ -8,6 +8,7 @@ class Cities extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'geo_cities';
+    protected $fillable = ['name', 'country_id', 'application_id'];
     protected $appends = ['name'];
     public $timestamps = false;
 
