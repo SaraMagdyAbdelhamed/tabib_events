@@ -253,6 +253,9 @@ class UsersController extends Controller
      *  */
     public function backend_update(Users $user, Request $request)
     {
+        // dd($request->all());
+        $images_en = explode('-', $request->image_input);
+
         $this->validate($request, [
             'user_type' => 'required|numeric',
             'fullname' => 'required|min:3|max:100',
@@ -262,7 +265,7 @@ class UsersController extends Controller
             'categories' => '',
             'cities' => '',
             'regions' => '',
-            'user_photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'user_photo' => isset($request->user_photo) ? 'required|image|mimes:jpeg,png,jpg|max:2048' : '',
             'activation' => '',
             'notification' => '',
         ]);
@@ -280,11 +283,43 @@ class UsersController extends Controller
             $user->mobile = $request->mobile;
             $user->is_active = ($request->activation == 1) ? 1 : 0;
 
-            if ($request->hasFile('user_photo')) {
-                $destinationPath = 'backend_users';
-                $fileNameToStore = $destinationPath . '/' . $request->name . time() . rand(111, 999) . '.' . Input::file('user_photo')->getClientOriginalExtension();
-                Input::file('user_photo')->move($destinationPath, $fileNameToStore);
-                $user->photo = $fileNameToStore;
+            // convert base64 images into normal images
+                // update English images.
+            if (count($images_en) > 0) {
+                File::delete($user->photo); // delete old
+                    // add new images
+                foreach ($images_en as $image) {
+                        // check if image exist
+                    if (strpos($image, 'backend_users') !== false) {
+                            // search for its name
+                        preg_match('/backend_users\/(.*)/', $image, $match);
+
+                        if (count($match) > 0) {
+                            $name = $match[0];
+
+                            $user->photo = $name;
+                        }
+
+                    }
+                        // check if image is new
+                    if (strpos($image, 'base64') !== false) {
+                            // get image extension
+                        preg_match('/image\/(.*)\;/', $image, $match);
+
+                        if (count($match) > 0) {
+                            $ext = $match[1];
+                            $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
+                            $image = str_replace(' ', '+', $image);
+                            $imageName = 'backend_users/' . time() . rand(1111, 9999) . '.' . $ext;
+                                // dd([$imageName, $image]);
+                            \File::put(public_path() . '/' . $imageName, base64_decode($image));
+
+                            $user->photo = $imageName;
+
+                        }
+                    }
+                }
+
             }
 
             $user->save();
@@ -326,8 +361,9 @@ class UsersController extends Controller
 
             // TODO: NOTIFICATIONS
 
-        } catch (Exception $ex) {
-            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user لا يمكن اضافة المستخدم');
+        } catch (\Exception $ex) {
+            dd($ex);
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user', ' لا يمكن اضافة المستخدم');
             return redirect()->back();
         }
         return redirect("/users_backend");
