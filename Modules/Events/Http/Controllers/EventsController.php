@@ -241,7 +241,7 @@ class EventsController extends Controller
 
             if ($request->has('workshop')) {
 
-        if ($request->has('workshop')) {
+        
            
             foreach ($request['workshop'] as $value) {
                 $workshop = Workshop::create([
@@ -261,29 +261,24 @@ class EventsController extends Controller
                     }
                 }
                 
+               
+                  
                 if (isset($value['special'])) {
                     foreach ($value['special'] as $special) {
                         WorkshopSpecialization::create([
                             "workshop_id" => $workshop->id,
-                            "user_id" => $doctor
+                            "specialization_id" => $special
                         ]);
                     }
-                    if (isset($value['special'])) {
-                        foreach ($value['special'] as $special) {
-                            WorkshopSpecialization::create([
-                                "workshop_id" => $workshop->id,
-                                "specialization_id" => $special
-                            ]);
-                        }
-                    }
+                }
 
                     EventWorkshop::create([
                         "event_id" => $event->id,
                         "work_shop_id" => $workshop->id
                     ]);
-                }
+                
             }
-
+        }
             if (isset($request['survey'])) {
                 foreach ($request['survey'] as $value) {
                     if($value['name'] != null)
@@ -346,8 +341,7 @@ class EventsController extends Controller
                 }
             }
 
-        } 
-    }
+      
 }
         catch(\Exception $ex) {
             Event::destroy($event->id);
