@@ -335,7 +335,7 @@
                             <div class="col-xs-6">
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Code_numbe">@lang('keywords.code') </label>
-                              
+
                                 <select class="master_input" id="code" name="event[code]" required>
 
                                   @foreach ($codes as $code)
@@ -358,8 +358,8 @@
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Mobile_number"> @lang('keywords.Phone')</label>
                                 <input class="master_input" type="number" placeholder="0123456789" id="Mobile_number" name="event[mobile]" value="{{ $event->mobile }}" required>
-                                @if ( $errors->has('event[mobile]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>                 
+                                @if ( $errors->has('event[mobile]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>
                                 @endif
                             </div>
                             </div>
@@ -374,21 +374,21 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="workshop_name">@lang('keywords.workshopName')</label>
                               <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]" value="{{ $workshop->name }}" required>
-                              
+
                             </div>
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
                               <label class="master_label mandatory" for="workshop_description">@lang('keywords.workshopDesc')</label>
                               <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]" required>{{ $workshop->description }}</textarea>
-                              
+
                             </div>
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
                               <label class="master_label mandatory" for="workshop_venue">@lang('keywords.workshopPlace') </label>
                               <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]" value="{{ $workshop->venue }}" required>
-                              
+
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">

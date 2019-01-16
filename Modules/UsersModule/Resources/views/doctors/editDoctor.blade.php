@@ -72,8 +72,8 @@
 
                     <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label mandatory" for="doctor_password">@lang('keywords.newPassword')</label>
-                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password" required>
+                        <label class="master_label " for="doctor_password">@lang('keywords.newPassword')</label>
+                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
                         <div class="hide-show show-me">Show</div>
                         @if ( $errors->has('password') )
                             <span class="master_message inherit">{{ $errors->first('password') }}</span>
@@ -192,7 +192,7 @@
                         @endif
                     </div>
                     </div>
-                    
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -214,9 +214,13 @@
                                 <label for="file-1"><span>اختر صورة</span></label>
                             </div>
                             <ul  class="js-uploader__file-list uploader__file-list" id="img_list"padding-left:9%">
-                                <li class="js-uploader__file-list uploader__file-list" style="text-align: -webkit-right;"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
+                                <li class="js-uploader__file-list uploader__file-list" style="text-align: -webkit-right;-moz-right;"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
                             </ul>
                     </div>
+
+                    {{-- base64 image input --}}
+                    <input type="hidden" name="image_input" id="img_input" />
+
                     <div class="col-md-12 col-sm-12 col-xs-12" id="activatioCol">
                     <div class="checkboxrobo">
                         <input type="checkbox" id="activation" name="activation" value="1" {{ $doctor->is_active ? "checked" : "" }}>
@@ -397,23 +401,31 @@
           $("#activatioCol").addClass('text-left')
 
 
-          $("#img_list").append(`
-                <li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+        @if( isset($doctor->photo) && $doctor->photo != null )
+            $("#img_list").append(`
+                <li class="js-upl   oader__file-list uploader__file-list" id="img_list_item">
                                     <span class="uploader__file-list__button"></span>
                                     <span class="uploader__file-list__thumbnail">
-                                    <img class="thumbnail"  src="../../../../../../../public/img/avaters/male.jpg"></span>
+                                    <img class="thumbnail"  src="{{ asset( $doctor->photo ) }}"></span>
                                     <span class="uploader__file-list__text"></span>
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn1()" class="uploader__icon-button fa fa-times" >
                                     </a></span>
 
                                     </li>
-          `)
+            `)
+        @else
+            closebtn1();
+        @endif
         }
       })
     </script>
     <script type="text/javascript">
         $("#save_btn").on('click',function(){
+
+            var img_input = "#img_input";
+            $(img_input).val(listimg[0].image);
+
             $("#editNewDr").validate();
         })
     </script>

@@ -417,8 +417,8 @@
         'surveys' => 'الدراسات الاستقصائية',
         'addquestion' => 'اضافة سؤال',
         'addsurvey' => 'أضف دراسة',
-        'downloadSample' => 'تحميل ملف الاكسيل'
-
+        'downloadSample' => 'تحميل ملف الاكسيل',
+        'Activate'  => 'تفعيل',
 	];
 
 
