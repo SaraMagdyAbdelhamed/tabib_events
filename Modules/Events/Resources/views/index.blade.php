@@ -170,6 +170,14 @@
   </div><br>
 </div>
 @section('js')
+
+<script>
+    $(document).ready(function() {
+
+      $('#sub_8_5').addClass('pure-active');
+
+    });
+</script>
 <script type="text/javascript">
   $(function(){
     dateRange_3('bootstrap_date_start_from','bootstrap_date_start_to')

@@ -229,19 +229,19 @@
             </div>
           </div>
         </fieldset>
-        <h3>@lang('keywords.tickets')</h3>
+        {{-- <h3>@lang('keywords.tickets')</h3>
         <fieldset>
           <div class="row">
             <div class="col-xs-12" style="text-align:end;">
               <label class="master_label mandatory">@lang('keywords.ticketPayment')</label>
               <div class="col-md-12 col-sm-12 col-xs-12"></div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-sm-12 col-xs-12" id="freeTicket">
                 <div class="radiorobo">
                   <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked="checked">
                   <label for="free_ticket">@lang('keywords.free')</label>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-sm-12 col-xs-12" id="paidTicket">
                 <div class="radiorobo">
                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1">
                   <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -283,7 +283,7 @@
               </div>
             </div>
           </div>
-        </fieldset>
+        </fieldset> --}}
         <h3> @lang('keywords.eventCall')</h3>
         <fieldset>
           <div class="row">
@@ -535,6 +535,11 @@
                               </div>
                             </div>
                           </div>
+                          
+                          {{-- base64 images --}}
+                          {{-- {{ --EventImages-- --}}
+                          <input type="hidden"name="event_images_base64"id="event_images_base64"/>
+                          
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
@@ -552,6 +557,7 @@
 
           </div>
         </fieldset>
+
       </form>
     </div>
   </div><br>
@@ -788,11 +794,22 @@
               },
                   onFinishing: function (event, currentIndex)
                   {
+                    /** base64 images procidures **/
+                    // add base64 images to an input
+                    var event_images = '';
+                    var base64_input = '#event_images_base64';
 
+                    // get Event images
+                    for(i=0; i<listAr.length; i++) {
+                      event_images += '-' + listAr[i].image;
+                    }
 
-                      var form = $(this);
+                    // assign concatinated base64 images to this input
+                    $(base64_input).val(event_images);
 
-                      form.submit();
+                    // submit form
+                    var form = $(this);
+                    form.submit();
                   },
                   onFinished: function (event, currentIndex) {
 
@@ -957,7 +974,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
-                                <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]">
+                                <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]" required>
                                    @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                 @endforeach
@@ -967,7 +984,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="master_field">
                                 <label class="master_label mandatory" for="admin_workshop_doctor">@lang('keywords.eventDoctor')  </label>
-                                <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" name="workshop[${next_count}][doctor][]">
+                                <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" name="workshop[${next_count}][doctor][]" required>
                                   @foreach($doctors as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->username}}</option>
                                 @endforeach
@@ -980,7 +997,8 @@
           $(".timepicker").timepicker({showInputs: false});
 
           $(".select2").select2();
-          dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
+          // dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
+          dateRange_2(`workshop${next_count}_start_date`,`workshop${next_count}_end_date`)
           next_count= current_count+1;
           current_count +=1;
         })
@@ -1029,6 +1047,10 @@
           `)
         }
       $(document).ready(function(){
+       
+        if($('html').attr('lang')=='en'){
+            $("#freeTicket,#paidTicket").addClass('text-left')
+        }
        var current_count_question = 0;
        var next_count_question = 0;
        var current_count_survey = 0;

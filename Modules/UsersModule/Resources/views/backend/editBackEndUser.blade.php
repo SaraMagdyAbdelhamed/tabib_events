@@ -7,7 +7,7 @@
         <div class="add-mode">Adding mode</div>
         <div class="row">
           <div class="col-xs-12">
-            <div class="text-xs-center">         
+            <div class="text-xs-center">
               <div class="text-wraper">
                 <h4 class="cover-inside-title">@lang('keywords.Doctors')</h4><i class="fa fa-chevron-circle-right"></i>
                 <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.BackendUsers')</h4>
@@ -27,7 +27,7 @@
 
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
           <div class="form" id="backend_user">
-            <div class="row"> 
+            <div class="row">
 
               {{-- User Type --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
@@ -47,7 +47,7 @@
                         @endforeach
                     @endif
                   </select>
-                  
+
                   {{-- Validation Message --}}
                   @if ( $errors->has('user_type') )
                     <span class="master_message inherit">{{ $errors->first('user_type') }}</span>
@@ -61,8 +61,8 @@
                 <div class="master_field">
                   <label class="master_label" for="username">@lang('keywords.FullName')</label>
                 <input class="master_input" value="{{$user->first_name}}" type="text" maxlength="40" id="username" name="fullname">
-                  
-                  @if ( $errors->has('fullname') )                      
+
+                  @if ( $errors->has('fullname') )
                     <span class="master_message inherit">{{ $errors->first('fullname') }}</span>
                   @endif
 
@@ -74,7 +74,7 @@
                 <div class="master_field">
                   <label class="master_label" for="login_username">@lang('keywords.UserName')</label>
                   <input class="master_input" value="{{$user->username}}" type="text" maxlength="20" id="login_username" name="username">
-                  
+
                   @if ( $errors->has('username') )
                     <span class="master_message inherit">{{ $errors->first('username') }}</span>
                   @endif
@@ -86,7 +86,7 @@
                 <div class="master_field">
                   <label class="master_label" for="user_email">@lang('keywords.email')</label>
                   <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email">
-                  
+
                   @if ( $errors->has('email') )
                     <span class="master_message inherit">{{ $errors->first('email') }}</span>
                   @endif
@@ -111,7 +111,7 @@
                   <input class="master_input" type="password" name="password" maxlength="8" minlength="3" id="user_password">
 
                   <div class="hide-show show-me">Show</div>
-                  
+
                   @if ( $errors->has('password') )
                     <span class="master_message inherit">{{ $errors->first('password') }}</span>
                   @endif
@@ -125,7 +125,7 @@
                   <label class="master_label" for="user_Phone">@lang('keywords.phone number')</label>
                 <input class="master_input" value="{{$user->mobile}}" type="number" maxlength="11" minlength="11" id="user_Phone" name="mobile">
 
-                  @if ( $errors->has('mobile') )                    
+                  @if ( $errors->has('mobile') )
                     <span class="master_message inherit">{{ $errors->first('mobile') }}</span>
                   @endif
                 </div>
@@ -133,29 +133,29 @@
 
               {{-- Optional fields --}}
               {{-- Sponsor Category --}}
-              <div id="sponsor_section">     
+              <div id="sponsor_section">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
-                    <select class="master_input select2" id="sponsor_category" 
+                    <select class="master_input select2" id="sponsor_category"
                       multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]">
 
                       {{-- List all options --}}
                       @if ( isset($sponsorCategories) && !empty($sponsorCategories) )
                            @foreach ($sponsorCategories as $cat)
-                          
-                              <option value="{{ $cat->id }}" 
+
+                              <option value="{{ $cat->id }}"
                                 @foreach($categories as $cat_select)
                                  {{ ($cat->id == $cat_select->id) ? 'selected' : '' }}
                                 @endforeach
                                 >
                                   {{ $cat->name ? : __('keywords.not') }}
                               </option>
-                         
+
                           @endforeach
                       @endif
                     </select>
-                    
+
                     {{-- Validation Message --}}
                     @if ( $errors->has('categories') )
                       <span class="master_message inherit">{{ $errors->first('categories') }}</span>
@@ -168,12 +168,12 @@
                   <div class="master_field">
                     <label class="master_label" for="sponsor_cities"> @lang('keywords.City') </label>
                     <select class="master_input select2" id="sponsor_cities" multiple="multiple" style="width:100%;" , name="cities[]">
-                    
+
                       {{-- List all options --}}
                       @if ( isset($cities) && !empty($cities) )
                           @foreach ($cities as $city)
-                              <option value="{{ $city->id }}" 
-                              @foreach($user->sponsorCities as $targetcity ) 
+                              <option value="{{ $city->id }}"
+                              @foreach($user->sponsorCities as $targetcity )
                                 {{ ($city->id == $targetcity->id) ? 'selected' : '' }}
                                 @endforeach
                                 >
@@ -182,7 +182,7 @@
                           @endforeach
                       @endif
                     </select>
-                    
+
                     {{-- Validation Message --}}
                     @if ( $errors->has('cities') )
                       <span class="master_message inherit">{{ $errors->first('cities') }}</span>
@@ -195,11 +195,11 @@
                   <div class="master_field">
                     <label class="master_label" for="sponsor_regions">@lang('keywords.region') </label>
                     <select class="master_input select2" id="sponsor_regions" multiple="multiple" style="width:100%;" , name="regions[]">
-                      
+
                       {{-- List all options --}}
                       @if ( isset($regions) && !empty($regions) )
                           @foreach ($regions as $region)
-                              <option value="{{ $region->id }}"  
+                              <option value="{{ $region->id }}"
 
                                  @foreach ($user->sponsorRegions as $targetregion)
                                 {{ ($region->id == $targetregion->id) ? 'selected' : '' }}
@@ -221,7 +221,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="specialization_target">@lang('keywords.doctorSpecialists')</label>
-                    <select class="master_input select2" id="specialization_target" 
+                    <select class="master_input select2" id="specialization_target"
                       multiple="multiple" style="width:100%;" , name="specialization">
                       {{-- List all options --}}
                       @if ( isset($specs) && !empty($specs) )
@@ -238,7 +238,7 @@
                           @endforeach
                       @endif
                     </select>
-                    
+
                     {{-- Validation Message --}}
                     @if ( $errors->has('cities') )
                       <span class="master_message inherit">{{ $errors->first('cities') }}</span>
@@ -258,7 +258,7 @@
                       <input class="chooseFile" type="file" name="user_photo" id="user_photo">
                     </div>
                   </div>
-                  
+
                   {{-- Validation Message --}}
                   @if ( $errors->has('user_photo') )
                     <span class="master_message inherit">{{ $errors->first('user_photo') }}</span>
@@ -266,6 +266,13 @@
                 </div>
               </div>
 
+              <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
+                <div class="checkboxrobo">
+
+                  <img src="{{ asset($user->photo) }}" alt="{{ $user->first_name }}'s image'">
+
+                </div>
+              </div>
               {{-- Activation --}}
               <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
                 <div class="checkboxrobo">
@@ -281,6 +288,7 @@
                   <label for="notification">السماح ب ارسال اشعارات</label>
                 </div>
               </div>
+
 
             </div>
           </div>
@@ -313,7 +321,7 @@
            else{
                $("#sponsor_section").hide();
            }
-    
+
         });
 
         // clicking on any city option will trigger an AJAX call to get all regions related to its city.
@@ -339,7 +347,7 @@
         //                   for(var key in value) {
         //                       $("#sponsor_regions").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
         //                   }
-                          
+
         //               });
         //           }
         //         });

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  *  Author: Ahmed Yacoub
  *  Email: ahmed.yacoub@outlook.com
@@ -24,7 +24,7 @@ class Helper
 {
 
     // helps binding locale prefix [en, ar] to view url
-    // example: /en/about   
+    // example: /en/about
     // @param   $routeName      url 2nd segment []
     public static function route($routeName)
     {
@@ -55,7 +55,7 @@ class Helper
 
     // convert UTC to user's local timezone
     // @param   $timestamp      UTC timestamp
-    // @param   $format         timestamp format    ex: d/m/y   or  H:m:i 
+    // @param   $format         timestamp format    ex: d/m/y   or  H:m:i
     public static function getUserLocalTimezone($timestamp = null, $format = 'h:m A - M d Y')
     {
         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, 'GMT')->setTimeZone(Helper::getUserTimezone())->format($format);
@@ -67,7 +67,7 @@ class Helper
      *  @param  $field_name     field in `entity_localizations` table.      ex: 'body'
      *  @param  $item_id        field in `entity_localizations` table.      ex: 1
      *  @param  $lang_id        field in `entity_localizations` table.      ex: 2
-     * 
+     *
      *  Example:    Helper::localization('fixed_pages', 'name', '1', '2')
      *  expected result     'عن الشركة'
      */
@@ -87,7 +87,7 @@ class Helper
      *  @param  $field_name     field in `entity_localizations` table.      ex: 'body'
      *  @param  $item_id        field in `entity_localizations` table.      ex: 1
      *  @param  $lang_id        field in `entity_localizations` table.      ex: 2
-     * 
+     *
      *  Example:    Helper::localization('fixed_pages', 'name', '1', '2')
      *  expected result     'عن الشركة'
      */
@@ -104,7 +104,7 @@ class Helper
      *  @param  $item_id        field in `entity_localizations` table.      ex: 1
      *  @param  $lang_id        field in `entity_localizations` table.      ex: 2
      *  @param  $new_value      field in `entity_localizations` table.      ex: 'محتوي جديد'
-     * 
+     *
      *  Example:    Helper::localization('fixed_pages', 'name', '1', '2', 'محتوي جديد')
      *  expected result     save 'محتوي جديد' in this record as a new value.
      */
@@ -126,7 +126,7 @@ class Helper
 
     /**
      *  Add new localization into `entity_localization` table
-     *  @param  $entity_id  
+     *  @param  $entity_id
      *  @param  $field
      *  @param  $item_id
      *  @param  $value
@@ -283,17 +283,24 @@ class Helper
         return $notifications;
     }
 
-    // search for a country by name and return its id, else just create a new 
+    // search for a country by name and return its id, else just create a new
     // country and return its new id.
-    public static function getIdOrInsert($model, $name) {
+    public static function getIdOrInsert($model, $name, $opt_field = []) {
         $object = $model::where('name', 'like', '%'.$name.'%')->first();
 
         if ( $object != null ) {
             return $object->id;
         } else {
-            $newObject = new $model;
-            $newObject->name = $name;
-            $newObject->save();
+
+            // create new record
+            $newObject = $model::create([
+                'name'      =>  $name,
+            ]);
+
+            // update optional fields
+            if(count($opt_field) > 0) {
+                $newObject->update($opt_field);
+            }
 
             return $newObject->id;
         }
@@ -301,7 +308,7 @@ class Helper
 
     public static function flashLocaleMsg($lang_locale, $msg_type, $msg_en, $msg_ar) {
         if ($lang_locale == 'en') {
-            Session::flash($msg_type, $msg_en);            
+            Session::flash($msg_type, $msg_en);
         } else {
             Session::flash($msg_type, $msg_ar);
         }
