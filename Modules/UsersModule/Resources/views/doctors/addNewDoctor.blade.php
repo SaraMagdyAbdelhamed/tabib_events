@@ -120,8 +120,8 @@
                         <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password" required>
                         <div class="hide-show show-me">Show</div>
                         @if ( $errors->has('password') )
-                            <span class="master_message inherit">{{ $errors->first('password') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="row">
@@ -235,16 +235,16 @@
                             <input class="inputfile inputfile-1" id="file-1" type="file" name="doctorImage">
                             <label for="file-1"><span>Choose a file</span></label>
                         </div> -->
-                        
+
                         <label class="master_label mandatory">صورة المستخدم</label>
                             <div id="fileList" style="text-align: -webkit-right;text-align: -moz-right;"></div>
                             <div class="form-group end-txt" id="img_btn" >
                                 <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1" onchange="updateList()"  accept=".jpg,.png,.jpeg">
                                 <label for="file-1"><span>اختر صورة</span></label>
                             </div>
-                        
+
                     </div>
-                    
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="checkboxrobo">
                         <input type="checkbox" id="activation" checked="true" name="activation" value="1">
@@ -373,11 +373,11 @@
           $("#img_list").remove();
           $("#img_btn").show();
         }
-     
+
     </script>
       <script type="text/javascript">
        var listimg = [];
-      
+
        //close_btn_in image
        function closebtn(index){
            listimg.splice(index,1);
@@ -389,16 +389,16 @@
                let input = document.getElementById('file-1');
                let output = document.getElementById('fileList');
                let files1 = input.files;
-      
+
                    if (window.File && window.FileList && window.FileReader) {
-      
+
                        for (var i = 0; i < files1.length; i++) {
                            var file = files1[i];
                            var imgReader = new FileReader();
                            imgReader.addEventListener("load", function (event) {
                                var imgFile = event.target;
                                listimg.push({
-                                   
+
                                    'index': listimg.length,
                                    'image': imgFile.result
                                });
@@ -427,15 +427,15 @@
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
                                     </a></span>
-                                   
+
                                     </li>`;
                                 }
                                 output.innerHTML += '</ul>';
                                }
-                               
-      
+
+
                            });
-      
+
                            //Read the image
                            imgReader.readAsDataURL(file);
                            $("#file-1")[i].value='';
@@ -443,16 +443,16 @@
                    }
                     $("#img_btn").hide();
            }
-      
+
     </script>
     <script>
       $(function(){
         if($('html').attr('lang')=='en'){
           $("#img_list").empty();
           $("#img_btn").removeClass("end-txt");
-        
+
           $("#img_list").append(`
-          
+
           <li class="js-uploader__file-list uploader__file-list">
                   <span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="../../../img/male.jpg"></span>
                   <span class="uploader__file-list__button"></span>

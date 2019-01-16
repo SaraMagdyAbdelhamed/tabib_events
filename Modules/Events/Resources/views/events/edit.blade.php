@@ -230,14 +230,14 @@
                               <div class="col-md-12 col-sm-12 col-xs-12"></div>
                               @if($event->is_paid == 0)
                               <div class="col-md-12 col-sm-12 col-xs-12 " id="freeTicketCol_1">
-                              
+
                                 <div class="radiorobo">
-                                
+
                                   <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked>
                                     <label for="free_ticket">@lang('keywords.free')</label>
                                 </div>
                               </div>
-                              <div class="col-md-12 col-sm-12 col-xs-12"  id="paidTicketCol_1"> 
+                              <div class="col-md-12 col-sm-12 col-xs-12"  id="paidTicketCol_1">
                                 <div class="radiorobo">
                                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1">
                                     <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -245,14 +245,14 @@
                               </div>
                               @else
                               <div class="col-md-12 col-sm-12 col-xs-12"  id="freeTicketCol_2">
-                              
+
                                 <div class="radiorobo">
-                                
+
                                   <input type="radio" id="free_ticket" name="event[ticket]" value="0" >
                                     <label for="free_ticket">@lang('keywords.free')</label>
                                 </div>
                               </div>
-                              <div class="col-md-12 col-sm-12 col-xs-12 "  id="paidTicketCol_2"> 
+                              <div class="col-md-12 col-sm-12 col-xs-12 "  id="paidTicketCol_2">
                                 <div class="radiorobo">
                                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1" checked>
                                     <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -269,8 +269,8 @@
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Price">@lang('keywords.price')</label>
                                 <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]" value="(isset($event->tickets->price))?  $event->tickets->price : ''" required>
-                                @if ( $errors->has('event[price]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>                 
+                                @if ( $errors->has('event[price]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>
                                 @endif
                             </div>
                             </div>
@@ -289,12 +289,12 @@
                                 @if($i == 0 )
                                 <option value="{{$currency->id}}">{{$currency->symbol}}</option>
                                 @endif
-                                
-                                
+
+
                                 @endforeach
                                 </select>
-                                @if ( $errors->has('event[currency]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>                 
+                                @if ( $errors->has('event[currency]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>
                                 @endif
                             </div>
                             </div>
@@ -302,8 +302,8 @@
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Available_tickets">@lang('keywords.avaliableTickets')</label>
                                 <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]" value="(isset($event->tickets->available_tickets))?  $event->tickets->available_tickets : ''" required>
-                                @if ( $errors->has('event[available_tickets]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>                 
+                                @if ( $errors->has('event[available_tickets]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>
                                 @endif
                             </div>
                             </div>
@@ -1147,7 +1147,6 @@
                                  <label class="master_label mandatory" for="appear_for"> @lang('keywords.surveyFor')</label>
                                  <select class="master_input select2" id="appears_for" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
                                    <option value="1">All attend</option>
-
                                  </select>
                                </div>
                              </div>
