@@ -26,7 +26,7 @@
                 </div>
                 <div class="side">
                   <ul class="side-menu">
-                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin' , 'Data Entry']) )
                     <li class="side__list" id="menu_1"><a class="side__item side__item--sub">@lang('keywords.mainData')</a>
   
                       <ul class="side__submenu">
@@ -66,7 +66,10 @@
                     @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
                     <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
                         </li>
+                        @endif
+                     @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor' , 'Data Entry']) )
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a></li>
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_5" href="{{route('events')}}">@lang('keywords.events')</a></li>
   
