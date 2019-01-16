@@ -1185,7 +1185,7 @@
 
     $("#"+id).addClass('active')
     $("#"+id+"-content").addClass('active')
-    
+
   }
   $(function(){
     // selectTab('my_list')
