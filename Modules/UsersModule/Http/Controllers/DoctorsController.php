@@ -506,7 +506,7 @@ class DoctorsController extends Controller
             $data['regions'] = GeoRegion::all();
             $data['specs'] = DoctorSpecialization::all();
 
-            // return $data;
+            return $data;
             return view('usersmodule::doctors.editDoctor', $data);
         } else {
             Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', ' لم نتمكن من العثور علي هذا الطبيب');
@@ -609,35 +609,37 @@ class DoctorsController extends Controller
                 if (isset($user['name']) && !empty($user['name'])) {
                     // Insert new doctor into users
                     try {
-                        // Creating new user
-                        $doctor = new Users;
-                        $doctor->username = $user["name"];
-                        $doctor->email = $user["email"];
-                        $doctor->tele_code = $user["tele_code"];
-                        $doctor->mobile = $user["mobile1"];
-                        $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
-                        $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city'], ['country_id' => $doctor->country_id, 'application_id' => 1]);
-                        $doctor->password = bcrypt($request->password);
-                        $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
-                        $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
+                        if (isset($user['email']) && Users::where('email', $user['email'])->first() == null) {
+                            // Creating new user
+                            $doctor = new Users;
+                            $doctor->username = $user["name"];
+                            $doctor->email = $user["email"];
+                            $doctor->tele_code = $user["tele_code"];
+                            $doctor->mobile = $user["mobile1"];
+                            $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
+                            $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city'], ['country_id' => $doctor->country_id, 'application_id' => 1]);
+                            $doctor->password = bcrypt($request->password);
+                            $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
+                            $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
 
-                        $doctor->save();    // save new user
+                            $doctor->save();    // save new user
 
-                        // Insert into `user_info`
-                        $userInfo = new UserInfo;
-                        $userInfo->user_id = $doctor->id;
-                        $userInfo->mobile2 = $user['mobile2'] ? : null;   // it could be null
-                        $userInfo->mobile3 = $user['mobile3'] ? : null;   // it could be null
-                        $userInfo->region_id = Helper::getIdOrInsert(GeoRegion::class, $user['region'], ['city_id' => $doctor->city_id, 'application_id' => 1]);
-                        $userInfo->address = $user['address'];
-                        $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : $user['specialization'];  // it could be null
-                        $userInfo->is_profile_completed = 0;
-                        $userInfo->is_backend = 1;
-                        $userInfo->save();  // save new user's info
+                            // Insert into `user_info`
+                            $userInfo = new UserInfo;
+                            $userInfo->user_id = $doctor->id;
+                            $userInfo->mobile2 = $user['mobile2'] ? : null;   // it could be null
+                            $userInfo->mobile3 = $user['mobile3'] ? : null;   // it could be null
+                            $userInfo->region_id = Helper::getIdOrInsert(GeoRegion::class, $user['region'], ['city_id' => $doctor->city_id, 'application_id' => 1]);
+                            $userInfo->address = $user['address'];
+                            $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : $user['specialization'];  // it could be null
+                            $userInfo->is_profile_completed = 0;
+                            $userInfo->is_backend = 1;
+                            $userInfo->save();  // save new user's info
 
-                        // Insert into `users_rules`
-                        $doctor->rules()->attach(2);
+                            // Insert into `users_rules`
+                            $doctor->rules()->attach(2);
 
+                        }
                     } catch (\Exception $exp) {
                         dd($exp);
                         Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!',' خطأ ، لا يمكن إضافة طبيب جديد');

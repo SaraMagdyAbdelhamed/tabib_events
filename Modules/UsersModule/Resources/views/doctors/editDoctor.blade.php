@@ -470,18 +470,22 @@
           $("#img_list").empty();
           $("#img_btn").removeClass("end-txt");
 
-          $("#img_list").append(`
+        @if( isset($user->photo) && $user->photo != null )
+            $("#img_list").append(`
                 <li class="js-uploader__file-list uploader__file-list" id="img_list_item">
                                     <span class="uploader__file-list__button"></span>
                                     <span class="uploader__file-list__thumbnail">
-                                    <img class="thumbnail"  src="../../../../../../../public/img/avaters/male.jpg"></span>
+                                    <img class="thumbnail"  src="{{ asset( $user->photo ) }}"></span>
                                     <span class="uploader__file-list__text"></span>
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn1()" class="uploader__icon-button fa fa-times" >
                                     </a></span>
 
                                     </li>
-          `)
+            `)
+        @else
+            closebtn1();
+        @endif
         }
       })
     </script>
