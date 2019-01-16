@@ -221,7 +221,7 @@
                 <div class="main-section">
                   <div id="fileList2"></div>
                   <div class="form-group">
-                    <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]"   required accept=".jpg,.png,.jpeg">
+                    <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]" onchange="updateList('file-1','fileList','img')"  required accept=".jpg,.png,.jpeg">
                     <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                   </div>
                 </div>
@@ -428,7 +428,7 @@
                       </fieldset>
                       <h3>@lang('keywords.survey')</h3>
                       <fieldset>
-                        <div class="row">
+                        {{-- <div class="row">
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="survey_name">@lang('keywords.Name')</label>
@@ -475,14 +475,14 @@
                             </div>
                           </div>
                         </div>
-                        <div id="more_Question"></div>
-                        <div style="text-align:end;">
+                        <div id="more_Question"></div> --}}
+                        {{-- <div style="text-align:end;">
                           <button class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i><span style="color:#004272;">@lang('keywords.addquestion')</span></button>
                             <div class="checkboxrobo pull-right">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
                               <label for="activation">@lang('keywords.Active')</label>
                             </div>
-                        </div><br>
+                        </div><br> --}}
                         <div id="more_Survey"></div>
                         <div class="col-md-12 col-sm-12 col-xs-12 no_padding">
                           <button class="btn-block master-btn" style="background-color:#004272;" id="add_more_survey" type="button"><i class="fa fa-plus color--main"></i><span style="color:white;">@lang('keywords.addsurvey')</span></button>
@@ -1100,7 +1100,7 @@
 
          next_count_survey =current_count_survey +1;
        next_count_question = 0;
-       current_count_survey +=1;
+      
 
             $("#more_Survey").append(`
 
@@ -1109,13 +1109,13 @@
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label" for="survey_name"> @lang('keywords.Name')</label>
-                                 <input class="master_input" type="text"  id="survey_name" name="survey[${next_count_survey}][name]">
+                                 <input class="master_input" type="text"  id="survey_name" name="survey[${next_count_survey}][name]" required>
                                </div>
                              </div>
                              <div class="col-xs-6">
                                <div class="master_field">
                                  <label class="master_label mandatory" for="appears_for_${next_count_survey}"> @lang('keywords.surveyFor')</label>
-                                 <select class="master_input select2" id="appears_for_${next_count_survey}" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
+                                 <select class="master_input select2" id="appears_for_${next_count_survey}" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]" required >
                                    <option value="1">All attend</option>
 
                                  </select>
@@ -1124,19 +1124,19 @@
                              <div class="col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_question">1  @lang('keywords.Squestion')</label>
-                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]">
+                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]" required>
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer1">  @lang('keywords.answer') 1 </label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer1" name="survey[${next_count_survey}][question][0][answer][0]">
+                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer1" name="survey[${next_count_survey}][question][0][answer][0]" required>
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
                                <div class="master_field">
                                  <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer2" name="survey[${next_count_survey}][question][0][answer][1]">
+                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer2" name="survey[${next_count_survey}][question][0][answer][1]" required>
                                </div>
                              </div>
                              <div class="col-md-3 col-sm-3 col-xs-12">
@@ -1165,7 +1165,7 @@
 
             );
             $(".select2").select2();
-
+           current_count_survey +=1;
        })
 
       })

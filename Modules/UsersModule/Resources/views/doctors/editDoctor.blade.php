@@ -192,33 +192,7 @@
                         @endif
                     </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
-                        <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;">
-                            <option selected disabled>-- @lang('keywords.selectSpec') --</option>
-
-                            @if (isset($specs) && !empty($specs))
-                                @foreach ($specs as $spec)
-                                    <option value="{{ $spec->id }}" {{ $spec->id == $doctor->userInfo->specialization->id ? 'selected' : '' }}>
-                                        {{ $spec->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label" for="doctor_password">@lang('keywords.newPassword')</label>
-                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
-                        <div class="hide-show show-me">Show</div>
-                        @if ( $errors->has('password') )
-                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
-                        @endif
-                    </div>
-                    </div>
+                    
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -243,7 +217,7 @@
                                 <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
                             </ul>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="activatioCol">
                     <div class="checkboxrobo">
                         <input type="checkbox" id="activation" name="activation" value="1" {{ $doctor->is_active ? "checked" : "" }}>
                         <label for="activation">@lang('keywords.Activate')</label>
@@ -263,56 +237,6 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    var listimg = [];
-
-    //close_btn_in image
-    function closebtn(index){
-        listimg.splice(index,1);
-        $("#img_list_item").empty();
-        $("#img_dr_").show();
-      }
-   //display image
-        updateList = function () {
-            let input = document.getElementById('file-1');
-            let output = document.getElementById('fileList');
-            let files1 = input.files;
-
-                if (window.File && window.FileList && window.FileReader) {
-
-                    for (var i = 0; i < files1.length; i++) {
-                        var file = files1[i];
-                        var imgReader = new FileReader();
-                        imgReader.addEventListener("load", function (event) {
-                            var imgFile = event.target;
-                            listimg.push({
-
-                                'index': listimg.length,
-                                'image': imgFile.result
-                            });
-                            output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                            for (var i = 0; i < listimg.length; i++) {
-                                output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
-                                <span class="uploader__file-list__button"></span>
-                                <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
-                                </a></span>
-                                <span class="uploader__file-list__text"></span>
-                                <span class="uploader__file-list__thumbnail">
-                                <img class="thumbnail"  src="${listimg[i].image}"></span>
-                                </li>`;
-                            }
-                            output.innerHTML += '</ul>';
-
-                        });
-
-                        //Read the image
-                        imgReader.readAsDataURL(file);
-                        $("#file-1")[i].value='';
-                    }
-                }
-                 $("#img_dr_").hide();
-        }
-</script>
 
 
 <script>
@@ -469,6 +393,9 @@
         if($('html').attr('lang')=='en'){
           $("#img_list").empty();
           $("#img_btn").removeClass("end-txt");
+          $("#img_btn").addClass("text-left");
+          $("#activatioCol").addClass('text-left')
+
 
         @if( isset($user->photo) && $user->photo != null )
             $("#img_list").append(`
