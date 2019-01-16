@@ -29,7 +29,7 @@
                       <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="master_field">
                           <label class="master_label mandatory" for="event_categories">@lang('keywords.event category')</label>
-                          <select class="master_input select2" id="event_categories" multiple="multiple" style="width:100%;" , name="categories[]">
+                          <select class="master_input select2" id="event_categories" multiple="multiple" style="width:100%;"  name="categories[]" required>
                      <!-- <option selected disabled>choose category</option> -->
                       @foreach($categories as $category)
                       <option value="{{$category['id']}}">{{$category['name']}}</option>
@@ -41,8 +41,8 @@
                       <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="master_field">
                           <label class="master_label mandatory" for="offer_category">@lang('keywords.Doctors')</label>
-                          <select class="master_input" id="offer_category" name="doctors">
-                          <option selected disabled>choose type</option>
+                          <select class="master_input" id="offer_category" name="doctors" required>
+                          {{-- <option selected disabled>choose type</option> --}}
                             <option value="1">All doctors</option>
                             <option value="2">General list doctors</option>
                             <option value="3">My list doctors</option>

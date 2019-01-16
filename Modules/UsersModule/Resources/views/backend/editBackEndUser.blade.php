@@ -110,8 +110,8 @@
               {{-- Password --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label mandatory" for="user_password">@lang('keywords.Password')</label>
-                  <input class="master_input" type="password" name="password" maxlength="8" minlength="3" id="user_password" required>
+                  <label class="master_label " for="user_password">@lang('keywords.Password')</label>
+                  <input class="master_input" type="password" name="password" maxlength="8" minlength="3" id="user_password" >
 
                   <div class="hide-show show-me">Show</div>
 

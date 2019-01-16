@@ -72,8 +72,8 @@
 
                     <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label mandatory" for="doctor_password">@lang('keywords.newPassword')</label>
-                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password" required>
+                        <label class="master_label " for="doctor_password">@lang('keywords.newPassword')</label>
+                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
                         <div class="hide-show show-me">Show</div>
                         @if ( $errors->has('password') )
                             <span class="master_message inherit">{{ $errors->first('password') }}</span>
