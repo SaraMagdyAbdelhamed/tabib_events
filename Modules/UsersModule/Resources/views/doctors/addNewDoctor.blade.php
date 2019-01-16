@@ -66,7 +66,7 @@
                     <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                     </button>
 
-                    <button type="button" class="master-btn   undefined bgcolor--fadeorange  bshadow--0">@lang('keywords.downloadSample')</button>
+                    <button type="button" class="master-btn   undefined bgcolor--fadeorange  bshadow--0" onclick="window.location.href = '{{ route('doctors.download.excel') }}'; ">@lang('keywords.downloadSample')</button>
                 </div>
             </form>
 

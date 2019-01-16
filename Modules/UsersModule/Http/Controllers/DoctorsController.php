@@ -654,4 +654,12 @@ class DoctorsController extends Controller
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
         return redirect('/users_mobile');
     }
+
+    /** Download excel sample */
+    public function downloadSample() {
+        $file = public_path() . "/sample_files/doctor_excel_sample.xlsx";
+        $header = ['Content-Type: application/xlsx'];
+
+        return \Response::download($file, 'doctor_excel_sample.xlsx', $header);
+    }
 }
