@@ -192,7 +192,7 @@
                         @endif
                     </div>
                     </div>
-                    
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -217,6 +217,10 @@
                                 <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
                             </ul>
                     </div>
+
+                    {{-- base64 image input --}}
+                    <input type="hidden" name="image_input" id="img_input" />
+
                     <div class="col-md-12 col-sm-12 col-xs-12" id="activatioCol">
                     <div class="checkboxrobo">
                         <input type="checkbox" id="activation" name="activation" value="1" {{ $doctor->is_active ? "checked" : "" }}>
@@ -397,12 +401,12 @@
           $("#activatioCol").addClass('text-left')
 
 
-        @if( isset($user->photo) && $user->photo != null )
+        @if( isset($doctor->photo) && $doctor->photo != null )
             $("#img_list").append(`
-                <li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                <li class="js-upl   oader__file-list uploader__file-list" id="img_list_item">
                                     <span class="uploader__file-list__button"></span>
                                     <span class="uploader__file-list__thumbnail">
-                                    <img class="thumbnail"  src="{{ asset( $user->photo ) }}"></span>
+                                    <img class="thumbnail"  src="{{ asset( $doctor->photo ) }}"></span>
                                     <span class="uploader__file-list__text"></span>
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn1()" class="uploader__icon-button fa fa-times" >
@@ -418,6 +422,10 @@
     </script>
     <script type="text/javascript">
         $("#save_btn").on('click',function(){
+
+            var img_input = "#img_input";
+            $(img_input).val(listimg[0].image);
+
             $("#editNewDr").validate();
         })
     </script>

@@ -2,33 +2,27 @@
 
 namespace Modules\UsersModule\Http\Controllers;
 
+use App\Cities;
+use App\Countries;
+use App\DoctorSpecialization;
+use App\Genders;
+use App\GeoRegion;
 use App\Helpers\Helper;
+use App\Rules;
+use App\UserInfo;
+use App\Users;
+use DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-use DB;
-use Session;
-use Validator;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
-
-use App\Countries;
-use App\Cities;
-use App\Users;
-use App\Rules;
-use App\UserInfo;
-use App\DoctorSpecialization;
-use App\GeoRegion;
-use App\Genders;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Session;
 
 // Excel package
-use Rap2hpoutre\FastExcel\FastExcel;
-
 
 class DoctorsController extends Controller
 {
@@ -46,7 +40,6 @@ class DoctorsController extends Controller
                 ->where('is_backend', 0);
         })->get();
 
-
         /**  get doctors(users) registred through backend. **/
         $data['general'] = Users::whereHas('rules', function ($q) {
             // filter users through table `user_rules`
@@ -56,7 +49,6 @@ class DoctorsController extends Controller
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->get();
-
 
         //  get doctors(users) registred in my list
         $data['myList'] = Users::whereHas('rules', function ($q) {
@@ -78,7 +70,7 @@ class DoctorsController extends Controller
     public function filter(Request $request)
     {
         // dd($request->all());
-        $flag = $request->flag;         // 1 => mobile users, 2 => general list doctors, 3 => my list doctors
+        $flag = $request->flag; // 1 => mobile users, 2 => general list doctors, 3 => my list doctors
         $country_id = $request->country;
         $city_id = $request->city;
         $spec_id = $request->specialization;
@@ -86,7 +78,7 @@ class DoctorsController extends Controller
 
         // Filter User by country, city and gender first, then filter by specialization
         if (!is_null($country_id) || !is_null($city_id) || !is_null($spec_id) || !is_null($gender_id)) {
-            $users = new Users;  // create new object of users.
+            $users = new Users; // create new object of users.
 
             // Filter by country
             if (isset($country_id) && !empty($country_id)) {
@@ -179,7 +171,6 @@ class DoctorsController extends Controller
             $users1 = $users2 = $users3 = new Users;
         }
 
-
         /**  get doctors(users) registred through mobile app */
         $data['mobiles'] = $users1->whereHas('rules', function ($q) {
             // filter users through table `user_rules`
@@ -190,7 +181,6 @@ class DoctorsController extends Controller
                 ->where('is_backend', 0);
         })->get();
 
-
         /**  get doctors(users) registred through backend. **/
         $data['general'] = $users2->whereHas('rules', function ($q) {
             // filter users through table `user_rules`
@@ -200,7 +190,6 @@ class DoctorsController extends Controller
             $q->where('is_profile_completed', 0)
                 ->where('is_backend', 1);
         })->get();
-
 
         //  get doctors(users) registred in my list
         $data['myList'] = $users3->whereHas('rules', function ($q) {
@@ -256,7 +245,7 @@ class DoctorsController extends Controller
             $doctor->city_id = $request->doctorCity;
             $doctor->password = bcrypt($request->password);
             $doctor->gender_id = $request->gender;
-            $doctor->is_active = $request->activation ? : 0;
+            $doctor->is_active = $request->activation ?: 0;
 
             // Insert doctor's image if exists
             if ($request->hasfile('doctorImage')) {
@@ -266,19 +255,19 @@ class DoctorsController extends Controller
                 $path = 'doctors/' . $newName;
                 $doctor->photo = $path;
             }
-            $doctor->save();    // save new user
+            $doctor->save(); // save new user
 
             // Insert into `user_info`
             $userInfo = new UserInfo;
             $userInfo->user_id = $doctor->id;
-            $userInfo->mobile2 = $request->mobile2 ? : null;   // it could be null
-            $userInfo->mobile3 = $request->mobile3 ? : null;   // it could be null
+            $userInfo->mobile2 = $request->mobile2 ?: null; // it could be null
+            $userInfo->mobile3 = $request->mobile3 ?: null; // it could be null
             $userInfo->region_id = $request->doctorRegion;
             $userInfo->address = $request->doctorAddress;
-            $userInfo->specialization_id = $request->doctorSpecialization ? : null; // it could be null
+            $userInfo->specialization_id = $request->doctorSpecialization ?: null; // it could be null
             $userInfo->is_profile_completed = 0;
             $userInfo->is_backend = 1;
-            $userInfo->save();  // save new user's info
+            $userInfo->save(); // save new user's info
 
             // Insert into `users_rules`
             $doctor->rules()->attach(2);
@@ -287,7 +276,6 @@ class DoctorsController extends Controller
             Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
             return redirect()->back();
         }
-
 
         // Flash success and redirect to its home page
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', 'تم إضافة الطبيب بنجاح');
@@ -326,7 +314,7 @@ class DoctorsController extends Controller
         foreach ($request->ids as $id) {
 
             // skip current itteration if id = ''
-            if ( empty($id) ) {
+            if (empty($id)) {
                 continue;
             }
 
@@ -350,7 +338,6 @@ class DoctorsController extends Controller
 
         return response()->json(['success', 'Users deleted!']);
     }
-
 
     /**
      * @param   $id     route model binding => user's id
@@ -479,12 +466,11 @@ class DoctorsController extends Controller
         return response()->json(['regions' => $regions]);
     }
 
-
     /** Edit form for a general list doctor */
     public function generalDoctorEdit($id)
     {
         $user = Users::find($id);
-        if($user == null) {
+        if ($user == null) {
             Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', 'لم نتمكن من العثور علي هذا الطبيب');
             return redirect()->back();
         }
@@ -506,7 +492,7 @@ class DoctorsController extends Controller
             $data['regions'] = GeoRegion::all();
             $data['specs'] = DoctorSpecialization::all();
 
-            return $data;
+            // return $data;
             return view('usersmodule::doctors.editDoctor', $data);
         } else {
             Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Doctor not found!', ' لم نتمكن من العثور علي هذا الطبيب');
@@ -517,6 +503,8 @@ class DoctorsController extends Controller
     /** Update a general list doctor */
     public function generalDoctorUpdate(Request $request)
     {
+        $images_en = explode('-', $request->image_input);
+
         $doctor = Users::find($request->id);
 
         if ($doctor != null) {
@@ -554,11 +542,11 @@ class DoctorsController extends Controller
                 }
 
                 $doctor->gender_id = $request->gender;
-                $doctor->is_active = $request->activation ? : 0;
+                $doctor->is_active = $request->activation ?: 0;
 
-            // Insert doctor's image if exists
+                // Insert doctor's image if exists
                 if ($request->hasfile('doctorImage')) {
-                    File::delete($doctor->photo);   // delete old
+                    File::delete($doctor->photo); // delete old
 
                     $image = $request->doctorImage;
                     $newName = time() . '_' . $image->getClientOriginalName();
@@ -566,31 +554,69 @@ class DoctorsController extends Controller
                     $path = 'doctors/' . $newName;
                     $doctor->photo = $path;
                 }
-                $doctor->save();    // save new user
 
-            // Insert into `user_info`
+                // convert base64 images into normal images
+                // update English images.
+                if (count($images_en) > 0) {
+                    File::delete($doctor->photo); // delete old
+                    // add new images
+                    foreach ($images_en as $image) {
+                        // check if image exist
+                        if (strpos($image, 'doctors') !== false) {
+                            // search for its name
+                            preg_match('/doctors\/(.*)/', $image, $match);
+
+                            if (count($match) > 0) {
+                                $name = $match[0];
+
+                                $doctor->photo = $name;
+                            }
+
+                        }
+                        // check if image is new
+                        if (strpos($image, 'base64') !== false) {
+                            // get image extension
+                            preg_match('/image\/(.*)\;/', $image, $match);
+
+                            if (count($match) > 0) {
+                                $ext = $match[1];
+                                $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
+                                $image = str_replace(' ', '+', $image);
+                                $imageName = 'doctors/' . time() . rand(1111, 9999) . '.' . $ext;
+                                // dd([$imageName, $image]);
+                                \File::put(public_path() . '/' . $imageName, base64_decode($image));
+
+                                $doctor->photo = $imageName;
+
+                            }
+                        }
+                    }
+
+                }
+
+                $doctor->save(); // save new user
+
+                // Insert into `user_info`
                 $userInfo = UserInfo::where('user_id', $doctor->id)->first();
                 $userInfo->user_id = $doctor->id;
-                $userInfo->mobile2 = $request->mobile2 ? : null;   // it could be null
-                $userInfo->mobile3 = $request->mobile3 ? : null;   // it could be null
+                $userInfo->mobile2 = $request->mobile2 ?: null; // it could be null
+                $userInfo->mobile3 = $request->mobile3 ?: null; // it could be null
                 $userInfo->region_id = $request->doctorRegion;
                 $userInfo->address = $request->doctorAddress;
-                $userInfo->specialization_id = $request->doctorSpecialization ? : null; // it could be null
+                $userInfo->specialization_id = $request->doctorSpecialization ?: null; // it could be null
                 $userInfo->is_profile_completed = $request->activation ? 1 : 0;
                 $userInfo->is_backend = 1;
-                $userInfo->save();  // save new user's info
+                $userInfo->save(); // save new user's info
 
-            // Insert into `users_rules`
+                // Insert into `users_rules`
                 $doctor->rules()->attach(2);
 
             } catch (Exception $exp) {
-                dd($exp);
                 Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not update new doctor!', ' خطأ ، لا يمكن تعديل طبيب جديد');
                 return redirect()->back();
             }
 
-
-        // Flash success and redirect to its home page
+            // Flash success and redirect to its home page
             Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor updated successfully!', ' تم تعديل الطبيب بنجاح');
             return redirect('/users_mobile');
         } else {
@@ -613,6 +639,7 @@ class DoctorsController extends Controller
                             // Creating new user
                             $doctor = new Users;
                             $doctor->username = $user["name"];
+                            $doctor->password = bcrypt($user['password']);
                             $doctor->email = $user["email"];
                             $doctor->tele_code = $user["tele_code"];
                             $doctor->mobile = $user["mobile1"];
@@ -622,19 +649,19 @@ class DoctorsController extends Controller
                             $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
                             $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
 
-                            $doctor->save();    // save new user
+                            $doctor->save(); // save new user
 
                             // Insert into `user_info`
                             $userInfo = new UserInfo;
                             $userInfo->user_id = $doctor->id;
-                            $userInfo->mobile2 = $user['mobile2'] ? : null;   // it could be null
-                            $userInfo->mobile3 = $user['mobile3'] ? : null;   // it could be null
+                            $userInfo->mobile2 = $user['mobile2'] ?: null; // it could be null
+                            $userInfo->mobile3 = $user['mobile3'] ?: null; // it could be null
                             $userInfo->region_id = Helper::getIdOrInsert(GeoRegion::class, $user['region'], ['city_id' => $doctor->city_id, 'application_id' => 1]);
                             $userInfo->address = $user['address'];
-                            $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : $user['specialization'];  // it could be null
+                            $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : $user['specialization']; // it could be null
                             $userInfo->is_profile_completed = 0;
                             $userInfo->is_backend = 1;
-                            $userInfo->save();  // save new user's info
+                            $userInfo->save(); // save new user's info
 
                             // Insert into `users_rules`
                             $doctor->rules()->attach(2);
@@ -642,12 +669,11 @@ class DoctorsController extends Controller
                         }
                     } catch (\Exception $exp) {
                         dd($exp);
-                        Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!',' خطأ ، لا يمكن إضافة طبيب جديد');
+                        Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
                         return redirect()->back();
                     }
                 }
             }
-
 
         } else {
             Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'Error uploading excel file, or file is missing', ' خطأ في تحميل ملف الاكسيل برجاء التأكد من ملف الاكسيل');
@@ -661,7 +687,8 @@ class DoctorsController extends Controller
     }
 
     /** Download excel sample */
-    public function downloadSample() {
+    public function downloadSample()
+    {
         $file = public_path() . "/sample_files/doctor_excel_sample.xlsx";
         $header = ['Content-Type: application/xlsx'];
 
