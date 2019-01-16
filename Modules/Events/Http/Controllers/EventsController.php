@@ -342,7 +342,10 @@ class EventsController extends Controller
                 }
             }
 
-        } catch (\Exception $ex) {
+        } 
+    }
+}
+        catch(\Exception $ex) {
             Event::destroy($event->id);
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Error while adding Event!', 'حدث خطأ اثناء اضافه الحدث');
             return redirect()->back();
@@ -590,7 +593,7 @@ class EventsController extends Controller
                 "created_by" => \Auth::id(),
                 "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
             ]);
-        } catch (Exception $ex) {
+        } catch(\Exception $ex) {
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Event not updated !', ' تعديل الحدث  حدث خطأ ');
 
             return redirect()->back();
