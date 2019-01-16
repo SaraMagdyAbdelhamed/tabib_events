@@ -10,7 +10,8 @@
                 <div class="coverglobal text-center bshadow--2" style="background:undefined url( '{{ asset('img/covers/dummy.jpg') }}') no-repeat center center; background-size:cover;">
                   <button class="hamburger is-closed" type="button" data-toggle="offcanvas"><span class="hamb-top"></span><span class="hamb-middle"></span><span class="hamb-bottom"></span></button>
                   <div class="text-center">
-                      <img class="coverglobal__avatar bradius--circle" src="{{ asset('img/avaters/male.jpg') }}">
+                      <img class="coverglobal__avatar bradius--circle" src="{{(Auth::user()->photo != null)? asset(Auth::user()->photo):asset('img/avaters/male.jpg') }}">
+                     
                       <h3 class="coverglobal__title">{{ __('keywords.welcome') .' '. Auth::user()->first_name .' '. Auth::user()->last_name }}</h3>
                       <small class="coverglobal__slogan">
                         <div class="row text-center">
@@ -66,8 +67,8 @@
                     <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
                         </li>
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a></li>
-                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
-                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('events')}}">@lang('keywords.events')</a></li>
+                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
+                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_5" href="{{route('events')}}">@lang('keywords.events')</a></li>
   
                     @endif
                   </ul>

@@ -19,11 +19,11 @@
             var ids = allVals;    // join array of IDs into a single variable to explode in controller
 
             swal({
-                title: "Are you sure you want to delete this record?!",
-                text: "You won'\t be able to retrieve this record.",
+                title: "@lang('keywords.question')?!",
+                text: "@lang('keywords.information_message').",
                 showCancelButton: true,
                 confirmButtonColor: '#281160',
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonText: "@lang('keywords.confirm_delete')!",
                 closeOnConfirm: false
                 },
             function(isConfirm){
@@ -47,7 +47,8 @@
                         }
                     });
                 } else {
-                swal("Canceled", "data still exists.");
+                
+                    swal("@lang('keywords.delete_cancel')", "  @lang('keywords.delete_cancel_message') :)", "error");
                 }
 
             });

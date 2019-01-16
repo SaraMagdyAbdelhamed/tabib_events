@@ -53,7 +53,7 @@ class UsersController extends Controller
 
         $data['users'] = Users::whereHas('rules', function ($q) use ($rule_names) {
             $q->whereIn('rules.id', $rule_names);
-        })->get();
+        })->orderBy('id', 'desc')->get();
 
         $rules = Auth::user()->rules->last()->id == 3 ? [1, 3, 4, 5, 6, 7] : [1, 4, 5, 6, 7];
         $data['rules'] = Rules::whereIn('id', $rules)->get();
@@ -130,7 +130,7 @@ class UsersController extends Controller
     /** Show insert form */
     public function backend_create()
     {
-        $data['userTypes'] = Rules::all();
+        $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
@@ -238,7 +238,7 @@ class UsersController extends Controller
        // dd($user->sponsorCities);
         $data['rule_id'] = $user->rules()->where('rule_id', '!=', 3)->first()->id;
         $data['address'] = ($user->userInfo) ? $user->userInfo->address : "";
-        $data['userTypes'] = Rules::all();
+        $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();

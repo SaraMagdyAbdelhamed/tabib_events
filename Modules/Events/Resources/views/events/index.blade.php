@@ -200,7 +200,7 @@ $(document).ready(function(){
                     },
                     success: function(data)
                     {
-                      swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                      swal("@lang('keywords.delete')!", "@lang('keywords.delete_message') ", "success");
                         $('tr[data-id='+id+']').fadeOut();
                     },
                         error: function(response) {
@@ -210,7 +210,7 @@ $(document).ready(function(){
                 
                     
                 } else {
-                    swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                    swal("@lang('keywords.delete_cancel')", "  @lang('keywords.delete_cancel_message') :)", "error");
                 }
             });
         });

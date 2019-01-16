@@ -43,12 +43,8 @@ class NotificationsController extends Controller
      */
     public function store(Request $request)
     {
-        $events_id = Event::whereHas('categories', function ($q) use($request) {
-            $q->whereIn('category_id',$request->categories);
-        })->pluck('id')->toArray();
-        $spec_id = DoctorSpecialization::whereHas('events', function ($q) use($request,$events_id) {
-            $q->whereIn('event_id',$events_id);
-        })->pluck('id')->toArray();
+        // dd($request->all());
+       
 
 
         // $request->gender;$request->categories;$request->notifiaction_text;
@@ -64,6 +60,15 @@ class NotificationsController extends Controller
                 ->withInput();
         }
 
+        $events_id = Event::whereHas('categories', function ($q) use($request) {
+            if($request->has('categories') )
+            {
+            $q->whereIn('category_id',$request->categories);
+            }
+        })->pluck('id')->toArray();
+        $spec_id = DoctorSpecialization::whereHas('events', function ($q) use($request,$events_id) {
+            $q->whereIn('event_id',$events_id);
+        })->pluck('id')->toArray();
         $users = Users::where(function($q) use($request){
 
             if($request->has('categories') )
@@ -108,6 +113,7 @@ class NotificationsController extends Controller
 
 
     })->get();
+    
         foreach($users as $user){
         $notification = new Notification;
         $notification->msg = $request->notifiaction_text;

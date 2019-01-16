@@ -30,6 +30,7 @@
                         <div class="master_field">
                           <label class="master_label mandatory" for="event_categories">@lang('keywords.event category')</label>
                           <select class="master_input select2" id="event_categories" multiple="multiple" style="width:100%;" , name="categories[]">
+                     <!-- <option selected disabled>choose category</option> -->
                       @foreach($categories as $category)
                       <option value="{{$category['id']}}">{{$category['name']}}</option>
                       @endforeach
@@ -41,6 +42,7 @@
                         <div class="master_field">
                           <label class="master_label mandatory" for="offer_category">@lang('keywords.Doctors')</label>
                           <select class="master_input" id="offer_category" name="doctors">
+                          <option selected disabled>choose type</option>
                             <option value="1">All doctors</option>
                             <option value="2">General list doctors</option>
                             <option value="3">My list doctors</option>
@@ -64,7 +66,7 @@
                       <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="master_field">
                           <label class="master_label" for="notifiaction_text">@lang('keywords.notification text')</label>
-                          <textarea class="master_input" name="notifiaction_text" id="notifiaction_text"></textarea>
+                          <textarea class="master_input" name="notifiaction_text" id="notifiaction_text" required></textarea>
                           {{-- <span class="master_message inherit">message content</span> --}}
                         </div>
                       </div>
@@ -90,4 +92,11 @@
               </div>
             </div>
   </form>
+  <script>
+    $(document).ready(function() {
+
+      $('#sub_8_4').addClass('pure-active');
+
+    });
+</script>
 @endsection

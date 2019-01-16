@@ -72,8 +72,8 @@
 <script>
     $(document).ready(function() {
 
-      $('#menu_1').addClass('openedmenu');
-      $('#sub_1_5').addClass('pure-active');
+     // $('#menu_1').addClass('openedmenu');
+      $('#sub_8_3').addClass('pure-active');
 
     });
 </script>

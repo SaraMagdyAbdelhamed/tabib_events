@@ -42,7 +42,7 @@
                             <td><span class="cellcontent" id="chbox" data-id="{{ $event->id }}"></span></td>
                             <td><span class="cellcontent">{{ $loop->index + 1 }}</span></td>
                             <td><span class="cellcontent">
-                                {{ \App::isLocale('en') ? $event->name : Helper::localization('offer_categories', 'name', $event->id, 2)  }}
+                               {{$event->nameMultilang}}
                             </span></td>
                             <td>
                                 <span class="cellcontent">
@@ -209,7 +209,7 @@
                     },
                     success: function ()
                     {
-                        swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                      swal("@lang('keywords.delete')!", "@lang('keywords.delete_message') ", "success");
 
                         // fade out selected checkboxes after deletion
                         $.each(allVals, function( index, value ) {
@@ -221,7 +221,7 @@
                     }
                 });
                 } else {
-                swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                  swal("@lang('keywords.delete_cancel')", "  @lang('keywords.delete_cancel_message') :)", "error");
                 }
             });
             }
@@ -261,7 +261,7 @@
                     },
                     success: function ()
                     {
-                        swal("تم الحذف!", "تم الحذف بنجاح", "success");
+                      swal("@lang('keywords.delete')!", "@lang('keywords.delete_message') ", "success");
                         $('tr[data-id='+id+']').fadeOut();
                     },
                         error: function(response) {
@@ -270,7 +270,7 @@
                 });
                     
                 } else {
-                    swal("تم الإلغاء", "المعلومات مازالت موجودة :)", "error");
+                  swal("@lang('keywords.delete_cancel')", "  @lang('keywords.delete_cancel_message') :)", "error");
                 }
             });
         });
