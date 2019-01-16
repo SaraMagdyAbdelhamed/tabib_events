@@ -150,10 +150,10 @@ class EventsController extends Controller
                 foreach ($request['event']['youtube'] as $youtube) {
                     if ($youtube != null) {
                         if (strpos($youtube, 'youtube') == false) {
-                            Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
                             return redirect()->back();
                         } elseif (strpos($youtube, 'watch') == false) {
-                            Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
                             return redirect()->back();
                         }
                         str_replace("watch", "embed", $youtube);
