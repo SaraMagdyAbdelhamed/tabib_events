@@ -69,6 +69,7 @@
                         @endif
                      @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor' , 'Data Entry']) )
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a></li>
+                    @endif
                     @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_5" href="{{route('events')}}">@lang('keywords.events')</a></li>
