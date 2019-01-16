@@ -61,8 +61,8 @@
                 <div class="master_field">
                   <label class="master_label mandatory" for="username">@lang('keywords.FullName')</label>
                 <input class="master_input" value="{{$user->first_name}}" type="text" maxlength="40" id="username" name="fullname" required>
-                  
-                  @if ( $errors->has('fullname') )                      
+
+                  @if ( $errors->has('fullname') )
 
                     <span class="master_message inherit">{{ $errors->first('fullname') }}</span>
                   @endif
@@ -75,7 +75,7 @@
                 <div class="master_field">
                   <label class="master_label mandatory" for="login_username">@lang('keywords.UserName')</label>
                   <input class="master_input" value="{{$user->username}}" type="text" maxlength="20" id="login_username" name="username" required>
-                  
+
 
                   @if ( $errors->has('username') )
                     <span class="master_message inherit">{{ $errors->first('username') }}</span>
@@ -88,7 +88,7 @@
                 <div class="master_field">
                   <label class="master_label mandatory" for="user_email">@lang('keywords.email')</label>
                   <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email" required>
-                  
+
 
                   @if ( $errors->has('email') )
                     <span class="master_message inherit">{{ $errors->first('email') }}</span>
@@ -140,7 +140,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
                     <label class="master_label mandatory" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
-                    <select class="master_input select2" id="sponsor_category" 
+                    <select class="master_input select2" id="sponsor_category"
                       multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]" required>
 
 
@@ -280,13 +280,8 @@
 
               </div>
 
-              <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
-                <div class="checkboxrobo">
+              <input type="hidden" name="image_input" id="image_input" />
 
-                  <img src="{{ asset($user->photo) }}" alt="{{ $user->first_name }}'s image'">
-
-                </div>
-              </div>
               {{-- Activation --}}
               <div class="col-md-12 col-sm-12 col-xs-12" id="activationCol" style="text-align:end;">
                 <div class="checkboxrobo">
@@ -307,9 +302,9 @@
             </div>
           </div>
           <div class="div" style="text-align:end;">
-            <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
+            <button class="master-btn   undefined bgcolor--main  bshadow--0" type="button" id="save_btn"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
             </button>
-            <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
+            <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
             </button>
           </div>
         </div>
@@ -338,36 +333,6 @@
 
         });
 
-        // clicking on any city option will trigger an AJAX call to get all regions related to its city.
-        // $("#sponsor_cities").change(function(){
-        //     var ids = $(this, ':selected').val();
-        //     console.log(ids);
-
-        //     if(ids) {
-        //       $.each( ids, function(key, value){
-        //         console.log(key + " " + value);
-        //         $.ajax({
-        //           type: 'GET',
-        //           dataType: "JSON",
-        //           url:  "{{ route('doctor.get.regions') }}",
-        //           data: {
-        //               'id': key,
-        //               '_method': 'GET',
-        //               '_token': '{{ csrf_token() }}',
-        //           },
-        //           success: function(response) {
-        //               // foreach response values, append options
-        //               $.each( response, function(key, value){
-        //                   for(var key in value) {
-        //                       $("#sponsor_regions").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
-        //                   }
-
-        //               });
-        //           }
-        //         });
-        //       }
-        //     }
-        // });
     })
   </script>
   <script>
@@ -464,16 +429,35 @@
           $("#img_list").empty();
           $("#img_btn").removeClass("end-txt");
 
+        @if( isset($user->photo) && $user->photo != null )
           $("#img_list").append(`
+                <li class="js-upl   oader__file-list uploader__file-list" id="img_list_item">
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail"  src="{{ asset( $user->photo ) }}"></span>
+                                    <span class="uploader__file-list__text"></span>
 
-          <li class="js-uploader__file-list uploader__file-list">
-                  <span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="../../../img/male.jpg"></span>
-                  <span class="uploader__file-list__button"></span>
-                  <span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span>
-                </li>
-          `)
+                                    <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn1()" class="uploader__icon-button fa fa-times" >
+                                    </a></span>
+
+                                    </li>
+            `)
+        @else
+            closebtn1();
+        @endif
         }
       })
+    </script>
+
+    <script type="text/javascript">
+        $("#save_btn").on('click',function(e){
+            e.preventDefault();
+
+            var img_input = "#image_input";
+            $(img_input).val(listimg[0].image);
+
+            $("#editBEUser").submit();
+        })
     </script>
 
 @endsection
