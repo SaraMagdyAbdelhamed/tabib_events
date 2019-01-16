@@ -23,7 +23,6 @@
                     <div class="clearfix"></div>
                     <ul class="tabs">
                       <li id="info"> @lang('keywords.aboutEvent')</li>
-                      {{-- <li id="tickets">@lang('keywords.tickets')</li> --}}
                       <li id="contactInfo"> @lang('keywords.eventCall')</li>
                       <li id="workshops"> @lang('keywords.workshop')</li>
                       <li id="surveys">@lang('keywords.survey') </li>
@@ -223,94 +222,7 @@
                           </div>
                         </div><br>
                       </li>
-                      {{-- <li class="tab__content_item" id="tickets-content">
-                        <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
-                          <div class="row">
-                            <div class="col-xs-12 "style="text-align:right">
-                              <label class="master_label mandatory">@lang('keywords.ticketPayment')</label>
-                              <div class="col-md-12 col-sm-12 col-xs-12"></div>
-                              @if($event->is_paid == 0)
-                              <div class="col-md-12 col-sm-12 col-xs-12 ">
-
-                                <div class="radiorobo">
-
-                                  <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked>
-                                    <label for="free_ticket">@lang('keywords.free')</label>
-                                </div>
-                              </div>
-                              <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="radiorobo">
-                                  <input type="radio" id="paid_ticket" name="event[ticket]" value="1">
-                                    <label for="paid_ticket">@lang('keywords.paid')</label>
-                                </div>
-                              </div>
-                              @else
-                              <div class="col-md-12 col-sm-12 col-xs-12">
-
-                                <div class="radiorobo">
-
-                                  <input type="radio" id="free_ticket" name="event[ticket]" value="0" >
-                                    <label for="free_ticket">@lang('keywords.free')</label>
-                                </div>
-                              </div>
-                              <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                <div class="radiorobo">
-                                  <input type="radio" id="paid_ticket" name="event[ticket]" value="1" checked>
-                                    <label for="paid_ticket">@lang('keywords.paid')</label>
-                                </div>
-                              </div>
-                              @endif
-                            </div>
-                            <div class="clearfix"></div>
-                          </div>
-                        </div>
-                        <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="paid_section">
-                          <div class="row" id="paid_section">
-                            <div class="col-xs-8">
-                            <div class="master_field">
-                                <label class="master_label" for="Price">@lang('keywords.price')</label>
-                                <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]" value="(isset($event->tickets->price))?  $event->tickets->price : ''">
-                                @if ( $errors->has('event[price]') )
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>
-                                @endif
-                            </div>
-                            </div>
-                            <div class="col-xs-4">
-                            <div class="master_field">
-                                <label class="master_label mandatory" for="Currency">@lang('keywords.currency')</label>
-                                <select class="master_input" id="Currency" name="event[currency]" >
-                                @foreach($currencies as $currency)
-                                <?php $i=0; ?>
-                                @if(isset($event->tickets->currency_id))
-                                @if($event->tickets->currency_id == $currency->id)
-                                <?php $i=1; ?>
-                                <option value="{{$currency->id}}" selected>{{$currency->symbol}}</option>
-                                 @endif
-                                @endif
-                                @if($i == 0 )
-                                <option value="{{$currency->id}}">{{$currency->symbol}}</option>
-                                @endif
-
-
-                                @endforeach
-                                </select>
-                                @if ( $errors->has('event[currency]') )
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>
-                                @endif
-                            </div>
-                            </div>
-                            <div class="col-xs-12">
-                            <div class="master_field">
-                                <label class="master_label" for="Available_tickets">@lang('keywords.avaliableTickets')</label>
-                                <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]" value="(isset($event->tickets->available_tickets))?  $event->tickets->available_tickets : ''">
-                                @if ( $errors->has('event[available_tickets]') )
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>
-                                @endif
-                            </div>
-                            </div>
-                          </div>
-                        </div><br>
-                      </li> --}}
+                      
                       <li class="tab__content_item" id="contactInfo-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                            <div class="row">
