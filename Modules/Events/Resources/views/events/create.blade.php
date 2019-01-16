@@ -221,7 +221,7 @@
                 <div class="main-section">
                   <div id="fileList2"></div>
                   <div class="form-group">
-                    <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]"   required accept=".jpg,.png,.jpeg">
+                    <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]" onchange="updateList('file-1','fileList','img')"  required accept=".jpg,.png,.jpeg">
                     <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                   </div>
                 </div>

@@ -502,7 +502,7 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         $logo = '';
-        $images_logo = explode('-', $request->event_images_base64);
+        $images_logo = explode('-', $request->event_logo_base64);
         $images_en = explode('-', $request->event_images_base64);
 
         $validation = Validator::make($request->all(), [
