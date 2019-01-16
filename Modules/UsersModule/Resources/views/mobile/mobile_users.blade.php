@@ -33,7 +33,8 @@
             <div class="full-table">
               <div class="filter__btns">
                 <a class="filter-btn master-btn filterBtn" data-id="1" href="#filter-users">
-                      <i class="fa fa-filter"></i>@lang('keywords.filter')</a>
+                  <i class="fa fa-filter"></i>@lang('keywords.filter')
+                </a>
               </div>
               <div class="bottomActions__btns">
                 <a data-id="#dataTableTriggerId_001" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected"
@@ -43,6 +44,8 @@
 
                 {{-- Filter Form --}}
                 <form action="{{ route('doctor.filter') }}" method="GET" id="filterForm">
+                  <input type="hidden" id="tab_index" name="tab_id" value="{{ isset( $tab_index ) ? $tab_index : 0 }}" />
+
                   <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
                   <div>
                     <div class="row">
@@ -294,14 +297,16 @@
           </div><br>
         </li>
 
-        <!--my list hhhhh-->
+        <!--my list -->
         <li class="tab__content_item" id="general_list-content">
           <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="full-table">
+
               {{-- Filter Button --}}
               <div class="filter__btns">
                 <a class="filter-btn master-btn filterBtn" data-id="2" href="#filter-users"><i class="fa fa-filter"></i>@lang('keywords.filter')</a>
               </div>
+
               <div class="bottomActions__btns">
                 {{-- Delete Selected Button --}}
                 <a data-id="#dataTableTriggerId_002" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected"
@@ -626,7 +631,7 @@
             </div>
           </div><br>
         </li>
-        
+
         <li class="tab__content_item" id="my_list-content">
           <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="full-table">
@@ -637,15 +642,15 @@
               </div>
 
               {{-- Delete Selected Button --}}
-              <div class="bottomActions__btns" style=" position: absolute;bottom: 29px;"> 
+              <div class="bottomActions__btns" style=" position: absolute;bottom: 29px;">
                 <a data-id="#dataTableTriggerId_003" class="{{\App::isLocale('en') ?'btn-warning-confirm-all':'btn-warning-confirm-all-ar'}} master-btn deleteSelected"
                   href="#">@lang('keywords.deleteSelected')</a>
               </div>
 
 
-             
 
-              
+
+
               <form id="dataTableTriggerId_003_form">
 
                 {{-- My List --}}
@@ -829,163 +834,7 @@
                 </table>
 
               </form>
-              <div class="remodal log-custom" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-                <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
-                <div>
-                  <h2 class="title">title of the changing log in</h2>
-                  <div class="log-content">
-                    <div class="log-container">
-                      <table class="log-table">
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <th>log title</th>
-                          <th>user</th>
-                          <th>time</th>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>January</td>
-                          <td>$100</td>
-                          <td>$100</td>
-                        </tr>
-                        <tr class="log-row" data-link="https://www.google.com.eg/">
-                          <td>February</td>
-                          <td>$80</td>
-                          <td>$80</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div><br>
         </li>
@@ -1005,11 +854,11 @@
 <script>
   // delete multi
   $('.deleteSelected').click(function(){
-    
+
     var allVals = [];                   // selected IDs
     var token = '{{ csrf_token() }}';
     /*var input = $(this).data("id") + ' input:checked';
-    
+
     // push cities IDs selected by user
     $(input).each(function() {
       allVals.push( $(this).data("id") );
@@ -1185,11 +1034,26 @@
 
     $("#"+id).addClass('active')
     $("#"+id+"-content").addClass('active')
-    
+
   }
   $(function(){
-    // selectTab('my_list')
+    var tabs = ['registered_from_mobile', 'general_list', 'my_list'];
+    selectTab(tabs[{{ $tab_index }}])
   })
+</script>
+
+<script>
+  $("#registered_from_mobile").click(function() {
+    $("#tab_index").val(0);
+  });
+
+  $("#general_list").click(function() {
+    $("#tab_index").val(1);
+  });
+
+  $("#my_list").click(function() {
+    $("#tab_index").val(2);
+  });
 </script>
 @endsection
 
