@@ -238,7 +238,7 @@ class UsersController extends Controller
        // dd($user->sponsorCities);
         $data['rule_id'] = $user->rules()->where('rule_id', '!=', 3)->first()->id;
         $data['address'] = ($user->userInfo) ? $user->userInfo->address : "";
-        $data['userTypes'] = Rules::all();
+        $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
