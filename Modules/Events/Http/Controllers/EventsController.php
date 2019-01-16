@@ -215,12 +215,16 @@ class EventsController extends Controller
                     "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
                     "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
                 ]);
-                foreach ($value['doctor'] as $doctor) {
-                    WorkshopOwner::create([
-                        "workshop_id" => $workshop->id,
-                        "user_id" => $doctor
-                    ]);
+                if(isset($value['doctor']))
+                {
+                    foreach ($value['doctor'] as $doctor) {
+                        WorkshopOwner::create([
+                            "workshop_id" => $workshop->id,
+                            "user_id" => $doctor
+                        ]);
+                    }
                 }
+                
                 if (isset($value['special'])) {
                     foreach ($value['special'] as $special) {
                         WorkshopSpecialization::create([
