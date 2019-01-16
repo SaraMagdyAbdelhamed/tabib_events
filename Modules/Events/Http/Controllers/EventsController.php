@@ -46,7 +46,7 @@ class EventsController extends Controller
     public function index()
     {
         // dd(Auth::user());
-        $data['events'] = Event::all();
+        $data['events'] = Event::orderBy('created_at','desc')->get();
         $data['categories'] = Category::all();
 
         return view('events::index', $data);
