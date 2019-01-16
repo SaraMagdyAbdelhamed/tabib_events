@@ -477,7 +477,7 @@
                         </div>
                         <div id="more_Question"></div>
                         <div style="text-align:end;">
-                          <button class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
+                          <button class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main"></i><span style="color:#004272;">@lang('keywords.addquestion')</span></button>
                             <div class="checkboxrobo pull-right">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
                               <label for="activation">@lang('keywords.Active')</label>
@@ -485,7 +485,7 @@
                         </div><br>
                         <div id="more_Survey"></div>
                         <div class="col-md-12 col-sm-12 col-xs-12 no_padding">
-                          <button class="btn-block master-btn" style="background-color:#004272;" id="add_more_survey" type="button"><i class="fa fa-plus color--main"></i><span style="color:white;">اضافة دراسة </span></button>
+                          <button class="btn-block master-btn" style="background-color:#004272;" id="add_more_survey" type="button"><i class="fa fa-plus color--main"></i><span style="color:white;">@lang('keywords.addsurvey')</span></button>
                         </div>
                       </fieldset>
                       <h3> @lang('keywords.media')</h3>

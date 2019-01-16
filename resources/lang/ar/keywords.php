@@ -415,6 +415,8 @@
         'selectUserType'=> 'من فضلك اختر صلاحية المستخدم',
         'selectSponsorCategory' => 'من فضلك اختر تصنيف الراعي',
         'surveys' => 'الدراسات الاستقصائية',
+        'addquestion' => 'اضافة سؤال',
+        'addsurvey' => 'أضف دراسة'
 
 	];
 
