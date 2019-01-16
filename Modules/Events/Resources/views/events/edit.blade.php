@@ -222,7 +222,6 @@
                           </div>
                         </div><br>
                       </li>
-<<<<<<< HEAD
                       <li class="tab__content_item" id="tickets-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                           <div class="row">
@@ -231,14 +230,14 @@
                               <div class="col-md-12 col-sm-12 col-xs-12"></div>
                               @if($event->is_paid == 0)
                               <div class="col-md-12 col-sm-12 col-xs-12 " id="freeTicketCol_1">
-                              
+
                                 <div class="radiorobo">
-                                
+
                                   <input type="radio" id="free_ticket" name="event[ticket]" value="0" checked>
                                     <label for="free_ticket">@lang('keywords.free')</label>
                                 </div>
                               </div>
-                              <div class="col-md-12 col-sm-12 col-xs-12"  id="paidTicketCol_1"> 
+                              <div class="col-md-12 col-sm-12 col-xs-12"  id="paidTicketCol_1">
                                 <div class="radiorobo">
                                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1">
                                     <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -246,14 +245,14 @@
                               </div>
                               @else
                               <div class="col-md-12 col-sm-12 col-xs-12"  id="freeTicketCol_2">
-                              
+
                                 <div class="radiorobo">
-                                
+
                                   <input type="radio" id="free_ticket" name="event[ticket]" value="0" >
                                     <label for="free_ticket">@lang('keywords.free')</label>
                                 </div>
                               </div>
-                              <div class="col-md-12 col-sm-12 col-xs-12 "  id="paidTicketCol_2"> 
+                              <div class="col-md-12 col-sm-12 col-xs-12 "  id="paidTicketCol_2">
                                 <div class="radiorobo">
                                   <input type="radio" id="paid_ticket" name="event[ticket]" value="1" checked>
                                     <label for="paid_ticket">@lang('keywords.paid')</label>
@@ -270,8 +269,8 @@
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Price">@lang('keywords.price')</label>
                                 <input class="master_input" type="number" placeholder="50" id="Price" name="event[price]" value="(isset($event->tickets->price))?  $event->tickets->price : ''" required>
-                                @if ( $errors->has('event[price]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>                 
+                                @if ( $errors->has('event[price]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[price]') }}</span>
                                 @endif
                             </div>
                             </div>
@@ -290,12 +289,12 @@
                                 @if($i == 0 )
                                 <option value="{{$currency->id}}">{{$currency->symbol}}</option>
                                 @endif
-                                
-                                
+
+
                                 @endforeach
                                 </select>
-                                @if ( $errors->has('event[currency]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>                 
+                                @if ( $errors->has('event[currency]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[currency]') }}</span>
                                 @endif
                             </div>
                             </div>
@@ -303,17 +302,14 @@
                             <div class="master_field">
                                 <label class="master_label mandatory" for="Available_tickets">@lang('keywords.avaliableTickets')</label>
                                 <input class="master_input" type="number" maxlength="50" minlength="2" placeholder="5" id="Available_tickets" name="event[available_tickets]" value="(isset($event->tickets->available_tickets))?  $event->tickets->available_tickets : ''" required>
-                                @if ( $errors->has('event[available_tickets]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>                 
+                                @if ( $errors->has('event[available_tickets]') )
+                                <span class="master_message color--fadegreen">{{ $errors->first('event[available_tickets]') }}</span>
                                 @endif
                             </div>
                             </div>
                           </div>
                         </div><br>
                       </li>
-=======
-                      
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                       <li class="tab__content_item" id="contactInfo-content">
                         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                            <div class="row">
@@ -338,13 +334,8 @@
                             </div>
                             <div class="col-xs-6">
                             <div class="master_field">
-<<<<<<< HEAD
-                                <label class="master_label mandatory" for="Code_numbe">@lang('keywords.code') </label>
-                              
-=======
                                 <label class="master_label" for="Code_numbe">@lang('keywords.code') </label>
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                                 <select class="master_input" id="code" name="event[code]" required>
 
                                   @foreach ($codes as $code)
@@ -365,17 +356,10 @@
                             </div>
                             <div class="col-xs-6">
                             <div class="master_field">
-<<<<<<< HEAD
-                                <label class="master_label mandatory" for="Mobile_number"> @lang('keywords.Phone')</label>
-                                <input class="master_input" type="number" placeholder="0123456789" id="Mobile_number" name="event[mobile]" value="{{ $event->mobile }}" required>
-                                @if ( $errors->has('event[mobile]') )                   
-                                <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>                 
-=======
                                 <label class="master_label" for="Mobile_number"> @lang('keywords.Phone')</label>
                                 <input class="master_input" type="number" placeholder="0123456789" id="Mobile_number" name="event[mobile]" value="{{ $event->mobile }}">
                                 @if ( $errors->has('event[mobile]') )
                                 <span class="master_message color--fadegreen">{{ $errors->first('event[mobile]') }}</span>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                                 @endif
                             </div>
                             </div>
@@ -388,80 +372,47 @@
                           <div class="row">
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
-<<<<<<< HEAD
-                              <label class="master_label mandatory" for="workshop_name">@lang('keywords.workshopName')</label>
-                              <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]" value="{{ $workshop->name }}" required>
-                              <span class="master_message color--fadegreen">validation message will be here</span>
-=======
                               <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
                               <input class="master_input" type="text" maxlength="100" minlength="2" id="workshop_name" name="workshop[0][name]" value="{{ $workshop->name }}">
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
-<<<<<<< HEAD
-                              <label class="master_label mandatory" for="workshop_description">@lang('keywords.workshopDesc')</label>
-                              <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]" required>{{ $workshop->description }}</textarea>
-                              <span class="master_message inherit">message content</span>
-=======
                               <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc')</label>
                               <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" name="workshop[0][description]">{{ $workshop->description }}</textarea>
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="master_field">
-<<<<<<< HEAD
-                              <label class="master_label mandatory" for="workshop_venue">@lang('keywords.workshopPlace') </label>
-                              <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]" value="{{ $workshop->venue }}" required>
-                              <span class="master_message color--fadegreen">validation message will be here</span>
-=======
                               <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace') </label>
                               <input class="master_input" type="text" minlength="2" id="workshop_venue" name="workshop[0][place]" value="{{ $workshop->venue }}">
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
                               <label class="master_label mandatory" for="start_date">@lang('keywords.workshopStartDate')</label>
                               <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                <input class="datepicker master_input" type="text"  id="start_date" name="workshop[0][start_date]" value="{{ $workshop->start_datetime->format('Y-m-d') }}" required>
-                              </div><span class="master_message inherit">message content</span>
-=======
                                 <input class="datepicker master_input" type="text"  id="start_date" name="workshop[0][start_date]" value="{{ $workshop->start_datetime->format('Y-m-d') }}">
                               </div>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
                               <label class="master_label mandatory" for="end_date">@lang('keywords.workshopEndDate')</label>
                               <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                <input class="datepicker master_input" type="text"  id="end_date" name="workshop[0][end_date]" value="{{ $workshop->end_datetime->format('Y-m-d') }}" required>
-                              </div><span class="master_message inherit">message content</span>
-=======
                                 <input class="datepicker master_input" type="text"  id="end_date" name="workshop[0][end_date]" value="{{ $workshop->end_datetime->format('Y-m-d') }}">
                               </div>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
                           <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="master_field">
                               <label class="master_label mandatory" for="start_time">@lang('keywords.workshopStartTime')</label>
                               <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                <input class="timepicker master_input" type="text"  id="start_time" name="workshop[0][start_time]" value="{{ $workshop->start_datetime->format('h:i:s') }}" required>
-                              </div><span class="master_message inherit">message content</span>
-=======
                                 <input class="timepicker master_input" type="text"  id="start_time" name="workshop[0][start_time]" value="{{ $workshop->start_datetime->format('h:i:s') }}">
                               </div>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
 
@@ -470,13 +421,8 @@
                             <div class="master_field">
                               <label class="master_label mandatory" for="end_time">@lang('keywords.workshopEndTime')</label>
                               <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                <input class="timepicker master_input" type="text"  id="end_time" name="workshop[0][end_time]" value="{{ $workshop->end_datetime->format('h:i:s') }}" required>
-                              </div><span class="master_message inherit">message content</span>
-=======
                                 <input class="timepicker master_input" type="text"  id="end_time" name="workshop[0][end_time]" value="{{ $workshop->end_datetime->format('h:i:s') }}">
                               </div>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                             </div>
                           </div>
                         </div>
@@ -994,35 +940,19 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
-<<<<<<< HEAD
-                                <label class="master_label mandatory" for="workshop_name">@lang('keywords.workshopName')</label>
-                                <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]" required>
-=======
                                 <label class="master_label" for="workshop_name">@lang('keywords.workshopName')</label>
                                 <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                               </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
-<<<<<<< HEAD
-                                <label class="master_label mandatory" for="workshop_description">@lang('keywords.workshopDesc') </label>
-                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]" required></textarea>
-=======
                                 <label class="master_label" for="workshop_description">@lang('keywords.workshopDesc') </label>
-                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]"></textarea>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
-                              </div>
-                            </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <div class="master_field">
-<<<<<<< HEAD
                                 <label class="master_label mandatory" for="workshop_venue">@lang('keywords.workshopPlace')</label>
                                 <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]" required>
-=======
                                 <label class="master_label" for="workshop_venue">@lang('keywords.workshopPlace')</label>
                                 <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                               </div>
                             </div>
 
@@ -1040,11 +970,7 @@
                               <div class="master_field">
                                 <label class="master_label mandatory" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
                                 <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                  <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]" required>
-=======
                                   <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                                 </div>
                               </div>
                             </div>
@@ -1053,11 +979,7 @@
                               <div class="master_field">
                                 <label class="master_label mandatory" for="start_time">@lang('keywords.workshopStartTime')</label>
                                 <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                  <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]" required>
-=======
                                   <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                                 </div>
                               </div>
                             </div>
@@ -1067,11 +989,7 @@
                               <div class="master_field">
                                 <label class="master_label mandatory" for="end_time">@lang('keywords.workshopEndTime')</label>
                                 <div class="bootstrap-timepicker">
-<<<<<<< HEAD
-                                  <input class="timepicker master_input" type="text" placeholder="end time"  id="end_time" name="workshop[${next_count}][end_time]" required>
-=======
                                   <input class="timepicker master_input" type="text" placeholder="end time"  id="end_time" name="workshop[${next_count}][end_time]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                                 </div>
                               </div>
                             </div>
@@ -1216,11 +1134,6 @@
                                  <label class="master_label mandatory" for="appear_for"> @lang('keywords.surveyFor')</label>
                                  <select class="master_input select2" id="appears_for" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
                                    <option value="1">All attend</option>
-<<<<<<< HEAD
-                                  
-=======
-
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                                  </select>
                                </div>
                              </div>

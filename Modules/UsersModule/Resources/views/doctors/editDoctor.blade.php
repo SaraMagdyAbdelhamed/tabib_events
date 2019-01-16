@@ -69,15 +69,15 @@
                         </select>
                     </div>
                     </div>
-                    
+
                     <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
                         <label class="master_label mandatory" for="doctor_password">@lang('keywords.newPassword')</label>
                         <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password" required>
                         <div class="hide-show show-me">Show</div>
                         @if ( $errors->has('password') )
-                            <span class="master_message inherit">{{ $errors->first('password') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     </div>
                     <div class="row">
@@ -192,9 +192,6 @@
                         @endif
                     </div>
                     </div>
-<<<<<<< HEAD
-                    
-=======
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
@@ -222,7 +219,6 @@
                         @endif
                     </div>
                     </div>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -267,8 +263,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-=======
 <script type="text/javascript">
     var listimg = [];
 
@@ -319,7 +313,6 @@
                  $("#img_dr_").hide();
         }
 </script>
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
 
 
 <script>
@@ -399,11 +392,11 @@
       $(document).ready(function(){
         $("#img_btn").hide();
       })
-      
+
     </script>
       <script type="text/javascript">
        var listimg = [];
-      
+
        //close_btn_in image
        function closebtn(index){
            listimg.splice(index,1);
@@ -415,16 +408,16 @@
                let input = document.getElementById('file-1');
                let output = document.getElementById('fileList');
                let files1 = input.files;
-      
+
                    if (window.File && window.FileList && window.FileReader) {
-      
+
                        for (var i = 0; i < files1.length; i++) {
                            var file = files1[i];
                            var imgReader = new FileReader();
                            imgReader.addEventListener("load", function (event) {
                                var imgFile = event.target;
                                listimg.push({
-                                   
+
                                    'index': listimg.length,
                                    'image': imgFile.result
                                });
@@ -453,15 +446,15 @@
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
                                     </a></span>
-                                   
+
                                     </li>`;
                                 }
                                 output.innerHTML += '</ul>';
                                }
-                               
-      
+
+
                            });
-      
+
                            //Read the image
                            imgReader.readAsDataURL(file);
                            $("#file-1")[i].value='';
@@ -469,14 +462,14 @@
                    }
                     $("#img_btn").hide();
            }
-      
+
     </script>
     <script>
       $(function(){
         if($('html').attr('lang')=='en'){
           $("#img_list").empty();
           $("#img_btn").removeClass("end-txt");
-        
+
           $("#img_list").append(`
                 <li class="js-uploader__file-list uploader__file-list" id="img_list_item">
                                     <span class="uploader__file-list__button"></span>
@@ -486,7 +479,7 @@
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn1()" class="uploader__icon-button fa fa-times" >
                                     </a></span>
-                                   
+
                                     </li>
           `)
         }

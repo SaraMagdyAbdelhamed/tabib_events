@@ -59,17 +59,10 @@
               {{-- User Name --}}
               <div class="col-md-3 col-sm-2 col-xs-12">
                 <div class="master_field">
-<<<<<<< HEAD
-                  <label class="master_label mandatory" for="username">@lang('keywords.FullName')</label>
-                <input class="master_input" value="{{$user->first_name}}" type="text" maxlength="40" id="username" name="fullname" required>
-                  
-                  @if ( $errors->has('fullname') )                      
-=======
                   <label class="master_label" for="username">@lang('keywords.FullName')</label>
                 <input class="master_input" value="{{$user->first_name}}" type="text" maxlength="40" id="username" name="fullname">
 
                   @if ( $errors->has('fullname') )
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                     <span class="master_message inherit">{{ $errors->first('fullname') }}</span>
                   @endif
 
@@ -79,15 +72,9 @@
               {{-- Username --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-<<<<<<< HEAD
-                  <label class="master_label mandatory" for="login_username">@lang('keywords.UserName')</label>
-                  <input class="master_input" value="{{$user->username}}" type="text" maxlength="20" id="login_username" name="username" required>
-                  
-=======
                   <label class="master_label" for="login_username">@lang('keywords.UserName')</label>
                   <input class="master_input" value="{{$user->username}}" type="text" maxlength="20" id="login_username" name="username">
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                   @if ( $errors->has('username') )
                     <span class="master_message inherit">{{ $errors->first('username') }}</span>
                   @endif
@@ -97,15 +84,9 @@
               {{-- Email --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-<<<<<<< HEAD
-                  <label class="master_label mandatory" for="user_email">@lang('keywords.email')</label>
-                  <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email" required>
-                  
-=======
                   <label class="master_label" for="user_email">@lang('keywords.email')</label>
                   <input class="master_input" value="{{$user->email}}" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email">
 
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
                   @if ( $errors->has('email') )
                     <span class="master_message inherit">{{ $errors->first('email') }}</span>
                   @endif
@@ -155,15 +136,9 @@
               <div id="sponsor_section">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
-<<<<<<< HEAD
-                    <label class="master_label mandatory" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
-                    <select class="master_input select2" id="sponsor_category" 
-                      multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]" required>
-=======
                     <label class="master_label" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
                     <select class="master_input select2" id="sponsor_category"
                       multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]">
->>>>>>> 8de2785194a11518090a2e058a77b65a7f18fa8b
 
                       {{-- List all options --}}
                       @if ( isset($sponsorCategories) && !empty($sponsorCategories) )
@@ -298,7 +273,7 @@
                   <ul  class="js-uploader__file-list uploader__file-list" id="img_list"padding-left:9%">
                     <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
                   </ul>
-               
+
               </div>
 
               <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
@@ -407,11 +382,11 @@
       $(document).ready(function(){
         $("#img_btn").hide();
       })
-      
+
     </script>
       <script type="text/javascript">
        var listimg = [];
-      
+
        //close_btn_in image
        function closebtn(index){
            listimg.splice(index,1);
@@ -423,16 +398,16 @@
                let input = document.getElementById('file-1');
                let output = document.getElementById('fileList');
                let files1 = input.files;
-      
+
                    if (window.File && window.FileList && window.FileReader) {
-      
+
                        for (var i = 0; i < files1.length; i++) {
                            var file = files1[i];
                            var imgReader = new FileReader();
                            imgReader.addEventListener("load", function (event) {
                                var imgFile = event.target;
                                listimg.push({
-                                   
+
                                    'index': listimg.length,
                                    'image': imgFile.result
                                });
@@ -461,15 +436,15 @@
 
                                     <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
                                     </a></span>
-                                   
+
                                     </li>`;
                                 }
                                 output.innerHTML += '</ul>';
                                }
-                               
-      
+
+
                            });
-      
+
                            //Read the image
                            imgReader.readAsDataURL(file);
                            $("#file-1")[i].value='';
@@ -477,16 +452,16 @@
                    }
                     $("#img_btn").hide();
            }
-      
+
     </script>
     <script>
       $(function(){
         if($('html').attr('lang')=='en'){
           $("#img_list").empty();
           $("#img_btn").removeClass("end-txt");
-        
+
           $("#img_list").append(`
-          
+
           <li class="js-uploader__file-list uploader__file-list">
                   <span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="../../../img/male.jpg"></span>
                   <span class="uploader__file-list__button"></span>
