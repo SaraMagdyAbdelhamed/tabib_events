@@ -229,7 +229,7 @@
             </div>
           </div>
         </fieldset>
-        <h3>@lang('keywords.tickets')</h3>
+        {{-- <h3>@lang('keywords.tickets')</h3>
         <fieldset>
           <div class="row">
             <div class="col-xs-12" style="text-align:end;">
@@ -283,7 +283,7 @@
               </div>
             </div>
           </div>
-        </fieldset>
+        </fieldset> --}}
         <h3> @lang('keywords.eventCall')</h3>
         <fieldset>
           <div class="row">
