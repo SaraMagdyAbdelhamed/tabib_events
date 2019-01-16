@@ -8,6 +8,7 @@ class Countries extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'geo_countries';
+    protected $fillable = ['name', 'application_id'];
     protected $appends = ['name'];
     public $timestamps = false;
 

@@ -654,9 +654,8 @@ class DoctorsController extends Controller
 
         // Flash success and redirect to its home page
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
-        $data['tab_index'] = 1;
 
-        return redirect('/users_mobile', $data);
+        return redirect('/users_mobile')->with('tab_index', 1);
     }
 
     /** Download excel sample */
