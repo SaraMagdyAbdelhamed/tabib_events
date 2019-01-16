@@ -420,6 +420,8 @@
         'surveys'       => 'Surveys',
         'activate' => 'Activate',
         'downloadSample'    => 'Download Sample',
+        'addquestion' => 'Add Question',
+        'addsurvey' => 'Add Survey'
     ];
 
 ?>
