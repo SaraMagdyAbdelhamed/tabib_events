@@ -13,9 +13,13 @@
             </div>
           </div>
         </div>
-        <div class="cover--actions">
-          <a class="bradius--no border-btn master-btn" type="button" href="{{ route('events.create') }}">@lang('keywords.addNewBackend')</a>
-        </div>
+        
+        @if (!Helper::hasRule(['Admin Doctor']))
+          <div class="cover--actions">
+            <a class="bradius--no border-btn master-btn" type="button" href="{{ route('events.create') }}">@lang('keywords.addNewBackend')</a>
+          </div>
+        @endif
+
       </div>
     </div>
   </div>

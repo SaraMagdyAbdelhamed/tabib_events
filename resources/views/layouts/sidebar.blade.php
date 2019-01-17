@@ -26,7 +26,7 @@
                 </div>
                 <div class="side">
                   <ul class="side-menu">
-                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin' , 'Data Entry']) )
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin' , 'Data Entry']) )
                     <li class="side__list" id="menu_1"><a class="side__item side__item--sub">@lang('keywords.mainData')</a>
   
                       <ul class="side__submenu">

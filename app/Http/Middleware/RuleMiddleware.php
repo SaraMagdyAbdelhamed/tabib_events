@@ -17,7 +17,10 @@ class RuleMiddleware
     {
       if(Helper::hasRule($rule)){
        return $next($request);
+      } else {
+        \Auth::logout();
+        return redirect('/');
       }
       return redirect('/');
-      }
+    }
   }

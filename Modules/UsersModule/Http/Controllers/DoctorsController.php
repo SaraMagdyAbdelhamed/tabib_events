@@ -649,8 +649,12 @@ class DoctorsController extends Controller
                             $doctor->email = $user["email"];
                             $doctor->tele_code = $user["tele_code"];
                             $doctor->mobile = $user["mobile1"];
-                            $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
-                            $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city'], ['country_id' => $doctor->country_id, 'application_id' => 1]);
+
+                            if (isset($user['country']) && !empty($user['country'])) {
+                                $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
+                                $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city'], ['country_id' => $doctor->country_id, 'application_id' => 1]);                            
+                            }
+
                             $doctor->password = bcrypt($request->password);
                             $doctor->gender_id = Helper::getIdOrInsert(Genders::class, $user['gender']);
                             $doctor->is_active = strtolower($user['is_active']) == 'yes' ? 1 : 0;
@@ -662,7 +666,11 @@ class DoctorsController extends Controller
                             $userInfo->user_id = $doctor->id;
                             $userInfo->mobile2 = $user['mobile2'] ?: null; // it could be null
                             $userInfo->mobile3 = $user['mobile3'] ?: null; // it could be null
-                            $userInfo->region_id = Helper::getIdOrInsert(GeoRegion::class, $user['region'], ['city_id' => $doctor->city_id, 'application_id' => 1]);
+
+                            if ( isset($user['region']) && !empty($user['region']) ) {
+                                $userInfo->region_id = Helper::getIdOrInsert(GeoRegion::class, $user['region'], ['city_id' => $doctor->city_id, 'application_id' => 1]);
+                            }
+                            
                             $userInfo->address = $user['address'];
                             $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : $user['specialization']; // it could be null
                             $userInfo->is_profile_completed = 0;

@@ -45,7 +45,7 @@ class LoginController extends Controller
         if ( Auth::attempt(['username' => $username, 'password' => $request->password]) ) {
 
             // check rules first, and logout if not allowed
-            if ( !Helper::hasRule(['Super Admin','Admin' , 'Data Entry']) ) {
+            if ( !Helper::hasRule(['Super Admin','Admin Doctor' , 'Data Entry', 'Organizer', 'Sponsor']) ) {
                 $this->performLogout($request);
                 return redirect('/login')
                             ->with('error', 'هذا المستخدم غير مسموح له بالدخول')
