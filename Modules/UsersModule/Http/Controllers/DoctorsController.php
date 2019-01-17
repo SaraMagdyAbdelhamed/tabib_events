@@ -640,7 +640,7 @@ class DoctorsController extends Controller
                 if (isset($user['name']) && !empty($user['name'])) {
                     // Insert new doctor into users
                     try {
-                        if (isset($user['email']) && Users::where('email', $user['email'])->first() == null) {
+                        if (isset($user['email']) && Users::where('email', $user['email'])->where('deleted_at', null)->first() == null) {
                             // Creating new user
                             $doctor = new Users;
                             $doctor->username = $user["name"];
@@ -674,7 +674,11 @@ class DoctorsController extends Controller
                             }
                             
                             $userInfo->address = $user['address'];
-                            $userInfo->specialization_id = $user['specialization'] != '' ? Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']) : $user['specialization']; // it could be null
+
+                            if ( isset($user['specialization']) && !empty($user['specialization'])) {
+                                $userInfo->specialization_id = Helper::getIdOrInsert(DoctorSpecialization::class, $user['specialization']);
+                            }
+
                             $userInfo->is_profile_completed = 0;
                             $userInfo->is_backend = 1;
                             $userInfo->save(); // save new user's info

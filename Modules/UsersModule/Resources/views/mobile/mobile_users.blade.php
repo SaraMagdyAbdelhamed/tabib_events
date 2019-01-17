@@ -393,14 +393,14 @@
                       {{-- Country --}}
                       <td>
                         <span class="cellcontent">
-                          {{  $doctor->country ? $doctor->country->name : __('keywords.not') }}
+                          {{  isset($doctor->country) ? $doctor->country->name : __('keywords.not') }}
                         </span>
                       </td>
 
                       {{-- City --}}
                       <td>
                         <span class="cellcontent">
-                            {{\App::isLocale('en') ? $doctor->city->name : \Helper::localization('geo_cities','name',$doctor->city->id,'2',
+                            {{\App::isLocale('en') ? (isset($doctor->city->name) ? $doctor->city->name : '') : \Helper::localization('geo_cities','name',$doctor->city->id,'2',
                                 $doctor->city->name)}}
                           </span>
                       </td>
@@ -408,7 +408,7 @@
                       {{-- Region --}}
                       <td>
                         <span class="cellcontent">
-                            {{ $doctor->userInfo ? ($doctor->userInfo->region ? $doctor->userInfo->region->name : __('keywords.not')) : __('keywords.not') }}
+                            {{ $doctor->userInfo ? (isset($doctor->userInfo->region) ? $doctor->userInfo->region->name : __('keywords.not')) : __('keywords.not') }}
                           </span>
                       </td>
 
