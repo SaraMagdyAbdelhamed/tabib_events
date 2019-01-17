@@ -374,7 +374,7 @@
         'age'=>'السن ',
         'gender'=>'النوع ',
         'notification text'=>'نص الإشعار',
-
+        'allowNotification' => 'السماح بارسال اشعارات', 
         'male'=>'ذكر ',
         'female'=>'انثي',
         'images'=>'صور ',

@@ -251,7 +251,7 @@
               {{-- User Image --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="user_photo">صورة المستخدم</label>
+                  <label class="master_label" for="user_photo">@lang('keywords.image')</label>
                   <div class="file-upload">
                     <div class="file-select">
                       <div class="file-select-name" id="noFile"></div>
@@ -285,11 +285,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
                 <div class="checkboxrobo">
                   <input type="checkbox" id="notification" name="notification" value="1">
-                  <label for="notification">السماح ب ارسال اشعارات</label>
+                  <label for="notification">@lang('keywords.allowNotification')</label>
                 </div>
               </div>
-
-
             </div>
           </div>
           <div class="div" style="text-align:end;">
@@ -302,7 +300,6 @@
 
       </form>
       {{-- End Form --}}
-
     </div>
   </div>
 

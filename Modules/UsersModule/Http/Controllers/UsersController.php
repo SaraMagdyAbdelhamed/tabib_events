@@ -229,13 +229,10 @@ class UsersController extends Controller
      * @return Response
      */
 
-    public function backend_edit(Users $user)
-    {
+    public function backend_edit(Users $user) {
         $data['user'] = $user;
-       // dd($user->city_id);
         $data['categories'] = $user->sponsorCategories()->get();
         $data['cities'] = $user->sponsorCategories()->get();
-       // dd($user->sponsorCities);
         $data['rule_id'] = $user->rules()->where('rule_id', '!=', 3)->first()->id;
         $data['address'] = ($user->userInfo) ? $user->userInfo->address : "";
         $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
@@ -243,7 +240,7 @@ class UsersController extends Controller
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
         $data['specs'] = DoctorSpecialization::all();
-// return $data;
+
         return view('usersmodule::backend.editBackEndUser', $data);
     }
 
