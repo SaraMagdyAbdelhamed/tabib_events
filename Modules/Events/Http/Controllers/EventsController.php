@@ -2,40 +2,37 @@
 
 namespace Modules\Events\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
-use App\Currency;
 use App\Category;
-use App\Users;
-use App\Specialization;
+use App\Countries;
+use App\Currency;
 use App\Event;
 use App\EventBackend;
 use App\EventCategory;
-
 use App\EventMedia;
 use App\EventOwner;
 use App\EventSpecialization;
-use App\EventTicket;
-use App\EventBookingTicket;
 use App\EventWorkshop;
+use App\Specialization;
 use App\Survey;
-use App\SurveyQuestions;
 use App\SurveyQuestionAnswer;
+use App\SurveyQuestions;
+use App\Users;
 use App\Workshop;
 use App\WorkshopOwner;
 use App\WorkshopSpecialization;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
+use Helper;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Session;
-use Illuminate\Support\Facades\DB;
-use App\Countries;
-use Helper;
-use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
@@ -46,7 +43,7 @@ class EventsController extends Controller
     public function index()
     {
         // dd(Auth::user());
-        $data['events'] = Event::orderBy('created_at','desc')->get();
+        $data['events'] = Event::orderBy('created_at', 'desc')->get();
         $data['categories'] = Category::all();
 
         return view('events::index', $data);
@@ -92,11 +89,11 @@ class EventsController extends Controller
             'event.start_date' => 'required',
             'event.end_date' => 'required',
             'event.start_time' => 'required',
-            'event.end_time' => 'required'
+            'event.end_time' => 'required',
         ]);
 
         if ($validation->fails()) {
-            
+
             // change below as required
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
@@ -131,36 +128,25 @@ class EventsController extends Controller
                 "code" => $request['event']['code'],
                 "is_active" => $active,
                 "created_by" => \Auth::id(),
-                "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
+                "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0,
             ]);
 
-            // if ($event->use_ticketing_system == 1) {
-            //     EventTicket::create([
-            //         "event_id" => $event->id,
-            //         "price" => $request['event']['price'],
-            //         "available_tickets" => $request['event']['available_tickets'],
-            //         "current_available_tickets" => $request['event']['available_tickets'],
-            //         "currency_id" => $request['event']['currency']
-            //     ]);
-            // }
-
             if (array_key_exists('youtube', $request['event'])) {
-
 
                 foreach ($request['event']['youtube'] as $youtube) {
                     if ($youtube != null) {
                         if (strpos($youtube, 'youtube') == false) {
-                            Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
                             return redirect()->back();
                         } elseif (strpos($youtube, 'watch') == false) {
-                            Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
+                            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Youtube link not correct!', ' لينك اليوتيوب غير صحيح  ');
                             return redirect()->back();
                         }
                         str_replace("watch", "embed", $youtube);
                         EventMedia::create([
                             "event_id" => $event->id,
                             "link" => $youtube,
-                            "type" => 2
+                            "type" => 2,
                         ]);
                     }
 
@@ -173,7 +159,7 @@ class EventsController extends Controller
                 // add new images
                 foreach ($images_en as $image) {
                     // check if image exist
-                    if (strpos($image, 'event_images') !== false) { 
+                    if (strpos($image, 'event_images') !== false) {
                         // search for its name
                         preg_match('/events\/english\/(.*)/', $image, $match);
 
@@ -183,7 +169,7 @@ class EventsController extends Controller
                             EventMedia::create([
                                 "event_id" => $event->id,
                                 "link" => $name,
-                                "type" => 1
+                                "type" => 1,
                             ]);
                         }
 
@@ -204,7 +190,7 @@ class EventsController extends Controller
                             EventMedia::create([
                                 "event_id" => $event->id,
                                 "link" => $imageName,
-                                "type" => 1
+                                "type" => 1,
                             ]);
 
                         }
@@ -213,12 +199,11 @@ class EventsController extends Controller
 
             }
 
-
             if (array_key_exists('category', $request['event'])) {
                 foreach ($request['event']['category'] as $category) {
                     EventCategory::create([
                         "event_id" => $event->id,
-                        "category_id" => $category
+                        "category_id" => $category,
                     ]);
                 }
             }
@@ -227,7 +212,7 @@ class EventsController extends Controller
                 foreach ($request['event']['special'] as $special) {
                     EventSpecialization::create([
                         "event_id" => $event->id,
-                        "specialization_id" => $special
+                        "specialization_id" => $special,
                     ]);
                 }
             }
@@ -235,58 +220,52 @@ class EventsController extends Controller
             foreach ($request['event']['doctor'] as $doctor) {
                 EventOwner::create([
                     "event_id" => $event->id,
-                    "user_id" => $doctor
+                    "user_id" => $doctor,
                 ]);
             }
 
             if ($request->has('workshop')) {
 
-        
-           
-            foreach ($request['workshop'] as $value) {
-                $workshop = Workshop::create([
-                    "name" => $value['name'],
-                    "description" => $value['description'],
-                    "venue" => $value['place'],
-                    "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
-                    "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
-                ]);
-                if(isset($value['doctor']))
-                {
-                    foreach ($value['doctor'] as $doctor) {
-                        WorkshopOwner::create([
-                            "workshop_id" => $workshop->id,
-                            "user_id" => $doctor
-                        ]);
+                foreach ($request['workshop'] as $value) {
+                    $workshop = Workshop::create([
+                        "name" => $value['name'],
+                        "description" => $value['description'],
+                        "venue" => $value['place'],
+                        "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
+                        "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time'])),
+                    ]);
+                    if (isset($value['doctor'])) {
+                        foreach ($value['doctor'] as $doctor) {
+                            WorkshopOwner::create([
+                                "workshop_id" => $workshop->id,
+                                "user_id" => $doctor,
+                            ]);
+                        }
                     }
-                }
-                
-               
-                  
-                if (isset($value['special'])) {
-                    foreach ($value['special'] as $special) {
-                        WorkshopSpecialization::create([
-                            "workshop_id" => $workshop->id,
-                            "specialization_id" => $special
-                        ]);
+
+                    if (isset($value['special'])) {
+                        foreach ($value['special'] as $special) {
+                            WorkshopSpecialization::create([
+                                "workshop_id" => $workshop->id,
+                                "specialization_id" => $special,
+                            ]);
+                        }
                     }
-                }
 
                     EventWorkshop::create([
                         "event_id" => $event->id,
-                        "work_shop_id" => $workshop->id
+                        "work_shop_id" => $workshop->id,
                     ]);
-                
+
+                }
             }
-        }
             if (isset($request['survey'])) {
                 foreach ($request['survey'] as $value) {
-                    if($value['name'] != null)
-                    {
+                    if ($value['name'] != null) {
                         $survey = Survey::create([
                             "event_id" => $event->id,
                             "name" => $value['name'],
-                            "is_realtime" => 1
+                            "is_realtime" => 1,
                         ]);
                         if ($survey->is_realtime == 1) {
                             $serviceAccount = ServiceAccount::fromJsonFile(public_path() . '/tabibevent-18b7d5f15a36.json');
@@ -294,28 +273,28 @@ class EventsController extends Controller
                                 ->withServiceAccount($serviceAccount)
                                 ->withDatabaseUri('https://tabibevent.firebaseio.com/')
                                 ->create();
-    
+
                             $database = $firebase->getDatabase();
-    
+
                             $newPost = $database
                                 ->getReference('surveys')
                                 ->push([
                                     'parent_id' => $event->id,
                                     'name' => $value['name'],
                                     'questions' => '',
-                                    'id' => ''
+                                    'id' => '',
                                 ]);
                             $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
                             $database->getReference()
                                 ->update($updates);
                             $survey->update(["firebase_id" => $newPost->getKey()]);
                         }
-                            // $questions=[];
+                        // $questions=[];
                         foreach ($value['question'] as $key1 => $value_question) {
                             $question = SurveyQuestions::create([
                                 "survey_id" => $survey->id,
                                 "name" => $value_question['name'],
-                                "firebase_id" => $key1
+                                "firebase_id" => $key1,
                             ]);
                             $questions[$key1]['name'] = $value_question['name'];
                             $questions[$key1]['id'] = $key1;
@@ -325,7 +304,7 @@ class EventsController extends Controller
                                     "question_id" => $question->id,
                                     "name" => $answer,
                                     "number_of_selections" => 0,
-                                    "firebase_id" => $key
+                                    "firebase_id" => $key,
                                 ]);
                                 $questions[$key1]['answers'][$key]['name'] = $answer;
                                 $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
@@ -337,18 +316,15 @@ class EventsController extends Controller
                         $database->getReference()
                             ->update($updates);
                     }
-                   
+
                 }
             }
 
-      
-}
-        catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             Event::destroy($event->id);
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Error while adding Event!', 'حدث خطأ اثناء اضافه الحدث');
             return redirect()->back();
         }
-
 
         Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Event added successfully!', ' تم إضافة الحدث بنجاح');
         return redirect('/events/index');
@@ -488,7 +464,6 @@ class EventsController extends Controller
 
             }
 
-
         })->get();
         $data['categories'] = Category::all();
         return view('events::index', $data);
@@ -502,7 +477,7 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         $logo = '';
-        $images_logo = explode('-', $request->event_images_base64);
+        $images_logo = explode('-', $request->event_logo_base64);
         $images_en = explode('-', $request->event_images_base64);
 
         $validation = Validator::make($request->all(), [
@@ -515,7 +490,7 @@ class EventsController extends Controller
             'event.start_date' => 'required',
             'event.end_date' => 'required',
             'event.start_time' => 'required',
-            'event.end_time' => 'required'
+            'event.end_time' => 'required',
         ]);
         if ($validation->fails()) {
             // change below as required
@@ -524,14 +499,14 @@ class EventsController extends Controller
         }
 
         $event = Event::find($id);
-        
+
         // convert base64 images into normal images
         // update English images.
         if (count($images_logo) > 0) {
             // add new images
             foreach ($images_logo as $image) {
                 // check if image exist
-                if (strpos($image, 'event_images') !== false) { 
+                if (strpos($image, 'event_images') !== false) {
                     // search for its name
                     preg_match('/events\/english\/(.*)/', $image, $match);
 
@@ -563,7 +538,6 @@ class EventsController extends Controller
 
         }
 
-
         $fileNameToStore = $event->image;
 
         if (isset($request['event']['active'])) {
@@ -589,9 +563,9 @@ class EventsController extends Controller
                 "code" => $request['event']['code'],
                 "is_active" => $active,
                 "created_by" => \Auth::id(),
-                "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0
+                "use_ticketing_system" => (isset($request['event']['price'])) ? 1 : 0,
             ]);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             Helper::flashLocaleMsg(Session::get('locale'), 'fail', 'Event not updated !', ' تعديل الحدث  حدث خطأ ');
 
             return redirect()->back();
@@ -606,18 +580,17 @@ class EventsController extends Controller
 
             foreach ($images_en as $image) {
                 // check if image exist
-                if (strpos($image, 'event_images') !== false) { 
+                if (strpos($image, 'event_images') !== false) {
                     // search for its name
                     preg_match('/events\/english\/(.*)/', $image, $match);
 
                     if (count($match) > 0) {
                         $name = $match[0];
 
-
                         EventMedia::create([
                             "event_id" => $event->id,
                             "link" => $name,
-                            "type" => 1
+                            "type" => 1,
                         ]);
                     }
 
@@ -635,11 +608,10 @@ class EventsController extends Controller
                         // dd([$imageName, $image]);
                         \File::put(public_path() . '/' . $imageName, base64_decode($image));
 
-
                         EventMedia::create([
                             "event_id" => $event->id,
                             "link" => $imageName,
-                            "type" => 1
+                            "type" => 1,
                         ]);
 
                     }
@@ -674,18 +646,17 @@ class EventsController extends Controller
                     EventMedia::create([
                         "event_id" => $event->id,
                         "link" => $youtube,
-                        "type" => 2
+                        "type" => 2,
                     ]);
                 }
             }
         }
 
-
         foreach ($request['event']['category'] as $category) {
             EventCategory::where('event_id', $event->id)->delete();
             EventCategory::create([
                 "event_id" => $event->id,
-                "category_id" => $category
+                "category_id" => $category,
             ]);
         }
         if (isset($request['event']['special'])) {
@@ -693,7 +664,7 @@ class EventsController extends Controller
             foreach ($request['event']['special'] as $special) {
                 EventSpecialization::create([
                     "event_id" => $event->id,
-                    "specialization_id" => $special
+                    "specialization_id" => $special,
                 ]);
             }
         }
@@ -702,7 +673,7 @@ class EventsController extends Controller
             EventOwner::where('event_id', $event->id)->delete();
             EventOwner::create([
                 "event_id" => $event->id,
-                "user_id" => $doctor
+                "user_id" => $doctor,
             ]);
         }
 
@@ -721,26 +692,26 @@ class EventsController extends Controller
                     "description" => $value['description'],
                     "venue" => $value['place'],
                     "start_datetime" => date('Y-m-d h:i:s', strtotime($value['start_date'] . $value['start_time'])),
-                    "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time']))
+                    "end_datetime" => date('Y-m-d h:i:s', strtotime($value['end_date'] . $value['end_time'])),
                 ]);
                 foreach ($value['doctor'] as $doctor) {
                     WorkshopOwner::create([
                         "workshop_id" => $workshop->id,
-                        "user_id" => $doctor
+                        "user_id" => $doctor,
                     ]);
                 }
                 if (isset($value['special'])) {
                     foreach ($value['special'] as $special) {
                         WorkshopSpecialization::create([
                             "workshop_id" => $workshop->id,
-                            "specialization_id" => $special
+                            "specialization_id" => $special,
                         ]);
                     }
                 }
 
                 EventWorkshop::create([
                     "event_id" => $event->id,
-                    "work_shop_id" => $workshop->id
+                    "work_shop_id" => $workshop->id,
                 ]);
             }
         }
@@ -760,7 +731,7 @@ class EventsController extends Controller
                 $survey = Survey::create([
                     "event_id" => $event->id,
                     "name" => $value['name'],
-                    "is_realtime" => 1
+                    "is_realtime" => 1,
                 ]);
                 if ($survey->is_realtime == 1) {
 
@@ -771,19 +742,19 @@ class EventsController extends Controller
                             'parent_id' => $event->id,
                             'name' => $value['name'],
                             'questions' => '',
-                            'id' => ''
+                            'id' => '',
                         ]);
                     $updates = ['surveys/' . $newPost->getKey() . '/id' => $newPost->getKey()];
                     $database->getReference()
                         ->update($updates);
                     $survey->update(["firebase_id" => $newPost->getKey()]);
                 }
-                        // $questions=[];
+                // $questions=[];
                 foreach ($value['question'] as $key1 => $value_question) {
                     $question = SurveyQuestions::create([
                         "survey_id" => $survey->id,
                         "name" => $value_question['name'],
-                        "firebase_id" => $key1
+                        "firebase_id" => $key1,
                     ]);
                     $questions[$key1]['name'] = $value_question['name'];
                     $questions[$key1]['id'] = $key1;
@@ -793,14 +764,14 @@ class EventsController extends Controller
                             "question_id" => $question->id,
                             "name" => $answer,
                             "number_of_selections" => 0,
-                            "firebase_id" => $key
+                            "firebase_id" => $key,
                         ]);
                         $questions[$key1]['answers'][$key]['name'] = $answer;
                         $questions[$key1]['answers'][$key]['number_of_selections'] = 0;
                         $questions[$key1]['answers'][$key]['id'] = $key;
                     }
                 }
-                    // dd($questions);
+                // dd($questions);
                 $updates = ['surveys/' . $newPost->getKey() . '/questions' => $questions];
                 $database->getReference()
                     ->update($updates);
@@ -823,6 +794,5 @@ class EventsController extends Controller
 
         return $database;
     }
-
 
 }

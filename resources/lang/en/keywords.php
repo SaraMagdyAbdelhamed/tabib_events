@@ -419,7 +419,8 @@
         'activate' => 'Activate',
         'downloadSample'    => 'Download Sample',
         'addquestion' => 'Add Question',
-        'addsurvey' => 'Add Survey'
+        'addsurvey' => 'Add Survey',
+        'Activate' => 'Activate',
     ];
 
 ?>
