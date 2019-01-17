@@ -243,7 +243,7 @@ class UsersController extends Controller
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
         $data['specs'] = DoctorSpecialization::all();
-// return $data;
+        // return $data;
         return view('usersmodule::backend.editBackEndUser', $data);
     }
 
@@ -284,8 +284,8 @@ class UsersController extends Controller
             $user->is_active = ($request->activation == 1) ? 1 : 0;
 
             // convert base64 images into normal images
-                // update English images.
-            if (count($images_en) > 0) {
+            // update English images.   
+            if (count($images_en) > 0 && $request->image_input != null) {
                 File::delete($user->photo); // delete old
                     // add new images
                 foreach ($images_en as $image) {
@@ -346,11 +346,11 @@ class UsersController extends Controller
                 $user->sponsorSpecializations()->sync($request->specializations);
             };
 
-            if ($user->info) {
-                $user->userInfo->address = $request->address;
-                // $userInfo->city_id = $request->
-                $user->info->save();
-
+            if ( $user->userInfo ) {
+                // find and edit user's info
+                UserInfo::where('user_id', $user->id)->update([
+                    'address'   =>  $request->address,
+                ]);
             } else {
                 $userInfo = new UserInfo;
                 $userInfo->user_id = $user->id;

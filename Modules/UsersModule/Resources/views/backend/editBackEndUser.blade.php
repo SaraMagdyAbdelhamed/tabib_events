@@ -454,8 +454,11 @@
             e.preventDefault();
 
             var img_input = "#image_input";
-            $(img_input).val(listimg[0].image);
 
+            if ( typeof listimg !== 'undefined' && listimg.length > 0) {
+              $(img_input).val(listimg[0].image);  
+            }
+            
             $("#editBEUser").submit();
         })
     </script>
