@@ -23,7 +23,7 @@
     <div class="tabs--wrapper">
       <div class="clearfix"></div>
       <ul class="tabs">
-        <li id="registered_from_mobile">@lang('keywords.MobileAppUsers')</li>
+        <li id="registered_from_mobile" {{ Helper::hasRule(['Organizer']) ? 'disabled' : '' }} >@lang('keywords.MobileAppUsers')</li>
         <li id="general_list">@lang('keywords.generalList')</li>
         <li id="my_list">@lang('keywords.myList')</li>
       </ul>
@@ -111,6 +111,7 @@
               </div>
               <form id="dataTableTriggerId_001_form">
 
+              @if( !Helper::hasRule(['Organizer']) )
                 {{-- Mobile users table --}}
                 <table class="data-table-trigger table-master" id="dataTableTriggerId_001">
                   <thead>
@@ -291,6 +292,7 @@
                     @endforeach
                   </tbody>
                 </table>
+              @endif
 
               </form>
             </div>

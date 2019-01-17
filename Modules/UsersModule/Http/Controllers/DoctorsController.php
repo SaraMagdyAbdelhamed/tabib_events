@@ -214,7 +214,6 @@ class DoctorsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
 
         // Validate incoming request
         $this->validate($request, [
@@ -272,7 +271,7 @@ class DoctorsController extends Controller
             // Insert into `users_rules`
             $doctor->rules()->attach(2);
 
-        } catch (Exception $exp) {
+        } catch (\Exception $exp) { 
             Helper::flashLocaleMsg(Session::get('locale'), 'error', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
             return redirect()->back();
         }
@@ -652,6 +651,9 @@ class DoctorsController extends Controller
 
                             if (isset($user['country']) && !empty($user['country'])) {
                                 $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
+                            }
+
+                            if (condition) {
                                 $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city'], ['country_id' => $doctor->country_id, 'application_id' => 1]);                            
                             }
 
@@ -682,7 +684,7 @@ class DoctorsController extends Controller
                         } else {
                             $errors_counter++;
                         }
-                    } catch (\Exception $exp) { 
+                    } catch (\Exception $exp) { dd($exp);
                         Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
                         return redirect()->back();
                     }
