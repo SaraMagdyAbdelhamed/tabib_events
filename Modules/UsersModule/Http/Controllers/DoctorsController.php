@@ -628,10 +628,16 @@ class DoctorsController extends Controller
     /** Import excel file to DB */
     public function storeExcel(Request $request)
     {
+        $errors_counter = 0;
+
+        // Check if request has excel file
         if ($request->hasfile('excel_file')) {
             $users = (new FastExcel)->import($request->excel_file);
 
+            // add each user
             foreach ($users as $user) {
+
+                // skip inserting user if his/her name doesn't exist
                 if (isset($user['name']) && !empty($user['name'])) {
                     // Insert new doctor into users
                     try {
@@ -665,10 +671,10 @@ class DoctorsController extends Controller
 
                             // Insert into `users_rules`
                             $doctor->rules()->attach(2);
-
+                        } else {
+                            $errors_counter++;
                         }
-                    } catch (\Exception $exp) {
-                        dd($exp);
+                    } catch (\Exception $exp) { 
                         Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'can not add new doctor!', ' خطأ ، لا يمكن إضافة طبيب جديد');
                         return redirect()->back();
                     }
@@ -680,8 +686,13 @@ class DoctorsController extends Controller
             return redirect()->back();
         }
 
-        // Flash success and redirect to its home page
-        Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
+        if ($errors_counter != 0) {
+            Helper::flashLocaleMsg(Session::get('locale'), 'warning', 'We could not insert some records due to data duplication!' , 'لم نتمكن من تسجيل بعض المستخدمين نظراً لتسجيلهم المسبق');      
+        } else {
+            // Flash success and redirect to its home page
+            Helper::flashLocaleMsg(Session::get('locale'), 'success', 'Doctor added successfully!', ' تم إضافة الطبيب بنجاح');
+        }
+        
 
         return redirect('/users_mobile')->with('tab_index', 1);
     }
