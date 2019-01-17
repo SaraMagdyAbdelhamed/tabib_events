@@ -268,11 +268,11 @@
                     <span class="master_message inherit">{{ $errors->first('user_photo') }}</span>
                   @endif
                 </div> -->
-                <label class="master_label mandatory">صورة المستخدم</label>
+                <label class="master_label mandatory">@lang('keywords.image') </label>
                   <div id="fileList" style="text-align: -webkit-right;text-align: -moz-right;"></div>
                   <div class="form-group end-txt" id="img_btn" >
                     <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1" onchange="updateList()"  accept=".jpg,.png,.jpeg">
-                    <label for="file-1"><span>اختر صورة</span></label>
+                    <label for="file-1"><span> @lang('keywords.image')</span></label>
                   </div>
                   <ul  class="js-uploader__file-list uploader__file-list" id="img_list"padding-left:9%">
                     <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="../../../img/male.png"></span></li>
@@ -294,11 +294,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12 " id="notificationCol" style="text-align:end;">
                 <div class="checkboxrobo">
                   <input type="checkbox" id="notification" name="notification" value="1">
-                  <label for="notification">السماح ب ارسال اشعارات</label>
+                  <label for="notification">@lang('keywords.allowNotification')</label>
                 </div>
               </div>
-
-
             </div>
           </div>
           <div class="div" style="text-align:end;">
@@ -311,7 +309,6 @@
 
       </form>
       {{-- End Form --}}
-
     </div>
   </div>
 

@@ -59,8 +59,6 @@
         'sponsorName'   => 'Sponosr Name',
         'shopndine'     => 'Shop and dine',
         'ReportsِِِِِِAndStatistics'     => 'Reportsِِِِِِ And Statistics',
-
-
         'EditAbout' => 'Edit About Us',
         'EditTerms' => 'Edit Terms and Conditions',
         'EditPrivacy'   => 'Edit Privacy and Policy',
@@ -376,7 +374,7 @@
         'age'=>'Age ',
         'gender'=>'Gender ',
         'notification text'=>'Notification text',
-
+        'allowNotification' => 'Allow Sending Notifications', 
         'male'=>'Male ',
         'female'=>'Female',
         'images'=>'Images',
