@@ -653,7 +653,7 @@ class DoctorsController extends Controller
                                 $doctor->country_id = Helper::getIdOrInsert(Countries::class, $user['country']);
                             }
 
-                            if (condition) {
+                            if (isset($user['city']) && !empty($user['city'])) {
                                 $doctor->city_id = Helper::getIdOrInsert(Cities::class, $user['city'], ['country_id' => $doctor->country_id, 'application_id' => 1]);                            
                             }
 
