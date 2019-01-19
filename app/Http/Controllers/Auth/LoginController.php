@@ -44,7 +44,15 @@ class LoginController extends Controller
         // try to authenticate user
         if ( Auth::attempt(['username' => $username, 'password' => $request->password]) ) {
 
-        // add last login timestamp
+            // check rules first, and logout if not allowed
+            if ( !Helper::hasRule(['Super Admin','Admin Doctor' , 'Data Entry', 'Organizer', 'Sponsor']) ) {
+                $this->performLogout($request);
+                return redirect('/login')
+                            ->with('error', 'هذا المستخدم غير مسموح له بالدخول')
+                            ->with('error_en', 'This user not allowed to access this application!');
+            }
+
+            // add last login timestamp
             $user = Auth::user();
             $userLocale = Helper::getUserLocale();
             $user->last_login = Carbon::now()->setTimezone($request->timezone);

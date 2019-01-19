@@ -22,7 +22,7 @@
     <div class="col-xs-12">
 
       {{-- Start Form --}}
-      <form action="{{ route('backend_store') }}" method="POST" enctype="multipart/form-data">
+      <form id="addBackendUser" action="{{ route('backend_store') }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
@@ -33,7 +33,7 @@
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
                   <label class="master_label mandatory" for="user_type">@lang('keywords.UserType')</label>
-                  <select class="master_input" id="user_type" name="user_type">
+                  <select class="master_input" id="user_type" name="user_type" required>
 
                     {{-- Hint Option --}}
                     <option disabled selected>-- @lang('keywords.selectUserType') --</option>
@@ -59,8 +59,8 @@
               {{-- User Name --}}
               <div class="col-md-3 col-sm-2 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="username">@lang('keywords.FullName')</label>
-                  <input class="master_input" type="text" maxlength="40" id="username" name="fullname">
+                  <label class="master_label mandatory" for="username">@lang('keywords.FullName')</label>
+                  <input class="master_input" type="text" maxlength="40" id="username" name="fullname" required>
                   
                   @if ( $errors->has('fullname') )                      
                     <span class="master_message inherit">{{ $errors->first('fullname') }}</span>
@@ -72,8 +72,8 @@
               {{-- Username --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="login_username">@lang('keywords.UserName')</label>
-                  <input class="master_input" type="text" maxlength="20" id="login_username" name="username">
+                  <label class="master_label mandatory" for="login_username">@lang('keywords.UserName')</label>
+                  <input class="master_input" type="text" maxlength="20" id="login_username" name="username" required>
                   
                   @if ( $errors->has('username') )
                     <span class="master_message inherit">{{ $errors->first('username') }}</span>
@@ -84,8 +84,8 @@
               {{-- Email --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="user_email">@lang('keywords.email')</label>
-                  <input class="master_input" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email">
+                  <label class="master_label mandatory" for="user_email">@lang('keywords.email')</label>
+                  <input class="master_input" type="email" maxlength="40" placeholder="ex:test@test.com" id="user_email" name="email" required>
                   
                   @if ( $errors->has('email') )
                     <span class="valid-label"></span><span class="master_message inherit">{{ $errors->first('email') }}</span>
@@ -96,8 +96,8 @@
               {{-- Address --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="user_address">@lang('keywords.address')</label>
-                  <input class="master_input" type="text" maxlength="100" id="user_address" name="address">
+                  <label class="master_label mandatory" for="user_address">@lang('keywords.address')</label>
+                  <input class="master_input" type="text" maxlength="100" id="user_address" name="address" required>
                   @if ( $errors->has('address') )
                     <span class="master_message inherit">{{ $errors->first('address') }}</span>
                   @endif
@@ -107,8 +107,8 @@
               {{-- Password --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="user_password">@lang('keywords.Password')</label>
-                  <input class="master_input" type="password" name="password" maxlength="8" minlength="3" id="user_password">
+                  <label class="master_label " for="user_password">@lang('keywords.Password')</label>
+                  <input class="master_input" type="password" name="password" maxlength="8" minlength="3" id="user_password" >
 
                   <div class="hide-show show-me">Show</div>
                   
@@ -122,8 +122,8 @@
               {{-- Telephone --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="user_Phone">@lang('keywords.phone number')</label>
-                  <input class="master_input" type="number" maxlength="11" minlength="11" id="user_Phone" name="mobile">
+                  <label class="master_label mandatory" for="user_Phone">@lang('keywords.phone number')</label>
+                  <input class="master_input" type="number" maxlength="11" minlength="11" id="user_Phone" name="mobile" required>
 
                   @if ( $errors->has('mobile') )                    
                     <span class="master_message inherit">{{ $errors->first('mobile') }}</span>
@@ -136,9 +136,9 @@
               <div id="sponsor_section">     
                 <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="master_field">
-                    <label class="master_label" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
+                    <label class="master_label mandatory" for="sponsor_category">@lang('keywords.sponsorCategories')</label>
                     <select class="master_input select2" id="sponsor_category" 
-                      multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]">
+                      multiple="multiple" data-placeholder="Category" style="width:100%;" , name="categories[]" required>
 
                       {{-- List all options --}}
                       @if ( isset($sponsorCategories) && !empty($sponsorCategories) )
@@ -231,7 +231,7 @@
               {{-- User Image --}}
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="master_field">
-                  <label class="master_label" for="user_photo">صورة المستخدم</label>
+                  <label class="master_label" for="user_photo">@lang('keywords.image') </label>
                   <div class="file-upload">
                     <div class="file-select">
                       <div class="file-select-name" id="noFile"></div>
@@ -248,7 +248,7 @@
               </div>
 
               {{-- Activation --}}
-              <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
+              <div class="col-md-12 col-sm-12 col-xs-12" id="activationCol" style="text-align:end;">
                 <div class="checkboxrobo">
                   <input type="checkbox" id="activation" name="activation" value="1">
                   <label for="activation">@lang('keywords.Active')</label>
@@ -256,17 +256,17 @@
               </div>
 
               {{-- Send Notifications --}}
-              <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:end;">
+              <div class="col-md-12 col-sm-12 col-xs-12 " id="notificationCol" style="text-align:end;">
                 <div class="checkboxrobo">
                   <input type="checkbox" id="notification" name="notification" value="1">
-                  <label for="notification">السماح ب ارسال اشعارات</label>
+                  <label for="notification"> @lang('keywords.allowNotification') </label>
                 </div>
               </div>
 
             </div>
           </div>
           <div class="div" style="text-align:end;">
-            <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
+            <button id="save_btn" class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
             </button>
             <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
             </button>
@@ -324,6 +324,17 @@
         //     }
         // });
     })
+  </script>
+  <script type="text/javascript">
+    $("#save_btn").on('click',function(){
+      $("#addBackendUser").validate();
+    })
+    $(function(){
+      if($('html').attr('lang')=='en'){
+        $("#notificationCol,#activationCol").addClass('text-left')
+      }
+    })
+   
   </script>
 
 @endsection

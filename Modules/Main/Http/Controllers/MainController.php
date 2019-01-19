@@ -39,6 +39,14 @@ class MainController extends Controller
     // view about us
     public function about()
     {
+        if (Helper::hasRule(['Admin Doctor'])) {
+            return redirect()->route('event_backend');
+        }
+
+        if (Helper::hasRule(['Organizer', 'Sponsor'])) {
+            return redirect()->route('notifications');
+        }
+
         return view('main::about_us')
             ->with('about_us_english', Fixed::where('name', 'LIKE', 'About Us')->first()->body)
             ->with('about_us_arabic', Helper::localization('fixed_pages', 'body', 1, '2'));

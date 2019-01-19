@@ -52,3 +52,13 @@
   </div>
 
 @endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+
+     // $('#menu_1').addClass('openedmenu');
+      $('#sub_8_2').addClass('pure-active');
+
+    });
+</script>
+@endsection

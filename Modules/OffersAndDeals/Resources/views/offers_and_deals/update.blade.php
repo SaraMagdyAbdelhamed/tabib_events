@@ -25,9 +25,9 @@
         {{ csrf_field() }}
         <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="master_field">
-              <label class="master_label" for="offer_title"> @lang('keywords.title')</label>
-              <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" value="{{$offer->name}}">
+            <div class="master_field ">
+              <label class="master_label mandatory" for="offer_title"> @lang('keywords.title')</label>
+              <input class="master_input" type="text" maxlength="100" id="offer_title" name="offer_title" value="{{$offer->name}}" required>
 
               {{-- Validation message --}}
               @if ( $errors->has('offer_title') )
@@ -38,8 +38,8 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="offer_description">@lang('keywords.offerDescription')</label>
-              <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" >{{$offer->description}}</textarea>
+              <label class="master_label mandatory" for="offer_description">@lang('keywords.offerDescription')</label>
+              <textarea class="master_input" name="offer_description" maxlength="255" id="offer_description" required >{{$offer->description}}</textarea>
 
               {{-- Validation message --}}
               @if ( $errors->has('offer_description') )
@@ -110,9 +110,9 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="start_date_"> @lang('keywords.startDate')</label>
+              <label class="master_label mandatory" for="start_date_"> @lang('keywords.startDate')</label>
               <div class="">
-                <input class=" master_input" type="text" Required id="start_date_" name="start_date_" value="{{ $offer->start_datetime->format('d/m/Y') }}">
+                <input class=" master_input" type="text" Required id="start_date_" name="start_date_" value="{{ $offer->start_datetime->format('d/m/Y') }}" required>
               </div>
 
               {{-- Validation message --}}
@@ -125,9 +125,9 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="master_field">
-              <label class="master_label" for="end_date_"> @lang('keywords.endDate')</label>
+              <label class="master_label mandatory" for="end_date_"> @lang('keywords.endDate')</label>
               <div class="">
-                <input class="datepicker master_input" type="text" Required id="end_date_" name="end_date_" value="{{ $offer->end_datetime->format('d/m/Y') }}">
+                <input class="datepicker master_input" type="text" Required id="end_date_" name="end_date_" value="{{ $offer->end_datetime->format('d/m/Y') }}" required>
               </div>
 
               {{-- Validation message --}}
@@ -137,16 +137,7 @@
               
             </div>
           </div>
-          <div class="col-xs-6" style="text-align:end; padding-top: 2%;">
-            <div class="checkboxrobo">
-              @if($offer->is_active)
-              <input type="checkbox" id="activation" name="activation" checked>
-              @else
-              <input type="checkbox" id="activation" name="activation">
-              @endif
-              <label for="activation">@lang('keywords.active')</label>
-            </div>
-          </div>
+         
           <!-- <div class="col-xs-6">
             <label class="master_label mandatory">@lang('keywords.offerImage')</label>
             <div id="fileList"></div>
@@ -158,7 +149,29 @@
               <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="{{ asset( str_replace('\\', '', $offer->image) ) }}"></span></li>
             </ul>
           </div> -->
-          <div class="col-xs-6">
+          <div class="col-xs-6" >
+              <label class="master_label mandatory">@lang('keywords.offerImage')</label>
+              <div id="fileList" style="text-align: -webkit-right;text-align: -moz-right;"></div>
+              <div class="form-group end-txt" id="img_dr_btn" >
+                <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1" onchange="updateList()">
+                <label for="file-1"><span>اختر صورة</span></label>
+              </div>
+              <ul  class="js-uploader__file-list uploader__file-list" id="img_dr_list"padding-left:9%">
+                <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail "style="text-align:right"><img class="thumbnail" id="img_" src="{{ asset( str_replace('\\', '', $offer->image) ) }}"></span></li>
+              </ul>
+            </div>
+        </div>
+        <div class="col-xs-12 end-txt" id="activationCol" style=" padding-top: 2%;">
+            <div class="checkboxrobo">
+              @if($offer->is_active)
+              <input type="checkbox" id="activation" name="activation" checked>
+              @else
+              <input type="checkbox" id="activation" name="activation">
+              @endif
+              <label for="activation">@lang('keywords.active')</label>
+            </div>
+          </div>
+        <!-- <div class="col-xs-12 ">
               <label class="master_label mandatory">@lang('keywords.offerImage')</label>
               <div id="fileList" style="text-align: -webkit-right;text-align: -moz-right;"></div>
               <div class="form-group" id="img_dr_btn" style="text-align:end">
@@ -166,10 +179,14 @@
                 <label for="file-1"><span>اختر صورة   </span></label>
               </div>
               <ul class="js-uploader__file-list uploader__file-list" id="img_dr_list" style="text-align:end;padding-left:9%">
-                <li class="js-uploader__file-list uploader__file-list"><span class="uploader__file-list__button"></span><span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span><span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="{{ asset( str_replace('\\', '', $offer->image) ) }}"></span></li>
+                <li class="js-uploader__file-list uploader__file-list">
+                  <span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="{{ asset( str_replace('\\', '', $offer->image) ) }}"></span>
+                  <span class="uploader__file-list__button"></span>
+                  <span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span>
+                </li>
               </ul>
             </div>
-        </div>
+        </div> -->
 
       <div class="div" style="text-align:end;">
         <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
@@ -240,18 +257,37 @@
                                    'index': listimg.length,
                                    'image': imgFile.result
                                });
-                               output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                               for (var i = 0; i < listimg.length; i++) {
-                                   output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
-                                   <span class="uploader__file-list__button"></span>
-                                   <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
-                                   </a></span>
-                                   <span class="uploader__file-list__text"></span>
-                                   <span class="uploader__file-list__thumbnail">
-                                   <img class="thumbnail"  src="${listimg[i].image}"></span>
-                                   </li>`;
+                               if($('html').attr('lang')=='ar'){
+                                  output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                                for (var i = 0; i < listimg.length; i++) {
+                                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
+                                    </a></span>
+                                    <span class="uploader__file-list__text"></span>
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail"  src="${listimg[i].image}"></span>
+                                    </li>`;
+                                }
+                                output.innerHTML += '</ul>';
                                }
-                               output.innerHTML += '</ul>';
+                               if($('html').attr('lang') == 'en'){
+                                output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                                for (var i = 0; i < listimg.length; i++) {
+                                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail"  src="${listimg[i].image}"></span>
+                                    <span class="uploader__file-list__text"></span>
+
+                                    <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
+                                    </a></span>
+                                   
+                                    </li>`;
+                                }
+                                output.innerHTML += '</ul>';
+                               }
+                               
       
                            });
       
@@ -262,6 +298,26 @@
                    }
                     $("#img_dr_btn").hide();
            }
+      
+    </script>
+    <script>
+      $(function(){
+        if($('html').attr('lang')=='en'){
+          $("#img_dr_list").empty();
+          $("#img_dr_btn").removeClass("end-txt");
+          $("#activationCol").removeClass('end-txt');
+          $("#img_dr_list").append(`
+          
+          <li class="js-uploader__file-list uploader__file-list">
+                  <span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="{{ asset( str_replace('\\', '', $offer->image) ) }}"></span>
+                  <span class="uploader__file-list__button"></span>
+                  <span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span>
+                </li>
+          `)
+        }
+      })
+    </script>
+    <script type="text/javascript">
       
     </script>
 @endsection

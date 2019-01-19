@@ -109,12 +109,12 @@ class Users extends Authenticatable
         {
             return  true;
         }
-        
+
         else
         {
             return false;
         }
-        
+
     }
 
     public function isAdmin()
@@ -123,7 +123,7 @@ class Users extends Authenticatable
         {
             return  true;
         }
-        
+
         else
         {
             return false;
@@ -200,7 +200,7 @@ class Users extends Authenticatable
     }
 
 
-  
+
  public function sponsorCategories()
     {
     return $this->belongsToMany('App\SponsorCategory', 'user_sponsor_categories', 'user_id', 'sponsor_category_id');

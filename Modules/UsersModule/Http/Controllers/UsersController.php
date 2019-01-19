@@ -42,10 +42,10 @@ class UsersController extends Controller
     public function index_backend()
     {
         // dd(Auth::user());
-        // check current usere rule that based on it, filter backend-users will work as follows: 
+        // check current usere rule that based on it, filter backend-users will work as follows:
         if (Auth::user()->isSuperAdmin()) {
             $rule_names = [1, 4, 5, 6, 7];   // Current user is Super Admin, it will list Super Admins, Admins and data entry
-        } else if (Auth::user()->isAdmin()) {   
+        } else if (Auth::user()->isAdmin()) {
             $rule_names = [1, 4, 5, 6, 7];                   // Current user is Admin it will list Admins & Data entry only
         } else {
             $rule_names = [5, 6, 4];                           // else it will list data entry only
@@ -114,7 +114,7 @@ class UsersController extends Controller
         //             ->with('mobiles', $data['mobiles'])
         //             ->with('countries', $data['countries'])
         //             ->with('cities', $data['cities'])
-        //             ->with('age_ranges', $data['age_ranges']);   
+        //             ->with('age_ranges', $data['age_ranges']);
     }
 
 
@@ -130,7 +130,7 @@ class UsersController extends Controller
     /** Show insert form */
     public function backend_create()
     {
-        $data['userTypes'] = Rules::whereNotIn('id', [1])->get();
+        $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
@@ -174,7 +174,7 @@ class UsersController extends Controller
             $user->password = bcrypt($request->password);
             $user->mobile = $request->mobile;
             $user->is_active = $request->activation;
-            
+
 
             if ($request->hasFile('user_photo')) {
                 $destinationPath = 'backend_users';
@@ -229,30 +229,30 @@ class UsersController extends Controller
      * @return Response
      */
 
-    public function backend_edit(Users $user)
-    {
+    public function backend_edit(Users $user) {
         $data['user'] = $user;
-       // dd($user->city_id);
         $data['categories'] = $user->sponsorCategories()->get();
         $data['cities'] = $user->sponsorCategories()->get();
-       // dd($user->sponsorCities);
         $data['rule_id'] = $user->rules()->where('rule_id', '!=', 3)->first()->id;
         $data['address'] = ($user->userInfo) ? $user->userInfo->address : "";
-        $data['userTypes'] = Rules::all();
+        $data['userTypes'] = Rules::whereNotIn('id', [1,3])->get();
         $data['sponsorCategories'] = SponsorCategory::all();
         $data['cities'] = Cities::all();
         $data['regions'] = GeoRegion::all();
         $data['specs'] = DoctorSpecialization::all();
-
+        // return $data;
         return view('usersmodule::backend.editBackEndUser', $data);
     }
 
     /**
      * Update User
-     * 
+     *
      *  */
     public function backend_update(Users $user, Request $request)
     {
+        // dd($request->all());
+        $images_en = explode('-', $request->image_input);
+
         $this->validate($request, [
             'user_type' => 'required|numeric',
             'fullname' => 'required|min:3|max:100',
@@ -262,7 +262,7 @@ class UsersController extends Controller
             'categories' => '',
             'cities' => '',
             'regions' => '',
-            'user_photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'user_photo' => isset($request->user_photo) ? 'required|image|mimes:jpeg,png,jpg|max:2048' : '',
             'activation' => '',
             'notification' => '',
         ]);
@@ -280,11 +280,43 @@ class UsersController extends Controller
             $user->mobile = $request->mobile;
             $user->is_active = ($request->activation == 1) ? 1 : 0;
 
-            if ($request->hasFile('user_photo')) {
-                $destinationPath = 'backend_users';
-                $fileNameToStore = $destinationPath . '/' . $request->name . time() . rand(111, 999) . '.' . Input::file('user_photo')->getClientOriginalExtension();
-                Input::file('user_photo')->move($destinationPath, $fileNameToStore);
-                $user->photo = $fileNameToStore;
+            // convert base64 images into normal images
+            // update English images.   
+            if (count($images_en) > 0 && $request->image_input != null) {
+                File::delete($user->photo); // delete old
+                    // add new images
+                foreach ($images_en as $image) {
+                        // check if image exist
+                    if (strpos($image, 'backend_users') !== false) {
+                            // search for its name
+                        preg_match('/backend_users\/(.*)/', $image, $match);
+
+                        if (count($match) > 0) {
+                            $name = $match[0];
+
+                            $user->photo = $name;
+                        }
+
+                    }
+                        // check if image is new
+                    if (strpos($image, 'base64') !== false) {
+                            // get image extension
+                        preg_match('/image\/(.*)\;/', $image, $match);
+
+                        if (count($match) > 0) {
+                            $ext = $match[1];
+                            $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
+                            $image = str_replace(' ', '+', $image);
+                            $imageName = 'backend_users/' . time() . rand(1111, 9999) . '.' . $ext;
+                                // dd([$imageName, $image]);
+                            \File::put(public_path() . '/' . $imageName, base64_decode($image));
+
+                            $user->photo = $imageName;
+
+                        }
+                    }
+                }
+
             }
 
             $user->save();
@@ -306,16 +338,16 @@ class UsersController extends Controller
             if (isset($request->regions)) {
                 $user->sponsorRegions()->sync($request->regions);
             };
-            
+
             if (isset($request->specializations)) {
                 $user->sponsorSpecializations()->sync($request->specializations);
             };
 
-            if ($user->info) {
-                $user->userInfo->address = $request->address;
-                // $userInfo->city_id = $request->
-                $user->info->save();
-
+            if ( $user->userInfo ) {
+                // find and edit user's info
+                UserInfo::where('user_id', $user->id)->update([
+                    'address'   =>  $request->address,
+                ]);
             } else {
                 $userInfo = new UserInfo;
                 $userInfo->user_id = $user->id;
@@ -326,21 +358,14 @@ class UsersController extends Controller
 
             // TODO: NOTIFICATIONS
 
-        } catch (Exception $ex) {
-            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user لا يمكن اضافة المستخدم');
+        } catch (\Exception $ex) {
+            dd($ex);
+            Helper::flashLocaleMsg(Session::get('locale'), 'error', 'Can not add backend user', ' لا يمكن اضافة المستخدم');
             return redirect()->back();
         }
         return redirect("/users_backend");
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
 
     /**
      * Remove the specified resource from storage.

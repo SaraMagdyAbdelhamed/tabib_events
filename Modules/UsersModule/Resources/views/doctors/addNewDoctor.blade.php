@@ -7,7 +7,7 @@
         <div class="add-mode">Adding mode</div>
         <div class="row">
             <div class="col-xs-12">
-            <div class="text-xs-center">         
+            <div class="text-xs-center">
                 <div class="text-wraper">
                 <h4 class="cover-inside-title">@lang('keywords.Doctors')</h4><i class="fa fa-chevron-circle-right"></i>
                 <h4 class="cover-inside-title sub-lvl-2">@lang('keywords.generalList')</h4>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="col-xs-12">
-        <div class="col-md-12-col-sm-12-col-xs-12" style="text-align:end;">
+        <div class="col-md-12-col-sm-12-col-xs-12 end-txt" id="addDocTitle" >
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
             <div class="main-title-conts">
             <div class="caption">
@@ -34,7 +34,7 @@
                 <label for="excel">@lang('keywords.fromExcel')</label>
                 </div>
             </div>
-            <div class="col-md-12 col-sm-12 col-xs-12"> 
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="radiorobo">
                 <input type="radio" id="form" name="add_user">
                 <label for="form">@lang('keywords.fromForm')</label>
@@ -44,7 +44,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="fileExcel_">
-            <form action="{{ route('doctors.storeExcel') }}" method="POST" enctype="multipart/form-data" id="excel_file">
+            <form  action="{{ route('doctors.storeExcel') }}" method="POST" enctype="multipart/form-data" id="excel_file">
                 {{ csrf_field() }}
 
                 <div class="master_field">
@@ -54,34 +54,40 @@
                         <div class="file-select-name" id="noFile">اضغط لإدخال ملف اكسيل</div>
                         <input class="chooseFile" type="file" name="excel_file" id="excel_file_">
                     </div>
-                    </div><span class="master_message inherit">message content</span>
+                    </div>
+
+                    @if ( $errors->has('excel_file') )
+                        <span class="master_message inherit">{{ $errors->first('excel_file') }}</span>
+                    @endif
                 </div>
                 <div class="div" style="text-align:end;">
                     <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>@lang('keywords.save')</span>
                     </button>
                     <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0"><i class="fa fa-close"></i><span>@lang('keywords.cancel')</span>
                     </button>
+
+                    <button type="button" class="master-btn   undefined bgcolor--fadeorange  bshadow--0" onclick="window.location.href = '{{ route('doctors.download.excel') }}'; ">@lang('keywords.downloadSample')</button>
                 </div>
             </form>
-            
+
         </div>
         <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom" id="form_">
-            <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
+            <form id="addNewDr" action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data"  id="new_dr_form">
                 {{ csrf_field() }}
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label" for="doctor_name">
+                        <label class="master_label mandatory" for="doctor_name">
                             @lang('keywords.doctorName')
                         </label>
-                        <input class="master_input" type="text" maxlength="100" id="doctor_name" name="doctorName">
+                        <input class="master_input" type="text" maxlength="100" id="doctor_name" name="doctorName" required>
                         @if ( $errors->has('doctorName') )
-                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>    
-                        @endif                   
+                            <span class="master_message inherit">{{ $errors->first('doctorName') }}</span>
+                        @endif
                     </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
                         <label class="master_label" for="doctor_email">
                             @lang('keywords.doctorEmail')
@@ -89,103 +95,14 @@
                         <input class="master_input" type="email" maxlength="35" id="doctor_email" name="doctorEmail">
                         <span class="valid-label"></span>
                         @if ( $errors->has('doctorEmail') )
-                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('doctorEmail') }}</span>
+                        @endif
                     </div>
                     </div>
-                    <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-2 col-sm-2 col-xs-12">
-                        <div class="master_field">
-                            <label class="master_label mandatory" for="doctor_country_code">
-                                @lang('keywords.countryCode')
-                            </label>
-                            <select name="doctorTeleCode" class="master_input select2" style="width:100%;">
-                                <option disabled selected>-- @lang('keywords.selectTeleCode') --</option>
-                                @if (isset($countries) && !empty($countries))
-                                    @foreach ($countries as $country)   
-                                        @if ($country->tele_code)
-                                            <option value="{{ $country->id }}" class="country">{{ '('. $country->tele_code .') ' . $country->name }}</option>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="master_field">
-                            <label class="master_label" for="doctor_mobile">@lang('keywords.mobile1')</label>
-                            <input class="master_input" type="number" id="doctor_mobile" min="0" name="mobile1">
-                            @if ( $errors->has('mobile1') )
-                            <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>    
-                        @endif 
-                        </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                        <div class="master_field">
-                            <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
-                            <input class="master_input" type="number" id="doctor_mobile2" min="0" name="mobile2">
-                            @if ( $errors->has('mobile2') )
-                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>    
-                            @endif 
-                        </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                        <div class="master_field">
-                            <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
-                            <input class="master_input" type="number" id="doctor_mobile3" min="0" name="mobile3">
-                            @if ( $errors->has('mobile3') )
-                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>    
-                            @endif 
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label mandatory" for="doctor_country">@lang('keywords.Country')</label>
-                        <select name="doctorCountry" class="master_input select2" id="doctor_country" style="width:100%;">
-                            <option disabled selected>-- @lang('keywords.selectCountry') --</option>
-                            @if (isset($countries) && !empty($countries))
-                                @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label mandatory" for="doctor_city">@lang('keywords.City')</label>
-                        <select name="doctorCity" class="master_input select2" id="doctor_city" style="width:100%;" disabled="true">
-                            <option selected disabled>-- @lang('keywords.selectCity') --</option>
-                            {{-- options generated using ajax call --}}
-
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label mandatory" for="doctor_Region">@lang('keywords.region')</label>
-                        <select name="doctorRegion" class="master_input select2" id="doctor_Region" style="width:100%;" disabled="true">
-                            {{-- options generated using ajax call --}}
-
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label" for="doctor_address">@lang('keywords.address')</label>
-                        <input class="master_input" type="text" id="doctor_address" name="doctorAddress">
-                        @if ( $errors->has('doctorAddress') )
-                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>    
-                        @endif 
-                    </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="master_field">
-                        <label class="master_label" for="filter_cities">@lang('keywords.specialization')</label>
-                        <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;">
+                        <label class="master_label mandatory" for="filter_cities">@lang('keywords.specialization')</label>
+                        <select name="doctorSpecialization" class="master_input select2" id="filter_cities" style="width:100%;" required>
                             <option selected disabled>-- @lang('keywords.selectSpec') --</option>
 
                             @if (isset($specs) && !empty($specs))
@@ -197,16 +114,107 @@
                         </select>
                     </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="master_field">
-                        <label class="master_label" for="doctor_password">@lang('keywords.Password')</label>
-                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password">
+                        <label class="master_label " for="doctor_password">@lang('keywords.Password')</label>
+                        <input class="master_input" type="password" name="password" maxlength="20" minlength="8" id="doctor_password" >
                         <div class="hide-show show-me">Show</div>
                         @if ( $errors->has('password') )
-                            <span class="master_message inherit">{{ $errors->first('password') }}</span>    
-                        @endif 
+                            <span class="master_message inherit">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     </div>
+                    <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label mandatory" for="doctor_country_code">
+                                @lang('keywords.countryCode')
+                            </label>
+                            <select name="doctorTeleCode" class="master_input select2" style="width:100%;" required>
+                                <option disabled selected>-- @lang('keywords.selectTeleCode') --</option>
+                                @if (isset($countries) && !empty($countries))
+                                    @foreach ($countries as $country)
+                                        @if ($country->tele_code)
+                                            <option value="{{ $country->id }}" class="country">{{ '('. $country->tele_code .') ' . $country->name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label mandatory" for="doctor_mobile">@lang('keywords.mobile1')</label>
+                            <input class="master_input" type="number" id="doctor_mobile" min="0" name="mobile1" required>
+                            @if ( $errors->has('mobile1') )
+                            <span class="master_message inherit">{{ $errors->first('mobile1') }}</span>
+                        @endif
+                        </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label" for="doctor_mobile2">@lang('keywords.mobile2')</label>
+                            <input class="master_input" type="number" id="doctor_mobile2" min="0" name="mobile2">
+                            @if ( $errors->has('mobile2') )
+                                <span class="master_message inherit">{{ $errors->first('mobile2') }}</span>
+                            @endif
+                        </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="master_field">
+                            <label class="master_label" for="doctor_mobile3">@lang('keywords.mobile3')</label>
+                            <input class="master_input" type="number" id="doctor_mobile3" min="0" name="mobile3">
+                            @if ( $errors->has('mobile3') )
+                                <span class="master_message inherit">{{ $errors->first('mobile3') }}</span>
+                            @endif
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label mandatory" for="doctor_country">@lang('keywords.Country')</label>
+                        <select name="doctorCountry" class="master_input select2" id="doctor_country" style="width:100%;" required>
+                            <option disabled selected>-- @lang('keywords.selectCountry') --</option>
+                            @if (isset($countries) && !empty($countries))
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label mandatory" for="doctor_city">@lang('keywords.City')</label>
+                        <select name="doctorCity" class="master_input select2" id="doctor_city" style="width:100%;" disabled="true" required>
+                            <option selected disabled>-- @lang('keywords.selectCity') --</option>
+                            {{-- options generated using ajax call --}}
+
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label mandatory" for="doctor_Region">@lang('keywords.region')</label>
+                        <select name="doctorRegion" class="master_input select2" id="doctor_Region" style="width:100%;" disabled="true" required>
+                            {{-- options generated using ajax call --}}
+
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="master_field">
+                        <label class="master_label mandatory" for="doctor_address">@lang('keywords.address')</label>
+                        <input class="master_input" type="text" id="doctor_address" name="doctorAddress" required>
+                        @if ( $errors->has('doctorAddress') )
+                            <span class="master_message inherit">{{ $errors->first('doctorAddress') }}</span>
+                        @endif
+                    </div>
+                    </div>
+                   
+                  
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="master_field">
                         <label class="master_label">@lang('keywords.SelectGender')</label>
@@ -221,85 +229,45 @@
                     </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                    <label class="master_label" for="doctor_image">صورة الطبيب</label>
-                    <div id="fileList"></div>
-                    <div class="form-group" id="img_dr_">
-                        <input class="inputfile inputfile-1" id="file-1" type="file" name="doctorImage">
-                        <label for="file-1"><span>Choose a file</span></label>
+                        <!-- <label class="master_label" for="doctor_image">صورة الطبيب</label>
+                        <div id="fileList"></div>
+                        <div class="form-group" id="img_dr_">
+                            <input class="inputfile inputfile-1" id="file-1" type="file" name="doctorImage">
+                            <label for="file-1"><span>Choose a file</span></label>
+                        </div> -->
+
+                        <label class="master_label mandatory">صورة المستخدم</label>
+                            <div id="fileList" style="text-align: -webkit-right;text-align: -moz-right;"></div>
+                            <div class="form-group end-txt" id="img_btn" >
+                                <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1" onchange="updateList()"  accept=".jpg,.png,.jpeg">
+                                <label for="file-1"><span>اختر صورة</span></label>
+                            </div>
+
                     </div>
-                    </div>
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="checkboxrobo">
                         <input type="checkbox" id="activation" checked="true" name="activation" value="1">
-                        <label for="activation">@lang('keywords.Activate')</label>
+                        <label for="activation">@lang('keywords.activate')</label>
                     </div>
                     </div>
                 </div>
                 <div class="div" style="text-align:end;">
-                    <button class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
+                    <button id="save_btn" class="master-btn   undefined bgcolor--main  bshadow--0" type="submit"><i class="fa fa-save"></i><span>حفظ</span>
                     </button>
-                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="submit"><i class="fa fa-close"></i><span>الغاء</span>
+                    <button class="master-btn   undefined bgcolor--fadebrown  bshadow--0" type="button" id="cancel_button"><i class="fa fa-close"></i><span>الغاء</span>
                     </button>
+
                 </div>
             </form>
-            
+
         </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-    var listimg = [];
-   
-    //close_btn_in image
-    function closebtn(index){
-        listimg.splice(index,1);
-        $("#img_list_item").empty();
-        $("#img_dr_").show();
-      }
-   //display image
-        updateList = function () {
-            let input = document.getElementById('file-1');
-            let output = document.getElementById('fileList');
-            let files1 = input.files;
-   
-                if (window.File && window.FileList && window.FileReader) {
-   
-                    for (var i = 0; i < files1.length; i++) {
-                        var file = files1[i];
-                        var imgReader = new FileReader();
-                        imgReader.addEventListener("load", function (event) {
-                            var imgFile = event.target;
-                            listimg.push({
-                                
-                                'index': listimg.length,
-                                'image': imgFile.result
-                            });
-                            output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                            for (var i = 0; i < listimg.length; i++) {
-                                output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
-                                <span class="uploader__file-list__button"></span>
-                                <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
-                                </a></span>
-                                <span class="uploader__file-list__text"></span>
-                                <span class="uploader__file-list__thumbnail">
-                                <img class="thumbnail"  src="${listimg[i].image}"></span>
-                                </li>`;
-                            }
-                            output.innerHTML += '</ul>';
-   
-                        });
-   
-                        //Read the image
-                        imgReader.readAsDataURL(file);
-                        $("#file-1")[i].value='';
-                    }
-                }
-                 $("#img_dr_").hide();
-        }
-</script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
     $(document).ready(function(){
 
         $("#form_").hide();
@@ -318,7 +286,7 @@
             $("#doctor_Region").attr('disabled',false)
         });
     })
-    
+
 </script>
 
 <script>
@@ -352,7 +320,7 @@
                                 // console.log(value[key].id +": "+ value[key].name);
                                 $("#doctor_city").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
-                            
+
                         });
                     }
                 });
@@ -382,10 +350,10 @@
                         // foreach response values, append options
                         $.each( response, function(key, value){
                             for(var key in value) {
-                                
+
                                 $("#doctor_Region").append($("<option></option>").attr("value", value[key].id).text(value[key].name));
                             }
-                            
+
                         });
                     }
                 });
@@ -394,5 +362,110 @@
 
     });
 </script>
+<script>
+    if($('html').attr('lang')=="en"){
+        $("#addDocTitle").removeClass('end-txt')
+    }
+    </script>
+     </script>
+    <script type="text/javascript">
+      function closebtn1(){
+          $("#img_list").remove();
+          $("#img_btn").show();
+        }
+
+    </script>
+      <script type="text/javascript">
+       var listimg = [];
+
+       //close_btn_in image
+       function closebtn(index){
+           listimg.splice(index,1);
+           $("#img_list_item").empty();
+           $("#img_btn").show();
+         }
+      //display image
+       updateList = function () {
+               let input = document.getElementById('file-1');
+               let output = document.getElementById('fileList');
+               let files1 = input.files;
+
+                   if (window.File && window.FileList && window.FileReader) {
+
+                       for (var i = 0; i < files1.length; i++) {
+                           var file = files1[i];
+                           var imgReader = new FileReader();
+                           imgReader.addEventListener("load", function (event) {
+                               var imgFile = event.target;
+                               listimg.push({
+
+                                   'index': listimg.length,
+                                   'image': imgFile.result
+                               });
+                               if($('html').attr('lang')=='ar'){
+                                  output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                                for (var i = 0; i < listimg.length; i++) {
+                                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
+                                    </a></span>
+                                    <span class="uploader__file-list__text"></span>
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail"  src="${listimg[i].image}"></span>
+                                    </li>`;
+                                }
+                                output.innerHTML += '</ul>';
+                               }
+                               if($('html').attr('lang') == 'en'){
+                                output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                                for (var i = 0; i < listimg.length; i++) {
+                                    output.innerHTML += `<li class="js-uploader__file-list uploader__file-list" id="img_list_item">
+                                    <span class="uploader__file-list__button"></span>
+                                    <span class="uploader__file-list__thumbnail">
+                                    <img class="thumbnail"  src="${listimg[i].image}"></span>
+                                    <span class="uploader__file-list__text"></span>
+
+                                    <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${listimg[i].index})" class="uploader__icon-button fa fa-times" >
+                                    </a></span>
+
+                                    </li>`;
+                                }
+                                output.innerHTML += '</ul>';
+                               }
+
+
+                           });
+
+                           //Read the image
+                           imgReader.readAsDataURL(file);
+                           $("#file-1")[i].value='';
+                       }
+                   }
+                    $("#img_btn").hide();
+           }
+
+    </script>
+    <script>
+      $(function(){
+        if($('html').attr('lang')=='en'){
+          $("#img_list").empty();
+          $("#img_btn").removeClass("end-txt");
+
+          $("#img_list").append(`
+
+          <li class="js-uploader__file-list uploader__file-list">
+                  <span class="uploader__file-list__thumbnail"><img class="thumbnail" id="img_" src="../../../img/male.jpg"></span>
+                  <span class="uploader__file-list__button"></span>
+                  <span class="uploader__file-list__button" id="delete"><a class="uploader__icon-button fa fa-times" id="close" onclick="closebtn1()"></a></span>
+                </li>
+          `)
+        }
+      })
+    </script>
+    <script type="text/javascript">
+        $("#save_btn").on('click',function(){
+            $("#addNewDr").validate();
+        })
+    </script>
 
 @endsection

@@ -283,4 +283,12 @@ $(document).ready(function(){
 
       });
 </script>
+<script>
+    $(document).ready(function() {
+
+     // $('#menu_1').addClass('openedmenu');
+      $('#sub_8_5').addClass('pure-active');
+
+    });
+</script>
 @endsection

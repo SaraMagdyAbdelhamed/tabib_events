@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'locale']], function ($lang = null) {
 // Route::get('/main/mark_read/{$id}','\Modules\Main\Http\Controllers\MainController@mark_read');
 
 
-Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group( function($lang = null) {
 
     //reports_and_statistics
     Route::get('/reports_and_statistics', '\Modules\ReportsAndStatistics\Http\Controllers\ReportsAndStatisticsController@index')->name('reports_and_statistics');
@@ -64,13 +64,13 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     Route::post('/main/about/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('about.edit');
 
     // terms & conditions
-        Route::get('/terms', '\Modules\Main\Http\Controllers\MainController@terms')->name('terms');
-        Route::post('/main/terms/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('terms.edit');
+    Route::get('/terms', '\Modules\Main\Http\Controllers\MainController@terms')->name('terms');
+    Route::post('/main/terms/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('terms.edit');
 
 
     // privacy & policy
-        Route::get('/privacy', '\Modules\Main\Http\Controllers\MainController@privacy')->name('privacy');
-        Route::post('/main/privacy/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('privacy.edit');
+    Route::get('/privacy', '\Modules\Main\Http\Controllers\MainController@privacy')->name('privacy');
+    Route::post('/main/privacy/edit/{id}', '\Modules\Main\Http\Controllers\MainController@update_fixed')->name('privacy.edit');
 
 
     // contact us
@@ -98,7 +98,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 
 
     //Notifications
-    Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group( function($lang = null) {
     // Route::get('/notifications', '\Modules\Main\Http\Controllers\MainController@notifications')->name('notifications');
     // Route::post('/notifications/add', '\Modules\Main\Http\Controllers\MainController@notifications_store')->name('notifications.add');
     // Route::post('/notifications/edit', '\Modules\Main\Http\Controllers\MainController@notifications_update')->name('notifications.edit');
@@ -108,7 +108,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 
 
      // offers and deals
-     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group( function($lang = null) {
         Route::get('/offers_and_deals', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@index')->name('offers_and_deals');
         Route::get('/offers_and_deals/add', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@store')->name('offers_and_deals.add');
         Route::post('/offers_and_deals/create', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@create')->name('offers_and_deals.create');
@@ -117,9 +117,10 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::post('/offers_and_deals/update/{id}', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@update')->name('offers_and_deals.update');
         Route::post('/offers_and_deals/delete', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@delete')->name('offers_and_deals.delete');
         Route::post('/offers_and_deals/delete/selected', '\Modules\OffersAndDeals\Http\Controllers\OffersAndDealsController@deleteSelected')->name('offers_and_deals.deleteSelected');
-        }); //notification rule
-         // events
-     Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = null) {
+    }); //notification rule
+
+     // events  
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group( function($lang = null) {
         Route::get('/events/index', '\Modules\Events\Http\Controllers\EventsController@index')->name('events');
         Route::get('/events/index/{id}', '\Modules\Events\Http\Controllers\EventsController@show')->name('events.show');
         Route::post('/events/add', '\Modules\Events\Http\Controllers\EventsController@store')->name('events.add');
@@ -135,7 +136,8 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::post('/events/delete/selected', '\Modules\Events\Http\Controllers\EventsController@deleteSelected')->name('events.deleteSelected');
         });
     });  //main rule
-    Route::middleware(['auth', 'Rule:Super Admin'])->group(function ($lang = null) {
+
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group(function ($lang = null) {
         /** Mobile Doctors **/
         Route::get('/users_mobile', '\Modules\UsersModule\Http\Controllers\DoctorsController@index')->name('users_mobile');
         Route::get('/users_mobile/show/{id}', '\Modules\UsersModule\Http\Controllers\DoctorsController@mobile_show')->name('users_mobile.show');
@@ -154,6 +156,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::get('/doctors/add/new', '\Modules\UsersModule\Http\Controllers\DoctorsController@create')->name('doctor.create');
         Route::post('/doctors/store/new', '\Modules\UsersModule\Http\Controllers\DoctorsController@store')->name('doctor.store');
         Route::post('/doctors/store/from_excel', '\Modules\UsersModule\Http\Controllers\DoctorsController@storeExcel')->name('doctors.storeExcel');
+        Route::get('/doctors/download/sample', '\Modules\UsersModule\Http\Controllers\DoctorsController@downloadSample')->name('doctors.download.excel');
         Route::get('/doctors/add/get/cities', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getCities')->name('doctor.get.cities');
         Route::get('/doctors/add/get/regions', '\Modules\UsersModule\Http\Controllers\DoctorsController@AJAX_getRegions')->name('doctor.get.regions');
 
@@ -172,15 +175,16 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
 
         Route::get('/test', '\Modules\UsersModule\Http\Controllers\UsersController@test');
 
-    // Store backend users
+        // Store backend users
         Route::get('/backend/create', '\Modules\UsersModule\Http\Controllers\UsersController@backend_create')->name('backend_create');
         Route::post('/backend/store', '\Modules\UsersModule\Http\Controllers\UsersController@backend_store')->name('backend_store');
 
         Route::get('/backend_edit/{user}', '\Modules\UsersModule\Http\Controllers\UsersController@backend_edit')->name('backend_edit');
         Route::post('/backend_update/{user}', '\Modules\UsersModule\Http\Controllers\UsersController@backend_update')->name('backend_update');
     }); //users rules
-    Route::middleware(['auth', 'Rule:Super Admin,Admin,Data Entry,Backend User'])->group(function ($lang = null) {
-    // Events: Back-end
+
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group(function ($lang = null) {
+        // Events: Back-end
         Route::get('/events/backend', '\Modules\Events\Http\Controllers\EventsController@index')->name('event_backend');
         Route::get('/events/backend/add', '\Modules\Events\Http\Controllers\EventsController@create')->name('event_backend.add');
         Route::post('/events/backend/store', '\Modules\Events\Http\Controllers\EventsController@store')->name('event_backend.store');
@@ -194,7 +198,7 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
     }); //events backend rules
 
     // Events: Mobile
-    Route::middleware(['auth', 'Rule:Super Admin,Admin,Data Entry,Backend User,Mobile User'])->group(function ($lang = null) {
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Backend User,Mobile User'])->group(function ($lang = null) {
         Route::get('/events/mobile', '\Modules\Events\Http\Controllers\EventsMobileController@index')->name('event_mobile');
 
         Route::get('/events/mobile/add', '\Modules\Events\Http\Controllers\EventsMobileController@create')->name('event_mobile.add');
@@ -214,13 +218,13 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group( function($lang = n
         Route::post('/events/mobile/update', '\Modules\Events\Http\Controllers\EventsMobileController@update')->name('event_mobile.update');
     }); //events mobile rules
     // Big Events
-    Route::middleware(['auth', 'Rule:Super Admin'])->group(function ($lang = null) {
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group(function ($lang = null) {
         Route::get('/events/big_events', '\Modules\Events\Http\Controllers\EventsController@big_events')->name('big_events');
         Route::post('/bigevents_post', '\Modules\Events\Http\Controllers\EventsController@bigevents_post')->name('bigevents_post');
         Route::post('/bigevents_select/{value}', '\Modules\Events\Http\Controllers\EventsController@bigevents_select')->name('bigevents_select');
     }); //big events
 
-    Route::middleware(['auth', 'Rule:Super Admin,Admin'])->group(function ($lang = null) {
+    Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,Sponsor'])->group(function ($lang = null) {
     // Notifications_view
 
         Route::get('/notification', 'NotificationController@index')->name('notification');

@@ -13,9 +13,13 @@
             </div>
           </div>
         </div>
-        <div class="cover--actions">
-          <a class="bradius--no border-btn master-btn" type="button" href="{{ route('events.create') }}">@lang('keywords.addNewBackend')</a>
-        </div>
+        
+        @if (!Helper::hasRule(['Admin Doctor']))
+          <div class="cover--actions">
+            <a class="bradius--no border-btn master-btn" type="button" href="{{ route('events.create') }}">@lang('keywords.addNewBackend')</a>
+          </div>
+        @endif
+
       </div>
     </div>
   </div>
@@ -61,7 +65,7 @@
                 </div>
                 <div class="col-sm-6 col-xs-12">
                   <div class="master_field">
-                    <label class="master_label" for="bootstrap_date_start_from">@lang('keywords.startDateFrom')</label>
+                    <label class="master_label" for="bootstrap_date_start_from">@lang('keywords.eventDateStart')</label>
                     <div class="bootstrap-timepicker">
                       <input name="start_from" class="datepicker master_input" type="text" id="bootstrap_date_start_from">
                     </div>
@@ -69,28 +73,28 @@
                 </div>
                 <div class="col-sm-6 col-xs-12">
                   <div class="master_field">
-                    <label class="master_label" for="bootstrap_date_start_to">@lang('keywords.startDateTo')</label>
+                    <label class="master_label" for="bootstrap_date_start_to">@lang('keywords.eventDateEnd')</label>
                     <div class="bootstrap-timepicker">
                       <input name="start_to" class="datepicker master_input" type="text" id="bootstrap_date_start_to">
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6 col-xs-12">
+                <!-- <div class="col-sm-6 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="bootstrap_date_End_from">@lang('keywords.endDateFrom')</label>
                     <div class="bootstrap-timepicker">
                       <input name="end_from" class="datepicker master_input" type="text" id="bootstrap_date_End_from">
                     </div>
                   </div>
-                </div>
-                <div class="col-sm-6 col-xs-12">
+                </div> -->
+                <!-- <div class="col-sm-6 col-xs-12">
                   <div class="master_field">
                     <label class="master_label" for="bootstrap_date_End_to">@lang('keywords.endDateTo')</label>
                     <div class="bootstrap-timepicker">
                       <input name="end_to" class="datepicker master_input" type="text" id="bootstrap_date_End_to">
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div><br>
             <button class="remodal-cancel" data-remodal-action="cancel">@lang('keywords.cancel')</button>
@@ -170,10 +174,18 @@
   </div><br>
 </div>
 @section('js')
+
+<script>
+    $(document).ready(function() {
+
+      $('#sub_8_5').addClass('pure-active');
+
+    });
+</script>
 <script type="text/javascript">
   $(function(){
     dateRange_3('bootstrap_date_start_from','bootstrap_date_start_to')
-    dateRange_3('bootstrap_date_End_from','bootstrap_date_End_to')
+    // dateRange_3('bootstrap_date_End_from','bootstrap_date_End_to')
 
   })
 </script>

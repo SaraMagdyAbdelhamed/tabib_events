@@ -26,7 +26,7 @@
                 </div>
                 <div class="side">
                   <ul class="side-menu">
-                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin']) )
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin' , 'Data Entry']) )
                     <li class="side__list" id="menu_1"><a class="side__item side__item--sub">@lang('keywords.mainData')</a>
   
                       <ul class="side__submenu">
@@ -53,7 +53,7 @@
                       </ul>
                     </li>
                     @endif
-                    @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin' , 'Organizer']) )
                     <li class="side__list" id="menu_2"> <a class="side__item side__item--sub">@lang('keywords.Users')</a>
                       <ul class="side__submenu">
                         <li class="side__sublist"><a class="side__subitem" id="sub_2_1" href="{{ route('users_mobile')  }}">@lang('keywords.MobileAppUsers')</a></li>
@@ -63,12 +63,19 @@
                     @endif
   
   
-                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor']) )
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
                     <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
                         </li>
+                        @endif
+                     @if(\App\Helpers\Helper::hasRule(['Super Admin' , 'Data Entry' , 'Sponsor']) )
                     <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('offers_and_deals')}}">@lang('keywords.offers_and_deals')</a></li>
-                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_3" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
-                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('events')}}">@lang('keywords.events')</a></li>
+                    @endif
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin' , 'Organizer' , 'Sponsor']) )
+                    
+                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_4" href="{{route('notifications')}}">@lang('keywords.notifications')</a></li>
+                    @endif
+                    @if(\App\Helpers\Helper::hasRule(['Super Admin','Admin Doctor' , 'Organizer' ]) )
+                    <li class="side__list openedmenu"><a class="side__item " id="sub_8_5" href="{{route('events')}}">@lang('keywords.events')</a></li>
   
                     @endif
                   </ul>
