@@ -421,6 +421,10 @@
         'addquestion' => 'Add Question',
         'addsurvey' => 'Add Survey',
         'Activate' => 'Activate',
+        'request_event_success'=>'Notification Send ',
+        'request_event_success_message'=>'notification send successfully to user',
+        'request_event_fail'=>'Notification Fail',
+        'request_event_fail_message'=>'Notification Failed to send to user'
     ];
 
 ?>

@@ -20,6 +20,7 @@ use App\Cities;
 use App\Countries;
 use App\Genders;
 use DB;
+use App\NotificationType;
 
 class Helper
 {
@@ -318,5 +319,25 @@ class Helper
         } else {
             Session::flash($msg_type, $msg_ar);
         }
+    }
+
+    public static function notification($user_id , $entity_name , $item_id , $notification_type_id)
+    {
+      $notification_type = NotificationType::find($notification_type_id);
+      $entity = Entity::where('table_name', $entity_name)->first();
+      $notification = Notification::create([
+        "msg"=>$notification_type->msg,
+        "msg_ar"=>$notification_type->msg_ar,
+        "user_id"=>$user_id,
+        "entity_id"=> $entity->id,
+        "item_id"=>$item_id,
+        'is_push'=>$notification_type->is_push,
+        "notification_type_id"=>$notification_type_id,
+        "is_read"=>0,
+        "is_sent"=>0
+
+      ]);
+
+      return 'success';
     }
 }
