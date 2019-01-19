@@ -46,7 +46,7 @@
               @if(App::isLocale("en"))
               @if($notification->notification_type_id == 6)
                 <li class="request"> 
-                <a href="{{url('/mark_read')}}/{{$notification->id}}"> 
+                <a href="{{route('events.show', $notification->event_id)}}"> 
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg}}</p>
                     <div class="pull-right">
@@ -64,7 +64,7 @@
                 @endif
                 @else
                 @if($notification->notification_type_id == 6)
-                <li class="request"><a href="{{url('/mark_read')}}/{{$notification->id}}">
+                <li class="request"><a href="{{route('events.show', $notification->event_id)}}">
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg_ar}}</p>
                     <div class="pull-right">
