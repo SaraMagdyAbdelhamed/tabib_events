@@ -49,7 +49,7 @@
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg}}</p>
                     <div class="pull-right">
-                      <button class="btn_2 btn_accept"><i class="fa fa-check"> Accept</i></button>
+                      <button class="btn_2 btn_accept"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
                       <button class="btn_2 btn_reject"><i class="fa fa-close"> Reject</i></button>
                     </div><span class="notification_date"><i class="fa fa-clock-o">
                     </i>{{date('H:i:s', strtotime($notification->created_at))}}</span></a>

@@ -19,6 +19,7 @@ use PHPUnit\Framework\Constraint\Exception;
 use App\Cities;
 use App\Countries;
 use App\Genders;
+use DB;
 
 class Helper
 {
