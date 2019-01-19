@@ -75,9 +75,10 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $images_ar = explode('-', $request->event_logo_base64);
         $images_en = explode('-', $request->event_images_base64);
         $fileNameToStore = null;
-        // dd($images_en);
+        // dd([$images_ar, $images_en]);
 
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
@@ -85,7 +86,6 @@ class EventsController extends Controller
             'event.place' => 'required',
             // 'event.long' => 'required',
             // 'event.lat' => 'required',
-            'event.image' => 'required',
             'event.start_date' => 'required',
             'event.end_date' => 'required',
             'event.start_time' => 'required',
@@ -93,15 +93,48 @@ class EventsController extends Controller
         ]);
 
         if ($validation->fails()) {
-
+            dd($validation->messages());
             // change below as required
             return \Redirect::back()->withInput()->withErrors($validation->messages());
         }
 
-        if (array_key_exists('image', $request['event'])) {
-            $destinationPath = 'event_images';
-            $fileNameToStore = $destinationPath . '/' . time() . rand(1111, 9999) . '.' . $request['event']['image']->getClientOriginalExtension();
-            Input::file('event')['image']->move($destinationPath, $fileNameToStore);
+        // store event logo
+        // convert base64 images into normal images
+            // update English images.
+        if (count($images_ar) > 0) {
+                // add new images
+            foreach ($images_ar as $image) {
+                    // check if image exist
+                if (strpos($image, 'event_images') !== false) {
+                        // search for its name
+                    preg_match('/event_images\/(.*)/', $image, $match);
+
+                    if (count($match) > 0) {
+                        $name = $match[0];
+
+                        $fileNameToStore = $name;
+                    }
+
+                }
+                    // check if image is new
+                if (strpos($image, 'base64') !== false) {
+                        // get image extension
+                    preg_match('/image\/(.*)\;/', $image, $match);
+
+                    if (count($match) > 0) {
+                        $ext = $match[1];
+                        $image = str_replace('data:image/' . $ext . ';base64,', '', $image);
+                        $image = str_replace(' ', '+', $image);
+                        $imageName = 'event_images/' . time() . rand(1111, 9999) . '.' . $ext;
+                            // dd([$imageName, $image]);
+                        \File::put(public_path() . '/' . $imageName, base64_decode($image));
+
+                        $fileNameToStore = $imageName;
+
+                    }
+                }
+            }
+
         }
 
         if (isset($request['event']['active'])) {
@@ -161,7 +194,7 @@ class EventsController extends Controller
                     // check if image exist
                     if (strpos($image, 'event_images') !== false) {
                         // search for its name
-                        preg_match('/events\/english\/(.*)/', $image, $match);
+                        preg_match('/event_images\/(.*)/', $image, $match);
 
                         if (count($match) > 0) {
                             $name = $match[0];
@@ -366,6 +399,7 @@ class EventsController extends Controller
         $data['specializations'] = Specialization::all();
         $data['currencies'] = Currency::all();
         $data['codes'] = Countries::all();
+        $data['event_youtube_links'] = EventMedia::where('event_id', $id)->where('link', 'like', '%youtube%')->get();
         $data['event_images'] = EventMedia::where('event_id', $id)->where('link', 'NOT LIKE', '%youtube%')->get();
 
         return view('events::events.edit', $data);
@@ -476,9 +510,11 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $logo = '';
         $images_logo = explode('-', $request->event_logo_base64);
         $images_en = explode('-', $request->event_images_base64);
+        // dd($images_en);
 
         $validation = Validator::make($request->all(), [
             'event.name' => 'required|min:2|max:100',
@@ -508,7 +544,7 @@ class EventsController extends Controller
                 // check if image exist
                 if (strpos($image, 'event_images') !== false) {
                     // search for its name
-                    preg_match('/events\/english\/(.*)/', $image, $match);
+                    preg_match('/event_images\/(.*)/', $image, $match);
 
                     if (count($match) > 0) {
                         $name = $match[0];
@@ -538,7 +574,7 @@ class EventsController extends Controller
 
         }
 
-        $fileNameToStore = $event->image;
+        $fileNameToStore = $logo;
 
         if (isset($request['event']['active'])) {
             $active = 1;
@@ -571,6 +607,7 @@ class EventsController extends Controller
             return redirect()->back();
         }
 
+        // delete old media
         $event->media()->delete();
 
         // convert base64 images into normal images
@@ -582,16 +619,17 @@ class EventsController extends Controller
                 // check if image exist
                 if (strpos($image, 'event_images') !== false) {
                     // search for its name
-                    preg_match('/events\/english\/(.*)/', $image, $match);
+                    preg_match('/event_images\/(.*)/', $image, $match);
 
                     if (count($match) > 0) {
                         $name = $match[0];
 
-                        EventMedia::create([
+                        $media = EventMedia::create([
                             "event_id" => $event->id,
                             "link" => $name,
                             "type" => 1,
                         ]);
+
                     }
 
                 }

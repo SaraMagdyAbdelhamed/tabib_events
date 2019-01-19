@@ -573,14 +573,14 @@
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_1">@lang('keywords.link') 1 </label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]" >
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]" value="{{ isset($event_youtube_links[0]['link']) ? $event_youtube_links[0]['link'] : '' }}" />
 
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_2">@lang('keywords.link') 2</label>
-                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]">
+                              <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]" value="{{ isset($event_youtube_links[1]['link']) ? $event_youtube_links[1]['link'] : '' }}" />
                             </div>
                           </div>
                           <div class="col-xs-12">
@@ -639,262 +639,267 @@
           }
         })
     </script>
+
+    {{-- Images script --}}
     <script type="text/javascript">
-      var eventImgList = [];
-      var eventImg=[];
-      var check = false;
-      var img;
-      var reader=new FileReader();
+        var eventImgList = [];
+        var eventImg=[];
+        var check = false;
+        var img;
+        var reader=new FileReader();
 
 
 
-    function closebtn(index,value){
-        if(value==1){
-          eventImgList.splice(index,1);
-          $.each(eventImgList,function(id,value,){
-            value.index = id;
-          });
-          check = true;
-          $("#file-2").prop('disabled', false);
-          updateList('file-2','fileList2',"imgs");
-        }
-        if(value==2){
-          console.log("value 2")
-          console.log("index = "+ index)
-          eventImg.splice(index,1);
-          $.each(eventImg,function(id,value){
-            value.index = id;
-          });
-          console.log(eventImg);
+        function closebtn(index,value){
+            if(value==1){
+              eventImgList.splice(index,1);
+              $.each(eventImgList,function(id,value,){
+                value.index = id;
+              });
+              check = true;
+              $("#file-2").prop('disabled', false);
+              updateList('file-2','fileList2',"imgs");
+            }
+            if(value==2){
+              console.log("value 2")
+              console.log("index = "+ index)
+              eventImg.splice(index,1);
+              $.each(eventImg,function(id,value){
+                value.index = id;
+              });
+              console.log(eventImg);
 
-          check = true;
-          $("#file-1").prop('disabled', false);
-          updateList('file-1','fileList',"img");
-        }
+              check = true;
+              $("#file-1").prop('disabled', false);
+              updateList('file-1','fileList',"img");
+            }
 
-      }
-    function updateList (inputID,outputID,listName) {
-          console.log("upadteList")
-          let input = document.getElementById(inputID);
-          let output = document.getElementById(outputID);
-          let files1 = input.files;
+          }
+        function updateList (inputID,outputID,listName) {
 
-        if(listName =='imgs'){
-          console.log("da5el el if")
+              let input = document.getElementById(inputID);
+              let output = document.getElementById(outputID);
+              let files1 = input.files;
+
+            if(listName =='imgs'){
+
+                  if (check == true) {
+                  output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                  for (var i = 0; i < eventImgList.length; i++) {
+                      output.innerHTML += `<li  class="${eventImgList[i].class} js-uploader__file-list uploader__file-list">
+                                      <span class="uploader__file-list__thumbnail">
+                                      <img class="thumbnail" id="img_" src="${eventImgList[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${eventImgList[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs">${(eventImgList[i].size) / 1000} KB</span>
+                                      <span class="uploader__file-list__button"></span>
+                                      <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${eventImgList[i].index},1)" class="uploader__icon-button fa fa-times" >
+                                      </a></span></li>`;
+                  }
+                  output.innerHTML += '</ul>';
+                  check = false;
+              }
+              else {
+                  if (files1.length > 5) {
+                      alert("max no. 5 images");
+                      return;
+                  }
+
+                  if (window.File && window.FileList && window.FileReader) {
+                          if (files1.length == 5) {
+                      $(`#${inputID}`).prop('disabled', true);
+                  }
+                      for (var i = 0; i < files1.length; i++) {
+                          var file = files1[i];
+                          var imgReaderImgs = new FileReader();
+                          imgReaderImgs.addEventListener("load", function (event) {
+                              var imgFile_ = event.target;
+
+                                eventImgList.push({
+                                    'name': file.name,
+                                    'size': file.size,
+                                    'index': eventImgList.length,
+                                    'image': imgFile_.result,
+                                });
+
+                              output.innerHTML = '<ul  class="js-uploader__file-list uploader__file-list" >';
+                              for (var i = 0; i < eventImgList.length; i++) {
+                                  output.innerHTML += `<li class="${eventImgList[i].class} js-uploader__file-list uploader__file-list">
+                                      <span class="uploader__file-list__thumbnail">
+                                      <img class="thumbnail" id="img_" src="${eventImgList[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${eventImgList[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs">${(eventImgList[i].size) / 1000} KB</span>
+                                      <span class="uploader__file-list__button"></span>
+                                      <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${eventImgList[i].index},1)" class="uploader__icon-button fa fa-times" >
+                                      </a></span></li>`;
+                              }
+                              output.innerHTML += '</ul>';
+                          });
+                          //Read the image
+                          imgReaderImgs.readAsDataURL(file);
+                      }
+                  }
+                    $(`#${inputID}`).val('');
+                  if (eventImgList.length == 4) {
+                      $(`#${inputID}`).prop('disabled', true);
+                  }
+              }
+            }
+
+            if(listName =='img'){
+
               if (check == true) {
-              output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-              for (var i = 0; i < eventImgList.length; i++) {
-                  output.innerHTML += `<li  class="${eventImgList[i].class} js-uploader__file-list uploader__file-list">
-                                  <span class="uploader__file-list__thumbnail">
-                                  <img class="thumbnail" id="img_" src="${eventImgList[i].image}">
-                                  </span><span class="uploader__file-list__text hidden-xs">${eventImgList[i].name}</span>
-                                  <span class="uploader__file-list__size hidden-xs">${(eventImgList[i].size) / 1000} KB</span>
-                                  <span class="uploader__file-list__button"></span>
-                                  <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${eventImgList[i].index},1)" class="uploader__icon-button fa fa-times" >
-                                  </a></span></li>`;
+                  output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                  for (var i = 0; i < eventImg.length; i++) {
+                      output.innerHTML += `<li  class="${eventImg[i].class} js-uploader__file-list uploader__file-list">
+                                      <span class="uploader__file-list__thumbnail">
+                                      <img class="thumbnail" id="img_" src="${eventImg[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${eventImg[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs">${(eventImg[i].size) / 1000} KB</span>
+                                      <span class="uploader__file-list__button"></span>
+                                      <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(0,2)" class="uploader__icon-button fa fa-times" >
+                                      </a></span></li>`;
+                  }
+                  output.innerHTML += '</ul>';
+                  check = false;
               }
-              output.innerHTML += '</ul>';
-              check = false;
-          }
-          else {
-              if (files1.length > 5) {
-                  alert("max no. 5 images");
-                  return;
-              }
+              else {
 
-              if (window.File && window.FileList && window.FileReader) {
-                      if (files1.length == 5) {
-                  $(`#${inputID}`).prop('disabled', true);
-              }
-                  for (var i = 0; i < files1.length; i++) {
-                      var file = files1[i];
-                      var imgReaderImgs = new FileReader();
-                      imgReaderImgs.addEventListener("load", function (event) {
-                          var imgFile_ = event.target;
 
-                            eventImgList.push({
-                                'name': file.name,
-                                'size': file.size,
-                                'index': eventImgList.length,
-                                'image': imgFile_.result,
-                            });
+                  if (window.File && window.FileList && window.FileReader) {
+                          if (files1.length == 1) {
+                      $(`#${inputID}`).prop('disabled', true);
+                  }
+                      for (var i = 0; i < files1.length; i++) {
+                          var file = files1[i];
+                          var imgReaderImgs = new FileReader();
+                          imgReaderImgs.addEventListener("load", function (event) {
+                              var imgFile_ = event.target;
 
-                          output.innerHTML = '<ul  class="js-uploader__file-list uploader__file-list" >';
-                          for (var i = 0; i < eventImgList.length; i++) {
-                              output.innerHTML += `<li class="${eventImgList[i].class} js-uploader__file-list uploader__file-list">
-                                  <span class="uploader__file-list__thumbnail">
-                                  <img class="thumbnail" id="img_" src="${eventImgList[i].image}">
-                                  </span><span class="uploader__file-list__text hidden-xs">${eventImgList[i].name}</span>
-                                  <span class="uploader__file-list__size hidden-xs">${(eventImgList[i].size) / 1000} KB</span>
-                                  <span class="uploader__file-list__button"></span>
-                                  <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${eventImgList[i].index},1)" class="uploader__icon-button fa fa-times" >
-                                  </a></span></li>`;
-                          }
-                          output.innerHTML += '</ul>';
-                      });
-                      //Read the image
-                      imgReaderImgs.readAsDataURL(file);
+                              eventImg.push({
+                                    'name': file.name,
+                                    'size': file.size,
+                                    'index': eventImgList.length,
+                                    'image': imgFile_.result,
+                                });
+
+                              output.innerHTML = '<ul  class="js-uploader__file-list uploader__file-list" >';
+                              for (var i = 0; i < eventImgList.length; i++) {
+                                  output.innerHTML += `<li  js-uploader__file-list uploader__file-list">
+                                      <span class="uploader__file-list__thumbnail">
+                                      <img class="thumbnail" id="img_" src="${eventImg[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${eventImg[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs">${(eventImg[i].size) / 1000} KB</span>
+                                      <span class="uploader__file-list__button"></span>
+                                      <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(0,2)" class="uploader__icon-button fa fa-times" >
+                                      </a></span></li>`;
+                              }
+                              output.innerHTML += '</ul>';
+                          });
+                          //Read the image
+                          imgReaderImgs.readAsDataURL(file);
+                      }
+                  }
+                    $(`#${inputID}`).val('');
+                  if (eventImg.length == 1) {
+                      $(`#${inputID}`).prop('disabled', true);
                   }
               }
-                $(`#${inputID}`).val('');
-              if (eventImgList.length == 4) {
-                  $(`#${inputID}`).prop('disabled', true);
-              }
-          }
-        }
+            }
 
-        if(listName =='img'){
-
-          if (check == true) {
-              output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-              for (var i = 0; i < eventImg.length; i++) {
-                  output.innerHTML += `<li  class="${eventImg[i].class} js-uploader__file-list uploader__file-list">
-                                  <span class="uploader__file-list__thumbnail">
-                                  <img class="thumbnail" id="img_" src="${eventImg[i].image}">
-                                  </span><span class="uploader__file-list__text hidden-xs">${eventImg[i].name}</span>
-                                  <span class="uploader__file-list__size hidden-xs">${(eventImg[i].size) / 1000} KB</span>
-                                  <span class="uploader__file-list__button"></span>
-                                  <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(0,2)" class="uploader__icon-button fa fa-times" >
-                                  </a></span></li>`;
-              }
-              output.innerHTML += '</ul>';
-              check = false;
-          }
-          else {
+            }
 
 
-              if (window.File && window.FileList && window.FileReader) {
-                      if (files1.length == 1) {
-                  $(`#${inputID}`).prop('disabled', true);
-              }
-                  for (var i = 0; i < files1.length; i++) {
-                      var file = files1[i];
-                      var imgReaderImgs = new FileReader();
-                      imgReaderImgs.addEventListener("load", function (event) {
-                          var imgFile_ = event.target;
+        function get_images(){
 
-                          eventImg.push({
-                                'name': file.name,
-                                'size': file.size,
-                                'index': eventImgList.length,
-                                'image': imgFile_.result,
-                            });
-                            console.log(eventImg)
+        //get  images from database
+        @if( count($event_images) > 0 )
+          @foreach($event_images as $image)
+          eventImgList.push({
+              'name': '{{ ++$loop->index }}',
+              'size': '',
+              'image': '{{ asset($image->link) }}',
+              'id': '{{ $image->id }}'
+            });
+          @endforeach
+        @endif
 
-                          output.innerHTML = '<ul  class="js-uploader__file-list uploader__file-list" >';
-                          for (var i = 0; i < eventImgList.length; i++) {
-                              output.innerHTML += `<li  js-uploader__file-list uploader__file-list">
-                                  <span class="uploader__file-list__thumbnail">
-                                  <img class="thumbnail" id="img_" src="${eventImg[i].image}">
-                                  </span><span class="uploader__file-list__text hidden-xs">${eventImg[i].name}</span>
-                                  <span class="uploader__file-list__size hidden-xs">${(eventImg[i].size) / 1000} KB</span>
-                                  <span class="uploader__file-list__button"></span>
-                                  <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(0,2)" class="uploader__icon-button fa fa-times" >
-                                  </a></span></li>`;
-                          }
-                          output.innerHTML += '</ul>';
-                      });
-                      //Read the image
-                      imgReaderImgs.readAsDataURL(file);
-                  }
-              }
-                $(`#${inputID}`).val('');
-              if (eventImg.length == 1) {
-                  $(`#${inputID}`).prop('disabled', true);
-              }
-          }
-        }
+        eventImg.push({
+          'name': 'test1',
+          'size': '25',
+          'image': '{{ asset($event->image) }}',
+          'id':'55'
+        },
 
-        }
-
-
-    function get_images(){
-      //get  images from database
-      @if( count($event_images) > 0 )
-        @foreach($event_images as $image)
-        eventImgList.push({
-            'name': '{{ ++$loop->index }}',
-            'size': '',
-            'image': '{{ asset($image->link) }}',
-            'id': '{{ $image->id }}'
-          });
-        @endforeach
-      @endif
-
-      eventImg.push({
-                                'name': 'test1',
-                                'size': '25',
-                                'image': '{{ asset($event->image) }}',
-                                'id':'55'
-      },
-
-      )
-      add_index(eventImgList);
-      add_index(eventImg);
-    }
-
-     //add index
-     function add_index(list){
-        $.each(list,function(id,value){
-          value.index = id;
-        })
-
-        show_image(eventImgList,"fileList2","imgs");
-    }
-
-     //draw images
-     function show_image(list,output_section,ref){
-      let value;
-      switch(ref){
-          case 'imgs':
-                value=1;
-                break;
-          case 'img':
-                value=2;
-                break;
-
+        )
+        add_index(eventImgList);
+        add_index(eventImg);
       }
-                  let output = document.getElementById(output_section);
-                   output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
-                            for (var i = 0; i < list.length; i++) {
-                                output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
-                                    <span class="uploader__file-list__thumbnail">
-                                    <img class="thumbnail" id="img_" src="${list[i].image}">
-                                    </span><span class="uploader__file-list__text hidden-xs">${list[i].name}</span>
-                                    <span class="uploader__file-list__size hidden-xs">${(list[i].size) / 1000} KB</span>
-                                    <span class="uploader__file-list__button"></span>
-                                    <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${list[i].index},${value})" class="uploader__icon-button fa fa-times" >
-                                    </a></span></li>`;
-                            }
-                            output.innerHTML += '</ul>';
-    }
+
+      //add index
+      function add_index(list){
+          $.each(list,function(id,value){
+            value.index = id;
+          })
+
+          show_image(eventImgList,"fileList2","imgs");
+      }
+
+      //draw images
+      function show_image(list,output_section,ref){
+        let value;
+        switch(ref){
+            case 'imgs':
+                  value=1;
+                  break;
+            case 'img':
+                  value=2;
+                  break;
+
+        }
+                    let output = document.getElementById(output_section);
+                    output.innerHTML = '<ul class="js-uploader__file-list uploader__file-list">';
+                              for (var i = 0; i < list.length; i++) {
+                                  output.innerHTML += `<li class="js-uploader__file-list uploader__file-list">
+                                      <span class="uploader__file-list__thumbnail">
+                                      <img class="thumbnail" id="img_" src="${list[i].image}">
+                                      </span><span class="uploader__file-list__text hidden-xs">${list[i].name}</span>
+                                      <span class="uploader__file-list__size hidden-xs"></span>
+                                      <span class="uploader__file-list__button"></span>
+                                      <span class="uploader__file-list__button" id="delete" ><a id="close" onclick="closebtn(${list[i].index},${value})" class="uploader__icon-button fa fa-times" >
+                                      </a></span></li>`;
+                              }
+                              output.innerHTML += '</ul>';
+      }
 
     </script>
+
     <script type="text/javascript">
         $(function(){
           get_images();
           show_image(eventImg,'fileList','img')
         })
     </script>
+    {{-- End --}}
+
     <script type="text/javascript">
      dateRange_2('start_date_','end_date_')
     </script>
     <script type="text/javascript">
-  $(function() {
-    $('input, select').on('change', function(event) {
-      var $element = $(event.target),
-        $container = $element.closest('.example');
+      $(function() {
+        $('input, select').on('change', function(event) {
+          var $element = $(event.target),
+            $container = $element.closest('.example');
 
-      if (!$element.data('tagsinput'))
-        return;
+          if (!$element.data('tagsinput'))
+            return;
 
-      var val = $element.val();
-      if (val === null)
-        val = "null";
-      $('code', $('pre.val', $container)).html( ($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\"") );
-      $('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
-    }).trigger('change');
-  });
+          var val = $element.val();
+          if (val === null)
+            val = "null";
+          $('code', $('pre.val', $container)).html( ($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\"") );
+          $('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
+        }).trigger('change');
+      });
 
 
 </script>
@@ -927,316 +932,319 @@
     }
 
 </script>
-  <script type="text/javascript">
-      $(document).ready(function(){
-        var current_count =0;
-        var next_count=0;
-        $("#add_more_btn").on('click',function(){
+<script type="text/javascript">
+    $(document).ready(function(){
+      var current_count =0;
+      var next_count=0;
+      $("#add_more_btn").on('click',function(){
 
-          next_count= current_count+1;
-          current_count +=1;
-          $("#more_workshop").append(`<div><p style="text-align: center;background-color: #1ca6c0;color: azure;"> @lang('keywords.workshop') ${next_count}</p></div>
-                          <div class="row">
+        next_count= current_count+1;
+        current_count +=1;
+        $("#more_workshop").append(`<div><p style="text-align: center;background-color: #1ca6c0;color: azure;"> @lang('keywords.workshop') ${next_count}</p></div>
+                        <div class="row">
 
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="workshop_name">@lang('keywords.workshopName')</label>
-                                <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]" required>
+                          <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="workshop_name">@lang('keywords.workshopName')</label>
+                              <input class="master_input" type="text" maxlength="100" minlength="2" placeholder="name" id="workshop_name" name="workshop[${next_count}][name]" required>
 
+
+                            </div>
+                          </div>
+                          <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="master_field">
+
+                              <label class="master_label mandatory" for="workshop_description">@lang('keywords.workshopDesc') </label>
+                              <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]" required></textarea>
+
+                            </div>
+                          </div>
+                          <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="master_field">
+
+                              <label class="master_label mandatory" for="workshop_venue">@lang('keywords.workshopPlace')</label>
+                              <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]" required>
+
+
+                            </div>
+                          </div>
+
+
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="workshop${next_count}_start_date">@lang('keywords.workshopStartDate')</label>
+                              <div class="bootstrap-timepicker">
+                                <input class="datepicker master_input" type="text" placeholder="start date"  id="workshop${next_count}_start_date" name="workshop[${next_count}][start_date]">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
+                              <div class="bootstrap-timepicker">
+
+                                <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]" required>
 
                               </div>
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                              <div class="master_field">
+                          </div>
 
-                                <label class="master_label mandatory" for="workshop_description">@lang('keywords.workshopDesc') </label>
-                                <textarea class="master_input"  maxlength="250" minlength="5" id="workshop_description" placeholder="Description" name="workshop[${next_count}][description]" required></textarea>
+                          <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="start_time">@lang('keywords.workshopStartTime')</label>
+                              <div class="bootstrap-timepicker">
 
-                              </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                              <div class="master_field">
-
-                                <label class="master_label mandatory" for="workshop_venue">@lang('keywords.workshopPlace')</label>
-                                <input class="master_input" type="text" minlength="2" placeholder="ex:CFC" id="workshop_venue"  name="workshop[${next_count}][place]" required>
-
+                                <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]" required>
 
                               </div>
                             </div>
+                          </div>
 
 
                           <div class="col-md-3 col-sm-3 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="workshop${next_count}_start_date">@lang('keywords.workshopStartDate')</label>
-                                <div class="bootstrap-timepicker">
-                                  <input class="datepicker master_input" type="text" placeholder="start date"  id="workshop${next_count}_start_date" name="workshop[${next_count}][start_date]">
-                                </div>
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="end_time">@lang('keywords.workshopEndTime')</label>
+                              <div class="bootstrap-timepicker">
+                                <input class="timepicker master_input" type="text" placeholder="end time"  id="end_time" name="workshop[${next_count}][end_time]" required>
                               </div>
                             </div>
+                          </div>
 
-                            <div class="col-md-3 col-sm-3 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="workshop${next_count}_end_date">@lang('keywords.workshopEndDate')</label>
-                                <div class="bootstrap-timepicker">
-
-                                  <input class="datepicker master_input" type="text" placeholder="end date"  id="workshop${next_count}_end_date" name="workshop[${next_count}][end_date]" required>
-
-                                </div>
-                              </div>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
+                              <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]" required>
+                                  @foreach($specializations as $specialization)
+                              <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                              @endforeach
+                              </select>
                             </div>
-
-                            <div class="col-md-3 col-sm-3 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="start_time">@lang('keywords.workshopStartTime')</label>
-                                <div class="bootstrap-timepicker">
-
-                                  <input class="timepicker master_input" type="text" placeholder="start time"  id="start_time" name="workshop[${next_count}][start_time]" required>
-
-                                </div>
-                              </div>
+                          </div>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="master_field">
+                              <label class="master_label mandatory" for="admin_workshop_doctor">@lang('keywords.eventDoctor')  </label>
+                              <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" name="workshop[${next_count}][doctor][]" required>
+                                @foreach($doctors as $doctor)
+                              <option value="{{$doctor->id}}">{{$doctor->username}}</option>
+                              @endforeach
+                              </select>
                             </div>
+                          </div>
 
-
-                            <div class="col-md-3 col-sm-3 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="end_time">@lang('keywords.workshopEndTime')</label>
-                                <div class="bootstrap-timepicker">
-                                  <input class="timepicker master_input" type="text" placeholder="end time"  id="end_time" name="workshop[${next_count}][end_time]" required>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="Specialties">@lang('keywords.special')</label>
-                                <select class="master_input select2" id="Specialties" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="workshop[${next_count}][special][]" required>
-                                   @foreach($specializations as $specialization)
-                                <option value="{{$specialization->id}}">{{$specialization->name}}</option>
-                                @endforeach
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class="master_field">
-                                <label class="master_label mandatory" for="admin_workshop_doctor">@lang('keywords.eventDoctor')  </label>
-                                <select class="master_input select2" id="admin_workshop_doctor" multiple="multiple" data-placeholder="placeholder" style="width:100%;" name="workshop[${next_count}][doctor][]" required>
-                                  @foreach($doctors as $doctor)
-                                <option value="{{$doctor->id}}">{{$doctor->username}}</option>
-                                @endforeach
-                                </select>
-                              </div>
-                            </div>
-
-                            `
-          )
-          $(".timepicker").timepicker({showInputs: false});
-
-          $(".select2").select2();
-          // dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
-          dateRange_3(`workshop${next_count}_start_date `,`workshop${next_count}_end_date`)
-        })
-      })
-    </script>
-    <script type="text/javascript">
-
-      function add_question(value,question){
-        var question_id="more_question_"+value;
-        var question = $("#"+question_id+" > div").length+question;
-
-          $(`#more_question_${value}`).append(`
-                           <div class="row">
-
-                             <div class="col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.Squestion') ${question}</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer1"> @lang('keywords.answer') 1</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[${value}][question][${question}][answer][0]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required name="survey[${value}][question][${question}][answer][1]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[${value}][question][${question}][answer][2]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[${value}][question][${question}][answer][3]">
-                               </div>
-                             </div>
-                             </div>
-          `)
-        }
-      $(document).ready(function(){
-       var current_count_question = 0;
-       var next_count_question = 0;
-       var current_count_survey = {{ $survey_number }};
-       var next_count_survey = 0;
-       $("#add_more_question").on('click',function(){
-
-         next_count_question = current_count_question;
-         current_count_question+=1;
-         $("#more_Question").append(
                           `
-                           <div class="row">
-                             <div class="col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_question" style="background-color: beige;"> @lang('keywords.question') ${next_count_question}</label>
-                                 <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][${next_count_question}][name]" required>
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer1">  @lang('keywords.answer') 1</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[0][question][${next_count_question}][answer][0]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required  name="survey[0][question][${next_count_question}][answer][1]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[0][question][${next_count_question}][answer][2]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
-                                 <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[0][question][${next_count_question}][answer][3]">
-                               </div>
-                             </div>
-                             </div>
-                             `
-         );
-       });
-       $("#add_more_survey").on('click',function(){
+        )
+        $(".timepicker").timepicker({showInputs: false});
 
-         next_count_survey = current_count_survey;
-       next_count_question = 1;
-       current_count_survey +=1;
-
-            $("#more_Survey").append(`
-
-                         <div><p style="text-align: center;background-color: #004272;color: azure;">  @lang('keywords.surveyN') ${next_count_survey}</p></div>
-                           <div class="row">
-                             <div class="col-xs-6">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_name"> @lang('keywords.Name')</label>
-                                 <input class="master_input" type="text"  id="survey_name" name="survey[${next_count_survey}][name]">
-                               </div>
-                             </div>
-                             <div class="col-xs-6">
-                               <div class="master_field">
-                                 <label class="master_label mandatory" for="appear_for"> @lang('keywords.surveyFor')</label>
-                                 <select class="master_input select2" id="appears_for" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
-                                   <option value="1">All attend</option>
-                                 </select>
-                               </div>
-                             </div>
-                             <div class="col-md-12 col-sm-12 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_question">1  @lang('keywords.Squestion')</label>
-                                 <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer1">  @lang('keywords.answer') 1 </label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer1" name="survey[${next_count_survey}][question][0][answer][0]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer2" name="survey[${next_count_survey}][question][0][answer][1]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
-                                 <input class="master_input" type="text"  maxlength="100" id="survey_answer3" name="survey[${next_count_survey}][question][0][answer][2]">
-                               </div>
-                             </div>
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                               <div class="master_field">
-                                 <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
-                                 <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[${next_count_survey}][question][0][answer][3]">
-                               </div>
-                             </div>
-                           </div>
-                            <div id="more_question_${next_count_survey}"></div>
-                           <div style="text-align:end">
-                            <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button">
-                            <i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
-                            <div class="checkboxrobo pull-right">
-                              <input type="checkbox" id="activation_${next_count_survey}" name="activation_${next_count_survey}" checked="true">
-                              <label for="activation_${next_count_survey}">@lang('keywords.Active')</label>
-                            </div>
-                            </div>
-                           <br>
-                           `
-
-            );
-            $(".select2").select2();
-       })
-
+        $(".select2").select2();
+        // dateRange(  `workshop${next_count}_start_date `,`workshop${next_count}_end_date`,'2018','7','30','2018','8','30','22/11/2018')
+        dateRange_3(`workshop${next_count}_start_date `,`workshop${next_count}_end_date`)
       })
-    </script>
-       <script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-var event_lat;
-var event_long;
-      function initMap() {
+    })
+  </script>
+  <script type="text/javascript">
 
-        var input = document.getElementById('event_address');
+    function add_question(value,question){
+      var question_id="more_question_"+value;
+      var question = $("#"+question_id+" > div").length+question;
 
-        var autocomplete = new google.maps.places.Autocomplete(input);
+        $(`#more_question_${value}`).append(`
+                          <div class="row">
 
-        autocomplete.addListener('place_changed', function() {
+                            <div class="col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_question" style="background-color: beige;">@lang('keywords.Squestion') ${question}</label>
+                                <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[${value}][question][${question}][name]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer1"> @lang('keywords.answer') 1</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[${value}][question][${question}][answer][0]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required name="survey[${value}][question][${question}][answer][1]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[${value}][question][${question}][answer][2]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[${value}][question][${question}][answer][3]">
+                              </div>
+                            </div>
+                            </div>
+        `)
+      }
+    $(document).ready(function(){
+      var current_count_question = 0;
+      var next_count_question = 0;
+      var current_count_survey = {{ $survey_number }};
+      var next_count_survey = 0;
+      $("#add_more_question").on('click',function(){
 
-          var place = autocomplete.getPlace();
-          if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-          }
+        next_count_question = current_count_question;
+        current_count_question+=1;
+        $("#more_Question").append(
+                        `
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_question" style="background-color: beige;"> @lang('keywords.question') ${next_count_question}</label>
+                                <input class="master_input" type="text" placeholder="question" maxlength="100" minlength="10" id="survey_question" name="survey[0][question][${next_count_question}][name]" required>
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer1">  @lang('keywords.answer') 1</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer1" required name="survey[0][question][${next_count_question}][answer][0]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer2" required  name="survey[0][question][${next_count_question}][answer][1]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer3" name="survey[0][question][${next_count_question}][answer][2]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
+                                <input class="master_input" type="text" placeholder="answer" maxlength="100" id="survey_answer4" name="survey[0][question][${next_count_question}][answer][3]">
+                              </div>
+                            </div>
+                            </div>
+                            `
+        );
+      });
+      $("#add_more_survey").on('click',function(){
 
-          var address = '';
-          if (place.address_components) {
-            address = [
-              (place.address_components[0] && place.address_components[0].short_name || ''),
-              (place.address_components[1] && place.address_components[1].short_name || ''),
-              (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-          }
+        next_count_survey = current_count_survey;
+      next_count_question = 1;
+      current_count_survey +=1;
 
-           shop_lat = place.geometry.location.lat();
-         shop_long= place.geometry.location.lng();
-         $('#event_lat').val(shop_lat);
-         $('#event_long').val(shop_long);
-        });
+          $("#more_Survey").append(`
+
+                        <div><p style="text-align: center;background-color: #004272;color: azure;">  @lang('keywords.surveyN') ${next_count_survey}</p></div>
+                          <div class="row">
+                            <div class="col-xs-6">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_name"> @lang('keywords.Name')</label>
+                                <input class="master_input" type="text"  id="survey_name" name="survey[${next_count_survey}][name]">
+                              </div>
+                            </div>
+                            <div class="col-xs-6">
+                              <div class="master_field">
+                                <label class="master_label mandatory" for="appear_for"> @lang('keywords.surveyFor')</label>
+                                <select class="master_input select2" id="appears_for" multiple="multiple" data-placeholder="placeholder" style="width:100%;"  name="survey[${next_count_survey}][appears_for]">
+                                  <option value="1">All attend</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_question">1  @lang('keywords.Squestion')</label>
+                                <input class="master_input" type="text"  maxlength="100" minlength="10" id="survey_question" name="survey[${next_count_survey}][question][0][name]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer1">  @lang('keywords.answer') 1 </label>
+                                <input class="master_input" type="text"  maxlength="100" id="survey_answer1" name="survey[${next_count_survey}][question][0][answer][0]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer2">  @lang('keywords.answer') 2</label>
+                                <input class="master_input" type="text"  maxlength="100" id="survey_answer2" name="survey[${next_count_survey}][question][0][answer][1]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer3">  @lang('keywords.answer') 3</label>
+                                <input class="master_input" type="text"  maxlength="100" id="survey_answer3" name="survey[${next_count_survey}][question][0][answer][2]">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div class="master_field">
+                                <label class="master_label" for="survey_answer4">  @lang('keywords.answer') 4</label>
+                                <input class="master_input" type="text" maxlength="100" id="survey_answer4" name="survey[${next_count_survey}][question][0][answer][3]">
+                              </div>
+                            </div>
+                          </div>
+                          <div id="more_question_${next_count_survey}"></div>
+                          <div style="text-align:end">
+                          <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button">
+                          <i class="fa fa-plus color--main"></i><span style="color:#004272;">اضافة سؤال</span></button>
+                          <div class="checkboxrobo pull-right">
+                            <input type="checkbox" id="activation_${next_count_survey}" name="activation_${next_count_survey}" checked="true">
+                            <label for="activation_${next_count_survey}">@lang('keywords.Active')</label>
+                          </div>
+                          </div>
+                          <br>
+                          `
+
+          );
+          $(".select2").select2();
+      })
+
+    })
+  </script>
+
+<script>
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    var event_lat;
+    var event_long;
+
+    function initMap() {
+
+      var input = document.getElementById('event_address');
+
+      var autocomplete = new google.maps.places.Autocomplete(input);
+
+      autocomplete.addListener('place_changed', function() {
+
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // User entered the name of a Place that was not suggested and
+          // pressed the Enter key, or the Place Details request failed.
+          window.alert("No details available for input: '" + place.name + "'");
+          return;
+        }
+
+        var address = '';
+        if (place.address_components) {
+          address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+          ].join(' ');
+        }
+
+      shop_lat = place.geometry.location.lat();
+        shop_long= place.geometry.location.lng();
+        $('#event_lat').val(shop_lat);
+        $('#event_long').val(shop_long);
+      });
 
 </script>
+
 <script type="text/javascript">
   $( document ).ready(function() {
       @if($event->use_ticketing_system == 1)
@@ -1265,9 +1273,9 @@ var event_long;
 
 
       });
-    </script>
+</script>
 
-  <script>
+<script>
     $("#save_btn").click(function() {
       /** base64 images procidures **/
       // add base64 images to an input
@@ -1283,6 +1291,11 @@ var event_long;
       for(i=0; i<eventImgList.length; i++) {
         event_images += '-' + eventImgList[i].image;
       }
+
+      console.log([
+        eventImg,
+        eventImgList
+      ]);
 
       // assign concatinated base64 images to this input
       $(base64_logo).val(event_logo);

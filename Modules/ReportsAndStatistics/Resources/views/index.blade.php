@@ -8,7 +8,7 @@
           <div class="col-xs-12">
             <div class="text-xs-center">         
               <div class="text-wraper">
-                <h3 class="cover-inside-title  ">@lang('keywords.ReportsِِِِِِAndStatistics')</h3>
+                <h3 class="cover-inside-title  ">@lang('keywords.ReportsAndStatistics')</h3>
               </div>
             </div>
           </div>

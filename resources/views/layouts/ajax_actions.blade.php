@@ -1,4 +1,5 @@
-{{--  Author: Ahmed Yacoub  --}}
+{{-- Author: Ahmed Yacoub                                           --}}
+{{-- Email: ahmed.yacoub@outlook.com | ahmed.yacoup@pentavalue.com  --}}
 
 {{--  Delete selected  --}}
 <script>
@@ -47,7 +48,7 @@
                         }
                     });
                 } else {
-                
+
                     swal("@lang('keywords.delete_cancel')", "  @lang('keywords.delete_cancel_message') :)", "error");
                 }
 
