@@ -58,7 +58,7 @@
         'sponsorLogo'   => 'الشعار الراعي',
         'sponsorName'   => 'اسم الراعي',
         'shopndine'     => 'محلات و مطاعم',
-        'ReportsِِِِِِAndStatistics'     => 'التقارير و  الإحصائيات',
+        'ReportsAndStatistics'     => 'التقارير و  الإحصائيات',
 
         // Edit fixed pages
         'EditAbout' => 'تعديل قسم من نحن',

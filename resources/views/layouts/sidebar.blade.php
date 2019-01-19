@@ -64,7 +64,7 @@
   
   
                     @if(\App\Helpers\Helper::hasRule(['Super Admin']) )
-                    <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsِِِِِِAndStatistics')</a>
+                    <li class="side__list openedmenu"><a class="side__item" id="sub_8_2" href="{{ route('reports_and_statistics')  }}">@lang('keywords.ReportsAndStatistics')</a>
                         </li>
                         @endif
                      @if(\App\Helpers\Helper::hasRule(['Super Admin' , 'Data Entry' , 'Sponsor']) )
