@@ -59,7 +59,7 @@
                     </div>
                     <div class="radiorobo">
                       <input type="radio" value="0" id="event_status_3" name="activation">
-                      <label for="event_status_3">@lang('keywords.Not active')</label>
+                      <label for="event_status_3">@lang('keywords.not active')</label>
                     </div>
                   </div>
                 </div>
