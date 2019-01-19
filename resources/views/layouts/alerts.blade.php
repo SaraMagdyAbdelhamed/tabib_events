@@ -1,3 +1,6 @@
+{{-- Author: Ahmed Yacoub                                           --}}
+{{-- Email: ahmed.yacoub@outlook.com | ahmed.yacoup@pentavalue.com  --}}
+
 {{-- Start alert messages --}}
 <div class="col-lg-12 text-center">
 
@@ -29,11 +32,11 @@
         </script>
     @endif
 
-    {{-- @foreach ($errors->all() as $error)
-        <div class="alert text-center error_bg alert_dim">
-            <b>{{ $error }}</b>
-        </div>
-    @endforeach --}}
+    {{-- @if (count($errors->all()) > 0 )
+        @foreach ($errors->all() as $error)
+
+        @endforeach
+    @endif --}}
 
 </div>
 {{-- End alert --}}

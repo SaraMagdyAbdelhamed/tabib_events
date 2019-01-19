@@ -221,7 +221,7 @@
                 <div class="main-section">
                   <div id="fileList2"></div>
                   <div class="form-group">
-                    <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]" onchange="updateList('file-1','fileList','img')"  required accept=".jpg,.png,.jpeg">
+                    <input class="inputfile inputfile-1" id="file-2" type="file" name="event[image]" onchange="updateList2('file-1','fileList','img')"  required accept=".jpg,.png,.jpeg">
                     <label for="file-2"><span>@lang('keywords.chooseImage')</span></label>
                   </div>
                 </div>
@@ -498,12 +498,14 @@
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_1">@lang('keywords.link') 1 </label>
                               <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_1" name="event[youtube][0]">
+                              <span class="master_message inherit" id="yl_1"></span>
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="master_field">
                               <label class="master_label" for="YouTube_video_link_2">@lang('keywords.link') 2</label>
                               <input class="master_input" type="url" placeholder="ex:www.youtube.com/video_iD" id="YouTube_video_link_2" name="event[youtube][1]">
+                              <span class="master_message inherit" id="yl_2"></span>
                             </div>
                           </div>
                           <div class="col-xs-12">
@@ -529,17 +531,20 @@
                               <div class="main-section">
                                 <div id="fileList"></div>
                                 <div class="form-group">
-                                  <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1[]" data-multiple-caption="{count} files selected" multiple="" onchange="updateList()" accept=".jpg,.png,.jpeg">
+                                  <input class="inputfile inputfile-1" id="file-1" type="file" name="file-1[]" data-multiple-caption="{count} files selected" multiple="" onchange='updateList("file-2","fileList2","imgs")' accept=".jpg,.png,.jpeg">
                                   <label for="file-1"><span>@lang('keywords.chooseImage')</span></label>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          
+
                           {{-- base64 images --}}
-                          {{-- {{ --EventImages-- --}}
-                          <input type="hidden"name="event_images_base64"id="event_images_base64"/>
-                          
+                          {{-- Event Logo --}}
+                          <input type="hidden" name="event_logo_base64" id="event_logo_base64" />
+
+                          {{-- Event Images --}}
+                          <input type="hidden" name="event_images_base64" id="event_images_base64"/>
+
                           <div class="col-xs-12" style="text-align:end;">
                             <div class="checkboxrobo">
                               <input type="checkbox" id="activation" name="event[active]" checked="true">
@@ -569,8 +574,63 @@
 
 </script>
 
+  {{-- check youtube links --}}
+<script>
+  var errors = [0, 0, 0, 0];
+
+  $(function(){
+    $("#YouTube_video_link_1").focusout(function() {
+      var value = $(this).val();
+      if(value){
+        checkYoutubeLink(this, value, "#yl_1") ? errors[0] = 0 : errors[0] = 1;
+      }
+      else{
+        errors[0] = 0;
+        $("#yl_1").empty()
+
+      }
+    });
+
+    $("#YouTube_video_link_2").focusout(function() {
+      var value = $(this).val();
+      if(value){
+        checkYoutubeLink(this, value, "#yl_2") ? errors[1] = 0 : errors[1] = 1;
+      }
+      else{
+        errors[1] = 0;
+        $("#yl_2").empty()
+
+      }
+    });
+
+    function checkYoutubeLink(id, value, error_msg) {
+      var con = value.search("https://www.youtube.com/watch?");
+
+      if ( !con ) {
+        $(error_msg).text('Valid youtube link..')
+        .attr('style', 'color: blue !important; text-transform: lowercase !important;');
+
+        return true;
+      } else {
+        $(error_msg).text('Invalid youtube link, ex: https://www.youtube.com/watch?2bdsfds1')
+        .attr('style', 'color: #8a1f11!important; text-transform: lowercase !important;');
+        return false;
+      }
+    }
+
+    function checkAllYoutubeLinks() {
+      return errors.includes(1);
+    }
+
+  })
+
+  function checkAllYoutubeLinks() {
+    return errors.includes(1);
+  }
+</script>
+
 <script type="text/javascript">
-  
+
     var listAr = [];
     var listEn = [];
     var check = false;
@@ -593,7 +653,7 @@
         $("#file-2").prop('disabled', false);
         updateList2();
       }
-        
+
       }
       function checkImageSize_(listAr,listEn){
        error=0;
@@ -631,13 +691,13 @@
                   output.innerHTML += '</ul>';
                   check = false;
               }
-      
+
               else {
                   if (files1.length > 5) {
                       alert("max no. 5 images");
                       return;
                   }
-      
+
                   if (window.File && window.FileList && window.FileReader) {
                          if (files1.length == 5) {
                       $("#file-1").prop('disabled', true);
@@ -665,21 +725,21 @@
                                       </button></span></li>`;
                               }
                               output.innerHTML += '</ul>';
-      
+
                           });
-      
+
                           //Read the image
                           imgReaderAr.readAsDataURL(file);
                       }
                       $("#file-1").val('')
                   }
-      
+
                   if (listAr.length == 4) {
                       $("#file-1").prop('disabled', true);
                   }
               }
-      
-      
+
+
           }
       updateList2 = function(){
             let input = document.getElementById('file-2');
@@ -702,7 +762,7 @@
             }
 
             else {
-              
+
 
                 if (window.File && window.FileList && window.FileReader) {
                        if (files2.length == 1) {
@@ -747,8 +807,8 @@
 
 
         }
-    
-     
+
+
 
 
 
@@ -796,8 +856,14 @@
                   {
                     /** base64 images procidures **/
                     // add base64 images to an input
+                    var event_logo   = '';
                     var event_images = '';
+
+                    var base64_logo  = '#event_logo_base64';
                     var base64_input = '#event_images_base64';
+
+                    // get Event logo
+                    event_logo = listEn[0].image;
 
                     // get Event images
                     for(i=0; i<listAr.length; i++) {
@@ -805,11 +871,17 @@
                     }
 
                     // assign concatinated base64 images to this input
+                    $(base64_logo).val(event_logo);
                     $(base64_input).val(event_images);
 
                     // submit form
                     var form = $(this);
-                    form.submit();
+
+                    if(!checkAllYoutubeLinks()) {
+                      form.submit();
+                    }else{
+                      swal("Error","Invalid Media Inputs, Please add valid images OR Youtube Links..")
+                    }
                   },
                   onFinished: function (event, currentIndex) {
 
@@ -821,7 +893,7 @@
   var dd = today.getDate();
   var mm = today.getMonth() + 1; //January is 0!
   var yyyy = today.getFullYear();
-  
+
   dateRange_2('start_date_','end_date_')
 
   dateRange_2('workshop_start_date','workshop_end_date')
@@ -833,7 +905,7 @@
     })
 
  })
-   
+
 </script>
 
 <script type="text/javascript">
@@ -917,7 +989,7 @@
         var next_count=0;
         $("#add_more_btn").on('click',function(){
 
-          
+
           $("#more_workshop").append(`<div><p style="text-align: center;background-color: #1ca6c0;color: azure;"> @lang('keywords.workshop') ${next_count}</p></div>
                           <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -1047,7 +1119,7 @@
           `)
         }
       $(document).ready(function(){
-       
+
         if($('html').attr('lang')=='en'){
             $("#freeTicket,#paidTicket").addClass('text-left')
         }
@@ -1100,7 +1172,7 @@
 
          next_count_survey =current_count_survey +1;
        next_count_question = 0;
-      
+
 
             $("#more_Survey").append(`
 
@@ -1155,7 +1227,7 @@
                             <div id="more_question_${next_count_survey}"></div>
                            <div style="text-align:end">
                             <button onclick="add_question(${next_count_survey},${++next_count_question})" class="btn btn-default" id="add_more_question" type="button"><i class="fa fa-plus color--main">Add Question</i></button>
-                            
+
                             </div>
                            <br>
                            `
@@ -1205,6 +1277,5 @@ var event_long;
         });
 
 </script>
-
 
 @endsection
