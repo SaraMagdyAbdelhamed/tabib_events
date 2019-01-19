@@ -57,14 +57,14 @@
                     </i>{{date('d/m/Y', strtotime($notification->created_at))}}</span></a>
                 </li>
                 @elseif($notification->notification_type_id == 7)
-                <li><a href="{{url('/mark_read')}}/{{$notification->id}}">
+                <li><a href="{{route('users_mobile.show', $notification->user_id)}}">
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p>{{$notification->msg}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
                       {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
                 @endif
                 @else
                 @if($notification->notification_type_id == 6)
-                <li class="request"><a href="#">
+                <li class="request"><a href="{{url('/mark_read')}}/{{$notification->id}}">
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg_ar}}</p>
                     <div class="pull-right">
