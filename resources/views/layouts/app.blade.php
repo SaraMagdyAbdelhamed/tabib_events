@@ -677,7 +677,35 @@ google.maps.event.addDomListener(window, 'load', initialize);
     $(this).text(next.replace('Next', 'التالي'));
 @endif
 </script>
+<script>
+function request_event(user_id,event_id,type)
+{
+  var token = '{{ csrf_token() }}';
+  $.ajax(
+      {
+          url: "{{ route('request_event') }}",
+          type: 'POST',
+          dataType: "JSON",
+          data: {
+              "user_id": user_id,
+              "event_id": event_id,
+              "type": type,
+              "_method": 'POST',
+              "_token": token,
+          },
+          success: function(data)
+          {
+            swal("@lang('keywords.request_event_success')!", "@lang('keywords.request_event_success_message') ", "success");
+              
+          },
+              error: function(response) {
+                swal("@lang('keywords.request_event_fail')!", "@lang('keywords.request_event_fail_message') ", "error");
+              console.log(response);
+          }
+      });
 
+}
+</script>
 @yield('js')
 @include('layouts.ajax_actions')
   </body>

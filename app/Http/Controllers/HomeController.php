@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use App\Library\Services\NotificationsService;
 use App\Notification;
+use App\EventJoinRequest;
+use App\userGoing;
+use Helper;
 
 class HomeController extends Controller
 {
@@ -54,7 +57,36 @@ class HomeController extends Controller
         $notification = Notification::find($id);
         $notification->is_read = 1;
         $notification->save();
-        return redirect("/events/mobile/view/".$notification->item_id);
+        return redirect()->route('events.show', $notification->item_id);
 
+    }
+
+    public function request_event(Request $request)
+    {
+        try{
+            $type=0;
+            if($request->type == 1)
+            {
+                $type = 1;
+            }
+            $event = EventJoinRequest::where('user_id',$request->user_id)->where('event_id',$request->event_id)->first();
+            $event->update([
+                'is_accepted'=> $type
+            ]);
+    
+            $user_going = userGoing::where('user_id',$request->user_id)->where('event_id',$request->event_id)->first();
+            $user_going->update([
+                'is_accepted'=> $type
+            ]);
+            
+            $notify = Helper::notification($request->user_id , "events" , $request->event_id , ($type == 1)? 8 : 9 );
+        }
+        catch(\Exception $e)
+        {
+            return response()->json();
+        }
+
+        return response()->json();
+       
     }
 }

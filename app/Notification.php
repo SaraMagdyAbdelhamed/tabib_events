@@ -14,7 +14,7 @@ class Notification extends Model
         'msg','msg_ar','description',
         'description_ar','user_id','entity_id',
         'item_id','notification_type_id','is_read','is_sent',
-        'schedule'
+        'schedule','is_push'
     ];
   	  protected $dates = ['created_at', 'updated_at','schedule'];
       public $timestamps = true;

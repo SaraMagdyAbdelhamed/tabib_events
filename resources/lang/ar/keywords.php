@@ -419,6 +419,11 @@
         'addsurvey' => 'أضف دراسة',
         'downloadSample' => 'تحميل ملف الاكسيل',
         'Activate'  => 'تفعيل',
+
+        'request_event_success'=>'ارسال الاشعار ',
+        'request_event_success_message'=>'تم ارسال الاشعار بنجاح',
+        'request_event_fail'=>'فشل الارسال',
+        'request_event_fail_message'=>'فشل ارسال الاشعار للمستخدم'
 	];
 
 
