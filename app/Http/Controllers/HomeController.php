@@ -53,11 +53,11 @@ class HomeController extends Controller
        echo  $this->NotifcationsService->save_notification($message,2,2,2,$user);
     }
 
-    public function mark_read($id){
+    public function mark_read($id , $route){
         $notification = Notification::find($id);
         $notification->is_read = 1;
         $notification->save();
-        return redirect()->route('events.show', $notification->item_id);
+        return redirect()->route($route, $notification->item_id);
 
     }
 

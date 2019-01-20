@@ -236,6 +236,6 @@ Route::middleware(['auth', 'Rule:Super Admin,Admin Doctor,Data Entry,Organizer,S
 
 //AHmed ALaa Test Routes
 Route::get("/test_not","HomeController@test_not");
-Route::get("/mark_read/{id}","HomeController@mark_read");
+Route::get("/mark_read/{id}/{route}","HomeController@mark_read")->name('mark_read');
 
 Route::post("/request_event","HomeController@request_event")->name('request_event');

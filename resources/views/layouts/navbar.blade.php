@@ -45,36 +45,39 @@
               @foreach($notes as $notification)
               @if(App::isLocale("en"))
               @if($notification->notification_type_id == 6)
-                <li class="request"> 
-                <a href="{{route('events.show', $notification->event_id)}}"> 
+                <li class="request" > 
+                <a href="{{route('mark_read', [$notification->id, 'events.show'])}}"> 
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg}}</p>
                     <div class="pull-right">
-                   
-                     <button class="btn_2 btn_accept"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
-                      <button class="btn_2 btn_reject"><i class="fa fa-close" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2)"> Reject</i></button>
+                  <div class="btn_{{$notification->id}}">
+                     <button class="btn_2 btn_accept btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1 ,{{$notification->id}})"><i class="fa fa-check" > Accept</i></button>
+                      <button class="btn_2 btn_reject btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2 ,{{$notification->id}})" ><i class="fa fa-close" > Reject</i></button>
+                    </div>
                     </div><span class="notification_date"><i class="fa fa-clock-o">
                     </i>{{date('d/m/Y', strtotime($notification->created_at))}}  {{date('H:i:s', strtotime($notification->created_at))}}</span></a>
                 </li>
                 @elseif($notification->notification_type_id == 7)
-                <li><a href="{{route('users_mobile.show', $notification->user_id)}}">
+                <li><a href="{{route('mark_read', [$notification->id, 'users_mobile.show'])}}">
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p>{{$notification->msg}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
                       {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>
                 @endif
                 @else
-                @if($notification->notification_type_id == 6)
-                <li class="request"><a href="{{route('events.show', $notification->event_id)}}">
+                @if($notification->notification_type_id == 6) 
+                <li class="request"><a href="{{route('mark_read', [$notification->id, 'events.show'])}}">
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg_ar}}</p>
                     <div class="pull-right">
-                      <button class="btn_2 btn_accept"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
-                      <button class="btn_2 btn_reject"><i class="fa fa-close" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2)"> Reject</i></button>
+                    <div class="btn_{{$notification->id}}">
+                      <button class="btn_2 btn_accept btn_{{$notification->id}}"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
+                      <button class="btn_2 btn_reject btn_{{$notification->id}}"><i class="fa fa-close" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2)"> Reject</i></button>
+                    </div>
                     </div><span class="notification_date"><i class="fa fa-clock-o">
                     </i>{{date('d/m/Y', strtotime($notification->created_at))}} {{date('H:i:s', strtotime($notification->created_at))}}</span></a>
                 </li>
                 @elseif($notification->notification_type_id == 7)
-                <li><a href="{{route('users_mobile.show', $notification->user_id)}}">
+                <li><a href="{{route('mark_read', [$notification->id, 'users_mobile.show'])}}">
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p>{{$notification->msg_ar}}</p><span class="notification_date"><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($notification->created_at))}}
                       {{date('H:i:s', strtotime($notification->created_at))}}</span></a></li>

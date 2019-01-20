@@ -678,7 +678,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 @endif
 </script>
 <script>
-function request_event(user_id,event_id,type)
+function request_event(user_id,event_id,type , notification_id)
 {
   var token = '{{ csrf_token() }}';
   $.ajax(
@@ -695,10 +695,13 @@ function request_event(user_id,event_id,type)
           },
           success: function(data)
           {
+            // alert('btn_'+notification_id);
+            $('.btn_'+notification_id).hide();
             swal("@lang('keywords.request_event_success')!", "@lang('keywords.request_event_success_message') ", "success");
               
           },
               error: function(response) {
+                $('.btn_'+notification_id).hide();
                 swal("@lang('keywords.request_event_fail')!", "@lang('keywords.request_event_fail_message') ", "error");
               console.log(response);
           }
