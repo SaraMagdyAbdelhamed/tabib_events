@@ -33,6 +33,7 @@ use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Session;
+use App\userGoing;
 
 class EventsController extends Controller
 {
@@ -251,6 +252,7 @@ class EventsController extends Controller
             }
 
             foreach ($request['event']['doctor'] as $doctor) {
+                $notify = Helper::notification($doctor , "events" , $event->id , 10);
                 EventOwner::create([
                     "event_id" => $event->id,
                     "user_id" => $doctor,
@@ -689,7 +691,7 @@ class EventsController extends Controller
                 }
             }
         }
-
+        if (array_key_exists('category', $request['event'])) {
         foreach ($request['event']['category'] as $category) {
             EventCategory::where('event_id', $event->id)->delete();
             EventCategory::create([
@@ -697,6 +699,7 @@ class EventsController extends Controller
                 "category_id" => $category,
             ]);
         }
+    }
         if (isset($request['event']['special'])) {
             EventSpecialization::where('event_id', $event->id)->delete();
             foreach ($request['event']['special'] as $special) {
@@ -706,14 +709,16 @@ class EventsController extends Controller
                 ]);
             }
         }
-
+        if (array_key_exists('doctor', $request['event'])) {
         foreach ($request['event']['doctor'] as $doctor) {
+            $notify = Helper::notification($doctor , "events" , $event->id , 10);
             EventOwner::where('event_id', $event->id)->delete();
             EventOwner::create([
                 "event_id" => $event->id,
                 "user_id" => $doctor,
             ]);
         }
+    }
 
         if (isset($request['workshop'])) {
 
@@ -755,6 +760,11 @@ class EventsController extends Controller
         }
 
         if (isset($request['survey'])) {
+            $doctors_attend_event=userGoing::where('event_id',$event->id)->where('is_accepted',1)->get();
+            foreach($doctors_attend_event as $doctor)
+            {
+                $notify = Helper::notification($doctor['id'] , "events" , $event->id , 4);
+            }
             $surveys = Survey::where('event_id', $event->id)->get();
             foreach ($surveys as $sur) {
                 $database = self::firebase();
@@ -766,6 +776,7 @@ class EventsController extends Controller
                 Survey::destroy($sur->id);
             }
             foreach ($request['survey'] as $value) {
+                
                 $survey = Survey::create([
                     "event_id" => $event->id,
                     "name" => $value['name'],
