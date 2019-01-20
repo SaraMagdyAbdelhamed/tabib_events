@@ -54,7 +54,7 @@
                      <button class="btn_2 btn_accept"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
                       <button class="btn_2 btn_reject"><i class="fa fa-close" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2)"> Reject</i></button>
                     </div><span class="notification_date"><i class="fa fa-clock-o">
-                    </i>{{date('d/m/Y', strtotime($notification->created_at))}}</span></a>
+                    </i>{{date('d/m/Y', strtotime($notification->created_at))}}  {{date('H:i:s', strtotime($notification->created_at))}}</span></a>
                 </li>
                 @elseif($notification->notification_type_id == 7)
                 <li><a href="{{route('users_mobile.show', $notification->user_id)}}">
@@ -71,7 +71,7 @@
                       <button class="btn_2 btn_accept"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
                       <button class="btn_2 btn_reject"><i class="fa fa-close" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2)"> Reject</i></button>
                     </div><span class="notification_date"><i class="fa fa-clock-o">
-                    </i>{{date('H:i:s', strtotime($notification->created_at))}}</span></a>
+                    </i>{{date('d/m/Y', strtotime($notification->created_at))}} {{date('H:i:s', strtotime($notification->created_at))}}</span></a>
                 </li>
                 @elseif($notification->notification_type_id == 7)
                 <li><a href="{{route('users_mobile.show', $notification->user_id)}}">
