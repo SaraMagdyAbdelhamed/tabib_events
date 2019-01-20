@@ -50,10 +50,17 @@
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg}}</p>
                     <div class="pull-right">
-                  <div class="btn_{{$notification->id}}">
+                    @if($notification->is_read == 1)
+                  <div class="btn_{{$notification->id}}" hidden>
                      <button class="btn_2 btn_accept btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1 ,{{$notification->id}})"><i class="fa fa-check" > Accept</i></button>
                       <button class="btn_2 btn_reject btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2 ,{{$notification->id}})" ><i class="fa fa-close" > Reject</i></button>
                     </div>
+                    @else
+                    <div class="btn_{{$notification->id}}" >
+                     <button class="btn_2 btn_accept btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1 ,{{$notification->id}})"><i class="fa fa-check" > Accept</i></button>
+                      <button class="btn_2 btn_reject btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2 ,{{$notification->id}})" ><i class="fa fa-close" > Reject</i></button>
+                    </div>
+                    @endif
                     </div><span class="notification_date"><i class="fa fa-clock-o">
                     </i>{{date('d/m/Y', strtotime($notification->created_at))}}  {{date('H:i:s', strtotime($notification->created_at))}}</span></a>
                 </li>
@@ -69,10 +76,17 @@
                     <div class="icon-container"><i class="fa fa-volume-up"> </i></div>
                     <p class="text-left">{{$notification->msg_ar}}</p>
                     <div class="pull-right">
-                    <div class="btn_{{$notification->id}}">
-                      <button class="btn_2 btn_accept btn_{{$notification->id}}"><i class="fa fa-check" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1)"> Accept</i></button>
-                      <button class="btn_2 btn_reject btn_{{$notification->id}}"><i class="fa fa-close" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2)"> Reject</i></button>
+                    @if($notification->is_read == 1)
+                  <div class="btn_{{$notification->id}}" hidden>
+                     <button class="btn_2 btn_accept btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1 ,{{$notification->id}})"><i class="fa fa-check" > Accept</i></button>
+                      <button class="btn_2 btn_reject btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2 ,{{$notification->id}})" ><i class="fa fa-close" > Reject</i></button>
                     </div>
+                    @else
+                    <div class="btn_{{$notification->id}}" >
+                     <button class="btn_2 btn_accept btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},1 ,{{$notification->id}})"><i class="fa fa-check" > Accept</i></button>
+                      <button class="btn_2 btn_reject btn_{{$notification->id}}" onclick="request_event({{$notification->user_id}},{{$notification->item_id}},2 ,{{$notification->id}})" ><i class="fa fa-close" > Reject</i></button>
+                    </div>
+                    @endif
                     </div><span class="notification_date"><i class="fa fa-clock-o">
                     </i>{{date('d/m/Y', strtotime($notification->created_at))}} {{date('H:i:s', strtotime($notification->created_at))}}</span></a>
                 </li>
