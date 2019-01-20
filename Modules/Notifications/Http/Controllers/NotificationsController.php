@@ -119,6 +119,8 @@ class NotificationsController extends Controller
         $notification->msg = $request->notifiaction_text;
         $notification->notification_type_id = 5;
         $notification->user_id = $user->id;
+        $notification->is_push=1;
+        $notification->is_sent=0;
         $notification->save();
         $push = new NotificationPush;
         $push->notification_id = $notification->id;
