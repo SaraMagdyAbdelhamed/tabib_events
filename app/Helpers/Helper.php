@@ -337,6 +337,17 @@ class Helper
         "is_sent"=>0
 
       ]);
+      $user=Users::find($user_id);
+
+      if($notification_type->is_push == 1)
+      {
+        NotificationPush::create([
+            'notification_id'=>$notification->id,
+            'device_token'=>$user->device_token,
+            'mobile_os'=>$user->mobile_os,
+            'user_id'=>$user->id
+        ]);
+      }
 
       return 'success';
     }
