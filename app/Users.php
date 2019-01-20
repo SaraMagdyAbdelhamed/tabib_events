@@ -190,7 +190,7 @@ class Users extends Authenticatable
     // get region name
     public function getRegionName()
     {
-        return isset($this->userInfo->region->name) ? $this->country->name : __('keywords.not');
+        return isset($this->userInfo->region->name) ? $this->userInfo->region->name : __('keywords.not');
     }
 
     // get region id
