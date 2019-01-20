@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,12 @@ class Event extends Model
     ];
     protected $dates = ['start_datetime', 'end_datetime'];
 
+    
+
+    public function scopeEventsStartAfterOneDay($query)
+    {
+        return $query->whereDate("start_datetime", '=', Carbon::now()->addDays(1)->toDateString());
+    } 
 
     //Relations
     public function createdBy() {
@@ -48,5 +55,9 @@ class Event extends Model
 
     public function surveys() {
         return $this->hasMany('App\Survey', 'event_id');
+    }
+
+    public function usersGoing() {
+        return $this->belongsToMany('App\Users', 'user_going','event_id','user_id');
     }
 }
