@@ -79,7 +79,7 @@
                 <div class="col-xs-12">
                   <div class="cardwrap inherit bradius--noborder bshadow--0 padding--small margin--small-top-bottom">
                     <div class="col-lg-3 col-lg-offset-3 col-md-3 col-sm-6 col-xs-6">
-                      <button class="master-btn  btn-block color--white bgcolor--fadegreen bradius--noborder bshadow--0" type="submit"><span>@lang('keywords.send')</span>
+                      <button class="master-btn  btn-block color--white bgcolor--main bradius--noborder bshadow--0" type="submit"><span>@lang('keywords.send')</span>
                       </button>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
